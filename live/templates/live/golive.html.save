@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Go live</h1>
+<div id="container">
+<video autoplay="true" id="video">
+</video>
+<canvas id="canvas" width="206" height="146">
+</canvas>
+<button id="capture"></button>
+</div>
+<form id="image-form">
+{{ form }}
+</form>
+{% endblock %}
+{% block javascript %}
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+function capture(){
+    ctx.drawImage(video, 0, 0, 1024/5, 728/5);
+    ctx.save();
+    canvas.toBlob(function(blob){
+        console.log(blob);
+	var fileOfBlob = new File([blob], 'camera.png');
+        var formData = new FormData((document.getElementById("image-form")));
+	formData.append('image', blob, 'camera.png');
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+		console.log("Captured image.")
+            },
+            cache: false,
+            contentType: 'multipart/form-data;',
+            processData: false
+        });
+    },'image/png');
+}
+setInterval(capture, 5000);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+  })
+  .catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+capture();
+{% endblock %}

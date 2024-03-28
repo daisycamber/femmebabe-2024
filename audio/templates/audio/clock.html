@@ -1,0 +1,18 @@
+<div id="clockContainer">
+        <div class="hour" id="hour{{ recording.id }}"></div> 
+        <div class="minute" id="minute{{ recording.id }}"></div> 
+        <div class="second" id="second{{ recording.id }}"></div> 
+</div> 
+<script>
+    var d = "{{ recording.short_time }}".split(":");
+    hr = parseInt(d[0]);
+    min = parseInt(d[1]);
+    sec = parseInt(d[2]);
+    console.log(hr);
+    hr_rotation = 30 * hr + min / 2; //converting current time
+    min_rotation = 6 * min;
+    sec_rotation = 6 * sec;
+    document.getElementById("hour{{ recording.id }}").style.transform = `rotate(${hr_rotation}deg)`; 
+    document.getElementById("minute{{ recording.id }}").style.transform = `rotate(${min_rotation}deg)`; 
+    document.getElementById("second{{ recording.id }}").style.transform = `rotate(${sec_rotation}deg)`; 
+</script>

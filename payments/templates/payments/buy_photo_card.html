@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-credit-card-fill"></i> Buy this photo of @{{ username }} with Card</h1>
+<img class="mr-2 img-fluid rounded" style="float: left; filter: blur(8px); width: 50%; max-width: 400px; margin-right: 13px;" src="{{ post.get_blur_thumb_url }}" alt="Buy this photo for ${{ fee|sub_fee }} USD"></img>
+<div style="display: inline-block;">
+<a href="{{ request.path }}" title="See another photo" class="btn btn-outline-dark pink-borders">See Another Photo</a>
+</div>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+<b>Items:</b>
+<ul>
+<li>One private photo, video or audio featuring {{ username }} (${{ fee|sub_fee }})</li>
+<li>Billed once only.</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "FEMMEBABE.COM AUDIOVIS".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<p>You will pay ${{ fee|sub_fee }} USD. Please enter your credit or debit card information.</p>
+<hr style="background-color: blue;">
+<button onclick="checkout();" class="btn btn-lg btn-outline-primary">Checkout</button>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function checkout(){
+        fetch("/payments/audiovisual/checkout/?photo={{ post.id }}")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endblock %}

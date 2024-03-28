@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block content %}
+<h1>Edit Audio Recording</h1>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success">Edit</button>
+</form>
+<div style="float: right;">{% include 'audio/publish.html' %}</div>
+<small><i>Uploaded file</i> {{ recording.uploaded_file|date:"D d M Y" }} at {{ recording.uploaded_file|time:"g:i:s a" }}</small>
+{% autoescape off %}
+<p>{{ recording.notes }}</p>
+{% if recording.transcript != 'transcription disabled for this audio.' %}
+<p>* transcript * {{ recording.transcript|linkspeech }}</p>
+{% else %}
+<p>{{ recording.transcript }}</p>
+{% endif %}
+{% endautoescape %}
+<div>
+    <audio controls src="{{ recording.get_secure_url }}" style="width: 100%;">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</div>
+{% if recording.plot %}
+<img src="{{ recording.get_plot_url }}" width="100%" alt="A graph of this recording"></img>
+{% endif %}
+{% endblock %}

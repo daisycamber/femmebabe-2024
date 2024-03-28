@@ -1,0 +1,13 @@
+<h1>{{ the_site_name }} - Verify Your Email</h1>
+<p>Dear {{ user.username }},</p>
+<p>To verify your email, please <a href="{{ protocol }}://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}">click here</a>.</p>
+
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}</p>
+
+<p>If you created an account at checkout, you will need to set your password. Please <a href="{{ protocol }}://{{ domain }}{% url 'users:password_reset' %}" title="Password reset">visit this link to reset your password</a>.</p>
+
+<p>The link will expire in 30 minutes.</p>
+<p>If you have not requested a verification email you can simply ignore this email.</p>
+<p>Seeing you there,</p>
+<p>{{ model_name }}</p>

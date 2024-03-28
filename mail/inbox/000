@@ -1,0 +1,361 @@
+From bounce+46b7d5.b02fec8-love=mamasheen.com@account.seeking.com  Fri Sep  1 14:52:17 2023
+Return-Path: <bounce+46b7d5.b02fec8-love=mamasheen.com@account.seeking.com>
+X-Original-To: love@mamasheen.com
+Delivered-To: love@mamasheen.com
+Received: from outbound127.seeking.com (outbound127.seeking.com [104.130.123.127])
+	by mail.mamasheen.com (Postfix) with UTF8SMTPS id D282C3B36A9
+	for <love@mamasheen.com>; Fri,  1 Sep 2023 14:52:16 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=account.seeking.com;
+ q=dns/txt; s=pic; t=1693579936; x=1693587136; h=Content-Transfer-Encoding:
+ Content-Type: List-Unsubscribe: MIME-Version: To: To: From: From: Subject:
+ Subject: Date: Message-ID: Sender: Sender;
+ bh=ig2OlxDk/EthO3ugsnGRssbASvTSgHk5gWALtjviTFc=;
+ b=WUoQhypt+unF1Q8a1WQbY9h+ypamK8O7sDW4Qm9KwGKmZk4q2LE/Pe29F4dD8MxGYS3kcrdEt3+fuiUEEZ+EOTEqKv3JJ0xfpp8n8dLKJGMZtSQO2nONdSnkUin5genhxVXa5X0BxnfEWkgySdPHAGdE+pL564cOwBVBhBLcUbw=
+X-Mailgun-Sending-Ip: 104.130.123.127
+X-Mailgun-Sid: WyJkY2FkMCIsImxvdmVAbWFtYXNoZWVuLmNvbSIsImIwMmZlYzgiXQ==
+Received: from <unknown> (<unknown> []) by 81136f68d726 with HTTP id
+ 64f1faa055f14076be1c4d35; Fri, 01 Sep 2023 14:52:16 GMT
+Sender: alerts@account.seeking.com
+Message-ID: <d50fa372e23005aa027275e72d3be514@swift.generated>
+Date: Fri, 01 Sep 2023 14:52:16 +0000
+Subject: Profile has been favorited
+From: Seeking <alerts@account.seeking.com>
+To: daisygirl <love@mamasheen.com>
+MIME-Version: 1.0
+X-Mailgun-Variables: {"email_rollup_id":852058079,"user_uid":"79a7d22e-03e8-4846-9930-38b2d04f9e79"}
+X-Mailgun-Tag: userFavorited
+List-Unsubscribe: <https://members.seeking.com/unsubscribe?locale=en_US&user=79a7d22e-03e8-4846-9930-38b2d04f9e79&access_token=MDRiNjViYTU4NzI3NDU2MmI4NjUwOWQwYmE3ODUzOTM=>
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-IMAPbase: 1694374026 0000000014
+X-UID: 1                                        
+Content-Length: 13905
+Status: O
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial scale=3D1.=
+0">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"x-apple-disable-message-reformatting">
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"en">
+<head>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <title></title>
+</head>
+
+<body>
+    <div style=3D"margin:0; padding:20px 0px 0px 0px; background-color:#eee=
+eee; font-family:Helvetica, Arial, sans-serif; color:#454545;">
+        <!--[if mso]>
+        <style type=3D"text/css">
+            body, table, td {font-family: Helvetica, Arial, sans-serif !imp=
+ortant;}
+            body { background-color: #eeeeee; } .bottom-margin { margin-bot=
+tom: 20px; }
+        </style>
+        <![endif]-->
+
+        <!-- START EMAIL -->
+        <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" align=3D"center" style=3D"min-width:320px; max-width:600px; width: 100%=
+; ">
+            <tr>
+                <th scope=3D"col" style=3D"display:none"></th>
+            </tr>
+            <tr>
+    <td style=3D"text-align: center; background-image: url('https://seekarr=
+=2Es3.amazonaws.com/email_assets/white.=
+png'); background-repeat: repeat;" bgc=
+olor=3D"#fff" class=3D"bottom-margin">
+        <a href=3D"https://email.account.seeking.com/c/eJwUzUGKrDAQgOHTJDub=
+sioxqUUWDx5eYJi1VEzZHSZqo3bP9Yde_vDDV1IGXHSOVlM_MPnATIPVVWqbjr2113OqJUWP4CM=
+Eto_kYh44z8pzdFT6niKwCx5kyUGgR1tT8bAIBVQkAC8CGDB4DVgoq--dcXD-1uW63XXTQy4ttq=
+XHdT1PQ_8MjgbHVdesx3k7VX_qdr_N-2pwbPu9bobGts_S1NB_3abvL3uktr_VOFhllfOhun1-e=
+6XXqcco7_2oH-NT06uWFFhCQdQOSGPnohs6ZoKOYsYCbmEN_BcAAP__o9NWaQ">
+            <img src=3D"https://contents.seeking.com/images/main/seeking-lo=
+go-fl-red-transparent.png" height=3D"45" style=3D"margin: 25px 16px 12px 16=
+px; height: 45px;">
+        </a>
+    </td>
+</tr>
+            <tr>
+                <td>
+                    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" align=3D"center">
+                        <tr>
+                            <td style=3D"background-color:#ffffff;" width=
+=3D"16">&nbsp;</td>
+                            <td style=3D"background-color:#ffffff;"></td>
+                            <td style=3D"background-color:#ffffff;" width=
+=3D"16">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style=3D"background-color:#ffffff;">
+                    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" align=3D"center" style=3D"font-size:medium;">
+                        <tr>
+                            <th scope=3D"col" style=3D"display:none"></th>
+                        </tr>
+                        <tr>
+                            <td width=3D"16"></td>
+                            <td style=3D"background-color:#ffffff;" align=
+=3D"center">
+                                <!-- START BODY -->
+
+                                  <!--[if !mso]>
+  <span style=3D"display: none !important;">WittyJuice has shown interest a=
+nd favorited your profile. Log into Seeking to check them out!</span>
+  <![endif]-->
+    <div>
+      <a href=3D"https://email.account.seeking.com/c/eJw8jruO4zAMAL9G7hTQpC=
+RKhYoDDv6Bw9UGZVGJsX4EtpP9_UWaLWeKwdRcAJtOsdPch0SeU6LQ6SrzMh77srye41xz9Ag-A=
+qfukbW2Xgt69CGJcnRRWs_QOJQGvUA35-qhCTEqEoAXAWRkr4yVivreGQfn99yu2103PeTS2i35=
+cV3P09Afg4PBYdW16HHeTtWvebvfpn39tQaHaZq8Z2k2lBSsqz3ZyOSspyI9TOolRUODwbDskyx=
+q6K9u4_9_3ZGX_a3GwSqrnA_V7ZPurvw69RjkvR_zZ-dD42uumZNwRVQLpNG66IJNicBSLFjBta=
+ScfgIAAP__o3hh_A" style=3D"color:#2ba6cb;text-decoration:none" target=3D"_b=
+lank">
+        <img src=3D"https://api.seeking.com/v3/photos/profile/ccc557af-6b96=
+-4d13-8734-53ba10ce5a98/photo/3ca3666f-b0ba-4c3a-8066-32f7c513825a/thumb?to=
+ken=3DKOt18QQXzjYO57V95vKoUX24QlCHcP1A7inxSqQ6rXg-&amp;nonce=3DcWxlRXhMd2ll=
+VlFPWlJDMFdyc0FXdz09" width=3D"100" alt=3D"" class=3D"CToWUd" style=3D"max-=
+height: 133px;">
+      </a>
+      <br /><br />
+      <p>
+      <span style=3D"line-height:24px; font-size:20px;"><b>WittyJuice favor=
+ited you
+</b></span>
+      </p>
+    </div>
+  <!-- CTA Button -->
+<div>
+
+<!--[if ls mso 16]>
+  <br/>
+  <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:sch=
+emas-microsoft-com:office:word" href=3D"https://email.account.seeking.com/c=
+/eJxUkE0K2zAQRk8j7xTk0f9Ci0LwBUrWZjwaJ6KWHSw7pbcvhlDoct68xePLaVIwM4WOU--itj=
+5G7TquWJZx35blfI8lp2BB2aB87F4JKRIx9pDB2DmTcUBuckohuX7O3JWUrZpRe2DQSllEBR68Z=
+Q9ZT2x7I4xqv8t83J688o4H525Jr-N4N6F_CBgEDJXrxHu7NeZfZX3eaKv_qICBiKz1OEs3RSdN=
+7rUMXhtp9YS9IrYYg9CDALdshAsLfed1fPwU4M6jjm07d7pgQ9n-tIPr91E5l7Ne9rXAFxLWN5b=
+nKvT90Xgf8LPt5Yre07J9WBhVsWJ7Ma9XZ3ek8z_tusaz5OQj-gzAUmkO0gTjZIxaSR0myMrMkX=
+38GwAA__9MrX6H" style=3D"height:47px;v-text-anchor:middle;width:296px;" arc=
+size=3D"9%" stroke=3D"f" fillcolor=3D"#CF0404">
+    <w:anchorlock/>
+    <center>
+  <![endif]-->
+
+<!--[if gte mso 16]>
+  <br/>
+  <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:sch=
+emas-microsoft-com:office:word" href=3D"https://email.account.seeking.com/c=
+/eJxUkE0K2zAQRk8j7xTk0f9Ci0LwBUrWZjwaJ6KWHSw7pbcvhlDoct68xePLaVIwM4WOU--itj=
+5G7TquWJZx35blfI8lp2BB2aB87F4JKRIx9pDB2DmTcUBuckohuX7O3JWUrZpRe2DQSllEBR68Z=
+Q9ZT2x7I4xqv8t83J688o4H525Jr-N4N6F_CBgEDJXrxHu7NeZfZX3eaKv_qICBiKz1OEs3RSdN=
+7rUMXhtp9YS9IrYYg9CDALdshAsLfed1fPwU4M6jjm07d7pgQ9n-tIPr91E5l7Ne9rXAFxLWN5b=
+nKvT90Xgf8LPt5Yre07J9WBhVsWJ7Ma9XZ3ek8z_tusaz5OQj-gzAUmkO0gTjZIxaSR0myMrMkX=
+38GwAA__9MrX6H" style=3D"height:60px;v-text-anchor:middle;width:296px;" arc=
+size=3D"9%" stroke=3D"f" fillcolor=3D"#CF0404">
+    <w:anchorlock/>
+    <center>
+  <![endif]-->
+
+  <a href=3D"https://email.account.seeking.com/c/eJxUkE0K2zAQRk8j7xTk0f9Ci0=
+LwBUrWZjwaJ6KWHSw7pbcvhlDoct68xePLaVIwM4WOU--itj5G7TquWJZx35blfI8lp2BB2aB87=
+F4JKRIx9pDB2DmTcUBuckohuX7O3JWUrZpRe2DQSllEBR68ZQ9ZT2x7I4xqv8t83J688o4H525J=
+r-N4N6F_CBgEDJXrxHu7NeZfZX3eaKv_qICBiKz1OEs3RSdN7rUMXhtp9YS9IrYYg9CDALdshAs=
+Lfed1fPwU4M6jjm07d7pgQ9n-tIPr91E5l7Ne9rXAFxLWN5bnKvT90Xgf8LPt5Yre07J9WBhVsW=
+J7Ma9XZ3ek8z_tusaz5OQj-gzAUmkO0gTjZIxaSR0myMrMkX38GwAA__9MrX6H"
+     style=3D"background-color:#CF0404;border-radius:4px;color:#ffffff;disp=
+lay:inline-block;font-family:sans-serif;font-size:15px;font-weight:bold;lin=
+e-height:47px;text-align:center;text-decoration:none;min-width: 296px;-webk=
+it-text-size-adjust:none;">
+    View his profile
+  </a>
+
+  <!--[if ls mso 16]>
+  </center>
+  </v:roundrect>
+  <![endif]-->
+
+  <!--[if gte mso 16]>
+  </center>
+  </v:roundrect>
+  <![endif]-->
+
+</div>
+  <br />
+                               =20
+                                <!-- END BODY -->
+                                <br>
+                            </td>
+                            <td width=3D"16"></td>
+                        </tr>
+                    </table>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+    <td style=3D"background-color:#ffffff;">
+        <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" align=3D"center" style=3D"line-height:18px; font-size:12px; color:#8888=
+88;">
+            <tr>
+                <th scope=3D"col" style=3D"display:none"></th>
+            </tr>  =20
+            <tr>
+                <td></td>
+                <td style=3D"border-top:1px solid #ccc;">&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td width=3D"16"></td>
+                <td style=3D"background-color:#ffffff;">
+                    <span style=3D"color:#000000;">Do not share any persona=
+l information</span> (credit card info, bank account, address, etc.) with a=
+nyone under any circumstances. Never disclose your personal banking informa=
+tion, including account numbers or passwords.
+                </td>
+                <td width=3D"16"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" align=3D"center">
+                        <tr>
+                            <th scope=3D"col" style=3D"display:none"></th>
+                        </tr> =20
+                        <tr>
+                            <td align=3D"left">
+                                <a href=3D"https://email.account.seeking.co=
+m/c/eJyMz8tunDAUgOGnMbsZec7xBS-8qESRshhGbUOrrJAvh4wTDBGGjJSnr3iDLP_d90frOYw=
+U6orsRRmU2hhUFWWXpmFdpmn_GFK0tQQua65NdbcSnAQpVIhRKRWE54K8ECQuAbEeQ5VslHx0qI=
+EAOZfOcdCgJWmI6EleBBO8PNK4nV9pptVtFKvJ3rftozD8waBl0GbKntZyLkTvaX49hyUzaPe57=
+L6ENXli2E5LcBMxbGge-j8M1F5oZdho43QEoBNHqk-iFupkDPIT1h4iF6MhbRgoFwKVMmzLO80M=
+m2vzO3Vvf9PLcy-6ryfsmh6u-Ul0b_3j9u_X4yX_xFvTf92erwybarXT8klM8OyyK3ei-TBWmz0=
+Qrftc1nR8HTXsKdrvoP4HAAD__4mHec0" style=3D"color:#666666;">
+                                    Unsubscribe
+                                </a>
+                            </td>
+                            <td width=3D"56" align=3D"right">
+                                <a href=3D"https://email.account.seeking.co=
+m/c/eJwUzEGuwiAQgOHTwK5mHKDAgoWbXuAdwAydqRLbYija67-4_JM_H6cMuMgctKTrGI3zMZp=
+Ry0Zlvbe6rp_3vXAKDsEF8FE_E4Ej4ODFeoZ5RsoYeISY0V0No9UlsYOFjEdBA-CIAD16Jx7ZZH=
+FXqywcZ1n65SG7NOrCek3P3t-HMjeFk8LpPM_LQrPkWl-XuW4Kpz-RV9kft9Zof8gme9ctrfUry=
+sJGGx1Pkf336p4-h7SJvrWVH_6r-6dw8pE8I8oARsJggx2HGA0MJmRksEsUH_8DAAD__8XgVSE"=
+>
+                                    <img src=3D"https://seekarr.s3.amazonaw=
+s.com/email_assets/social/facebook-sm.png" width=3D"10" height=3D"18" borde=
+r=3D"0">
+                                </a>
+                            </td>
+                            <td width=3D"56" align=3D"right">
+                                <a href=3D"https://email.account.seeking.co=
+m/c/eJwUzD3O4yAURuHVQOfo-gIGCoppvI0IzEuCxj8Rxsn2P7k80tGTQyIuWJxEGCevjPVeTRJ=
+brOuzHet6fZ41B2eYjCPr5TvobO1SuMC4lMcxAkRLSpMpaoqFSNaQDZWoLIMVkYmR2LI1sJxVgh=
+m10HT-aumPF3a02JHlGt69f06h_gmeBc_9V3tHeyzHJng-gf91f8kW1uMLoWmLWzzfwH4PsofrR=
+Jvj92j1xu56XjUH66PNzBhIwQ3a6WnwXtGgXOJMunhY_xcAAP__5w1P2g">
+                                    <img src=3D"https://seekarr.s3.amazonaw=
+s.com/email_assets/social/twitter-sm.png" width=3D"18" height=3D"18" border=
+=3D"0">
+                                </a>
+                            </td>
+                            <td width=3D"56" align=3D"right">
+                                <a href=3D"https://email.account.seeking.co=
+m/c/eJwUzEvO6yAMQOHVwCyVa0PBAwZ3km1UTnBadPOogDbb_5XhkY6-nCbARedoNd0fTD4w08P=
+qJmV91mNdv59nySl6BB8hsH0nvOcJcWZlImU_s3gvwo44L6Ix2JKyh0UooCIBeBHAgMFrwEyT-r=
+szDtpZln576a5Vuma7pnfvn2bon8HR4Hie563srcurynabj83g2FT_l_1la1qPnxoHm2zS3qr7N=
+dievk3rKL-jlou86vktOQWWkBF1ANI4uOgeAzPBQHHCDG5hDfwXAAD__4_3Ua0">
+                                    <img src=3D"https://seekarr.s3.amazonaw=
+s.com/email_assets/social/instagram-sm.png" width=3D"18" height=3D"18" bord=
+er=3D"0">
+                                </a>
+                            </td>
+                            <td width=3D"56" align=3D"right">
+                                <a href=3D"https://email.account.seeking.co=
+m/c/eJwUzTvO6jAQQOHV2F3QMH5O4eJKKBu4C0ATPAFLCUGOTcTuf6U8xaeT0wQ4yyNqSVdPxgU=
+i47WsXJZ73Zalf-4lp-gQXIRA-pWsJ5eRODofWPzsyU7mar1YcmYKpEvKDmY2AQUNgGMGDBicBM=
+xmEne1ysJ-lLldnvKWyk2yXtKrtc-uzD-Fo8LxOI7Lb-utT3J5bKvCse9SFY7_-5PrjXP-3biV9=
+1PXtGxfURZWXnl_ibxPoFs6wcjfrZZzcNa9l5wCcciIMoCRONho_UBkYDBxwgx2Jgn0FwAA__-g=
+11XL">
+                                    <img src=3D"https://seekarr.s3.amazonaw=
+s.com/email_assets/social/youtube-sm.png" width=3D"18" height=3D"15" border=
+=3D"0">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr class=3D"bottom-margin">
+                <td></td>
+                <td style=3D"background-color:#ffffff;">
+                    &copy; 2005 - 2023 Seeking in conjunction with Reflex M=
+edia &ndash; All rights reserved.<br />W8Tech Cyprus Limited, Paster 6, Fla=
+t/Office 101 1055 Nicosia, Cyprus
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <br />
+    </td>
+</tr>
+        </table>
+        <br /><br />
+        <style>
+    @media  print {
+        #_two50 {
+            background-image: url('https://analyticsseeking.everestengageme=
+nt.com/ea/XBkeC2udUh/?t=3Dp&amp;e=3Dlove%40mamasheen.com&amp;c=3DuserFavori=
+ted');
+        }
+    }
+
+    blockquote #_two50,
+    #mailContainerBody #_two50,
+    div.OutlookMessageHeader,
+    table.moz-email-headers-table {
+        background-image: url('https://analyticsseeking.everestengagement.c=
+om/ea/XBkeC2udUh/?t=3Df&amp;e=3Dlove%40mamasheen.com&amp;c=3DuserFavorited'=
+);
+    }
+</style>
+<div id=3D'_two50'></div> <img id=3D'_two50_img'
+    src=3D'https://analyticsseeking.everestengagement.com/ea/XBkeC2udUh/?e=
+=3Dlove%40mamasheen.com&amp;c=3DuserFavorited' width=3D'1' height=3D'1'
+    style=3D'margin:0 !important; padding:0 !important; border:0 !important=
+; height:1px !important; width:1px !important;' />
+    </div>
+<img width=3D"1px" height=3D"1px" alt=3D"" src=3D"https://email.account.see=
+king.com/o/eJwUykGOgzAMAMDXNDcq145xfMh1v4FCbLaRoKwCdL9f9TjSWJ4BF68peH6MSiyq=
+NAbfSlunvq_r9Tc1y4kROIFoeGbiCsKCPMYKdU6zJarOqJYiwxJDy8awFBJ0JAAuBVBQ2AWNZud=
+HvEU4_tty3n_95b2cbqHndX_7LcJWtnI83V_3um_hzNfh_ae8996-7avpapZFixiiD0CehpjiOK=
+gSDJRmNIiLuugnAAD__xsNQfU"></body>
+
+</html>
+

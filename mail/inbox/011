@@ -1,0 +1,74 @@
+From jasper.camber.holton@gmail.com  Sun Sep 10 00:06:40 2023
+Return-Path: <jasper.camber.holton@gmail.com>
+X-Original-To: love@mamasheen.com
+Delivered-To: love@mamasheen.com
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by mail.mamasheen.com (Postfix) with ESMTPS id 93E1B3B3647
+	for <love@mamasheen.com>; Sun, 10 Sep 2023 00:06:40 +0000 (UTC)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5925e580f12so31766937b3.3
+        for <love@mamasheen.com>; Sat, 09 Sep 2023 17:06:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694304400; x=1694909200; darn=mamasheen.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DB23eAN7j/FmDc9M/xv9xpNXHbOj0xJmEY/Len+yORY=;
+        b=Lw4Htg/rrchBO3o92r/EQ3+LGD5NU0TBxrR54oJt7s9farbK3BEUZ99OR/l7KXjamN
+         hTJQECYvTHTxh0qjeiprA8CjPpnGlpY+yVcow+1p0lDZ47LgUvB/QwU7m5Eo4wF7wC8C
+         p1Ls7O3kcvuilvG43QSM2nodWGmwegS+zLBTMwLv/7oxwO1eH0P2LTZrUBnk2R9ibUP1
+         YH/jDz8k2/0XP7lZxZvbt2zev/nXAIDAengnx4vVTwgRI3Pt1ay7+L8WR8qHsdqMECER
+         m9GcsjmvKH6q4KbaOC/exDXc3w9SlWv1BywLd7bQz5MXJ3IyWdgOMXwiRKl0mO003MCl
+         XR5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694304400; x=1694909200;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DB23eAN7j/FmDc9M/xv9xpNXHbOj0xJmEY/Len+yORY=;
+        b=mN5bin0TvfOoAo17XjdL6XkYkIXQ4bfa8ZvdvoMp7FunInBqCEzWJnNhgvCyVTzT1m
+         Qi7/us4wwi5+UVH7JG4AZT3/3suD4G7L/DIapu9S2X8VyXrrL4HjxpEtrvDqJIutnsZw
+         VXMTrO4UnBY9LkO6PmxPLVPpfYerEOybMxAfx8kUOekyoEUzNe7Lr3sgQPoQrWeeAjEl
+         36rBdQN9WufXvyEGpLhpGqAhX3mps0PJhrHs0MRJ1Lz855vO9o/FvLUojC17W/q1jSCS
+         AV8jgsU+9tgdZtXyP3dGSxnAOKIW54ENrK0DRQO9zwMDXaPm2luP2zMzKRQs39zjFvgU
+         JFwg==
+X-Gm-Message-State: AOJu0YwQlJUW/O/3wffjBu3mnrIdN5HoubZW7Oh19NEUH6dr7kpHFYf7
+	kb6ggiJCkDwUXY07f54PXvP125ZGAj15gTo3xSBcKyhi
+X-Google-Smtp-Source: AGHT+IGkktcIVJkl/mAEwwaIMuT1cYk8IGBV0h8kgzdPiCMs4Mte6Hgu1kx8ne1JPPzb1MIHap5IXHS99Mvj4fDvB3Y=
+X-Received: by 2002:a0d:ca0c:0:b0:595:6b47:6bae with SMTP id
+ m12-20020a0dca0c000000b005956b476baemr7257595ywd.13.1694304399687; Sat, 09
+ Sep 2023 17:06:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAK1fAyGdCzxWgUkhw-XoxAHgrdUv2CS+kFkp4mVTSWcJTMeDSg@mail.gmail.com>
+In-Reply-To: <CAK1fAyGdCzxWgUkhw-XoxAHgrdUv2CS+kFkp4mVTSWcJTMeDSg@mail.gmail.com>
+From: Jasper Holton <jasper.camber.holton@gmail.com>
+Date: Sat, 9 Sep 2023 17:06:29 -0700
+Message-ID: <CAK1fAyGDm2sZjLXx6Cw-+zVP24i5FGpq8Mw9u6u2xANZAAcqZw@mail.gmail.com>
+Subject: Re: This is a test
+To: Mama Sheen <love@mamasheen.com>
+Content-Type: multipart/alternative; boundary="000000000000e282dd0604f5fbfd"
+X-UID: 12                                                  
+
+--000000000000e282dd0604f5fbfd
+Content-Type: text/plain; charset="UTF-8"
+
+Ok, seems to be working now.
+
+On Sat, Sep 9, 2023, 12:34 PM Jasper Holton <jasper.camber.holton@gmail.com>
+wrote:
+
+> I am testing to make sure the email server works.
+>
+
+--000000000000e282dd0604f5fbfd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Ok, seems to be working now.</div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Sep 9, 2023, 12:34 PM=
+ Jasper Holton &lt;<a href=3D"mailto:jasper.camber.holton@gmail.com">jasper=
+.camber.holton@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex"><div dir=3D"auto">I am testing to make sure the email server works.</d=
+iv>
+</blockquote></div>
+
+--000000000000e282dd0604f5fbfd--
+

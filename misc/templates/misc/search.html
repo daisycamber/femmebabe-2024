@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_filters %}
+<h1>Search</h1>
+<p>Your search, "{{ request.GET.q }}", returned {{ count|nts }} results.</p>
+<a class="btn btn-sm btn-outline-info" title="Grid view" href="{{ request.path }}?grid=true&{% get_qs %}">Grid</a>
+<hr style="background-color: red;">
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% include 'banner_ad.html' %}
+{% endblock %}

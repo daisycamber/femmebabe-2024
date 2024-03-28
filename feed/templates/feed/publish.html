@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'feed:publish' post.id %}" method="POST" id="publishForm">
+<button class="btn btn-outline-warning" type="submit">{% if post.private %}priv{% else %}publ{% endif %}/{% if post.public %}publ{% else %}priv{% endif %}</button>
+</form>

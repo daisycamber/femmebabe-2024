@@ -1,0 +1,32 @@
+{% extends 'web/base.html' %}
+{% block content %}
+<div id="pg0">
+<h1>My Photos</h1>
+<legend>{{ model_name }}</legend>
+<p>{{ model.profile.bio }}</p>
+<p style="text-align: center;"><small>{{ model.profile.last_seen }}</small></p>
+<div id="photo-page">
+</div>
+</div>
+<div id="pg1" class="hide">
+<legend>Profile</legend>
+<iframe width="100%" height="85vh" src="https://{{ base_url }}/"></iframe>
+</div>
+<div id="pg2" class="hide">
+<legend>Landing</legend>
+<iframe width="100%" height="85vh" src="https://{{ base_url }}/landing/"></iframe>
+</div>
+<div id="pg3" class="hide">
+<legend>Live Video</legend>
+<iframe width="100%" height="85vh" src="https://{{ base_url }}/live/{{ model_name}}/"></iframe>
+</div>
+{% endblock %}
+{% block javascript %}
+{% autoescape off %}
+var images = `{{ images }}`.split('\n');
+{% endautoescape %}
+var photoPage = document.getElementById('photo-page');
+for(var x = 0; x < images.length; x++) {
+	photoPage.insertAdjacentHTML("beforeend", images[x] + '<hr>');
+}
+{% endblock %}

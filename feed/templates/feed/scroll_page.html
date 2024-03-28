@@ -1,0 +1,12 @@
+<div id="page{{ page }}">
+	{% load app_filters %}
+	{% for post in posts %}
+		{% include 'feed/_post.html' %}
+	{% endfor %}
+	{% if show_ads %}
+	<iframe width="100%" src="{% url 'misc:ad' %}" height="350px">
+	</iframe>
+	<hr>
+	{% endif %}
+</div>
+

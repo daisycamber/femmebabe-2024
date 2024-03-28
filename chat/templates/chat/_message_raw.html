@@ -1,0 +1,13 @@
+    <div class="article-metadata">
+      <p{% if message.sender == user %} style="float: right; text-align: right;" class="pl-2"{% endif %}><small class="text-muted"{% if message.sender == user %} style="float: right; text-align: right;" class="pl-2"{% endif %}> {{ message.sent_at_format }} </small> @{{ message.sender.profile.name }}</p>
+{% if message.sender != user %}
+      <small style="float: right; text-align: right;"><a href="{{ message.get_direct_link }}">{{ message.get_direct_text }}</a></small>
+{% endif %}
+    </div>
+    <div>
+    <p{% if message.sender == user %} style="float: right; text-align: right;"{% endif %} class="article-content">{{ message.get_content }}</p>
+    </div>
+    {% if profile.vendor or message.recipient == recipient or message.sender == user %}
+    <small><a href="{{ message.get_delete_url }}">{{ message.get_delete_text }}</a></small>
+    {% endif %}
+    <hr style="background-color: red;">

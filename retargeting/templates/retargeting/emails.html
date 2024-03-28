@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Scheduled Emails</legend>
+{% if emails.count == 0 %}
+<i>No scheduled emails</i>
+{% endif %}
+{% for email in emails %}
+<p>At {{ email.send_at }} <i>To: {% if email.recipient %}{{ email.recipient }}{% else %}All subscribers{% endif %}</i></p>
+<b>{{ email.subject }}</b>
+<iframe srcdoc="{{ email.content }}" width="100%" height="500px" style="background-color: white;"></iframe>
+{% if not email.sent %}<a class="btn btn-outline-info" title="Edit this email" href="{% url 'retargeting:email' %}?id={{ email.id }}{% if email.recipient %}&u={{ email.recipient }}{% endif %}">Edit</a>{% endif %}
+<hr>
+{% endfor %}
+{% endblock %}

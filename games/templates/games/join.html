@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load feed_filters %}
+{% block content %}
+<legend>Join a Game</legend>
+<form method="POST">
+{% csrf_token %}
+<button type="submit" class="btn btn-outline-success" title="Accept invite">Join</button>
+</form>
+<p>Enter the code the other player gave you in order to join the game.</p>
+<hr>
+{% endblock %}

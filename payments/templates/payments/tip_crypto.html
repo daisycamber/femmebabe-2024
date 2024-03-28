@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %} 
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %} 
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-currency-bitcoin"></i> Tip @{{ username }} with {{ request.GET.crypto }}</h1>
+<div style="display: flex; justify-content: space-around;">
+<div class="dropdown" style="display: inline-block;">
+    <a class="btn btn-outline-dark pink-borders dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    	<i class="bi bi-currency-bitcoin"></i> Change Currency
+    </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div style="max-height: 50vh; overflow: scroll;">
+	{% for currency in currencies %}
+		<li><a class="dropdown-item" href="{{ request.path }}?crypto={{ currency }}">{{ currency }}</a></li>
+	{% endfor %}
+    </div>
+  </ul>
+</div>
+</div>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<fieldset class="form-group">
+<legend class="border-bottom mb-4">Step 1: Send Crypto</legend>
+<p>Send {{ crypto_fee }} {{ request.GET.crypto }} <button class="btn btn-sm btn-info" onclick="copyAmount();"><i class="bi bi-clipboard-check-fill"></i> Copy</button> (${{ usd_fee|sub_fee }}) to the following wallet address:</p>
+<b><i>{{ crypto_address }}</i></b>
+<button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> Copy</button>
+<hr style="background-color: green;">
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success">Send</button>
+</form>
+<hr>
+<p>Buy crypto to send here: <a href="{{ crypto_provider }}" title="Buy crypto to send">{{ crypto_provider }}</a></p>
+</div>
+{% endblock %}
+{% block javascript %}
+function copyAddress() {
+	navigator.clipboard.writeText("{{ crypto_address }}");
+}
+function copyAmount() {
+	navigator.clipboard.writeText("{{ crypto_fee }}");
+}
+{% endblock %}

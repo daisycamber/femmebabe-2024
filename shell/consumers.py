@@ -1,0 +1,197 @@
+import json
+from channels.generic.websocket import AsyncWebsocketConsumer
+import re
+import os
+import sys
+import select
+import paramiko
+import time
+from django.conf import settings
+import threading
+from django.contrib.auth.models import User
+from asgiref.sync import sync_to_async
+import asyncio
+from security.models import Session
+from errors.highlight import highlight_code, highlight_shell
+from shell.run import shell_fix
+
+retry_time = 60 * 2
+
+host_ip = '127.0.0.1'
+host_port = 22
+
+@sync_to_async
+def get_user(id):
+    user = User.objects.get(id=int(id))
+    if not (user.profile.admin or user.is_superuser): return False
+    return True
+
+@sync_to_async
+def get_auth(user_id, session_key):
+    from security.tests import face_mrz_or_nfc_verified_session_key
+    user = User.objects.get(id=int(user_id)) if user_id else None
+    print('Verified? ' + str(face_mrz_or_nfc_verified_session_key(user, session_key)))
+    return face_mrz_or_nfc_verified_session_key(user, session_key) != False
+
+@sync_to_async
+def get_req(scope):
+    user = User.objects.get(id=scope['user'].id)
+    ip = scope['client'][0]
+    path = scope['path']
+    print(ip)
+    s = Session.objects.create(user=user, ip_address=ip, path=path)
+    from django.utils import timezone
+    import datetime
+    sessions = Session.objects.filter(user=user, ip_address=ip, path=path, time__gte=timezone.now() - datetime.timedelta(seconds=4))
+    if sessions.count() > 1: return False
+    if sessions.count() < 1: return False
+    return True
+
+async def send(channel, output):
+    await channel.send(text_data=output)
+
+def terminal_thread(self, channel):
+    while True:
+        while not channel.recv_ready():
+            time.sleep(1)
+        read = True
+        output = ""
+        while read:
+            read = False
+            if channel.recv_ready():
+                rl, wl, xl = select.select([ channel ], [ ], [ ], 0.0)
+                if len(rl) > 0:
+                    tmp = channel.recv(999999999)
+                    output = output + tmp.decode()
+                    read = True
+                    time.sleep(1)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(send(self, output))
+        loop.close()
+
+class TerminalConsumer(AsyncWebsocketConsumer):
+    channel = None
+    async def connect(self):
+        auth = await get_user(self.scope['user'].id)
+        auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
+        auth3 = await get_req(self.scope)
+        if not (auth and auth2): return
+        await self.accept()
+        i = 0
+        ssh = None
+        while True:
+            try:
+                ssh = paramiko.SSHClient()
+                ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client = paramiko.SSHClient()
+                pkey = paramiko.RSAKey.from_private_key_file("/home/{}/.ssh/id_rsa".format(settings.BASH_USER))
+                ssh.connect(host_ip, port=host_port, username=settings.BASH_USER, password=settings.BASH_PASS, pkey=pkey)
+                break
+            except paramiko.AuthenticationException:
+                print("Authentication failed when connecting to %s" % host_ip)
+                sys.exit(1)
+            except:
+                print("Could not SSH to %s, waiting for it to start" % host_ip)
+                i += 1
+                time.sleep(2)
+                # If we could not connect within time limit
+                if i >= retry_time:
+                    print("Could not connect to %s. Giving up" % host_ip)
+                    return None
+        self.ssh = ssh
+        self.channel = ssh.invoke_shell(width=120, height=50)
+        x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
+        x.start()
+        pass
+
+    async def disconnect(self, close_code):
+        if hasattr(self, 'ssh') and self.ssh: self.ssh.close()
+        pass
+
+    # This function receive messages from WebSocket.
+    async def receive(self, text_data):
+        self.channel.send(text_data)
+        pass
+
+    pass
+
+def shell_thread(self, channel):
+    while True:
+        while not channel.recv_ready():
+            time.sleep(1)
+        read = True
+        output = ""
+        while read:
+            read = False
+            if channel.recv_ready():
+                rl, wl, xl = select.select([ channel ], [ ], [ ], 0.0)
+                if len(rl) > 0:
+                    tmp = channel.recv(999999999)
+                    output = output + tmp.decode()
+                    read = True
+                    time.sleep(1)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(send(self, highlight_shell(shell_fix(output))))
+        loop.close()
+
+class ShellConsumer(AsyncWebsocketConsumer):
+    channel = None
+    async def connect(self):
+        auth = await get_user(self.scope['user'].id)
+        auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
+        auth3 = await get_req(self.scope)
+        if not (auth and auth2): return
+        await self.accept()
+        i = 0
+        ssh = None
+        while True:
+            try:
+                ssh = paramiko.SSHClient()
+                ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client = paramiko.SSHClient()
+                pkey = paramiko.RSAKey.from_private_key_file("/home/{}/.ssh/id_rsa".format(settings.BASH_USER))
+                ssh.connect(host_ip, port=host_port, username=settings.BASH_USER, password=settings.BASH_PASS, pkey=pkey)
+                break
+            except paramiko.AuthenticationException:
+                print("Authentication failed when connecting to %s" % host_ip)
+                sys.exit(1)
+            except:
+                print("Could not SSH to %s, waiting for it to start" % host_ip)
+                i += 1
+                time.sleep(2)
+                # If we could not connect within time limit
+                if i >= retry_time:
+                    print("Could not connect to %s. Giving up" % host_ip)
+                    return None
+        self.ssh = ssh
+        self.channel = ssh.invoke_shell(width=120, height=50)
+        x = threading.Thread(target=shell_thread, args=(self,self.channel,))
+        x.start()
+        pass
+
+    async def disconnect(self, close_code):
+        if hasattr(self, 'ssh') and self.ssh: self.ssh.close()
+        pass
+
+    # This function receive messages from WebSocket.
+    async def receive(self, text_data):
+        command = text_data
+        if command == 'reload':
+            output = highlight_code(safe_reload())
+            await send(self, output)
+        elif command.split(' ')[0] == 'clear':
+            output = '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+            await send(self, output)
+        elif command.split(' ')[0] == 'nano':
+            file = command.split(' ')[1]
+            output = '$ ' + command + '\n<iframe src="/shell/edit/?hidenavbar=t&path=' + file + '" width="100%;" height="590px;"></iframe>'
+            await send(self, output)
+        elif command.split(' ')[0] == 'cancel':
+            self.channel.send("\x03")
+        else:
+            self.channel.send(command + '\n')
+        pass
+
+    pass
