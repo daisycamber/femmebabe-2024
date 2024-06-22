@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block javascripts %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+{% include 'feed/_full_profile.html' %}
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}
+{% block javascript %}
+var live = document.getElementById('live');
+function reportWindowSize() {
+        var iFrame = document.getElementById('live');
+	resizeIFrameToFitContent(iFrame);
+}
+window.onresize = reportWindowSize;
+function resizeIFrameToFitContent(iFrame) {
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+window.onmessage = function(event){
+    if (event.data == 'resize') {
+        var iFrame = document.getElementById('live');
+	resizeIFrameToFitContent(iFrame);
+    }
+};
+{% endblock %}

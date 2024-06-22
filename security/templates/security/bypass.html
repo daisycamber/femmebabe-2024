@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Approve Sessions</legend>
+<ul>
+{% if logins|length == 0 %}
+<p>No pending sessions to bypass auth for.</p>
+{% endif %}
+{% for login in logins %}
+<li id="{{ login.id }}" class="login">Login at {{ login.timestamp }} and {{ login.timestamp|time:"s u" }} secs. from ip {{ login.ip_address }} with agent {{ login.user_agent }}. Approve? {% include 'security/approve.html' %}<hr></li>
+{% endfor %}
+</ul>
+{% endblock %}
+{% block javascript %}
+var elements = document.querySelectorAll('.login');
+for(var x = 0; x < elements.length; x++) {
+	var element = elements[x];
+	$(element).on('click', function(event) {
+		$(event.target).toggleClass('fade-hidden-fast');
+		setTimeout(function() {
+			$(event.target).toggleClass('hide');
+		}, 1000);
+	});
+}
+var elements = document.querySelectorAll('.login-button');
+for(var x = 0; x < elements.length; x++) {
+	var element = document.getElementById(parseInt(elements[x].dataset.id));
+	$(elements[x]).on('click', function(event) {
+		setTimeout(function() {
+			$(event.target.parentElement.parentElement).toggleClass('fade-hidden-fast');
+			setTimeout(function() {
+				$(event.target.parentElement.parentElement).toggleClass('hide');
+			}, 1000);
+		}, 5000);
+	});
+}
+{% endblock %}

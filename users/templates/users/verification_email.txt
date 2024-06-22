@@ -1,0 +1,11 @@
+Dear {{ user.username }},
+To verify your email, click the following link:
+{{ protocol }}://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+
+Alternatively, you can paste the following link in your browser's address bar:
+{{ protocol }}://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+
+The link will expire in 30 minutes.
+If you have not requested a verification email you can simply ignore this email.
+Seeing you there with love,
+{{ model_name }}

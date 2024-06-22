@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the recording.</legend>
+{% if not hidenavbar %}
+<a href="{% url 'recordings:recordings' recording.user.username %}" class="btn btn-outline-primary btn-sm">Back to recordings</a>
+<h1>Recording Loop</h1>
+<small>Last frame - {{ recording.last_frame }}</small>
+{% endif %}
+{% if request.user == recording.user %}
+<form method="POST">
+{% csrf_token %}
+{{ interactive_form|crispy }}
+<p><a href="{% url 'interactive:option-add' %}" target="popup" onclick="window.open('{% url 'interactive:option-add' %}','popup','width=600,height=500'); return false;">
+<i style="text-color: green";>+</i> Add more options
+</a></p>
+{{ choices_form|crispy }}
+<button type="submit" class="btn btn-outline-success">Submit</button>
+</form>
+{% endif %}
+<div id="videoDiv" class="nopadding" style="overflow: hidden; width: 100%; background-position: center; background-size: cover;">
+<video id="video" preload="auto" width="100%"></video>
+</div>
+<canvas id="canvas" width="100" height="100"></canvas>
+<!-- style="position: absolute; display: none; visibility: hidden;"-->
+{% endblock %}
+{% block javascript %}
+var vw = 1280; // 810 910 1280
+var vh = 720;// 720
+var isReset = false;
+var firstResize = true;
+var loh = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		setInterval(render, {{ video_interval }});
+		render();
+	}
+}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+var video = document.getElementById('video');
+var videodiv = document.getElementById('videoDiv');
+var canvas = document.getElementById('canvas');
+canvas.width = 539;
+canvas.height = 404;
+var ctx = canvas.getContext('2d');
+var stillFrame;
+var offsetFactor = 1;
+var data;
+var lastdata;
+var index = 0;
+function render() {
+	$.get(window.location.href.split('?')[0] + '/' + index + '/').then(function(data) {
+                video.src = data;
+                var playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+                    lastdata = data;
+                drawImage();
+                video.poster = stillFrame;
+		console.log(stillFrame);
+                videodiv.style.backgroundImage = stillFrame;
+                        if(firstResize){
+                                firstResize = false;
+                                window.top.postMessage('resize', '*')
+                        }
+                video.addEventListener('loadeddata', function() {
+                    if(video.offsetHeight > 0){
+                        videodiv.style.height = video.offsetHeight + "px";
+                        videodiv.style.width = video.offsetWidth + "px";
+                        canvas.style.height = video.offsetHeight + "px";
+                        canvas.style.width = video.offsetWidth + "px";
+                    }
+                }, false);
+          }).catch(function(error) {
+                video.poster = stillFrame;
+                videodiv.style.backgroundImage = stillFrame;
+                video.src = lastdata;
+                video.play();
+          });
+        }
+    });	
+	index++;
+}
+function drawImage(){
+    ctx.drawImage(video, 0, 0, parseInt(canvas.width), parseInt(canvas.height));
+    ctx.save();
+    stillFrame = canvas.toDataURL('image/png').replace(' ', '+')
+    ctx.clear();
+}
+function reportWindowSize() {
+  videodiv.style.height = video.offsetHeight + "px";
+}
+window.onresize = reportWindowSize;
+{% endblock %}

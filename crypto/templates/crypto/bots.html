@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Crypto Trading Bots</legend>
+<a href="{% url 'crypto:new-bot' %}" class="btn btn-outline-secondary">New</a>
+<hr style="color:red;">
+{% for bot in bots %}
+{% include 'crypto/_bot.html' %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,5 @@
+<form action="{% url 'live:remote' %}" method="POST">
+	{% csrf_token %}
+<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" required id="q" name="q"{% if query %} value="{{ request.GET.hidenavbar }}">
+	<button type="submit" class="btn btn-secondary">{% if camera.live %}<i class="bi bi-toggle-on"></i> End live{% else %}<i class="bi bi-toggle-off"></i> Go Live{% endif %}</button>
+</form>

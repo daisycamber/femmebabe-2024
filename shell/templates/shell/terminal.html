@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/xterm.min.css">
+<script type="text/javascript" src="/static/xterm.min.js"></script>
+{% endblock %}
+{% block content %}
+<div id="scroll-container" style="overflow: scroll;">
+<div style="width: 2000px;">
+<div id="terminal" style="width: 100%; height: 100%;"></div>
+</div>
+</div>
+<div style="display: inline-block;">
+<button onclick="fireKey('^');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
+</div>
+{% endblock %}
+{% block javascript %}
+var prompt = document.getElementById('prompt');
+var terminalElement = document.getElementById('terminal');
+var websocket;
+const term = new Terminal({
+	cols: 120,
+	rows: 50,
+	cursorBlink: true,
+	macOptionIsMeta: true,
+	scrollback: true,
+});
+function fireKey(key) {
+	term.write(key);
+}
+function customKeyEventHandler(e) {
+        if (e.type !== "keydown") {
+          return true;
+        }
+        const key = e.key.toLowerCase();
+        if (e.ctrlKey && e.shiftKey) {
+          if (key === "v") {
+            navigator.clipboard.readText().then((toPaste) => {
+              term.writeText(toPaste);
+            });
+            return false;
+          } else if (key === "c" || key === "x") {
+            const toCopy = term.getSelection();
+            navigator.clipboard.writeText(toCopy);
+            term.focus();
+            return false;
+          }
+        }
+        return true;
+}
+document.body.addEventListener('click', function(event) {
+	term.focus();
+});
+document.body.addEventListener('touchmove', function(event) {
+	term.focus();
+});
+term.attachCustomKeyEventHandler(customKeyEventHandler);
+term.onData((data) => {
+	websocket.send(data);
+});
+let lineBuffer = [];
+let history = [];
+let shellListener = null;
+
+async function simpleShell(data) {
+  // string splitting is needed to also handle multichar input (eg. from copy)
+  for (let i = 0; i < data.length; ++i) {
+    const c = data[i];
+    if (c === '\r') {  // <Enter> was pressed case
+      term.write('\r\n');
+      if (lineBuffer.length) {
+        // we have something in line buffer, normally a shell does its REPL logic here
+        // for simplicity - just join characters and exec...
+        const command = lineBuffer.join('');
+        lineBuffer.length = 0;
+        history.push(command);
+        try {
+          // tricky part: for interactive sub commands you have to detach the shell listener
+          // temporarily, and re-attach after the command was finished
+          shellListener?.dispose();
+        } catch (e) {
+          // we have no real process separation with STDERR
+          // simply catch any error and output in red
+          const msg = !e ? 'Unknown Error...' : e.message || e;
+          term.write(`\x1b[31m${msg.replace('\n', '\r\n')}\x1b[m`);
+        } finally {
+          // in any case re-attach shell
+          shellListener = term.onData(simpleShell);
+        }
+        term.write('\r\n');
+      }
+    } else if (c === '\x7F') {  // <Backspace> was pressed case
+      if (lineBuffer.length) {
+        // dont delete prompt
+        // this is still wrong for multiline inputs!
+        lineBuffer.pop();
+        term.write('\b \b');
+      }
+    } else if (['\x1b[A', '\x1b[B', '\x1b[C', '\x1b[D'].includes(data.slice(i, i + 3))) {  // <arrow> keys pressed
+      // arrow keys skipped, since no inline editing implemented
+      i += 2;
+    } else {  // push everything else into the line buffer and echo back to user
+      lineBuffer.push(c);
+      term.write(c);
+    }
+  }
+}
+term.open(terminalElement);
+var socketOpen = false;
+function openSocket() {
+	websocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/");
+	websocket.onmessage = (event) => {
+		term.write(event.data);
+	};
+	websocket.onclose = (event) => {
+		console.log('Socket closed');
+		setTimeout(openSocket, 10000);
+		socketOpen = false;
+	};
+	websocket.onopen = (event) => {
+		console.log('Socket open');
+		socketOpen = true;
+	};
+}
+openSocket();
+{% endblock %}

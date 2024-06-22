@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/clock/clock.css">
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the live feed.</legend>
+{% if not hidenavbar %}
+<h1>@{{ profile.name }}'s Live Video</h1>
+<legend>{{ request.GET.camera }} camera</legend>
+{% endif %}
+{% with camera as content %}
+{% include 'clock.html' %}
+{% endwith %}
+<div id="lastFrame"></div>
+<div id="videoDiv" class="nopadding" style="overflow: hidden; width: 100%; background-position: center; background-size: cover;">
+<video id="video" width="100%"></video>
+</div>
+{% if not hidenavbar %}
+<legend class="text-center">Chat</legend>
+<iframe src="/chat/{{ profile.name }}/?hidenavbar=t" width="100%" height="500px"></iframe>
+<link rel="preload" as="video" id="preload">
+<canvas id="canvas" width="100" height="100" style="position: absolute; display: none; visibility: hidden;">
+{% endif %}
+{% endblock %}
+{% block javascript %}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+var canvas = document.getElementById('canvas');
+canvas.width = 539;
+canvas.height = 404;
+var ctx = canvas.getContext('2d');
+var stillFrame;
+var video = document.getElementById('video');
+var preload = document.getElementById('preload');
+var videodiv = document.getElementById('videoDiv');
+{% with camera.get_still_url as still %}
+videodiv.style.backgroundImage = '{{ still }}';
+video.poster = '{{ still }}';
+{% endwith %}
+var queue = [];
+var frame_url = '/live/{{ profile.name }}/frame/?camera={% if request.GET.camera %}{{ request.GET.camera }}{% else %}private{% endif %}';
+function load() {
+	$.get(frame_url).then(function(thedata) {
+		queue.push(thedata);
+		preload.src = queue.shift();
+		setTimeout(function() {
+			video.src = preload.src;
+			var playPromise = video.play();
+		        if (playPromise !== undefined) {
+        	    	playPromise.then(function() {
+                	        if(firstResize){
+                	                firstResize = false;
+               		                window.top.postMessage('resize', '*')
+        	                }
+        		        video.addEventListener('loadeddata', function() {
+        		            if(video.offsetHeight > 0){
+        		        	drawImage();
+        			        video.poster = stillFrame;
+  			                videodiv.style.backgroundImage = stillFrame;
+        		                videodiv.style.height = video.offsetHeight + "px";
+        		                videodiv.style.width = video.offsetWidth + "px";
+        		                canvas.height = video.offsetHeight;
+        		                canvas.width = video.offsetWidth;
+        		            }
+        		        }, false);
+        		  }).catch(function(error) {
+        		        video.poster = stillFrame;
+        		        videodiv.style.backgroundImage = stillFrame;
+				video.play();
+          	  	});
+			}
+		}, {{ video_interval }});
+	});
+}
+var isReset = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		startStream();
+	}
+}
+function startStream(){
+	load();
+	setInterval(function() { 
+		load();
+	}, {{ video_interval }} * 1);
+}
+
+
+function drawImage(){
+	ctx.drawImage(video, 0, 0, parseInt(canvas.width), parseInt(canvas.height));
+	ctx.save();
+	stillFrame = canvas.toDataURL('image/png').replace(' ', '+')
+}
+
+function reportWindowSize() {
+	videodiv.style.height = video.offsetHeight + "px";
+}
+
+window.onresize = reportWindowSize;
+{% endblock %}

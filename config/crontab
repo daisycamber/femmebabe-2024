@@ -1,0 +1,10 @@
+0 4 * * 1 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
+0 0 1 * * sudo certbot renew --quiet
+0 * * * * /home/love/bd/venv/bin/python /home/love/bd/routine_enhance.py
+*/5 * * * * /home/love/bd/venv/bin/python /home/love/bd/routine_caption.py
+* * * * * /home/love/bd/venv/bin/python /home/love/bd/crypto_trading.py
+*/30 * * * * /home/love/bd/venv/bin/python /home/love/bd/process_recordings.py
+*/10 * * * * sudo systemctl start celery
+*/10 * * * * sudo systemctl start apache2
+*/10 * * * * sudo systemctl start daphne
+0 * * * * sudo systemctl start clamav-daemon

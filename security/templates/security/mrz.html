@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<style>
+.spin-loader {
+  border: 18px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.container-video { position:relative; }
+.container-video video {
+    position:relative;
+    z-index:0;
+}
+.overlay-video {
+    max-width: 70%;
+    max-height: 70%;
+    position: absolute;
+    text-align: center;
+    top:-7%;
+    left:15%;
+    z-index:1;
+}
+.icon-rotate {
+    transform: rotate(-90deg);
+    left: 13%;
+    top: 15%;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container w-100">
+<legend class="mb-2">MRZ Verification</legend>
+{% if request.GET.generate %}
+<div style="display: flex; justify-content: space-around;">
+<canvas id="download2" width="350px" height="90px" style="background-color: white;"></canvas>
+</div>
+<div style="display: flex; justify-content: space-around;">
+<img id="download1" width="45%" style="max-width: 200px;" src="{{ scan.get_barcode_url }}"></img>
+</div>
+<div style="display: flex; justify-content: space-around;">
+<canvas id="download3" width="350px" height="200px" style="background-color: white;"></canvas>
+</div>
+<button onclick="downloadFiles();" class="btn btn-sm btn-outline-info"><i class="bi bi-file-earmark-arrow-down-fill"></i></button>
+<p>Download and print the code above as a backup.</p>
+<p id="info-text">{% if user.verifications.last %}{{ user.verifications.last.full_name }} {% else %}{{ user.profile.name }}{% endif %} - {{ birthday_and_expiry }} - {{ key }}</p>
+<button onclick="copyToClipboard('info-text');" class="btn btn-sm btn-outline-info"><i class="bi bi-file-earmark-arrow-down-fill"></i></button>
+{% else %}
+<p>Scan the MRZ code</p>
+<form method="POST" enctype="multipart/form-data" id="face-login-form" style="position: absolute; display: none; visibility: hidden;" class="w-100 ml-0 mr-0">
+{% csrf_token %}
+{{ form|crispy }}
+</form>
+<p id="errormessage" class="hide" style="text-color: red;">Please enable your camera in your web browser and device settings to continue.</p>
+<div id="video-container" class="container-video">
+<video autoplay="true" muted="true" id="video" width="100%" class="ml-0 mr-0"></video>
+<div id="overlay" class="overlay-video" style="width: 100%;">
+<i class="bi bi-card-heading hide" id="icon" style="text-align: center; opacity: 0.5;"></i>
+</div>
+</div>
+<hr>
+<div>
+<div style="display: flex; justify-content: space-around;">
+<p style="display: inline-block;">Align the document with the frame and tap the image.</p>
+</div>
+</div>
+<canvas id="canvas" style="position: absolute; display: none; visibility: hidden;"></canvas>
+</div>
+<div style="position: fixed; left: 0; top: 0; background-color: transparent; height: 0px; width: 100%" id="loader-container">
+<div id="spin-loader" style="position: relative; margin: auto; top: 50%; text-align: center;"></div>
+</div>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{% if request.GET.generate %}
+var mrz = document.getElementById("download1");
+var infocanvas = document.getElementById("download2");
+/*infocanvas.height = mrz.getBoundingClientRect().height + 'px';
+infocanvas.width = mrz.getBoundingClientRect().width + 'px';*/
+var canvasHeight = parseInt(infocanvas.height);
+var canvasWidth = parseInt(infocanvas.width);
+var ctx = infocanvas.getContext("2d");
+ctx.fillStyle = "#FFFFFF";
+ctx.fillRect(0,0,canvasWidth, canvasHeight);
+ctx.fillStyle = "#000000";
+ctx.font = "bold " + parseInt(canvasHeight/3.7)  + "px Arial";
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.fillText("{% if user.verifications.last %}{{ user.verifications.last.full_name }} {% else %}{{ user.profile.name }}{% endif %}", parseInt(canvasWidth/2), parseInt(canvasHeight/4 - 5));
+ctx.fillText("{{ key }}", parseInt(canvasWidth/2), parseInt(canvasHeight/2));
+ctx.fillText("{{ birthday_and_expiry }}", parseInt(canvasWidth/2), parseInt(canvasHeight/4 * 3 + 5));
+function downloadImage(url, filename) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = '{{ the_site_name }} - ' + filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+var canvas = document.getElementById('download3');
+function draw_image() {
+  var context = canvas.getContext('2d');
+  context.drawImage(infocanvas, 0, 0);
+  var base_image = new Image();
+  base_image.src = '{{ scan.get_barcode_url }}';
+  base_image.onload = function(){
+    var scale = 350/this.width;
+    width = this.width * (350/this.width);
+    height = this.height * (350/this.width);
+    context.drawImage(base_image, 0, 85, width, height);
+  }
+}
+draw_image();
+function downloadFiles() {
+    fetch(mrz.src).then((result) => { result.blob().then((blob) => {
+        const imageURL = URL.createObjectURL(blob);
+        downloadImage(imageURL, 'Barcode.jpg');
+    })});
+    downloadImage(infocanvas.toDataURL(), 'Details.png');
+    downloadImage(canvas.toDataURL(), 'TextDetails-Barcode.jpg');
+}
+{% else %}
+var video = document.getElementById('video');
+var icon = document.getElementById('icon');
+var overlay = document.getElementById('overlay');
+function readyOverlay() {
+  	  var offsetWidth = video.getBoundingClientRect().width;
+  	  var offsetHeight = video.getBoundingClientRect().height;
+	  icon.style.fontSize = Math.floor(offsetHeight * 0.8) + "px";
+	  if(offsetHeight > offsetWidth) {
+	    if(!$(overlay).hasClass("icon-rotate")) {
+	    	$(overlay).toggleClass("icon-rotate");
+	    }
+	    icon.style.fontSize = Math.floor(offsetWidth * 0.7) + "px";
+	  }
+	  overlay.style.height = offsetHeight + "px";
+}
+window.addEventListener('resize', readyOverlay)
+let portrait = window.matchMedia("(orientation: portrait)");
+portrait.addEventListener("change", readyOverlay)
+var download_inc = 1;
+const download = function (canvas) {
+    const link = document.createElement('a');
+    link.download = '{{ the_site_name }} - MRZ Scan ' + download_inc + '.png';
+    download_inc++;
+    link.href = canvas.toDataURL()
+    link.click();
+}
+var imageCapture;
+var form = document.getElementById('face-login-form');
+var mediaRecorder;
+var mediaChunks = [];
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+document.getElementById("video-container").addEventListener("click", function(event) {
+	onTakePhotoButtonClick();
+});
+function onTakePhotoButtonClick() {
+  imageCapture.takePhoto()
+  .then((blob) => createImageBitmap(blob))
+  .then((imageBitmap) => {
+	image = imageBitmap;
+        uploadImage(image);
+  })
+  .catch((error) => console.error(error));
+}
+var scale = 1;
+var degmod = 90;
+function drawRotated(degrees, image){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if(Math.floor(degrees/90) % 2 == 0) {
+        canvas.width = image.width * scale;
+        canvas.height = image.height * scale;
+    } else {
+        canvas.width = image.height * scale;
+        canvas.height = image.width * scale;
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.translate(canvas.width / 2, canvas.height / 2);   // to center
+    context.rotate(degrees * Math.PI / 180);                   // rotate
+    if(Math.floor(degrees/90) % 2 == 0) {
+        context.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+    } else {
+        context.drawImage(image, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width);
+    }
+    context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+    context.restore();
+    context.save();
+}
+function uploadImage(image){
+             video.pause(); 
+		document.getElementById("spin-loader").classList.add("spin-loader");
+		document.getElementById("loader-container").style.height = "100vh";                    
+		if(image.height > image.width) {
+			drawRotated(90, image);
+		} else {
+			drawRotated(0, image);
+		}
+	{% if request.GET.download %}
+		download(canvas);
+		video.play();
+		document.getElementById("spin-loader").classList.remove("spin-loader");
+		document.getElementById("loader-container").style.height = "0px";
+		return;
+	{% endif %}
+	var blobBin = atob(canvas.toDataURL().split(',')[1]);
+        var array = [];
+        for(var i = 0; i < blobBin.length; i++) {
+            array.push(blobBin.charCodeAt(i));
+        }
+        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var formdata = new FormData(form);
+        formdata.append('image', new File([file], 'image.png'));
+        $.ajax({
+           url: window.location.href,
+           type: "POST",
+           data: formdata,
+           processData: false,
+           contentType: false,
+           success: function(data, textStatus) {
+                console.log(data);
+           },
+           timeout: 1000 * 60 * 10,
+        }).done(function(response){
+                  if(response == 'y') {
+                      window.navigator.vibrate({{ default_vibration }});
+                      window.location.href = "{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}";
+                  } else {
+                      window.location.reload();
+                  }
+        });
+}
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+	video.addEventListener('loadeddata', function() {
+	    readyOverlay();
+            setTimeout(function() {
+	       $(icon).toggleClass("hide");
+	       $(icon).toggleClass("fade-in");
+           }, 5000);
+	}, false);
+    const track = stream.getVideoTracks()[0];
+    imageCapture = new ImageCapture(track);
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+    $('#errormessage').removeClass('hide');
+  });
+}
+startup();
+setInterval(function() {
+	$.ajax({
+		url: "{% url 'security:modal' %}",
+		method: 'GET',
+		success: function(data){
+			if(data == 'y') {
+	                    window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}';
+			}
+		}
+	});
+}, 15 * 1000);
+{% endif %}
+{% endblock %}

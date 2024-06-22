@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<block he
+{% block content %}
+<div class="container">
+<legend>Log in with your face</legend>
+<p>Center your face on the screen and press "Login" or tap your face.</p>
+<form method="POST" enctype="multipart/form-data" id="face-login-form" style="position: absolute; display: none; visibility: hidden;">
+{% csrf_token %}
+{{ form|crispy }}
+<p>Please upload a photo of yourself to continue.</p>
+</form>
+<div class="container">
+<button type="submit" class="btn btn-outline-danger text-center" id="login">Login</button>
+</div>
+<hr>
+<video autoplay="true" muted="true" id="video" width="100%"></video>
+<canvas id="canvas" width="500" height="300" style="position: absolute; display: none; visibility: hidden;">
+</div>
+<hr>
+<div class="container">
+<div style="position: fixed; left: 0; top: 0; background-color: #FFFFFF; height: 0px; width: 100%" id="flash"></div>
+</div>
+{% endblock %}
+{% block javascript %}
+var form = document.getElementById('face-login-form');
+var flash = document.getElementById('flash');
+var mediaRecorder;
+var mediaChunks = [];
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var scale = 1;
+setInterval(function(){
+        canvas.width = video.videoWidth/scale;
+        canvas.height = video.videoHeight/scale;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        context.save();
+}, 100);
+video.addEventListener("click", function(event) {
+        uploadImage();
+});
+document.getElementById('login').onclick = function(e) {
+        e.preventDefault();
+        uploadImage();
+};
+function uploadImage(){
+        flash.style.height = '100%';
+        setTimeout(function() {
+             video.pause();
+		var faces = ccv.detect_objects({
+		  canvas: ccv.pre(canvas),
+		  cascade: cascade,
+		  interval: 2,
+		  min_neighbors: 1
+		});
+		
+
+        var blobBin = atob(canvas.toDataURL().split(',')[1]);
+        flash.style.height = '0px';
+        var array = [];
+        for(var i = 0; i < blobBin.length; i++) {
+            array.push(blobBin.charCodeAt(i));
+        }
+        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var formdata = new FormData(form);
+        formdata.append('image', new File([file], 'image.png'));
+        $.ajax({
+           url: window.location.href,
+           type: "POST",
+           data: formdata,
+           processData: false,
+           contentType: false,
+           success: function(data, textStatus) {
+                console.log(data);
+           },
+        }).done(function(respond){
+                if(respond.startsWith("/accounts/tfa/")){
+                  window.location.href = respond;
+                } else {
+                  window.location.reload();
+                }
+        });
+        }, 700);
+}
+
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+{% endblock %}

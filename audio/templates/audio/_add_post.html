@@ -1,0 +1,4 @@
+<form action="{% url 'audio:add-post' id=recording.id %}?feed=samples" method="POST">
+	{% csrf_token %}
+	<button type="submit" class="btn btn-sm btn-outline-secondary">Attach to Post</button>
+</form>

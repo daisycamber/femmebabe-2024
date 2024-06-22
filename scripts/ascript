@@ -1,0 +1,3 @@
+sudo touch /usr/bin/$1
+sudo chmod a+x /usr/bin/$1
+sudo nano /usr/bin/$1

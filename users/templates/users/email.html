@@ -1,0 +1,5 @@
+{% load feed_filters %}
+<form id="register-modal-form" class="d-flex" action="{% url 'users:register' %}" method="GET">
+	<input class="form-control mr-sm-2" type="email" placeholder="you@example.com" aria-label="email" required id="u" name="u">
+	<button class="btn btn-success my-2 my-sm-0" type="submit">{{ 'Subscribe'|trans }}</button>
+</form>

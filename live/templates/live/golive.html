@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<h1>Go live</h1>
+<div id="container">
+<video autoplay="true" muted="true" id="video" width="100%">
+</video>
+<canvas id="canvas" width="512" height="364" style="visibility: hidden;">
+</canvas>
+</div>
+{% endblock %}
+{% block javascript %}
+{% include 'live/compressor.js' %}
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var image = document.getElementById('image');
+var ctx = canvas.getContext('2d');
+var data;
+var audioChunks = [];
+var mediaRecorder;
+function drawImage(){
+    ctx.drawImage(video, 0, 0, 512, 364);
+    ctx.save();
+    data = canvas.toDataURL('image/png').replace(' ', '+')
+    data = data.replace('\n','');
+}
+//**blob to dataURL**
+function blobToDataUrl(blob, callback) {
+    var a = new FileReader();
+    a.onload = function(e) {callback(e.target.result);}
+    a.readAsDataURL(blob);
+}
+
+function capture(){
+    var dataArray = "";
+    var audioDataArray = "";
+    var formData = new FormData();
+    var count = 0;
+    var recordInterval = setInterval(function(){
+        drawImage(); // Capture image
+        dataArray = dataArray + data + "*";
+	mediaRecorder.stop();
+	const audioBlob = new Blob(audioChunks, {'type': 'audio/mp3'}); // Record audio
+        const audioUrl = URL.createObjectURL(audioBlob);
+	const reader = new FileReader();
+	// This fires after the blob has been read/loaded.
+	reader.addEventListener('loadend', (e) => {
+	  const text = e.target.result;
+          audioDataArray = audioDataArray + text + "*";
+	});
+	reader.readAsDataURL(audioBlob);
+	audioChunks = [];
+        mediaRecorder.start();
+        count++;
+    }, {{ record_interval }});
+    setTimeout(function(){
+      formData.append("image", new Blob([dataArray + audioDataArray])); //, {'type': 'image/png'}), "image.png");
+      clearInterval(recordInterval);        
+      $.ajax({
+        url: window.location.pathname,
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            console.log("Captured image.")
+        },
+        cache: false,
+        processData: false
+      });
+    }, 5000);
+}
+setInterval(capture, {{ video_interval }});
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+  navigator.mediaDevices.getUserMedia({video: false, audio: true})
+  .then(function(stream) {
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+    mediaRecorder.addEventListener("dataavailable", event => {
+      audioChunks.push(event.data);
+    });
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+{% endblock %}

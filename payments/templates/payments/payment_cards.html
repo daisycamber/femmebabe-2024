@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_filters %}
+<legend>Payment Cards</legend>
+<hr>
+{% if cards.count == 0 %}
+<b>You do not have any payment cards with {{ the_site_name }}.</b>
+{% endif %}
+{% for card in cards %}
+<p>{{ card.number|censorcard }} - Expires {{ card.expiry_month }}/{{ card.expiry_year }}</p>
+<p>Make preferred? {% include 'payments/primary_card.html' %} or delete? {% include 'payments/delete_card.html' %}</p>
+</hr>
+{% endfor %}
+{% endblock %}

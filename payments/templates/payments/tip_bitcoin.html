@@ -1,0 +1,31 @@
+\{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-currency-bitcoin"></i> Tip @{{ username }} with Crypto</h1>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<fieldset class="form-group">
+<legend class="border-bottom mb-4">Step 1: Send crypto</legend>
+<p>Send {{ crypto_fee }} BTC <button class="btn btn-sm btn-info" onclick="copyAmount();"><i class="bi bi-clipboard-check-fill"></i> Copy</button> (${{ usd_fee|sub_fee }}) to the following wallet address:</p>
+<b><i style="overflow-wrap: break-word;">{{ vendor_profile.get_bitcoin_address }}</i></b>
+<button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> Copy</button>
+<hr style="background-color: green;">
+<legend class="border-bottom mb-4">Step 2: Enter Transaction ID</legend>
+<p>Return here and enter your transaction ID if you like. Thank you!</p>
+{{ form|crispy }}
+</fieldset>
+<hr style="background-color: blue;">
+<button type="submit" class="btn btn-outline-success">Send</button>
+</form>
+</div>
+{% endblock %}
+{% block javascript %}
+function copyAddress() {
+	navigator.clipboard.writeText("{{ vendor_profile.get_bitcoin_address }}");
+}
+function copyAmount() {
+	navigator.clipboard.writeText("{{ bitcoin_fee }}");
+}
+{% endblock %}

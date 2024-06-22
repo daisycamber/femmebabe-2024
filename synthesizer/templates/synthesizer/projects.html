@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Audio Workstation Projects</legend>
+<hr>
+{% for project in projects %}
+<p>{{ project.name }} - <i>{{ project.last_updated }}</i></p>
+<a href="{% url 'synthesizer:project' project.identifier %}" class="btn btn-oultine-primary" style="float: right;">Edit</a>
+<hr>
+{% endfor %}
+{% if count > 10 %}
+{% include 'pagelinks.html' %}
+{% endif %}
+{% if count == 0 %}
+<p>No projects here yet. Create a <a href="{% url 'synthesizer:project' 'new' %}">New Workstation Project</a></p>
+{% endif %}
+{% endblock %}

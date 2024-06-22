@@ -1,0 +1,96 @@
+{% load app_filters %}
+{% if request.GET.page == None or request.GET.page == '1' %}
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user %}
+{% include 'banner_ad.html' %}
+{% endif %}
+{% if user.is_authenticated %}
+<div style="display: flex; justify-content: space-around;">
+{% if not profile.user in request.user.profile.subscriptions.all %}
+<form action="{% url 'feed:follow' profile.name %}" method="GET">
+{% csrf_token %}
+<button type="submit" class="btn btn-outline-primary" style="white-space: pre-wrap;">Follow Me
+(${{ profile.user.vendor_profile.subscription_fee|sub_fee }})
+Live, +more
+</button>
+</form>
+{% endif %}
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="white-space: pre-wrap;">Tip Me
+($25-$100,000)
+Thank you!</a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+   <div style="max-height: 50vh; overflow: scroll;">
+    <b style="text-color: black !important; color: black !important;">Credit/Debit Card</b>
+    {% for tip in tip_options %}
+    <li><a class="dropdown-item" href="{% url 'payments:tip-card' profile.name tip %}">${{ tip|sub_fee }}</a></li>
+    {% endfor %}
+    <b style="text-color: black !important; color: black !important;">Cryptocurrency</b>
+    {% for tip in tip_options %}
+    <li><a class="dropdown-item" href="{% url 'payments:tip-bitcoin' profile.name tip %}">${{ tip|sub_fee }}</a></li>
+    {% endfor %}
+   </div>
+  </ul>
+</div>
+</div>
+<hr style="background-color: red;">
+<div style="display: flex; justify-content: space-around;">
+<a href="{% url 'live:livevideo' profile.name %}?camera=private" class="btn btn-outline-secondary" title="Private live Show">Live</a>
+<a href="{% url 'recordings:recordings' profile.name %}" class="btn btn-outline-danger" title="Live recordings">Recordings</a>
+<a href="{% url 'interactive:interactive' profile.name %}" class="btn btn-outline-success" title="Interactive recordings">Interact</a>
+<a href="{% url 'live:book-live-show' profile.name %}" class="btn btn-outline-warning" title="Book a live show">Show</a>
+</div>
+{% else %}
+{% endif %}
+<hr style="background-color: green;">
+<div style="display: flex; justify-content: space-around;">
+{% if user.is_authenticated %}
+<a class="btn btn-outline-primary" href="{% url 'chat:chat' profile.name %}" title="Live chat">Chat</a>
+<a href="{% url 'audio:recordings' %}?model={{ profile.name }}" class="btn btn-outline-danger" title="Audio recordings">Audio</a>
+<a href="{% url 'face:faces' %}?model={{ profile.name }}" class="btn btn-outline-info" title="All login photos">Faces</a>
+<a href="{% url 'vibe:remote' %}" class="btn btn-outline-dark" title="Massager remote">Vibe</a>
+{% endif %}
+<a class="btn btn-outline-secondary" href="{% url 'feed:profile-grid' profile.name %}" title="Image grid">Grid</a>
+<a class="btn btn-outline-primary" href="{% url 'feed:profile' profile.name %}" title="Full profile">Profile</a>
+</div>
+{% if user.is_authenticated %}
+<hr style="background-color: blue;">
+<div style="display: flex; justify-content: space-around;">
+{% if request.GET.likes %}
+<a class="btn btn-outline-success" href="{{ request.path }}" title="All posts, not just what you like">All posts</a>
+{% else %}
+<a class="btn btn-outline-success" href="{{ request.path }}?likes=true" title="Posts you like">Likes</a>
+{% endif %}
+</div>
+{% endif %}
+<hr style="background-color: pink;">
+<div style="display: flex; justify-content: space-around;">
+<a style="margin-right: 10px;" class="btn btn-outline-primary mr-1" title="My Amazon (or other) wishlist" href="{{ profile.wishlist }}" target="_blank"><i class="bi bi-bag-heart-fill"></i> My Wishlist</a>
+<small class="padding-left: 10px;">Ship to <i class="bi bi-box2-heart-fill"></i> <i id="wishlist-address">{{ profile.user.verifications.last.address }}</i> <button onclick="copyWishlist();" class="btn btn-sm btn-outline-info">Copy</button></small>
+</div>
+<hr style="background-color: purple;" class="mb-5">
+<p style="text-align:center;"><img class="center rounded mx-auto" style="width: 70%; max-width: 700px;" src="{% if profile.user in request.user.profile.subscriptions.all %}{{ profile.get_image_url }}{% else %}{{ profile.get_face_blur_url }}{% endif %}"></p>
+<h1 style="text-align:center;">@{{ profile.name }}</h1>
+<p style="text-align: center;"><a href="tel:{{ main_phone|phone_number }}" title="Call my phone, {{ main_phone|phone_number }}"><i class="bi bi-telephone-outbound-fill"></i> {{ main_phone|phone_number }}</a></p>
+<legend>My pronouns are {{ profile.user.vendor_profile.pronouns|pronouns }}</legend>
+{% with profile.user as theuser %}
+{% include 'signature.html' %}
+{% endwith %}
+<p>{{ profile.bio }}</p>
+<p style="text-align:center;"><small class="text-muted">Last Seen: {{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small> - <small class="text-muted"> Joined: {{ profile.date_joined|date:"F d, Y" }} {{ profile.date_joined|time:"H:i" }}</small></p>
+{% if user.is_authenticated %}
+<div style="text-align:center;">
+{% if following and not profile.user == request.user %}
+<h2>Live Feed</h2>
+<iframe id="live" src="/live/{{ profile.name }}/?hidenavbar=t" width="100%" height="400px"></iframe>
+{% endif %}
+<h3>Chat</h3>
+<iframe class="nopadding" src="/chat/{{ profile.name }}/?hidenavbar=t" width="100%" height="500px"></iframe>
+</div>
+{% if not request.GET.likes %}
+<p>Displaying all public posts.</p>
+{% else %}
+<p>Displaying posts you like. <a href="{{ request.path }}" class="btn btn-sm btn-outline-success" title="All posts by {{ profile.name }}">See everything</a></p>
+{% endif %}
+{% endif %}
+<hr style="background-color: pink;" class="mb-5">
+{% endif %}

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Copy code to join meeting</legend>
+<a href="{{ base_url }}{% url 'meet:meet' %}?key={{ meeting.key }}" title="Meeting URL"><p id="meet-url">{{ base_url }}{% url 'meet:meet' %}?key={{ meeting.key }}</p></a>
+<button onclick="copyToClipboard('meet-url');" title="Copy to clipboard">Copy</button>
+{% endblock %}

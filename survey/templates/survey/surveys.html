@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% block content %}
+<legend>Surveys <a href="{% url 'survey:update' 'new' %}" class="btn btn-sm btn-outline-info" style="float: right;">New</a></legend>
+{% for survey in surveys %}
+<p style="white-space: pre-wrap;">
+<b>{{ survey.question }}</b>
+<ul>
+{% for answer in survey.answers_seperated|splitlines %}
+<li>{{ answer }}</li>
+{% endfor %}
+</ul>
+</p>
+<a href="{% url 'survey:update' survey.id %}" class="btn btn-sm btn-outline-info" style="float: right;">Update</a>
+<hr style="color: blue;">
+{% endfor %}
+{% endblock %}

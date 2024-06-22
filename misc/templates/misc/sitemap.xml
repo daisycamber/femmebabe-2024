@@ -1,0 +1,43 @@
+{% load feed_filters %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% for url in urls %}
+  <url>
+    <loc>{{ base_url }}{{ url }}</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}" />
+    {% endfor %}
+    <lastmod>{{ date }}</lastmod>
+  </url>
+  {% endfor %}
+{% for vendor in profiles %}
+  {% for url in vendor_urls %}
+  <url>
+    <loc>{{ base_url }}{{ url }}{{ vendor.profile.name }}/</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}{{ vendor.profile.name }}/" />
+    {% endfor %}
+    <lastmod>{{ date }}</lastmod>
+  </url>
+  {% endfor %}
+{% endfor %}
+{% for vendor in surrogates %}
+  {% for url in surrogate_urls %}
+  <url>
+    <loc>{{ base_url }}{{ url }}{{ vendor.profile.name }}/</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}{{ vendor.profile.name }}/" />
+    {% endfor %}
+    <lastmod>{{ date }}</lastmod>
+  </url>
+  {% endfor %}
+{% endfor %}
+  {% for post in posts %}
+  <url>
+    <loc>{{ base_url }}/feed/post/{{ post.uuid }}/</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}/feed/post/{{ post.uuid }}/" />
+    {% endfor %}
+    <lastmod>{{ post.date_posted|sitemapdate }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>

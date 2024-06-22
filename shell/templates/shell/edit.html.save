@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<link rel="stylesheet" href="/static/jquery.highlighttextarea.min.css">
+<style>
+ #demoCustom mark {
+  padding:0 3px;
+  margin:-1px -4px;
+  border-radius:0.5em;
+  border:1px solid pink;
+ }
+</style>
+{% endblock %}
+{% block content %}
+{% if not request.GET.hidenavbar %}
+<h1>{{ pagetitle }}</h1>
+{% endif %}
+{% autoescape off %}
+<form method="POST" id="edit-form">
+<fieldset class="form-group">
+{% csrf_token %}
+{{ form|crispy }}
+</fieldset>
+<div class="form-group">
+	<button id="edit-command" class="btn btn-outline-danger" type="submit">Edit</button>
+</div>
+</form>
+<p id="edited" class="hide">Edited</p>
+<hr>
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+$('textarea').highlightTextarea({
+ words: ['def', 'class', 'if', 'and', 'or', 'for'],
+ id: 'demoCustom',
+ caseSensitive: false
+ // or a regular expression like -> words: ['@([^ ]+)']
+});
+var edited = document.getElementById('edited');
+var form = $("#edit-form")[0];
+function editCommand() {
+	var formData = new FormData(form);
+	$.ajax({
+	  type: "POST",
+	  data: formData,
+	  contentType: false,
+	  processData: false,
+	  url: window.location.href,
+	  success: function(data) {
+		$(edited).toggleClass("hide");
+		$(edited).toggleClass("fade-hidden");
+		setTimeout(function() {
+			$(edited).toggleClass("hide");
+			$(edited).toggleClass("fade-hidden");
+		}, 2000);
+	  },
+	});
+}
+document.getElementById("edit-command").onclick = function(e) {
+	e.preventDefault();
+	editCommand();
+};
+{% endblock %}
+{%%}

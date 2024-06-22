@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>Edit Your Profile</h2>  
+{% if user.profile.vendor %}
+      <p style="text-align: center;">           
+	<img src="{{ request.user.profile.image.url }}?{{ user.profile.rotation }}" alt="Your profile photo, {{ user.username }}" width="50%" height="50%" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+      </p>
+      <p>
+	<a href="" title="Rotate your profile photo" class="mb-4"><button type="button" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> Rotate Photo</button></a>
+      <a href="{% url 'feed:profile' request.user.username %}" title="View your profile" class="text-right mb-3"><button type="button" class="btn btn-primary pull-right"><i class="bi bi-person-lines-fill"></i> View Your Profile</button></a>
+      </p>
+<!--      <hr>
+	<legend class="border-bottom mb-4">Notifications</legend>
+      <hr>-->
+	<div style="display: flex; justify-content: space-around;">
+		<a href="{% url 'vendors:preferences' %}">Vendor Preferences</a>
+		<a class="btn btn-outline-primary" href="{{ request.user.vendor_profile.identification.url }}" title="View your digital ID"><i class="bi bi-wallet2"></i> Digital ID</a>
+	</div>
+	<div style="display: flex; justify-content: space-around;">
+		<a class="btn btn-outline-primary" href="{{ request.user.vendor_profile.birth_control.url }}" title="Birth control"><i class="bi calendar2-week-fill"></i> Birth Control</a>
+	</div>
+{% endif %}
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4 mt-4">Profile Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
+{% endblock content %}

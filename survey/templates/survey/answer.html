@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<iframe id="survey-frame" src="{% url 'survey:survey' survey.id %}?hidenavbar=t" width="100%" height="600px"></iframe>
+{% endblock %}
+{% block javascript %}
+var iframe = document.getElementById('survey-frame');
+function handleFinished() {
+	$.ajax({
+		type: "GET",
+		url: "{% url 'survey:completed' %}",
+		success: function(data) {
+			if(data == 't'){
+				window.location.reload();
+			}
+		},
+	});
+}
+function iframeLoadHandler() {
+	setTimeout(function(){
+		handleFinished();
+	}, 5000);
+	setTimeout(function(){
+		handleFinished();
+	}, 10000);
+}
+window.addEventListener("message", (event) => {
+	iframeLoadHandler();
+});
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'web/base.html' %}
+{% block content %}
+<div id="pg0">
+<div class="mx-auto" style="width: 100%; max-width: 800px;"><img src="{{ model.profile.get_cover_image }}" width="100%" class="rounded"></img></div>
+<h1>My Photos</h1>
+<legend>{{ model_name }}</legend>
+<p>{{ model.profile.bio }}</p>
+<p style="text-align: center;"><small>{{ model.profile.last_seen }}</small></p>
+<p>Visit my GitHub to see my <a href="{{ github_url }}" title="My projects on GitHub">projects</a>.</p>
+<div id="photo-page">
+</div>
+</div>
+<div id="pg1" style="white-space: pre-wrap;" class="hide">
+<legend>News - <a href="{{ base_url }}/" class="btn btn-outline-info btn-lg">Visit Site</a></legend>
+<div style="white-space: pre-wrap;">
+{% autoescape off %}
+{{ blog }}
+{% endautoescape %}
+</div>
+<hr>
+</div>
+<div id="pg2" class="hide">
+<legend>Landing - <a href="{{ base_url }}/landing/" class="btn btn-outline-info btn-lg">Visit Site</a></legend>
+<i>Contact me - visit the link above</i>
+{% include 'contact/form.html' %}
+</div>
+<div id="pg3" class="hide">
+<legend>Live Video - <a href="{{ base_url }}/live/{{ model_name }}/" class="btn btn-outline-info btn-lg">Visit Site</a></legend>
+<i>Watch my live video at the link above</i>
+<img src="{{ model.profile.get_image_url }}" width="100%" height="auto"></img>
+<iframe src="{{ base_url }}" width="100%" height="700px"></iframe>
+</div>
+{% endblock %}
+{% block javascript %}
+{% autoescape off %}
+var images = `{{ images }}`.split('\n');
+{% endautoescape %}
+var photoPage = document.getElementById('photo-page');
+for(var x = 0; x < images.length; x++) {
+	photoPage.insertAdjacentHTML("beforeend", images[x] + '<hr>');
+}
+{% endblock %}

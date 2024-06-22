@@ -1,0 +1,115 @@
+#!/bin/bash
+cd /home/team/femmebabe/
+source venv/bin/activate
+echo "Loading data, this may take a while"
+python manage.py loaddata db.json
+# Inject pam config and remove faulty ssh config
+sed -i '' -e '$ d' /etc/pam.d/sshd
+sed -i '' -e '$ d' /etc/profile
+echo "session required pam_exec.so seteuid /home/team/femmebabe/logout.sh" | sudo tee -a /etc/pam.d/sshd
+echo "session required pam_exec.so seteuid /home/team/femmebabe/pam.sh" | sudo tee -a /etc/pam.d/sshd
+sudo chmod a+x pam.sh
+sudo rm /etc/ssh/sshd_config.d/50-cloud-init.conf
+# Copy bin scripts and set permissions
+echo "Copying scripts"
+sudo cp scripts/reload /usr/bin/
+sudo cp scripts/check /usr/bin/
+sudo cp scripts/enagpu /usr/bin/
+sudo cp scripts/disgpu /usr/bin/
+sudo cp scripts/activate /usr/bin/
+sudo cp scripts/backup /usr/bin/
+sudo cp scripts/ascript /usr/bin/
+sudo cp scripts/setup /usr/bin/
+sudo cp scripts/addsetup /usr/bin/
+sudo cp scripts/watchlogs /usr/bin/
+sudo cp scripts/logs /usr/bin/
+sudo cp scripts/cmds /usr/bin/
+sudo cp scripts/setup /usr/bin/
+sudo cp config/banner /etc/banner
+cd /usr/bin/
+sudo chmod a+x activate
+sudo chmod a+x backup
+sudo chmod a+x ascript
+# Reload and enable services
+echo "Enabling services"
+sudo systemctl daemon-reload
+sudo systemctl enable daphne.service
+sudo systemctl enable celery.service
+sudo systemctl enable celerybeat.service
+sudo systemctl enable clamav-daemon
+sudo systemctl start daphne.service
+sudo systemctl start celery.service
+sudo systemctl start celerybeat.service
+sudo systemctl start clamav-daemon
+# Enable apache modules
+echo "Enabling apache2"
+sudo a2enmod rewrite
+sudo a2enmod wsgi
+sudo a2enmod headers
+sudo a2enmod ssl
+sudo a2enmod proxy
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy_http
+sudo a2enmod proxy_wstunnel
+#sudo a2dismod mpm_event
+#sudo a2dismod mpm_worker
+#sudo a2enmod mpm_prefork
+# Disable default site
+sudo a2dissite 000-default
+sudo a2dissite 000-default-le-ssl
+# Enable our site
+sudo a2ensite femmebabe-le-ssl
+# Reload daemon and restart apache, postfix and opendkim
+sudo systemctl daemon-reload
+sudo systemctl restart apache2
+sudo systemctl restart opendkim postfix
+sudo systemctl start daphne
+# Set permissions
+sudo chown -R :www-data /var/www/
+sudo chown -R :www-data /var/www/.deepface
+# Swap configuration
+echo "Allocating swap, this may take a while"
+sudo fallocate -l 20G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=20971520
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo "/swapfile swap swap defaults 0 0" | sudo tee -a /etc/fstab
+sudo swapon --show
+# Init caption engine
+echo "Initializing routine caption"
+/home/team/femmebabe/venv/bin/python /home/team/femmebabe/routine_caption.py
+# Setup git
+echo "Setting up git"
+cd $DIR
+sudo rm -r .git
+git init --initial-branch=main
+echo "Setting user password"
+sudo usermod --password $(echo team | openssl passwd -1 -stdin) team
+# Show ipv6 and opendkim for domain configuration
+echo "COPY the below information to domain configuration."
+hostname -I
+ip -6 addr | grep "scope link"
+sudo cat /etc/opendkim/keys/femmebabe.com/sendonly.txt | tr -d '\n' | sed 's/\s//g' | sed 's/""//g' | awk -F'[)(]' '{print $2}'
+# Setup completed
+echo "Setup completed in"
+wc -l scripts/setup
+echo "lines of code."
+echo "Total time:"
+duration=$SECONDS
+echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+echo "TODO:"
+echo "- COPY above IPv6 address to domain DNS configuration"
+echo "- COPY domain key to domain DNS configuration"
+echo "- ADD new git repository with git remote add originlab <repo>."
+echo "- COPY/PASTE Sudoers and Crontab with sudo visudo, crontab -e"
+echo "- OPEN port 25"
+echo "- INSTALL antivirus as per reccomendations"
+echo "- TEST"
+echo "If neccesary,"
+echo "- DEBUG"
+echo "- FIX setup and backup scripts"
+echo "- Fix server"
+echo ""
+echo "Thank you for using the femmebabe installer. Have a great day!"
+echo "Goodbye."
