@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<legend>Reasess Lockout (Kick)</legend>
+<form method="POST">
+{% csrf_token %}
+{{ form|crispy }}
+<hr style="color: red;">
+<p>By pressing the button below, you attest that your use of this site is not fraud. <i>You will remain locked out if you are using the site with criminal intent.</i></p>
+<button type="submit" class="btn btn-outline-danger">Confirm</button>
+</form>
+{% endblock %}

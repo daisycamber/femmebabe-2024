@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load feed_filters %}
+<h1>{{ 'Active Models'|trans }}</h1>
+{% include 'banner_ad.html' %}
+{% for profile in profiles %}
+{% include 'feed/_profile.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}

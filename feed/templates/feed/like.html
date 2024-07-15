@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'feed:like' post.uuid %}" method="POST" id="publishForm">
+<button class="btn btn-outline-success" type="submit">{% if post in request.user.profile.likes.all %}<i class="bi bi-arrow-through-heart-fill"></i>{% else %}<i class="bi bi-arrow-through-heart"></i>{% endif %}</button>
+</form>

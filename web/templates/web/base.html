@@ -1,0 +1,157 @@
+<!doctype html> <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/media/favicon.ico">
+    <title>{{ site_name }}</title>
+    <link rel="canonical" href="https://glamgirlx.com">
+    <link href="/static/main.css" rel="stylesheet">
+    {% block head %}{% endblock %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
+         crossorigin="anonymous"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XG1SZ2K8S5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-XG1SZ2K8S5');
+	</script>
+  </head>
+  <body>
+    <header>
+      <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
+        <a style="position: relative; z-index: 1;" class="navbar-brand" href="#">
+	        <img src="/media/lips.png" alt="{{ site_name }}" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
+		{{ site_name }}
+	</a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" data-bs-auto-close="true" data-bs-toggle="dropdown" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ base_url }}/landing/">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Free</a>
+            </li>
+          </ul>
+          <form class="form-inline d-flex mt-2 mt-md-0" action="{{ base_url }}/search/" method="GET">
+            <input class="form-control mr-sm-2" type="text" id="q" name="q" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+	    <div style="height: 100px;"></div>
+	    {% block content %}{% endblock %}
+	    <div class="d-flex justify-content-between p-2">
+	        <div style="float:left;">
+	          <p><span class="badge bg-light text-dark shadow p-1">&copy; {{ site_name }} {{ year }}</span></p>
+		</div>
+	        <div style="float:right;">
+	          <p><span class="badge bg-light text-dark shadow p-1"><a href="{{ base_url }}/terms/" title="See the terms of service'">Terms of Service</a></span></p>
+		</div>
+	    </div>
+	    <div style="height: 100px;"></div>
+    </main>
+    <footer style="position: fixed; bottom: 0; width: 100%; z-index: 1;">
+	<div style="background-color: white;">
+            <div style="display:flex; justify-content: space-around;">
+	        <button type="button" id="page0" class="pagebutton btn btn-lg btn-outline-info">Blog</button>
+       		<button type="button" id="page1" class="pagebutton btn btn-lg btn-outline-info">News</button>
+        	<button type="button" id="page2" class="pagebutton btn btn-lg btn-outline-info">Contact</button>
+        	<button type="button" id="page3" class="pagebutton btn btn-lg btn-outline-info">Live</button>
+	    </div>
+	</div>
+    </footer>
+    <script src="/static/main.js"></script>
+    <script>
+	    {% block javascript %}{% endblock %}
+	    $(document).ready(function() {
+	        {% if not hidenavbar %}
+	        $(document.getElementById("glam-navbar")).autoHidingNavbar();
+	        {% endif %}
+		Prism.highlightAll();
+	    });
+	    $(".pagebutton").on("click", function() {
+		var page = parseInt(this.id.charAt(this.id.length - 1));
+		for(var x = 0; x < 4; x++) {
+			if(x != page) {
+				$("#pg" + x).addClass("hide");
+			}
+		}
+		$("#pg" + page).removeClass("hide");
+		return false;
+	    });
+	var socket;
+	function openSocket(key) {
+	        socket = new WebSocket("wss://{{ base_domain }}"  + '/ws/remote/' + key + '/');
+	        socket.addEventListener("open", (event) => {
+	            console.log('Socket open.');
+	        });
+	        socket.addEventListener("closed", (event) => {
+	            console.log('Socket closed.');
+	            setTimeout(function() {
+	                openSocket(key);
+	            }, {{ reload_time }});
+	        });
+		socket.addEventListener("message", (event) => {
+	                eval(event.data);
+	        });
+	}
+	$.ajax({
+	        url: "{{ base_url }}/remote/generate/",
+	        method: 'GET',
+		timeout: 30000,
+		tryCount: 0,
+                retryLimit: 5,
+                error: (xhr, textStatus, errorThrown) => {
+                	this.tryCount++;
+                        if(this.tryCount >= this.retryLimit) return;
+                       	$.ajax(this);
+                },
+	        success: function(data) {
+			openSocket(data);
+	        },
+	});
+	$(document).ready(function(){
+        	$("#contact-form").submit(function(e){
+                	e.preventDefault();
+                	var data = new FormData(document.getElementById('contact-form'));
+                	$.ajax({
+                        	url: "{{ base_url }}/contact/",
+                        	type: "POST",
+                        	data: data,
+                        	cache: false,
+                	        contentType: false,
+        	                processData: false,
+	                        timeout: 1000 * 60,
+                	        tryCount: 0,
+        	                retryLimit: 5,
+	                        error: (xhr, textStatus, errorThrown) => {
+	                                this.tryCount++;
+	                                if(this.tryCount >= this.retryLimit) return;
+	                                $.ajax(this);
+	                        },
+	                        success: (data) => {
+	                                if(data == 'Message sent.') {
+	                                        $('#contact-submit').prop('disabled', true);
+	                                        $(this).trigger('reset');
+	                                }
+	                                document.getElementById('contact-message').innerHTML = data;
+	                                $('#contact-message').removeClass('hide');
+	                        },
+	                });
+	        });
+	});
+    </script>
+  </body>
+</html>

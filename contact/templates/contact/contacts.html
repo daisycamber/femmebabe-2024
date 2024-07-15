@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Contacts</legend>
+<hr>
+{% for contact in contacts %}
+<p>{{ contact.name }} - @{{ contact.user.username }} - <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> - <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a> - at <i>{{ contact.date_sent }}</i></p>
+<p>{{ contact.message }}</p>
+<hr>
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}

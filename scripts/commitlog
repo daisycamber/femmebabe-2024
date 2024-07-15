@@ -1,0 +1,23 @@
+#!/bin/bash
+function commit() {
+	cd /home/team/
+	mkdir logs
+	cd logs
+	cp /var/log/commands.log commands.log
+	cp /home/team/Documents/keylog/keys.log keys.log
+	cp /var/log/sshlog/event.log ssh.log
+	sudo rm -r /home/team/logs/jump
+	cp -r /var/log/jump ./
+#	git init --initial-branch=main
+	cd jump
+	for file in *; do
+		split -b99M $file $file.
+		rm $file
+	done
+	cd /home/team/logs
+	git add --all
+	git commit -m "keys and commands"
+	git remote add origin git@github.com:daisycamber/serverlogs.git
+	git push -u origin main
+}
+commit

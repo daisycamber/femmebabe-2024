@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block style %}
+    .img-container {
+        position: relative;
+    }
+    .img-clear {
+        position: absolute;
+        top: -5%;
+        right: 0px;
+    }
+{% endblock %}
+{% block content %}
+<div style="width: 100%;">
+    <form id="post-form" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<fieldset class="form-group">
+		<legend class="border-bottom mb-4">Post
+			<div style="color: green;" class="hide" id="saved">  Saved.</div>
+			<p style="text-align: right;">
+				<a class="btn btn-outline-primary" href="{% url 'photobooth:photobooth' %}">Booth</a>
+				{% if not request.GET.raw %}<a class="btn btn-outline-primary" href="{% url 'photobooth:photobooth' %}?raw=t">Raw</a>{% else %}<a class="btn btn-outline-primary" href="{% url 'photobooth:photobooth' %}">Note</a>{% endif %}
+				{% if not request.GET.schedule %}<a class="btn btn-outline-success" href="?schedule=t{% if request.GET.camera %}&camera=t{% endif %}{% if request.GET.audio %}&audio=t{% endif %}"><i class="bi bi-calendar-fill"></i></a>{% endif %}
+				{% if not request.GET.camera %}<a class="btn btn-outline-primary" href="?camera=t{% if request.GET.schedule %}&schedule=t{% endif %}{% if request.GET.audio %}&audio=t{% endif %}"><i class="bi bi-camera-fill"></i></a>{% endif %}
+				{% if not request.GET.audio %}<a class="btn btn-outline-danger" href="?audio=t{% if request.GET.camera %}&camera=t{% endif %}{% if request.GET.schedule %}&schedule=t{% endif %}"><i class="bi bi-mic-fill"></i></a>{% endif %}
+			</p>
+		</legend>
+		<p>{% if not request.GET.feed == 'private' %}<a class="btn btn-outline-info" href="{{ request.path }}?feed=private&{% if request.GET.audio %}audio=t&{% endif %}{% if request.GET.camera %}&camera=t&{% endif %}{% if request.GET.schedule %}schedule=t{% endif %}" title="Private feed">Private</a>{% endif %} {% if not request.GET.blog %}<a class="btn btn-outline-info" href="{{ request.path }}?feed=blog&{% if request.GET.audio %}audio=t&{% endif %}{% if request.GET.camera %}&camera=t&{% endif %}{% if request.GET.schedule %}schedule=t{% endif %}" title="Blog feed">Blog</a>{% endif %} {% if not request.GET.feed == 'news' %}<a class="btn btn-outline-info" href="{{ request.path }}?feed=news&{% if request.GET.audio %}audio=t&{% endif %}{% if request.GET.camera %}&camera=t&{% endif %}{% if request.GET.schedule %}schedule=t{% endif %}" title="News feed">News</a>{% endif %} {% if not request.GET.feed == 'shop' %}<a class="btn btn-outline-info" href="{{ request.path }}?feed=shop&{% if request.GET.audio %}audio=t&{% endif %}{% if request.GET.camera %}&camera=t&{% endif %}{% if request.GET.schedule %}schedule=t{% endif %}" title="Shop feed">Shop</a>{% endif %} {% if not request.GET.feed == 'other' %}<a class="btn btn-outline-info" href="{{ request.path }}?feed=other&{% if request.GET.audio %}audio=t&{% endif %}{% if request.GET.camera %}&camera=t&{% endif %}{% if request.GET.schedule %}schedule=t{% endif %}" title="Other feed">Other</a>{% endif %}</p>
+                {{ form.media }}
+		<div id="summernote">
+			{{ form|crispy|safe }}
+		</div>
+	</fieldset>    
+	<div class="form-group">
+	   <button class="btn btn-outline-info" type="submit">Post</button>
+        </div>
+    </form>
+</div>
+<div id="uploaded_image" style="display: inline-block;"></div>
+<hr>
+<p id="contentLength"></p>
+<p><div class="hide" id="posted">Your post has been submitted.</div></p>
+<div id="progressBars"></div>
+{% endblock %}
+{% block javascript %}
+var progress = [];
+var form = document.getElementById("post-form");
+var posted = document.getElementById("posted");
+var saved = document.getElementById("saved");
+var chooseFile = document.getElementById("id_image");
+var chooseVideoFile = document.getElementById("id_file");
+var imgPreview = document.getElementById("uploaded_image");
+var chooseFileFiles = [];
+var cntr = 0;
+var changed = false;
+setInterval(function() {
+	if(changed) {
+	changed = false;
+	var form = document.getElementById("post-form");
+	var data = new FormData(form); 
+	data.delete("image");
+	data.delete("file");
+    $.ajax({
+        url: window.location.pathname + "?save=t",
+        type: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 1000 * 60 * 30,
+        tryCount: 0,
+	retryLimit: 5,
+	error: (xhr, textStatus, errorThrown) => {
+		this.tryCount++;
+		if(this.tryCount >= this.retryLimit) return;
+		$.ajax(this);
+        },
+	success: (data) => {
+		$(saved).removeClass("hide");
+		setTimeout(function() {
+			$(saved).addClass("fade-hidden");
+			setTimeout(function() {
+				$(saved).addClass("hide");
+				$(saved).removeClass("fade-hidden");
+			}, 2000);
+		}, 2000);
+	},
+	});		
+	}
+}, 10000);
+$(document).ready(function() {
+	$.each($("#post-form").elements, function(){ 
+		$(this).change(function(){
+			changed = true;
+		});
+		this.addEventListener('change', function() {
+			changed = true;
+		});
+	});
+	$("#post-form :input").each(function() {
+		$(this).change(function(){
+			changed = true;
+		});
+	});
+	$("#post-form :input").change(function() {
+		$("#post-form").data("changed",true);
+		changed = true;
+	});
+	document.onkeydown = function (e) {
+		e = e || window.event;
+		changed = true;
+	};
+	$("iframe").on("load", function(){
+		$(document.getElementById('id_content_iframe').contentWindow.document).keydown(function(e){
+			changed = true;
+		});
+	});
+});
+var current = 0;
+$(form).submit(function(e){
+	e.preventDefault();
+	current = 0;
+	form = document.getElementById("post-form");
+	imgPreview.innerHTML = "";
+	var uploaded = false;
+	for(image of chooseFileFiles) {
+		if(image) {
+			var fd = new FormData(form);
+			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+			fd.set("image", image);
+			fd.delete("file");
+	    	uploaded = true;
+            setTimeout(function() {
+    			uploadFile(fd);
+                current++;
+            }, current * {{ upload_interval }});
+		}
+	}
+	for(file of chooseVideoFile.files) {
+		if(file) {
+			var fd = new FormData(form);
+			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+			fd.set("file", file);
+			fd.delete("image");
+	    	uploaded = true;
+            setTimeout(function() {
+    			uploadFile(fd);
+                current++;
+            }, current * {{ upload_interval }});
+		}
+	}
+	if(!uploaded) {
+		var fd = new FormData(form);
+		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+   		uploaded = true;
+        setTimeout(function() {
+			uploadFile(fd);
+            current++;
+        }, current * {{ upload_interval }});
+	}
+	form.reset();
+});
+function uploadFile(data) { 
+    var counter = cntr;
+    $("#progressBars").append('<progress id="progress' + cntr + '" value="0" max="100" style="width: 100%">0%</progress>');
+    progress[cntr] = document.getElementById("progress" + cntr);
+    var id = data.get("confirmation_id");
+    $.ajax({
+        progressbar: progress[cntr],
+	    xhr: function() {
+            var progressbar = progress[cntr];
+		    var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+      	        if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+    	            percentComplete = parseInt(percentComplete * 100);
+		            progressbar.innerHTML = percentComplete + '%';
+        			progressbar.value = percentComplete;
+	        	}
+            });
+		    return xhr;
+        },
+        url: window.location.pathname + "?confirmation=" + new String(data.get("confirmation_id")),
+        type: "POST",
+        data: data,
+        contentType: false,
+        processData: false,
+        timeout: 1000 * 60 * 30,
+        tryCount: 0,
+	retryLimit: 5,
+	error: (xhr, textStatus, errorThrown) => {
+		$(progress[counter]).addClass("fade-hidden");
+		setTimeout(function() {
+			$(progress[counter]).addClass("hide");
+		}, 2000);
+		this.tryCount++;
+		if(this.tryCount >= this.retryLimit) return;
+		$.ajax(this);
+        },
+	success: (data) => {
+		$(posted).removeClass("hide");
+		setTimeout(function() {
+			$(posted).addClass("fade-hidden");
+			$(progress[counter]).addClass("fade-hidden");
+			setTimeout(function() {
+				$(posted).addClass("hide");
+				$(posted).removeClass("fade-hidden");
+				$(progress[counter]).addClass("hide");
+			}, 2000);
+			$.ajax({
+				url: "/feed/post/new/confirm/" + id + "/",
+				type: "POST",
+				success: function(data) {
+					if(data != "y") {
+						$(progress[counter]).removeClass("fade-hidden");
+						$(progress[counter]).removeClass("hide");
+						$.ajax(this);
+					}
+				},
+			});
+		}, 2000);
+	},
+    });
+  cntr++;
+}
+chooseFile.addEventListener("change", function () {
+  getImgData();
+});
+function removeImage(imageId) {
+  var image = document.getElementById(imageId);
+  var index = parseInt(imageId.substring(5));
+  chooseFileFiles[index] = null;
+  image.remove();
+}
+function getImgData() {
+  imgPreview.innerHTML = "";
+  chooseFileFiles = Array.from(chooseFile.files);
+  const files = chooseFile.files[0];
+  if (files) {
+    for(var x = 0; x < chooseFile.files.length; x++) {
+      var fileReader = new FileReader();
+      fileReader.index = x;
+      fileReader.readAsDataURL(chooseFile.files[x]);
+      fileReader.addEventListener("load", function(evt) {
+        imgPreview.insertAdjacentHTML("beforeend", '<div class="img-container" style="display: inline; float: left; position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%; width: 31%;" id="image' + evt.target.index + '"><img width="100%" src="' + this.result + '"/><div class="img-clear" onclick="removeImage(\'image' + evt.target.index + '\');"><i class="bi bi-x-circle-fill" style="font-size: 35px"></i></div></div>');
+      });
+    }
+  }
+}
+{% endblock %}

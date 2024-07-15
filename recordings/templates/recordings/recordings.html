@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+.cmodal.active {
+	height: 100%;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+<div class="content">
+<h1>Recordings {% if model == request.user %}
+{% if request.GET.all %}
+<a style="float: right;" href="{{ request.path }}" class="btn btn-outline-primary">Private</a>
+{% else %}
+<a style="float: right;" href="{{ request.path }}?all=true" class="btn btn-outline-danger">All</a>
+{% endif %}
+{% endif %}</h1>
+<hr style="color: red;">
+{% for recording in recordings %}
+<div style="display: flex; justify-content: space-around;">
+<div style="position: relative; right: 5px;" class="mr-3">
+{% with recording as content %}{% include 'clock.html' %}{% endwith %}
+</div>
+<p>Recording of {{ recording.frames.count }} frames on {{ recording.last_frame }} from camera "{{ recording.camera }}" - <a href="{% url 'recordings:recording' recording.uuid %}" title="Recordings">Watch</a></p>
+</div>
+<div style="display: inline-block;">
+{% for frame in recording.frames.all|slice:"24" %}
+<img class="frame" data-name="{{ forloop.counter }}" src="{{ frame.still_thumbnail_bucket.url }}" width="150px" alt="Frame {{ forloop.counter|nts }}" data-url="{% url 'recordings:recording' recording.uuid %}" data-index="{{ forloop.counter }}"></img>
+{% endfor %}
+</div>
+<p><b>Transcript:</b> {{ recording.transcript }}</p>
+<hr style="background-color: blue;">
+{% endfor %}
+{% include 'pagelinks.html' %}
+</div>
+<div class="container">
+<div style="position: fixed; left: 0; top: 0; background-color: #ffaaaa; width: 100%; height: 100%;" class="cmodal hide fade-hidden-fast">
+<div style="vertical-align: middle; position: relative; margin: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+<div><div id="frame-text"></div> - <a href="" id="play-index">Play</a></div>
+<img id="large-frame" width="90%" class="rounded shadow"></img>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+$('.frame').on('click', function(e) {
+  $('.cmodal').toggleClass('hide');
+  $('.cmodal').toggleClass('fade-in-fast');
+  $('.cmodal').toggleClass('fade-hidden-fast');
+  document.getElementById('large-frame').src = e.target.src;
+  document.getElementById('frame-text').innerHTML = 'Frame ' + e.target.dataset.name;
+  document.getElementById('play-index').href = e.target.dataset.url + '?index=' + e.target.dataset.index;
+  e.preventDefault();
+});
+
+$('#large-frame').click(function(e) {
+  setTimeout(function() {
+    $('.cmodal').toggleClass('hide');
+  }, 500);
+  $('.cmodal').toggleClass('fade-in-fast');
+  $('.cmodal').toggleClass('fade-hidden-fast');
+  e.preventDefault();
+});
+{% endblock %}

@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<style>
+.spin-loader {
+  border: 18px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 4s linear infinite;
+  z-index: 99;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.container-video { position:relative; }
+
+
+.container-video video {
+    position:relative;
+
+    z-index:0;
+}
+.overlay-video {
+    max-width: 70%;
+    max-height: 70%;
+    position: absolute;
+    text-align: center;
+    top:-7%;
+    left:15%;
+    z-index:1;
+}
+.icon-rotate {
+    transform: rotate(-90deg);
+    left: 13%;
+    top: 15%;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% load feed_filters %}
+<div class="container w-100">
+{% if request.GET.download %}
+<legend class="mb-2">{{ 'Scan the front and back of your ID'|trans }}</legend>
+{% else %}
+<legend class="mb-2">{% blocktrans %}Scan the {% if not back %}front{% else %}back{% endif %} of {% if request.GET.foreign %}the{% else %}your{% endif %} ID{% endblocktrans %}</legend>
+{% if request.GET.foreign and request.GET.back %}
+<a href="{{ request.path }}?foreign=true" title="Scan the front of an ID" class="btn btn-sm btn-outline-primary">{{ 'Scan Front'|trans }}</a>
+{% endif %}
+{% if not back %}
+<p>{% blocktrans %}Scan the front of {% if request.GET.foreign %}the{% else %}your{% endif %} ID, aligned with the frame.{% endblocktrans %}</p>
+{% else %}
+<p>{% blocktrans %}Scan the back of {% if request.GET.foreign %}the{% else %}your{% endif %} ID, aligned with the frame.{% endblocktrans %}</p>
+{% endif %}
+{% endif %}
+<form method="POST" enctype="multipart/form-data" id="face-login-form" style="position: absolute; display: none; visibility: hidden;" class="w-100 ml-0 mr-0">
+{% csrf_token %}
+{{ form|crispy }}
+</form>
+<div id="video-container" class="container-video">
+<video autoplay="true" muted="true" id="video" width="100%" class="ml-0 mr-0"></video>
+<div id="overlay" class="overlay-video" style="width: 100%;">
+<i class="bi {% if request.GET.back %}bi-card-heading{% else %}bi-person-vcard{% endif %} hide" id="icon" style="text-align: center; opacity: 0.5;"></i>
+</div>
+</div>
+<hr>
+<div>
+<div style="display: flex; justify-content: space-around;">
+<p style="display: inline-block;">{{ 'Align the document with the frame and tap the image.'|trans }}</p>
+</div>
+</div>
+<canvas id="canvas" style="position: absolute; display: none; visibility: hidden;"></canvas>
+</div>
+<div style="position: fixed; left: 0; top: 0; background-color: transparent; height: 0px; width: 100%; z-index: 99;" id="loader-container">
+<div id="spin-loader" style="position: relative; margin: auto; top: 50%; text-align: center;"></div>
+</div>
+{% endblock %}
+{% block javascript %}
+var video = document.getElementById('video');
+var icon = document.getElementById('icon');
+var overlay = document.getElementById('overlay');
+function readyOverlay() {
+  	  var offsetWidth = video.getBoundingClientRect().width;
+  	  var offsetHeight = video.getBoundingClientRect().height;
+	  icon.style.fontSize = Math.floor(offsetHeight * 0.8) + "px";
+	  if(offsetHeight > offsetWidth) {
+	    if(!$(overlay).hasClass("icon-rotate")) {
+	    	$(overlay).toggleClass("icon-rotate");
+	    }
+	    icon.style.fontSize = Math.floor(offsetWidth * 0.7) + "px";
+	  }
+	  overlay.style.height = offsetHeight + "px";
+}
+window.addEventListener('resize', readyOverlay)
+let portrait = window.matchMedia("(orientation: portrait)");
+portrait.addEventListener("change", readyOverlay)
+
+var download_inc = 1;
+const download = function (canvas) {
+    const link = document.createElement('a');
+    link.download = '{{ the_site_name }} - ID Scan ' + download_inc + '.png';
+    download_inc++;
+    link.href = canvas.toDataURL()
+    link.click();
+}
+
+var imageCapture;
+var form = document.getElementById('face-login-form');
+var mediaRecorder;
+var mediaChunks = [];
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+document.getElementById("video-container").addEventListener("click", function(event) {
+	onTakePhotoButtonClick();
+});
+
+function onTakePhotoButtonClick() {
+  imageCapture.takePhoto()
+  .then((blob) => createImageBitmap(blob))
+  .then((imageBitmap) => {
+	image = imageBitmap;
+        uploadImage(image);
+  })
+  .catch((error) => console.error(error));
+}
+
+var scale = 1;
+var degmod = 90;
+function drawRotated(degrees, image){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if(Math.floor(degrees/90) % 2 == 0) {
+        canvas.width = image.width * scale;
+        canvas.height = image.height * scale;
+    } else {
+        canvas.width = image.height * scale;
+        canvas.height = image.width * scale;
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.translate(canvas.width / 2, canvas.height / 2);   // to center
+    context.rotate(degrees * Math.PI / 180);                   // rotate
+    if(Math.floor(degrees/90) % 2 == 0) {
+        context.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+    } else {
+        context.drawImage(image, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width);
+    }
+    context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+    context.restore();
+    context.save();
+}
+
+function uploadImage(image){
+             video.pause(); 
+		document.getElementById("spin-loader").classList.add("spin-loader");
+		document.getElementById("loader-container").style.height = "100vh";                    
+		if(image.height > image.width) {
+			drawRotated(90, image);
+		} else {
+			drawRotated(0, image);
+		}
+	{% if request.GET.download %}
+		download(canvas);
+		video.play();
+		document.getElementById("spin-loader").classList.remove("spin-loader");
+		document.getElementById("loader-container").style.height = "0px";
+		return;
+	{% endif %}
+	var blobBin = atob(canvas.toDataURL().split(',')[1]);
+        var array = [];
+        for(var i = 0; i < blobBin.length; i++) {
+            array.push(blobBin.charCodeAt(i));
+        }
+        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var formdata = new FormData(form);
+        formdata.append('document', new File([file], 'image.png'));
+        $.ajax({
+           url: window.location.href,
+           type: "POST",
+           data: formdata,
+           processData: false,
+           contentType: false,
+           success: function(data, textStatus) {
+                console.log(data);
+           },
+           timeout: 1000 * 60 * 10,
+        }).done(function(respond){
+                  window.location.href = respond;
+        });
+        setInterval(function() {
+            $.ajax({
+           url: '{% url 'barcode:validate' key %}',
+           type: "GET",
+           success: function(data, textStatus) {
+                if(data == 'y') {
+                    window.location.reload();
+                }
+           },
+           timeout: 1000 * 60 * 10,
+          });
+        }, 10000);
+}
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+	video.addEventListener('loadeddata', function() {
+	    readyOverlay();
+            setTimeout(function() {
+	       $(icon).toggleClass("hide");
+	       $(icon).toggleClass("fade-in");
+           }, 5000);
+	}, false);
+    const track = stream.getVideoTracks()[0];
+    imageCapture = new ImageCapture(track);
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+{% endblock %}

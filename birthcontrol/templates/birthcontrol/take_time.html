@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/clock/clock.css">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load app_filters %}
+       <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Birth Control Time</legend>
+		<div style="display: flex; justify-content: space-around;">
+			<div class="px-2">
+				{% with last_pill as content %}
+				{% include 'clock.html' %}
+				{% endwith %}
+			</div>
+
+			<div class="px-2">
+				{% if request.user.vendor_profile.taking_birth_control %}<small class="text-muted"><i>Last taken </i>{{ request.user.vendor_profile.birth_control_taken|date:"F d, Y" }} {{ request.user.vendor_profile.birth_control_taken|time:"H:i" }}</small>{% endif %}
+				<small id="currentTime">{{ current_time }}</small>
+			</div>
+		</div>
+		<hr style="background-color: blue;">
+                {{ form|crispy }}
+            </fieldset>
+            <button class="btn btn-outline-info" style="float: right;" type="submit">Set time</button>
+        </form>
+<hr>
+{% endblock content %}
+{% block javascript %}
+setInterval(function() {
+	var d = new Date();
+	d.toLocaleString();
+	document.getElementById('currentTime').innerHTML = d;
+}, 1000);
+{% endblock %}

@@ -1,0 +1,15 @@
+{% load feed_filters %}
+<div class="row">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'feed:profile' username=profile.user.username %}" title="See @{{ profile.name }}'s profile">@{{ profile.name }}</a>
+      <small class="text-muted">{{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small>
+      <small class="text-muted"><i class="bi bi-translate"></i> {{ profile.bio|detectlanguage }}</small>
+    </div>
+    <p class="article-content"><img src="{% if profile.user in request.user.profile.subscriptions.all %}{{ profile.get_image_url }}{% else %}{{ profile.get_face_blur_url }}{% endif %}" alt="@{{ profile.user.username }}'s profile photo" width="120" height="120" align="left" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>{{ profile.bio|addhttpstodomains|embedlinks|tagusers }}</p>
+<div style="display: flex; justify-content: space-around;">
+{% if profile.user in user.profile.subscriptions.all %}
+    <a href="{% url 'payments:cancel-sub' profile.name %}" title="Cancel your subscription" class="btn btn-outline-danger">Cancel Subscription</a>
+{% endif %}
+</div>
+</div>
+<hr>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ pagetitle }}</h1>
+<p>{{ notes }}</p>
+<p><button class="btn btn-outline-info" href="{% url 'app:app' %}" title="Return to the homepage">Return home</button></p>
+{% if trace %}
+<p style="white-space: pre-wrap;">{{ trace }}</p>
+{% endif %}
+{% endblock %}

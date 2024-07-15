@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Birth Control Settings</legend>
+                {{ form|crispy }}
+            </fieldset>
+	    <small class="text-muted"><i>Birth control uploaded </i>{{ form.instance.birth_control_uploaded|date:"F d, Y" }} {{ form.instance.birth_control_uploaded|time:"H:i" }}</small>
+	    {% if form.instance.birth_control_barcodes %}<p>{{ form.instance.birth_control_barcodes }}</p>{% endif %}
+	    <p>See graphs of temperature information - <a href="{% url 'birthcontrol:temperature' %}" title="Temperature charts" class="btn btn-outline-success">Temperature</a></p>
+	    <p>Please be sure all details are correct before proceeding.</p>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+{% endblock content %}

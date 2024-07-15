@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% if request.GET.camera %}
+<legend>Photobooth Remote</legend>
+<a id="use-device" class="btn btn-outline-primary" target="_blank" href="{% url 'photobooth:photo' request.GET.camera %}?init=t" title="Take a photo by opening a notification on another device">From Device</a>
+<form>
+{{ form|crispy }}
+</form>
+<button class="btn btn-outline-success" onclick="capture();">Capture</button>
+{% else %}
+<legend>Choose Photobooth Camera</legend>
+{% if cameras|length == 0 %}
+<i>No active cameras.</i>
+{% endif %}
+{% for camera in cameras %}
+<p><a href="{{ request.path }}?camera={{ camera.name }}"><b>Began {{ camera.connected }}</b></a></p>
+<hr>
+{% endfor %}
+<hr>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{% if request.GET.camera %}
+var form = document.getElementById("id_time");
+var socket;
+var device = document.getElementById("use-device");
+form.onchange = function() {
+    device.href = "{% url 'photobooth:photo' request.GET.camera %}?init=t&time=" + form.value;
+}
+function capture() {
+	socket.send(form.value);
+}
+function openSocket() {
+	socket = new WebSocket("wss://" + window.location.hostname + '/ws/photobooth/{{ request.user.profile.name }}/{{ request.GET.camera }}/');
+        socket.addEventListener("open", (event) => {
+            console.log('Socket open.');
+            setInterval(function() {
+                socket.send('i');
+            }, 1000);
+        });
+        socket.addEventListener("closed", (event) => {
+            console.log('Socket closed.');
+            setTimeout(function() {
+                openSocket();
+            }, {{ reload_time }});
+        });
+}
+openSocket();
+var started = false;
+const gamepads = [];
+function jump(pad) {
+	pad.hapticActuators[0].pulse(1.0, 200);
+	capture();
+}
+function gamepadHandler(event, connected) {
+  const gamepad = event.gamepad;
+  if (connected) {
+    gamepads[gamepad.index] = gamepad;
+  } else {
+    delete gamepads[gamepad.index];
+  }
+  if(!started) setInterval(updateGamepadButtons, 100);
+  started = true;
+}
+
+window.addEventListener(
+  "gamepadconnected",
+  (e) => {
+    gamepadHandler(e, true);
+  },
+  false,
+);
+window.addEventListener(
+  "gamepaddisconnected",
+  (e) => {
+    gamepadHandler(e, false);
+  },
+  false,
+);
+function updateGamepadButtons() {
+  try {
+    for(var gamepad of gamepads) {
+      if (gamepad.connected) {
+        var p = false;
+        gamepad.buttons.forEach((button, i) => {
+          let pressed = button === 1.0;
+          let val = button;
+          if (typeof button === "object") {
+            pressed = val.pressed;
+            val = val.value;
+          }
+          if(pressed) {
+            p = true;
+          }
+        });
+        if(p) {
+          jump(gamepad);
+        }
+      } 
+    }
+  } catch(error) {
+    var e = document.createElement("div");
+    document.body.appendChild(e);
+    e.innerHTML = error.message;
+  }
+}
+{% endif %}
+{% endblock %}

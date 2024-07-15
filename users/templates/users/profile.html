@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load pwa_webpush %} 
+{% load feed_filters%}
+{% block content %}
+	<h2>Edit Your Profile</h2>  
+	{% if user.profile.vendor %}
+	<p style="text-align: center;">
+		<img src="{{ request.user.profile.get_image_url }}" alt="{{ 'Your profile photo,'|trans }} {{ user.username }}" width="50%" height="50%" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+	</p>
+	<div style="display: flex; justify-content: space-around;">
+	      <a href="{% url 'feed:profile' request.user.profile.name %}" title="{{ 'View your profile'|trans }}" class="text-right mb-3"><button type="button" class="btn btn-primary pull-right"><i class="bi bi-person-lines-fill"></i> View Your Profile</button></a>
+	      <a href="{% url 'feed:new_post' %}" title="New post" class="text-right mb-3"><button type="button" class="btn btn-primary pull-right"><i class="bi bi-person-plus-fill"></i> {{ 'New Post'|trans }}</button></a>
+	</div>
+	<!--<hr>
+	<legend class="border-bottom mb-4">Notifications</legend>
+      <hr>-->
+	<div style="display: flex; justify-content: space-around;">
+		<a href="{% url 'vendors:preferences' %}" class="btn btn-primary">{{ 'Vendor Preferences'|trans }}</a>
+		{% if request.path == '/accounts/profile/' %}
+		<div id="webpush-container" class="btn btn-primary">{% webpush_button %}</div>
+		{% endif %}
+	</div>
+	<hr>
+	{% else %}
+	<div style="display: flex; justify-content: space-around;">
+		<i class="bi bi-person-square" style="font-size: 100px"></i>
+	</div>
+	<div style="display: flex; justify-content: space-around;">
+		<a href="{% url 'feed:subscriptions' %}" class="btn btn-danger">{{ 'Subscriptions'|trans }}</a>
+		{% if request.user.profile.idscan_active %}
+		<a href="{% url 'payments:cancel-subscription' %}" class="btn btn-danger">{{ 'Cancel IDScan Subscription'|trans }}</a>
+		{% endif %}
+		{% if request.user.profile.webdev_active %}
+		<a href="{% url 'payments:cancel-webdev-subscription' %}" class="btn btn-danger">{{ 'Cancel Service Subscription'|trans }}</a>
+		{% endif %}
+		<a href="{% url 'vendors:preferences' %}" class="btn btn-primary">{{ 'Become a Model'|trans }}</a>
+		<a href="{% url 'verify:age' %}" class="btn btn-success">{{ 'Get Verified'|trans }}</a>
+	</div>
+ 	{% endif %}
+	{% if user.profile.idscan_active %}
+	<p>IDScan Auth Key: <div id="idscan-key">{{ user.profile.idscan_api_key }}</div><button onclick="copyToClipboard('idscan-key');" title="Copy">Copy</button></p>
+	{% endif %}
+	<form method="POST" enctype="multipart/form-data" id="profile-form">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4 mt-4">{{ 'Profile Info'|trans }}</legend>
+              {{ u_form|crispy }}
+		<a href="{% url 'users:password_reset' %}">{{ 'Password Reset'|trans }}</a>
+              {{ p_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">{{ 'Update'|trans }}</button>
+          </div>
+	</form>
+        <p style="text-color: green;" class="hide" id="posted">{{ 'Saved.'|trans }}</p>
+
+{% endblock content %}
+{% block javascript %}
+var form = document.getElementById('profile-form');
+$('input').change(function(){
+	var formdata = new FormData(form);
+	$.ajax({
+		url: window.location.href,
+		type: "POST",
+		data: formdata,
+		processData: false,
+		contentType: false,
+		timeout: 1000 * 60,
+                success: function(data) {
+                  $(posted).removeClass("hide");
+		  setTimeout(function() {
+			$(posted).addClass("fade-hidden");
+			setTimeout(function() {
+				$(posted).addClass("hide");
+				$(posted).removeClass("fade-hidden");
+			}, 2000);
+		  }, 2000);
+                }
+	});
+});
+{% endblock %}

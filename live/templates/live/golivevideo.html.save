@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Go live</h1>
+<div id="container">
+<video autoplay="true" muted="true" id="video" width="100%"></video>
+</div>
+{% endblock %}
+{% block javascript %}
+{% include 'live/fastcompressor.js' %}
+var video = document.getElementById('video');
+var data;
+var mediaRecorder;
+var mediaChunks = [];
+function capture(){
+    mediaRecorder.stop();
+    setTimeout(function() {
+    data = "";
+    var formData = new FormData();
+      var message = "";
+      var blob = new Blob(mediaChunks, {'type': 'video/webm'});
+      const reader = new FileReader();
+      // This fires after the blob has been read/load
+      reader.addEventListener('loadend', (e) => {
+              const text = e.target.result;
+	      message = text;
+	      let xhr = new XMLHttpRequest();
+	      xhr.open("POST", window.location.pathname, true);
+	      xhr.timeout = {{ request_timeout }};
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	      var toSend = "";
+	      message.substring(0, {{ packet_head }}) + String.fromCharCode(.fastcompressor.compress(message.substring({{ packet_head }}, message.length)));
+              xhr.send(toSend);
+	      mediaChunks = []
+	      mediaRecorder.start();
+      });
+	reader.readAsDataURL(blob);
+}, 0);
+}
+setInterval(capture, 5000);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: true, audio: true})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+    mediaRecorder.addEventListener("dataavailable", event => {
+      mediaChunks.push(event.data);
+    });
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+
+{% endblock %}

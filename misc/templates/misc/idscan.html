@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ID Scanner</title>
+<meta charset="UTF-8">
+<meta name="description" content="Scan an ID with JavaScript">
+<meta name="keywords" content="HTML, CSS, JavaScript ID scanner with ZXing.js and Tesseract.js.">
+<meta name="author" content="Jasper Holton">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://unpkg.com/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<script type="text/javascript" src="https://unpkg.com/@zxing/browser@latest"></script>
+<script type="text/javascript">
+window.addEventListener('load', () => {
+var icon = document.getElementById('icon');
+var overlay = document.getElementById('overlay');
+var canvas = document.getElementById("canvas");
+var video = document.getElementById("video");
+function readyOverlay() {
+  	  var offsetWidth = video.getBoundingClientRect().width;
+  	  var offsetHeight = video.getBoundingClientRect().height;
+	  icon.style.fontSize = Math.floor(offsetHeight * 0.8) + "px";
+	  if(offsetHeight > offsetWidth) {
+	    if(!overlay.classList.contains("icon-rotate")) {
+	    	overlay.classList.toggle("icon-rotate");
+	    }
+	    icon.style.fontSize = Math.floor(offsetWidth * 0.7) + "px";
+	  }
+	  overlay.style.height = offsetHeight + "px";
+}
+window.addEventListener('resize', readyOverlay)
+let portrait = window.matchMedia("(orientation: portrait)");
+portrait.addEventListener("change", readyOverlay)
+var modal = document.getElementById("modal");
+var modalText = document.getElementById("modal-text");
+function calculateAge(birthday) { // birthday is a date
+	var ageDifMs = Date.now() - birthday;
+	var ageDate = new Date(ageDifMs); // miliseconds from epoch
+	return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+var min_age = 21;
+function showResult(birthday) {
+	var age = calculateAge(birthday);
+	document.getElementById("spin-loader").classList.remove("spin-loader");
+	document.getElementById("loader-container").style.height = "0px";
+	modal.classList.remove("hide");
+	if(age >= min_age) {
+		modalText.innerHTML = "Identity Verified, age " + age + " years old.";
+	} else {
+		modalText.innerHTML = "Identity couldn't be verified.";
+	}
+	setTimeout(function() {
+		modal.classList.add("hide");
+		modalText.innerHTML = "";
+	}, 15000);
+}
+function validateIdFront(text) {
+	var results = text.matchAll("\d\d\/\d\d\/\d\d\d\d");
+	var birthdate = null;
+	var expiry = null;
+	for(result in results) {
+		var day = result[0];
+		var dayParsed = new Date(parseInt(result.substring(6)), parseInt(result.substring(0,2)), parseInt(result.substring(3,5)));
+		if(calculateAge(dayParsed) >= min_age) {
+			birthdate = dayParsed;
+		}
+		if(dayParsed.getTime() > new Date().getTime()) {
+			expiry = dayParsed;
+		}
+	}
+	if(birthdate && expiry) {
+		showResult(birthdate);
+		return;
+	}
+	showResult(new Date());
+}
+function validateIdBack(text) {
+	var results = text.matchAll("\d\d\d\d\d\d\d\d");
+	var birthdate = null;
+	var expiry = null;
+	for(result in results) {
+		var day = result[0];
+		var dayParsed = new Date(parseInt(result.substring(4)), parseInt(result.substring(0,2)), parseInt(result.substring(2,4)));
+		if(calculateAge(dayParsed) >= min_age) {
+			birthdate = dayParsed;
+		}
+		if(dayParsed.getTime() > new Date().getTime()) {
+			expiry = dayParsed;
+		}
+	}
+	if(birthdate && expiry) {
+		showResult(birthdate);
+		return;
+	}
+	showResult(new Date());
+}
+function recognizeText(image) {
+	Tesseract.recognize(
+	  image,
+	  'eng',
+	  { logger: m => console.log(m) }
+	).then(({ data: { text } }) => {
+		validateIdFront(text);
+	})
+}
+function decodeBarcode(image) {
+	const codeReader = new ZXingBrowser.BrowserPDF417Reader();
+	try {
+		const data = codeReader.decodeFromImageUrl(image).then((data) => {
+			if(!data) {
+				recognizeText(image);
+				return;
+			}
+			validateIdBack(data);
+		}).catch((error) => {
+			recognizeText(image);
+		});
+	} catch(e) {
+		recognizeText(image);
+	}
+}
+var imageCapture;
+var mediaRecorder;
+var context = canvas.getContext('2d');
+document.getElementById("video-container").addEventListener("click", function(event) {
+	onTakePhotoButtonClick();
+});
+function onTakePhotoButtonClick() {
+	imageCapture.takePhoto()
+	.then((blob) => createImageBitmap(blob))
+	.then((imageBitmap) => {
+		image = imageBitmap;
+		uploadImage(image);
+	})
+	.catch((error) => console.error(error));
+}
+var scale = 1;
+function drawImage(image){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	canvas.width = image.width * scale;
+	canvas.height = image.height * scale;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.translate(canvas.width / 2, canvas.height / 2);   // to center
+	context.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+	context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+	context.restore();
+	context.save();
+}
+function uploadImage(image){
+	document.getElementById("spin-loader").classList.add("spin-loader");
+	document.getElementById("loader-container").style.height = "100vh";                    
+	drawImage(image);
+	decodeBarcode(canvas.toDataURL());
+}
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+	video.addEventListener('loadeddata', function() {
+	    readyOverlay();
+            setTimeout(function() {
+	       icon.classList.remove("hide");
+	       icon.classList.add("fade-in");
+           }, 5000);
+	}, false);
+    const track = stream.getVideoTracks()[0];
+    imageCapture = new ImageCapture(track);
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+});
+</script>
+<style>
+.hide {
+	display: none;
+	visibility: hidden;
+}
+.fade-in {
+  animation: fadeIn ease 3s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+.spin-loader {
+  border: 18px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.overlay-video {
+    max-width: 70%;
+    max-height: 70%;
+    position: absolute;
+    text-align: center;
+    top:-7%;
+    left:15%;
+    z-index:1;
+}
+.icon-rotate {
+    transform: rotate(-90deg);
+    left: 13%;
+    top: 15%;
+}
+.container-video {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+legend {
+    margin-left: calc(50%);
+    transform: translateX(-50%);
+}
+</style>
+</head>
+<body style="background-color: #000000;">
+<div id="video-container" class="container-video">
+<video autoplay="true" muted="true" id="video" width="100%" class="ml-0 mr-0"></video>
+<div id="overlay" class="overlay-video" style="width: 100%;">
+<i class="bi bi-card-heading hide" id="icon" style="text-align: center; opacity: 0.5;"></i>
+</div>
+</div>
+<canvas id="canvas" style="display: none; visibility: hidden;"></canvas>
+<div style="position: fixed; left: 0; top: 0; background-color: transparent; height: 0px; width: 100%" id="loader-container">
+<div id="spin-loader" style="position: relative; margin: auto; top: 50%; text-align: center;"></div>
+</div>
+<div style="width: 100vw; height: 100vh; position: fixed; left: 0; top: 0; background-color: #cccccc" id="modal" class="hide">
+<div id="modal-text" style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">
+</div>
+</div>
+</body>
+</html>
