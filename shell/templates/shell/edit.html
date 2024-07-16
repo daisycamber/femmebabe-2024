@@ -160,7 +160,7 @@ $('#id_text').highlightWithinTextarea({
             className: 'lightgrey'
         },
         {
-	    highlight: [/\n(#.+)/gm,/\n(\/\/.+)/gm],
+	    highlight: [/[^]#.+/gm,/[^]\/\/.+/gm],
             className: 'lightgrey'
         }
     ]

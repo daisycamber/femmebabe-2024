@@ -135,7 +135,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
 def shell_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
-            asyncio.sleep(0.02)
+            asyncio.sleep(0.06)
         read = True
         output = ""
         while read:

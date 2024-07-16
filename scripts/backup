@@ -112,7 +112,7 @@ sudo rm db.json
 # Git config
 DOW=$(date +%u)
 HOD=$(date +%H)
-if [$DOW -eq 1 && $HOD -eq 0]; then
+if ["$DOW" -eq 1 && "$HOD" -eq 0]; then
 	sudo rm -r .git
 	git init --initial-branch=main
 	# git@gitlab.com:femme-babe/femmebabe2024-05.git

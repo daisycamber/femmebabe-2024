@@ -7,4 +7,4 @@ Online at https://femmebabe.com
 I develop this software without compensation, so any support is appreciated! Please share this project with your friends, coworkers and community. You may also hire me, subscribe to my blog, an ID scanning plan, or custom services on my website above.
 
 Thank you for visiting!
-- Daisy Holton
+- Charlotte Harper

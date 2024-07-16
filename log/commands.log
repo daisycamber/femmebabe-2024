@@ -9186,3 +9186,111 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-14T20:58:58.760839-07:00 femmebabe team: team [3896081]: nano web/templates/web/index.html 
 2024-07-14T21:04:33.187922-07:00 femmebabe team: team [3887562]: sudo backup
 2024-07-14T21:20:41.567484-07:00 femmebabe team: team [3903219]: nano shell/consumers.py 
+2024-07-14T21:26:31.696183-07:00 femmebabe team: team [3904040]: sudo backup
+2024-07-14T21:28:04.994356-07:00 femmebabe team: team [3904040]: sudo ascript backup
+2024-07-14T21:28:06.632661-07:00 femmebabe team: team [3904040]: $(date +%u) -eq 1 && $(date +%H) -eq
+2024-07-14T21:28:18.018759-07:00 femmebabe team: team [3904040]: $(date +%u) -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:28:33.932581-07:00 femmebabe team: team [3904040]: date +%u -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:28:49.102216-07:00 femmebabe team: team [3904040]: $"(date +%u)" -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:28:59.172765-07:00 femmebabe team: team [3904040]: $"date +%u" -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:29:14.329041-07:00 femmebabe team: team [3904040]: $"$(date +%u)"" -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:29:18.169268-07:00 femmebabe team: team [3904040]: $"$(date +%u)" -eq 1 && $(date +%H) -eq 0
+2024-07-14T21:29:36.555658-07:00 femmebabe team: team [3904040]: $"$(date +%u)" -eq 1 && $"$(date +%H)" -eq 0
+2024-07-14T21:29:43.697064-07:00 femmebabe team: team [3904040]: $"$(date +%u)
+2024-07-14T21:29:46.491522-07:00 femmebabe team: team [3904040]: $"$(date +%u)"
+2024-07-14T21:29:56.263594-07:00 femmebabe team: team [3904040]: $"$(echo date +%u)"
+2024-07-14T21:30:05.475322-07:00 femmebabe team: team [3904040]: "$(date +%u)"
+2024-07-14T21:30:11.453388-07:00 femmebabe team: team [3904040]: "$(date +%u)" -eq 7
+2024-07-14T21:30:41.502133-07:00 femmebabe team: team [3904040]: export HOD=$(date +%u)
+2024-07-14T21:30:45.421082-07:00 femmebabe team: team [3904040]: HOD
+2024-07-14T21:30:47.899477-07:00 femmebabe team: team [3904040]: $HOD
+2024-07-14T21:30:56.792363-07:00 femmebabe team: team [3904040]: $HOD -eq 0
+2024-07-14T21:32:01.202837-07:00 femmebabe team: team [3904040]: $HOD == 0
+2024-07-14T21:32:32.373775-07:00 femmebabe team: team [3904040]: ${HOD} == 0
+2024-07-14T21:32:42.085467-07:00 femmebabe team: team [3904040]: ${HOD} -eq 0
+2024-07-14T21:32:48.870781-07:00 femmebabe team: team [3904040]: 0 -eq ${HOD}
+2024-07-14T21:32:48.942237-07:00 femmebabe team: team [3903219]: sudo backup
+2024-07-14T21:33:04.039397-07:00 femmebabe team: team [3904040]: 0 -eq ${HOD#0}
+2024-07-14T21:33:09.949864-07:00 femmebabe team: team [3904040]: ${HOD#0}
+2024-07-14T21:33:18.415900-07:00 femmebabe team: team [3904040]: ${HOD#0} == 7
+2024-07-14T21:33:22.396239-07:00 femmebabe team: team [3904040]: ${HOD#0} == 
+2024-07-14T21:33:28.658557-07:00 femmebabe team: team [3904040]: "${HOD#0}"
+2024-07-14T21:33:31.884053-07:00 femmebabe team: team [3904040]: $"${HOD#0}"
+2024-07-14T21:33:37.394763-07:00 femmebabe team: team [3904040]: $"${HOD#0}" -eq 7
+2024-07-14T21:33:41.151884-07:00 femmebabe team: team [3904040]: ($"${HOD#0}" -eq 7)
+2024-07-14T21:34:39.749249-07:00 femmebabe team: team [3904040]: ($"${HOD#0}" -eq "7")
+2024-07-14T21:34:47.944446-07:00 femmebabe team: team [3904040]: ($"${HOD#0}" == "7")
+2024-07-14T21:35:07.901996-07:00 femmebabe team: team [3904040]: ("$HOD" == "7")
+2024-07-14T21:35:16.220887-07:00 femmebabe team: team [3904040]: IF ("$HOD" == "7")
+2024-07-14T21:35:27.729942-07:00 femmebabe team: team [3904040]: if ("$HOD" == "7"); then fi
+2024-07-14T21:35:36.176900-07:00 femmebabe team: team [3904040]: if ("$HOD" == "7"); then fi
+2024-07-14T21:35:48.058019-07:00 femmebabe team: team [3904040]: if ("$HOD" == "7"); then print test; end;  fi
+2024-07-14T21:37:23.458257-07:00 femmebabe team: team [3904040]: sudo ascript backup
+2024-07-14T21:37:30.400310-07:00 femmebabe team: team [3904040]: if ["$DOW" -eq 1 && "$HOD" -eq 0]; then                                    sudo rm -r .git                                                    git init --initial-branch=main#012f; fi
+2024-07-14T21:37:45.750305-07:00 femmebabe team: team [3904040]: if ["$DOW" -eq 1 && "$HOD" -eq 0]; then                                    sudo rm -r .git                                           fi;  ;
+2024-07-14T21:38:13.241254-07:00 femmebabe team: team [3904040]: ["$DOW" -eq 1 && "$HOD" -eq 0]
+2024-07-14T21:38:19.429488-07:00 femmebabe team: team [3904040]: ["$DOW" -eq 1 && "$HOD" -eq 0];
+2024-07-14T21:38:24.515305-07:00 femmebabe team: team [3904040]: "$DOW" -eq 1 && "$HOD" -eq 0
+2024-07-14T21:38:33.763274-07:00 femmebabe team: team [3904040]: "$DOW" -eq 1
+2024-07-14T21:38:47.259940-07:00 femmebabe team: team [3904040]: export DOW=1
+2024-07-14T21:38:48.826608-07:00 femmebabe team: team [3904040]: "$DOW" -eq 1
+2024-07-14T21:38:57.824202-07:00 femmebabe team: team [3904040]: "$DOW" -eq "1"
+2024-07-14T21:39:05.102508-07:00 femmebabe team: team [3904040]: export DOW="1"
+2024-07-14T21:39:06.845249-07:00 femmebabe team: team [3904040]: "$DOW" -eq "1"
+2024-07-14T21:45:20.612736-07:00 femmebabe team: team [3904040]: if ["$DOW" -eq 1 && "$HOD" -eq 0]; then echo test fi;  fi
+2024-07-14T21:45:34.910311-07:00 femmebabe team: team [3904040]: if ["$DOW" -eq 1 && "$HOD" -eq 0]; then echo test fi;  fi
+2024-07-14T21:45:51.886001-07:00 femmebabe team: team [3904040]: if ["$DOW" == "1"]; then echo test fi;  fi
+2024-07-14T21:46:01.852569-07:00 femmebabe team: team [3904040]: if [$DOW == "1"]; then echo test fi;  fi
+2024-07-14T21:46:12.684362-07:00 femmebabe team: team [3904040]: if [[$DOW == "1"]]; then echo test fi;  fi
+2024-07-14T21:46:21.434490-07:00 femmebabe team: team [3904040]: if [["1"]]; then echo test fi;  fi
+2024-07-14T21:46:27.414628-07:00 femmebabe team: team [3904040]: if [["1"]]5; then echo test fi;  fi
+2024-07-14T21:46:39.351278-07:00 femmebabe team: team [3904040]: if [["1" -eq $DOW]]; then echo test fi;  fi
+2024-07-14T21:47:35.344632-07:00 femmebabe team: team [3904040]: if [["1" == DOW]]; then echo test fi;  fi
+2024-07-14T21:47:53.306386-07:00 femmebabe team: team [3904040]: if [[$"1" == DOW]]; then echo test fi;  fi
+2024-07-14T21:48:00.265990-07:00 femmebabe team: team [3904040]: if [[DOW]]; then echo test fi;  fi
+2024-07-14T21:48:07.881708-07:00 femmebabe team: team [3904040]: if [[DOW == "1"]]; then echo test fi;  fi
+2024-07-14T21:48:13.517078-07:00 femmebabe team: team [3904040]: if [[$DOW == "1"]]; then echo test fi;  fi
+2024-07-14T21:49:15.645814-07:00 femmebabe team: team [3904040]: if [[$"$DOW" == "1"]]; then echo test fi;  fi
+2024-07-14T21:49:27.640111-07:00 femmebabe team: team [3904040]: if [[$date == "1"]]; then echo test fi;  fi
+2024-07-14T21:49:41.402846-07:00 femmebabe team: team [3904040]: if [[$(date) == "1"]]; then echo test fi;  fi
+2024-07-14T21:50:02.877727-07:00 femmebabe team: team [3904040]: if [[$"$(date)" == "1"]]; then echo test fi;  fi
+2024-07-14T21:50:09.139393-07:00 femmebabe team: team [3904040]: if [[$"$(date)" == "1"]]; then echo test fi;  fi
+2024-07-14T21:50:15.707803-07:00 femmebabe team: team [3904040]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:31:07.990379-07:00 femmebabe team: team [3946772]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:31:41.965936-07:00 femmebabe team: team [3946911]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:31:59.035134-07:00 femmebabe team: team [3947016]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:32:18.680952-07:00 femmebabe team: team [3947189]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:32:22.605022-07:00 femmebabe team: team [3947262]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:32:38.500728-07:00 femmebabe team: team [3947376]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:32:41.392209-07:00 femmebabe team: team [3947444]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:32:42.118277-07:00 femmebabe team: team [3947376]: cd femmebabe
+2024-07-15T03:32:50.904072-07:00 femmebabe team: team [3947541]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:33:07.403565-07:00 femmebabe team: team [3947640]: if [["$(date)" == "1"]]; then echo test fi;  fi
+2024-07-15T03:33:11.442166-07:00 femmebabe team: team [3947376]: sudo systemctl status daphne
+2024-07-15T03:33:22.189307-07:00 femmebabe team: team [3947640]: ls
+2024-07-15T03:33:26.210846-07:00 femmebabe team: team [3947640]: clear
+2024-07-15T03:33:52.370141-07:00 femmebabe team: team [3947792]: clear
+2024-07-15T03:34:11.003241-07:00 femmebabe team: team [3947376]: cat /tmp/daphne-error.log 
+2024-07-15T03:34:15.432969-07:00 femmebabe team: team [3947947]: clear
+2024-07-15T03:34:35.226791-07:00 femmebabe team: team [3948031]: clear
+2024-07-15T03:34:52.931119-07:00 femmebabe team: team [3948120]: clear
+2024-07-15T03:35:12.741293-07:00 femmebabe team: team [3948245]: clear
+2024-07-15T03:35:36.618336-07:00 femmebabe team: team [3948336]: clear
+2024-07-15T03:35:42.466459-07:00 femmebabe team: team [3947376]: nano shell/consumers.py
+2024-07-15T03:36:27.998818-07:00 femmebabe team: team [3947376]: nano shell/consumers.py
+2024-07-15T03:38:07.474253-07:00 femmebabe team: team [3947376]: sudo systemctl restart daphne
+2024-07-15T03:38:15.087872-07:00 femmebabe team: team [3948633]: clear
+2024-07-15T03:38:18.709741-07:00 femmebabe team: team [3948633]: ls
+2024-07-15T03:39:25.841618-07:00 femmebabe team: team [3948633]: cd femmebabe
+2024-07-15T03:46:09.506983-07:00 femmebabe team: team [3948633]: cd femmebabe
+2024-07-15T03:46:19.624050-07:00 femmebabe team: team [3948633]: sudo systemctl reload apache2
+2024-07-15T03:46:22.958666-07:00 femmebabe team: team [3948633]: ls
+2024-07-15T03:46:33.079164-07:00 femmebabe team: team [3948633]: sudo systemctl status apache2
+2024-07-15T03:46:40.625632-07:00 femmebabe team: team [3948633]: logs
+2024-07-15T03:57:18.924553-07:00 femmebabe team: team [3948633]: sudo systemctl status apache2
+2024-07-15T03:57:22.722133-07:00 femmebabe team: team [3948633]: sudo systemctl reload apache2
+2024-07-15T18:42:07.402579-07:00 femmebabe team: team [4036307]: sudo systemctl restart daphne
+2024-07-15T18:42:25.618394-07:00 femmebabe team: team [4036307]: sudo nano /etc/ssh/sshd_config
+2024-07-15T18:42:57.929654-07:00 femmebabe team: team [4036489]: exit
+2024-07-15T18:43:04.502561-07:00 femmebabe team: team [4036489]: sudo systemctl restart sshd
+2024-07-15T18:43:07.138027-07:00 femmebabe team: team [4036489]: sudo systemctl restart ssh
