@@ -623,10 +623,10 @@ def buy_photo_crypto(request, username):
     crypto = request.GET.get('crypto')
     user = User.objects.get(profile__name=username, profile__vendor=True)
     profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)
-    tip = user.vendor_profile.photo_tip
     if not request.GET.get('id'): return redirect(request.path + '?crypto={}&id={}'.format(crypto, Post.objects.filter(author=user, private=False, public=False, published=True, recipient=None).exclude(image=None).order_by('?').first().uuid))
     id = request.GET.get('id', None)
     post = Post.objects.get(uuid=id)
+    tip = int(post.price)
     if request.method == 'POST':
         form = BitcoinPaymentForm(request.POST) if not request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
@@ -678,7 +678,7 @@ def buy_photo_card(request, username):
     if not request.GET.get('id'): return redirect(request.path + (get_qs(request.GET) if len(request.GET) > 0 else '?') + '&id={}'.format(Post.objects.filter(author=user, private=False, public=False, published=True, recipient=None).exclude(image=None).order_by('?').first().uuid))
     id = request.GET.get('id', None)
     post = Post.objects.get(uuid=id)
-    return render(request, 'payments/buy_photo_card.html', {'title': 'Buy this photo with Credit or Debit Card', 'username': username, 'profile': profile, 'fee': fee, 'post': post, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY})
+    return render(request, 'payments/buy_photo_card.html', {'title': 'Buy this photo with Credit or Debit Card', 'username': username, 'profile': profile, 'fee': post.price, 'post': post, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY})
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')

@@ -14,3 +14,4 @@ purgecache
 commitlog
 logssh
 jump
+compinfo

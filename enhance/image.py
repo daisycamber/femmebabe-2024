@@ -246,4 +246,6 @@ def routine_enhance_post():
     for post in posts:
         if post.image:
             enhance_post(post.id)
+            post.enhanced = True
+            post.save()
             return

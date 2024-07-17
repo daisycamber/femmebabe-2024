@@ -130,10 +130,12 @@ $(form).submit(function(e){
 			fd.set("image", image);
 			fd.delete("file");
 	    	uploaded = true;
-            setTimeout(function() {
-    			uploadFile(fd);
-                current++;
-            }, current * {{ upload_interval }});
+            (function(fd, current) {
+                setTimeout(function() {
+    	    		uploadFile(fd);
+                }, current * {{ upload_interval }});
+            })(fd, current);
+            current++;
 		}
 	}
 	for(file of chooseVideoFile.files) {
@@ -143,20 +145,21 @@ $(form).submit(function(e){
 			fd.set("file", file);
 			fd.delete("image");
 	    	uploaded = true;
-            setTimeout(function() {
-    			uploadFile(fd);
-                current++;
-            }, current * {{ upload_interval }});
+            (function(fd, current) {
+                setTimeout(function() {
+    	    		uploadFile(fd);
+                    current++;
+                }, current * {{ upload_interval }});
+            })(fd, current);
+            current++;
 		}
 	}
 	if(!uploaded) {
 		var fd = new FormData(form);
 		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
    		uploaded = true;
-        setTimeout(function() {
-			uploadFile(fd);
-            current++;
-        }, current * {{ upload_interval }});
+        uploadFile(fd);
+        current++;
 	}
 	form.reset();
 });

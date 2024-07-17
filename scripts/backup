@@ -120,7 +120,7 @@ fi
 git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-06.git
 git add --all
 git commit -m "backup"
-git push -u -f originlab main
+sudo git push -u -f originlab main
 date > backup_date.txt
 # Sub website backup
 cd $"/home/$U/$DIR/web/site/"
@@ -129,7 +129,7 @@ git init --initial-branch=main
 git add --all
 git commit -m "website updates"
 git remote add origin git@github.com:daisycamber/glamgirlx.git
-git push -u -f origin main
+sudo git push -u -f origin main
 sudo rm -r .git
 date=$(date '+%Y-%m-%d_%H:%M:%S')
 dir=$"femmebabe-backup"
@@ -145,9 +145,9 @@ git init --initial-branch=main
 git add --all
 git commit -m "closed source"
 git remote add originlab git@gitlab.com:femme-babe/femmebabe2024.git
-git push -u -f originlab main
+sudo git push -u -f originlab main
 git remote add originhub git@github.com:daisycamber/femmebabe2024.git
-git push -u -f originhub main
+sudo git push -u -f originhub main
 #sudo rm -r .git
 git init --initial-branch=main
 sudo rm config/config.json
@@ -165,7 +165,7 @@ git init --initial-branch=main
 git add --all
 git commit -m "open source"
 git remote add originhub git@github.com:daisycamber/femmebabe-2024.git
-git push -u -f originhub main
+sudo git push -u -f originhub main
 cd $"/home/$U"
 #sudo rm -r $"/home/$U/$dir"
 #sudo rm -r /home/team/femmebabe-backup*

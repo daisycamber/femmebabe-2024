@@ -53,14 +53,17 @@ def caption_image(image_path):
     return caption_text.strip().capitalize() + ('.' if not caption_text[-1] == '.' else '')
 
 def caption_post(post):
+    print(post.id)
     if post.published:
         if post.image:
             try:
-                if not os.path.exists(post.image.path) and (post.image and post.image_bucket): post.download_photo()
+                if not os.path.exists(post.image.path) and (post.image or post.image_bucket): post.download_photo()
             except: post.download_photo()
             post = Post.objects.get(id=post.id)
             if post.image and os.path.exists(post.image.path):
-                post.content = caption_image(post.image.path)
+                try:
+                    post.content = caption_image(post.image.path)
+                except: pass
             if post.image_bucket:
                 try:
                     os.remove(post.image.path)

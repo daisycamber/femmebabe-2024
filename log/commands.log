@@ -9294,3 +9294,21 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-15T18:42:57.929654-07:00 femmebabe team: team [4036489]: exit
 2024-07-15T18:43:04.502561-07:00 femmebabe team: team [4036489]: sudo systemctl restart sshd
 2024-07-15T18:43:07.138027-07:00 femmebabe team: team [4036489]: sudo systemctl restart ssh
+2024-07-16T19:57:48.153734-07:00 femmebabe team: team [4182236]: source /etc/bashrc
+2024-07-16T19:57:50.637100-07:00 femmebabe team: team [4182236]: ls
+2024-07-16T19:57:52.046948-07:00 femmebabe team: team [4182236]: cmda
+2024-07-16T19:57:54.793363-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:57:57.474179-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:58:26.028210-07:00 femmebabe team: team [4182236]: sudo nano ../.bashrc 
+2024-07-16T19:58:28.520706-07:00 femmebabe team: team [4182236]: ls
+2024-07-16T19:58:32.016124-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:58:33.298929-07:00 femmebabe team: team [4182236]: ls
+2024-07-16T19:58:34.743973-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:58:37.569925-07:00 femmebabe team: team [4182236]: cmda
+2024-07-16T19:58:39.156482-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:58:40.511031-07:00 femmebabe team: team [4182236]: cmds
+2024-07-16T19:59:34.911801-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
+2024-07-16T20:00:30.359837-07:00 femmebabe team: team [4182236]: python manage.py shell
+2024-07-16T20:01:10.632430-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
+2024-07-16T20:02:28.364712-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
+2024-07-16T20:04:03.749671-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
