@@ -9312,3 +9312,11 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-16T20:01:10.632430-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
 2024-07-16T20:02:28.364712-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
 2024-07-16T20:04:03.749671-07:00 femmebabe team: team [4182236]: python routine_enhance.py 
+2024-07-17T14:15:01.795404-07:00 femmebabe team: team [4236]: python manage.py shell
+2024-07-17T14:15:10.950596-07:00 femmebabe team: team [4236]: nvidia-smi
+2024-07-18T16:13:56.964055-07:00 femmebabe team: team [4236]: sudo apt-get install nvidia
+2024-07-18T16:14:46.536097-07:00 femmebabe team: team [4236]: ping femmebabe.com
+2024-07-18T16:15:31.018355-07:00 femmebabe team: team [4236]: ping femmebabe.com\
+2024-07-18T16:15:36.207094-07:00 femmebabe team: team [4236]: ping femmebabe.com
+2024-07-18T16:15:40.318281-07:00 femmebabe team: team [4236]: ping google.com
+2024-07-18T16:15:45.024942-07:00 femmebabe team: team [4236]: cd femmebabe

@@ -329,7 +329,7 @@ class Profile(models.Model):
         img = None
         from PIL import Image
         try:
-            if self.image:
+            if self.image and self.image.name != 'static/default.png':
                 img = Image.open(self.image.path)
             if img:
                 max = img.width
@@ -362,7 +362,7 @@ class Profile(models.Model):
             self.image_offsite = i1
             self.image_thumb_offsite = i2
         try:
-            if self.cover_image:
+            if self.cover_image and self.cover_image.name != 'static/default.png':
                 img = Image.open(self.cover_image.path)
             if img:
                 max = img.width

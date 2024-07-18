@@ -687,6 +687,8 @@ UPLOAD_INTERVAL = 4
 # ID Scanner
 MIN_CONFIDENCE = 90
 
+ASSESS_KICK_INTERVAL = 60 * 30
+
 # Sentry
 import sentry_sdk
 sentry_sdk.init(
