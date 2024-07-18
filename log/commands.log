@@ -9320,3 +9320,37 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-18T16:15:36.207094-07:00 femmebabe team: team [4236]: ping femmebabe.com
 2024-07-18T16:15:40.318281-07:00 femmebabe team: team [4236]: ping google.com
 2024-07-18T16:15:45.024942-07:00 femmebabe team: team [4236]: cd femmebabe
+2024-07-18T16:15:58.614660-07:00 femmebabe team: team [1066816]: python manage.py shell
+2024-07-18T16:16:01.082160-07:00 femmebabe team: team [1066816]: free -h
+2024-07-18T16:16:33.049983-07:00 femmebabe team: team [1066816]: sudo crontab -e
+2024-07-18T16:21:28.253431-07:00 femmebabe team: team [4236]: sudo backup
+2024-07-18T16:25:12.057958-07:00 femmebabe team: team [4236]: sudo ascript backup
+2024-07-18T16:31:31.561139-07:00 femmebabe team: team [1066816]: ip -6 addr
+2024-07-18T16:31:49.654131-07:00 femmebabe team: team [1066816]: ip -4 addr
+2024-07-18T16:31:59.364311-07:00 femmebabe team: team [1066816]: ping 2601:602:8901:3914:725a:fff:fe49:3e02
+2024-07-18T16:32:21.639476-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:32:23.250628-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:32:24.242236-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:32:24.902873-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:32:25.481765-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:33:34.337816-07:00 femmebabe team: team [1066816]: ping localhost
+2024-07-18T16:33:59.670176-07:00 femmebabe team: team [1066816]: cd femmebabe
+2024-07-18T16:35:15.405413-07:00 femmebabe team: team [1066816]: nano femmebabe/settings.py 
+2024-07-18T16:35:20.002064-07:00 femmebabe team: team [1066816]: ip -6 addr
+2024-07-18T16:36:47.946952-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:36:50.050320-07:00 femmebabe team: team [1066816]: ping femmebabe.com\
+2024-07-18T16:36:51.743842-07:00 femmebabe team: team [1066816]: ping femmebabe.com\
+2024-07-18T16:36:52.402607-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:36:53.064307-07:00 femmebabe team: team [1066816]: ping femmebabe.com
+2024-07-18T16:37:01.786739-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:02.824405-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:03.536427-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:04.264557-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:04.957689-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:05.826137-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:20.617599-07:00 femmebabe team: team [1066816]: ping google.com\
+2024-07-18T16:37:23.674970-07:00 femmebabe team: team [1066816]: ping google.com
+2024-07-18T16:37:29.692601-07:00 femmebabe team: team [4236]: sudo backup
+2024-07-18T16:37:29.935892-07:00 femmebabe team: message repeated 8 times: [ team [4236]: sudo backup]
+2024-07-18T16:37:29.961486-07:00 femmebabe team: team [4236]: sudo backup
+2024-07-18T16:37:30.205205-07:00 femmebabe team: message repeated 8 times: [ team [4236]: sudo backup]

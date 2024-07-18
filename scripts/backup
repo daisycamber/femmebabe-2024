@@ -2,6 +2,7 @@
 U="team"
 DIR="femmebabe"
 PYTHON_VERSION="3.12"
+git config --global --add safe.directory $"/home/$U/$DIR"
 cd /usr/bin
 while read p; do
   cp /usr/bin/$p /home/$U/$DIR/scripts/$p
@@ -138,6 +139,7 @@ cd $"/home/$U"
 mkdir $"/home/$U/$dir"
 cd $"/home/$U/$DIR"
 rsync -av ./ $"/home/$U/$dir" --exclude venv --exclude .git --exclude celery --exclude GFPGAN --exclude dlib
+git config --global --add safe.directory $"/home/$U/$dir"
 cd $"/home/$U/$dir"
 sudo chown -R team:users ./
 sudo rm -r .git
@@ -157,6 +159,7 @@ cd media/
 ls --hide=static/ --hide=games/ | xargs -d '\n' rm -r
 cd ..
 rsync -av ./ $"/home/$U/$diropen" --exclude venv --exclude .git --exclude celery --exclude GFPGAN --exclude dlib
+git config --global --add safe.directory $"/home/$U/$diropen"
 cd $"/home/$U/$diropen"
 echo "client_secret.json" >> .gitignore
 echo "mailbox/" >> .gitignore
