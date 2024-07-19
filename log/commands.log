@@ -9359,3 +9359,50 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-18T16:48:57.604830-07:00 femmebabe team: team [4236]: sudo backup
 2024-07-18T16:59:25.924786-07:00 femmebabe team: team [1066816]: sudo crontab -e
 2024-07-18T16:59:39.109240-07:00 femmebabe team: team [1066816]: nvidia-smi
+2024-07-18T17:01:58.920934-07:00 femmebabe team: team [1066816]: sudo apt list | grep nvidia
+2024-07-18T17:02:48.362604-07:00 femmebabe team: team [1066816]: cat /etc/apt/sources.list.d
+2024-07-18T17:02:57.575312-07:00 femmebabe team: team [1066816]: cat /etc/apt/sources.list.d/dtl131-ubuntu-nv390test-noble.sources 
+2024-07-18T17:03:27.259656-07:00 femmebabe team: team [1066816]: cat /etc/apt/sources.list.d/dtl131-ubuntu-nv390test-noble.sources 
+2024-07-18T17:04:05.547396-07:00 femmebabe team: team [1066816]: cat /etc/apt/sources.list.d/dtl131-ubuntu-nv390test-noble.sources 
+2024-07-18T17:04:07.811512-07:00 femmebabe team: team [1066816]: grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*
+2024-07-18T17:05:54.434551-07:00 femmebabe team: team [1066816]: cp dtl131-ubuntu-nv390test-noble.sources sources_backup
+2024-07-18T17:06:09.254053-07:00 femmebabe team: team [1066816]: cp /etc/apt/sources.list.d/dtl131-ubuntu-nv390test-noble.sources sources_backup
+2024-07-18T17:06:28.209749-07:00 femmebabe team: team [1066816]: sudo rm /etc/apt/sources.list.d/dtl131-ubuntu-nv390test-noble.sources 
+2024-07-18T17:06:32.375187-07:00 femmebabe team: team [1066816]: apt update
+2024-07-18T17:06:44.327461-07:00 femmebabe team: team [1066816]: sudo apt update
+2024-07-18T17:07:09.247036-07:00 femmebabe team: team [1066816]: sudo rm /etc/apt/sources.list.d/unit3-ubuntu-bfgminer-noble.sources 
+2024-07-18T17:07:13.646609-07:00 femmebabe team: team [1066816]: sudo apt update
+2024-07-18T17:07:36.720112-07:00 femmebabe team: team [1066816]: sudo apt update
+2024-07-18T17:10:29.087900-07:00 femmebabe team: team [1066816]: sudo apt-get remove --purge '^nvidia-.*'
+2024-07-18T17:11:26.385828-07:00 femmebabe team: team [1066816]: cd
+2024-07-18T17:11:31.292207-07:00 femmebabe team: team [1066816]: ls Downloads
+2024-07-18T17:12:23.171419-07:00 femmebabe root: root [1118247]: exit
+2024-07-18T17:12:38.871897-07:00 femmebabe root: root [1118247]: service lightdm stop
+2024-07-18T17:13:10.658867-07:00 femmebabe root: root [1118247]: sudo service gdm stop
+2024-07-18T17:14:03.687882-07:00 femmebabe root: root [1119555]: sudo service gdm stop
+2024-07-18T17:14:06.499889-07:00 femmebabe root: root [1119555]: init 3
+2024-07-18T17:14:11.369022-07:00 femmebabe root: root [1119555]: cd ..
+2024-07-18T17:14:19.063652-07:00 femmebabe root: root [1119555]: cd Desktop
+2024-07-18T17:14:20.175189-07:00 femmebabe root: root [1119555]: ls
+2024-07-18T17:14:28.600986-07:00 femmebabe root: root [1119555]: cd team
+2024-07-18T17:14:34.323418-07:00 femmebabe root: root [1119555]: cd Desktop
+2024-07-18T17:14:35.196548-07:00 femmebabe root: root [1119555]: ls
+2024-07-18T17:14:50.415635-07:00 femmebabe root: root [1119555]: sudo chmod +x NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:19:13.545101-07:00 femmebabe root: root [1119555]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:19:44.412541-07:00 femmebabe root: root [1119555]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:19:48.019434-07:00 femmebabe root: root [1119555]: nvidia-smi
+2024-07-18T17:27:08.734056-07:00 femmebabe root: root [1119555]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:28:15.352724-07:00 femmebabe root: root [1119555]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:32:48.436275-07:00 femmebabe root: root [10098]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:33:04.756079-07:00 femmebabe root: root [10098]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:33:08.121015-07:00 femmebabe root: root [10098]: sudo gdm stop
+2024-07-18T17:33:13.594436-07:00 femmebabe root: root [10098]: sudo kdm stop
+2024-07-18T17:33:26.384273-07:00 femmebabe root: root [10098]: sudo systemctl stop kdm
+2024-07-18T17:33:40.300049-07:00 femmebabe root: root [10098]: sudo systemctl stop gdm
+2024-07-18T17:33:45.619118-07:00 femmebabe root: root [10098]: sudo systemctl stop gdm &
+2024-07-18T17:34:35.594089-07:00 femmebabe root: root [10098]: ./NVIDIA-Linux-x86_64-390.157.run 
+2024-07-18T17:34:44.112197-07:00 femmebabe root: root [10098]: nvidia-smi
+2024-07-18T17:44:17.623449-07:00 femmebabe root: root [12939]: exit
+2024-07-18T17:44:22.715463-07:00 femmebabe root: root [12939]: cat scripts/daphnetest.sh 
+2024-07-18T17:46:32.947324-07:00 femmebabe root: root [12939]: /home/team/femmebabe/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/etc/letsencrypt/live/femmebabe.com/privkey.pem:certKey=/etc/letsencrypt/live/femmebabe.com/cert.pem femmebabe.asgi:application
+2024-07-18T17:47:22.184955-07:00 femmebabe root: root [12939]: sudo systemctl start daphne

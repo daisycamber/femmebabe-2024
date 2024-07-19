@@ -60,7 +60,7 @@ async def send(channel, output):
 def terminal_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
-            asyncio.sleep(0.06)
+            asyncio.sleep(0.1)
         read = True
         output = ""
         while read:
@@ -71,7 +71,7 @@ def terminal_thread(self, channel):
                     tmp = channel.recv(999999999)
                     output = output + tmp.decode()
                     read = True
-                    asyncio.sleep(0.06)
+                    asyncio.sleep(0.1)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(send(self, output))
@@ -85,13 +85,13 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: return
+        if not token: self.disconnect()
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
-        if not (auth and auth2): return
+        if not (auth and auth2): self.disconnect()
         if 'rows' in query_params and query_params['rows']: self.rows = int(query_params.get('rows', '28')[0])
         await self.accept()
-        self.send(query_params['token'])
+#        self.send(query_params['token'])
         self.connected = True
         i = 0
         ssh = None
@@ -159,10 +159,10 @@ class ShellConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: return
+        if not token: self.disconnect()
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
-        if not (auth and auth2): return
+        if not (auth and auth2): self.disconnect()
         await self.accept()
         self.connected = True
         i = 0

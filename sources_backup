@@ -1,0 +1,17 @@
+Types: deb
+URIs: https://ppa.launchpadcontent.net/dtl131/nv390test/ubuntu/
+Suites: noble
+Components: main
+Signed-By: 
+ -----BEGIN PGP PUBLIC KEY BLOCK-----
+ .
+ mI0ESwYCJwEEAMhmWUUX2IbqxPZHqIs5zbf6WduNZAydITEM/nkYBHu4MmxV50d8
+ s+tVWCzOTsLGMU8V21j8THwkdkYQD22mRPufuPeaM2nCruwUusCRjWNXHSams9gT
+ 1lnx9ya5ovrANeclbU1E1Vo4vE6M7Te2gvcg79CMpHI5z5QL9PustZNBABEBAAG0
+ FExhdW5jaHBhZCBhdWRpb2hhY2tziLYEEwECACAFAksGAicCGwMGCwkIBwMCBBUC
+ CAMEFgIDAQIeAQIXgAAKCRCtcOpq92/+vudlBADCjJGqv0z6q/SxzUz8mC56p8eR
+ h52zB7oVqoJLyC3H36ErRjXVNcV6rc8OxBuFgdOZ4VQfeO8LyWWlxl2HC26nrlNR
+ 7skItAW+k2j5xa1VsZo3x2cZt0TuTMoTNYqkXXIIfw4LDaxurn3+U6N36uLmGxIy
+ dlA9eCNReIHk8ljlDg==
+ =6Yeg
+ -----END PGP PUBLIC KEY BLOCK-----
