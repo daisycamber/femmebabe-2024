@@ -3,15 +3,15 @@ Description=daphne daemon for web app
 After=network.target
 
 [Service]
-User=root
+User=team
 Group=users
 WorkingDirectory=/home/team/femmebabe/
-ExecStart=/home/team/femmebabe/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/etc/letsencrypt/live/femmebabe.com/privkey.pem:certKey=/etc/letsencrypt/live/femmebabe.com/cert.pem femmebabe.asgi:application
+ExecStart=/home/team/femmebabe/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/home/team/femmebabe/keys/femmebabe.com/privkey.pem:certKey=/home/team/femmebabe/keys/femmebabe.com/cert.pem femmebabe.asgi:application
 
 #daphne -e ssl:443:privateKey=/etc/letsencrypt/live/femmebabe.com/privkey.pem:certKey=/etc/letsencrypt/live/femmebabe.com/cert.pem femmebabe.asgi:application -v3
 Restart=on-failure
 
-StandardOut=file:/tmp/daphne-access.log
+StandardOutput=file:/tmp/daphne-access.log
 StandardError=file:/tmp/daphne-error.log
 
 [Install]

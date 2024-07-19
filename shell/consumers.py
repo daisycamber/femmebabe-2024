@@ -85,7 +85,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: return
+#        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
         if not (auth and auth2): return
@@ -159,7 +159,7 @@ class ShellConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: return
+#        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
         if not (auth and auth2): return

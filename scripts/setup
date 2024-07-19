@@ -243,6 +243,8 @@ sudo systemctl restart opendkim postfix dovecot
 # Copy certs
 #sudo cp /etc/letsencrypt/live/femmebabe.com/privkey.pem privkey.pem
 #sudo cp /etc/letsencrypt/live/femmebabe.com/cert.pem cert.pem
+sudo cp -Lrv /etc/letsencrypt/live/femmebabe.com/ keys
+sudo chown -R team:users keys
 # Patch venv
 PYTHON_VERSION="3.12"
 cp scripts/content.py /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py
