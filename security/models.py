@@ -132,7 +132,7 @@ class SecurityProfile(models.Model):
 class Session(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='sessions')
-    ip_address = models.CharField(max_length=15, default='')
+    ip_address = models.CharField(max_length=39, default='')
     index = models.IntegerField(default=0)
     uuid_key = models.CharField(max_length=36, default='', null=True)
     http_referrer = models.TextField(default='', null=True)
@@ -155,7 +155,7 @@ class Session(models.Model):
 class SessionDedup(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='dedup_sessions')
-    ip_address = models.CharField(max_length=15, default='')
+    ip_address = models.CharField(max_length=39, default='')
     path = models.TextField(default='')
     querystring = models.TextField(default='')
     method = models.CharField(max_length=10, default='GET')

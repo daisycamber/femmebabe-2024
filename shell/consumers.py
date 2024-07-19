@@ -85,10 +85,10 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: self.disconnect()
+        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
-        if not (auth and auth2): self.disconnect()
+        if not (auth and auth2): return
         if 'rows' in query_params and query_params['rows']: self.rows = int(query_params.get('rows', '28')[0])
         await self.accept()
 #        self.send(query_params['token'])
@@ -159,10 +159,10 @@ class ShellConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: self.disconnect()
+        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
-        if not (auth and auth2): self.disconnect()
+        if not (auth and auth2): return
         await self.accept()
         self.connected = True
         i = 0

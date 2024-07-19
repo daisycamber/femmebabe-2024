@@ -3,7 +3,7 @@
 {% load feed_filters %}
 <div class="container container-table m-4 col-md-8 mx-auto">
 <div class="container container-table m-4 col-md-8 mx-auto">
-<form id="contact-form">
+<form id="contact-form" action="javascript:void(0);">
 <legend><i class="bi bi-bell"></i> {{ 'Contact Us'|trans }}</legend>
 {{ contact_form|crispy }}
 <button id="contact-submit" type="submit" class="btn btn-primary" title="{{ 'Send message'|trans }}">{{ 'Send'|trans }}</button>

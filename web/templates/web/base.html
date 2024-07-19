@@ -108,7 +108,7 @@
 	        });
 	}
 	$.ajax({
-	        url: "{{ base_url }}/remote/generate/",
+	        url: "{{ base_url }}/remote/generate/?path=https://{{ static_url }}/",
 	        method: 'GET',
 		timeout: 30000,
 		tryCount: 0,

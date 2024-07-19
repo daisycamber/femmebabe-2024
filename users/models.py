@@ -279,7 +279,7 @@ class Profile(models.Model):
         try:
             key = '%s:%s' % (self.uuid, token)
             TimestampSigner().unsign(key, max_age=60 * 60) # Valid for 60 mins
-        except (BadSignature, SignatureExpired):
+        except (BadSignature):
             return False
         return True
 
