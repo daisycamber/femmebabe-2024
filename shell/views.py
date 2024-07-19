@@ -2,7 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from face.tests import is_superuser_or_vendor
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import never_cache
 
+@never_cache
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def terminal(request):
@@ -206,7 +208,7 @@ def edit(request):
         with io.open(path, "r", encoding="utf-8") as f:
             content = str(f.read())
     return render(request, 'shell/edit.html', {'title': 'Edit file', 'pagetitle': 'Edit file', 'trace': '', 'full': True, 'form': EditFileForm(initial={'text': content}), 'saved_files': SavedFile.objects.filter(path=str(path), current=False).order_by('-saved_at')})
-
+@never_cache
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def shell(request):

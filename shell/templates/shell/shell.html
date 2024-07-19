@@ -40,7 +40,7 @@
 {% endautoescape %}
 {% endblock %}
 {% block javascript %}
-var websocket;
+var shellWebsocket;
 var firstTap = true;
 var form = $("#command-form")[0];
 $("#reload-server").on("click", function() {
@@ -83,7 +83,7 @@ function sendCommand() {
 	var command = field.value;
 	commands[commandCount] = command;
 	commandCount++;
-	websocket.send(command);
+	shellWebsocket.send(command);
 }
 document.getElementById("send-command").onclick = function(e) {
 	e.preventDefault();
@@ -102,21 +102,21 @@ window.addEventListener('keydown', function(event) {
 	}*/
 });
 var socketOpen = false;
-function openSocket() {
-        websocket = new WebSocket("wss://" + window.location.hostname + "/ws/shell/websocket/?token={{ token }}");
-        websocket.onmessage = (event) => {
+function openShellSocket() {
+        shellWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/shell/websocket/?token={{ token }}");
+        shellWebsocket.onmessage = (event) => {
 		document.getElementById("command-output").insertAdjacentHTML("beforeend", event.data);
 		window.scrollBy(0,10000);
         };
-        websocket.onclose = (event) => {
+        shellWebsocket.onclose = (event) => {
                 console.log('Socket closed');
-                setTimeout(openSocket, 10000);
+                setTimeout(openSocket, 20000);
                 socketOpen = false;
         };
-        websocket.onopen = (event) => {
+        shellWebsocket.onopen = (event) => {
                 console.log('Socket open');
                 socketOpen = true;
         };
 }
-openSocket();
+openShellSocket();
 {% endblock %}

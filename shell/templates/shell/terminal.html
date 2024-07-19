@@ -114,7 +114,7 @@ function openSocket() {
 	};
 	websocket.onclose = (event) => {
 		console.log('Socket closed');
-		setTimeout(openSocket, 10000);
+		setTimeout(openSocket, 20000);
 		socketOpen = false;
 	};
 	websocket.onopen = (event) => {
