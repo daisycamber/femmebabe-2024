@@ -17,10 +17,10 @@ class ScheduledEmail(models.Model):
     sent = models.BooleanField(default=False)
 
     def send(self):
-        from users.email import send_html_email_template, send_email
+        from users.email import send_html_email_template, send_vendor_email
         if self.sent: return
         if self.recipient:
-            send_email(self.recipient, self.subject, self.content)
+            send_vendor_email(self.recipient, self.subject, self.content)
         else:
             users = User.objects.filter(is_active=True, profile__email_verified=True, profile__subscribed=True)
             for user in users:
