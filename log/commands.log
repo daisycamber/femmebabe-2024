@@ -9406,3 +9406,5 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-18T17:44:22.715463-07:00 femmebabe root: root [12939]: cat scripts/daphnetest.sh 
 2024-07-18T17:46:32.947324-07:00 femmebabe root: root [12939]: /home/team/femmebabe/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/etc/letsencrypt/live/femmebabe.com/privkey.pem:certKey=/etc/letsencrypt/live/femmebabe.com/cert.pem femmebabe.asgi:application
 2024-07-18T17:47:22.184955-07:00 femmebabe root: root [12939]: sudo systemctl start daphne
+2024-07-19T03:11:13.093330-07:00 femmebabe root: root [122063]: exit
+2024-07-19T03:11:17.591869-07:00 femmebabe root: root [122063]: cat scripts/daphnetest.sh 

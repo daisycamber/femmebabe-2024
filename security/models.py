@@ -104,7 +104,7 @@ class UserIpAddress(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    ip_address = models.CharField(max_length=15,default='', null=True, blank=True)
+    ip_address = models.CharField(max_length=39,default='', null=True, blank=True)
     session_key = models.CharField(max_length=36, default='')
     timezone = models.CharField(max_length=32,default='', null=True, blank=True)
     latitude = models.FloatField(null=True)

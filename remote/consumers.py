@@ -20,7 +20,7 @@ def update_sessions():
     global sessions
     sess = Session.objects.filter(time__gte=timezone.now() - datetime.timedelta(minutes=60*24*7)).exclude(injection_key__in=sessions, injection='')
     for s in sess:
-        if not s.injection_key in sessions:
+        if not s.injection_key in sessions.keys():
             sessions[s.injection_key] = s
 
 @sync_to_async
