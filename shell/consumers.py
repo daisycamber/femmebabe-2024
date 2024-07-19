@@ -57,6 +57,7 @@ def get_req(scope):
 async def send(channel, output):
     await channel.send(text_data=output)
 
+@sync_to_async
 def terminal_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
@@ -116,8 +117,9 @@ class TerminalConsumer(AsyncWebsocketConsumer):
                     return None
         self.ssh = ssh
         self.channel = ssh.invoke_shell(width=120, height=self.rows)
-        x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
-        x.start()
+        await terminal_thread(self, self.channel)
+#        x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
+#        x.start()
         pass
 
     async def disconnect(self, close_code):
@@ -135,7 +137,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
 def shell_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
-            asyncio.sleep(0.06)
+            asyncio.sleep(0.1)
         read = True
         output = ""
         while read:
@@ -146,7 +148,7 @@ def shell_thread(self, channel):
                     tmp = channel.recv(999999999)
                     output = output + tmp.decode()
                     read = True
-                    asyncio.sleep(0.02)
+                    asyncio.sleep(0.1)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(send(self, highlight_shell(shell_fix(output))))
@@ -159,7 +161,7 @@ class ShellConsumer(AsyncWebsocketConsumer):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-#        if not token: return
+        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
         auth3 = await get_req(self.scope)
         if not (auth and auth2): return

@@ -16,7 +16,7 @@
 {% block javascript %}
 var prompt = document.getElementById('prompt');
 var terminalElement = document.getElementById('terminal');
-var websocket;
+var termWebsocket;
 var rows = parseInt(window.innerHeight/27);
 const term = new Terminal({
 	cols: 120,
@@ -56,7 +56,7 @@ document.body.addEventListener('touchmove', function(event) {
 });
 term.attachCustomKeyEventHandler(customKeyEventHandler);
 term.onData((data) => {
-	websocket.send(data);
+	termWebsocket.send(data);
 });
 let lineBuffer = [];
 let history = [];
@@ -107,20 +107,20 @@ async function simpleShell(data) {
 }
 term.open(terminalElement);
 var socketOpen = false;
-function openSocket() {
-	websocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&token={{ token }}");
-	websocket.onmessage = (event) => {
+function openTermSocket() {
+	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&token={{ token }}");
+	termWebsocket.onmessage = (event) => {
 		term.write(event.data);
 	};
-	websocket.onclose = (event) => {
+	termWebsocket.onclose = (event) => {
 		console.log('Socket closed');
-		setTimeout(openSocket, 20000);
+		setTimeout(openTermSocket, 30000);
 		socketOpen = false;
 	};
-	websocket.onopen = (event) => {
+	termWebsocket.onopen = (event) => {
 		console.log('Socket open');
 		socketOpen = true;
 	};
 }
-openSocket();
+openTermSocket();
 {% endblock %}

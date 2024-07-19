@@ -110,7 +110,7 @@ function openShellSocket() {
         };
         shellWebsocket.onclose = (event) => {
                 console.log('Socket closed');
-                setTimeout(openSocket, 20000);
+                setTimeout(openShellSocket, 20000);
                 socketOpen = false;
         };
         shellWebsocket.onopen = (event) => {
