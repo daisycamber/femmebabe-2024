@@ -7,7 +7,7 @@ import select
 import paramiko
 import time
 from django.conf import settings
-import threading
+import threading, multiprocessing
 from django.contrib.auth.models import User
 from asgiref.sync import sync_to_async
 import asyncio
@@ -57,7 +57,6 @@ def get_req(scope):
 async def send(channel, output):
     await channel.send(text_data=output)
 
-@sync_to_async
 def terminal_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
@@ -88,7 +87,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         token = await check_token(self.scope['user'].id, query_params['token'][0])
         if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
-        auth3 = await get_req(self.scope)
+#        auth3 = await get_req(self.scope)
         if not (auth and auth2): return
         if 'rows' in query_params and query_params['rows']: self.rows = int(query_params.get('rows', '28')[0])
         await self.accept()
@@ -117,9 +116,10 @@ class TerminalConsumer(AsyncWebsocketConsumer):
                     return None
         self.ssh = ssh
         self.channel = ssh.invoke_shell(width=120, height=self.rows)
-        await terminal_thread(self, self.channel)
-#        x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
-#        x.start()
+#        await terminal_thread(self, self.channel)
+#        multiprocessing.Process(target=terminal_thread, args=(self, self.channel)).start()
+        x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
+        x.start()
         pass
 
     async def disconnect(self, close_code):
@@ -163,7 +163,7 @@ class ShellConsumer(AsyncWebsocketConsumer):
         token = await check_token(self.scope['user'].id, query_params['token'][0])
         if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
-        auth3 = await get_req(self.scope)
+#        auth3 = await get_req(self.scope)
         if not (auth and auth2): return
         await self.accept()
         self.connected = True

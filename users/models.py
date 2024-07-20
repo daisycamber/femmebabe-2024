@@ -93,7 +93,7 @@ class Profile(models.Model):
     vendor = models.BooleanField(default=False)
     theme = models.CharField(default='light', max_length=15)
     language_code = models.CharField(default='', max_length=10)
-    ip = models.CharField(max_length=15, default='', null=True, blank=True)
+    ip = models.CharField(max_length=39, default='', null=True, blank=True)
     recovery_token = models.CharField(max_length=500,default='', null=True, blank=True)
     subscriptions = models.ManyToManyField(User, related_name='subscriptions', blank=True)
     verification_code = models.IntegerField(default=None, null=True, blank=True)

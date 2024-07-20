@@ -27,7 +27,8 @@ def set_game(id, code, turn):
     game.save()
 
 @sync_to_async
-def update_players(game, p):
+def update_players(game_id, p):
+    game = Game.objects.get(id=int(game_id))
     if game.players is None: game.players = 0
     game.players = game.players + p
     game.save()
@@ -47,14 +48,14 @@ class GameConsumer(AsyncWebsocketConsumer):
         game = await get_game(self.id, self.code)
         if game.players is None or game.players < 2:
             await self.accept()
-            await update_players(game, 1)
+            await update_players(game.id, 1)
         else:
             return
         await self.send(text_data=game.turns)
 
     async def disconnect(self, close_code):
         game = await get_game(self.id, self.code)
-        await update_players(game, -1)
+        await update_players(game.id, -1)
         pass
 
     async def receive(self, text_data):
