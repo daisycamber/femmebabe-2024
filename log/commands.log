@@ -9806,3 +9806,13 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-19T19:13:17.977678-07:00 femmebabe team: team [52121]: cat /tmp/daphne-access.log 
 2024-07-19T19:16:13.825496-07:00 femmebabe team: team [52121]: nano remote/views.py 
 2024-07-19T19:17:17.420341-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T19:23:19.944534-07:00 femmebabe team: team [52121]: sudo mount /dev/sda2 /mnt/backup/
+2024-07-19T19:23:25.880441-07:00 femmebabe team: team [52121]: ls /dev/sda
+2024-07-19T19:23:27.354799-07:00 femmebabe team: team [52121]: ls /dev/sda*
+2024-07-19T19:23:38.971933-07:00 femmebabe team: team [52121]: sudo mount /dev/sdb2 /mnt/backup/
+2024-07-19T19:26:10.371024-07:00 femmebabe team: team [52121]: sudo ascript backup
+2024-07-19T19:36:54.313751-07:00 femmebabe team: team [51674]: sudo backup
+2024-07-19T19:45:42.704586-07:00 femmebabe team: team [51674]: sudo systemctl start cudo-minder
+2024-07-19T19:45:46.373396-07:00 femmebabe team: team [51674]: sudo systemctl start cudo-miner
+2024-07-19T19:48:14.397345-07:00 femmebabe team: team [51674]: sudo systemctl status cudo-miner
+2024-07-19T19:48:24.729822-07:00 femmebabe team: team [51674]: sudo systemctl enable cudo-miner

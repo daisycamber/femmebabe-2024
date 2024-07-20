@@ -171,6 +171,12 @@ git commit -m "open source"
 git remote add originhub git@github.com:daisycamber/femmebabe-2024.git
 sudo git push -u -f originhub main
 cd $"/home/$U"
+sudo mkdir /mnt/backup
+sudo mount /dev/sdb2 /mnt/backup
+sudo mkdir /mnt/backup/femmebabe/
+sudo cp -r $"/home/$U/$DIR" /mnt/backup/femmebabe/
+sudo cp -r $"/home/$U/$dir" /mnt/backup/femmebabe/
+sudo cp -r $"/home/$U/$diropen" /mnt/backup/femmebabe/
 #sudo rm -r $"/home/$U/$dir"
 #sudo rm -r /home/team/femmebabe-backup*
 #/usr/bin/expect <<EOD
