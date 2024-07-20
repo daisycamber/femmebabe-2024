@@ -26,7 +26,7 @@
 <div class="col-5 m-2 p-2 rounded  mx-auto" style="display: inline-block; background-color: #{% if darkmode %}555555{% else %}DDDDDD{% endif %};">
 <p>Finalize</p>
 <legend>Cost: ${{ surrogacy_fee|sub_fee }} billed once</legend>
-<button onclick="{% if True or request.user.is_authenticated and request.user.profile.identity_verified %}surrogacyPlan(){% else %}window.location.href='{% if request.user_signup %}/verify/?next=/surrogacy/checkout/{% else %}/accounts/register/{% endif %}'{% endif %};" class="btn btn-lg btn-outline-success" title="Subscribe to this plan"><p>Checkout</p></button>
+<button onclick="{% if request.user.is_authenticated and request.user.profile.identity_verified %}surrogacyPlan(){% else %}window.location.href='{% if request.user_signup %}/verify/?next=/surrogacy/checkout/{% else %}/accounts/register/{% endif %}'{% endif %};" class="btn btn-lg btn-outline-success" title="Check out securely with our payment processor"><p>Checkout</p></button>
 </div>
 </div>
 </div>

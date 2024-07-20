@@ -95,7 +95,14 @@ class Post(models.Model):
             try:
                 shutil.copy(self.image_original.path, self.image.path)
                 shutil.copy(self.image_original.path, full_path)
-            except: return '/media/static/default.png' 
+            except:
+                try:
+                    self.download_original()
+                    shutil.copy(self.image_original.path, self.image.path)
+                    shutil.copy(self.image_original.path, full_path)
+                except:
+                    if len(self.content) < 120: self.delete()
+                    return '/media/static/default.png'
         from femmebabe.celery import remove_secure
         add_logo(full_path)
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
@@ -113,10 +120,12 @@ class Post(models.Model):
                     shutil.copy(self.image_original.path, self.image.path)
                     shutil.copy(self.image_original.path, new_path)
                 except:
-                    if self.image:
-                        self.image = None
-                        self.save()
-                    return '/media/static/default.png'
+                    try:
+                        self.download_photo()
+                        shutil.copy(self.image.path, new_path)
+                    except:
+                        if len(self.content) < 120: self.delete()
+                        return '/media/static/default.png'
             resize_image(new_path)
             self.image_thumbnail = new_path
             self.save()
@@ -140,7 +149,13 @@ class Post(models.Model):
                 try:
                     shutil.copy(self.image_original.path, self.image.path)
                     shutil.copy(self.image_original.path, new_path)
-                except: return
+                except:
+                    try:
+                        self.download_photo()
+                        shutil.copy(self.image.path, new_path)
+                    except:
+                        if len(self.content) < 120: self.delete()
+                        return '/media/static/default.png'
             resize_image(new_path)
             blur_nude(new_path, new_path)
 #            blur_faces(new_path)
@@ -213,9 +228,6 @@ class Post(models.Model):
                     shutil.copy(self.image_original.path, self.image.path)
                     shutil.copy(self.image_original.path, new_path)
                 except:
-                    if self.image:
-                        self.image = None
-                        self.save()
                     try:
                         self.download_photo()
                         shutil.copy(self.image.path, new_path)

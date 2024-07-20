@@ -85,7 +85,7 @@ def simple_middleware(get_response):
             if request.method == 'GET' and request.path == '/' and not request.GET.get('k') and not request.META.get('HTTP_REFERRER'):
 # and UserIpAddress.objects.filter(ip_address=ip, timestamp__gte=timezone.now()-datetime.timedelta(hours=24*settings.SESSION_FILTER_DAYS)).first() 
                 if request.user.is_authenticated and request.user.profile.vendor:
-                    return HttpResponseRedirect(reverse('go:go'))
+                    return redirect(reverse('go:go'))
 #                else:
 #                    extra = ''
 #                    addr = UserIpAddress.objects.filter(ip_address=ip, timestamp__gte=timezone.now()-datetime.timedelta(hours=24*settings.SESSION_FILTER_DAYS)).first()
