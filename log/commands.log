@@ -9801,3 +9801,8 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-19T18:36:25.249361-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
 2024-07-19T18:36:27.070306-07:00 femmebabe team: team [51674]: sudo systemctl status daphne
 2024-07-19T18:36:30.349536-07:00 femmebabe team: team [51674]: sudo systemctl status daphne
+2024-07-19T19:13:07.259467-07:00 femmebabe team: team [52121]: sudo systemctl status daphne
+2024-07-19T19:13:12.690500-07:00 femmebabe team: team [52121]: cat /tmp/daphne-error.log 
+2024-07-19T19:13:17.977678-07:00 femmebabe team: team [52121]: cat /tmp/daphne-access.log 
+2024-07-19T19:16:13.825496-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T19:17:17.420341-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
