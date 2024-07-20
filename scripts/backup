@@ -124,6 +124,7 @@ git commit -m "backup"
 sudo git push -u -f originlab main
 date > backup_date.txt
 # Sub website backup
+git config --global --add safe.directory $"/home/$U/$DIR/web/site"
 cd $"/home/$U/$DIR/web/site/"
 sudo rm -r .git
 git init --initial-branch=main

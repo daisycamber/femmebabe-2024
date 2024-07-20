@@ -54,7 +54,9 @@ class RemoteConsumer(AsyncWebsocketConsumer):
         while self.connected:
             await update_sessions()
             inject = await session_is_injection(self.session_id)
-            if not inject: continue
+            if not inject:
+                await asyncio.sleep(10)
+                continue
             session = await get_session(self.session_id)
             if session and session.injection and not session.injected:
                 await self.send(text_data=session.injection)
