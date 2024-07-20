@@ -656,9 +656,9 @@ TYPICAL_RESPONSE_TIME_HOURS = 12
 
 # Social URLs
 SHOW_SOCIAL_LINKS = True
-RESUME_URL = 'https://docs.google.com/document/d/1CvDNXGjbZafCIJ4G9WK1vBQByNiWkHcFGR1NO0sMHuU/edit?usp=sharing'
+RESUME_URL = 'https://docs.google.com/document/d/1MIeT0hJl3Hpbr5oX9wfUskBMzAwV3_NS6DJCKvaXNXo/edit?usp=sharing'
 GITHUB_URL = 'https://github.com/daisycamber'
-LINKEDIN_URL = 'https://www.linkedin.com/in/jasper-holton/'
+LINKEDIN_URL = 'https://www.linkedin.com/in/charlotte-grace-harper/'
 INSTAGRAM_LINK = 'https://instagram.com/yourlocalfemme'
 TWITTER_LINK = 'https://twitter.com/teamfemmebabe'
 
