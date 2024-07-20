@@ -114,6 +114,7 @@ def enhance_post(post_id):
     p.uploaded = True
     if Post.objects.filter(id=post_id).first(): p.save()
     upload_post(p)
+#    bucket_post(p.id)
     try:
         os.remove(p.image_censored_thumbnail.path)
     except: pass
@@ -249,3 +250,9 @@ def routine_enhance_post():
             post.enhanced = True
             post.save()
             return
+
+
+def routine_enhance_all():
+    from feed.models import Post
+    posts = Post.objects.filter(enhanced=False, published=True).order_by('-date_posted')
+    for post in posts: routine_enhance_post()
