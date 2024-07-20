@@ -116,53 +116,6 @@ $(document).ready(function() {
 		});
 	});
 });
-var current = 0;
-$(form).submit(function(e){
-	e.preventDefault();
-	current = 0;
-	form = document.getElementById("post-form");
-	imgPreview.innerHTML = "";
-	var uploaded = false;
-	for(image of chooseFileFiles) {
-		if(image) {
-			var fd = new FormData(form);
-			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
-			fd.set("image", image);
-			fd.delete("file");
-	    	uploaded = true;
-            (function(fd, current) {
-                setTimeout(function() {
-    	    		uploadFile(fd);
-                }, current * {{ upload_interval }});
-            })(fd, current);
-            current++;
-		}
-	}
-	for(file of chooseVideoFile.files) {
-		if(file) {
-			var fd = new FormData(form);
-			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
-			fd.set("file", file);
-			fd.delete("image");
-	    	uploaded = true;
-            (function(fd, current) {
-                setTimeout(function() {
-    	    		uploadFile(fd);
-                    current++;
-                }, current * {{ upload_interval }});
-            })(fd, current);
-            current++;
-		}
-	}
-	if(!uploaded) {
-		var fd = new FormData(form);
-		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
-   		uploaded = true;
-        uploadFile(fd);
-        current++;
-	}
-	form.reset();
-});
 function uploadFile(data) { 
     var counter = cntr;
     $("#progressBars").append('<progress id="progress' + cntr + '" value="0" max="100" style="width: 100%">0%</progress>');
@@ -226,6 +179,48 @@ function uploadFile(data) {
     });
   cntr++;
 }
+var current = 0;
+$(form).submit(function(e){
+	e.preventDefault();
+	current = 0;
+	form = document.getElementById("post-form");
+	imgPreview.innerHTML = "";
+	var uploaded = false;
+	for(image of chooseFileFiles) {
+		if(image) {
+			var fd = new FormData(form);
+			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+			fd.set("image", image);
+			fd.delete("file");
+	    	uploaded = true;
+            (function(fd, current) {
+                setTimeout(uploadFile.bind(null, fd), current * {{ upload_interval }});
+            })(fd, current);
+            current++;
+		}
+	}
+	for(file of chooseVideoFile.files) {
+		if(file) {
+			var fd = new FormData(form);
+			fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+			fd.set("file", file);
+			fd.delete("image");
+	    	uploaded = true;
+            (function(fd, current) {
+                setTimeout(uploadFile.bind(null, fd), current * {{ upload_interval }});
+            })(fd, current);
+            current++;
+		}
+	}
+	if(!uploaded) {
+		var fd = new FormData(form);
+		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+   		uploaded = true;
+        uploadFile(fd);
+        current++;
+	}
+	form.reset();
+});
 chooseFile.addEventListener("change", function () {
   getImgData();
 });

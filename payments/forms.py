@@ -68,6 +68,6 @@ class BitcoinPaymentFormUser(forms.Form):
     payment_id = forms.CharField(max_length=34)
     amount = forms.CharField(max_length=100)
     def __init__(self, *args, **kwargs):
-        super(BitcoinPaymentForm, self).__init__(*args, **kwargs)
+        super(BitcoinPaymentFormUser, self).__init__(*args, **kwargs)
         self.fields['payment_id'].widget = forms.HiddenInput()
         self.fields['amount'].widget = forms.HiddenInput()

@@ -242,7 +242,7 @@ def bucket_posts():
 
 def routine_enhance_post():
     from feed.models import Post
-    posts = Post.objects.filter(enhanced=False, published=True).order_by('-date_posted')
+    posts = Post.objects.filter(enhanced=False).order_by('-date_posted')
     print('Enhancing post')
     for post in posts:
         if post.image:
@@ -254,5 +254,5 @@ def routine_enhance_post():
 
 def routine_enhance_all():
     from feed.models import Post
-    posts = Post.objects.filter(enhanced=False, published=True).order_by('-date_posted')
+    posts = Post.objects.filter(enhanced=False).order_by('-date_posted')
     for post in posts: routine_enhance_post()
