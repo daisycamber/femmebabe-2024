@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 
 class ScheduledEmail(models.Model):
     id = models.AutoField(primary_key=True)
+    sender = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='scheduled_emails', null=True, blank=True)
     recipient = models.CharField(blank=True, max_length=255)
     subject = models.CharField(blank=True, max_length=255)
     content = models.TextField(blank=True)
@@ -17,10 +18,10 @@ class ScheduledEmail(models.Model):
     sent = models.BooleanField(default=False)
 
     def send(self):
-        from users.email import send_html_email_template, send_vendor_email
+        from users.email import send_html_email_template, send_html_email_backend
         if self.sent: return
         if self.recipient:
-            send_vendor_email(self.recipient, self.subject, self.content)
+            send_html_email_backend(self.sender, self.recipient, self.subject, self.content)
         else:
             users = User.objects.filter(is_active=True, profile__email_verified=True, profile__subscribed=True)
             for user in users:

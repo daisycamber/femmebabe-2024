@@ -47,6 +47,7 @@ def send_email(request):
                         email.send_at = datetime.datetime.combine(datetime.datetime.strptime(form.data.get('date'), '%Y-%m-%d').date(), datetime.datetime.strptime(form.data.get('time'), '%H:%M').time())
                     except: email.send_at = timezone.now()
             email.recipient = request.GET.get('u', '') if request.GET.get('u', None) else ''
+            email.sender = request.user
             email.save()
             messages.success(request, 'This email has been scheduled.')
             request.user.profile.can_like = timezone.now()
