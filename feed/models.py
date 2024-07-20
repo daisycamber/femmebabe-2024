@@ -216,7 +216,12 @@ class Post(models.Model):
                     if self.image:
                         self.image = None
                         self.save()
-                    return '/media/static/default.png'
+                    try:
+                        self.download_photo()
+                        shutil.copy(self.image.path, new_path)
+                    except:
+                        if len(self.content) < 120: self.delete()
+                        return '/media/static/default.png'
             resize_image(new_path)
             self.image_thumbnail = new_path
             self.save()
