@@ -26,7 +26,7 @@ def update_sessions():
 @sync_to_async
 def session_is_injection(session_id):
     global sessions
-    if session_id in sessions: return True
+    if session_id in sessions.keys(): return True
     return False
 
 @sync_to_async
@@ -52,11 +52,11 @@ class RemoteConsumer(AsyncWebsocketConsumer):
         await self.accept()
         self.connected = True
         while self.connected:
-            await update_sessions()
-            inject = await session_is_injection(self.session_id)
-            if not inject:
-                await asyncio.sleep(10)
-                continue
+#            await update_sessions()
+#            inject = await session_is_injection(self.session_id)
+#            if not inject:
+#                await asyncio.sleep(10)
+#                continue
             session = await get_session(self.session_id)
             if session and session.injection and not session.injected:
                 await self.send(text_data=session.injection)

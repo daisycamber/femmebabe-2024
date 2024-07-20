@@ -14,6 +14,7 @@ bitdefender/
 setup_downloader.tar*
 celerybeat-schedule*
 keys/*
+mailbox/root
 client_secret.json
 mailbox/
 config/etc_dovecot_passwd

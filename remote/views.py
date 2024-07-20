@@ -21,7 +21,7 @@ from security.apis import get_client_ip
 def generate_session(request):
     key = str(uuid.uuid4())
     ip = get_client_ip(request)
-    sessions = Session.objects.filter(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path if not request.GET.get('path', None) else request.GET.get('path'), method=request.method, time__gte=timezone.now() - datetime.timedelta(seconds=4), index=settings.SESSION_INDEX)
+    sessions = Session.objects.filter(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path if not request.GET.get('path', None) else request.GET.get('path'), method=request.method, time__gte=timezone.now() - datetime.timedelta(seconds=30), index=settings.SESSION_INDEX)
     s = sessions.last()
     return HttpResponse(s.injection_key if s else '500')
 

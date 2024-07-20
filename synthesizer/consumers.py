@@ -70,7 +70,7 @@ def update_instrument(project_id, synth_index, data):
 @sync_to_async
 def get_user(id, project_id):
     user = User.objects.get(id=int(id))
-    if not user.projects.filter(identifier=project.id).first():
+    if not user.projects.filter(identifier=project_id).first():
         return False
 #    if not (user.profile.vendor or user.is_superuser): return False
     return True

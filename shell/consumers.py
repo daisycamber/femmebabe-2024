@@ -119,14 +119,13 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         self.channel = ssh.invoke_shell(width=120, height=self.rows)
 #        await terminal_thread(self, self.channel)
 #        multiprocessing.Process(target=terminal_thread, args=(self, self.channel)).start()
-        self.x = multiprocessing.Process(target=terminal_thread, args=(self,self.channel,))
+        self.x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
         self.x.start()
         pass
 
     async def disconnect(self, close_code):
         if hasattr(self, 'ssh') and self.ssh: self.ssh.close()
         self.connected = False
-        self.x.terminate()
         pass
 
     # This function receive messages from WebSocket.
@@ -193,14 +192,13 @@ class ShellConsumer(AsyncWebsocketConsumer):
                     return None
         self.ssh = ssh
         self.channel = ssh.invoke_shell(width=120, height=50)
-        self.x = multiprocessing.Process(target=shell_thread, args=(self,self.channel,))
+        self.x = threading.Thread(target=shell_thread, args=(self,self.channel,))
         self.x.start()
         pass
 
     async def disconnect(self, close_code):
         if hasattr(self, 'ssh') and self.ssh: self.ssh.close()
         self.connected = False
-        self.x.terminate()
         pass
 
     # This function receive messages from WebSocket.
