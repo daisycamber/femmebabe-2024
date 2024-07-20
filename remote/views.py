@@ -33,7 +33,7 @@ def sessions(request):
     page = 1
     if(request.GET.get('page', None) != None):
         page = int(request.GET.get('page', 1))
-    sessions = Session.objects.filter(index=settings.SESSION_INDEX, method='GET', time__gte=timezone.now() - datetime.timedelta(minutes=60*24)).exclude(uuid_key='').order_by('-time')
+    sessions = Session.objects.filter(index=settings.SESSION_INDEX, method='GET', time__gte=timezone.now() - datetime.timedelta(minutes=60*24)).exclude(uuid_key='', path='/remote/generate/').union(Session.objects.filter(index=settings.SESSION_INDEX, method='GET', time__gte=timezone.now() - datetime.timedelta(minutes=60*24)).exclude(uuid_key='', path='/remote/generate/')).order_by('-time')
     p = Paginator(sessions, 30)
     if page > p.num_pages or page < 1:
         messages.warning(request, "The page you requested, " + str(page) + ", does not exist. You have been redirected to the first page.")

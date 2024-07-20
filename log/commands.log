@@ -9742,3 +9742,62 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-19T17:59:16.933091-07:00 femmebabe team: team [52121]: sudo systemctl stop apache2
 2024-07-19T17:59:20.930125-07:00 femmebabe team: team [52121]: sudo systemctl stop daphne &
 2024-07-19T17:59:24.916455-07:00 femmebabe team: team [52121]: sudo systemctl start apache2
+2024-07-19T18:00:18.369586-07:00 femmebabe team: team [51674]: sudo systemctl status daphne
+2024-07-19T18:00:28.711186-07:00 femmebabe team: team [52121]: ./scripts/daphnetest.sh 
+2024-07-19T18:00:28.880349-07:00 femmebabe team: team [52121]: ./scripts/daphnetest.sh 
+2024-07-19T18:00:53.585612-07:00 femmebabe team: team [52121]: ./scripts/daphnetest.sh 
+2024-07-19T18:00:56.836270-07:00 femmebabe team: team [52121]: killall daphne
+2024-07-19T18:01:02.389616-07:00 femmebabe team: team [52121]: sudo systemctl start daphne
+2024-07-19T18:01:25.442059-07:00 femmebabe team: team [52121]: sudo systemctl status daphne
+2024-07-19T18:03:43.463069-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:03:50.642393-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:03:54.618250-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:03:57.493149-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:03:58.581503-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:03:59.446389-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:04:00.223973-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:05:17.084553-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:05:57.585154-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:09.314515-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:10.493426-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:11.240621-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:11.995609-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:12.919073-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:06:18.162340-07:00 femmebabe team: team [52121]: sudo systemctl status daphne
+2024-07-19T18:06:22.608838-07:00 femmebabe team: team [52121]: sudo systemctl stop daphne
+2024-07-19T18:06:26.115553-07:00 femmebabe team: team [52121]: sudo systemctl start daphne
+2024-07-19T18:07:07.438146-07:00 femmebabe team: team [52121]: sudo systemctl stop daphne
+2024-07-19T18:07:12.074891-07:00 femmebabe team: team [52121]: sudo killall daphne
+2024-07-19T18:08:47.154170-07:00 femmebabe team: team [52121]: sudo systemctl start daphne
+2024-07-19T18:10:48.973038-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:10:58.493579-07:00 femmebabe team: team [52121]: nano web/templates/web/index.html 
+2024-07-19T18:11:43.879328-07:00 femmebabe team: team [52121]: nano web/templates/web/base.html 
+2024-07-19T18:13:47.698907-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:13:52.952477-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:14:03.002992-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:14:04.604557-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:14:05.492766-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:14:06.420759-07:00 femmebabe team: team [52121]: logs
+2024-07-19T18:14:55.088882-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:14:56.548730-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:16:15.143289-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:16:16.269530-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:19:00.342789-07:00 femmebabe team: team [52121]: nano remote/templates/remote/sessions.html 
+2024-07-19T18:19:05.012015-07:00 femmebabe team: team [52121]: sudo systemctl status daphne
+2024-07-19T18:20:37.140897-07:00 femmebabe team: team [52121]: sudo systemctl stop daphne
+2024-07-19T18:21:35.838763-07:00 femmebabe team: team [52121]: sudo systemctl stop daphne
+2024-07-19T18:22:33.502940-07:00 femmebabe team: team [52121]: nano security/templates/security/session_injection.js 
+2024-07-19T18:23:26.440660-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:23:28.667877-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:23:42.908324-07:00 femmebabe team: team [52121]: sudo systemctl start daphne
+2024-07-19T18:27:04.284488-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:27:06.509974-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:29:40.594409-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:29:41.489612-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:31:40.480144-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:32:30.136159-07:00 femmebabe team: team [52121]: nano remote/templates/remote/sessions.html 
+2024-07-19T18:34:40.658114-07:00 femmebabe team: team [52121]: nano remote/views.py 
+2024-07-19T18:34:42.795229-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:36:25.249361-07:00 femmebabe team: team [52121]: sudo systemctl reload apache2
+2024-07-19T18:36:27.070306-07:00 femmebabe team: team [51674]: sudo systemctl status daphne
+2024-07-19T18:36:30.349536-07:00 femmebabe team: team [51674]: sudo systemctl status daphne
