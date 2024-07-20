@@ -9429,3 +9429,75 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-19T17:08:22.631175-07:00 femmebabe team: team [57384]: sudo ascript backup
 2024-07-19T17:08:57.377633-07:00 femmebabe team: team [51674]: sudo rm -r /home/team/femmebabe-backup-open/.git/index.lock
 2024-07-19T17:09:01.198991-07:00 femmebabe team: team [51674]: sudo rm -r /home/team/femmebabe-backup-open/.git/index.lock
+2024-07-19T17:09:19.112200-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:09:21.112065-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:23.035114-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:09:25.977454-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:27.353523-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:28.150219-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:28.905409-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:29.970634-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:09:31.665676-07:00 femmebabe team: team [57384]: cmds
+2024-07-19T17:09:33.408454-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:09:52.733356-07:00 femmebabe team: team [57384]: cat /tmp/daphne-error.log 
+2024-07-19T17:10:30.167481-07:00 femmebabe team: team [57384]: sudo systemctl status daphne
+2024-07-19T17:11:14.868641-07:00 femmebabe team: team [57384]: nano remote/consumers.py 
+2024-07-19T17:12:52.132226-07:00 femmebabe team: team [57384]: sudo systemctl restart daphne
+2024-07-19T17:13:01.285441-07:00 femmebabe team: team [57384]: sudo systemctl status daphne
+2024-07-19T17:13:05.143298-07:00 femmebabe team: team [57384]: free -h
+2024-07-19T17:13:06.427703-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:11.293679-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:26.818232-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:38.941342-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:40.861818-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:41.856704-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:42.669107-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:43.595582-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:44.425147-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:45.187723-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:45.935430-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:46.662393-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:47.395727-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:48.376263-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:49.294181-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:50.315413-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:51.814154-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:13:53.196184-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:00.710544-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:33.362642-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:35.204461-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:36.226128-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:37.266929-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:38.244526-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:39.186288-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:43.739884-07:00 femmebabe team: team [57384]: sudo systemctl reload apache2
+2024-07-19T17:14:45.762052-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:46.828116-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:47.762460-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:48.604486-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:49.382068-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:50.114739-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:50.883636-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:51.638955-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:52.395922-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:53.165108-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:53.910447-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:54.668247-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:55.535949-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:56.558664-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:57.416405-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:58.314152-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:14:59.238249-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:00.188255-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:01.250938-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:02.896199-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:04.052009-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:05.164749-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:15:32.746131-07:00 femmebabe team: team [57384]: nano remote/consumers.py 
+2024-07-19T17:17:09.141673-07:00 femmebabe team: team [57384]: sudo systemctl restart daphne
+2024-07-19T17:19:35.786346-07:00 femmebabe team: team [57384]: logs
+2024-07-19T17:19:43.267199-07:00 femmebabe team: team [57384]: sudo systemctl reload apache2
+2024-07-19T17:20:05.332232-07:00 femmebabe team: team [57384]: sudo rm -r .git
+2024-07-19T17:20:21.605309-07:00 femmebabe team: team [57384]: nano scripts/backup 
+2024-07-19T17:20:25.431370-07:00 femmebabe team: team [57384]: git init --initial-branch=main
+2024-07-19T17:23:19.325444-07:00 femmebabe team: team [51674]: sudo backup

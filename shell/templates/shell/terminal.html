@@ -114,7 +114,7 @@ function openTermSocket() {
 	};
 	termWebsocket.onclose = (event) => {
 		console.log('Socket closed');
-		setTimeout(openTermSocket, 30000);
+		setTimeout(openTermSocket, 10000);
 		socketOpen = false;
 	};
 	termWebsocket.onopen = (event) => {
