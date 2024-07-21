@@ -71,6 +71,8 @@ def idscan(request):
     return render(request, 'payments/idscan.html', {'title': 'ID Scanner Pricing', 'plans': price_scans, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'email_query_delay': 30, 'free_trial': settings.IDSCAN_TRIAL_DAYS})
 
 @cache_page(60*60*24*365)
+@login_required
+@user_passes_test(identity_really_verified)
 def surrogacy(request, username):
     vendor = User.objects.get(profile__name=username, profile__vendor=True)
     agreement = render_agreement(vendor.profile.name if not vendor.verifications.last() else vendor.verifications.last().full_name, request.user.verifications.last().full_name if request.user.is_authenticated and request.user.verifications.last() else '', vendor)

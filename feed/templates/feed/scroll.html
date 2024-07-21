@@ -359,7 +359,7 @@ function loadNext(next){
 		}
 		var lang = urlParams.get('lang');
 		if(lang) {
-			extra = extra + "&lang=" + feed;
+			extra = extra + "&lang=" + lang;
 		}
                 const url = "?page=" + npage + "&scroll_page=t" + extra + "&time=" + time;
 		$.ajax({
