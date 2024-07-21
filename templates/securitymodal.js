@@ -1,18 +1,18 @@
 {% if request.user.is_authenticated and request.user.profile.vendor and securitymodaljs %}
-var securitySocket;
+var securityModalSocket;
 var securityModal = document.getElementById('security-modal');
 function openSecuritySocket() {
-        securitySocket = new WebSocket("wss://" + window.location.hostname + "/ws/security/modal/");
-        securitySocket.addEventListener("open", (event) => {
+        securityModalSocket = new WebSocket("wss://" + window.location.hostname + "/ws/security/modal/");
+        securityModalSocket.addEventListener("open", (event) => {
             console.log('Security socket open.');
         });
-        securitySocket.addEventListener("closed", (event) => {
+        securityModalSocket.addEventListener("closed", (event) => {
             console.log('Security socket closed.');
             setTimeout(function() {
                 openSecuritySocket();
             }, {{ reload_time }});
         });
-        securitySocket.addEventListener("message", (event) => {
+        securityModalSocket.addEventListener("message", (event) => {
 		if(event.data == 'y') { /* Hide modal */
 			setTimeout(function() {
 				$(securityModal).addClass('hide');
