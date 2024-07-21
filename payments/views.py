@@ -138,6 +138,8 @@ def webhook(request):
     from payments.stripe import WEBDEV_PRICE_IDS
     from payments.stripe import WEBDEV_MONTHLY_PRICE_IDS
     from payments.stripe import WEBDEV_DESCRIPTIONS
+    from payments.stripe import PROFILE_MEMBERSHIP
+    from payments.stripe import PHOTO_PRICE
     price_scans = ['5','10', '20', '50', '100', '200', '500', '1000', '2000', '5000']
     price_dev = ['100', '200', '500', '1000', '2000', '5000']
     try:
@@ -152,6 +154,7 @@ def webhook(request):
         stripe_customer_id = session.get('customer')
         stripe_subscription_id = session.get("subscription")
         stripe_price_id = session.get("price")
+        stripe_product_id = session.get("
         account = session.get("account")
         metadata = session.get("metadata")
         email = session.get('customer_details')['email']
