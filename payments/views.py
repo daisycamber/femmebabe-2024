@@ -132,6 +132,7 @@ def webhook(request):
     payload = request.body
     event = None
     import stripe
+    stripe.api_key = settings.STRIPE_API_KEY
     from payments.stripe import PRICE_IDS
     from payments.stripe import PROFILE_MEMBERSHIP_PRICE_IDS
     from payments.stripe import PHOTO_PRICE_IDS
@@ -148,18 +149,28 @@ def webhook(request):
         )
     except ValueError as e:
         return HttpResponse(status=400)
-    if event.type == 'checkout.session.completed' or event.type == 'charge.created':
+    if event.type == 'checkout.session.completed' or event.type == 'charge.created' or event.type == 'customer.subscripton.resumed':
         session = event.data['object']
+        print(str(session))
         client_reference_id = session.get('client_reference_id')
         stripe_customer_id = session.get('customer')
         stripe_subscription_id = session.get("subscription")
-        stripe_price_id = session.get("price")
-        stripe_product_id = session.get("
+        stripe_price_id = None
+        stripe_product_id = None
+        line_items = stripe.checkout.Session.list_line_items(session.get('id'))['data'][0]
+        print(str(line_items))
+        try:
+            stripe_price_id = line_items['price']['id']
+        except: pass
+        try: stripe_product_id = line_items['price']['product']
+        except: pass
+        print('price: {}, prod: {}'.format(stripe_price_id, stripe_product_id))
         account = session.get("account")
         metadata = session.get("metadata")
-        email = session.get('customer_details')['email']
-        user = None
-        if User.objects.filter(email=email).count() < 1:
+        email = session.get('customer_details')['email'] if 'email' in session.get('customer_details').keys() else session.get('customer_email')
+        print(email)
+        user = None if User.objects.filter(email=email).count() < 1 else User.objects.filter(email=email).order_by('-profile__last_seen').first()
+        if not user:
             user = User.objects.create_user(email=email, username=generate_username(), password=get_random_string(8))
             if not hasattr(user, 'profile'):
                 profile = Profile.objects.create(user=user)
@@ -186,6 +197,8 @@ def webhook(request):
             else:
                 user.profile.stripe_subscription_id = stripe_subscription_id
             user.profile.save()
+        print(user.username)
+        print('Checking for idscan plan')
         try:
             plan = PRICE_IDS.index(stripe_price_id)
             user.profile.idscan_plan = int(price_scans[plan]) * 2
@@ -195,43 +208,41 @@ def webhook(request):
             user.save()
             send_user_text(User.objects.get(id=settings.MY_ID), '@{} has purchased an ID scanner subscription product for ${}'.format(user.username, price_scans[plan]))
         except:
+            print('None found, checking for webdev')
             try:
                 product = WEBDEV_PRICE_IDS.index(stripe_price_id)
                 product_desc = WEBDEV_DESCRIPTIONS[product]
                 PurchasedProduct.objects.create(user=user, description=product_desc, price=int(price_dev[product]), paid=True)
                 send_user_text(User.objects.get(id=settings.MY_ID), '@{} has purchased a web dev product for ${} - "{}"'.format(user.username, price_dev[product], product_desc))
             except:
-                try:
-                    product = PROFILE_MEMBERSHIP_PRICE_IDS.index(stripe_price_id)
-                    if account:
-                        vendor = User.objects.get(profile__stripe_id=account)
-                        user.profile.subscriptions.add(vendor)
-                        user.profile.save()
-                        if not Subscription.objects.filter(model=vendor, user=user, active=True).last(): Subscription.objects.create(model=vendor, user=user, active=True, strip_subscription_id=stripe_subscription_id)
-                except:
-                    try:
-                        product = PHOTO_PRICE_IDS.index(stripe_price_id)
-                        vendor = User.objects.get(profile__stripe_id=account)
-                        post = Post.objects.get(author=vendor, uuid=metadata[0])
-                        post.recipient = user
-                        post.save()
-                        from feed.email import send_photo_email
-                        send_photo_email(user, post)
-                    except:
-                        from .stripe import SURROGACY_PRICE_ID
-                        if SURROGACY_PRICE_ID == stripe_price_id:
-                            send_user_text(User.objects.get(id=settings.MY_ID), '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
-                        else:
-                            try:
-                                product = WEBDEV_MONTHLY_PRICE_IDS.index(stripe_price_id)
-                                if product != None:
-                                    user.profile.webdev_plan = int(price_dev[product])
-                                    user.profile.webdev_active = True
-                                    user.profile.save()
-                                    PurchasedProduct.objects.create(user=user, description=product_desc, price=int(price_dev[product]), paid=True, monthly=True)
-                                    send_user_text(User.objects.get(id=settings.MY_ID), '@{} has purchased a web dev product for ${} - "{}"'.format(user.username, price_dev[product], product_desc))
-                            except: pass
-    elif event.type == 'charge.failed' or event.type == 'charge.refunded':
+                print('Checking for profile membership')
+                if account and stripe_product_id == PROFILE_MEMBERSHIP:
+                    vendor = User.objects.get(profile__stripe_id=account)
+                    user.profile.subscriptions.add(vendor)
+                    user.profile.save()
+                    if not Subscription.objects.filter(model=vendor, user=user, active=True).last(): Subscription.objects.create(model=vendor, user=user, active=True, strip_subscription_id=stripe_subscription_id)
+                elif account and stripe_product_id == PHOTO_PRICE:
+                    vendor = User.objects.get(profile__stripe_id=account)
+                    post = Post.objects.get(author=vendor, uuid=metadata[0])
+                    post.recipient = user
+                    post.save()
+                    from feed.email import send_photo_email
+                    send_photo_email(user, post)
+                else:
+                    from .stripe import SURROGACY_PRICE_ID
+                    if SURROGACY_PRICE_ID == stripe_price_id:
+                        send_user_text(User.objects.get(id=settings.MY_ID), '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
+                    else:
+                        try:
+                            product = WEBDEV_MONTHLY_PRICE_IDS.index(stripe_price_id)
+                            if product != None:
+                                user.profile.webdev_plan = int(price_dev[product])
+                                user.profile.webdev_active = True
+                                user.profile.save()
+                                PurchasedProduct.objects.create(user=user, description=product_desc, price=int(price_dev[product]), paid=True, monthly=True)
+                                send_user_text(User.objects.get(id=settings.MY_ID), '@{} has purchased a web dev product for ${} - "{}"'.format(user.username, price_dev[product], product_desc))
+                        except: pass
+    elif event.type == 'charge.failed' or event.type == 'charge.refunded' or event.type == 'customer.subscripton.deleted' or event.type == 'customer.subscripton.paused':
         session = event.data['object']
         client_reference_id = session.get('client_reference_id')
         stripe_customer_id = session.get('customer')
@@ -243,9 +254,7 @@ def webhook(request):
             user.profile.save()
             user.save()
         except:
-            from payments.stripe import PROFILE_MEMBERSHIP
-            product = PROFILE_MEMBERSHIP_PRICE_IDS.index(stripe_price_id)
-            if stripe_price_id == PROFILE_MEMBERSHIP and account:
+            if stripe_product_id == PROFILE_MEMBERSHIP and account:
                 vendor = User.objects.get(profile__stripe_id=account)
                 user.profile.subscriptions.remove(vendor)
                 user.profile.save()
