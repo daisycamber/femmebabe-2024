@@ -234,9 +234,13 @@ class Post(models.Model):
                     except:
                         if len(self.content) < 120: self.delete()
                         return '/media/static/default.png'
-            resize_image(new_path)
-            self.image_thumbnail = new_path
-            self.save()
+            try:
+                resize_image(new_path)
+                self.image_thumbnail = new_path
+                self.save()
+            except:
+                if len(self.content) < 120: self.delete()
+                return '/media/static/default.png'
         path, url = get_secure_path(self.image_thumbnail.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         if not self.public:

@@ -314,10 +314,13 @@ function editForm() {
             }
 	}
 }
-function staticClocks() {
+function staticClocksDyn() {
     var clockScripts = document.getElementsByClassName('clock-script');
     for(script of clockScripts) {
-        eval(new String(script.innerHTML));
+        if(!$(script).hasClass('complete')) {
+            eval(new String(script.innerHTML).replace("&gt;", '>').replace("&lt;", '<'));
+            $(script).toggleClass('complete');
+        }
     }
 }
 var time = String(new Date().getTime());
@@ -354,8 +357,11 @@ function loadNext(next){
 		if(feed) {
 			extra = extra + "&feed=" + feed;
 		}
+		var lang = urlParams.get('lang');
+		if(lang) {
+			extra = extra + "&lang=" + feed;
+		}
                 const url = "?page=" + npage + "&scroll_page=t" + extra + "&time=" + time;
-                // Make a request to the next page with the language
 		$.ajax({
 			url: url,
 			method: 'POST',
@@ -366,14 +372,14 @@ function loadNext(next){
         	       		$(progress).addClass("fade-hidden");
         	        	setTimeout(function() {
         	        	        $(progress).addClass("hide");
+                	        	$.ajax(this);
         	        	}, 2000);
         	        	this.tryCount++;
         	        	if(this.tryCount >= this.retryLimit) return;
-        	        	$.ajax(this);
-        		},
-			success: (data) => {		
+            		},
+            			success: (data) => {		
                                 if(!data.startsWith("<div ")){
-					$.ajax(this);
+                    					setTimeout(function() {$.ajax(this);}, 10000);
                                         return;
                                 }
                         function finishPage(){
@@ -400,7 +406,7 @@ function loadNext(next){
                                                 window.scrollBy(0,-document.getElementById("page" + npage).offsetHeight + 3365);
                                                 loading = false;
                                         }
-					resizeImages();
+                    					resizeImages();
                                         scrollWindow(npage);
                                 } else {
                                         scrollContainer.insertAdjacentHTML("afterbegin", data);
@@ -412,24 +418,24 @@ function loadNext(next){
                                         }
                                         fix2(npage);
                                 }
-                staticClocks();
-				likeForm();
-				publishForm();
-				editForm();
-				{% if use_prism %}Prism.highlightAll();{% endif %}
-                        }
-                        finishPage();
-                    },
-                });
+                    staticClocksDyn();
+    				likeForm();
+    				publishForm();
+    				editForm();
+    				{% if use_prism %}Prism.highlightAll();{% endif %}
+                            }
+                            finishPage();
+                        },
+                    });
                 $(function() {
                         $(window).scroll(function() {
                                 if(document.getElementById("page" + npage) && isElementVisible(document.getElementById("page" + npage))){
                                         if(npage == total_pages || npage == 1 || !npage){
                                                 clearUrlParameter();
                                         } else {
-						updateURLParameter2("page", npage);
-                                	}
-				}
+			                    			updateURLParameter2("page", npage);
+                                    	}
+			                  	}
                         });
                 });
                 garbage_disposal(npage);
@@ -449,5 +455,5 @@ $(function() {
 });
 {% include 'navbarfix.js' %}
 {% include 'reader.js' %}
-staticClocks();
+staticClocksDyn();
 {% endblock %}

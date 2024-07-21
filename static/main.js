@@ -438,7 +438,10 @@ function copyToClipboard(el) {
 function staticClocks() {
     var clockScripts = document.getElementsByClassName('clock-script');
     for(script of clockScripts) {
-        eval(new String(script.innerHTML).replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
+        if(!$(script).hasClass('complete')) {
+            eval(new String(script.innerHTML).replace("&gt;", '>').replace("&lt;", '<'));
+            $(script).toggleClass('complete');
+        }
     }
 }
 staticClocks();
