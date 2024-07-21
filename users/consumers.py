@@ -17,9 +17,9 @@ class AuthConsumer(AsyncWebsocketConsumer):
         await self.accept()
         self.connected = True
         while self.connected:
-            asyncio.sleep(15)
+            await asyncio.sleep(15)
             auth = await get_user(self.scope['user'].id)
-            if auth: self.send('y')
+            if auth: self.send(text_data='y')
         pass
 
     async def disconnect(self, close_code):

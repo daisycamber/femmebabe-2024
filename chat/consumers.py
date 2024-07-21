@@ -71,7 +71,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             chat = await get_chat(self.scope['user'].id, self.chat_user.id, text_data)
             if chat:
                 await self.send(text_data=chat)
-            asyncio.sleep(3)
+            await asyncio.sleep(3)
 
     async def disconnect(self, close_code):
         self.connected = False

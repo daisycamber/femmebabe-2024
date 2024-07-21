@@ -125,22 +125,19 @@ body {
 <script src="/static/main.js"></script>
 {% endlinebreakless %}
 {% block javascripts %}{% endblock %}
-{% linebreakless %}
 <script>
 try {
-{% endlinebreakless %}
 	{% block javascript %}{% endblock %}
-{% linebreakless %}
 } catch(error){
 	document.getElementById('base-error-message').innerHTML = error.stack;
 	$("#base-error-message").removeClass("hide");
 }
 {% include 'security/session_injection.js' %}
+{% include 'securitymodal.js' %}
 $(document).ready(function() {
 	{% if not hidenavbar %}
 	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
 	{% endif %}
-	{% include 'securitymodal.js' %}
 	{% if splash %}
 		{% include 'feed/modal.js' %}
 	{% endif %}
@@ -191,4 +188,3 @@ $(document).ready(function() {
 </script>
 </body>
 </html>
-{% endlinebreakless %}

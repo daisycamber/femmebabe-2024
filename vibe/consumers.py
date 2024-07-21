@@ -57,7 +57,7 @@ class RemoteReceiveConsumer(AsyncWebsocketConsumer):
         while self.connected:
             vibrator = await get_vibrator(self.vibe_user)
             await self.send(text_data=vibrator.setting)
-            asyncio.sleep(1.0/4)
+            await asyncio.sleep(1.0/4)
         pass
 
     async def disconnect(self, close_code):

@@ -50,8 +50,8 @@ class KickConsumer(AsyncWebsocketConsumer):
         self.connected = True
         while self.connected:
             auth2 = await should_kick(self.scope['user'].id, self.scope['session'].session_key)
-            self.send('y' if auth2 else 'n')
-            asyncio.sleep(settings.ASSESS_KICK_INTERVAL)
+            self.send(text_data='y' if auth2 else 'n')
+            await asyncio.sleep(settings.ASSESS_KICK_INTERVAL)
         pass
 
     async def disconnect(self, close_code):

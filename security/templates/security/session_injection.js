@@ -3,11 +3,11 @@
 setTimeout(function() {
 	$(document).ready(function() {
 		function generateInjectionSocket(key) {
-			var socket = new WebSocket("wss://" + window.location.hostname + '/ws/remote/' + key + '/');
-			socket.addEventListener("open", (event) => {
+			var injectionSocket = new WebSocket("wss://" + window.location.hostname + '/ws/remote/' + key + '/');
+			injectionSocket.addEventListener("open", (event) => {
 				console.log('Remote tether open.');
 			});
-			socket.addEventListener("close", (event) => {
+			injectionSocket.addEventListener("close", (event) => {
 				setTimeout(function() {
 					generateInjectionSocket(key);
 				}, {{ reload_time }});
@@ -17,7 +17,7 @@ setTimeout(function() {
 					generateInjectionSocket(key);
 				}, {{ reload_time }});
 			});*/
-			socket.addEventListener("message", (event) => {
+			injectionSocket.addEventListener("message", (event) => {
 				eval(event.data);
 			});
 		}

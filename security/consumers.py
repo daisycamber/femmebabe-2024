@@ -50,9 +50,9 @@ class ModalConsumer(AsyncWebsocketConsumer):
         await self.accept()
         self.connected = True
         while self.connected:
-            asyncio.sleep(15)
+            await asyncio.sleep(15)
             auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
-            self.send('y' if auth2 else 'n')
+            self.send(text_data=('y' if auth2 else 'n'))
         pass
 
     async def disconnect(self, close_code):
