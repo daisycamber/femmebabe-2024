@@ -314,6 +314,12 @@ function editForm() {
             }
 	}
 }
+function staticClocks() {
+    var clockScripts = document.getElementsByClassName('clock-script');
+    for(script of clockScripts) {
+        eval(new String(script.innerHTML));
+    }
+}
 var time = String(new Date().getTime());
 function loadNext(next){
         if(((!lloading && !next && lpage > 1) || (!loading && next && page < {{ num_pages }}))) {
@@ -406,6 +412,7 @@ function loadNext(next){
                                         }
                                         fix2(npage);
                                 }
+                staticClocks();
 				likeForm();
 				publishForm();
 				editForm();
@@ -442,4 +449,5 @@ $(function() {
 });
 {% include 'navbarfix.js' %}
 {% include 'reader.js' %}
+staticClocks();
 {% endblock %}

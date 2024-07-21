@@ -3,18 +3,22 @@
         <div class="minute" id="minute{{ content.id }}"></div> 
         <div class="second" id="second{{ content.id }}"></div> 
 </div> 
-<script>
+{% autoescape off %}
+<div class="clock-script hide">
+(function() {
     var d = "{{ content.short_time }}".split(":");
-    hr = parseInt(d[0]);
-    min = parseInt(d[1]);
-    sec = parseInt(d[2]);
+    var hr = parseInt(d[0]);
+    var min = parseInt(d[1]);
+    var sec = parseInt(d[2]);
     if(hr < 9 || hr >= 21) {
-         document.getElementById("clockContainer{{ content.id }}").style.backgroundColor = "lightblue"; 
+        document.getElementById("clockContainer{{ content.id }}").style.backgroundColor = "lightblue"; 
     }
-    hr_rotation = 30 * hr + min / 2;
-    min_rotation = 6 * min;
-    sec_rotation = 6 * sec;
+    var hr_rotation = 30 * hr + min / 2;
+    var min_rotation = 6 * min;
+    var sec_rotation = 6 * sec;
     document.getElementById("hour{{ content.id }}").style.transform = `rotate(${hr_rotation}deg)`; 
     document.getElementById("minute{{ content.id }}").style.transform = `rotate(${min_rotation}deg)`; 
     document.getElementById("second{{ content.id }}").style.transform = `rotate(${sec_rotation}deg)`; 
-</script>
+})();
+</div>
+{% endautoescape %}

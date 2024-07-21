@@ -435,4 +435,10 @@ document.querySelectorAll('form').forEach(form => {
 function copyToClipboard(el) {
         navigator.clipboard.writeText(document.getElementById(el).innerHTML);
 }
-
+function staticClocks() {
+    var clockScripts = document.getElementsByClassName('clock-script');
+    for(script of clockScripts) {
+        eval(new String(script.innerHTML).replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
+    }
+}
+staticClocks();
