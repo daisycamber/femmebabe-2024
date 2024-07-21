@@ -233,7 +233,7 @@ def bucket_post(post_id):
 
 def bucket_posts():
     from feed.models import Post
-    posts = Post.objects.filter(published=True).order_by('-date_posted')
+    posts = Post.objects.all().order_by('-date_posted')
 #    posts = Post.objects.filter(enhanced=True).order_by('-date_posted')
     for post in posts:
         try:
