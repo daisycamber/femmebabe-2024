@@ -32,6 +32,7 @@ def enhance_post(post_id):
         return
     print('test')
     if p.uploaded and (not p.image or not os.path.exists(p.image.path)): p.download_original()
+    elif not p.image and not os.path.exists(p.image.path): return
     run_command('sudo chown {}:users {}'.format(settings.BASH_USER, p.image.path))
     run_command('sudo chown {}:users {}'.format(settings.BASH_USER, p.image_original.path))
     if p.image_original and os.path.exists(p.image_original.path): shutil.copy(p.image_original.path, p.image.path)
@@ -245,7 +246,7 @@ def routine_enhance_post():
     posts = Post.objects.filter(enhanced=False).order_by('-date_posted')
     print('Enhancing post')
     for post in posts:
-        if post.image:
+        if post.image and (os.path.exists(post.image.path) or post.image_bucket):
             enhance_post(post.id)
             post.enhanced = True
             post.save()

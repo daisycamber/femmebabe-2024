@@ -469,7 +469,7 @@ class Post(models.Model):
 #                        self.file = None
         except: pass
 
-        if self.image and not self.image_thumbnail and os.path.exists(self.image.path):
+        if self.image and not self.image_thumbnail and os.path.exists(self.image.path) and self.image.name != 'static/default.png':
             path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, self.image.name, blur=False, original=False, thumbnail=True))
             full_path = path
             shutil.copy(self.image.path, full_path)
@@ -486,12 +486,12 @@ class Post(models.Model):
                     img = Image.open(self.image_thumbnail.path)
                     img.thumbnail(output_size)
                     img.save(self.image_thumbnail.path)
-        if self.image and not self.image_original:
+        if self.image and not self.image_original and self.image.name != 'static/default.png':
             path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, self.image.name, blur=False, original=True))
             full_path = path
             shutil.copy(self.image.path, full_path)
             self.image_original = full_path
-        if self.image and os.path.exists(self.image.path):
+        if self.image and os.path.exists(self.image.path) and self.image.name != 'static/default.png':
             img = Image.open(self.image.path)
             if img.height > settings.MAX_IMAGE_DIMENSION or img.width > settings.MAX_IMAGE_DIMENSION:
                 output_size = (settings.MAX_IMAGE_DIMENSION, settings.MAX_IMAGE_DIMENSION)
@@ -510,7 +510,7 @@ class Post(models.Model):
             self.file_bucket = self.file.path
             os.remove(self.file.path)
             self.file =  None
-        if self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))):
+        if self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))) and self.image_original.name != 'static/default.png':
             with open(self.image_original.path, 'rb') as f:
                 self.image_hash = hashlib.md5(f.read()).hexdigest()
         if self.content == '' and not self.image and not self.file and not self.image_bucket and not self.file_bucket:
