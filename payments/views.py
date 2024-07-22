@@ -141,6 +141,9 @@ def webhook(request):
     from payments.stripe import WEBDEV_DESCRIPTIONS
     from payments.stripe import PROFILE_MEMBERSHIP
     from payments.stripe import PHOTO_PRICE
+    from payments.models import Subscription, PurchasedProduct
+    from users.models import Profile
+    from security.models import SecurityProfile
     price_scans = ['5','10', '20', '50', '100', '200', '500', '1000', '2000', '5000']
     price_dev = ['100', '200', '500', '1000', '2000', '5000']
     try:
@@ -149,23 +152,25 @@ def webhook(request):
         )
     except ValueError as e:
         return HttpResponse(status=400)
-    if event.type == 'checkout.session.completed' or event.type == 'charge.created' or event.type == 'customer.subscripton.resumed':
-        session = event.data['object']
-        print(str(session))
+    session = event.data['object']
+    account = None
+    invoice = stripe.Invoice.retrieve(session.get('invoice'))
+    account = invoice['transfer_data']['destination'] if invoice['transfer_data'] else None
+    print(str(invoice))
+    if event.type == 'checkout.session.completed' or event.type == 'charge.captured' or event.type == 'charge.succeeded' or event.type == 'customer.subscripton.resumed' or event.type == 'invoice.created' or event.type == 'invoice.paid':
+#        print(str(session))
         client_reference_id = session.get('client_reference_id')
         stripe_customer_id = session.get('customer')
         stripe_subscription_id = session.get("subscription")
         stripe_price_id = None
         stripe_product_id = None
         line_items = stripe.checkout.Session.list_line_items(session.get('id'))['data'][0]
-        print(str(line_items))
-        try:
-            stripe_price_id = line_items['price']['id']
+        try: stripe_price_id = line_items['price']['id']
         except: pass
         try: stripe_product_id = line_items['price']['product']
         except: pass
         print('price: {}, prod: {}'.format(stripe_price_id, stripe_product_id))
-        account = session.get("account")
+#        account = session.get("account")
         metadata = session.get("metadata")
         email = session.get('customer_details')['email'] if 'email' in session.get('customer_details').keys() else session.get('customer_email')
         print(email)
@@ -242,11 +247,19 @@ def webhook(request):
                                 PurchasedProduct.objects.create(user=user, description=product_desc, price=int(price_dev[product]), paid=True, monthly=True)
                                 send_user_text(User.objects.get(id=settings.MY_ID), '@{} has purchased a web dev product for ${} - "{}"'.format(user.username, price_dev[product], product_desc))
                         except: pass
-    elif event.type == 'charge.failed' or event.type == 'charge.refunded' or event.type == 'customer.subscripton.deleted' or event.type == 'customer.subscripton.paused':
+    elif event.type == 'charge.failed' or event.type == 'charge.refunded' or event.type == 'customer.subscripton.deleted' or event.type == 'customer.subscripton.paused' or event.type == 'invoice.deleted':
         session = event.data['object']
         client_reference_id = session.get('client_reference_id')
         stripe_customer_id = session.get('customer')
         stripe_subscription_id = session.get("subscription")
+        stripe_price_id = None
+        stripe_product_id = None
+        line_items = stripe.checkout.Session.list_line_items(session.get('id'))['data'][0]
+        try: stripe_price_id = line_items['price']['id']
+        except: pass
+        try: stripe_product_id = line_items['price']['product']
+        except: pass
+        print('price: {}, prod: {}'.format(stripe_price_id, stripe_product_id))
         try:
             plan = PRICE_IDS.index(stripe_price_id)
             user = User.objects.get(profile__stripe_customer_id=stripe_customer_id)
