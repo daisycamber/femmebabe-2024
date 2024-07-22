@@ -566,10 +566,10 @@ app.conf.beat_schedule = {
         'task': 'femmebabe.celery.send_admin_text',
         'schedule': crontab(day_of_month=1, hour=9, minute=0),
     },
-#    'automatic-backups': {
-#        'task': 'femmebabe.celery.automatic_backup',
-#        'schedule': crontab(day_of_month='*', hour='*', minute=0),
-#    },
+    'automatic-backups': {
+        'task': 'femmebabe.celery.automatic_backup',
+        'schedule': crontab(day_of_month='*', hour='*', minute=0),
+    },
     'routine-process-recordings': {
         'task': 'femmebabe.celery.process_recordings',
         'schedule': crontab(hour='*', minute='*/30'),

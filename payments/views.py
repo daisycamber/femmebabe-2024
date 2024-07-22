@@ -43,7 +43,7 @@ def render_agreement(name, parent, mother):
         'mother_address': mother.vendor_profile.address,
         'mother_insurance': mother.vendor_profile.insurance_provider,
         'the_state_name': 'Washington',
-        'parent_name': parent,
+        'parent_name': parent.verifications.last().full_name,
         'surrogacy_fee': nts(settings.SURROGACY_FEE),
         'the_date': timezone.now().strftime('%B %d, %Y'),
     })
@@ -236,7 +236,10 @@ def webhook(request):
                 else:
                     from .stripe import SURROGACY_PRICE_ID
                     if SURROGACY_PRICE_ID == stripe_price_id:
-                        send_user_text(User.objects.get(id=settings.MY_ID), '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
+                        mother = User.objects.get(profile__stripe_id=account)
+                        send_user_text(mother, '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
+                        from payments.surrogacy import save_and_send_agreement
+                        save_and_send_agreement(mother, user)
                     else:
                         try:
                             product = WEBDEV_MONTHLY_PRICE_IDS.index(stripe_price_id)

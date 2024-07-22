@@ -17,7 +17,7 @@ echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(h
 echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a "/home/team/.bashrc"
 echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a /root/.bashrc
 echo "source /etc/bashrc" | sudo tee -a /home/team/.profile
-echo "/var/log/commands.log" | sudo tee -a /etc/logrotate.d/syslog
+echo "/var/log/commands.log {}" | sudo tee -a /etc/logrotate.d/syslog
 echo "local6.*    /var/log/commands.log" | sudo tee -a "/etc/rsyslog.d/bash.conf"
 sudo service rsyslog restart
 sudo cp /home/$USER/$DIR/config/ascripts /etc/ascripts

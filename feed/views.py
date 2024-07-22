@@ -210,13 +210,13 @@ def grid_api(request, index):
 
             posts = get_posts_for_query(request, request.GET.get('q'))
         post = posts[index%len(posts)]
-        if request.user.is_authenticated and (post.author in request.user.profile.subscriptions.all() or (request.user == post.author or post.recipient == request.user)):
+        if request.user.is_authenticated and (post.author in request.user.profile.subscriptions.all() or (request.user == post.author or (post.recipient and post.recipient == request.user))):
             url = post.get_image_url() if not square else post.get_image_thumb_url()
         elif post.public:
             url = post.get_face_blur_url() if not square else post.get_face_blur_thumb_url()
         elif not post.public:
             url = post.get_blur_url() if not square else post.get_blur_thumb_url()
-            if not url or url == '/media/static/default.png': url = post.get_face_blur_url() if not square else post.get_face_blur_thumb_url()
+            #if not url or url == '/media/static/default.png': url = post.get_face_blur_url() if not square else post.get_face_blur_thumb_url()
     full_url = request.path + get_qs(request.GET)
     if square:
         addstyle = ''

@@ -53,7 +53,7 @@ class Post(models.Model):
     image_original = models.ImageField(upload_to=get_image_path, null=True, blank=True, max_length=500)
     image_original_bucket = models.ImageField(storage=MediaStorage(), upload_to=get_image_path, null=True, blank=True, max_length=500)
     image_censored = models.ImageField(upload_to=get_image_path, null=True, blank=True, max_length=500)
-    image_censored_bucket = models.ImageField(upload_to=get_image_path, null=True, blank=True, max_length=500)
+    image_censored_bucket = models.ImageField(storage=MediaStorage(), null=True, blank=True, max_length=500)
     image_censored_thumbnail = models.ImageField(upload_to=get_image_path, null=True, blank=True, max_length=500)
     image_censored_thumbnail_bucket = models.ImageField(storage=MediaStorage(), upload_to=get_image_path, null=True, blank=True, max_length=500)
     image_public = models.ImageField(upload_to=get_image_path, null=True, blank=True, max_length=500)

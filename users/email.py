@@ -55,7 +55,7 @@ def send_email(address, mail_subject, html_message):
 def phone_number_format(phone):
     return '+{} ({}) {}-{}'.format(phone[1:2], phone[2:5], phone[5:8], phone[-4:])
 
-def send_html_email(user, mail_subject, html_message):
+def send_html_email(user, mail_subject, html_message, attachments=None):
     to_email = user.email
     username = user.username
     if to_email == '':
@@ -64,6 +64,9 @@ def send_html_email(user, mail_subject, html_message):
     html_message = '<!DOCTYPE html><html><head><link rel="shortcut-icon" type="image/x-icon" href="{}/media/static/femmebabe.png" /></head><body><div style="background-color: {}; padding: 5px; border-radius: 10px;"><img src="{}{}" style="border-radius: 50%; width: 40px; height: 40px;"></img><div style="display: inline-block; padding: 10px; position: relative; top:-10px;"><h1>{}</h1></div></div><div style="background-color: {}; white-space: pre-wrap;">'.format(settings.BASE_URL, settings.HEADER_COLOR, settings.BASE_URL, settings.ICON_URL, settings.SITE_NAME, settings.BACKGROUND_COLOR) + html_message + '</div><div style="background-color: {}; padding: 10px; border-radius: 10px;"><p style="display: inline;">If you would like to stop receiving these emails, please <a href="{}" title="Unsubscribe from all {} emails">unsubscribe</a>.</p>  <b>Email: <a href="mailto:{}">{}</a> Phone: <a href="tel:{}">{}</a> - <a href="{}" title="Visit {}">{}</a></div></body></html>'.format(settings.FOOTER_COLOR, unsub_link, settings.SITE_NAME, settings.EMAIL_ADDRESS, settings.EMAIL_ADDRESS, settings.PHONE_NUMBER, phone_number_format(settings.PHONE_NUMBER), settings.BASE_URL, settings.SITE_NAME, settings.BASE_URL)
     msg = EmailMultiAlternatives(mail_subject, strip_tags(html_message), settings.DEFAULT_FROM_EMAIL, [to_email], headers={'List-Unsubscribe' : '<' + unsub_link + '>'},)
     msg.attach_alternative(html_message, "text/html")
+    if attachments:
+        for a in attachments:
+            email.attach_file(a)
     profile = user.profile
     try:
         msg.send(fail_silently=False)
@@ -96,7 +99,7 @@ def send_html_email_backend(sender, to_email, mail_subject, html_message):
         profile.email_valid=False
         profile.save()
 
-def send_html_email_template(user, mail_subject, html_message):
+def send_html_email_template(user, mail_subject, html_message, attachments=None):
     posts = Post.objects.filter(author__id=settings.MY_ID, enhanced=True, private=False, public=True, published=True, recipient=None).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=posts).order_by('?').first()
     photo_url = post.get_face_blur_thumb_url(True)
@@ -107,7 +110,7 @@ def send_html_email_template(user, mail_subject, html_message):
     renderedtemplate = template.render(context)
     subjcontext = Context(ctxt)
     subjrenderedtemplate = subjtemplate.render(subjcontext)
-    send_html_email(user, subjrenderedtemplate, renderedtemplate)
+    send_html_email(user, subjrenderedtemplate, renderedtemplate, attachments=None)
 
 def sendwelcomeemail(request, user):
     User = get_user_model()

@@ -103,3 +103,17 @@ class VendorPaymentsProfile(models.Model):
 class CustomerPaymentsProfile(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer_payments_profile')
     bitcoin_address = models.CharField(default='', null=True, blank=True, max_length=34)
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (str(uuid.uuid4()), ext)
+    return os.path.join('surrogacy/', filename)
+
+class SurrogacyPlan(models.Model):
+    id = models.AutoField(primary_key=True)
+    mother = models.ForeignKey(User, related_name='surrogacy_plans', null=True, blank=True, on_delete=models.DO_NOTHING)
+    expected_parent = models.ForeignKey(User, related_name='parents_plans', null=True, blank=True, on_delete=models.DO_NOTHING)
+    expected_parents_partner = models.ForeignKey(User, related_name='parents_partners_plans', null=True, blank=True, on_delete=models.DO_NOTHING)
+    agreement = models.FileField(null=True, blank=True, upload_to=get_file_path, max_length=500)
+    signed = models.BooleanField(default=False)
+    sent = models.BooleanField(default=False)

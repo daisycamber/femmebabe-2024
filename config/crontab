@@ -4,9 +4,9 @@
 */5 * * * * /home/team/femmebabe/venv/bin/python /home/team/femmebabe/routine_caption.py
 * * * * * /home/team/femmebabe/venv/bin/python /home/team/femmebabe/crypto_trading.py
 */30 * * * * /home/team/femmebabe/venv/bin/python /home/team/femmebabe/process_recordings.py
-0 * * * * sudo backup
+#0 * * * * sudo backup
 */10 * * * * sudo systemctl start celery
 */10 * * * * sudo systemctl start apache2
-#*/10 * * * * sudo systemctl start daphne
+*/10 * * * * sudo systemctl start daphne
 0 * * * * sudo systemctl start clamav-daemon
 */30 * * * * sudo commitlog

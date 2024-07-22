@@ -9816,3 +9816,101 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-19T19:45:46.373396-07:00 femmebabe team: team [51674]: sudo systemctl start cudo-miner
 2024-07-19T19:48:14.397345-07:00 femmebabe team: team [51674]: sudo systemctl status cudo-miner
 2024-07-19T19:48:24.729822-07:00 femmebabe team: team [51674]: sudo systemctl enable cudo-miner
+2024-07-22T13:00:04.693155-07:00 femmebabe team: team [89465]: source /etc/bashrc
+2024-07-22T13:00:06.330099-07:00 femmebabe team: team [89465]: cmds
+2024-07-22T13:00:07.378542-07:00 femmebabe team: team [89465]: logs
+2024-07-22T13:00:09.381246-07:00 femmebabe team: team [89465]: cmds
+2024-07-22T13:00:14.656434-07:00 femmebabe team: team [89465]: logs
+2024-07-22T13:02:22.231408-07:00 femmebabe team: team [93830]: source .profile
+2024-07-22T13:02:33.537316-07:00 femmebabe team: team [93830]: nano .profile
+2024-07-22T13:02:37.039249-07:00 femmebabe team: team [93830]: source .profile
+2024-07-22T13:02:44.081267-07:00 femmebabe team: team [94165]: source .profile
+2024-07-22T13:05:06.798961-07:00 femmebabe team: team [94165]: sudo ascript jump
+2024-07-22T13:05:19.489867-07:00 femmebabe team: team [94641]: logout
+2024-07-22T13:05:33.557241-07:00 femmebabe team: team [94165]: sudo nano /etc/ssh/sshd_config
+2024-07-22T13:05:44.014455-07:00 femmebabe team: team [94165]: sudo service ssh restart
+2024-07-22T13:05:47.035024-07:00 femmebabe team: team [94831]: exit
+2024-07-22T13:05:51.320030-07:00 femmebabe team: team [94919]: exit
+2024-07-22T13:05:52.180110-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:05:53.420808-07:00 femmebabe team: team [94919]: logs
+2024-07-22T13:05:55.351372-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:05:57.049434-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:05:58.226241-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:05:59.521294-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:06:01.566367-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:06:02.758759-07:00 femmebabe team: team [94919]: clear
+2024-07-22T13:06:03.524345-07:00 femmebabe team: team [94919]: cmds
+2024-07-22T13:06:09.885243-07:00 femmebabe team: team [94641]: logout
+2024-07-22T13:06:11.469343-07:00 femmebabe team: team [89465]: jump
+2024-07-22T13:06:14.735800-07:00 femmebabe team: team [95192]: exit
+2024-07-22T13:06:16.118789-07:00 femmebabe team: team [95192]: ls
+2024-07-22T13:06:19.413138-07:00 femmebabe team: team [95275]: exit
+2024-07-22T13:06:20.357540-07:00 femmebabe team: team [95275]: ls
+2024-07-22T13:06:21.723683-07:00 femmebabe team: team [95275]: clear
+2024-07-22T13:06:35.538978-07:00 femmebabe team: team [95275]: sudo systemctl status
+2024-07-22T13:12:15.946547-07:00 femmebabe team: team [94165]: sudo visudo
+2024-07-22T13:15:52.851395-07:00 femmebabe team: team [95275]: cd femmebabe
+2024-07-22T13:15:55.302236-07:00 femmebabe team: team [95275]: venv
+2024-07-22T13:16:13.737613-07:00 femmebabe team: team [95275]: source venv/bin/activate
+2024-07-22T13:17:16.677638-07:00 femmebabe team: team [95275]: nano misc/templates/misc/terms.html 
+2024-07-22T13:17:25.168097-07:00 femmebabe team: team [95275]: sudo systemctl reload apache2
+2024-07-22T13:17:30.192455-07:00 femmebabe team: team [95275]: sudo purgecache
+2024-07-22T14:06:31.190783-07:00 femmebabe team: team [95275]: python manage.py startapp surrogacy
+2024-07-22T14:11:55.228685-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T14:12:04.113548-07:00 femmebabe team: team [95275]: nano feed/models.py
+2024-07-22T14:14:06.938976-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T14:14:22.705981-07:00 femmebabe team: team [95275]: nano feed/models.py
+2024-07-22T14:14:35.052346-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T14:14:44.585584-07:00 femmebabe team: team [95275]: nano feed/models.py
+2024-07-22T14:15:00.115640-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T14:18:41.482230-07:00 femmebabe team: team [95275]: nano payments/agreements.py
+2024-07-22T14:21:57.642542-07:00 femmebabe team: team [95275]: nano payments/agreements.py
+2024-07-22T14:22:03.981465-07:00 femmebabe team: team [95275]: nano payments/agreements.py
+2024-07-22T14:22:12.922920-07:00 femmebabe team: team [95275]: nano payments/agreements.py feed/books.py
+2024-07-22T14:22:26.328084-07:00 femmebabe team: team [95275]: cp payments/agreements.py feed/books.py
+2024-07-22T14:22:33.815585-07:00 femmebabe team: team [95275]: nano feed/books.py 
+2024-07-22T14:24:40.483100-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:24:54.794329-07:00 femmebabe team: team [95275]: cat payments/templates/payments/surrogacy.html 
+2024-07-22T14:25:09.004944-07:00 femmebabe team: team [95275]: cat payments/templates/payments/surrogacy.txt 
+2024-07-22T14:36:59.798598-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:37:06.712559-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:38:18.465821-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:44:21.321320-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:44:36.918976-07:00 femmebabe team: team [95275]: pip install Spire.Doc
+2024-07-22T14:45:37.966049-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:46:18.523715-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:46:29.938117-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:47:03.161653-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:47:15.298664-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:47:18.848194-07:00 femmebabe team: team [95275]: mkdir media/surrogacy
+2024-07-22T14:47:46.800031-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:48:35.290389-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:49:23.734118-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:49:33.500910-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:55:08.362581-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:55:21.536539-07:00 femmebabe team: team [95275]: nano payments/agreements.py 
+2024-07-22T14:55:42.318476-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:55:53.401574-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T14:55:57.308702-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T14:58:26.983247-07:00 femmebabe team: team [95275]: nano users/email.py
+2024-07-22T14:59:44.757767-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:00:17.241165-07:00 femmebabe team: team [95275]: nano users/email.py
+2024-07-22T15:00:53.150781-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:01:13.026966-07:00 femmebabe team: team [95275]: nano users/email.py
+2024-07-22T15:01:30.014006-07:00 femmebabe team: team [95275]: nano users/email.py
+2024-07-22T15:06:16.583085-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:06:30.768811-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T15:07:15.777115-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:07:29.523650-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T15:10:41.089802-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:10:46.713237-07:00 femmebabe team: team [95275]: sudo systemctl reload apache2
+2024-07-22T15:10:47.475890-07:00 femmebabe team: team [95275]: logs
+2024-07-22T15:10:54.229878-07:00 femmebabe team: team [95275]: python manage.py check
+2024-07-22T15:11:16.812769-07:00 femmebabe team: team [95275]: nano payments/models.py 
+2024-07-22T15:11:25.373641-07:00 femmebabe team: team [95275]: python manage.py check
+2024-07-22T15:12:45.821629-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:12:52.224000-07:00 femmebabe team: team [95275]: python manage.py check
+2024-07-22T15:12:56.964285-07:00 femmebabe team: team [95275]: sudo systemctl reload apache2
+2024-07-22T15:13:20.608983-07:00 femmebabe team: team [95275]: python manage.py makemigrations && python manage.py migrate
+2024-07-22T15:16:33.562721-07:00 femmebabe team: team [95275]: sudo systemctl reload apache2
+2024-07-22T15:18:45.127127-07:00 femmebabe team: team [95275]: nano payments/views.py 
