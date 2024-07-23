@@ -62,7 +62,7 @@ class Post(models.Model):
     image_static = models.CharField(max_length=500, null=True, blank=True)
     image_sightengine = models.TextField(blank=True)
     file = models.FileField(upload_to=get_file_path, null=True, blank=True)
-    file_bucket = models.FileField(upload_to=get_file_path, null=True, blank=True, max_length=500)
+    file_bucket = models.FileField(storage=MediaStorage(), null=True, blank=True, max_length=500)
     file_sightengine = models.TextField(blank=True)
     private = models.BooleanField(default=False)
     public = models.BooleanField(default=False)
@@ -506,13 +506,12 @@ class Post(models.Model):
                 img.thumbnail(output_size)
                 img = Image.open(self.image.path)
                 img.save(self.image.path)
-        if self.file and not self.file_bucket:
+        if self.file and (self.file and ((not self.file_bucket) or self.file.path != this.file.path)):
             towrite = self.file_bucket.storage.open(self.file.path, mode='wb')
             with self.file.open('rb') as file:
                 towrite.write(file.read())
+            towrite.close()
             self.file_bucket = self.file.path
-            os.remove(self.file.path)
-            self.file =  None
         if self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))) and self.image_original.name != 'static/default.png':
             with open(self.image_original.path, 'rb') as f:
                 self.image_hash = hashlib.md5(f.read()).hexdigest()
@@ -523,6 +522,17 @@ class Post(models.Model):
             self.upload()
         else:
             super(Post, self).save(*args, **kwargs)
+        if this.content != self.content and len(self.content) > 500:
+            from feed.books import generate_post_book
+            self.file = generate_post_book(self)
+            super(Post, self).save(*args, **kwargs)
+            towrite = self.file_bucket.storage.open(self.file.path, mode='wb')
+            with self.file.open('rb') as file:
+                towrite.write(file.read())
+            self.file_bucket = self.file.path
+            towrite.close()
+            super(Post, self).save(*args, **kwargs)
+
 
     def delete(self):
         if self.image:

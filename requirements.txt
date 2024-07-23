@@ -20,6 +20,7 @@ bleach==6.1.0
 blinker==1.7.0
 boto3==1.28.72
 botocore==1.31.72
+bs4==0.0.2
 cbor2==5.6.3
 celery==5.3.6
 certifi==2024.2.2
@@ -89,6 +90,7 @@ h5py==3.11.0
 hmmlearn==0.3.2
 hpack==3.0.0
 hstspreload==2024.4.1
+htmldocx==0.0.6
 http_ece==1.2.0
 httpcore==0.9.1
 httplib2==0.22.0
@@ -166,7 +168,7 @@ pandas==1.5.0
 pdf2image==1.16.0
 pdf417==0.8.1
 penn==0.0.13
-Pillow==9.5.0
+pillow==10.4.0
 platformdirs==4.2.0
 pluggy==1.4.0
 plum-dispatch==1.7.4
@@ -206,6 +208,7 @@ pytest==6.2.5
 pytest-datadir==1.5.0
 pytest-regressions==2.2.0
 python-dateutil==2.9.0.post0
+python-docx==1.1.2
 python-engineio==4.9.1
 python-jose==3.3.0
 python-socketio==5.11.3

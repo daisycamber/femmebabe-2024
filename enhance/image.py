@@ -148,7 +148,6 @@ def bucket_post(post_id):
             p.save()
             return
     except: return
-    if p.uploaded: return
     try:
         os.remove(p.image_censored.path)
     except: pass

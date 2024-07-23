@@ -43,7 +43,7 @@ def render_agreement(name, parent, mother):
         'mother_address': mother.vendor_profile.address,
         'mother_insurance': mother.vendor_profile.insurance_provider,
         'the_state_name': 'Washington',
-        'parent_name': parent.verifications.last().full_name,
+        'parent_name': parent.verifications.last().full_name if parent and parent.verifications.last() else '________________',
         'surrogacy_fee': nts(settings.SURROGACY_FEE),
         'the_date': timezone.now().strftime('%B %d, %Y'),
     })
@@ -73,7 +73,7 @@ def idscan(request):
 @cache_page(60*60*24*365)
 def surrogacy(request, username):
     vendor = User.objects.get(profile__name=username, profile__vendor=True)
-    agreement = render_agreement(vendor.profile.name if not vendor.verifications.last() else vendor.verifications.last().full_name, request.user.verifications.last().full_name if request.user.is_authenticated and request.user.verifications.last() else '', vendor)
+    agreement = render_agreement(vendor.profile.name if not vendor.verifications.last() else vendor.verifications.last().full_name, request.user.verifications.last().full_name if request.user.is_authenticated and request.user.verifications.last() else None, vendor)
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
     return render(request, 'payments/surrogacy.html', {'title': 'Surrogacy Plans', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'post': post, 'vendor': vendor, 'agreement': agreement, 'surrogacy_fee': settings.SURROGACY_FEE,})

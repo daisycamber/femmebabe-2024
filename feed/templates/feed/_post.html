@@ -50,29 +50,29 @@
     {% endwith %}
 {% endif %} 
     {% endif %}
-    {% if post.file %}
-    {% if post.file.name|filetype == 'mp3' %}
+    {% if post.file_bucket %}
+    {% if post.file_bucket.name|filetype == 'mp3' %}
     <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
   	<source src="{{ post.get_file_url }}" type="audio/mpeg">
 	Your browser does not support the audio element.
     </audio>
-    {% elif post.file.name|filetype == 'wav' %}
+    {% elif post.file_bucket.name|filetype == 'wav' %}
     <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
   	<source src="{{ post.get_file_url }}" type="audio/wav">
 	Your browser does not support the audio element.
     </audio>
-    {% elif post.file.name|filetype == 'aac' %}
+    {% elif post.file_bucket.name|filetype == 'aac' %}
     <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}">
 	<source src="{{ post.get_file_url }}" type="audio/mp4">
         Your browser does not support the audio element.
     </audio>
-    {% elif post.file.name|filetype == 'mp4' or post.file.name|filetype == 'mov' %}
+    {% elif post.file_bucket.name|filetype == 'mp4' or post.file_bucket.name|filetype == 'mov' %}
     <video width="100%" controls preload="metadata">
         <source src="{{ post.get_file_url }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     {% else %}
-    <p>This post contains an unsupported file which is not being displayed.</p>
+    <p>This post contains a download. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
     {% endif %}
     {% endif %}
 {% if post.image_sightengine %}<p>SightEngine Image Output - {{ post.image_sightengine }}</p>{% endif %}

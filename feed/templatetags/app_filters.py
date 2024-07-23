@@ -672,7 +672,7 @@ def highlightcode(value):
     if not value: return value
     if not settings.USE_PRISM: return value
     op = []
-    v = value.split('***')
+    v = value.replace('‘','\'').replace('’','\'').split('***')
     for t in v:
         split = re.split('\*[\w\.]+\*', t)
         language = '\n'

@@ -1,30 +1,79 @@
-def generate(name, text):
+def generate_post_book(post):
+    from django.conf import settings
+    import os, uuid
+    path = os.path.join(settings.BASE_DIR, 'media/books/', '{}.docx'.format(str(uuid.uuid4())))
+    return generate_book(post.content, path)
+
+def generate_code_book(value):
+    from django.conf import settings
+    if not value: return value
+    if not settings.USE_PRISM: return value
+    import re, html
+    op = []
+    title = value.split('\n')[0]
+    v = value.replace('‘','\'').replace('’','\'').split('***')
+    for t in v:
+        split = re.split('\*[\w\.]+\*', t)
+        language = '\n'
+        try:
+            language = t[len(split[0]):len(t)-len(split[1])][1:-1].lower()
+        except: pass
+        if language == 'html': language = 'markup'
+        code = split[1] if len(split) > 1 else False
+        if code:
+            op = op + [{'text': split[0], 'lang': language, 'code': html.escape(code) if language != 'markup' else '<!-- {} -->'.format(code)}]
+#            op = op + [language,]'<pre><code class="language-{}">'.format(language if language != 'html' else 'markup') + '{% autoescape on %}' + code + '{% endautoescape %}</code></pre>'
+        else:
+            op = op + [{'text': split[0]}]
+    from django.template.loader import render_to_string
+    return render_to_string('feed/book.html', {'value': op}), title
+
+def generate_book(text, out_path_docx):
+    from autocorrect import Speller
+    speller = Speller()
+    replace = {
+        'Tango': 'Django',
+        'request.OST': 'request.POST',
+        'EMI_ADDRESS': 'EMAIL_ADDRESS',
+        'EMI_HST_PASSWORD': 'EMAIL_HOST_PASSWORD',
+        'SON': 'JSON',
+        'Teilif.com': 'Twilio.com',
+        'Teilif': 'Twilio',
+    #    '': '',
+    }
+    def spell(line):
+        text = speller(line)
+        for key, value in replace.items():
+            text = re.sub('\s' + key + '\s', ' ' + value + ' ', text)
+            text = re.sub('\s' + key + '\.', ' ' + value + '.', text)
+            text = re.sub('\s' + key + '\,', ' ' + value + ',', text)
+        return text
+    from docx import Document
+    from htmldocx import HtmlToDocx
+    document = Document()
     import uuid, os
     from django.conf import settings
-    folder = 'surrogacy'
-    HEIGHT = 11
-    WIDTH = 8.5
-    output_name = name + '-' + str(uuid.uuid4())
-    base_dir = os.path.join(settings.BASE_DIR, 'media/{}/'.format(folder))
+    from pygments import highlight
+    from pygments.lexers import PythonLexer, HtmlLexer, BashLexer, JavascriptLexer
+    from pygments.formatters import ImageFormatter
+    HEIGHT = 9
+    WIDTH = 7
+
+    font_size = 13
+
     code_lines = 45
     code_per_line = 90
 
-    font_size = 13
+    base_dir = str(os.path.join(settings.BASE_DIR, 'media/books/'))
 
     from PIL import Image
     from docx import Document
     from docx.oxml import parse_xml, OxmlElement
     from docx.oxml.ns import nsdecls, qn
     from docx.shared import Inches, Cm, Pt
-    from pygments import highlight
-    from pygments.lexers import PythonLexer, HtmlLexer, BashLexer, JavascriptLexer
-    from pygments.formatters import ImageFormatter
     import re
 
     document = Document()
-
-    text = ''
-
     title = text.split('\n')[0]
 
     document.add_heading(title, 0)
@@ -86,19 +135,19 @@ def generate(name, text):
             language = t[len(split[0]):len(t)-len(split[1])][1:-1].lower()
         except: pass
         for line in split[0].split('\n'):
-            paragraph = add_paragraph(line)
+            paragraph = add_paragraph(spell(line))
         code = split[1] if len(split) > 1 else False
         if code:
             run = True
             while run:
                 s = code.split('\n')[:code_lines]
+                code = '\n'.join(code.split('\n')[code_lines:])
                 lines_formatted = []
                 for code_line in s:
-                    for x in range(0, int(len(code_line)/code_per_line)):
-                        lines_formatted = lines_formatted + [('(continued line) ' if x > 0 else '') + code_line[x*code_per_line:(x+1)*code_per_line]]
+                    for x in range(0, int(len(code_line)/code_per_line) + 1):
+                        lines_formatted = lines_formatted + ([('(continued line) ' if x > 0 else '') + code_line[x*code_per_line:(x+1)*code_per_line]] if len(code_line[x*code_per_line:(x+1)*code_per_line]) > 0 else [])
                 c = '\n'.join(lines_formatted)
-                remaining_code = '\n'.join(code.split('\n')[code_lines:])
-                image_path = base_dir + 'image{}.png'.format(image_count)
+                image_path = base_dir + 'image-{}-{}.png'.format(str(uuid.uuid4()),image_count)
                 with open(image_path, "wb") as f:
                     add = True
                     print(language)
@@ -115,14 +164,13 @@ def generate(name, text):
                     else:
                         add = False
                         for line in c.split('\n'):
-                            paragraph = document.add_paragraph(line)
-                            paragraph.style = document.styles['Normal']
+                            paragraph = add_paragraph(spell(line))
                     f.close()
                     if add:
                         width = Image.open(image_path).size[0] / 90
                         if width > WIDTH - 1: width = WIDTH - 1
                         document.add_picture(image_path, width=Inches(width))
                     image_count = image_count + 1
-                    if len(remaining_code) == 0: run = False
-
-    document.save(base_dir + '{}.docx'.format(output_name))
+                    if len(code) == 0: run = False
+    document.save(out_path_docx)
+    return out_path_docx
