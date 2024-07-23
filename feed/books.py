@@ -145,7 +145,7 @@ def generate_book(text, out_path_docx):
                 lines_formatted = []
                 for code_line in s:
                     for x in range(0, int(len(code_line)/code_per_line) + 1):
-                        lines_formatted = lines_formatted + ([('(continued line) ' if x > 0 else '') + code_line[x*code_per_line:(x+1)*code_per_line]] if len(code_line[x*code_per_line:(x+1)*code_per_line]) > 0 else [])
+                        lines_formatted = lines_formatted + ([('→' if x > 0 else '') + code_line[x*code_per_line:(x+1)*code_per_line]] if len(code_line[x*code_per_line:(x+1)*code_per_line]) > 0 else [])
                 c = '\n'.join(lines_formatted)
                 image_path = base_dir + 'image-{}-{}.png'.format(str(uuid.uuid4()),image_count)
                 with open(image_path, "wb") as f:

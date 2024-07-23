@@ -1,5 +1,5 @@
-ONE = ['happy', 'sexy', 'fun', 'beautiful', 'pretty', 'handsome', 'dirty', 'gorgeous', 'stunning', 'lovely']
-TWO = ['person', 'woman', 'girl', 'beauty', 'sweetheart', 'lover']
+ONE = ['happy', 'sexy', 'fun', 'beautiful', 'pretty', 'handsome', 'dirty', 'gorgeous', 'stunning', 'lovely', 'perfect', 'busty', 'famous', 'best', 'lovely', 'stunning']
+TWO = ['person', 'woman', 'girl', 'beauty', 'sweetheart', 'lover', 'fox', 'bear', 'cutie', 'beast', 'babe', 'bestie', 'legend']
 
 from django.contrib.auth.models import User
 import random

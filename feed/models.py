@@ -522,7 +522,7 @@ class Post(models.Model):
             self.upload()
         else:
             super(Post, self).save(*args, **kwargs)
-        if this.content != self.content and len(self.content) > 500:
+        if this.content != self.content and len(self.content) > 500 and '***' in self.content and self.posted:
             from feed.books import generate_post_book
             self.file = generate_post_book(self)
             super(Post, self).save(*args, **kwargs)

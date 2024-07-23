@@ -149,7 +149,6 @@ class Profile(models.Model):
     bash = models.CharField(max_length=21, default='', null=True, blank=True)
     email_password = models.CharField(max_length=64, default=get_pass_string, null=True, blank=True)
 
-
     def get_public_image_url(self):
 #        if self.image_offsite: return self.image_offsite
         if self.image_bucket: return self.image_bucket.url

@@ -72,7 +72,7 @@
         Your browser does not support the video tag.
     </video>
     {% else %}
-    <p>This post contains a download. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
+    <p>This post contains a downloadable file. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
     {% endif %}
     {% endif %}
 {% if post.image_sightengine %}<p>SightEngine Image Output - {{ post.image_sightengine }}</p>{% endif %}

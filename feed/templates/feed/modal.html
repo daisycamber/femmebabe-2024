@@ -6,7 +6,9 @@
 </div>
 <div style="position: fixed; left: 0; top: 0; background-color: {% if darkmode %}#667788{% else %}#ccddff{% endif %}; width: 100%; height: 120%;" class="cmodal hide">
 <div class="disappear">
-<img src="{{ icon_url }}" alt="{{ the_site_name }}" width="50" height="50" style="position: absolute; left: 5px; top: 5px; border-radius: 50%;">
+<div style="position: absolute; left: 5px; top: 5px;">
+<legend><img src="{{ icon_url }}" alt="{{ the_site_name }}" align="left" width="50" height="50" style="border-radius: 50%;"> <b>{{ the_site_name }}</b></legend>
+</div>
 <p style="margin-top: 15px; text-align: center;" id="current-text2">{{ current_time_text|trans }}</p>
 <div style="position: absolute; right: 5px; top: 5px;">
 {% include 'sclock.html' %}
