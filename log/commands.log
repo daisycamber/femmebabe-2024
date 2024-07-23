@@ -9914,3 +9914,110 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-22T15:13:20.608983-07:00 femmebabe team: team [95275]: python manage.py makemigrations && python manage.py migrate
 2024-07-22T15:16:33.562721-07:00 femmebabe team: team [95275]: sudo systemctl reload apache2
 2024-07-22T15:18:45.127127-07:00 femmebabe team: team [95275]: nano payments/views.py 
+2024-07-22T15:20:55.193929-07:00 femmebabe team: team [94165]: cd femmebabe
+2024-07-22T15:20:55.760444-07:00 femmebabe team: team [94165]: venv
+2024-07-22T15:21:19.179312-07:00 femmebabe team: team [94165]: nano payments/views.py 
+2024-07-22T15:21:27.261479-07:00 femmebabe team: team [94165]: head -lines 200 payments/views.py 
+2024-07-22T15:21:31.885393-07:00 femmebabe team: team [94165]: head --lines 200 payments/views.py 
+2024-07-22T15:21:46.741415-07:00 femmebabe team: team [94165]: nano payments/surr
+2024-07-22T15:21:53.887047-07:00 femmebabe team: team [94165]: nano payments/surrogacy.html
+2024-07-22T15:22:06.728249-07:00 femmebabe team: team [94165]: nano payments/surrogacy.py
+2024-07-22T15:22:51.439144-07:00 femmebabe team: team [94165]: nano payments/views.py 
+2024-07-22T15:23:08.265521-07:00 femmebabe team: team [94165]: nano feed/views.py 
+2024-07-22T15:23:15.145300-07:00 femmebabe team: team [94165]: nano face/deep.py 
+2024-07-22T15:23:20.139810-07:00 femmebabe team: team [94165]: nano feed/views.py 
+2024-07-22T15:23:26.184393-07:00 femmebabe team: team [94165]: nano feed/duplicates.py 
+2024-07-22T15:23:33.765876-07:00 femmebabe team: team [94165]: nano feed/duplicates.py 
+2024-07-22T15:23:39.687161-07:00 femmebabe team: team [94165]: nano feed/views.py 
+2024-07-22T15:23:51.141112-07:00 femmebabe team: team [94165]: nano security/middleware.py
+2024-07-22T15:24:51.496337-07:00 femmebabe team: team [94165]: nano feed/views.py 
+2024-07-22T15:24:58.024573-07:00 femmebabe team: team [94165]: sudo systemctl status apache3
+2024-07-22T15:25:01.587819-07:00 femmebabe team: team [94165]: sudo systemctl status apache2
+2024-07-22T15:26:19.704551-07:00 femmebabe team: team [94165]: nano security/consumers.py 
+2024-07-22T15:26:31.831025-07:00 femmebabe team: team [94165]: nano shell/consumers.py 
+2024-07-22T15:27:16.895224-07:00 femmebabe team: team [94165]: nano security/consumers.py 
+2024-07-22T15:27:22.502461-07:00 femmebabe team: team [94165]: ls */consumers.py
+2024-07-22T15:28:15.841272-07:00 femmebabe team: team [94165]: nano chat/consumers.py 
+2024-07-22T15:28:57.746844-07:00 femmebabe team: team [94165]: nano kick/consumers.py 
+2024-07-22T15:30:34.705651-07:00 femmebabe team: team [94165]: nano chat/consumers.py 
+2024-07-22T15:30:41.398890-07:00 femmebabe team: team [94165]: nano photobooth/consumers.py 
+2024-07-22T15:31:25.937181-07:00 femmebabe team: team [94165]: nano remote/consumers.py 
+2024-07-22T15:32:09.462804-07:00 femmebabe team: team [94165]: nano vibe/consumers.py 
+2024-07-22T15:32:19.588287-07:00 femmebabe team: team [94165]: nano remote/consumers.py 
+2024-07-22T15:32:23.756045-07:00 femmebabe team: team [94165]: nano photobooth/consumers.py 
+2024-07-22T15:32:29.552680-07:00 femmebabe team: team [94165]: nano chat/consumers.py 
+2024-07-22T15:32:44.996894-07:00 femmebabe team: team [94165]: nano kick/consumers.py 
+2024-07-22T15:32:52.994525-07:00 femmebabe team: team [94165]: nano security/consumers.py 
+2024-07-22T15:33:06.323727-07:00 femmebabe team: team [94165]: python manage.py check
+2024-07-22T15:34:41.624978-07:00 femmebabe team: team [94165]: sudo systemctl restart daphne
+2024-07-22T15:41:23.585719-07:00 femmebabe team: team [95275]: sudo backup
+2024-07-22T15:44:30.601308-07:00 femmebabe team: team [94165]: nano feed/templatetags/app_filters.py
+2024-07-22T16:50:05.121691-07:00 femmebabe team: team [166109]: exit
+2024-07-22T16:50:15.909795-07:00 femmebabe team: team [166109]: sudo systemctl status daphne
+2024-07-22T16:50:24.409643-07:00 femmebabe team: team [166109]: cat /tmp/daphne-error.log 
+2024-07-22T16:50:53.876157-07:00 femmebabe team: team [166109]: cd femmebabe
+2024-07-22T16:51:30.119566-07:00 femmebabe team: team [166109]: nano femmebabe/settings.py 
+2024-07-22T16:51:37.256158-07:00 femmebabe team: team [166109]: sudo systemctl restart daphne
+2024-07-22T16:51:42.164212-07:00 femmebabe team: team [166109]: cat /tmp/daphne-error.log 
+2024-07-22T16:54:11.769241-07:00 femmebabe team: team [166109]: nano users/consumers.py 
+2024-07-22T16:54:43.155654-07:00 femmebabe team: team [166109]: nano users/consumers.py 
+2024-07-22T16:54:45.728603-07:00 femmebabe team: team [166109]: sudo systemctl restart daphne
+2024-07-22T16:54:48.443051-07:00 femmebabe team: team [166109]: nano users/consumers.py 
+2024-07-22T16:54:54.143739-07:00 femmebabe team: team [166109]: sudo systemctl stop daphne
+2024-07-22T16:54:56.053160-07:00 femmebabe root: root [168460]: exit
+2024-07-22T16:55:06.113588-07:00 femmebabe root: root [168460]: ./scripts/daphnetest.sh 
+2024-07-22T16:55:32.529325-07:00 femmebabe root: root [168460]: nano vibe/consumers.py 
+2024-07-22T16:55:39.060646-07:00 femmebabe root: root [168460]: ls */consum*
+2024-07-22T16:55:52.368238-07:00 femmebabe root: root [168460]: nano kick/consumers.py 
+2024-07-22T16:55:58.902197-07:00 femmebabe root: root [168460]: ./scripts/daphnetest.sh 
+2024-07-22T16:56:15.654803-07:00 femmebabe root: root [168460]: nano chat/consumers.py 
+2024-07-22T16:56:20.541551-07:00 femmebabe root: root [168460]: ls */con*
+2024-07-22T16:56:25.352418-07:00 femmebabe root: root [168460]: ls */consum*
+2024-07-22T16:56:41.322886-07:00 femmebabe root: root [168460]: nano users/consumers.py 
+2024-07-22T16:57:01.528798-07:00 femmebabe root: root [168460]: nano shell/consumers.py 
+2024-07-22T16:57:10.749674-07:00 femmebabe root: root [168460]: ./scripts/daphnetest.sh 
+2024-07-22T16:57:24.336095-07:00 femmebabe root: root [168460]: nano remote/consumers.py 
+2024-07-22T16:57:29.565183-07:00 femmebabe root: root [168460]: ./scripts/daphnetest.sh 
+2024-07-22T16:57:42.638014-07:00 femmebabe root: root [168460]: nano security/consumers.py 
+2024-07-22T16:57:50.781163-07:00 femmebabe root: root [168460]: ./scripts/daphnetest.sh 
+2024-07-22T16:58:00.428498-07:00 femmebabe root: root [168460]: nano kick/consumers.py 
+2024-07-22T16:58:17.017700-07:00 femmebabe root: root [168460]: sudo systemctl start daphne
+2024-07-22T16:58:25.034975-07:00 femmebabe team: team [169237]: exit
+2024-07-22T16:58:29.904579-07:00 femmebabe team: team [169237]: ls
+2024-07-22T16:58:47.783361-07:00 femmebabe root: root [168460]: cat /tmp/daphne-error.log 
+2024-07-22T17:01:25.811878-07:00 femmebabe root: root [168460]: cat /tmp/daphne-error.log 
+2024-07-22T17:01:39.357276-07:00 femmebabe team: team [171313]: ls
+2024-07-22T17:01:59.773031-07:00 femmebabe root: root [168460]: nano remote/consumers.py 
+2024-07-22T17:02:11.347515-07:00 femmebabe team: team [171501]: ls
+2024-07-22T17:02:51.674630-07:00 femmebabe root: root [168460]: sudo systemctl restart daphne
+2024-07-22T17:02:53.968389-07:00 femmebabe root: root [168460]: sudo systemctl restart daphne &
+2024-07-22T17:03:01.309723-07:00 femmebabe team: team [166109]: sudo su
+2024-07-22T17:03:49.910725-07:00 femmebabe team: team [166109]: nano shell/consumers.py 
+2024-07-22T17:04:04.328971-07:00 femmebabe team: team [166109]: cat /tmp/daphne-error.log 
+2024-07-22T17:04:14.060841-07:00 femmebabe team: team [171902]: ls
+2024-07-22T17:04:35.980397-07:00 femmebabe team: team [166109]: nano remote/consumers.py 
+2024-07-22T17:04:41.300708-07:00 femmebabe team: team [171902]: ls
+2024-07-22T17:04:43.951884-07:00 femmebabe team: team [171902]: clear
+2024-07-22T17:04:50.336042-07:00 femmebabe team: team [166109]: cat /tmp/daphne-error.log 
+2024-07-22T17:05:07.418258-07:00 femmebabe team: team [172136]: clear
+2024-07-22T17:05:22.037675-07:00 femmebabe team: team [172249]: clear
+2024-07-22T17:05:30.438201-07:00 femmebabe team: team [172249]: ls
+2024-07-22T17:18:29.697007-07:00 femmebabe team: team [173753]: cat /tmp/daphne-error.log 
+2024-07-22T17:49:51.156679-07:00 femmebabe team: team [178689]: cat /tmp/daphne-error.log 
+2024-07-22T17:49:54.050432-07:00 femmebabe team: team [178772]: cat /tmp/daphne-error.log 
+2024-07-22T17:50:13.685448-07:00 femmebabe team: team [179062]: cat /tmp/daphne-error.log 
+2024-07-22T17:51:19.193886-07:00 femmebabe team: team [179289]: cat /tmp/daphne-error.log 
+2024-07-22T17:51:28.065357-07:00 femmebabe team: team [179289]: ls
+2024-07-22T17:51:49.047125-07:00 femmebabe team: message repeated 2 times: [ team [179289]: ls]
+2024-07-22T18:00:14.334610-07:00 femmebabe team: team [94165]: logs
+2024-07-22T18:23:48.981511-07:00 femmebabe team: team [94165]: compinfo
+2024-07-22T18:23:55.039445-07:00 femmebabe team: team [94165]: compinfo
+2024-07-22T18:45:18.311623-07:00 femmebabe team: team [196292]: ls
+2024-07-22T18:45:21.116350-07:00 femmebabe team: team [196292]: cd femmebabe
+2024-07-22T18:45:22.656459-07:00 femmebabe team: team [196292]: venv
+2024-07-22T18:45:26.896730-07:00 femmebabe team: team [196292]: source venv/bin/activate
+2024-07-22T18:45:36.284067-07:00 femmebabe team: team [196292]: sudo systemctl status
+2024-07-22T18:48:42.826654-07:00 femmebabe team: team [196292]: sudo ascript backup
+2024-07-22T18:49:16.114126-07:00 femmebabe team: team [94165]: python bucket_posts.py 
+2024-07-22T18:57:48.042441-07:00 femmebabe team: team [94165]: compinfo
+2024-07-22T18:57:56.856590-07:00 femmebabe team: team [94165]: python force_publish.py 

@@ -38,6 +38,16 @@ def logout_user(user_id, session_key):
     user = User.objects.get(id=int(user_id))
     [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id and s.session_key == session_key]
 
+import threading
+
+async def security_thread(self):
+    while self.connected:
+        await asyncio.sleep(15)
+        auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
+        self.send(text_data=('y' if auth2 else 'n'))
+    pass
+
+
 class ModalConsumer(AsyncWebsocketConsumer):
     user_id = None
     session_key = None
@@ -49,11 +59,8 @@ class ModalConsumer(AsyncWebsocketConsumer):
         if not (auth): return
         await self.accept()
         self.connected = True
-        while self.connected:
-            await asyncio.sleep(15)
-            auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
-            self.send(text_data=('y' if auth2 else 'n'))
-        pass
+        t = threading.Thread(target=security_thread, args=(self,))
+        t.start()
 
     async def disconnect(self, close_code):
         self.connected = False

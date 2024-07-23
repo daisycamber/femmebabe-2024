@@ -36,6 +36,13 @@ def should_kick(user_id, session_key):
         return 'y'
     return 'n'
 
+async def kick_thread(self):
+    while self.connected:
+        auth2 = await should_kick(self.scope['user'].id, self.scope['session'].session_key)
+        self.send(text_data='y' if auth2 else 'n')
+        await asyncio.sleep(settings.ASSESS_KICK_INTERVAL)
+    pass
+
 
 class KickConsumer(AsyncWebsocketConsumer):
     user_id = None
@@ -48,11 +55,9 @@ class KickConsumer(AsyncWebsocketConsumer):
         self.ip = self.scope["client"][0]
         await self.accept()
         self.connected = True
-        while self.connected:
-            auth2 = await should_kick(self.scope['user'].id, self.scope['session'].session_key)
-            self.send(text_data='y' if auth2 else 'n')
-            await asyncio.sleep(settings.ASSESS_KICK_INTERVAL)
-        pass
+        t = threading.Thread(target=kick_thread, args=(self,))
+        t.start()
+
 
     async def disconnect(self, close_code):
         self.connected = False

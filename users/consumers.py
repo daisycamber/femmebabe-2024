@@ -1,6 +1,7 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 import time
+import asyncio
 
 @sync_to_async
 def get_user(id):
@@ -11,15 +12,20 @@ def get_user(id):
     except: return False
     return True
 
+async def user_thread(self):
+    while self.connected:
+        await asyncio.sleep(15)
+        auth = await get_user(self.scope['user'].id)
+        if auth: self.send(text_data='y')
+
+
 class AuthConsumer(AsyncWebsocketConsumer):
     connected = False
     async def connect(self):
         await self.accept()
         self.connected = True
-        while self.connected:
-            await asyncio.sleep(15)
-            auth = await get_user(self.scope['user'].id)
-            if auth: self.send(text_data='y')
+        t = threading.Thread(target=user_thread, args=(self,))
+        t.start()
         pass
 
     async def disconnect(self, close_code):

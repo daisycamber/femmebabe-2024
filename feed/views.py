@@ -33,7 +33,6 @@ from feed.align import face_rotation
 from security.security import fraud_detect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
-from itertools import chain
 from misc.views import get_posts_for_query
 from feed.templatetags.app_filters import highlight_query
 from feed.models import get_image_path, get_file_path
@@ -162,6 +161,7 @@ from translate.translate import translate
 @cache_page(60*60*24*7)
 @vary_on_cookie
 def grid_api(request, index):
+    from itertools import chain
     now = datetime.datetime.fromtimestamp(int(request.GET.get('time')) / 1000, tz=pytz.UTC)
     username = request.GET.get('name')
     profile = Profile.objects.filter(name=username, vendor=True).first()
@@ -233,6 +233,7 @@ def grid_api(request, index):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*7)
 def profile_grid(request, username):
+    from itertools import chain
     now = timezone.now()
     likes = request.GET.get('likes')
     profile = get_object_or_404(Profile, name=username, vendor=True)
@@ -403,6 +404,7 @@ def profiles(request):
 @cache_page(60*60*24*7)
 @vary_on_cookie
 def profile(request, username):
+    from itertools import chain
     now = None
     try:
         now = datetime.datetime.fromtimestamp(int(request.GET.get('time')) / 1000, tz=pytz.UTC)

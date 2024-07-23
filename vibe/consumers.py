@@ -46,6 +46,14 @@ class RemoteConsumer(AsyncWebsocketConsumer):
         pass
     pass
 
+async def vibe_thread(self):
+    while self.connected:
+        vibrator = await get_vibrator(self.vibe_user)
+        await self.send(text_data=vibrator.setting)
+        await asyncio.sleep(1.0/4)
+    pass
+
+
 # Send the setting from the foreign user
 class RemoteReceiveConsumer(AsyncWebsocketConsumer):
     vibe_user = None
@@ -54,11 +62,8 @@ class RemoteReceiveConsumer(AsyncWebsocketConsumer):
         self.vibe_user = await get_vibe_user(self.scope['url_route']['kwargs']['username'])
         await self.accept()
         self.connected = True
-        while self.connected:
-            vibrator = await get_vibrator(self.vibe_user)
-            await self.send(text_data=vibrator.setting)
-            await asyncio.sleep(1.0/4)
-        pass
+        t = threading.Thread(target=vibe_thread, args=(self,))
+        t.start()
 
     async def disconnect(self, close_code):
         self.connected = False

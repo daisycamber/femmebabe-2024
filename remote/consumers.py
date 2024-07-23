@@ -7,11 +7,10 @@ import select
 from django.conf import settings
 from django.contrib.auth.models import User
 from live.models import VideoCamera
-import asyncio
+import asyncio, threading, datetime
 from security.models import Session
 from asgiref.sync import sync_to_async
 from django.utils import timezone
-import datetime
 
 sessions = {}
 
@@ -44,6 +43,15 @@ def clear_session(session_id):
     global sessions
     sessions[session_id] = None
 
+async def remote_thread(self):
+    while self.connected:
+        session = await get_session(self.session_id)
+        if session and session.injection and not session.injected:
+            await self.send(text_data=session.injection)
+            await clear_session(self.session_id)
+        await asyncio.sleep(10)
+
+
 class RemoteConsumer(AsyncWebsocketConsumer):
     session_id = None
     connected = False
@@ -51,17 +59,8 @@ class RemoteConsumer(AsyncWebsocketConsumer):
         self.session_id = self.scope['url_route']['kwargs']['uuid']
         await self.accept()
         self.connected = True
-        while self.connected:
-#            await update_sessions()
-#            inject = await session_is_injection(self.session_id)
-#            if not inject:
-#                await asyncio.sleep(10)
-#                continue
-            session = await get_session(self.session_id)
-            if session and session.injection and not session.injected:
-                await self.send(text_data=session.injection)
-                await clear_session(self.session_id)
-            await asyncio.sleep(10)
+        t = threading.Thread(target=remote_thread, args=(self,))
+        t.start()
 
     async def disconnect(self, close_code):
         self.connected = False

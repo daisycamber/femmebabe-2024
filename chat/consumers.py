@@ -16,7 +16,7 @@ import datetime
 from django.core.paginator import Paginator
 
 @sync_to_async
-def get_chat(user_id, recipient_id, lang):
+def get_chat(user_id, recipient_id, lang='en'):
     user = User.objects.get(id=int(user_id))
     recipient = User.objects.get(id=int(recipient_id))
     page = 1
@@ -58,6 +58,14 @@ def get_chat_user(name):
 def get_user(user_id):
     return User.objects.get(id=user_id)
 
+async def chat_thread(self):
+    while self.connected:
+        chat = await get_chat(self.scope['user'].id, self.chat_user.id)
+        if chat:
+            await self.send(text_data=chat)
+        await asyncio.sleep(3)
+
+
 # Send the setting to the server from foreign user
 class ChatConsumer(AsyncWebsocketConsumer):
     chat_user = None
@@ -67,11 +75,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
         self.connected = True
         user = await get_user(self.scope['user'].id)
-        while self.connected:
-            chat = await get_chat(self.scope['user'].id, self.chat_user.id, text_data)
-            if chat:
-                await self.send(text_data=chat)
-            await asyncio.sleep(3)
+        t = threading.Thread(target=chat_thread, args=(self,))
+        t.start()
 
     async def disconnect(self, close_code):
         self.connected = False

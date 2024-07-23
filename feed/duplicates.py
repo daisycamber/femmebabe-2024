@@ -1,8 +1,8 @@
-import hashlib, os
-from feed.models import Post
-from femmebabe.celery import delay_delete_post
 
 def remove_post_duplicates():
+    import hashlib, os
+    from feed.models import Post
+    from femmebabe.celery import delay_delete_post
     duplicates = []
     hash_keys = dict()
     for post in Post.objects.all().order_by('date_posted'):
