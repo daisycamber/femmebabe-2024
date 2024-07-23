@@ -383,7 +383,8 @@ FIDO_SERVER_NAME=SITE_NAME
 BASE_DESCRIPTION = 'Entertainment, photos, videos, audio, and livestreaming, as well as ID scanning, web development and surrogacy services.'
 
 # Icon for navbar and media
-ICON_URL = '/media/static/femmebabe.png'
+ICON_URL = '/media/static/logo.png'
+PWA_ICON_URL = '/media/static/femmebabe.png'
 
 # PWA config
 PWA_APP_NAME = SITE_NAME
@@ -396,7 +397,7 @@ PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
 PWA_APP_ICONS = [
     {
-        'src': ICON_URL,
+        'src': PWA_ICON_URL,
         'sizes': '160x160'
     }
 ]
@@ -661,6 +662,7 @@ GITHUB_URL = 'https://github.com/daisycamber'
 LINKEDIN_URL = 'https://www.linkedin.com/in/charlotte-grace-harper/'
 INSTAGRAM_LINK = 'https://instagram.com/yourlocalfemme'
 TWITTER_LINK = 'https://twitter.com/teamfemmebabe'
+YOUTUBE_LINK = 'https://youtube.com/@daisymakeup'
 
 # Static site
 STATIC_SITE_URL = 'https://' + STATIC_DOMAIN

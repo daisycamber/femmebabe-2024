@@ -34,7 +34,6 @@
 {% endblock %}
 {% block javascript %}
 {% if request.user.is_authenticated and request.user.profile.identity_verified %}
-{% endif %}
 var stripe = Stripe('{{ stripe_pubkey }}');
 function surrogacyPlan(){
         fetch("/payments/surrogacy/checkout/finalize/payment/?vendor={{ vendor.id }}")
@@ -46,4 +45,5 @@ function surrogacyPlan(){
             return stripe.redirectToCheckout({ sessionId: data.sessionId });
           });
 }
+{% endif %}
 {% endblock %}

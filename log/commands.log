@@ -10021,3 +10021,86 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-22T18:49:16.114126-07:00 femmebabe team: team [94165]: python bucket_posts.py 
 2024-07-22T18:57:48.042441-07:00 femmebabe team: team [94165]: compinfo
 2024-07-22T18:57:56.856590-07:00 femmebabe team: team [94165]: python force_publish.py 
+2024-07-22T18:58:10.263123-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T18:58:13.131855-07:00 femmebabe team: team [94165]: sudo purgecache
+2024-07-22T19:05:51.193335-07:00 femmebabe team: team [94165]: cat /tmp/daphne-error.log 
+2024-07-22T19:06:02.887727-07:00 femmebabe team: team [94165]: nano remote/consumers.py 
+2024-07-22T19:07:48.037145-07:00 femmebabe team: team [203432]: ls
+2024-07-22T19:07:49.202474-07:00 femmebabe team: team [203432]: cd femmebabe
+2024-07-22T19:07:50.122076-07:00 femmebabe team: team [203432]: venv
+2024-07-22T19:07:57.010998-07:00 femmebabe team: team [203432]: sudo cat /usr/bin/ascript
+2024-07-22T19:09:29.809714-07:00 femmebabe team: team [203432]: sudo cat /usr/bin/ascript
+2024-07-22T19:09:47.551852-07:00 femmebabe team: team [203432]: cp media/static/femmebabe.png media/static/logo.png
+2024-07-22T19:09:59.445436-07:00 femmebabe team: team [203432]: cp media/static/femmebabe-full.png media/static/femmebabe.png 
+2024-07-22T19:10:17.092888-07:00 femmebabe team: team [203432]: cat femmebabe/settings.py | grep ICON
+2024-07-22T19:10:32.913480-07:00 femmebabe team: team [203432]: cat femmebabe/settings.py | grep -nH ICON
+2024-07-22T19:11:43.089683-07:00 femmebabe team: team [203432]: nano femmebabe/settings.py 
+2024-07-22T19:13:03.637309-07:00 femmebabe team: team [203432]: sudo apt install imagemagick
+2024-07-22T19:13:58.942756-07:00 femmebabe team: team [215935]: ls
+2024-07-22T19:14:00.479319-07:00 femmebabe team: team [215935]: cd femmebabe
+2024-07-22T19:14:05.976817-07:00 femmebabe team: team [215935]: source venv/bin/activate
+2024-07-22T19:14:10.854758-07:00 femmebabe team: team [203432]: sudo apt remove --purge nvidia-dkms-390 nvidia-driver-390
+2024-07-22T19:14:28.050260-07:00 femmebabe team: team [94165]: python bucket_posts.py 
+2024-07-22T19:14:38.128744-07:00 femmebabe team: team [203432]: convert media/static/femmebabe-full.png -resize 160x160 media/static/femmebabe.png
+2024-07-22T19:14:45.911793-07:00 femmebabe team: team [203432]: sudo systemctl reload apache2
+2024-07-22T19:20:20.614692-07:00 femmebabe team: team [95275]: python manage.py shell
+2024-07-22T19:22:04.280877-07:00 femmebabe team: team [94165]: python bucket_posts.py 
+2024-07-22T19:23:23.506444-07:00 femmebabe team: team [95275]: nano enhance/image.py 
+2024-07-22T19:23:36.551959-07:00 femmebabe team: team [95275]: python bucket_posts.py 
+2024-07-22T19:23:43.900721-07:00 femmebabe team: team [95275]: python bucket_posts.py 
+2024-07-22T19:24:02.112042-07:00 femmebabe team: team [94165]: python bucket_posts.py 
+2024-07-22T19:24:46.061249-07:00 femmebabe team: team [95275]: nano enhance/image.py 
+2024-07-22T19:25:16.997347-07:00 femmebabe team: team [95275]: python force_publish.py 
+2024-07-22T19:25:25.445421-07:00 femmebabe team: team [95275]: sudo purgecache
+2024-07-22T19:25:29.639324-07:00 femmebabe team: team [95275]: logs
+2024-07-22T19:25:29.723426-07:00 femmebabe team: team [196292]: sudo backup
+2024-07-22T19:26:42.133003-07:00 femmebabe team: team [94165]: python bucket_posts.py 
+2024-07-22T19:26:47.252293-07:00 femmebabe team: team [94165]: sudo purgecache
+2024-07-22T19:34:08.846131-07:00 femmebabe team: team [94165]: nano femmebabe/seett
+2024-07-22T19:34:11.785957-07:00 femmebabe team: team [95275]: python bucket_posts.py 
+2024-07-22T19:34:51.793902-07:00 femmebabe team: team [94165]: nano femmebabe/settings.py 
+2024-07-22T19:35:17.656515-07:00 femmebabe team: team [94165]: nano feed/context_processors.py 
+2024-07-22T19:36:31.820239-07:00 femmebabe team: team [94165]: nano templates/footer.html 
+2024-07-22T19:36:55.730867-07:00 femmebabe team: team [203432]: sudo systemctl reload apache2
+2024-07-22T19:37:07.128103-07:00 femmebabe team: team [94165]: sudo purgecache
+2024-07-22T20:39:41.515359-07:00 femmebabe team: team [236329]: ls
+2024-07-22T20:40:01.145576-07:00 femmebabe team: team [236447]: ls
+2024-07-22T20:40:29.520177-07:00 femmebabe team: team [236685]: ls
+2024-07-22T20:40:50.135692-07:00 femmebabe team: team [236788]: ls
+2024-07-22T20:41:16.037388-07:00 femmebabe team: team [236985]: ls
+2024-07-22T20:41:37.642490-07:00 femmebabe team: team [237087]: ls
+2024-07-22T20:42:00.568798-07:00 femmebabe team: team [237179]: ls
+2024-07-22T20:45:17.527516-07:00 femmebabe team: team [94165]: cat feed/templatetags/app_filters.py | grep get_qs
+2024-07-22T20:45:32.642090-07:00 femmebabe team: team [94165]: nano feed/templatetags/app_filters.py
+2024-07-22T20:45:35.893674-07:00 femmebabe team: team [94165]: cat feed/templatetags/app_filters.py | grep get_qs -nH
+2024-07-22T20:48:26.032820-07:00 femmebabe team: team [94165]: nano feed/templatetags/app_filters.py
+2024-07-22T20:48:33.104565-07:00 femmebabe team: team [94165]: cat feed/templatetags/app_filters.py | grep simple -nH
+2024-07-22T20:50:22.768467-07:00 femmebabe team: team [94165]: nano feed/templatetags/app_filters.py
+2024-07-22T20:50:29.521530-07:00 femmebabe team: team [94165]: cat feed/templatetags/app_filters.py | grep -nH get_qs
+2024-07-22T20:52:07.047045-07:00 femmebabe team: team [94165]: nano feed/templatetags/app_filters.py
+2024-07-22T20:52:10.948264-07:00 femmebabe team: team [94165]: cat feed/templatetags/app_filters.py | grep -nH get_quer
+2024-07-22T20:52:22.422491-07:00 femmebabe team: team [94165]: nano security/middleware.py
+2024-07-22T20:52:25.100270-07:00 femmebabe team: team [94165]: nano security/middleware.py
+2024-07-22T20:52:45.751990-07:00 femmebabe team: team [94165]: nano misc/templates/misc/search.html 
+2024-07-22T20:52:56.781214-07:00 femmebabe team: team [94165]: nano templates/pagelinks.html 
+2024-07-22T20:55:20.197122-07:00 femmebabe team: team [94165]: nano templates/jumptopage.html 
+2024-07-22T20:55:25.050361-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T20:55:28.288715-07:00 femmebabe team: team [94165]: sudo purgecache
+2024-07-22T20:57:14.107372-07:00 femmebabe team: team [94165]: nano misc/templates/misc/search.html 
+2024-07-22T20:57:19.182392-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T20:58:19.239547-07:00 femmebabe team: team [94165]: nano misc/templates/misc/search.html 
+2024-07-22T20:58:40.872210-07:00 femmebabe team: team [94165]: nano misc/templates/misc/search.html 
+2024-07-22T20:58:42.267478-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T20:59:24.908329-07:00 femmebabe team: team [94165]: nano misc/templates/misc/search.html 
+2024-07-22T20:59:25.735877-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T21:07:40.482128-07:00 femmebabe team: team [94165]: nano feed/models.py
+2024-07-22T21:07:50.252398-07:00 femmebabe team: team [94165]: python manage.py check
+2024-07-22T21:10:43.154219-07:00 femmebabe team: team [94165]: nano test.txt
+2024-07-22T21:13:28.971055-07:00 femmebabe team: team [94165]: nano feed.mod
+2024-07-22T21:15:33.900209-07:00 femmebabe team: team [94165]: nano feed/models.py
+2024-07-22T21:15:39.518366-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2
+2024-07-22T21:17:49.523917-07:00 femmebabe team: team [94165]: logs
+2024-07-22T21:18:20.916958-07:00 femmebabe team: team [94165]: nano feed/models.py
+2024-07-22T21:18:41.560429-07:00 femmebabe team: team [94165]: nanao feed/models.py
+2024-07-22T21:19:33.804027-07:00 femmebabe team: team [94165]: nano feed/models.py
+2024-07-22T21:19:36.588077-07:00 femmebabe team: team [94165]: sudo systemctl reload apache2

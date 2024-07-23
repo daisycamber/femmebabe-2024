@@ -30,6 +30,7 @@ def enhance_post(post_id):
     if p.enhanced and not p.uploaded:
         bucket_post(p.id)
         return
+    if p.enhanced: return
     print('test')
     if p.uploaded and (not p.image or not os.path.exists(p.image.path)): p.download_original()
     elif not p.image and not os.path.exists(p.image.path): return
@@ -144,8 +145,10 @@ def bucket_post(post_id):
         if not p.image or not os.path.exists(p.image.path):
             p.enhanced = True
             p.uploaded = True
+            p.save()
             return
     except: return
+    if p.uploaded: return
     try:
         os.remove(p.image_censored.path)
     except: pass
@@ -233,7 +236,7 @@ def bucket_post(post_id):
 
 def bucket_posts():
     from feed.models import Post
-    posts = Post.objects.all().order_by('-date_posted')
+    posts = Post.objects.filter(uploaded=False).order_by('-date_posted')
 #    posts = Post.objects.filter(enhanced=True).order_by('-date_posted')
     for post in posts:
         try:

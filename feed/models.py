@@ -21,12 +21,11 @@ import hashlib, pytz
 from security.censor_image import censor_image
 from retargeting.path import get_email_path
 
+models.TextField.register_lookup(Length, 'length')
+
 def b64enctxt(txt):
     txt = txt[:math.floor(200 * 6/8)]
     return base64.urlsafe_b64encode(bytes(txt, 'utf-8')).decode("unicode_escape")
-
-models.TextField.register_lookup(Length, 'length')
-
 
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -396,7 +395,7 @@ class Post(models.Model):
         try:
             this = Post.objects.filter(id=self.id).first()
             super(Post, self).save(*args, **kwargs)
-            if (not this or this.private != self.private or this.public != self.public or this.image != self.image or this.content != self.content):
+            if (not this or this.private != self.private or this.public != self.public or this.image != self.image):
                 if self.image:
                     full_path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, self.image.name))
                     shutil.copy(self.image.path, full_path)
@@ -519,7 +518,11 @@ class Post(models.Model):
                 self.image_hash = hashlib.md5(f.read()).hexdigest()
         if self.content == '' and not self.image and not self.file and not self.image_bucket and not self.file_bucket:
             self.private = True
-        super(Post, self).save(*args, **kwargs)
+        if (not this or this.private != self.private or this.public != self.public or this.image != self.image):
+            super(Post, self).save(*args, **kwargs)
+            self.upload()
+        else:
+            super(Post, self).save(*args, **kwargs)
 
     def delete(self):
         if self.image:

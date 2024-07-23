@@ -36,6 +36,7 @@ def feed_context(request):
     context_data['show_social_links'] = settings.SHOW_SOCIAL_LINKS
     context_data['instagram_link'] = settings.INSTAGRAM_LINK
     context_data['twitter_link'] = settings.TWITTER_LINK
+    context_data['youtube_link'] = settings.YOUTUBE_LINK
     context_data['static_url'] = settings.STATIC_SITE_URL
     context_data['admin_email'] = settings.EMAIL_ADDRESS
     context_data['myusername'] = User.objects.get(id=settings.MY_ID).profile.name if User.objects.filter(id=settings.MY_ID).first() else 'Daisy'

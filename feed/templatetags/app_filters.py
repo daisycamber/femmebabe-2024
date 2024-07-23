@@ -99,6 +99,15 @@ register.tag('blocktrans', do_blocktrans)
 def sitemapdate(date):
     return date.strftime('%Y-%m-%d')
 
+@register.simple_tag(takes_context=True)
+def updateurlparam(context, key, val):
+    request = context['request']
+    request.GET.mutable = True
+    request.GET[key] = val
+    qs = get_querystring(request.GET)
+    return qs
+
+
 @register.filter('trans')
 def trans(content):
     return translate(get_current_request(), content)

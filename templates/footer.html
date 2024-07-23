@@ -10,7 +10,7 @@
         </div>
 	{% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated and not hide_logo %}
 	<div style="text-align: center;">
-          {% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated %}{% if show_social_links %} <a href="{{ instagram_link }}" about="_blank" title="Visit me on Instagram" style="font-size: 20px;" class="ml-1"><i class="bi bi-instagram"></i></a> <a href="{{ twitter_link }}" about="_blank" title="Visit me on Twitter" style="font-size: 20px;" class="ml-1"><i class="bi bi-twitter"></i></a>{% endif %}{% endif %}
+          {% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated %}{% if show_social_links %} <a href="{{ instagram_link }}" about="_blank" title="Visit me on Instagram" style="font-size: 20px;" class="ml-1"><i class="bi bi-instagram"></i></a> <a href="{{ twitter_link }}" about="_blank" title="Visit me on Twitter" style="font-size: 20px;" class="ml-1"><i class="bi bi-twitter"></i></a> <a href="{{ youtube_link }}" about="_blank" title="Watch me on YouTube" style="font-size: 20px;" class="ml-1"><i class="bi bi-youtube"></i></a>{% endif %}{% endif %}
           <img alt="{{ 'Accepting Visa and Mastercard'|trans }}" style="height: auto; width: 80%; max-width: 75px;" height="auto" src="/media/static/visa-mastercard.png"></img>
 	</div>
 	{% endif %}
