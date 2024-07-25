@@ -15,4 +15,6 @@ def send_photo_email(user, post):
         'protocol': 'https',
         'photo': photo_url,
     })
-    send_html_email(user, 'Your Photo From  {}, {}'.format(settings.SITE_NAME, user.username), html_message)
+    if not post.file or not os.path.exists(post.file.path): post.download_file()
+    att = [post.file.path]
+    send_html_email(user, 'Your Photo From  {}, {}'.format(settings.SITE_NAME, user.username), html_message, attachmments=att)

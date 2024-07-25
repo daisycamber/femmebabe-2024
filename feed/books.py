@@ -128,6 +128,7 @@ def generate_book(text, out_path_docx):
 
     image_count = 0
 
+    images = []
     for t in text_split:
         split = re.split('\*[\w\.]+\*', t)
         language = '\n'
@@ -153,14 +154,19 @@ def generate_book(text, out_path_docx):
                     print(language)
                     if language == 'python':
                         f.write(highlight(c, PythonLexer(), ImageFormatter()))
+                        images = images + [image_path]
                     elif language == 'javascript':
                         f.write(highlight(c, JavascriptLexer(), ImageFormatter()))
+                        images = images + [image_path]
                     elif language == 'html':
                         f.write(highlight(c, HtmlLexer(), ImageFormatter()))
+                        images = images + [image_path]
                     elif language == 'bash':
                         f.write(highlight(c, BashLexer(), ImageFormatter()))
+                        images = images + [image_path]
                     elif language.startswith('screenshot'):
                         image_path = base_dir + language
+                        images = images + [image_path]
                     else:
                         add = False
                         for line in c.split('\n'):
@@ -173,4 +179,6 @@ def generate_book(text, out_path_docx):
                     image_count = image_count + 1
                     if len(code) == 0: run = False
     document.save(out_path_docx)
+    for image in images:
+        os.path.delete(image)
     return out_path_docx

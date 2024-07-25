@@ -24,11 +24,11 @@
     {% endautoescape %}
  
     {% if post.image %} 
-{% if post.author == request.user and not request.GET.show %}
+{% if post.author == request.user and not post.public and not request.GET.show %}
     {% with post.get_blur_thumb_url as imurl %}
    <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
     {% endwith %}
-{% elif post.author == request.user or post.recipient == request.user %}
+{% elif post.public or post.author == request.user or post.recipient == request.user %}
     {% with post.get_image_url as imurl %}
    <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
     {% endwith %}
@@ -51,6 +51,7 @@
 {% endif %} 
     {% endif %}
     {% if post.file_bucket %}
+    {% if not post.paid_file or request.user in post.paid_users.all %}
     {% if post.file_bucket.name|filetype == 'mp3' %}
     <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
   	<source src="{{ post.get_file_url }}" type="audio/mpeg">
@@ -74,15 +75,18 @@
     {% else %}
     <p>This post contains a downloadable file. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
     {% endif %}
+    {% else %}
+    <p>This post contains a paid file. Please buy the post to see the file.</p>
+    {% endif %}
     {% endif %}
 {% if post.image_sightengine %}<p>SightEngine Image Output - {{ post.image_sightengine }}</p>{% endif %}
 {% if post.file_sightengine %}<p>SightEngine File Output - {{ post.file_sightengine }}</p>{% endif %}
 <hr>
 <div style="display: inline-block;">
 {% if not request.path|startswith:'/feed/post/' %}
-<a href="{% url 'feed:post-detail' uuid=post.uuid %}" title="{% blocktrans %}View post{% if user.is_authenticated and post.author == user %}, or rotate photo{% endif %}{% endblocktrans %}"><button type="button" class="btn btn-primary"><i class="bi bi-binoculars-fill"></i> {{ 'View'|trans }}</button></a>
+<a href="{{ post.get_absolute_url }}" title="{% blocktrans %}View post{% if user.is_authenticated and post.author == user %}, or rotate photo{% endif %}{% endblocktrans %}"><button type="button" class="btn btn-primary"><i class="bi bi-binoculars-fill"></i> {{ 'View'|trans }}</button></a>
 {% endif %}
-{% if post.image and not request.user == post.recipient %}
+{% if not request.user == post.recipient %}
 <a href="{% url 'payments:buy-photo-card' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Buy'|trans }}</button></a>
 <a href="{% url 'payments:buy-photo-crypto' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-bitcoin"></i> {{ 'Buy'|trans }}</button></a>
 {% endif %}

@@ -55,7 +55,7 @@ class PostForm(forms.ModelForm):
     private = forms.BooleanField(required=False)
     public = forms.BooleanField(required=False)
     content = forms.CharField(widget=SummernoteWidget(attrs={'rows': settings.TEXTAREA_ROWS}), required=False)
-    clear_redacted = forms.BooleanField(required=False, widget=forms.HiddenInput)
+#    clear_redacted = forms.BooleanField(required=False, widget=forms.HiddenInput)
     recipient = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = MultipleImageField(required=False) #forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True, 'multiple': True}))
     file = MultipleFileField(required=False) #forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True, 'multiple': True}))
@@ -97,7 +97,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('feed', 'content', 'image', 'clear_redacted', 'file', 'price', 'private', 'public', 'pinned', 'confirmation_id')
+        fields = ('feed', 'content', 'image', 'file', 'price', 'private', 'public', 'pinned', 'confirmation_id', 'paid_file')
 
 class ScheduledPostForm(forms.ModelForm):
     date = forms.DateField(initial=datetime.date.today, widget=forms.DateInput(attrs={'type': 'date'})) #auto_now=True, auto_now_add=True)
@@ -105,7 +105,7 @@ class ScheduledPostForm(forms.ModelForm):
     image = MultipleImageField(required=False) #forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True, 'multiple': True}))
     file = MultipleFileField(required=False) #forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True, 'multiple': True}))
     content = forms.CharField(widget=SummernoteWidget(attrs={'rows': settings.TEXTAREA_ROWS}), required=False)
-    clear_redacted = forms.BooleanField(required=False, widget=forms.HiddenInput)
+#    clear_redacted = forms.BooleanField(required=False, widget=forms.HiddenInput)
     recipient = forms.CharField(widget=forms.HiddenInput(), required=False)
     confirmation_id = forms.CharField(widget=forms.HiddenInput(), required=False)
     PHOTO_CHOICES = (
@@ -145,7 +145,7 @@ class ScheduledPostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('feed', 'content', 'image', 'clear_redacted', 'file', 'price', 'private', 'public', 'pinned', 'confirmation_id')
+        fields = ('feed', 'content', 'image', 'file', 'price', 'private', 'public', 'pinned', 'confirmation_id', 'paid_file')
 
 class UpdatePostForm(ScheduledPostForm):
     image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True}))

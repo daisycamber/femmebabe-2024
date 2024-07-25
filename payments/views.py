@@ -227,10 +227,16 @@ def webhook(request):
                 elif account and stripe_product_id == PHOTO_PRICE:
                     vendor = User.objects.get(profile__stripe_id=account)
                     post = Post.objects.get(author=vendor, uuid=metadata[0])
-                    post.recipient = user
-                    post.save()
-                    from feed.email import send_photo_email
-                    send_photo_email(user, post)
+                    if not post.paid_file:
+                        post.recipient = user
+                        post.save()
+                        from feed.email import send_photo_email
+                        send_photo_email(user, post)
+                    else:
+                        from feed.email import send_photo_email
+                        send_photo_email(user, post)
+                        post.paid_users.add(user)
+                        post.save()
                 else:
                     from .stripe import SURROGACY_PRICE_ID
                     if SURROGACY_PRICE_ID == stripe_price_id:

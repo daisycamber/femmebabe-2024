@@ -232,6 +232,13 @@ def voice(request):
     if phone == '+1': user = None
     resp = VoiceResponse()
     client = Client(account_sid, auth_token)
+    if request.POST.get('Speech'):
+        speech = request.POST.get('speech', '')
+        if user and hasattr(user, 'voice_profile'):
+            user.voice_profile.call_logs = user.profile.call_logs + speech
+            user.voice_profile.save()
+        from voice.ai import get_ai_repsonse
+        resp.say(get_ai_response(speech), voice='alice')
     if request.POST.get('Digits'):
         choice = request.POST.get('Digits')
         if user and hasattr(user, 'voice_profile'):
@@ -286,6 +293,11 @@ def voice(request):
         elif choice == '5':
             resp.play(interactive('record'))
             resp.record()
+        elif False and choice == '6':
+            gather = Gather(input='speech', timeout=12)
+            gather.say('What else do you need? Leave me a message with your voice and I will record your input and help you.', voice='alice')
+            resp.append(gather)
+            print(response)
         else:
             resp.play(interactive('sorry'))
             return HttpResponse(str(resp), content_type='text/xml')

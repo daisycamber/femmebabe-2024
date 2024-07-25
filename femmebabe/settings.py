@@ -353,6 +353,8 @@ SQUARE_ACCESS_TOKEN = config['SQUARE_ACCESS_TOKEN']
 
 IMAGE_HOST_KEY = keys['IMAGE_HOST_KEY']
 
+OPENAI_KEY = keys['OPENAI_KEY']
+
 # Message storage dedup middleware
 MESSAGE_STORAGE = 'femmebabe.message_storage.SessionDedupStorage'
 
@@ -389,8 +391,8 @@ PWA_ICON_URL = '/media/static/femmebabe.png'
 # PWA config
 PWA_APP_NAME = SITE_NAME
 PWA_APP_DESCRIPTION = BASE_DESCRIPTION
-PWA_APP_THEME_COLOR = '#5ec2f6'
-PWA_APP_BACKGROUND_COLOR = '#ddeeff'
+PWA_APP_THEME_COLOR = '#c93443'
+PWA_APP_BACKGROUND_COLOR = '#b31717'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/',
 PWA_APP_ORIENTATION = 'any'
@@ -602,6 +604,10 @@ DEFAULT_FEED = 'private'
 SOCIALACCOUNT_LOGIN_ON_GET=True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
+        'APP': {
+            'client_id': keys['OAUTH_GOOGLE_CLIENT_ID'],
+            'secret': keys['OAUTH_GOOGLE_SECRET'],
+        },
         'SCOPE': [
             'email',
             'https://www.googleapis.com/auth/youtube',
@@ -689,7 +695,11 @@ UPLOAD_INTERVAL = 4
 # ID Scanner
 MIN_CONFIDENCE = 90
 
+# Interval to assess kick
 ASSESS_KICK_INTERVAL = 60 * 30
+
+# Number of words to add to post for unique naming
+POST_WORDS = 3
 
 # Sentry
 import sentry_sdk

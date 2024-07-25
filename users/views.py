@@ -70,7 +70,8 @@ def google_auth(request):
 @user_passes_test(is_superuser_or_vendor)
 def google_auth_callback(request):
     from users.oauth import parse_callback_url
-    url = request.path + get_qs(request.GET)
+    from security.middleware import get_qs
+    url = settings.BASE_URL + request.path + get_qs(request.GET)
     token, refresh = parse_callback_url(url)
     request.user.profile.token = token
     request.user.profile.refresh_token = refresh

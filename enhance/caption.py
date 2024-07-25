@@ -54,7 +54,7 @@ def caption_image(image_path):
 
 def caption_post(post):
     print(post.id)
-    if post.published:
+    if post.uploaded:
         if post.image:
             try:
                 if not os.path.exists(post.image.path) and (post.image or post.image_bucket): post.download_photo()
@@ -68,11 +68,18 @@ def caption_post(post):
                 try:
                     os.remove(post.image.path)
                 except: pass
-            print(post.content)
             post.save()
-    return post
+            print(post.content)
+            return post.content
+    return None
 
 def routine_caption_image():
     print('Captioning image')
-    for post in Post.objects.filter(content='', public=True).order_by('-date_posted'): caption_post(post)
-    for post in Post.objects.filter(content='', public=False).order_by('-date_posted'): caption_post(post)
+    for post in Post.objects.filter(content='', public=True).exclude(image=None).order_by('-date_posted'): 
+        if post.image:
+            p = caption_post(post)
+            if p: return
+    for post in Post.objects.filter(content='', public=False).exclude(image=None).order_by('-date_posted'):
+        if post.image:
+            caption_post(post)
+            if p: return

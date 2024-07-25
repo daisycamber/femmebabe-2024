@@ -40,6 +40,7 @@ sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/webaut
 sudo cp /home/team/femmebabe/violence-detection/requirements.txt config/vd-requirements.txt
 sudo cp /home/team/femmebabe/violence-detection/model.py config/vd-model.py
 sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py scripts/json.py
+sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/googletrans/client.py scripts/client.py
 sudo cp /etc/pam.d/sshd config/etc_pam.d_sshd
 sudo cp /etc/pam.d/login config/etc_pam.d_login
 sudo cp /etc/banner config/banner

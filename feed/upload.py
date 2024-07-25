@@ -22,10 +22,12 @@ def upload_post(post):
             post.image_offsite = None
             post.save()
             post.get_blur_url()
-        i1, i2 = upload_photo(post.image.path if post.public else post.image_censored.path)
-        post.image_offsite = i1
-        post.image_thumb_offsite = i2
-        post.offsite = True
+        try:
+            i1, i2 = upload_photo(post.image.path if post.public else post.image_censored.path)
+            post.image_offsite = i1
+            post.image_thumb_offsite = i2
+            post.offsite = True
+        except: pass
         post.save()
         return True
     return False

@@ -221,7 +221,7 @@ def grid_api(request, index):
     if square:
         addstyle = ''
         if not post.public and not (post.recipient == request.user or (request.user.is_authenticated and post.author in request.user.profile.subscriptions.all())) and not (request.user == post.author and request.GET.get('show', False)): addstyle = 'filter: blur(8px); '
-        result = '<img id="image{}" style="{}position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%;" data-value="'.format(index, addstyle) + '@{} - {}'.format(post.author.profile.name, highlight_query(request.GET.get('q', None), translate(request, post.content)) if request.GET.get('q') else translate(request, post.content)) + '" data-title="' + reverse('feed:post-detail', kwargs={'uuid': post.uuid}) + '" data-fullurl="' + full_url + '" src="' + url + '" class="frame rounded hide"></img>' # width="30%"
+        result = '<img id="image{}" style="{}position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%;" data-value="'.format(index, addstyle) + '@{} - {}'.format(post.author.profile.name, highlight_query(request.GET.get('q', None), translate(request, post.content)) if request.GET.get('q') else translate(request, post.content)) + '" data-title="' + post.get_absolute_url() + '" data-fullurl="' + full_url + '" src="' + url + '" class="frame rounded hide"></img>' # width="30%"
     else:
         result = url
     resp = HttpResponse(result)
@@ -498,7 +498,7 @@ def all(request):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*365)
 def post_detail(request, uuid):
-    post = get_object_or_404(Post, uuid=uuid)
+    post = get_object_or_404(Post, friendly_name=uuid)
     if (((not request.user.is_authenticated or not hasattr(request.user, 'profile') or not post.author in request.user.profile.subscriptions.all()) and not post.public) and post.author != request.user and not post.recipient == request.user) or post.secure and not (request.user.is_authenticated and document_scanned(request.user)):
         raise PermissionDenied()
     title = 'No text in this post. - View Post'

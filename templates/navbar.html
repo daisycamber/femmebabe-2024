@@ -1,11 +1,11 @@
 {% load app_filters %}
 {% load feed_filters %}
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark p-2 d-flex" id="clemn-navbar">
+<nav class="navbar fixed-top navbar-expand-lg {% if not darkmode %}navbar-light bg-light border-bottom border-dark{% else %}navbar-dark bg-dark{% endif %} p-2 d-flex" id="clemn-navbar">
   <div class="container-fluid clemn-navbar">
     {% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated and not hide_logo %}
     <a style="position: relative; z-index: 1;" class="navbar-brand" href="{% url 'app:app' %}?k={% get_key %}" title="{{ 'The Homepage'|trans }}" rel="nofollow">
 	<img src="{{ icon_url }}" alt="{{ the_site_name }}" width="30" height="30" style="border-radius: 50%;">
-	<b style="color: white !important;">{{ the_site_name }}</b>
+	<i style="color: {% if darkmode %}white{% else %}black{% endif %} !important;">{{ the_site_name }}</i>
 	<small class="nav-title" style="color: red !important; position: absolute; top: 12px; left: 45px; z-index: 2;"><small><small><small class="nav-title" style="color: red !important;">ファムベイビー</small></small></small></small>
     </a>
     {% endif %}

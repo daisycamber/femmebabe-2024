@@ -105,7 +105,6 @@ body, html {
           color: black;
         }
         .navbar {
-background-color: #f7cfff;
 opacity: 1;
 background-size: 100px 100%;
         }
@@ -127,10 +126,6 @@ background-size: 100px 100%;
     ul {
       margin: 0;
     }
-
-    .site-header .navbar-nav .nav-link {
-      color: #cbd5db;
-      }
 
       .site-header .navbar-nav .nav-link:hover {
         color: #ffffff;
@@ -551,3 +546,7 @@ body {
   width: 100%;
   z-index: 991;
 }
+
+    .site-header .navbar-nav .nav-link {
+      color: #ffffff;
+      }

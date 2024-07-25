@@ -25,7 +25,6 @@ def logs_api(request):
     logs = highlight_code(get_logs())
     return HttpResponse(logs)
 
-@login_required
 def handler404(request, exception):
     if not request.path.endswith('/'): return redirect(request.path + '/')
     return render(request, 'errors/error.html', {'title': 'Error 404', 'pagetitle': 'Error 404', 'notes': 'This page was not found on the server. It may have moved or been deleted.', 'is_404': True})

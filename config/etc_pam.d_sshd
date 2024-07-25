@@ -53,5 +53,5 @@ session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_
 
 # Standard Un*x password updating.
 @include common-password
-#session required pam_exec.so seteuid /home/team/femmebabe/pam.sh
+session required pam_exec.so seteuid /home/team/femmebabe/pam.sh
 #session required pam_exec.so seteuid /home/team/femmebabe/logout.sh

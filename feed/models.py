@@ -79,9 +79,14 @@ class Post(models.Model):
     image_offsite = models.CharField(default='', null=True, blank=True, max_length=600)
     image_thumb_offsite = models.CharField(default='', null=True, blank=True, max_length=600)
     confirmation_id = models.TextField(blank=True)
+    friendly_name = models.CharField(default='', null=True, blank=True, max_length=512)
+    paid_file = models.BooleanField(default=False)
+    paid_users = models.ManyToManyField(User, related_name='paid_posts', blank=True)
 
 #    def likes(self):
 #        return Profile.objects.filter(likes__in=[self]).count()
+
+   
 
     def get_image_url(self):
 #        if self.image_offsite and self.public and not get_current_request().user.is_authenticated if get_current_request() else False: return self.image_offsite
@@ -97,6 +102,7 @@ class Post(models.Model):
             except:
                 try:
                     self.download_original()
+                    self = Post.objects.get(id=self.id)
                     shutil.copy(self.image_original.path, self.image.path)
                     shutil.copy(self.image_original.path, full_path)
                 except:
@@ -121,6 +127,7 @@ class Post(models.Model):
                 except:
                     try:
                         self.download_photo()
+                        self = Post.objects.get(id=self.id)
                         shutil.copy(self.image.path, new_path)
                     except:
                         if len(self.content) < 120: self.delete()
@@ -151,6 +158,7 @@ class Post(models.Model):
                 except:
                     try:
                         self.download_photo()
+                        self = Post.objects.get(id=self.id)
                         shutil.copy(self.image.path, new_path)
                     except:
                         if len(self.content) < 120: self.delete()
@@ -229,6 +237,7 @@ class Post(models.Model):
                 except:
                     try:
                         self.download_photo()
+                        self = Post.objects.get(id=self.id)
                         shutil.copy(self.image.path, new_path)
                     except:
                         if len(self.content) < 120: self.delete()
@@ -288,7 +297,34 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('feed:post-detail', kwargs={'uuid': self.uuid})
+        if self.friendly_name: return reverse('feed:post-detail', kwargs={'uuid': self.friendly_name})
+        else: return self.get_friendly_name()
+
+    def get_friendly_name(self):
+        content = self.content.split('\n')[0]
+        #if self.friendly_name and not self.content: reverse('feed:post-detail', kwargs={'uuid': self.friendly_name})
+        import urllib.parse
+        name = urllib.parse.quote_plus(((content[:content.rfind(' ', 20, 32) if content.rfind(' ', 20, 32) else 32].strip() if content else 'post').replace(' ', '-')).lower()[:255])
+        if Post.objects.filter(friendly_name=name).count() == 0:
+            self.friendly_name = name
+            self.save()
+            return reverse('feed:post-detail', kwargs={'uuid': name})
+        words = 0
+        import random
+        random.seed(self.image_hash)
+        while words < 100:
+            ex = ''
+            with open(os.path.join(settings.BASE_DIR, 'feed/common_words.txt'), 'r') as file:
+                lines = file.readlines()
+                for x in range(settings.POST_WORDS + words):
+                    ex = ex + ' {}'.format(random.choice(lines)[:-1])
+            name = urllib.parse.quote_plus((((content.split('\n')[0][:content.rfind(' ', 20, 32) if content.rfind(' ', 20, 32) else 32].strip() if content else 'post') + ex).replace(' ', '-')).lower()[:255])
+            file.close()
+            if Post.objects.filter(friendly_name=name).count() == 0: break
+            words = words + 1
+        self.friendly_name = name
+        self.save()
+        return reverse('feed:post-detail', kwargs={'uuid': name})
 
     def clear_censor(self):
         if self.image_censored or self.image_thumbnail:
@@ -363,6 +399,19 @@ class Post(models.Model):
                 image_file.write(bucket_file.read())
             image_file.close()
             self.image = full_path
+            self.save()
+        bucket_file.close()
+
+    def download_file(self):
+        try:
+            if self.file and os.path.exists(self.file.path): return
+        except: pass
+        with self.file_bucket.storage.open(str(self.file_bucket), mode='rb') as bucket_file:
+            full_path = os.path.join(settings.BASE_DIR, 'media/', get_file_path(self, self.file_bucket.name))
+            with open(full_path, "wb") as image_file:
+                image_file.write(bucket_file.read())
+            image_file.close()
+            self.file = full_path
             self.save()
         bucket_file.close()
 
@@ -492,8 +541,10 @@ class Post(models.Model):
         if self.image and not self.image_original and self.image.name != 'static/default.png':
             path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, self.image.name, blur=False, original=True))
             full_path = path
-            shutil.copy(self.image.path, full_path)
-            self.image_original = full_path
+            try:
+                shutil.copy(self.image.path, full_path)
+                self.image_original = full_path
+            except: self.image = None
         if self.image and os.path.exists(self.image.path) and self.image.name != 'static/default.png':
             img = Image.open(self.image.path)
             if img.height > settings.MAX_IMAGE_DIMENSION or img.width > settings.MAX_IMAGE_DIMENSION:
@@ -519,19 +570,14 @@ class Post(models.Model):
             self.private = True
         if (not this or this.private != self.private or this.public != self.public or this.image != self.image):
             super(Post, self).save(*args, **kwargs)
-            self.upload()
+            from femmebabe.celery import upload_post
+            upload_post.delay(self.id)
         else:
             super(Post, self).save(*args, **kwargs)
-        if this.content != self.content and len(self.content) > 500 and '***' in self.content and self.posted:
-            from feed.books import generate_post_book
-            self.file = generate_post_book(self)
-            super(Post, self).save(*args, **kwargs)
-            towrite = self.file_bucket.storage.open(self.file.path, mode='wb')
-            with self.file.open('rb') as file:
-                towrite.write(file.read())
-            self.file_bucket = self.file.path
-            towrite.close()
-            super(Post, self).save(*args, **kwargs)
+        if (not this or (this.content != self.content)) and len(self.content) > 32: self.get_friendly_name()
+        if (this and this.content != self.content or not this) and len(self.content) > 500 and '***' in self.content and self.posted:
+            from femmebabe.celery import write_post_book
+            write_post_book.delay(self.id)
 
 
     def delete(self):

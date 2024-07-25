@@ -43,6 +43,25 @@ try:
     me = User.objects.get(id=settings.MY_ID) if User.objects.count() > 1 else None
 except: pass
 
+
+@app.task
+def upload_post(post_id):
+    self = Post.objects.get(id=post_id)
+    self.upload()
+
+@app.task
+def write_post_book(post_id):
+    self = Post.objects.get(id=post_id)
+    from feed.books import generate_post_book
+    self.file = generate_post_book(self)
+    self.save()
+    towrite = self.file_bucket.storage.open(self.file.path, mode='wb')
+    with self.file.open('rb') as file:
+        towrite.write(file.read())
+    self.file_bucket = self.file.path
+    towrite.close()
+    self.save()
+
 @app.task
 def remove_duplicates(post_id):
     pass
