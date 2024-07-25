@@ -58,11 +58,11 @@
 	setTimeout(function() {
 		openGameSocket();
 	}, 5000);
-	var connectInterval = setInterval(function() {
+/*	var connectInterval = setInterval(function() {
 		if(!(gameSocket.readyState === gameSocket.OPEN)) {
 			openGameSocket();
 		}
-	}, 10000);
+	}, 10000);*/
   let seed = 10000 + parseInt(document.getElementById('game_id').innerHTML);
   function RNG(seed) {
     // LCG using GCC's constants

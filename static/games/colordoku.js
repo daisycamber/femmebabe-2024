@@ -32,6 +32,8 @@
   let canvasid = "game197";
   let canvas = document.getElementById(canvasid);
   let width = canvas.width;
+  if(window.innerHeight < width) width = window.innerHeight - 200;
+  canvas.width = width;
   canvas.height = width;
   let height = canvas.height;
   let ADHEIGHT = 0;

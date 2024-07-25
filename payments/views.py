@@ -45,6 +45,7 @@ def render_agreement(name, parent, mother):
         'the_state_name': 'Washington',
         'parent_name': parent.verifications.last().full_name if parent and parent.verifications.last() else '________________',
         'surrogacy_fee': nts(settings.SURROGACY_FEE),
+        'business_type': settings.BUSINESS_TYPE,
         'the_date': timezone.now().strftime('%B %d, %Y'),
     })
 
@@ -76,7 +77,7 @@ def surrogacy(request, username):
     agreement = render_agreement(vendor.profile.name if not vendor.verifications.last() else vendor.verifications.last().full_name, request.user.verifications.last().full_name if request.user.is_authenticated and request.user.verifications.last() else None, vendor)
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
-    return render(request, 'payments/surrogacy.html', {'title': 'Surrogacy Plans', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'post': post, 'vendor': vendor, 'agreement': agreement, 'surrogacy_fee': settings.SURROGACY_FEE,})
+    return render(request, 'payments/surrogacy.html', {'title': 'Surrogacy Plans', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'post': post, 'vendor': vendor, 'agreement': agreement, 'surrogacy_fee': settings.SURROGACY_FEE, 'business_type': settings.BUSINESS_TYPE,})
 
 @cache_page(60*60*24*7)
 def surrogacy_info(request, username):
@@ -653,7 +654,8 @@ def tip_bitcoin(request, username, tip):
     return render(request, 'payments/tip_crypto.html', {'title': 'Tip with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced)}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
 
 def buy_photo_crypto(request, username):
-    if not request.GET.get('crypto'): return redirect(request.path + '?crypto={}'.format(settings.DEFAULT_CRYPTO))
+    from security.middleware import get_qs
+    if not request.GET.get('crypto'): return redirect(request.path + get_qs(request.GET) + '&crypto={}'.format(settings.DEFAULT_CRYPTO))
     crypto = request.GET.get('crypto')
     user = User.objects.get(profile__name=username, profile__vendor=True)
     profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)

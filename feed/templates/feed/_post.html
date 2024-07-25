@@ -15,6 +15,8 @@
     {% autoescape off %}    
     {% if request.path == '/search/' %}
     <p class="article-content">{{ post.content|trimlength|highlightsearchquery|trans }}</p>
+    {% elif '***' in post.content  %}
+    <p class="article-content">{{ post.content|trimlength|tagusers|trans }}</p>
     {% else %}
     <p class="article-content">{{ post.content|trimlength|addhttpstodomains|embedlinks|tagusers|trans }}</p>
     {% endif %}
@@ -51,6 +53,13 @@
 {% endif %} 
     {% endif %}
     {% if post.file_bucket %}
+    {% if post.paid_file and not request.user in post.paid_users.all and post.file_sample_bucket.name|filetype == 'mp3'%}
+    <p>Please buy this post to hear the full version of the audio.</p>
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.get_file_sample }}" type="audio/mpeg">
+	Your browser does not support the audio element.
+    </audio>
+    {% endif %}
     {% if not post.paid_file or request.user in post.paid_users.all %}
     {% if post.file_bucket.name|filetype == 'mp3' %}
     <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
@@ -88,7 +97,7 @@
 {% endif %}
 {% if not request.user == post.recipient %}
 <a href="{% url 'payments:buy-photo-card' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Buy'|trans }}</button></a>
-<a href="{% url 'payments:buy-photo-crypto' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-bitcoin"></i> {{ 'Buy'|trans }}</button></a>
+<a href="{% url 'payments:buy-photo-crypto' post.author.profile.name %}?id={{ post.uuid }}&crypto={{ default_crypto }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-bitcoin"></i> {{ 'Buy'|trans }}</button></a>
 {% endif %}
 {% if user.is_authenticated %}
 {% if user.is_authenticated and post.author == user %}

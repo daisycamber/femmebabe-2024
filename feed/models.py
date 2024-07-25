@@ -63,6 +63,8 @@ class Post(models.Model):
     image_sightengine = models.TextField(blank=True)
     file = models.FileField(upload_to=get_file_path, null=True, blank=True)
     file_bucket = models.FileField(storage=MediaStorage(), null=True, blank=True, max_length=500)
+    file_sample = models.FileField(upload_to=get_file_path, null=True, blank=True)
+    file_sample_bucket = models.FileField(storage=MediaStorage(), null=True, blank=True, max_length=500)
     file_sightengine = models.TextField(blank=True)
     private = models.BooleanField(default=False)
     public = models.BooleanField(default=False)
@@ -86,7 +88,24 @@ class Post(models.Model):
 #    def likes(self):
 #        return Profile.objects.filter(likes__in=[self]).count()
 
-   
+    def get_file_sample(self):
+        if self.file_sample_bucket: return self.file_sample_bucket.url
+        self = self.make_file_sample()
+        self.save()
+        self = Post.objects.get(id=self.id)
+        if self.file_sample_bucket: return self.file_sample_bucket.url
+        return None
+
+    def make_file_sample(self):
+#        if self.file_sample_bucket: return self.file_sample_bucket.url
+        if not self.file or not os.path.exists(self.file.path): self.download_file()
+        from pydub import AudioSegment
+        audio = AudioSegment.from_file(self.file.path)
+        ten_seconds = audio[:settings.FREE_AUDIO_MS]
+        ten_seconds.export(str(self.file.path) + '.short.mp3', format="mp3")
+        self.file_sample = str(self.file.path) + '.short.mp3'
+        self.save()
+        return self
 
     def get_image_url(self):
 #        if self.image_offsite and self.public and not get_current_request().user.is_authenticated if get_current_request() else False: return self.image_offsite
@@ -563,6 +582,13 @@ class Post(models.Model):
                 towrite.write(file.read())
             towrite.close()
             self.file_bucket = self.file.path
+            self.file_sample_bucket = None
+            self = self.make_file_sample()
+            towrite = self.file_sample_bucket.storage.open(self.file_sample.path, mode='wb')
+            with self.file.open('rb') as file:
+                towrite.write(file.read())
+            towrite.close()
+            self.file_sample_bucket = self.file_sample.path
         if self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))) and self.image_original.name != 'static/default.png':
             with open(self.image_original.path, 'rb') as f:
                 self.image_hash = hashlib.md5(f.read()).hexdigest()

@@ -21,6 +21,7 @@ class VoiceProfile(models.Model):
     last_call = models.DateTimeField(default=None, null=True, blank=True)
     recordings = models.BooleanField(default=False)
     interactive = models.TextField(default='', null=True, blank=True)
+    call_logs = models.TextField(default='', null=True, blank=True)
 
 class Choice(models.Model):
     option = models.TextField(default='', null=True, blank=True)

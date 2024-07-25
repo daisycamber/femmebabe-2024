@@ -1,49 +1,20 @@
-import os
-from django.conf import settings
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse, reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from users.models import Profile
-from django.contrib import messages
-from django.views.decorators.cache import never_cache, cache_page
-from .forms import PostForm, ScheduledPostForm, UpdatePostForm
-import datetime, pytz
-from django.core.paginator import Paginator
-from .models import Post
-from django.views.generic import (
-    UpdateView,
-    DeleteView
-)
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from .tests import identity_verified
 from vendors.tests import is_vendor
-from django.core.exceptions import PermissionDenied
-import os
-import re
-import mimetypes
-from wsgiref.util import FileWrapper
-from django.http.response import StreamingHttpResponse
-from django.http import HttpResponseRedirect
-from face.deep import is_face
-from feed.align import face_rotation
-from security.security import fraud_detect
-from django.views.decorators.csrf import csrf_exempt
-from django.http import Http404
-from misc.views import get_posts_for_query
-from feed.templatetags.app_filters import highlight_query
-from feed.models import get_image_path, get_file_path
-from django.utils import timezone
-from .duplicates import remove_post_duplicates
-from security.middleware import get_qs
-from feed.templatetags.app_filters import clean_html
 from barcode.tests import document_scanned
-from contact.forms import ContactForm
 from django.views.decorators.cache import patch_cache_control
 from django.views.decorators.vary import vary_on_cookie
+from django.views.generic import (
+    UpdateView,
+    DeleteView
+)
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache, cache_page
+from security.security import fraud_detect
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 basedescription = '{} is an app for adults.'.format(settings.SITE_NAME)
 
@@ -61,6 +32,11 @@ def sub_fee(fee):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def like(request, uuid):
+    from django.shortcuts import get_object_or_404
+    from django.utils import timezone
+    import datetime
+    from feed.models import Post
+    from django.http import HttpResponse
     post = get_object_or_404(Post, uuid=uuid, published=True)
     if request.method == 'POST' and request.user.profile.can_like < timezone.now() - datetime.timedelta(seconds=2):
         if post in request.user.profile.likes.all():
@@ -80,6 +56,11 @@ def like(request, uuid):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def publish(request, pk):
+    from django.shortcuts import get_object_or_404
+    from feed.models import Post
+    from django.utils import timezone
+    import datetime
+    from django.http import HttpResponse
     post = get_object_or_404(Post, id=pk)
     if request.method == 'POST' and post.author == request.user and request.user.profile.can_like < timezone.now() - datetime.timedelta(seconds=3):
         if post.private and post.public:
@@ -102,6 +83,10 @@ def publish(request, pk):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def pin(request, pk):
+    from django.shortcuts import get_object_or_404
+    from django.utils import timezone
+    import datetime
+    from django.http import HttpResponse
     post = get_object_or_404(Post, id=pk)
     if request.method == 'POST' and post.author == request.user and request.user.profile.can_like < timezone.now() - datetime.timedelta(seconds=3):
         post.pinned = not post.pinned
@@ -113,12 +98,21 @@ def pin(request, pk):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def tip(request, username, tip):
+    from django.shortcuts import redirect
+    from django.urls import reverse
     return redirect(reverse('payments:tip-bitcoin', kwargs={'username': username, 'tip': tip}))
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def private(request, username):
+    from feed.models import Post
+    from django.shortcuts import get_object_or_404
+    from django.utils import timezone
+    import datetime
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from django.http import HttpResponse
     profile = get_object_or_404(Profile, name=username, vendor=True)
     page = 1
     if(request.GET.get('page', None) != None):
@@ -161,7 +155,16 @@ from translate.translate import translate
 @cache_page(60*60*24*7)
 @vary_on_cookie
 def grid_api(request, index):
+    from django.utils import timezone
+    from security.middleware import get_qs
+    from django.core.paginator import Paginator
+    from misc.views import get_posts_for_query
     from itertools import chain
+    import datetime
+    from users.models import Profile
+    import pytz
+    from feed.models import Post
+    from django.http import HttpResponse
     now = datetime.datetime.fromtimestamp(int(request.GET.get('time')) / 1000, tz=pytz.UTC)
     username = request.GET.get('name')
     profile = Profile.objects.filter(name=username, vendor=True).first()
@@ -220,6 +223,7 @@ def grid_api(request, index):
     full_url = request.path + get_qs(request.GET)
     if square:
         addstyle = ''
+        from feed.templatetags.app_filters import highlight_query 
         if not post.public and not (post.recipient == request.user or (request.user.is_authenticated and post.author in request.user.profile.subscriptions.all())) and not (request.user == post.author and request.GET.get('show', False)): addstyle = 'filter: blur(8px); '
         result = '<img id="image{}" style="{}position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%;" data-value="'.format(index, addstyle) + '@{} - {}'.format(post.author.profile.name, highlight_query(request.GET.get('q', None), translate(request, post.content)) if request.GET.get('q') else translate(request, post.content)) + '" data-title="' + post.get_absolute_url() + '" data-fullurl="' + full_url + '" src="' + url + '" class="frame rounded hide"></img>' # width="30%"
     else:
@@ -233,7 +237,20 @@ def grid_api(request, index):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*7)
 def profile_grid(request, username):
+    from misc.views import get_posts_for_query
+    from django.core.paginator import Paginator
     from itertools import chain
+    from django.utils import timezone
+    from security.middleware import get_qs
+    from misc.views import get_posts_for_query
+    from itertools import chain
+    import datetime
+    from users.models import Profile
+    import pytz
+    from feed.models import Post
+    from django.http import HttpResponse
+    from django.shortcuts import render, get_object_or_404
+    from femmebabe.pricing import get_pricing_options
     now = timezone.now()
     likes = request.GET.get('likes')
     profile = get_object_or_404(Profile, name=username, vendor=True)
@@ -280,9 +297,11 @@ def profile_grid(request, username):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @csrf_exempt
 def secure_photo(request, filename):
+    import os
     try:
         image_data = open(os.path.join(settings.BASE_DIR, 'media/secure/media/', filename), "rb").read()
     except:
+        from django.http import Http404
         raise Http404
     ext = filename.split('.')[1]
     u = filename.split('.')[0].split('-')[-1]
@@ -290,6 +309,7 @@ def secure_photo(request, filename):
 #        u = int(filename.split('.')[0].split('-')[-2])
 #        if not request.user.is_authenticated or not u == request.user.id:
 #            raise PermissionDenied()
+    from django.http import HttpResponse
     return HttpResponse(image_data, content_type="image/{}".format(ext))
 
 @csrf_exempt
@@ -297,6 +317,9 @@ def secure_photo(request, filename):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def rotate(request, pk, direction):
+    from django.core.exceptions import PermissionDenied
+    from feed.models import Post
+    from django.shortcuts import redirect
     post = Post.objects.get(id=pk)
     if not request.user == post.author:
         raise PermissionDenied()
@@ -311,12 +334,16 @@ def rotate(request, pk, direction):
         if direction == 'right':
             post.rotate_right()
             post.save()
+        from django.contrib import messages
         messages.success(request, 'Rotated post ' + direction)
     return redirect(post.get_absolute_url())
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def subscriptions(request):
+    from users.models import Profile
+    from django.contrib import messages
+    from django.core.paginator import Paginator
     profiles = Profile.objects.filter(vendor=True, user__is_superuser=False, user__in=request.user.profile.subscriptions.all()).order_by('-last_seen')
     page = 1
     if(request.GET.get('page', '') != ''):
@@ -325,6 +352,7 @@ def subscriptions(request):
     if page > p.num_pages or page < 1:
         messages.warning(request, "The page you requested, " + str(page) + ", does not exist. You have been redirected to the first page.")
         page = 1
+    from django.shortcuts import render
     return render(request, 'feed/subscriptions.html', {
         'title': 'Active Subscriptions',
         'profiles': p.page(page),
@@ -336,6 +364,8 @@ def subscriptions(request):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def unfollow(request, username):
+    from django.shortcuts import render, get_object_or_404
+    from django.contrib.auth.models import User
     user = get_object_or_404(User, profile__name=username)
     if request.method == 'POST' and user in request.user.profile.subscriptions.all():
         p = request.user.profile
@@ -344,6 +374,8 @@ def unfollow(request, username):
         for sub in Subscription.objects.filter(user=request.user, model=user, active=True):
             sub.active = False
             sub.save()
+        from django.shortcuts import redirect
+        from django.urls import reverse
         return redirect(reverse('feed:profile', kwargs={'username': username}))
     return render(request, 'feed/confirm_cancel.html', {'cancel_user': user})
 
@@ -351,6 +383,10 @@ def unfollow(request, username):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*365)
 def follow(request, username):
+    from django.shortcuts import get_object_or_404, render, redirect
+    from django.urls import reverse
+    from django.contrib.auth.models import User
+    from contact.forms import ContactForm
     user = get_object_or_404(User, profile__name=username)
     if request.user.is_authenticated and user in request.user.profile.subscriptions.all() and user.profile.vendor:
         return redirect(reverse('feed:profile', kwargs={'username': username}))
@@ -364,6 +400,9 @@ def follow(request, username):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def home(request):
+    from django.core.paginator import Paginator
+    from feed.models import Post
+    from django.contrib import messages
     page = 1
     if(request.GET.get('page', '') != ''):
         page = int(request.GET.get('page', ''))
@@ -372,6 +411,7 @@ def home(request):
     if page > p.num_pages or page < 1:
         messages.warning(request, "The page you requested, " + str(page) + ", does not exist. You have been redirected to the first page.")
         page = 1
+    from django.shortcuts import render
     return render(request, 'feed/home.html', {
         'title': 'Your Feed',
         'posts': p.page(page),
@@ -383,6 +423,10 @@ def home(request):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*365)
 def profiles(request):
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from users.models import Profile
+    from django.shortcuts import render
     profiles = Profile.objects.filter(vendor=True, user__is_superuser=False).order_by('-last_seen')
     page = 1
     if(request.GET.get('page', '') != ''):
@@ -404,7 +448,17 @@ def profiles(request):
 @cache_page(60*60*24*7)
 @vary_on_cookie
 def profile(request, username):
+    from django.conf import settings
+    from django.utils import timezone
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from users.models import Profile
+    from django.shortcuts import render, redirect, get_object_or_404
+    from django.urls import reverse
     from itertools import chain
+    import datetime, pytz
+    from feed.models import Post
+    from security.middleware import get_qs
     now = None
     try:
         now = datetime.datetime.fromtimestamp(int(request.GET.get('time')) / 1000, tz=pytz.UTC)
@@ -476,6 +530,10 @@ def profile(request, username):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def all(request):
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from feed.models import Post
+    from django.shortcuts import render
     if not request.user.profile.identity_verified:
         messages.warning(request, 'You need to verify your identity before you may see this page.')
         return redirect(reverse("verify:verify"))
@@ -498,6 +556,11 @@ def all(request):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*365)
 def post_detail(request, uuid):
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from feed.models import Post
+    from django.shortcuts import render, get_object_or_404
+    from django.core.exceptions import PermissionDenied
     post = get_object_or_404(Post, friendly_name=uuid)
     if (((not request.user.is_authenticated or not hasattr(request.user, 'profile') or not post.author in request.user.profile.subscriptions.all()) and not post.public) and post.author != request.user and not post.recipient == request.user) or post.secure and not (request.user.is_authenticated and document_scanned(request.user)):
         raise PermissionDenied()
@@ -505,6 +568,7 @@ def post_detail(request, uuid):
     pagetitle = ''
     description = 'x'
     oc = post.content
+    from feed.templatetags.app_filters import clean_html
     post.content = clean_html(post.content)
     if len(post.content.splitlines()) > 0:
         pagetitle = post.content.splitlines()[0][0:70]
@@ -536,6 +600,9 @@ def post_detail(request, uuid):
 @user_passes_test(is_vendor)
 @csrf_exempt
 def new_post_confirm(request, id):
+    from django.utils import timezone
+    import datetime
+    from feed.models import Post
     return HttpResponse('y' if Post.objects.filter(confirmation_id=id, date_uploaded__gte=timezone.now() - datetime.timedelta(minutes=5)).count() > 0 else 'n')
 
 
@@ -544,6 +611,15 @@ def new_post_confirm(request, id):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def new_post(request):
+    from django.contrib import messages
+    from django.conf import settings
+    import datetime, pytz
+    from .models import get_file_path, get_image_path
+    from django.utils import timezone
+    from feed.models import Post
+    from .forms import PostForm, ScheduledPostForm
+    from django.contrib.auth.models import User
+    from django.http import HttpResponse
     arg = request.GET.get('text','')
     text = ''
     if not arg == '':
@@ -623,6 +699,7 @@ def new_post(request):
                         post.save()
                     first = False
 #            from femmebabe.celery import remove_duplicates
+            from .duplicates import remove_post_duplicates
             remove_post_duplicates() #.apply_async([post.id], countdown=60)
             messages.success(request, f'Your content has been posted.')
             return HttpResponse(200)
@@ -638,6 +715,9 @@ def new_post(request):
             form = PostForm(instance=unpublished_post) if not request.GET.get('schedule') else ScheduledPostForm(instance=unpublished_post)
     return render(request, 'feed/new_post.html', {'title': 'New Post', 'form': form, 'full': True, 'upload_interval': settings.UPLOAD_INTERVAL})
 
+from .forms import PostForm, ScheduledPostForm, UpdatePostForm
+from .models import Post
+
 @method_decorator(never_cache, name='dispatch')
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -645,6 +725,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     object = None
 
     def get(self, request, pk):
+        from django.shortcuts import render
+        from django.http import HttpResponseRedirect
         self.object = self.get_object()
         if '***' in self.get_object().content and not request.GET.get('raw', None): return HttpResponseRedirect(request.path + '?raw=t')
         return render(request, self.template_name, self.get_context_data())
@@ -654,14 +736,13 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return context
 
     def get_initial(self):
+        import pytz
         return {'time': self.get_object().date_posted.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%H:%M:00'), 'date': self.get_object().date_posted.astimezone(pytz.timezone(settings.TIME_ZONE)).date} #.strftime('%m-%d-%Y')
 
     def form_valid(self, form):
+        from django.contrib import messages
         self.object = self.get_object()
         form.instance.author = self.request.user
-        if form.instance.image_censored and form.cleaned_data.get('clear_redacted'):
-            form.instance.image_censored = None
-            blur_photo.apply_async([form.instance.id], countdown=10)
         messages.success(self.request, f'Your post has been updated.')
         return super().form_valid(form)
 
@@ -671,12 +752,14 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+from django.urls import reverse_lazy
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('go:go')
 
     def get_success_url(self):
+        from django.urls import reverse
         return reverse('go:go')
 
     def get_context_data(self, **kwargs):
@@ -689,11 +772,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-range_re = re.compile(r'bytes\s*=\s*(\d+)\s*-\s*(\d*)', re.I)
-
-
 class RangeFileWrapper(object):
     def __init__(self, filelike, blksize=8192, offset=0, length=None):
+        import os
         self.filelike = filelike
         self.filelike.seek(offset, os.SEEK_SET)
         self.remaining = length
@@ -722,12 +803,18 @@ class RangeFileWrapper(object):
             self.remaining -= len(data)
             return data
 
+
 #@login_required
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def secure_video(request, filename):
     u = int(filename.split('.')[0].split('-')[-1])
     if request.user.is_authenticated and u != request.user.id:
         raise PermissionDenied()
+    import os, re, mimetypes
+    from wsgiref.util import FileWrapper
+    from django.core.exceptions import PermissionDenied
+    from django.http.response import StreamingHttpResponse
+    range_re = re.compile(r'bytes\s*=\s*(\d+)\s*-\s*(\d*)', re.I)
     path = os.path.join(settings.BASE_DIR, 'media/secure/video/', filename)
     range_header = request.META.get('HTTP_RANGE', '').strip()
     range_match = range_re.match(range_header)

@@ -29,6 +29,7 @@ def feed_context(request):
     context_data['reload_time'] = settings.RELOAD_TIME
     context_data['crypto_provider'] = settings.CRYPTO_PROVIDER
     context_data['default_vibration'] = 400
+    context_data['default_crypto'] = settings.DEFAULT_CRYPTO
     context_data['adminusername'] = User.objects.get(id=settings.ADMIN_ID).profile.name if User.objects.filter(id=settings.ADMIN_ID).first() else None
     context_data['profileusername'] = User.objects.get(id=settings.MY_ID).profile.name if User.objects.filter(id=settings.MY_ID).first() else 'Daisy'
     context_data['my_profile'] = User.objects.get(id=settings.MY_ID).profile if User.objects.filter(id=settings.MY_ID).first() else None

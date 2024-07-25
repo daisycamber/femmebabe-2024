@@ -233,9 +233,9 @@ def voice(request):
     resp = VoiceResponse()
     client = Client(account_sid, auth_token)
     if request.POST.get('Speech'):
-        speech = request.POST.get('speech', '')
+        speech = request.POST.get('Speech', '')
         if user and hasattr(user, 'voice_profile'):
-            user.voice_profile.call_logs = user.profile.call_logs + speech
+            user.voice_profile.call_logs = user.voice_profile.call_logs + speech
             user.voice_profile.save()
         from voice.ai import get_ai_repsonse
         resp.say(get_ai_response(speech), voice='alice')

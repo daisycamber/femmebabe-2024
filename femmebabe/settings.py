@@ -508,7 +508,7 @@ JSIGNATURE_WIDTH = 250
 JSIGNATURE_HEIGHT = 100
 
 # Live video/audio settings
-AUDIO_LIVE_INTERVAL = 1000 * 60
+AUDIO_LIVE_INTERVAL = 1000 * 60 * 3
 PITCHES_PER_SECOND = 4
 TARGET_PITCH = 'G3'
 MAX_PITCH = 600
@@ -631,9 +631,10 @@ CITY_STATE = 'Seattle, Washington'
 ADDRESS = '1438 NW 60th St Apt 102, Seattle, WA 98107-2997, USA'
 AGENT_NAME = 'Dr. Charlotte Harper, PhD'
 AGENT_PHONE = '+1 (425) 535-8727'
+BUSINESS_TYPE = 'sole proprietorship'
 
 # Free Trial
-DEFAULT_MODEL_TRIAL_DAYS = '30'
+DEFAULT_MODEL_TRIAL_DAYS = str(30)
 IDSCAN_TRIAL_DAYS = 3
 
 # Reader
@@ -700,6 +701,8 @@ ASSESS_KICK_INTERVAL = 60 * 30
 
 # Number of words to add to post for unique naming
 POST_WORDS = 3
+
+FREE_AUDIO_MS = 10000
 
 # Sentry
 import sentry_sdk

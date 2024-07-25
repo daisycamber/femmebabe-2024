@@ -211,6 +211,16 @@ body {
   }
 }
 
+.game {
+    width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .game {
+    width: 55% !important;
+  }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @font-face {
   font-family: 'Roboto';

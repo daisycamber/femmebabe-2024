@@ -82,8 +82,6 @@ class PostForm(forms.ModelForm):
             self.fields['file'].widget.attrs.update({'accept': 'video/*', 'capture': 'user'})
         if request.GET.get('audio'):
             self.fields['file'].widget.attrs.update({'accept': 'audio/*', 'capture': 'user'})
-        if self.instance and self.instance.content:
-            self.fields['clear_redacted'].widget = forms.CheckboxInput()
         if self.instance and self.instance.private:
             qs = []
             if self.instance.recipient:
@@ -130,8 +128,6 @@ class ScheduledPostForm(forms.ModelForm):
             self.fields['file'].widget.attrs.update({'accept': 'video/*', 'capture': 'user'})
         if request.GET.get('audio'):
             self.fields['file'].widget.attrs.update({'accept': 'audio/*', 'capture': 'user'})
-        if self.instance and self.instance.content:
-            self.fields['clear_redacted'].widget = forms.CheckboxInput()
         if self.instance and self.instance.private:
             qs = []
             if self.instance.recipient:

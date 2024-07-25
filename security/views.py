@@ -2,33 +2,11 @@ from django.contrib.auth.decorators import user_passes_test
 from .tests import recent_face_match
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
+from webauth.decorators import webauth_required
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .tests import face_mrz_or_nfc_verified, recent_face_match, pin_verified, request_passes_test, biometric_verified
 from face.tests import is_superuser_or_vendor
-from webauth.decorators import webauth_required
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils import timezone
-from django.contrib.sessions.models import Session
-from django.contrib.auth.models import User
-from security.secure import secure_remove_dir
-import datetime, os, re, json
-from users.logout import logout_user
-from django.http import HttpResponse
-from django.utils.crypto import get_random_string
-from .models import NFCScan, MRZScan, Pincode, UserSession, Biometric, Credential, get_document_path
-from django.conf import settings
-from .forms import NFCScanForm, MRZScanForm, PincodeForm
-from django.contrib import messages
-from webauthn import generate_registration_options, generate_authentication_options, options_to_json, verify_registration_response, verify_authentication_response
-from webauthn.helpers.structs import (
-    AuthenticatorSelectionCriteria,
-    UserVerificationRequirement,
-    RegistrationCredential,
-    AuthenticationCredential,
-)
 
 current_challenges = {}
 
@@ -36,6 +14,8 @@ current_challenges = {}
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def webauth_redirect(request):
+    from .models import Biometric
+    from django.shortcuts import redirect
     if biometric_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
     if not biometric_verified(request) and not request.session.get('webauth_device_id', None):
         return redirect('/webauth/verify/')
@@ -50,6 +30,15 @@ def webauth_redirect(request):
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def webauth(request):
+    from django.shortcuts import render
+    from webauthn import generate_registration_options, generate_authentication_options, options_to_json, verify_registration_response, verify_authentication_response
+    from webauthn.helpers.structs import (
+        AuthenticatorSelectionCriteria,
+        UserVerificationRequirement,
+        RegistrationCredential,
+        AuthenticationCredential,
+    )
+    from django.http import HttpResponse
     if request.method == 'GET':
         if not request.user.biometric.count() > 0 and not request.GET.get('register', False): return redirect(request.path + '?register=t&next=' + (request.GET.get('next') if request.GET.get('next') else '/'))
         return render(request, 'security/webauth.html', {'title': 'Biometric Authentication'})
@@ -150,6 +139,8 @@ def approve_login(request, id):
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def logins(request):
+    from .models import UserSession
+    from django.shortcuts import render
     the_logins = UserSession.objects.filter(bypass=False, user=request.user, timestamp__gte=timezone.now() - datetime.timedelta(minutes=settings.LOGIN_VALID_MINUTES)).order_by('-timestamp')
     return render(request, 'security/bypass.html', {
         'title': 'Approve Logins',
@@ -160,7 +151,7 @@ def scan_barcode(path):
 #    from docbarcodes.extract import process_document
 #    barcodes_raw, barcodes_combined = process_document(path)
 #    print(barcodes_raw)
-    import zxing
+    import zxing, re
     reader = zxing.BarCodeReader()
     barcode = str(reader.decode(path))
     matches = re.findall("raw='([^']+)'", str(barcode))
@@ -180,10 +171,13 @@ def scan_barcode(path):
 @user_passes_test(is_vendor)
 #@user_passes_test(recent_face_match)
 def set_pincode(request):
+    from .models import PincodeForm
     if request.method == 'POST':
+        from django.shortcuts import redirect
         form = PincodeForm(request.POST)
         if form.is_valid(): # and recent_face_match(request):
             if not str(form.cleaned_data.get('pin')) != '':
+                from django.contrib import messages
                 messages.warning(request, 'No pin was entered.')
                 return redirect(request.path)
             p = request.user.security_profile
@@ -191,6 +185,7 @@ def set_pincode(request):
             p.save()
             messages.success(request, 'Your pin has been accepted.')
             return redirect(request.GET.get('next') if request.GET.get('next') else '/')
+    from django.shortcuts import render
     return render(request, 'security/pin.html', {'title': 'Enter Pin', 'form': PincodeForm()})
 
 @login_required
@@ -199,6 +194,8 @@ def pincode(request):
     if request.method == 'POST':
         form = PincodeForm(request.POST)
         if form.is_valid():
+            from django.urls import redirect
+            from django.contrib import messages
             p = request.user.security_profile
             if not str(form.cleaned_data.get('pin')) == request.user.security_profile.pincode and not timezone.now() < p.pin_entered_incorrectly:
                 messages.warning(request, 'This pincode was not correct.')
@@ -210,9 +207,11 @@ def pincode(request):
             p.pin_entered = timezone.now()
             p.incorrect_pin_attempts = 0
             p.save()
+            from .models import Pincode
             Pincode.objects.create(user=request.user, session_key=request.session.session_key)
             messages.success(request, 'Your pin has been accepted.')
             return redirect(request.GET.get('next') if request.GET.get('next') else '/')
+    from django.shortcuts import render
     return render(request, 'security/pin.html', {'title': 'Enter Pin', 'form': PincodeForm()})
 
 @csrf_exempt
@@ -245,6 +244,11 @@ def shake(request):
 #@user_passes_test(recent_face_match)
 def scan_mrz(request):
     from pdf417 import encode, render_image
+    from .models import MRZScan
+    from django.http import HttpResponse
+    from .forms import MRZScanForm
+    from django.utils.crypto import get_random_string
+    from django.conf import settings
     scan = None
     ocr_key = None
     if request.GET.get('generate', False) and face_mrz_or_nfc_verified(request):
@@ -294,6 +298,12 @@ def scan_mrz(request):
 @user_passes_test(is_vendor)
 #@user_passes_test(recent_face_match)
 def scan_nfc(request):
+    from django.shortcuts import render
+    from django.utils.crypto import get_random_string
+    from .models import NFCScan
+    from .forms import NFCScanForm
+    from django.conf import settings
+    from django.http import HttpResponse
     if request.method == 'POST':
         form = NFCScanForm(request.POST)
         if form.is_valid():
@@ -315,6 +325,8 @@ def scan_nfc(request):
 
 
 def all_unexpired_sessions_for_user(user):
+    from django.utils import timezone
+    from django.contrib.sessions.models import Session
     user_sessions = []
     all_sessions  = Session.objects.filter(expire_date__gte=timezone.now())
     for session in all_sessions:
@@ -337,6 +349,7 @@ def delete_all_unexpired_sessions_for_user(user, session_to_omit=None):
 def logout_everyone(request):
     if not (request.user.profile.admin or request.user.is_superuser):
         return redirect(reverse('landing:landing'))
+    from security.secure import secure_remove_dir
     secure_remove_dir('secure/media/')
     secure_remove_dir('secure/video/')
     for user in User.objects.all():
@@ -347,6 +360,10 @@ def logout_everyone(request):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def logout_everyone_but_user(request):
+    from django.urls import reverse
+    from django.shortcuts import redirect
+    from django.contrib.auth.models import User
+    from security.secure import secure_remove_dir
     if not (request.user.profile.admin or request.user.is_superuser):
         return redirect(reverse('landing:landing'))
     secure_remove_dir('secure/media/')

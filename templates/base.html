@@ -70,6 +70,8 @@ body {
 <body class="px-0 py-0 my-0 ml-0 mr-0{% if not preload %} loaded{% endif %}" style="background-color: {{ background_color }};">
 {% if show_ads and not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user and not user.profile.vendor and not user.is_superuser %}
 <!--Body ad tags-->
+{% else %}
+<p class="hide" id="dontshowad">y</p>
 {% endif %}
 {% if not hidega %}
 {% include 'gtmbody.html' %}
