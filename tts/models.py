@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
-from audio.views import AudioRecording
+from audio.models import AudioRecording
 from feed.storage import MediaStorage
 
 def get_file_path(instance, filename):

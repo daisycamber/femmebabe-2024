@@ -298,7 +298,6 @@ def scan_mrz(request):
 @user_passes_test(is_vendor)
 #@user_passes_test(recent_face_match)
 def scan_nfc(request):
-    from django.shortcuts import render
     from django.utils.crypto import get_random_string
     from .models import NFCScan
     from .forms import NFCScanForm
@@ -313,6 +312,8 @@ def scan_nfc(request):
             form.instance.session_key = request.session.session_key
             scan = form.save()
             return HttpResponse('y')
+    from django.shortcuts import render
+    from django.urls import reverse
     return render(request, 'security/nfc.html', {
         'title': 'Scan NFC',
         'form': NFCScanForm(),

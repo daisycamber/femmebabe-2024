@@ -589,6 +589,7 @@ def post_detail(request, uuid):
     if description == '':
         description = 'No description for this post.' + basedescription
     post.content = oc
+    from django.shortcuts import render
     resp = render(request, 'feed/post_detail.html', {'title': title, 'pagetitle': pagetitle, 'post': post})
     if request.user.is_authenticated: patch_cache_control(resp, private=True)
     else: patch_cache_control(resp, public=True)
@@ -603,6 +604,7 @@ def new_post_confirm(request, id):
     from django.utils import timezone
     import datetime
     from feed.models import Post
+    from django.http import HttpResponse
     return HttpResponse('y' if Post.objects.filter(confirmation_id=id, date_uploaded__gte=timezone.now() - datetime.timedelta(minutes=5)).count() > 0 else 'n')
 
 
@@ -613,13 +615,14 @@ def new_post_confirm(request, id):
 def new_post(request):
     from django.contrib import messages
     from django.conf import settings
-    import datetime, pytz
+    import datetime, pytz, os
     from .models import get_file_path, get_image_path
     from django.utils import timezone
     from feed.models import Post
     from .forms import PostForm, ScheduledPostForm
     from django.contrib.auth.models import User
     from django.http import HttpResponse
+    from security.security import fraud_detect
     arg = request.GET.get('text','')
     text = ''
     if not arg == '':
@@ -713,6 +716,7 @@ def new_post(request):
             form = PostForm(initial={'feed': f, 'content': text}) if not request.GET.get('schedule') else ScheduledPostForm(initial={'feed': f, 'content': text, 'time': datetime.datetime.now()})
         else:
             form = PostForm(instance=unpublished_post) if not request.GET.get('schedule') else ScheduledPostForm(instance=unpublished_post)
+    from django.shortcuts import render
     return render(request, 'feed/new_post.html', {'title': 'New Post', 'form': form, 'full': True, 'upload_interval': settings.UPLOAD_INTERVAL})
 
 from .forms import PostForm, ScheduledPostForm, UpdatePostForm

@@ -49,6 +49,9 @@ try {
     var gameCode;
     var id;
     var player;
+    var player1;
+    var player2;
+    var user;
 try {
       postUuid = document.getElementById("post_id").innerHTML;
       gameCode = document.getElementById("game_code").innerHTML;
@@ -209,8 +212,10 @@ function is_legal_move(col, row, value) {
   let gameplay;
   var gameSocket;
   var startedGame = false;
+  var toSend = '';
   function send(text){
-      gameSocket.send(text);
+//        toSend = toSend + text + '/';
+        gameSocket.send(text + '/');
   }
 
   //leftbound = (width - less) / 2 / scale;
@@ -434,25 +439,28 @@ function is_legal_move(col, row, value) {
   }
   print_sudoku_to_webpage()
   var opjContainer;
-  function opponentJoinedGame(){
+  let currentTurn = 0;
     opjContainer = new createjs.Container();
       var opjText = new createjs.Text("Opponent Joined Game", TEXTTYPE, "#000000")
       opjText.x = leftbound + 500;
       opjText.y = topbound + 10;
       opjText.textAlign = 'center';
       opjContainer.addChild(opjText);
+  function opponentJoinedGame(){
     setTimeout(() => {
               container.removeChild(opjContainer);
             }, 5000);
     container.addChild(opjContainer);
+    if(user == player1 && gp.length < 3 && currentTurn < 3){
+      drawDifficultySelector();
+    }
   }
 
-  let currentTurn = 0;
   function readCallback(){
     gp = gameplay;
     //console.log("Read callback");
     var start = currentTurn;
-    if(gp.length < 2) start = 0;
+    if(gp.length < 3) start = 0;
         for(let i = start; i < gp.length; i++){
           sp = gp[i].split(",");
           //if(sp[3] == user){
@@ -463,15 +471,15 @@ function is_legal_move(col, row, value) {
           if(sp[0] == "start"){
             newGame(parseInt(sp[1]));
             //container.removeChild(difficultyContainer);
-            currentTurn = i+1;
+            currentTurn = currentTurn+1;
             //console.log("Start command");
           } else if(sp[0] == "set"){
             playTurn(parseInt(sp[1]),parseInt(sp[2]), parseInt(sp[3]))
-            currentTurn = i+1;
+            currentTurn = currentTurn+1;
             //console.log("Set command");
           } else if(sp[0] == "join" && user != player2){
             opponentJoinedGame();
-            currentTurn = i+1;
+            currentTurn = currentTurn+1;
             //console.log("Opponent Joined Game");
           }
         }
@@ -484,7 +492,11 @@ function is_legal_move(col, row, value) {
             console.log('Socket open.');
 /*            gameSocket.send('x');*/
             setInterval(function() {
-                gameSocket.send('y');
+                gameSocket.send('y');/*
+                if(toSend.length > 0) {
+                    gameSocket.send(toSend);
+                    toSend = '';
+                }*/
         }, 5000);
             send("join");
         });
@@ -616,7 +628,9 @@ function is_legal_move(col, row, value) {
 
   let difficultyContainer;
 
+  var dsVisible = false;
   function drawDifficultySelector() {
+    if(!dsVisible){
     difficultyContainer = new createjs.Container();
     let difficulties = [];
     let diffText = [];
@@ -638,10 +652,13 @@ function is_legal_move(col, row, value) {
         newGame(rand);
         send("start,"+rand);
         container.removeChild(difficultyContainer);
-      });
+        dsVisible = false;
+     });
     }
     container.addChild(difficultyContainer);
-  }
+    dsVisible = true;
+    }
+   }
 
   let wonContainer;
   let wonDialog;
@@ -667,9 +684,6 @@ function is_legal_move(col, row, value) {
     wonContainer.addChild(wonText);
     container.addChild(wonContainer);
 
-  }
-  if(user == player1){
-    drawDifficultySelector();
   }
   let ticks = 0;
 

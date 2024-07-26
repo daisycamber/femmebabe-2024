@@ -31,8 +31,8 @@ function openSocket() {
 		}, {{ reload_time }});
 	});
 }
-/*openSocket();
+/*openSocket();*/
 function join() {
 	window.location.href = '{% url 'games:play' game.post.id game.uid %}';
-}*/
+}
 {% endblock %}
