@@ -35,7 +35,7 @@
   <url>
     <loc>{{ base_url }}/feed/post/{{ post.uuid }}/</loc>
     {% for lang in languages %}
-    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}/feed/post/{{ post.uuid }}/" />
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ post.get_absolute_url }}/" />
     {% endfor %}
     <lastmod>{{ post.date_posted|sitemapdate }}</lastmod>
   </url>

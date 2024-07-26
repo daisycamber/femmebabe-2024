@@ -382,7 +382,7 @@ FIDO_SERVER_ID=DOMAIN      # Server rp id for FIDO2, it is the full domain of yo
 FIDO_SERVER_NAME=SITE_NAME
 
 # Site descriotionn
-BASE_DESCRIPTION = 'Entertainment, photos, videos, audio, and livestreaming, as well as ID scanning, web development and surrogacy services.'
+BASE_DESCRIPTION = 'Professional entertainment, photos, videos, audio, livestreaming and casual gameplay, as well as ID scanning, web development and surrogacy services.'
 
 # Icon for navbar and media
 ICON_URL = '/media/static/logo.png'

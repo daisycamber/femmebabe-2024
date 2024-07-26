@@ -3,7 +3,8 @@
 {% block content %}
 <legend>Invite a Friend</legend>
 <p><i>{{ game.post.id|shorttitle }}</i></p>
-<legend>Invite Code: {{ code }}</legend>
+<legend>Invite Code: <b id="#gamecode">{{ code }}</b> <button class="btn btn-outline-info btn-sm" onclick="copyToClipboard('#gamecode');">Copy</button></legend>
+<legend>Invite URL: <b id="#gameurl">{{ base_url }}/games/{{ game.post.id }}/{{ code }}/</b> <button class="btn btn-outline-info btn-sm" onclick="copyToClipboard('#gameurl');">Copy</button></legend>
 <p>Give the other player this code, and have them enter it.</p>
 <p><button onclick="join();" title="Join the game" class="btn btn-outline-success" id="joinButton">Join Game</button></p>
 <hr>
@@ -30,8 +31,8 @@ function openSocket() {
 		}, {{ reload_time }});
 	});
 }
-openSocket();
+/*openSocket();
 function join() {
 	window.location.href = '{% url 'games:play' game.post.id game.uid %}';
-}
+}*/
 {% endblock %}

@@ -11503,3 +11503,30 @@ Jun 21 18:43:36 femmebabe team: team [517122]: venv
 2024-07-25T15:34:52.546654-07:00 femmebabe team: team [1569239]: nano security/views.py 
 2024-07-25T15:40:02.608386-07:00 femmebabe team: team [1569239]: nano security/views.py 
 2024-07-25T15:40:13.545085-07:00 femmebabe team: team [1582485]: sudo systemctl restart daphne &
+2024-07-25T15:43:46.965201-07:00 femmebabe team: team [1569239]: nano security/views.py 
+2024-07-25T15:43:54.743081-07:00 femmebabe team: team [1569239]: python manage.py check
+2024-07-25T15:43:58.910691-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T15:46:38.245930-07:00 femmebabe team: team [1569239]: nano games/templates/games/invite.html 
+2024-07-25T15:48:29.776142-07:00 femmebabe team: team [1569239]: nano games/templates/games/invite.html 
+2024-07-25T15:48:33.758329-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T16:03:09.317627-07:00 femmebabe team: team [1569239]: nano misc/sitemap.py 
+2024-07-25T16:03:43.248110-07:00 femmebabe team: team [1569239]: nano misc/templates/misc/sitemap.xml 
+2024-07-25T16:03:48.498459-07:00 femmebabe team: team [1569239]: cat feed/models.py | grep get_abs
+2024-07-25T16:04:01.870040-07:00 femmebabe team: team [1569239]: nano misc/templates/misc/sitemap.xml 
+2024-07-25T16:04:08.427366-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T16:09:05.293616-07:00 femmebabe team: team [1569239]: nano templates/social.html 
+2024-07-25T16:09:20.275267-07:00 femmebabe team: team [1569239]: nano games/views.py 
+2024-07-25T16:11:54.836703-07:00 femmebabe team: team [1569239]: nano games/templates/games/invite.html 
+2024-07-25T16:12:05.357410-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T16:13:10.517355-07:00 femmebabe team: team [1569239]: nano feed/context_processors.py 
+2024-07-25T16:13:41.001627-07:00 femmebabe team: team [1569239]: nano templates/social.html 
+2024-07-25T16:13:42.988393-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T16:13:49.076864-07:00 femmebabe team: team [1569239]: sudo purgecache
+2024-07-25T16:13:54.190969-07:00 femmebabe team: team [1569239]: logs
+2024-07-25T16:14:03.925486-07:00 femmebabe team: team [1569239]: compinfo
+2024-07-25T16:14:24.090137-07:00 femmebabe team: team [1569239]: cat femmebabe/settings.py | grep DESCR
+2024-07-25T16:14:31.297494-07:00 femmebabe team: team [1569239]: cat femmebabe/settings.py | grep DESCR -nH
+2024-07-25T16:16:35.562066-07:00 femmebabe team: team [1582485]: sudo backup
+2024-07-25T16:17:17.278334-07:00 femmebabe team: team [1569239]: nano femmebabe/settings.py 
+2024-07-25T16:17:24.208556-07:00 femmebabe team: team [1569239]: sudo systemctl reload apache2
+2024-07-25T16:17:29.530868-07:00 femmebabe team: team [1569239]: sudo purgecache
