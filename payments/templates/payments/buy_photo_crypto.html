@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %} 
 <div id="container rounded bg-white shadow col-md-6 mx-auto">
-<h1><i class="bi bi-credit-card-fill"></i> Buy this {% if not post.file %}photo{% else %}product{% endif %} of @{{ username }} with Card</h1>
+<h1><i class="bi bi-credit-card-fill"></i> Buy this {% if not post.file %}photo of{% else %}product from{% endif %} @{{ username }} with Crypto</h1>
 <div style="display: flex; justify-content: space-around;">
 {% if post.image %}<img class="mr-2 img-fluid rounded" style="float: left; filter: blur(8px); width: 50%; max-width: 400px; margin-right: 13px;" src="{{ post.get_blur_thumb_url }}" alt="Buy this photo for ${{ fee|sub_fee }} USD"></img>{% endif %}
 <div style="display: inline-block;">
@@ -42,6 +42,7 @@
 {{ form|crispy }}
 <button type="submit" class="btn btn-outline-success">Send</button>
 </form>
+<p>Buy crypto to send here: <a href="{{ crypto_provider }}" title="Buy crypto to send">{{ crypto_provider }}</a></p>
 </div>
 {% endblock %}
 {% block javascript %}

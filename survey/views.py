@@ -1,9 +1,9 @@
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import user_passes_test
 from feed.tests import identity_verified
 from face.tests import is_superuser_or_vendor
 from vendors.tests import is_vendor
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')

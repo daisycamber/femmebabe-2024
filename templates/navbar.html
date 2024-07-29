@@ -22,15 +22,15 @@
             <a class="nav-link" href="{% url 'payments:webdev' %}" title="{{ 'Learn about our services'|trans }}">{{ 'Services'|trans }}</a>
           </li>
           <li class="nav-item {% if request.path == '/models/' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'feed:profiles' %}" title="{{ 'See profiles from active models'|trans }}">{{ 'Models'|trans|capitalize }}</a>
+             <a class="nav-link" href="{% url 'feed:profiles' %}" title="{{ 'See profiles from active models'|trans }}">{{ 'Models'|trans|capitalize }}</a>
           </li>
-          {% if not request.user.is_authenticated %}
-          {% if not request.user.profile.admin %}
-	  {% if my_profile.user.vendor_profile.activate_surrogacy %}
+           {% if my_profile.user.vendor_profile.activate_surrogacy %}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'payments:surrogacy' my_profile.name %}" title="{{ 'Surrogacy plans'|trans }}">{{ 'Surrogacy'|trans }}</a>
+           <a class="nav-link" href="{% url 'payments:surrogacy' my_profile.name %}" title="{{ 'Surrogacy plans'|trans }}">{{ 'Surrogacy'|trans }}</a>
           </li>
           {% endif %}
+          {% if not request.user.is_authenticated %}
+          {% if not request.user.profile.admin %}
           {% endif %}
           {% endif %}
 	  {% if request.user.profile.subscriptions.count > 0 %}

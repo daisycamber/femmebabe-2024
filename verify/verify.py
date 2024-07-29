@@ -49,12 +49,14 @@ def validate_id(verification):
         return False
     if not birthday:
         return False
-    if id_path == None or faces.count() == 0:
+    if not verification.user.profile.disable_id_face_match and (id_path == None or faces.count() == 0):
         return False
     if not verification.user.profile.disable_id_face_match and not verify_id_document(id_path, faces):
         print("Failed to verify document due to face mismatch.")
         return False
-    verification.document_ocr = get_image_text(id_path)
+    no_lang = get_image_text(id_path, lang=None)
+    verification.document_ocr = get_image_text(id_path, lang='eng')
+    if len(no_lang) > len(verification.document_ocr): verification.document_ocr = no_lang
     verification.save()
     name = verification.full_name
     if not text_matches_name(verification.document_ocr, name):

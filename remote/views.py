@@ -1,24 +1,19 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from security.models import Session
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils import timezone
-import datetime, uuid
-from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
-from .forms import InjectionForm
-from django.core.paginator import Paginator
 from face.tests import is_superuser_or_vendor
-from security.apis import get_client_ip
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def generate_session(request):
+    import uuid
+    from django.http import HttpResponse
+    from security.models import Session
+    from django.conf import settings
+    from security.apis import get_client_ip
+    from django.utils import timezone
+    import datetime
     key = str(uuid.uuid4())
     ip = get_client_ip(request)
     sessions = Session.objects.filter(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path if not request.GET.get('path', None) else request.GET.get('path'), method=request.method, time__gte=timezone.now() - datetime.timedelta(seconds=30), index=settings.SESSION_INDEX)
@@ -30,6 +25,14 @@ def generate_session(request):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_superuser_or_vendor)
 def sessions(request):
+    from django.shortcuts import render
+    from security.models import Session
+    from django.urls import reverse
+    from django.utils import timezone
+    import datetime
+    from django.contrib import messages
+    from django.conf import settings
+    from django.core.paginator import Paginator
     page = 1
     if(request.GET.get('page', None) != None):
         page = int(request.GET.get('page', 1))
@@ -45,8 +48,16 @@ def sessions(request):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_superuser_or_vendor)
 def injection(request):
+    from django.shortcuts import render, redirect
+    from security.models import Session
+    import datetime, uuid
+    from django.contrib import messages
+    from .forms import InjectionForm
+    from security.apis import get_client_ip
     sessions = Session.objects.filter(injection_key=request.GET.get('key', None), method='GET')
     if request.method == 'POST':
+        from django.shortcuts import redirect
+        from django.urls import reverse
         form = InjectionForm(request.POST)
         if form.is_valid():
             for session in sessions:

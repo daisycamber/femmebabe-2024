@@ -11,32 +11,9 @@ django.setup()
 # pickle the object when using Windows.
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
-import pytz, requests, shutil, traceback
-from django.utils import timezone
 from celery.schedules import crontab
+
 from django.contrib.auth.models import User
-from users.tfa import send_user_text
-from users.logout import logout_user
-from django.utils import timezone
-from live.models import VideoRecording, get_file_path, VideoFrame, get_still_path, VideoCamera
-from datetime import datetime
-import datetime as dt
-from feed.models import Post
-from shell.restart import start_server_safe
-from shell.execute import run_command
-from live.models import Show
-from voice.autocall import call
-from audio.transcription import get_transcript
-from shell.logout import logout_malicious_users
-from shell.models import ShellLogin
-from face.models import Face
-from django.core.files.base import ContentFile
-from payments.models import Subscription
-from live.models import VideoCamera
-from shell.reload import safe_reload
-from retargeting.email import send_retargeting_emails, send_retargeting_email
-from notifications.push import routine_push
-from mail.views import update_notify
 
 me = None
 try:
@@ -45,12 +22,21 @@ except: pass
 
 
 @app.task
+def automatic_backup():
+    from web.generate import generate_site
+    from shell.execute import run_command
+    generate_site()
+    print(run_command('sudo backup'))
+
+@app.task
 def upload_post(post_id):
+    from feed.models import Post
     self = Post.objects.get(id=post_id)
     self.upload()
 
 @app.task
 def write_post_book(post_id):
+    from feed.models import Post
     self = Post.objects.get(id=post_id)
     from feed.books import generate_post_book
     self.file = generate_post_book(self)
@@ -84,6 +70,8 @@ def update_dovecot():
 @app.task
 def update_file(path, new_text, shell_user):
     from pathlib import Path
+    import os
+    from shell.execute import run_command
     from shell.models import SavedFile
     status = None
     owner = None
@@ -116,17 +104,21 @@ def async_geolocation(ip_obj, ip):
     ip_obj.save()
 
 @app.task
-def remove_if_nude(scan):
+def remove_if_nude(scan_id):
+    from barcode.models import DocumentScan
+    scan = DocumentScan.objects.get(id=scan_id)
     from feed.nude import is_nude_fast
     if is_nude_fast(scan.document.path):
         scan.delete()
 
 @app.task
 def notify_mail_update():
+    from mail.views import update_notify
     update_notify()
 
 @app.task
 def send_scheduled_emails():
+    from django.utils import timezone
     from retargeting.models import ScheduledEmail
     emails = ScheduledEmail.objects.filter(send_at__lte=timezone.now(), sent=False)
     for email in emails:
@@ -136,6 +128,7 @@ def send_scheduled_emails():
 
 @app.task
 def send_scheduled_user_emails():
+    from django.utils import timezone
     from retargeting.models import ScheduledUserEmail
     emails = ScheduledUserEmail.objects.filter(send_at__lte=timezone.now(), sent=False)
     count = 0
@@ -153,15 +146,19 @@ def send_idscan_emails():
 
 @app.task
 def push_notification():
+    from notifications.push import routine_push
     routine_push()
 
 @app.task
 def process_live(camera_id, frame_id):
-    import zipfile
     from live.voice_changer import adjust_video_pitch
     from tts.slice import convert_wav
     from feed.nude import is_nude_fast
     from security.safety import is_safe_image, is_safe_file
+    from django.conf import settings
+    from live.models import VideoCamera, VideoFrame, get_file_path, get_still_path
+    import os, datetime, uuid, shutil, zipfile
+    from django.utils import timezone
     camera = VideoCamera.objects.get(id=camera_id)
     frame = VideoFrame.objects.get(id=frame_id)
     if frame.compressed:
@@ -206,14 +203,17 @@ def process_live(camera_id, frame_id):
 
 @app.task
 def routine_safe_reload():
+    from shell.reload import safe_reload
     safe_reload()
 
 @app.task
 def delay_delete_post(id):
+    from feed.models import Post
     Post.objects.get(id=id).delete()
 
 @app.task
 def delay_remove_frame(id):
+    from live.models import VideoFrame
     VideoFrame.objects.get(id=id).delete()
 
 @app.task
@@ -227,22 +227,30 @@ def crypto_trading_bots():
 
 @app.task
 def rekey_cameras():
+    from live.models import VideoCamera
+    import datetime as dt
+    from django.utils import timezone
     for camera in VideoCamera.objects.filter(updated__lte=timezone.now() - dt.timedelta(seconds=60)):
         camera.key = ''
         camera.save()
 
 @app.task
 def clear_shell_logins():
+    from shell.models import ShellLogin
+    import datetime as dt
+    from django.utils import timezone
     for login in ShellLogin.objects.all():
         if login.time + dt.timedelta(minutes=10) < timezone.now():
             login.delete()
 
-#@app.task
-#def logout_fraudulent_connections():
-#    logout_malicious_users()
+@app.task
+def logout_fraudulent_connections():
+    from shell.logout import logout_malicious_users
+    logout_malicious_users()
 
 @app.task
 def delay_remove(filename):
+    import os
     os.remove(filename)
 
 @app.task(bind=True)
@@ -250,13 +258,11 @@ def debug_task(self):
     print('Request: {0!r}'.format(self.request))
 
 @app.task
-def automatic_backup():
-    from web.generate import generate_site
-    generate_site()
-    print(run_command('screen -m -d sudo backup'))
-
-@app.task
 def show_reminder_text():
+    from live.models import Show
+    from django.utils import timezone
+    import datetime
+    from users.tfa import send_user_text
     shows = Show.objects.filter(start__lte=timezone.now() + dt.timedelta(minutes=65), start__gte=timezone.now() - dt.timedelta(minutes=5))
     for show in shows:
         send_user_text(show.model, 'Remember to log in to your live show with {} starting {}'.format(show.user, show.start.strftime('%m/%d/%Y %H:%M:%S')))
@@ -264,16 +270,20 @@ def show_reminder_text():
 
 @app.task
 def reload_server():
+    import requests
+    from django.conf import settings
     op = None
     try:
         op = requests.get(settings.BASE_URL, timeout=15)
     except:
         op = None
     if not op:
+        from shell.restart import start_server_safe
         start_server_safe()
 
 @app.task
 def pend_id_verification(user_id):
+    from django.contrib.auth.models import User
     u = User.objects.get(id=user_id)
     u.profile.identity_verified = True
     u.profile.identity_verifying = False
@@ -281,10 +291,14 @@ def pend_id_verification(user_id):
 
 @app.task
 def update_subscriptions():
-    sub_update()
+    pass
+#    sub_update()
 
 def send_text(text):
-    send_user_text(User.objects.get(id=2), text)
+    from django.conf import settings
+    from django.contrib.auth.models import User
+    from users.tfa import send_user_text
+    send_user_text(User.objects.get(id=settings.MY_ID), text)
 
 reminders = ['first','second','third']
 
@@ -293,6 +307,11 @@ def process_recording(id):
     from live.concat import concat
     from audio.transcription import get_transcript
     from audio.fingerprinting import save_fingerprint, is_in_database
+    from live.models import VideoRecording, get_file_path
+    from django.utils import timezone
+    from django.contrib.auth.models import User
+    from django.conf import settings
+    import os
     camera = VideoCamera.objects.filter(user=recording.user, name=recording.camera).first().id
     recording = VideoRecording.objects.get(id=id)
     if (not recording.last_frame or (recording.last_frame < timezone.now() - dt.timedelta(seconds=settings.LIVE_INTERVAL/1000 - 2))) and not recording.processing: # 4
@@ -336,39 +355,55 @@ def process_recording(id):
 
 @app.task
 def process_recordings():
+    from live.models import VideoRecording
     for recording in VideoRecording.objects.filter(processed=False).order_by('-last_frame'):
         try:
             process_recording(recording.id)
         except:
+            import traceback
             print(traceback.format_exc())
 
 @app.task
 def validate_bitcoin_payment(uid, mid, balance, transaction_id, fee):
+    from django.contrib.auth.models import User
     user = User.objects.get(id=uid)
     model = User.objects.get(id=mid)
     if not model in user.profile.subscriptions.all() and model.vendor_payments_profile.validate_crypto_transaction(user, balance, transaction_id):
+        from users.tfa import send_user_text
         send_user_text(model, '{} has sucessfully sunscribed to your profile with bitcoin, {}.'.format(user.profile.name, model.profile.preferred_name))
         user.profile.subscriptions.add(model)
         user.profile.save()
+        from payments.models import Subscription
         Subscription.objects.create(user=user, model=model, expire_date = timezone.now() + datetime.timedelta(days=30), fee=fee)
 
 @app.task
 def validate_photo_payment(uid, mid, balance, transaction_id, post_id):
+    from django.contrib.auth.models import User
     user = User.objects.get(id=uid)
     model = User.objects.get(id=mid)
     if model.vendor_payments_profile.validate_crypto_transaction(user, balance, transaction_id):
+        from feed.models import Post
         p = Post.objects.get(id=post_id)
-        p.recipient = user
-        p.save()
+        if not p.paid_file:
+            p.recipient = user
+        else:
+            p.paid_users.add(user)
+            p.save()
         from feed.email import send_photo_email
         send_photo_email(user, p)
 
 @app.task
 def remove_secure(path):
+    import os
     os.remove(path)
 
 @app.task
 def birth_control_reminder_text(uid):
+    from django.contrib.auth.models import User
+    import pytz
+    from django.utils import timezone
+    from users.tfa import send_user_text
+    from django.conf import settings
     user = User.objects.filter(id=uid).first()
     if user:
         if (not user.birthcontrol_profile.took_birth_control_today()) and user.birthcontrol_profile.send_pill_reminder:
@@ -382,6 +417,11 @@ def birth_control_reminder_text(uid):
 
 @app.task
 def birth_control_text(uid):
+    from django.contrib.auth.models import User
+    import pytz
+    from django.utils import timezone
+    from users.tfa import send_user_text
+    from django.conf import settings
     user = User.objects.filter(id=uid).first()
     if user:
         if not user.birthcontrol_profile.took_birth_control_today() and user.birthcontrol_profile.send_pill_reminder:
@@ -389,6 +429,11 @@ def birth_control_text(uid):
 
 @app.task
 def sleep_reminder_text(uid):
+    from django.contrib.auth.models import User
+    import pytz
+    from users.tfa import send_user_text
+    from django.conf import settings
+    from django.utils import timezone
     user = User.objects.filter(id=uid).first()
     if user:
         pill_reminder_time = user.birthcontrol_profile.reminder_time
@@ -411,17 +456,20 @@ def sleep_reminder_text(uid):
 
 @app.task
 def clear_tokens():
+    from django.contrib.auth.models import User
     for user in User.objects.all():
         user.profile.recovery_token = ''
         user.profile.save()
 
 @app.task
 def start_server():
+    from shell.execute import run_command
     run_command('sudo systemctl start apache2')
 
 celery_beat_schedules = {}
 
 for user in User.objects.filter(birthcontrol_profile__send_pill_reminder=True) if me else []:
+    import pytz
     pill_reminder_time = user.birthcontrol_profile.reminder_time.astimezone(pytz.timezone(settings.TIME_ZONE))
     pill_reminder_hours = int(pill_reminder_time.strftime('%-H'))
     prm = int(pill_reminder_time.strftime('%-M'))
@@ -445,26 +493,36 @@ for user in User.objects.filter(birthcontrol_profile__send_pill_reminder=True) i
 
 @app.task
 def clear_recordings():
+    from live.models import VideoRecording
+    from django.utils import timezone
+    import datetime as dt
+    from django.conf import settings
     recordings = VideoRecording.objects.filter(camera__icontains='*', last_frame__lte=timezone.now() - dt.timedelta(hours=24*settings.RECORDING_EXPIRY_DAYS))
     for recording in recordings:
         recording.delete()
 
 @app.task
 def send_admin_text():
-    admin = User.objects.get(id=settings.ADMIN_ID)
-    send_user_text(admin, '{} is sending you a text to keep your phone active, {}'.format(settings.SITE_NAME, admin.profile.name))
+    pass
+#    admin = User.objects.get(id=settings.ADMIN_ID)
+#    send_user_text(admin, '{} is sending you a text to keep your phone active, {}'.format(settings.SITE_NAME, admin.profile.name))
 #    call('+12062409036')
 
 @app.task
 def hourly_review():
-    review_server()
+    pass
+#    review_server()
 
 @app.task
 def sweep_bitcoin_payments():
-    sweep_all_to_master()
+    pass
+#    sweep_all_to_master()
 
 @app.task
 def authorize_faces():
+    from face.models import Face
+    from django.utils import timezone
+    import datetime as dt
     faces = Face.objects.filter(timestamp__lte=timezone.now()-dt.timedelta(minutes=30), authorized=False)
     for face in faces:
         face.authorized = True
@@ -472,14 +530,17 @@ def authorize_faces():
 
 @app.task
 def send_emails():
+    from retargeting.email import send_retargeting_emails, send_retargeting_email
     send_retargeting_emails()
 
 @app.task
 def send_email():
+    from retargeting.email import send_retargeting_emails, send_retargeting_email
     send_retargeting_email()
 
 @app.task
 def routine_filter():
+    import os
     from feed.models import Post
     post = Post.objects.filter(published=False).exclude(image=None).last()
     if post:
@@ -519,6 +580,7 @@ def async_risk_detection(ip_id):
 def routine_bucket_posts():
     from feed.models import Post
     from enhance.image import bucket_post
+    import os
     for post in Post.objects.filter(published=True, uploaded=False):
         if post.image and os.path.exists(post.image.path):
             bucket_post(post.id)
@@ -559,7 +621,7 @@ app.conf.beat_schedule = {
     },
     'routine-filter': {
         'task': 'femmebabe.celery.routine_filter',
-        'schedule': crontab(hour='*', minute='*/10'),
+        'schedule': crontab(hour='*', minute='*/30'),
     },
 #    'bucket-posts': {
 #        'task': 'femmebabe.celery.routine_bucket_posts',

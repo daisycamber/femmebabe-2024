@@ -42,6 +42,7 @@ class Post(models.Model):
     feed = models.CharField(max_length=500, default="private")
     uuid = models.TextField(max_length=500, default=uuid.uuid4)
     content = models.TextField(blank=True)
+    content_compiled = models.TextField(blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     date_uploaded = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -87,6 +88,10 @@ class Post(models.Model):
 
 #    def likes(self):
 #        return Profile.objects.filter(likes__in=[self]).count()
+
+    def compile_content(self):
+        from .compile import compile
+        compile(self)
 
     def get_file_sample(self):
         if self.file_sample_bucket: return self.file_sample_bucket.url

@@ -1,26 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
-from django.urls import reverse
-from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
 from vendors.tests import is_vendor
-from django.contrib.sessions.models import Session
-from live.models import VideoRecording
-from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ChoicesForm, ChoiceCreateForm
-from .models import Choices
-from django.http import Http404
-from django.contrib import messages
-from django.contrib.auth.models import User
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def add_option(request):
+    from .forms import ChoiceCreateForm
+    from django.contrib import messages
     hidenavbar = False
     if request.GET.get('hidenavbar', False):
         hidenavbar = True
@@ -35,6 +27,9 @@ def add_option(request):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def interactive(request, username):
+    from django.urls import reverse
+    from django.contrib import messages
+    from django.contrib.auth.models import User
     model = User.objects.get(profile__name=username)
     if (not model in request.user.profile.subscriptions.all()) and not model == request.user:
         messages.warning(request, 'You need to follow {} before you can see their interactive feed.'.format(username))
@@ -48,6 +43,10 @@ def interactive(request, username):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def interactive_frame(request, username):
+    from live.models import VideoRecording
+    from django.core.paginator import Paginator
+    from django.contrib import messages
+    from django.contrib.auth.models import User
     model = User.objects.get(profile__name=username)
     if (not model in request.user.profile.subscriptions.all()) and not model == request.user:
         messages.warning(request, 'You need to follow {} before you can see their interactive feed.'.format(username))
@@ -58,6 +57,13 @@ def interactive_frame(request, username):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def forms(request, username):
+    from django.urls import reverse
+    from django.utils import timezone
+    from live.models import VideoRecording
+    from .forms import ChoicesForm
+    from .models import Choices
+    from django.contrib import messages
+    from django.contrib.auth.models import User
     if not request.user.profile.interactive == request.GET.get('interactive'):
         import urllib.parse
         request.GET._mutable = True
@@ -86,6 +92,14 @@ def forms(request, username):
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def recording(request, username):
+    from django.urls import reverse
+    from live.models import VideoRecording
+    from django.contrib import messages
+    from django.contrib.auth.models import User
+    from django.urls import reverse
+    from live.models import VideoRecording
+    from django.contrib import messages
+    from django.contrib.auth.models import User
     model = User.objects.get(profile__name=username)
     if (not model in request.user.profile.subscriptions.all()) and not model == request.user:
         messages.warning(request, 'You need to follow {} before you can see their interactive feed.'.format(username))

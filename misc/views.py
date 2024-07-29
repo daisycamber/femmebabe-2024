@@ -1,26 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from feed.models import Post
-from django.core.paginator import Paginator
 from django.contrib.auth.decorators import user_passes_test
 from feed.tests import identity_verified
 from vendors.tests import is_vendor
-from django.http import HttpResponse
-from feed.templatetags.app_filters import nts, stime, ampm
-from django.utils import timezone
-from django.conf import settings
-from django.contrib import messages
-from misc.regex import SEARCH_REGEX
-from misc.regex import ESCAPED_QUERIES
 from django.views.decorators.csrf import csrf_exempt
-import datetime
-from feed.models import Post
 from django.views.decorators.cache import never_cache, cache_page
 
 @cache_page(60*60*24*30)
 def adstxt(request):
+    from django.shortcuts import render
     return render(request, 'ads.txt')
 
 @cache_page(60*60*24*30)
@@ -28,6 +15,7 @@ def sitemap(request):
     from .sitemap import urls
     from .sitemap import vendor_urls
     from .sitemap import languages
+    from django.shortcuts import render
     return render(request, 'misc/sitemap.xml', {'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'vendors': User.objects.filter(profile__vendor=True, is_active=True), 'vendor_urls': vendor_urls, 'urls': urls, 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d')}, content_type='application/xml')
 
 @cache_page(60*60*24)
@@ -37,34 +25,44 @@ def news(request):
     urls = ['/landing/', '/about/', '/accounts/login/', '/accounts/register/', '/']
     vendor_urls = ['/feed/grid/', '/feed/profile/', '/payments/photo/', '/payments/subscribe/', '/payments/crypto/']
     surrogate_urls = ['/surrogacy/', '/surrogacy/checkout/']
+    from django.contrib.auth.models import User
+    from django.shortcuts import render
     return render(request, 'misc/news.xml', {'profiles': User.objects.filter(is_active=True, profile__vendor=True), 'surrogates': User.objects.filter(is_active=True, profile__vendor=True, vendor_profile__activate_surrogacy=True), 'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d'), 'urls': urls, 'vendor_urls': vendor_urls, 'surrogate_urls': surrogate_urls}, content_type='application/xml')
 
 @cache_page(60*60*24*30*3)
 def idscan(request):
+    from django.shortcuts import render
     return render(request, 'misc/idscan.html')
 
 @cache_page(60*60*24*30*3)
 def ad(request):
+    from django.shortcuts import render
     return render(request, 'ad_frame.html', {'hidenavbar': True, 'load_timeout': 0})
 
 @cache_page(60*60*24*30*3)
 def verify(request):
+    from django.http import HttpResponse
     return HttpResponse('f7fcf64bfb499980d251f6ffb6676460')
 
 def current_time(now):
+    from feed.templatetags.app_filters import nts, stime, ampm
     resp = '{} {}'.format(stime(now).capitalize(), ampm(now))
     return resp
 
 def time(request):
     resp = current_time()
+    from django.http import HttpResponse
     return HttpResponse(resp)
 
 @csrf_exempt
 def authenticated(request):
+    from django.http import HttpResponse
     return HttpResponse('y' if request.user.is_authenticated else 'n')
 
 @cache_page(60*60*24*30)
 def terms(request):
+    from django.shortcuts import render
+    from django.conf import settings
     return render(request, 'misc/terms.html', {
         'title': 'Terms and Conditions',
         'city_state': settings.CITY_STATE,
@@ -75,16 +73,22 @@ def terms(request):
     })
 
 def privacy(request):
+    from django.shortcuts import render
     return render(request, 'misc/privacy.html', {'title': 'Privacy'})
 
 def get_posts_for_query(request, qs):
     import regex
+    from django.utils import timezone
+    from feed.models import Post
+    from django.conf import settings
     now = timezone.now()
     try:
         now = datetime.datetime.fromtimestamp(int(request.GET.get('time')) / 1000)
     except: pass
     from autocorrect import Speller
     from translate.translate import translate
+    from misc.regex import SEARCH_REGEX
+    from misc.regex import ESCAPED_QUERIES
     spell = Speller()
     qs = spell(qs)
     qs = translate(request, qs, target=settings.DEFAULT_LANG)
@@ -116,6 +120,9 @@ def get_posts_for_query(request, qs):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @cache_page(60*60*24*30)
 def search(request):
+    from django.conf import settings
+    from django.contrib import messages
+    from django.core.paginator import Paginator
     page = 1
     if(request.GET.get('page', None) != None):
         page = int(request.GET.get('page'))
@@ -131,6 +138,7 @@ def search(request):
     template_name = 'misc/search.html'
     if request.GET.get('grid'):
         template_name = 'feed/profile_grid.html'
+    from django.shortcuts import render
     return render(request, template_name, {
         'title': 'Search {}'.format(settings.SITE_NAME),
         'posts': p.page(page),
@@ -142,4 +150,5 @@ def search(request):
 
 @cache_page(60*60*24*30*3)
 def robotstxt(request):
+    from django.shortcuts import render
     return render(request, 'robots.txt')

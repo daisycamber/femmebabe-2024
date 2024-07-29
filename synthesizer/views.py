@@ -1,23 +1,15 @@
-from django.shortcuts import render
-from audio.models import AudioRecording
-from vendors.tests import is_vendor
-from feed.tests import identity_verified
-from django.shortcuts import redirect, get_object_or_404
-from django.urls import reverse
-from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .forms import EditAudioForm
-import os, shutil
-from django.utils import timezone
-from django.conf import settings
-from audio.models import get_file_path
-from django.core.paginator import Paginator
+from vendors.tests import is_vendor
+from feed.tests import identity_verified
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def projects(request):
+    from django.shortcuts import render
+    from .models import Project
+    from django.core.paginator import Paginator
     projects = Project.objects.filter(user=request.user).order_by('-last_updated')
     p = Paginator(projects, 10)
     if page > p.num_pages or page < 1:
@@ -29,6 +21,10 @@ def projects(request):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def project(request, id):
+    from django.shortcuts import render
+    from .models import Project
+    from django.urls import reverse
+    from django.utils import timezone
     project = None
     if id == 'new':
         project = Project.objects.create(user=request.user, name='New Project {}'.format(timezone.now().strftime('%B%d%Y')))
@@ -42,6 +38,17 @@ def project(request, id):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def audio_recording(request, id):
+    from django.shortcuts import render
+    from audio.models import AudioRecording
+    from django.shortcuts import redirect, get_object_or_404
+    from django.urls import reverse
+    from django.core.exceptions import PermissionDenied
+    from .forms import EditAudioForm
+    import os, shutil
+    from django.utils import timezone
+    from django.conf import settings
+    from audio.models import get_file_path
+    from django.core.paginator import Paginator
     from tts.slice import convert_wav
     from .plot import visualize
     from pydub import AudioSegment, effects

@@ -1,19 +1,8 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from face.tests import is_superuser_or_vendor
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
-from django.conf import settings
-from django.core.paginator import Paginator
-from dateutil.parser import parse
-from django.contrib.auth.models import User
-from mail.models import LastUpdatedMail
-from django.utils.html import strip_tags
-from face.tests import is_superuser_or_vendor
-import os
 
 def getbody(message):
     body = None
@@ -64,6 +53,17 @@ def get_subject(message):
 @user_passes_test(is_superuser_or_vendor)
 def inbox(request):
     import datetime, os, re, mailbox, pytz
+    from django.shortcuts import render, redirect
+    from django.urls import reverse
+    from django.utils import timezone
+    from django.contrib import messages
+    from django.conf import settings
+    from django.core.paginator import Paginator
+    from dateutil.parser import parse
+    from django.contrib.auth.models import User
+    from mail.models import LastUpdatedMail
+    from django.utils.html import strip_tags
+    import os
     page = 1
     if(request.GET.get('page', '') != ''):
         page = int(request.GET.get('page', ''))
@@ -90,24 +90,30 @@ def inbox(request):
 def message(request, id):
 #    from shell.execute import run_command
 #    run_command('/bin/sudo chown {}:users {}'.format(settings.BASH_USER, config_dir))
+    from django.shortcuts import render
     import datetime, os, re, mailbox, pytz
+    from django.conf import timezone
     a = list(mailbox.mbox('/var/mail/{}'.format(request.user.profile.bash)))
     a.reverse()
     i = a[int(id)]
     return render(request, 'mail/message.html', {'title': 'Message {}'.format(id), 'subject': get_subject(i), 'content': getbody(i).decode("utf-8"), 'from': i['from'], 'to': i['to'], 'time': parse(i['date']).astimezone(pytz.timezone(settings.TIME_ZONE))})
 
 def notify_user(user, from_email, subject, body):
+    from django.conf import settings
     payload = {"head": 'New Mail ({}) - {}'.format(from_email, subject), "body": body[:200] + '' if len(body) <= 200 else '...', "url": settings.BASE_URL + '/mail/message/0/', 'icon': '{}{}'.format(settings.BASE_URL, settings.ICON_URL)}
     from pwa_webpush import send_user_notification
     send_user_notification(user=user, payload=payload, ttl=1000)
 
 def update_notify():
+    from django.contrib.auth.models import User
     users = User.objects.filter(email_verified=True, is_active=True).exclude(profile__bash='').order_by('-profile__last_seen')
     for user in users:
         update_user(user)
 
 def update_user(user):
     import datetime, os, re, mailbox, pytz
+    from .models import LastUpdatedMail
+    from django.utils import timezone
     a = list(mailbox.mbox('/var/mail/{}'.format(user.profile.bash)))
     a.reverse()
     updated, created = LastUpdatedMail.objects.get_or_create(user=user)
@@ -126,6 +132,9 @@ def update_user(user):
 
 def write_dovecot():
     from shell.execute import run_command
+    import os
+    from django.contrib.auth.models import User
+    from django.conf import settings
     config_dir = str(os.path.join(settings.BASE_DIR, 'config/etc_dovecot_passwd'))
     users = User.objects.filter(profile__email_verified=True, is_active=True).exclude(profile__bash='').order_by('-profile__last_seen')
     dove = ''

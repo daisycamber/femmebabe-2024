@@ -1,7 +1,3 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from .forms import MelaninPhotoForm
-from .models import MelaninPhoto
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
@@ -9,6 +5,10 @@ MIN_CONSTELLATION = 6
 MIN_SCORE = 0.2
 
 def validate_score(user, instance):
+    from .forms import MelaninPhotoForm
+    from .models import MelaninPhoto
+    from django.shortcuts import render, redirect
+    from django.urls import reverse
     from melanin.kabsch import validate_melanin_images
     score = 0.0
     photos = MelaninPhoto.objects.filter(user=user).order_by('-timestamp')
@@ -20,6 +20,10 @@ def validate_score(user, instance):
 @csrf_exempt
 @login_required
 def melanin(request):
+    from .forms import MelaninPhotoForm
+    from .models import MelaninPhoto
+    from django.shortcuts import render, redirect
+    from django.urls import reverse
     if request.method == 'POST':
         form = MelaninPhotoForm(request.POST, request.FILES)
         if form.is_valid():

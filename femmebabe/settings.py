@@ -451,8 +451,9 @@ MIN_AGE_VERIFIED = 21 # For surrogacy
 
 # Verification security tools
 ENABLE_AGECHECKER = False
-USE_IDWARE = True
+USE_IDWARE = False
 BARCODE_SIZE = 300
+OCR_LANG = 'eng'
 
 # User subscription presenntation settings
 WEBPUSH_QUERY_DELAY_SECONDS = 60 * 2

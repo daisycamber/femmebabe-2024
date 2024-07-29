@@ -8,4 +8,5 @@ urlpatterns = [
     path('take/time/', views.take_birth_control_time, name='take-time'),
     path('notes/', views.notes, name='notes'),
     path('profile/', views.profile, name='profile'),
+    path('temperature/', views.temperature, name='temperature'),
 ]

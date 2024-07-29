@@ -54,6 +54,7 @@ function resetForm() {
 {% include 'pagelinks.html' %}
 {% endblock content %}
 {% block javascript %}
+staticClocks()
 setInterval(function() {
 	var d = new Date();
 	d.toLocaleString();

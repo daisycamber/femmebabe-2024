@@ -10,6 +10,16 @@ from face.tests import is_superuser_or_vendor
 
 current_challenges = {}
 
+@login_required
+@user_passes_test(is_superuser_or_vendor)
+def webauth_begin(request):
+    from .models import Biometric
+    from django.shortcuts import redirect
+    if biometric_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
+    if not biometric_verified(request) and not request.session.get('webauth_device_id', None):
+        return redirect('/webauth/verify/?next=/security/biometric/?next=' + request.GET.get('next', '/'))
+    return redirect(request.GET.get('next', '/'))
+
 @webauth_required
 @login_required
 @user_passes_test(is_superuser_or_vendor)
@@ -18,7 +28,7 @@ def webauth_redirect(request):
     from django.shortcuts import redirect
     if biometric_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
     if not biometric_verified(request) and not request.session.get('webauth_device_id', None):
-        return redirect('/webauth/verify/')
+        return redirect('/webauth/verify/?next=/security/biometric/begin/?next=' + request.GET.get('next', '/'))
     Biometric.objects.create(user=request.user, session_key=request.session.session_key)
     request.user.profile.enable_biometrics = True
     request.user.profile.save()
@@ -171,7 +181,7 @@ def scan_barcode(path):
 @user_passes_test(is_vendor)
 #@user_passes_test(recent_face_match)
 def set_pincode(request):
-    from .models import PincodeForm
+    from .forms import PincodeForm
     if request.method == 'POST':
         from django.shortcuts import redirect
         form = PincodeForm(request.POST)
@@ -191,11 +201,13 @@ def set_pincode(request):
 @login_required
 def pincode(request):
     if not request.user.security_profile.pincode or pin_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
+    from .forms import PincodeForm
     if request.method == 'POST':
         form = PincodeForm(request.POST)
         if form.is_valid():
-            from django.urls import redirect
+            from django.shortcuts import redirect
             from django.contrib import messages
+            from django.utils import timezone
             p = request.user.security_profile
             if not str(form.cleaned_data.get('pin')) == request.user.security_profile.pincode and not timezone.now() < p.pin_entered_incorrectly:
                 messages.warning(request, 'This pincode was not correct.')
@@ -219,6 +231,7 @@ def pincode(request):
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_vendor)
 def modal(request):
+    from django.http import HttpResponse
 #    if request.method == 'POST':
     return HttpResponse('y' if face_mrz_or_nfc_verified(request) else 'n')
 #    else: return HttpResponse('n')

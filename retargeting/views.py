@@ -1,35 +1,39 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
-from django.contrib.auth.models import User
-from feed.models import Post
-from django.conf import settings
-import datetime, pytz
-from .forms import EmailForm
-from .models import ScheduledEmail
-from django.contrib import messages
 from face.tests import is_superuser_or_vendor
 
 def qrcode(request):
+    from django.shortcuts import render
     return render(request, 'retargeting/qrcode.html', {'title': 'QR Code', 'description': 'Generate a QR code'})
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_superuser_or_vendor)
 def emails(request):
+    from django.shortcuts import render
+    from django.utils import timezone
+    from .models import ScheduledEmail
     sent = request.GET.get('sent', False)
-    emails = ScheduledEmail.objects.filter(sent=False, send_at__gte=timezone.now()).order_by('-send_at') if not sent else ScheduledEmail.objects.filter(sent=True, send_at__lte=timezone.now()).order_by('-send_at')
+    emails = ScheduledEmail.objects.filter(sender=request.user, sent=False, send_at__gte=timezone.now()).order_by('-send_at') if not sent else ScheduledEmail.objects.filter(sender=request.user, sent=True, send_at__lte=timezone.now()).order_by('-send_at')
     return render(request, 'retargeting/emails.html', {'title': 'Scheduled Emails', 'emails': emails})
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 @user_passes_test(is_superuser_or_vendor)
 def send_email(request):
+    from django.shortcuts import render
+    from django.shortcuts import redirect
+    from django.urls import reverse
+    from django.utils import timezone
+    from django.contrib.auth.models import User
+    from feed.models import Post
+    from django.conf import settings
+    import datetime, pytz
+    from .forms import EmailForm
+    from .models import ScheduledEmail
+    from django.contrib import messages
     id = request.GET.get('id', None)
     email = None
     if id: email = ScheduledEmail.objects.filter(id=int(id)).first()

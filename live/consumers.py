@@ -6,20 +6,19 @@ import sys
 import select
 from django.conf import settings
 from django.contrib.auth.models import User
-from live.models import VideoCamera
 from asgiref.sync import sync_to_async
-from live.models import get_file_path, VideoFrame, VideoRecording, Show
-import pytz, datetime
-from django.utils import timezone
-from django.conf import settings
-import base64, asyncio
-import urllib.parse
-from urllib.parse import parse_qs
-from django.core.exceptions import PermissionDenied
-from feed.tests import identity_really_verified
 
 @sync_to_async
 def get_camera_data(camera_user, camera_name, index, request_user):
+    from live.models import VideoCamera
+    from live.models import get_file_path, VideoFrame, VideoRecording, Show
+    import pytz, datetime
+    from django.utils import timezone
+    from django.conf import settings
+    import base64, asyncio
+    import urllib.parse
+    from urllib.parse import parse_qs
+    from feed.tests import identity_really_verified
     profile = get_object_or_404(Profile, name=camera_user, identity_verified=True, vendor=True)
     cameras = VideoCamera.objects.filter(user=profile.user, name=camera_name)
     model = User.objects.get(profile__name=username)
@@ -31,10 +30,20 @@ def get_camera_data(camera_user, camera_name, index, request_user):
 
 @sync_to_async
 def get_camera_status(camera_user, camera_name):
+    from live.models import VideoCamera
     return '{},{},{}'.format('y' if VideoCamera.objects.filter(name=camera_name, user__profile__name=camera_user).first().live else 'n', 'y' if VideoCamera.objects.filter(name=camera_name, user__profile__name=camera_user).first().recording else 'n', 'y' if VideoCamera.objects.filter(name=camera_name, user__profile__name=camera_user).first().mute else 'n')
 
 @sync_to_async
 def update_camera(camera_user, camera_name, camera_data, key=None):
+    from live.models import VideoCamera
+    from live.models import get_file_path, VideoFrame, VideoRecording, Show
+    import pytz, datetime
+    from django.utils import timezone
+    from django.conf import settings
+    import base64, asyncio
+    import urllib.parse
+    from urllib.parse import parse_qs
+    from feed.tests import identity_really_verified
     from live.still import is_still
     from femmebabe.celery import process_live, process_recording
     camera = None

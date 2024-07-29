@@ -2,9 +2,6 @@
 {% block content %}
 {% load app_filters %}
 <legend class="border-bottom mb-4">Go</legend>
-<small>{{ user_count|nts|capitalize }} ({{ user_count }}) people active, {{ verified_user_count|nts }} ({{ verified_user_count }}) verified.</small>
-<small>{{ active_today|nonts|capitalize }} active today, {{ active_this_week|nonts }} this week, {{ active_this_month|nonts }} this month, {{ active_this_year|nonts }} this year.</small>
-<hr>
 <b>Feed</b>
 <div style="display: flex; justify-content: space-around;">
 <div class="dropdown" style="display: inline-block;">

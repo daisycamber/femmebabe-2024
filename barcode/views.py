@@ -9,6 +9,7 @@ from feed.tests import identity_verified
 @csrf_exempt
 def validate_barcode(request, key):
     from .models import DocumentScan
+    from django.http import HttpResponse
     return HttpResponse('y' if DocumentScan.objects.filter(key=key).count() > 0 and DocumentScan.objects.filter(key=key).last().succeeded else 'n')
 
 #@login_required
@@ -69,6 +70,7 @@ def scan_barcode(request):
             foreign = False
             messages.warning(request, 'You need to buy an ID scanner plan before continuing.')
             return redirect(reverse('payments:idscan'))
+    if flow: foregin = True
     if request.user.profile.idscan_active and not request.GET.get('auth', False): foreign = True
     if request.user.is_authenticated and not foreign and not request.user.faces.count():
         messages.warning(request, 'You need to take a photo of your face before scanning your ID.')
@@ -93,8 +95,9 @@ def scan_barcode(request):
             return HttpResponse(reverse('barcode:scan') + get_qs(request.GET))
         form.instance.user = request.user if request.user.is_authenticated else None
         scan = form.save()
-        flow.scans.add(scan)
-        flow.save()
+        if flow:
+            flow.scans.add(scan)
+            flow.save()
         scan.side = not back
         scan.foreign = True if request.GET.get('foreign', None) else False
         scan = form.save()
@@ -148,10 +151,16 @@ def scan_barcode(request):
                     messages.warning(request, 'A previous scan of this ID already exists under a different account.')
             else:
                 try:
-                    res = scan_id_front(scan, foreign)
+                    res = scan_id_front(scan, foreign, lang=settings.OCR_LANG)
+                    if not res:
+                        res = scan_id_front(scan, foreign, lang=settings.OCR_LANG)
+                    if not res:
+                        res = scan_id_front(scan, foreign, lang=None)
                     if not res:
                         scan.rotate()
-                        res = scan_id_front(scan, foreign)
+                        res = scan_id_front(scan, foreign, lang=settings.OCR_LANG)
+                    if not res:
+                        res = scan_id_front(scan, foreign, lang=None)
                     birthday, expiry = res
                     if not birthday:
                         print('Birthday not recognized.')
@@ -167,6 +176,7 @@ def scan_barcode(request):
 #            request.user.profile.can_scan_id = timezone.now() + datetime.timedelta(minutes=settings.MINUTES_PER_IDSCAN)
 #            if request.user.profile.vendor or request.user.is_superuser or request.user.profile.idscan_active:
 #                request.user.profile.can_scan_id = timezone.now() + datetime.timedelta(minutes=settings.MINUTES_PER_IDSCAN_STAFF)
+        scan.save()
         if is_valid:
             scan.succeeded = True
             scan.save()
@@ -189,6 +199,8 @@ def scan_barcode(request):
                 if request.user.is_authenticated and not foreign and not request.user.profile.idscan_active:
                     request.user.profile.id_front_scanned = True
                     request.user.profile.save()
+                scan.verified = True
+                scan.save()
                 return HttpResponse(reverse('barcode:scan') + get_qs(request.GET) + '&back=true')
         else:
             messages.warning(request, 'Your ID was not accepted. Please try again.')

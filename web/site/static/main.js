@@ -243,3 +243,15 @@ Prism.languages.sql={comment:{pattern:/(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#
 function copyToClipboard(el) {
         navigator.clipboard.writeText(document.getElementById(el).innerHTML);
 }
+
+function staticClocks() {
+    var clockScripts = document.getElementsByClassName('clock-script');
+    for(script of clockScripts) {
+        if(!$(script).hasClass('complete')) {
+            eval(new String(script.innerHTML).replace("&gt;", '>').replace("&lt;", '<'));
+            $(script).toggleClass('complete');
+        }
+    }
+}
+staticClocks();
+

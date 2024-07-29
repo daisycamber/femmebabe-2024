@@ -292,28 +292,30 @@ def verify(request):
             name_match = check_username(form.instance.full_name)
             verification = form.save()
             user_verified = validate_id(verification)
-            data = json.load(verification.idscan)
-            result = data['ParseResult']
-            document = result[list(result.keys())[0]]
-            if document['LicenseNumber'] != verification.document_number and document['IDNumber'] != verification.document_number:
-                user_verified = False
-                messages.warning(request, 'Your identity could not be verified because the number you entered doesn\'t match the number on the document.')
-            prev_scan = IdentityDocument.objects.filter(idscan=verification.idscan).last()
-            if settings.USE_IDWARE and prev_scan and prev_scan.user and prev_scan.user != verification.user:
-                messages.warning(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
-                user_verified = False
-            prev_scan = IdentityDocument.objects.filter(barcode_data=verification.barcode_data).last()
-            if prev_scan and prev_scan.user != verification.user:
-                messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
-                user_verified = False
-            prev_scan = IdentityDocument.objects.filter(document_number__icontains=verification.document_number).last()
-            if settings.USE_IDWARE and prev_scan and prev_scan.user != verification.user:
-                messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
-                user_verified = False
-            prev_scan = IdentityDocument.objects.filter(document_number__icontains=verification.document_number[:12]).last()
-            if settings.USE_IDWARE and prev_scan and prev_scan.user != verification.user:
-                messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
-                user_verified = False
+            try:
+                data = json.load(verification.idscan)
+                result = data['ParseResult']
+                document = result[list(result.keys())[0]]
+                if document['LicenseNumber'] != verification.document_number and document['IDNumber'] != verification.document_number:
+                    user_verified = False
+                    messages.warning(request, 'Your identity could not be verified because the number you entered doesn\'t match the number on the document.')
+                prev_scan = IdentityDocument.objects.filter(idscan=verification.idscan).last()
+                if settings.USE_IDWARE and prev_scan and prev_scan.user and prev_scan.user != verification.user:
+                    messages.warning(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
+                    user_verified = False
+                prev_scan = IdentityDocument.objects.filter(barcode_data=verification.barcode_data).last()
+                if prev_scan and prev_scan.user != verification.user:
+                    messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
+                    user_verified = False
+                prev_scan = IdentityDocument.objects.filter(document_number__icontains=verification.document_number).last()
+                if settings.USE_IDWARE and prev_scan and prev_scan.user != verification.user:
+                    messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
+                    user_verified = False
+                prev_scan = IdentityDocument.objects.filter(document_number__icontains=verification.document_number[:12]).last()
+                if settings.USE_IDWARE and prev_scan and prev_scan.user != verification.user:
+                    messages.success(request, 'ID validation failed due to pre existing ID scan with name ' + prev_scan.user.username)
+                    user_verified = False
+            except: pass
             print("Id validated? " + str(user_verified))
             p = request.user.profile
             if (not settings.ENABLE_AGECHECKER or o['status'] == 'accepted') and user_verified and name_match:

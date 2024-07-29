@@ -60,8 +60,8 @@ class DocumentScan(models.Model):
         max = settings.BARCODE_SIZE # 500
         super(DocumentScan, self).save(*args, **kwargs)
         if not this or this.document != self.document:
-            from clemn.celery import remove_if_nude
-            remove_if_nude.delay(self)
+            from femmebabe.celery import remove_if_nude
+            remove_if_nude.delay(self.id)
             full_path = os.path.join(settings.BASE_DIR, 'media/', get_document_path(self, self.document.name))
             img = Image.open(self.document.path)
             full_path = str(full_path) + '.png'
@@ -85,3 +85,4 @@ class DocumentScan(models.Model):
             if img.height > max or img.width > max:
                 output_size = (max, max)
                 img.thumbnail(output_size)
+

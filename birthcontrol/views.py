@@ -89,7 +89,7 @@ def profile(request):
             if request.FILES:
                 import zxing
                 reader = zxing.BarCodeReader()
-                barcode = str(reader.decode(verification.document_isolated.path))
+                barcode = str(reader.decode(profile.birth_control.path))
                 profile.birth_control_barcodes = barcode #decode_isolated(profile.birth_control.path)
                 profile.save()
         else:
@@ -194,7 +194,7 @@ def take_birth_control(request):
     if last_pill:
         init = last_pill.notes_save
     form = BirthControlForm(initial={'notes':init})
-    last_pill = {'id': 0}
+    if not last_pill: last_pill = {'id': 0, 'short_time': '09:00:00'}
     return render(request, 'birthcontrol/take.html', {'title': 'Take a Birth Control Pill', 'form': form, 'pills': p.page(page), 'count': p.count, 'page_obj': p.get_page(page), 'last_pill': last_pill,
         'the_current_time': timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%a %b %d %Y %H:%M:%S GMT-0700 (Pacific Daylight Time)')
     })

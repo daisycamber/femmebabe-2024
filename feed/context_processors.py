@@ -1,20 +1,19 @@
-from datetime import datetime, time, date, timedelta
-from django.conf import settings
-from django.contrib.auth.models import User
-import pytz, traceback, random, os
-from security.models import Session as SecureSession
-from feed.models import Post
-from security.models import UserIpAddress
-from security.apis import get_client_ip
-from misc.views import current_time
-from django.utils import timezone
-from security.tests import face_mrz_or_nfc_verified
-
 def utc_to_local(utc_dt, local_tz):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
     return local_tz.normalize(local_dt)
 
 def feed_context(request):
+    from datetime import datetime, time, date, timedelta
+    from django.conf import settings
+    from django.contrib.auth.models import User
+    import pytz, traceback, random, os
+    from security.models import Session as SecureSession
+    from feed.models import Post
+    from security.models import UserIpAddress
+    from security.apis import get_client_ip
+    from misc.views import current_time
+    from django.utils import timezone
+    from security.tests import face_mrz_or_nfc_verified
     context_data = dict()
     try:
         context_data['lang'] = request.LANGUAGE_CODE if not request.GET.get('lang', None) else request.GET.get('lang')

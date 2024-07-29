@@ -37,10 +37,13 @@ def get_uuid():
 import random
 import jellyfish
 
-def scan_id(verification, foreign):
+def scan_id(verification, foreign, lang='eng'):
     print('Validating ID')
     self = verification
     id_path = verification.document_isolated.path
+    new_ocr = get_image_text(id_path, lang=lang)
+    verification.barcode_data = new_ocr
+    verification.save()
     if not foreign: # and verification.user.profile.enable_facial_recognition:
         faces = verification.user.faces.all()
         if id_path == None or faces.count() == 0:
@@ -53,8 +56,6 @@ def scan_id(verification, foreign):
             print('ID failed photo age test')
             os.remove(id_path)
             return False
-    new_ocr = get_image_text(id_path)
-    verification.barcode_data = new_ocr
     print(new_ocr)
     if len(new_ocr) < 100:
         print('OCR Length is too short.')

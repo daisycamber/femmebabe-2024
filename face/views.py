@@ -185,13 +185,13 @@ def face_verify(request, username, token):
     from django.contrib.auth.models import User
     from django.utils.crypto import get_random_string
     flow = None
+    token = FaceToken.objects.filter(uid=username).order_by('-timestamp').last()
+    if not token: token = FaceToken.objects.create(user=User.objects.filter(profile__uuid=username).first(), uid=username, expires=timezone.now() + datetime.timedelta(seconds=115))
     user = User.objects.filter(id=token.user.id).first()
     if request.GET.get('flow', False): flow = VeriFlow.objects.filter(uid=request.GET.get('flow', None), expires__gte=timezone.now()-datetime.timedelta(minutes=15))
     if not flow and not user: return redirect(reverse('users:login'))
-    token = FaceToken.objects.filter(uid=username).order_by('-timestamp').last()
     if flow:
         user = None
-    if not token: token = FaceToken.objects.create(user=User.objects.filter(profile__uuid=username).first(), uid=username, expires=timezone.now() + datetime.timedelta(seconds=115))
     ip = get_client_ip(request)
 #    if not user:
 #        return redirect(reverse('users:login'))

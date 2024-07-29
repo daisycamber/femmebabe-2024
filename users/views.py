@@ -1,67 +1,22 @@
-from django.contrib.auth import logout
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
-from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-import json
-import requests
-import datetime, traceback
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, NonVendorProfileUpdateForm, ResendActivationEmailForm
-from django.contrib import messages
-from .models import Profile, AccountLink, MFAToken
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, logout
-from django.contrib.auth import login as auth_login
-from django.utils import timezone
-from django.views.decorators.cache import never_cache
-from django.urls import reverse_lazy, reverse
-from .email import sendwelcomeemail, send_html_email
-from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
     UpdateView,
     DeleteView
 )
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
-from .forms import PhoneNumberForm, TfaForm
-from .tfa import send_verification_text, check_verification_code, send_user_text, send_text
-from .tfa import send_verification_email as send_tfa_verification_email
-from users.email import send_verification_email
-from security.apis import get_client_ip, check_ip_risk, check_raw_ip_risk
-from security.middleware import FRAUD_MOD
-from security.models import UserIpAddress, SecurityProfile
-from django.conf import settings
-from security.middleware import get_uuid
-from security.security import fraud_detect
-from .forms import get_past_date
-from dateutil.relativedelta import relativedelta
-from django.conf import settings
 from face.tests import is_superuser_or_vendor
 from django.contrib.auth.decorators import user_passes_test
-from django.utils import timezone
-import datetime
-import pytz
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.forms import SetPasswordForm
-from django.utils.http import urlsafe_base64_decode
-from users.username_generator import generate_username as get_random_username
-from security.models import UserLogin
-from users.logout import logout_user
 from django.core.exceptions import PermissionDenied
-from django.views.decorators.cache import cache_control
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache, cache_control
 
 @csrf_exempt
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def google_auth(request):
+    from django.shortcuts import redirect
     from users.oauth import get_auth_url
     return redirect(get_auth_url(request.user.email, request.user.profile.uuid))
 
@@ -71,6 +26,7 @@ def google_auth(request):
 def google_auth_callback(request):
     from users.oauth import parse_callback_url
     from security.middleware import get_qs
+    from django.urls import reverse
     url = settings.BASE_URL + request.path + get_qs(request.GET)
     token, refresh = parse_callback_url(url)
     request.user.profile.token = token
@@ -80,13 +36,20 @@ def google_auth_callback(request):
     return reverse('/')
 
 def resolve_multiple_accounts(request, user):
+    from .models import AccountLink
     if request.user.is_authenticated and not request.user.account_link:
         AccountLink.objects.create(from_user=request.user, to_user=user)
 
 def password_reset(request, uidb64, token):
+    from django.shortcuts import redirect, get_object_or_404
+    from .forms import SetPasswordForm
+    from django.contrib import messages
+    from django.contrib.auth.models import User
+    from django.utils.http import urlsafe_base64_decode
     user = get_object_or_404(User, id=urlsafe_base64_decode(uidb64))
     if request.method == 'POST':
         form = SetPasswordForm(user, request.POST)
+        from django.contrib.auth.tokens import default_token_generator
         if form.is_valid() and default_token_generator.check_token(user, token):
             user.profile.email_verified = True
             user.profile.finished_signup = True
@@ -100,6 +63,7 @@ def password_reset(request, uidb64, token):
         else:
             messages.warning(request, 'Your password reset link has expired. Please create a new one.')
         return redirect(reverse('users:login'))
+    from django.shortcuts import render
     return render(request, 'users/password_reset_confirm.html', {
         'title': 'Reset your Password',
         'form': SetPasswordForm(user)
@@ -109,6 +73,7 @@ def password_reset(request, uidb64, token):
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def toggle_user_active(request, pk):
+    from django.contrib.auth.models import User
     user = User.objects.get(id=pk)
     if request.method == 'POST':
         user.is_active = not user.is_active
@@ -118,6 +83,10 @@ def toggle_user_active(request, pk):
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def users(request):
+    from django.shortcuts import render
+    from django.contrib.auth.models import User
+    from django.utils import timezone
+    import datetime
     new_today = User.objects.filter(is_active=True, date_joined__gte=timezone.now() - datetime.timedelta(hours=24)).count()
     new_this_month = User.objects.filter(is_active=True, date_joined__gte=timezone.now() - datetime.timedelta(hours=24*30)).count()
     subscribers = User.objects.filter(is_active=True, profile__subscribed=True).count()
@@ -131,17 +100,24 @@ def users(request):
 
 
 def logout_visitor(request):
+    from django.contrib import messages
+    from django.shortcuts import render
+    from django.conf import settings
     if request.GET.get('message', None):
         messages.success(request, request.GET.get('message'))
     logout(request)
     return render(request, 'users/logout.html', {'small': True, 'title': 'You have been logged out of {}'.format(settings.SITE_NAME)})
 
 def passwordless_login(request):
+    from .forms import PhoneNumberForm
+    from django.shortcuts import render, redirect, get_object_or_404
     if request.method == 'POST':
         form = PhoneNumberForm(request.POST)
         phone_number = form.data['phone_number'].replace('-', '').replace('(','').replace(')','')
         user = get_object_or_404(User, profile__phone_number=phone_number)
         if user.is_active:
+            from users.tfa import send_user_text
+            from django.contrib import messages
             send_user_text(user, 'Use the following link to log into your account: {}'.format(settings.BASE_URL) + user.profile.create_face_url() + ' - The link will expire in 3 minutes.')
             messages.success(request, 'A one time login link has been sent to your phone number, ' + phone_number + '.')
             return redirect(reverse('landing:landing'))
@@ -151,12 +127,24 @@ def passwordless_login(request):
 
 
 def tfa(request, username, usertoken):
-#    logout(request)
+    from django.conf import settings
+    from .forms import PhoneNumberForm
+    from django.shortcuts import render, redirect, get_object_or_404
+    from django.urls import reverse
+    from django.http import HttpResponseRedirect
+    from .models import MFAToken
+    from .forms import TfaForm
+    from django.contrib.auth.models import User
+    from django.utils import timezone
+    from django.contrib import messages
+    import datetime
+    from django.core.exceptions import PermissionDenied
     token = MFAToken.objects.filter(uid=username, expires__gt=timezone.now() + datetime.timedelta(seconds=30)).order_by('-timestamp').last()
     if not token: token = MFAToken.objects.create(user=User.objects.filter(profile__uuid=username).first(), uid=username, expires=timezone.now() + datetime.timedelta(seconds=115))
     user = User.objects.filter(id=token.user.id).first()
     if not user and request.user.is_authenticated: return redirect(reverse('feed:home'))
     if not user: raise PermissionDenied()
+    from django.contrib.auth import login as auth_login
     next = request.GET.get('next','')
     if not user.profile.enable_two_factor_authentication and user.is_active and user.profile.check_auth_token(usertoken, token):
         auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
@@ -164,6 +152,7 @@ def tfa(request, username, usertoken):
         user.profile.save()
         return HttpResponseRedirect(next if next != '' else reverse('landing:landing'))
     if not user.profile.tfa_enabled:
+        from .tfa import check_verification_time
         if not check_verification_time(user, token):
             user.profile.tfa_enabled = False
             user.profile.enable_two_factor_authentication = True
@@ -174,6 +163,7 @@ def tfa(request, username, usertoken):
             auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.warning(request, 'Please enter a valid phone number and verify it with a code.')
             return redirect(reverse('users:tfa_onboarding'))
+    from security.security import fraud_detect
     if request.method == 'POST' and not fraud_detect(request, True):
         form = TfaForm(request.POST)
         code = str(form.data.get('code', None))
@@ -217,6 +207,7 @@ def tfa(request, username, usertoken):
                     messages.warning(request, 'The code you entered was not recognized. Please try again.')
             elif not token_validated:
                 messages.warning(request, 'The URL token has expired or was not recognized. Please try again.')
+                from django.contrib.auth import logout
                 logout(request)
                 return redirect(reverse('users:login'))
             if p.tfa_attempts > 3:
@@ -227,6 +218,8 @@ def tfa(request, username, usertoken):
             user.profile.tfa_attempts = 0
             user.profile.can_send_tfa = timezone.now() + datetime.timedelta(minutes=2)
             user.profile.save()
+            from .tfa import send_verification_text, check_verification_code, send_user_text, send_text
+            from .tfa import send_verification_email as send_tfa_verification_email
             if form.data.get('send_email', False):
                 send_tfa_verification_email(user, token)
             else:
@@ -243,6 +236,9 @@ def tfa(request, username, usertoken):
 
 @login_required
 def tfa_onboarding(request):
+    from .forms import PhoneNumberForm
+    from django.shortcuts import redirect
+    from django.contrib import messages
     if request.method == 'POST':
         form = PhoneNumberForm(request.POST)
         request.user.profile.phone_number = form.data['phone_number'].replace('-', '').replace('(','').replace(')','')
@@ -253,6 +249,7 @@ def tfa_onboarding(request):
         user = request.user
         return redirect(user.profile.create_auth_url())
     form = PhoneNumberForm(initial={'phone_number': request.user.profile.phone_number if request.user.profile.phone_number else '+1'})
+    from django.shortcuts import render
     return render(request, 'users/tfa_onboarding.html', {'title': 'Enter your phone number', 'form': form, 'small': True})
 
 @never_cache
@@ -260,6 +257,10 @@ def tfa_onboarding(request):
 def profile(request):
     oldusername = request.user.username
     p_form = None
+    from .forms import UserUpdateForm, ProfileUpdateForm, NonVendorProfileUpdateForm
+    from .models import Profile
+    from django.contrib import messages
+    from django.http import HttpResponse
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if request.user.profile.vendor:
@@ -329,6 +330,7 @@ def profile(request):
         'medium': True,
         'webpush_override': True
     }
+    from django.shortcuts import render
     return render(request, 'users/profile.html', context)
 
 
@@ -337,6 +339,8 @@ def check_username(username):
     return not profanity.contains_profanity(username)
 
 def check_username_old(username):
+    from django.conf import settings
+    import requests, json
     lang = 'en'
     data = {
         'text': username,
@@ -353,9 +357,8 @@ def check_username_old(username):
     except: return False
     return True
 
-from django.utils.crypto import get_random_string
-
 def set_user_cookie(response):
+    import datetime
     max_age = 60 * 60 * 24 * 365
     expires = datetime.datetime.strftime(
         datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age),
@@ -367,6 +370,9 @@ def set_user_cookie(response):
 
 def send_registration_push(user):
     from pwa_webpush import send_user_notification
+    from django.conf import settings
+    from django.urls import reverse
+    from django.contrib.auth.models import User
     payload = {
         'head': 'Someone new signed up with {}'.format(settings.SITE_NAME),
         'body': 'Meet the new visitor, @{}, on {}'.format(user.username, settings.SITE_NAME),
@@ -379,8 +385,25 @@ def send_registration_push(user):
 
 @cache_control(public=True)
 def register(request):
-    ip = get_client_ip(request)
+    from security.apis import get_client_ip
+    from django.contrib.auth.models import User
+    from security.apis import check_raw_ip_risk
+    from users.models import Profile
+    from security.models import SecurityProfile
+    from .email import send_verification_email, sendwelcomeemail
+    from django.contrib import messages
+    from users.username_generator import generate_username as get_random_username
+    from security.apis import get_client_ip
     from email_validator import validate_email
+    from .forms import UserRegisterForm
+    from django.utils import timezone
+    import datetime
+    from django.shortcuts import render, redirect, get_object_or_404
+    from django.urls import reverse
+    from security.security import fraud_detect
+    import traceback
+    from django.conf import settings
+    ip = get_client_ip(request)
     e = request.GET.get('u', None)
     user = None
     if e:
@@ -426,6 +449,7 @@ def register(request):
             if not birthday:
                 messages.warning(request, 'Your birthday was not interpreted properly. Please enter in the format Year-Month-Day')
                 return redirect(reverse('users:register'))
+            from dateutil import relativedelta
             if birthday > datetime.datetime.now() - relativedelta(years=settings.MIN_AGE):
                 messages.warning(request, 'You are not old enough to use this site. Please do not return until {}'.format((birthday + relativedelta(years=settings.MIN_AGE)).strftime("%B %d, %Y")))
                 return redirect(reverse('app:app'))
@@ -480,7 +504,9 @@ def register(request):
             form = UserRegisterForm(initial={'email': email})
         else:
             form = UserRegisterForm(initial={'email': email})
+    import pytz
     available = settings.NEW_USERS_PER_DAY - User.objects.filter(date_joined__gte=datetime.datetime.combine(datetime.date.today() - datetime.timedelta(days=1), datetime.time(9,0)).astimezone(pytz.timezone(settings.TIME_ZONE))).count()
+    from django.shortcuts import render
     response = render(request, 'users/register.html', {'form': form, 'title':'Register', 'dontshowad': True, 'dontshowsidebar': True, 'small': True, 'available_accounts': available, 'email_query_delay': 90})
     if user:
         response = set_user_cookie(response)
@@ -488,6 +514,23 @@ def register(request):
 
 @cache_control(public=True)
 def login(request):
+    from django.conf import settings
+    from security.apis import get_client_ip
+    from django.contrib.auth.models import User
+    from security.apis import check_raw_ip_risk
+    from users.models import Profile
+    from security.models import SecurityProfile, UserIpAddress
+    from django.contrib import messages
+    from users.username_generator import generate_username as get_random_username
+    from security.apis import get_client_ip
+    from email_validator import validate_email
+    from django.contrib.auth.forms import AuthenticationForm
+    import datetime
+    from django.shortcuts import render, redirect, get_object_or_404
+    from django.urls import reverse
+    from django.utils import timezone
+    from security.security import fraud_detect
+    from django.contrib.auth import login as auth_login
     ip = get_client_ip(request)
     if request.method == 'POST':
         form = AuthenticationForm(request.POST)
@@ -512,6 +555,7 @@ def login(request):
                 messages.warning(request, 'Your account has been disabled.')
         print(disable_login)
         if hasattr(the_user, 'profile') and the_user.user_logins.filter(timestamp__lte=timezone.now(), timestamp__gte=timezone.now() - datetime.timedelta(seconds=15)).count() <= 5 and not disable_login:
+            from django.contrib.auth import authenticate, logout
             user = authenticate(username=username,password=password)
             UserLogin.objects.create(user=user)
             print(user)
@@ -557,6 +601,7 @@ def login(request):
                 if not profile.enable_facial_recognition_bypass:
                     response = redirect(user.profile.create_face_url() + qs)
                 elif not user.profile.enable_two_factor_authentication:
+                    from users.logout import logout_user
                     if settings.LIMIT_BYPASS_LOGIN: logout_user(user)
                     resolve_multiple_accounts(request, user)
                     auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
@@ -582,6 +627,16 @@ def login(request):
     return render(request,'users/login.html', {'form':form, 'title': title, 'dontshowad': True, 'dontshowsidebar': True, 'small': True, 'email_query_delay': 15})
 
 def activate(request, uidb64, token):
+    from django.contrib import messages
+    from django.contrib.auth.models import User
+    from security.apis import get_client_ip
+    from security.apis import check_raw_ip_risk
+    from .email import sendwelcomeemail
+    from django.shortcuts import redirect
+    from django.conf import settings
+    from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+    from .tokens import account_activation_token
+    from django.utils.encoding import force_str
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -590,7 +645,8 @@ def activate(request, uidb64, token):
     ip = get_client_ip(request)
     if user is not None and account_activation_token.check_token(user, token) and not check_raw_ip_risk(ip):
         if not user.profile.email_verified:
-            send_user_text(User.objects.get(id=2), 'Someone new has joined {}.'.format(settings.SITE_NAME))
+            from .tfa import send_user_text
+            send_user_text(User.objects.get(id=settings.MY_ID), 'Someone new has joined {}.'.format(settings.SITE_NAME))
         user.profile.email_verified = True
         user.profile.finished_signup = True
         user.profile.save()
@@ -603,11 +659,16 @@ def activate(request, uidb64, token):
         return redirect('verify:verify')
 
 def resend_activation(request):
+    from .forms import ResendActivationEmailForm
     if request.method == 'POST':
         form = ResendActivationEmailForm(request.POST)
         email = request.POST['email']
+        from django.contrib import messages
+        from django.urls import reverse
         try:
+            from django.contrib.auth.models import User
             user = User.objects.get(email=email)
+            from .email import send_verification_email
             send_verification_email(user)
             messages.success(request,'Your verification email sent. Please click the link in your email to verify your account.')
             return redirect(reverse('verify:verify'))
@@ -615,31 +676,42 @@ def resend_activation(request):
             messages.warning(request,f'Your email is not correct. Please try again.')
     else:
         form = ResendActivationEmailForm()
+    from django.shortcuts import render
     return render(request,'users/resend_activation.html',{'form': form, 'title': 'Resend Activation', 'small': True})
 
-@cache_page(60*60*24*30*12)
+#@cache_page(60*60*24*30*12)
 def verify(request):
+    from django.shortcuts import render
     return render(request, 'users/verify.html',{'title': 'Verify your email', 'small': True})
 
 def unsubscribe(request, username, token):
+    from django.urls import reverse
+    from django.contrib import messages
+    from django.shortcuts import get_object_or_404
+    from django.contrib.auth.models import User
     user = get_object_or_404(User, username=username)
     if request.method == 'POST' and ((request.user.is_authenticated and request.user == user) or user.profile.check_token(token)):
         profile = user.profile
         profile.subscribed = not profile.subscribed
         profile.save()
         messages.success(request, 'You have been {}'.format('resubscribed.' if profile.subscribed else 'unsubscribed.'))
+        from django.shortcuts import redirect
         return redirect(reverse('app:app'))
     if request.method == 'GET' and ((request.user.is_authenticated and request.user == user) or user.profile.check_token(token)):
         # unsubscribe them
         profile = user.profile
         profile.subscribed = False
         profile.save()
+        from django.shortcuts import render
         return render(request, 'users/unsubscribe.html', {'title': 'Unsubscribe', 'link': user.profile.create_unsubscribe_link()})
     # Otherwise redirect to login page
+    from django.http import HttpResponseRedirect
     messages.warning(request,f'Your unsubscribe link has expired. Please log in to unsubscribe.')
     next_url = reverse('users:unsubscribe', kwargs={'username': username, 'token': token,})
     return HttpResponseRedirect('%s?next=%s' % (reverse('login'), next_url))
 
+
+from django.contrib.auth.models import User
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = User

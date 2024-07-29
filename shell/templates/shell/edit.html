@@ -132,7 +132,7 @@ $('#id_text').highlightWithinTextarea({
             className: 'brown'
         },
         {
-	    highlight: ['elif', 'endif', /(if)(?:\s)/gm, 'else', 'with', 'while', 'do', 'for', 'in'],
+	    highlight: ['elif', 'endif', /(if)(?:\s)/gm, 'else', 'with', 'while', /(do)(?:\s)/gm, 'for', /(?:\s)(in)(?:\s)/gm],
             className: 'blue'
         },
         {
@@ -140,7 +140,7 @@ $('#id_text').highlightWithinTextarea({
             className: 'yellow'
         },
         {
-	    highlight: ['from', 'import', 'as'],
+	    highlight: ['from', 'import', /(?:\s)(as)(?:\s)/gm],
             className: 'green'
         },
         {

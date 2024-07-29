@@ -2,15 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 def is_kick(ip, user):
-    from django.shortcuts import render, redirect
-    from django.http import HttpResponse
-    from security.models import Session, UserIpAddress
-    from django.contrib.auth import logout
-    from security.apis import check_ip_risk, get_client_ip
-    from django.urls import reverse
-    from django.contrib import messages
-    from .forms import AppealForm
-    from feed.templatetags.nts import number_to_string
+    from security.models import UserIpAddress
     ips = []
     ips = UserIpAddress.objects.filter(ip_address=ip)
     if user and user.is_authenticated:
@@ -22,14 +14,14 @@ def is_kick(ip, user):
     return False
 
 def reasess_kick(request):
-    from django.shortcuts import render, redirect
+    from django.shortcuts import redirect
     from django.http import HttpResponse
-    from security.models import Session, UserIpAddress
     from django.contrib.auth import logout
     from security.apis import check_ip_risk, get_client_ip
     from django.urls import reverse
     from django.contrib import messages
     from .forms import AppealForm
+    from security.models import UserIpAddress
     from feed.templatetags.nts import number_to_string
     if request.method == 'POST':
         form = AppealForm(request.POST)
@@ -44,19 +36,14 @@ def reasess_kick(request):
                 return redirect(reverse('users:login'))
             else:
                 messages.warning(request, 'Your IP address is not in our records.')
+    from django.shortcuts import render
     return render(request, 'kick/reasess.html', {'title': 'Reasess Kick', 'form': AppealForm()})
 
 @csrf_exempt
 def should_kick(request):
-    from django.shortcuts import render, redirect
     from django.http import HttpResponse
-    from security.models import Session, UserIpAddress
     from django.contrib.auth import logout
     from security.apis import check_ip_risk, get_client_ip
-    from django.urls import reverse
-    from django.contrib import messages
-    from .forms import AppealForm
-    from feed.templatetags.nts import number_to_string
     if request.user.is_authenticated and not request.user.profile.kick:
         return HttpResponse('n')
     ip = get_client_ip(request)

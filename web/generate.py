@@ -11,8 +11,9 @@ def generate_site():
     images = ''
     count = 0
     for post in Post.objects.filter(uploaded=True, public=True, offsite=True, posted=True, published=True, feed="private").exclude(image_bucket=None).order_by('-date_posted'):
-        images = images + '<div id="div{}"><p>{}</p><img width="100%" height="auto" src="{}" id="img{}"></div>\n'.format(count, post.content.replace('\n', ' '), post.image_offsite, count)
-        count = count + 1
+        if post.image and post.image_offsite:
+            images = images + '<div id="div{}"><p>{}</p><img width="100%" height="auto" src="{}" id="img{}"></div>\n'.format(count, post.content.replace('\n', ' '), post.image_offsite, count)
+            count = count + 1
     blog = ''
     for post in Post.objects.filter(public=True, posted=True, published=True, feed="news").order_by('-date_posted'):
         text = ''

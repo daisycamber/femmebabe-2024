@@ -465,7 +465,7 @@ def profile(request, username):
     except:
         now = timezone.now()
     if not request.GET.get('feed', False):
-        return redirect(request.path + get_qs(request.GET) + 'feed=private')
+        return redirect(request.path + (get_qs(request.GET) if get_qs(request.GET) else '?') + '&feed=private')
     blog_feed = request.GET.get('feed')
     likes = request.GET.get('likes')
     pages = request.GET.get('pages')

@@ -11,6 +11,7 @@ urlpatterns = [
     path('pin/', views.pincode, name='pin'),
     path('pin/set/', views.set_pincode, name='set-pin'),
     path('biometric/', views.webauth_redirect, name='biometric'),
+    path('biometric/begin/', views.webauth_begin, name='begin-biometric'),
     path('modal/', views.modal, name='modal'),
     path('shake/', views.shake, name='shake'),
     path('logins/', views.logins, name='logins'),

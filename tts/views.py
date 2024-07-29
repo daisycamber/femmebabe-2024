@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from tts.models import Word
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 
 # Create your views here.
 @login_required
 def word(request, word):
+    from django.shortcuts import render, redirect
+    from tts.models import Word
+    from django.http import HttpResponse
     next_word = request.GET.get('next', '')
     last_word = request.GET.get('next', '')
     from nltk.corpus import wordnet as wn
