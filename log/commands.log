@@ -228,3 +228,410 @@
 2024-07-28T23:48:01.502095-07:00 femmebabe team: team [1314813]: pa -aux | grep backup
 2024-07-28T23:48:07.292192-07:00 femmebabe team: team [1314813]: ps -aux | grep backup
 2024-07-28T23:50:28.151590-07:00 femmebabe team: team [1314813]: sudo killall backup
+2024-07-29T00:27:13.214848-07:00 femmebabe team: team [1314813]: sudo backup
+2024-07-29T12:00:49.639814-07:00 femmebabe team: team [1762031]: sudo backup
+2024-07-29T12:00:58.377450-07:00 femmebabe team: team [1762031]: cd femmebabe
+2024-07-29T12:01:03.726588-07:00 femmebabe team: team [1762031]: source venv/bin/activate
+2024-07-29T12:01:15.780889-07:00 femmebabe team: team [1762031]: python manage.py check
+2024-07-29T12:01:54.704089-07:00 femmebabe team: team [1762031]: python manage.py makemigrations && python manage.py migrate
+2024-07-29T12:03:38.498869-07:00 femmebabe team: team [1762031]: head --lines 100 femmebabe/celery.py
+2024-07-29T12:05:18.542520-07:00 femmebabe team: team [1764901]: sudo backup
+2024-07-29T12:05:21.240826-07:00 femmebabe team: team [1764901]: cd femmebabe
+2024-07-29T12:06:32.736087-07:00 femmebabe team: team [1764901]: nano shell/templates/shell/shell.html 
+2024-07-29T12:07:07.471744-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:08:18.873435-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:09:37.971375-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:10:41.860208-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:11:58.218489-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:15:59.928696-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:16:46.874928-07:00 femmebabe team: team [1762031]: python manage.py shell
+2024-07-29T12:17:02.032301-07:00 femmebabe team: team [1773705]: sudo backup
+2024-07-29T12:17:23.256328-07:00 femmebabe team: team [1773705]: sudo purgecache
+2024-07-29T12:17:31.231649-07:00 femmebabe team: team [1773705]: sudo systemctl reload apache2
+2024-07-29T12:17:33.832934-07:00 femmebabe team: team [1773705]: cd femmebabe
+2024-07-29T12:17:39.878820-07:00 femmebabe team: team [1773705]: source venv/bin/activate
+2024-07-29T12:17:51.463148-07:00 femmebabe team: team [1773705]: python manage.py check
+2024-07-29T12:29:18.187036-07:00 femmebabe team: team [1781847]: python manage.py check
+2024-07-29T12:40:01.094446-07:00 femmebabe team: team [1764901]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:40:10.068572-07:00 femmebabe team: team [1764901]: sudo a2enmod rewrite
+2024-07-29T12:41:21.192033-07:00 femmebabe team: team [1764901]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:42:55.613172-07:00 femmebabe team: team [1764901]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:43:00.928855-07:00 femmebabe team: team [1764901]: sudo systemctl reload apache2
+2024-07-29T12:43:38.481338-07:00 femmebabe team: team [1791529]: python manage.py check
+2024-07-29T12:46:01.398825-07:00 femmebabe team: team [1764901]: logs
+2024-07-29T12:47:51.035797-07:00 femmebabe team: team [1764901]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:48:02.171255-07:00 femmebabe team: team [1764901]: nano shell/templates/shell/shell.html 
+2024-07-29T12:48:12.554692-07:00 femmebabe team: team [1764901]: ls media
+2024-07-29T12:50:49.924054-07:00 femmebabe team: team [1764901]: ls
+2024-07-29T12:53:46.910109-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T12:53:47.107334-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:55:14.550948-07:00 femmebabe team: team [1797091]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:55:18.924476-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T12:55:46.361234-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:55:47.754471-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:55:48.770550-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:56:30.663730-07:00 femmebabe team: team [1797091]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:56:32.980159-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T12:56:49.510153-07:00 femmebabe team: team [1797091]: cd femmebabe
+2024-07-29T12:56:53.297061-07:00 femmebabe team: team [1797091]: ls media/static
+2024-07-29T12:59:03.328183-07:00 femmebabe team: team [1797091]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-07-29T12:59:05.131754-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T12:59:20.816191-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:59:21.724561-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T12:59:24.092500-07:00 femmebabe team: team [1797091]: compinfop
+2024-07-29T12:59:24.438260-07:00 femmebabe team: team [1797091]: compinfop
+2024-07-29T12:59:26.813658-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T13:00:00.775525-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T13:01:12.453606-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T13:01:40.460554-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/subscribe_card.html 
+2024-07-29T13:02:09.377506-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/subscribe_crypto.html 
+2024-07-29T13:02:11.617979-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/subscribe_card.html 
+2024-07-29T13:02:33.109647-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/buy_photo_crypto.html 
+2024-07-29T13:02:47.694511-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/tip_crypto_simple.html 
+2024-07-29T13:03:09.111314-07:00 femmebabe team: team [1797091]: nano payments/templates/payments/tip_crypto.html 
+2024-07-29T13:03:17.287172-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T13:04:18.531732-07:00 femmebabe team: team [1797091]: nano kick/views.py 
+2024-07-29T13:04:32.166062-07:00 femmebabe team: team [1797091]: nano kick/consumers.py 
+2024-07-29T13:05:16.951587-07:00 femmebabe team: team [1797091]: nano payments/views.py 
+2024-07-29T13:05:18.663791-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T14:40:10.394501-07:00 femmebabe team: team [1797091]: nano feed/context_processors.py 
+2024-07-29T14:40:15.707195-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T14:40:17.396791-07:00 femmebabe team: team [1797091]: free -h
+2024-07-29T14:40:26.177223-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T14:42:26.265583-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T14:47:52.485275-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T14:50:36.794730-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T14:50:41.732160-07:00 femmebabe team: team [1797091]: nano survey/forms.py 
+2024-07-29T14:55:55.198964-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T14:56:14.584961-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T14:57:12.518709-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T14:58:51.762855-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T14:59:13.118319-07:00 femmebabe team: team [1797091]: nano femmebabe/settings.py 
+2024-07-29T14:59:28.770676-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T15:01:21.661423-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html
+2024-07-29T15:01:31.465945-07:00 femmebabe team: team [1797091]: nano templates/compile.html 
+2024-07-29T15:02:03.393506-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html
+2024-07-29T15:02:12.122091-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:09:10.327513-07:00 femmebabe team: team [1797091]: nano contact/views.py 
+2024-07-29T15:09:13.152623-07:00 femmebabe team: team [1797091]: cat contact/views.py 
+2024-07-29T15:25:25.877664-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:27:01.732234-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:27:18.968648-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:29:30.236384-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:30:55.053760-07:00 femmebabe team: team [1797091]: nano feed/urls.py 
+2024-07-29T15:31:06.974773-07:00 femmebabe team: team [1797091]: nano feed/views.py
+2024-07-29T15:31:45.884328-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T15:35:13.121952-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T15:37:14.434568-07:00 femmebabe team: team [1797091]: nano feed/views.py
+2024-07-29T15:37:37.137594-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T15:37:41.543780-07:00 femmebabe team: team [1797091]: python manage.py checl
+2024-07-29T15:37:43.222130-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:37:48.158120-07:00 femmebabe team: team [1797091]: source venv/bin/activate
+2024-07-29T15:37:55.927493-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:38:09.675701-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T15:38:17.769951-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:38:43.844153-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:38:52.229384-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:39:08.423011-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:39:41.741799-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:39:58.201740-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:40:15.920055-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:41:16.155286-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:41:24.937837-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:41:35.083159-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:41:43.027955-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:41:54.687816-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:42:03.374457-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:42:18.568492-07:00 femmebabe team: team [1797091]: nano feed/urls.py 
+2024-07-29T15:42:24.837653-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:42:33.869294-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T15:42:55.694405-07:00 femmebabe team: team [1797091]: python manage.py makemigrations && python manage.py migrate
+2024-07-29T15:43:06.293073-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:43:07.334828-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:43:43.024538-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T15:45:18.121899-07:00 femmebabe team: team [1797091]: nano contact/views.py 
+2024-07-29T15:45:25.870678-07:00 femmebabe team: team [1797091]: nano contact/views.py 
+2024-07-29T15:45:40.297275-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:45:42.566771-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:45:44.076103-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T15:46:55.775014-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:46:57.819374-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:47:10.755251-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:47:12.430847-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:47:37.290990-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:48:06.718694-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:48:08.081758-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:48:49.548194-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:48:50.764390-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:50:05.816570-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T15:51:41.975595-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:51:44.267569-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:51:56.622675-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:52:03.920525-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:52:31.347458-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:52:33.304760-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:52:56.458642-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:53:06.548608-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:53:08.128653-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:53:39.908092-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:56:29.175603-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:56:30.466098-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:56:43.731430-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T15:56:59.790935-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:57:00.919110-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:57:22.237175-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:57:47.154500-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T15:57:48.647833-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:57:56.584536-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T15:59:26.361229-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T15:59:27.820198-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T15:59:33.925989-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:41.490736-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:42.643726-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:43.645307-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:44.689305-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:45.610600-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:46.543341-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T15:59:47.399589-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T16:00:27.235209-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T16:00:29.858025-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:01:01.360532-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T16:02:13.587548-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:02:32.029065-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T16:03:25.854940-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:03:28.197072-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:03:47.752237-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T16:04:45.004934-07:00 femmebabe team: team [1797091]: python manage.py shell
+2024-07-29T16:05:06.981642-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:05:08.743628-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:06:20.872213-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:07:07.452526-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T16:07:23.079302-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:08:07.929926-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T16:09:35.986235-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:09:37.702618-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:10:37.012793-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:10:38.523279-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:11:25.744230-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:11:26.787746-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T16:11:33.988641-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:12:00.163002-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T16:13:23.592693-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:13:25.740953-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:13:40.961240-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T16:13:58.034583-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T16:14:00.066510-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:14:53.185883-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T16:14:56.911650-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T17:17:06.791446-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:18:42.542765-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:18:42.618049-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:18:46.793704-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:19:15.156885-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T17:19:17.940103-07:00 femmebabe team: team [1797091]: nano security/vi
+2024-07-29T17:19:23.597350-07:00 femmebabe team: team [1797091]: nano security/views.py 
+2024-07-29T17:19:24.206934-07:00 femmebabe team: team [1797091]: ls
+2024-07-29T17:19:29.041358-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T17:19:45.608969-07:00 femmebabe team: team [1797091]: nano verify/views.py 
+2024-07-29T17:19:56.973458-07:00 femmebabe team: team [1797091]: nano contact/views.py 
+2024-07-29T17:20:08.296350-07:00 femmebabe team: team [1797091]: nano users/views.py 
+2024-07-29T17:21:06.734583-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:21:13.230728-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:21:25.695776-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:21:35.385883-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:22:25.433600-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:22:28.859642-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:22:46.591907-07:00 femmebabe team: team [1797091]: nano users/views.py 
+2024-07-29T17:26:04.212144-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:28:05.415290-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:29:06.667959-07:00 femmebabe team: team [1797091]: nano femmebabe/celery.py 
+2024-07-29T17:29:10.914816-07:00 femmebabe team: team [1797091]: nano feed/audiotovideo.py 
+2024-07-29T17:42:07.537641-07:00 femmebabe team: team [1797091]: nano feed/auctions.py
+2024-07-29T17:42:22.628493-07:00 femmebabe team: team [1797091]: python manage.py shell
+2024-07-29T17:42:55.902971-07:00 femmebabe team: team [1797091]: nano feed/auctions.py
+2024-07-29T17:43:05.144856-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:43:18.774384-07:00 femmebabe team: team [1797091]: nano femmebabe/celery.py 
+2024-07-29T17:43:21.981478-07:00 femmebabe team: team [1797091]: nano feed/auctions.py
+2024-07-29T17:44:25.261177-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:44:35.378074-07:00 femmebabe team: team [1797091]: nano feed/auctions.py
+2024-07-29T17:44:52.547021-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:45:08.381545-07:00 femmebabe team: team [1797091]: nano femmebabe/settings.py 
+2024-07-29T17:45:15.224008-07:00 femmebabe team: team [1797091]: python manage.py check\
+2024-07-29T17:45:23.290165-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T17:45:44.786303-07:00 femmebabe team: team [1797091]: python manage.py makemigrations && python manage.py migrate
+2024-07-29T17:45:54.758989-07:00 femmebabe team: team [1797091]: nano femmebabe/settings.py 
+2024-07-29T17:46:03.630665-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T17:47:14.095304-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T17:47:20.885204-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T17:47:47.108179-07:00 femmebabe team: team [1797091]: nano birthcontrol/views.py 
+2024-07-29T17:48:25.666166-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T17:49:04.120732-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T17:49:11.301795-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T17:49:13.180285-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:14.381944-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:15.243180-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:16.011284-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:16.711292-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:17.326243-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:18.053572-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:19.328253-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:20.107361-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:20.917307-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:21.747361-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:49:22.540373-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T17:51:06.493890-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T17:51:08.016941-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T17:53:44.349815-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:54:00.871221-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:54:22.818464-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:54:31.834634-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T17:54:40.651035-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T17:55:15.396405-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T17:55:18.791733-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:05:41.850510-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T18:05:43.347455-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:05:57.976092-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T18:07:36.510655-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T18:08:03.942115-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T18:08:17.779523-07:00 femmebabe team: team [1797091]: nano users/email.py
+2024-07-29T18:09:22.488152-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T18:11:07.255711-07:00 femmebabe team: team [1797091]: python manage.py shell
+2024-07-29T18:11:11.205837-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T18:13:57.451594-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T18:14:03.780222-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:14:11.918947-07:00 femmebabe team: team [1797091]: sudo purgecache
+2024-07-29T18:15:34.740269-07:00 femmebabe team: team [1797091]: nano feed/models.py
+2024-07-29T18:17:48.505685-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:17:50.370583-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:18:27.774255-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:18:28.999597-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:20:00.613766-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:20:01.505856-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:20:09.872454-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:20:27.168100-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:22:05.490442-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T18:22:06.854557-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:22:57.649499-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T18:22:58.936737-07:00 femmebabe team: team [1797091]: LOGS
+2024-07-29T18:22:59.816534-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T18:23:27.612206-07:00 femmebabe team: team [1797091]: nano feed/views.py 
+2024-07-29T18:23:50.956445-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:24:04.038953-07:00 femmebabe team: team [1797091]: nano users/forms.py 
+2024-07-29T18:24:07.981406-07:00 femmebabe team: team [1797091]: nano users/forms.py 
+2024-07-29T18:24:15.587705-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:24:18.956702-07:00 femmebabe team: team [1797091]: nano users/forms.py 
+2024-07-29T18:24:23.816172-07:00 femmebabe team: team [1797091]: nano users/forms.py 
+2024-07-29T18:25:12.452612-07:00 femmebabe team: team [1797091]: nano feed/forms.py 
+2024-07-29T18:25:15.632472-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:28:03.384076-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/bid.html 
+2024-07-29T18:28:04.301207-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T18:39:24.166579-07:00 femmebabe team: team [2010122]: python manage.py check
+2024-07-29T18:44:28.681411-07:00 femmebabe team: team [2012858]: python manage.py check
+2024-07-29T18:49:55.141578-07:00 femmebabe team: team [2015599]: python manage.py check
+2024-07-29T18:50:10.294226-07:00 femmebabe team: team [2015890]: python manage.py check
+2024-07-29T18:50:30.569015-07:00 femmebabe team: team [2016117]: python manage.py check
+2024-07-29T18:51:52.734458-07:00 femmebabe team: team [2016117]: sudo systemctl reload apache2
+2024-07-29T18:52:01.017452-07:00 femmebabe team: team [2016117]: logs
+2024-07-29T19:03:45.332003-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:03:46.772140-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T19:04:03.278120-07:00 femmebabe team: team [1797091]: sudo systemctl restart apache2
+2024-07-29T19:04:05.567500-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:04:07.068871-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:04:08.374660-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:04:09.371013-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:04:10.244234-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:04:11.074721-07:00 femmebabe team: team [1797091]: clear
+2024-07-29T19:04:12.865640-07:00 femmebabe team: team [1797091]: cmds
+2024-07-29T19:04:18.196859-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:11:38.975360-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T19:11:42.425562-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:11:50.973302-07:00 femmebabe team: team [1797091]: cat live/* | grep -nH is_live_show
+2024-07-29T19:11:59.949759-07:00 femmebabe team: team [1797091]: ls live
+2024-07-29T19:12:03.726423-07:00 femmebabe team: team [1797091]: nano live/tests.py 
+2024-07-29T19:12:24.549954-07:00 femmebabe team: team [1797091]: nano live/models.py 
+2024-07-29T19:12:29.471901-07:00 femmebabe team: team [1797091]: nano live/models.py 
+2024-07-29T19:12:30.552405-07:00 femmebabe team: team [1797091]: log
+2024-07-29T19:13:48.317063-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:13:53.677677-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2
+2024-07-29T19:16:51.844962-07:00 femmebabe team: team [1797091]: compinfo
+2024-07-29T19:16:54.798292-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:18:02.567201-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:20:08.142801-07:00 femmebabe team: team [1797091]: logs
+2024-07-29T19:20:47.179454-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:21:02.733500-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:21:13.417481-07:00 femmebabe team: team [1797091]: sudo systemctl restart apache2
+2024-07-29T19:21:17.584610-07:00 femmebabe team: team [1797091]: sudo systemctl restart apache2 &
+2024-07-29T19:21:34.010499-07:00 femmebabe team: team [1797091]: python manage.py check
+2024-07-29T19:22:09.894057-07:00 femmebabe team: team [1797091]: nano live/views.py 
+2024-07-29T19:22:13.355211-07:00 femmebabe team: team [1797091]: sudo systemctl restart apache2 &
+2024-07-29T19:23:39.599946-07:00 femmebabe team: team [1797091]: watchlogs
+2024-07-29T19:24:05.359538-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T19:24:19.763890-07:00 femmebabe team: team [1797091]: nano feed/templates/feed/_post.html
+2024-07-29T19:24:46.650217-07:00 femmebabe team: team [1797091]: nano templates/reader.html 
+2024-07-29T19:24:52.399686-07:00 femmebabe team: team [1797091]: sudo systemctl reload apache2 &
+2024-07-29T21:21:35.711027-07:00 femmebabe team: team [2110094]: logs
+2024-07-29T21:21:38.206535-07:00 femmebabe team: team [2110094]: cd femmebahe
+2024-07-29T21:21:41.992966-07:00 femmebabe team: team [2110094]: cd femmebabe
+2024-07-29T21:21:48.653011-07:00 femmebabe team: team [2110094]: source venv/bin/activate
+2024-07-29T21:22:00.979738-07:00 femmebabe team: team [2110094]: python force_publish.py 
+2024-07-29T21:22:04.274911-07:00 femmebabe team: team [2110094]: python force_publish.py 
+2024-07-29T21:22:04.434624-07:00 femmebabe team: team [2110094]: python force_publish.py 
+2024-07-29T22:22:02.770294-07:00 femmebabe team: team [2110094]: sudo systemctl restart apache2 &
+2024-07-29T22:22:06.374890-07:00 femmebabe team: team [2110094]: purgecache
+2024-07-29T22:22:22.203584-07:00 femmebabe team: team [2110094]: sudo systemctl status apache2
+2024-07-29T22:22:23.867922-07:00 femmebabe team: team [2110094]: logs
+2024-07-30T21:56:56.012829-07:00 femmebabe team: team [2962235]: ls
+2024-07-30T21:56:57.719604-07:00 femmebabe team: team [2962235]: cd femmebabe
+2024-07-30T21:57:35.483066-07:00 femmebabe team: team [2962235]: nano users/views.py 
+2024-07-30T21:57:39.878143-07:00 femmebabe team: team [2962235]: sudo systemctl reload apache2
+2024-07-30T22:00:30.254043-07:00 femmebabe team: team [2962235]: python manage.py shell
+2024-07-30T22:00:41.550786-07:00 femmebabe team: team [2962235]: nano users/views.py 
+2024-07-30T22:00:44.016712-07:00 femmebabe team: team [2962235]: sudo systemctl reload apache2
+2024-07-30T22:01:35.677582-07:00 femmebabe team: team [2962235]: sudo purgecache
+2024-07-30T22:02:05.229080-07:00 femmebabe team: team [2962235]: nano payments/templates/payments/idscan.html 
+2024-07-30T22:02:50.338776-07:00 femmebabe team: team [2962235]: nano payments/views.py 
+2024-07-30T22:03:02.415706-07:00 femmebabe team: team [2962235]: nano feed/views.py 
+2024-07-30T22:04:44.004708-07:00 femmebabe team: team [2962235]: nano payments/views.py 
+2024-07-30T22:04:53.421337-07:00 femmebabe team: team [2962235]: nano feed/views.py 
+2024-07-30T22:05:08.327906-07:00 femmebabe team: team [2962235]: nano payments/views.py 
+2024-07-30T22:05:13.150471-07:00 femmebabe team: team [2962235]: nano feed/views.py 
+2024-07-30T22:09:47.669773-07:00 femmebabe team: team [2962235]: nano payments/views.py 
+2024-07-30T22:09:51.224087-07:00 femmebabe team: team [2962235]: sudo systemctl reload apache2
+2024-07-30T22:25:31.587883-07:00 femmebabe team: team [2979692]: ls
+2024-07-30T22:25:37.330342-07:00 femmebabe team: team [2979692]: cd femmebabe
+2024-07-30T22:25:46.301583-07:00 femmebabe team: team [2979692]: source venv/bin/activatw
+2024-07-30T22:25:47.895699-07:00 femmebabe team: team [2979692]: source venv/bin/activate
+2024-07-30T22:26:01.702720-07:00 femmebabe team: team [2979692]: python manage.py shell
+2024-07-30T22:26:12.532406-07:00 femmebabe team: team [2979692]: python force_publish.py 
+2024-07-30T22:56:51.095212-07:00 femmebabe team: team [2979692]: sudo systemctl status daphne
+2024-07-30T22:56:57.298244-07:00 femmebabe team: team [2979692]: cat /tmp/daphne-error.log 
+2024-07-30T23:00:36.682934-07:00 femmebabe team: team [2979692]: nano security/views.py 
+2024-07-30T23:01:02.789531-07:00 femmebabe team: team [2979692]: nano security/urls.py 
+2024-07-30T23:11:25.834896-07:00 femmebabe team: team [2979692]: nano security/views.py 
+2024-07-30T23:11:48.806695-07:00 femmebabe team: team [2979692]: python manage.py check
+2024-07-30T23:11:59.015765-07:00 femmebabe team: team [2979692]: sudo systemctl reload apache2
+2024-07-30T23:13:07.779181-07:00 femmebabe team: team [2979692]: nano errors/logs.
+2024-07-30T23:13:11.813883-07:00 femmebabe team: team [2979692]: nano errors/logs.py 
+2024-07-30T23:13:40.284329-07:00 femmebabe team: team [2979692]: nano errors/views.py 
+2024-07-30T23:13:42.547055-07:00 femmebabe team: team [2979692]: sudo systemctl reload apache2
+2024-07-30T23:38:06.812451-07:00 femmebabe team: team [2979692]: nano users/voe
+2024-07-30T23:38:35.967709-07:00 femmebabe team: team [2979692]: nano users/views.py 
+2024-07-30T23:38:37.988638-07:00 femmebabe team: team [2979692]: sudo systemctl reload apache2
+2024-07-30T23:39:28.209403-07:00 femmebabe team: team [2979692]: nano users/views.py 
+2024-07-30T23:39:49.597236-07:00 femmebabe team: team [2979692]: nano users/views.py 
+2024-07-30T23:39:52.338759-07:00 femmebabe team: team [2979692]: sudo systemctl reload apache2
+2024-07-30T23:40:01.430781-07:00 femmebabe team: team [2979692]: nano security/models.py
+2024-07-30T23:44:11.971121-07:00 femmebabe team: team [2979692]: sudo systemctl reload apache2
+2024-07-30T23:44:27.011080-07:00 femmebabe team: team [3027536]: ls
+2024-07-30T23:44:34.041748-07:00 femmebabe team: team [2979692]: sudo systemctl restart apache2
+2024-07-30T23:44:37.170179-07:00 femmebabe team: team [3027536]: ps -aux | grep backup
+2024-07-30T23:44:48.274461-07:00 femmebabe team: team [3027536]: sudo killall backup
+2024-07-30T23:45:50.906839-07:00 femmebabe team: team [3027536]: sudo systemctl status apache2
+2024-07-30T23:49:50.809342-07:00 femmebabe team: team [3027536]: logs
+2024-07-30T23:51:55.036294-07:00 femmebabe team: team [3027536]: cd femmebabe
+2024-07-30T23:53:17.905062-07:00 femmebabe team: team [3027536]: nano users/views.py 
+2024-07-30T23:53:26.198651-07:00 femmebabe team: team [3027536]: sudo systemctl reload apache2
+2024-07-30T23:53:53.815878-07:00 femmebabe team: team [3027536]: nano femmebabe/settings.py 
+2024-07-30T23:54:02.605967-07:00 femmebabe team: team [3027536]: source venv/bin/activate
+2024-07-30T23:54:33.557286-07:00 femmebabe team: team [3027536]: python manage.py shell
+2024-07-30T23:54:46.076432-07:00 femmebabe team: team [3027536]: sudo systemctl reload apache2

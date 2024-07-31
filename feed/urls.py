@@ -26,6 +26,7 @@ urlpatterns = [
     path('post/<int:pk>/publish/', views.publish, name='publish'),
     path('post/<int:pk>/pin/', views.pin, name='pin'),
     path('post/<str:uuid>/like/', views.like, name='like'),
+    path('post/<str:id>/bid/', views.auction, name='auction'),
     path('rotate/<int:pk>/<str:direction>/', views.rotate, name='rotate'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(template_name='feed/post_edit_form.html'), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),

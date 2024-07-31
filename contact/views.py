@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from face.tests import is_superuser_or_vendor
 from feed.tests import identity_verified
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 def send_contact_push(name):
     from django.shortcuts import render
@@ -92,7 +94,7 @@ def contact(request):
     from security.apis import get_client_ip
     from security.apis import check_raw_ip_risk
     from django.conf import settings
-    from users.email import send_welcome_email
+    from users.email import sendwelcomeemail
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():

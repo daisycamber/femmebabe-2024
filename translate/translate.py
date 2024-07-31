@@ -1,11 +1,11 @@
 from django.conf import settings
 import traceback
+from langdetect import detect, detect_langs
+from googletrans import Translator
 
 MAX_TRANS = 1000
 
 def translate(request, content, target=None, language=None):
-    from langdetect import detect, detect_langs
-    from googletrans import Translator
     if (not content) or content == '' or content == None: return content
     lang = settings.DEFAULT_LANG
     try:

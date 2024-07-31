@@ -15,6 +15,8 @@ from django.views.decorators.cache import never_cache, cache_page
 from security.security import fraud_detect
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 basedescription = '{} is an app for adults.'.format(settings.SITE_NAME)
 
@@ -27,6 +29,71 @@ def sub_fee(fee):
         op = op + str(fee)[3*f+of:3+3*f+of] + ','
     op = op[:-1]
     return op
+
+@csrf_exempt
+def auction(request, id):
+    import traceback
+    from feed.models import Post
+    from django.shortcuts import render
+    from .forms import BidForm, UserBidForm
+    from django.shortcuts import get_object_or_404, render, redirect
+    from django.urls import reverse
+    from django.contrib import messages
+    from django.http import HttpResponse
+    from django.conf import settings
+    from django.core.paginator import Paginator
+    import traceback
+    from django.contrib.auth.models import User
+    from users.email import send_verification_email
+    from users.models import Profile
+    from security.models import SecurityProfile
+    from users.username_generator import generate_username as get_random_username
+    from django.utils.crypto import get_random_string
+    from contact.email import send_contact_confirmation
+    from security.apis import get_client_ip
+    from security.apis import check_raw_ip_risk
+    from django.conf import settings
+    from users.email import sendwelcomeemail
+    post = get_object_or_404(Post, friendly_name=id)
+    if request.method == 'POST':
+        form = UserBidForm(request.POST) if request.user.is_authenticated else BidForm(request.POST)
+        if form.is_valid():
+            ip = get_client_ip(request)
+            e = form.cleaned_data.get('email', None) if not request.user.is_authenticated else request.user.email
+            from email_validator import validate_email
+            valid = validate_email(e, check_deliverability=True)
+            us = User.objects.filter(email=e).last()
+            safe = not check_raw_ip_risk(ip, soft=True, dummy=False, guard=True)
+            if valid and (not us) and safe:
+                user = User.objects.create_user(email=e, username=get_random_username(), password=get_random_string(length=8))
+                if not hasattr(user, 'profile'):
+                    profile = Profile.objects.create(user=user)
+                    profile.finished_signup = False
+                    profile.save()
+                    security_profile = SecurityProfile.objects.create(user=user)
+                    security_profile.save()
+                send_verification_email(user)
+                sendwelcomeemail(user)
+            elif not valid:
+                messages.warning(request, 'Invalid or undeliverable email, please check the email and try again')
+                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
+            elif not safe:
+                messages.warning(request, 'You are using a risky IP address, and your contact request has been denied.')
+                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
+            us = User.objects.filter(email=e).last()
+            try:
+                if (post.bids.last().bid if post.bids.count() else settings.MIN_BID) < int(form.cleaned_data['bid']):
+                    bid = form.save()
+                    bid.user = us
+                    bid.post = post
+                    bid.save()
+                    messages.success(request, 'Your bid has been placed.')
+                else: messages.warning(request, 'Your bid is less than the current bid and could not be placed.')
+            except:
+                print(traceback.format_exc())
+                messages.warning(request, 'Your bid failed.')
+        else: messages.warning(request, str(form.errors))
+    return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
 
 @csrf_exempt
 @login_required
@@ -812,11 +879,12 @@ class RangeFileWrapper(object):
 #@user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
 def secure_video(request, filename):
     u = int(filename.split('.')[0].split('-')[-1])
+    from django.core.exceptions import PermissionDenied
     if request.user.is_authenticated and u != request.user.id:
         raise PermissionDenied()
     import os, re, mimetypes
     from wsgiref.util import FileWrapper
-    from django.core.exceptions import PermissionDenied
+    from django.conf import settings
     from django.http.response import StreamingHttpResponse
     range_re = re.compile(r'bytes\s*=\s*(\d+)\s*-\s*(\d*)', re.I)
     path = os.path.join(settings.BASE_DIR, 'media/secure/video/', filename)

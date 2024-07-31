@@ -705,6 +705,9 @@ POST_WORDS = 3
 
 FREE_AUDIO_MS = 10000
 
+AUCTION_END_DAYS=120
+MIN_BID = 1000000
+
 # Sentry
 import sentry_sdk
 sentry_sdk.init(

@@ -180,5 +180,5 @@ def generate_book(text, out_path_docx):
                     if len(code) == 0: run = False
     document.save(out_path_docx)
     for image in images:
-        os.path.delete(image)
+        os.remove(image)
     return out_path_docx

@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import user_passes_test
 from vendors.tests import is_vendor
 from feed.tests import identity_verified, identity_really_verified
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import patch_cache_control
+from django.views.decorators.vary import vary_on_cookie
 
 def render_agreement(name, parent, mother):
     from django.conf import settings
@@ -27,12 +29,18 @@ def render_agreement(name, parent, mother):
 def cancel(request):
     from django.shortcuts import render
     from contact.forms import ContactForm
-    return render(request, 'payments/cancel_payment.html', {'title':'We\'re sad to see you go', 'contact_form': ContactForm()})
+    r = render(request, 'payments/cancel_payment.html', {'title':'We\'re sad to see you go', 'contact_form': ContactForm()})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @cache_page(60*60*24*365)
 def success(request):
     from django.shortcuts import render
-    return render(request, 'payments/success.html', {'title': 'Thank you for your payment'})
+    r = render(request, 'payments/success.html', {'title': 'Thank you for your payment'})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @cache_page(60*60*24*365)
 def webdev(request):
@@ -44,14 +52,21 @@ def webdev(request):
     for x in range(0, len(prices)):
         price_dev = price_dev + [{'price': prices[x], 'description': WEBDEV_DESCRIPTIONS[x]}]
     from contact.forms import ContactForm
-    return render(request, 'payments/webdev.html', {'title': 'Web Development Pricing', 'plans': price_dev, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'email_query_delay': 30, 'contact_form': ContactForm()})
+    r = render(request, 'payments/webdev.html', {'title': 'Web Development Pricing', 'plans': price_dev, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'email_query_delay': 30, 'contact_form': ContactForm()})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
+
 
 @cache_page(60*60*24*365)
 def idscan(request):
     from django.conf import settings
     from django.shortcuts import render
     price_scans = ['5','10', '20', '50', '100', '200', '500', '1000', '2000', '5000']
-    return render(request, 'payments/idscan.html', {'title': 'ID Scanner Pricing', 'plans': price_scans, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'email_query_delay': 30, 'free_trial': settings.IDSCAN_TRIAL_DAYS})
+    r = render(request, 'payments/idscan.html', {'title': 'ID Scanner Pricing', 'plans': price_scans, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'email_query_delay': 30, 'free_trial': settings.IDSCAN_TRIAL_DAYS})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @cache_page(60*60*24*365)
 def surrogacy(request, username):
@@ -63,7 +78,10 @@ def surrogacy(request, username):
     agreement = render_agreement(vendor.profile.name if not vendor.verifications.last() else vendor.verifications.last().full_name, request.user.verifications.last().full_name if request.user.is_authenticated and request.user.verifications.last() else None, vendor)
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
-    return render(request, 'payments/surrogacy.html', {'title': 'Surrogacy Plans', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'post': post, 'vendor': vendor, 'agreement': agreement, 'surrogacy_fee': settings.SURROGACY_FEE, 'business_type': settings.BUSINESS_TYPE,})
+    r = render(request, 'payments/surrogacy.html', {'title': 'Surrogacy Plans', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'post': post, 'vendor': vendor, 'agreement': agreement, 'surrogacy_fee': settings.SURROGACY_FEE, 'business_type': settings.BUSINESS_TYPE,})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @cache_page(60*60*24*7)
 def surrogacy_info(request, username):
@@ -75,7 +93,10 @@ def surrogacy_info(request, username):
     vendor = User.objects.get(profile__name=username, profile__vendor=True)
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
-    return render(request, 'payments/surrogacy_info.html', {'title': 'Surrogacy Plan Information', 'post': post, 'vendor': vendor, 'surrogacy_fee': settings.SURROGACY_FEE, 'contact_form': ContactForm()})
+    r = render(request, 'payments/surrogacy_info.html', {'title': 'Surrogacy Plan Information', 'post': post, 'vendor': vendor, 'surrogacy_fee': settings.SURROGACY_FEE, 'contact_form': ContactForm()})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 
 @login_required
@@ -590,7 +611,10 @@ def subscribe_card(request, username):
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
     from django.shortcuts import render
-    return render(request, 'payments/subscribe_card.html', {'title': 'Subscribe', 'username': username, 'profile': profile, 'fee': fee, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'model': user.profile, 'post': post})
+    r = render(request, 'payments/subscribe_card.html', {'title': 'Subscribe', 'username': username, 'profile': profile, 'fee': fee, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'model': user.profile, 'post': post})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 
 @login_required
@@ -634,7 +658,9 @@ def tip_card(request, username, tip):
             else:
                 messages.warning(request, 'Your payment wasn\'t processed successfully. Please try a new form of payment.')
     from django.shortcuts import render
-    return render(request, 'payments/tip_card.html', {'title': 'Tip With Credit or Debit Card', 'username': username, 'profile': profile, 'card_info_form': CardInfoForm(request.user), 'card_number_form': CardNumberForm(request.user, initial={'address': request.user.verifications.last().address if request.user.verifications.last() else ''}), 'fee': fee, 'username': username, 'profile': profile, 'usd_fee': fee})
+    r = render(request, 'payments/tip_card.html', {'title': 'Tip With Credit or Debit Card', 'username': username, 'profile': profile, 'card_info_form': CardInfoForm(request.user), 'card_number_form': CardNumberForm(request.user, initial={'address': request.user.verifications.last().address if request.user.verifications.last() else ''}), 'fee': fee, 'username': username, 'profile': profile, 'usd_fee': fee})
+    return r
+
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
@@ -761,14 +787,14 @@ def buy_photo_crypto(request, username):
     crypto = request.GET.get('crypto')
     from django.contrib.auth.models import User
     user = User.objects.get(profile__name=username, profile__vendor=True)
-    from .models import VendorPaymentsProfile
+    from payments.models import VendorPaymentsProfile
     profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)
     from feed.models import Post
     if not request.GET.get('id'): return redirect(request.path + '?crypto={}&id={}'.format(crypto, Post.objects.filter(author=user, private=False, public=False, published=True, recipient=None).exclude(image=None).order_by('?').first().uuid))
     id = request.GET.get('id', None)
     post = Post.objects.get(uuid=id)
     tip = int(post.price)
-    from .models import BitcoinPaymentForm, BitcoinPaymentFormUser
+    from payments.forms import BitcoinPaymentForm, BitcoinPaymentFormUser
     if request.method == 'POST':
         form = BitcoinPaymentForm(request.POST) if not request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
@@ -833,7 +859,10 @@ def buy_photo_card(request, username):
     post = Post.objects.get(uuid=id)
     from django.shortcuts import render
     from django.conf import settings
-    return render(request, 'payments/buy_photo_card.html', {'title': 'Buy this photo with Credit or Debit Card', 'username': username, 'profile': profile, 'fee': post.price, 'post': post, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY})
+    r = render(request, 'payments/buy_photo_card.html', {'title': 'Buy this photo with Credit or Debit Card', 'username': username, 'profile': profile, 'fee': post.price, 'post': post, 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
@@ -894,4 +923,7 @@ def tip_crypto_simple(request, username):
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
     from django.shortcuts import render
-    return render(request, 'payments/tip_crypto_simple.html', {'title': 'Send a Tip in Crypto', 'address': address, 'currencies': settings.CRYPTO_CURRENCIES, 'username': user.profile.name, 'post': post})
+    r = render(request, 'payments/tip_crypto_simple.html', {'title': 'Send a Tip in Crypto', 'address': address, 'currencies': settings.CRYPTO_CURRENCIES, 'username': user.profile.name, 'post': post})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r

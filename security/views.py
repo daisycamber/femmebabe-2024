@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .tests import face_mrz_or_nfc_verified, recent_face_match, pin_verified, request_passes_test, biometric_verified
 from face.tests import is_superuser_or_vendor
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
 
 current_challenges = {}
 
@@ -27,8 +30,8 @@ def webauth_redirect(request):
     from .models import Biometric
     from django.shortcuts import redirect
     if biometric_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
-    if not biometric_verified(request) and not request.session.get('webauth_device_id', None):
-        return redirect('/webauth/verify/?next=/security/biometric/begin/?next=' + request.GET.get('next', '/'))
+    if not request.session.get('webauth_device_id', None):
+        return redirect('/webauth/verify/?next=/security/biometric/?next=' + request.GET.get('next', '/'))
     Biometric.objects.create(user=request.user, session_key=request.session.session_key)
     request.user.profile.enable_biometrics = True
     request.user.profile.save()

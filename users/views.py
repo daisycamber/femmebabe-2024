@@ -11,6 +11,9 @@ from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import PermissionDenied
 from django.views.decorators.cache import cache_page, never_cache, cache_control
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
 
 @csrf_exempt
 @login_required
@@ -105,6 +108,7 @@ def logout_visitor(request):
     from django.conf import settings
     if request.GET.get('message', None):
         messages.success(request, request.GET.get('message'))
+    from django.contrib.auth import logout
     logout(request)
     return render(request, 'users/logout.html', {'small': True, 'title': 'You have been logged out of {}'.format(settings.SITE_NAME)})
 
@@ -517,7 +521,7 @@ def login(request):
     from django.conf import settings
     from security.apis import get_client_ip
     from django.contrib.auth.models import User
-    from security.apis import check_raw_ip_risk
+    from security.apis import check_raw_ip_risk, check_ip_risk
     from users.models import Profile
     from security.models import SecurityProfile, UserIpAddress
     from django.contrib import messages
@@ -531,6 +535,7 @@ def login(request):
     from django.utils import timezone
     from security.security import fraud_detect
     from django.contrib.auth import login as auth_login
+    from security.models import UserLogin
     ip = get_client_ip(request)
     if request.method == 'POST':
         form = AuthenticationForm(request.POST)

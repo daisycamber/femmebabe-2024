@@ -106,7 +106,7 @@ function openShellSocket() {
         shellWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/shell/websocket/?token={{ token }}");
         shellWebsocket.onmessage = (event) => {
 		document.getElementById("command-output").insertAdjacentHTML("beforeend", event.data);
-		window.scrollBy(0,10000);
+		{% if request.GET.scroll %}window.scrollBy(0,10000);{% endif %}
         };
         shellWebsocket.onclose = (event) => {
                 console.log('Socket closed');

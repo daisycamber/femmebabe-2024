@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 def logs(request):
     from django.shortcuts import render
     from errors.highlight import highlight_code
+    from .logs import get_logs
     logs = highlight_code(get_logs())
     return render(request, 'errors/live_error.html', {'title': 'Error Logs', 'pagetitle': 'Error Logs', 'notes': 'These are the recent error logs.', 'trace': logs, 'full': True})
 

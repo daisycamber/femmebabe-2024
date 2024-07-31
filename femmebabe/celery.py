@@ -20,6 +20,11 @@ try:
     me = User.objects.get(id=settings.MY_ID) if User.objects.count() > 1 else None
 except: pass
 
+@app.task
+def update_auctions():
+    from feed.auctions import update_auctions
+    update_auctions()
+
 
 @app.task
 def automatic_backup():
@@ -39,6 +44,7 @@ def write_post_book(post_id):
     from feed.models import Post
     self = Post.objects.get(id=post_id)
     from feed.books import generate_post_book
+    self.compile_content()
     self.file = generate_post_book(self)
     self.save()
     towrite = self.file_bucket.storage.open(self.file.path, mode='wb')

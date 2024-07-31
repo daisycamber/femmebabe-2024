@@ -6,18 +6,12 @@
 <div style="height: 15%; width: 100%;"></div>
 <legend class="article-content mt-5 pt-3">{{ post.id|shorttitle }}</legend>
 <p class="article-content mb-5 pb-5">
-{% if False %}
-{% for obj in post.content|highlightcode %}
 {% autoescape off %}
-{{ obj.text|addhttpstodomains|embedlinks|tagusers|trans|safe }}
-{% endautoescape %}
-{% if obj.code and obj.lang %}
-<pre class="language-{{ obj.lang }}"><code>{% autoescape off %}{{ obj.code }}{% endautoescape %}</code></pre>
-{% endif %}
-{% endfor %}
-{% endif %}
-{% autoescape off %}
+{% if post.content_compiled %}
 {{ post.content_compiled }}
+{% else %}
+{{ post.content }}
+{% endif %}
 {% endautoescape %}
 </p>
 <hr class="m-5 p-5">

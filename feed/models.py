@@ -37,6 +37,10 @@ def get_image_path(instance, filename, blur=False, original=False, thumbnail=Fal
     filename = "%s.%s" % (str(uuid.uuid4()), ext)
     return os.path.join('images/', filename)
 
+def get_auction_end():
+    import datetime
+    return timezone.now() + datetime.timedelta(hours=24*settings.AUCTION_END_DAYS)
+
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
     feed = models.CharField(max_length=500, default="private")
@@ -83,11 +87,15 @@ class Post(models.Model):
     image_thumb_offsite = models.CharField(default='', null=True, blank=True, max_length=600)
     confirmation_id = models.TextField(blank=True)
     friendly_name = models.CharField(default='', null=True, blank=True, max_length=512)
+    date_auction = models.DateTimeField(default=get_auction_end)
     paid_file = models.BooleanField(default=False)
     paid_users = models.ManyToManyField(User, related_name='paid_posts', blank=True)
 
 #    def likes(self):
 #        return Profile.objects.filter(likes__in=[self]).count()
+
+    def has_auction(self):
+        return timezone.now() < self.date_auction
 
     def compile_content(self):
         from .compile import compile
@@ -325,7 +333,8 @@ class Post(models.Model):
         else: return self.get_friendly_name()
 
     def get_friendly_name(self):
-        content = self.content.split('\n')[0]
+        from django.utils.html import strip_tags
+        content = strip_tags(self.content).split('\n')[0]
         #if self.friendly_name and not self.content: reverse('feed:post-detail', kwargs={'uuid': self.friendly_name})
         import urllib.parse
         name = urllib.parse.quote_plus(((content[:content.rfind(' ', 20, 32) if content.rfind(' ', 20, 32) else 32].strip() if content else 'post').replace(' ', '-')).lower()[:255])
@@ -651,3 +660,9 @@ def resize_image(image_path):
     img = Image.open(image_path)
     img.thumbnail(output_size)
     img.save(image_path)
+
+class Bid(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bids', null=True, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='bids', null=True, blank=True)
+    bid = models.IntegerField(default=settings.MIN_BID)

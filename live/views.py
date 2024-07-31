@@ -9,41 +9,6 @@ from vendors.tests import is_vendor
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.models import User
-from users.models import Profile
-from django.contrib import messages
-import datetime
-from django.utils import timezone
-from django.core.paginator import Paginator
-from django.core.exceptions import PermissionDenied
-from django.http import StreamingHttpResponse
-from django.http import HttpResponse
-import uuid
-from django.conf import settings
-from .models import Camera, VideoCamera, VideoFrame, VideoRecording, Show, get_file_path
-from django import forms
-import traceback, random
-from urllib.request import urlopen
-from . import context_processors
-from .forms import CameraForm
-import os, uuid, re
-from live.models import get_still_path, get_file_path, Show
-import shutil
-from femmebabe.celery import process_recording
-from django.http import Http404
-from security.security import fraud_detect
-from security.middleware import get_qs
-from .show import is_live_show, get_live_show
-from .forms import LiveShowForm, ChooseCameraForm, NameCameraForm
-from users.tfa import send_user_text
-import pytz
-from .logo import add_logo_to_video
-import mimetypes
-from shell.execute import run_command
-from django.core.exceptions import PermissionDenied
-from dateutil.parser import parse
-from femmebabe.celery import process_live
-from django.utils.crypto import get_random_string
-from femmebabe.celery import delay_remove_frame
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
@@ -305,6 +270,10 @@ def remote(request):
     return HttpResponse('<i class="bi bi-toggle-on"></i>' if camera.live else '<i class="bi bi-toggle-off"></i>')
 
 def mute(request):
+    from .models import VideoCamera
+    from django.http import  HttpRepsonse
+    from django.utils import timezone
+    import datetime
     cameras = VideoCamera.objects.filter(user__profile__name=request.GET.get('user', None), name=request.GET.get('camera'), key=request.GET.get('key', ''))
     camera = cameras.first()
     if request.method == 'POST':
@@ -417,6 +386,8 @@ def golivevideo(request):
     camera_key = get_random_string(length=settings.CAMERA_KEY_LENGTH)
     camera.key = camera_key
     camera.save()
+    from django.shortcuts import redirect
+    from django.urls import reverse
     if not request.user.is_authenticated: return redirect(reverse('users:login'))
     from django.shortcuts import render
     return render(request, 'live/golivevideo.html', {'title': 'Go Live', 'camera': camera, 'full': True, 'form': CameraForm(), 'preload': True, 'load_timeout': 5000, 'should_compress_live': request.user.vendor_profile.compress_video, 'key': camera_key, 'use_websocket': camera.use_websocket})
@@ -434,6 +405,9 @@ def livevideo(request, username):
     from django.shortcuts import get_object_or_404
     import datetime
     from django.utils import timezone
+    from live.show import is_live_show, get_live_show
+    from live.models import VideoCamera
+    from django.conf import settings
     model = User.objects.get(profile__name=username)
     if not request.GET.get('key') and not model == request.user and is_live_show(request, model) and hasattr(request, 'user') and get_live_show(request, model) and get_live_show(request, model).user != request.user:
         messages.warning(request, '{} is in a live show with someone else right now. Please book a private show.'.format(username))

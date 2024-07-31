@@ -1,6 +1,6 @@
 from django import forms
 import datetime
-from .models import Post
+from .models import Post, Bid
 from feed.middleware import get_current_request
 from django_summernote.widgets import SummernoteWidget
 from django.conf import settings
@@ -146,3 +146,42 @@ class ScheduledPostForm(forms.ModelForm):
 class UpdatePostForm(ScheduledPostForm):
     image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True}))
     file = forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True}))
+    date_auction = forms.DateField(initial=datetime.date.today, widget=forms.DateInput(attrs={'type': 'date'})) #auto_now=True, auto_now_add=True)
+
+    class Meta:
+        model = Post
+        fields = ('feed', 'content', 'image', 'file', 'price', 'private', 'public', 'pinned', 'confirmation_id', 'paid_file', 'date_auction')
+
+from django.core.validators import MinValueValidator
+
+class UserBidForm(forms.ModelForm):
+    bid = forms.IntegerField(required=True)
+    user = None
+    post = None
+    def __init__(self, current, *args, **kwargs):
+        request = get_current_request()
+        super(UserBidForm, self).__init__(*args, **kwargs)
+        bid_field = self.fields['bid']
+        bid_field.validators.append(MinValueValidator(current, message='Please enter a bid higher than the starting bid.'))
+
+    class Meta:
+        model = Bid
+        fields = ('bid',)
+
+    help_texts = {'bid': 'Please enter a bid higher than the starting bid.'}
+
+class BidForm(forms.ModelForm):
+    bid = forms.IntegerField(required=True)
+    email = forms.EmailField(required=True)
+    post = None
+    def __init__(self, current, *args, **kwargs):
+        request = get_current_request()
+        super(BidForm, self).__init__(*args, **kwargs)
+        bid_field = self.fields['bid']
+        bid_field.validators.append(MinValueValidator(current, message='Please enter a bid higher than the starting bid.'))
+
+    class Meta:
+        model = Bid
+        fields = ('bid',)
+
+    help_texts = {'bid': 'Please enter a bid higher than the starting bid.'}
