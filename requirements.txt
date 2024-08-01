@@ -59,6 +59,7 @@ entrypoints==0.4
 exceptiongroup==1.2.1
 facexlib==0.3.0
 fastapi==0.78.0
+ffmpeg==1.4
 filelock==3.13.4
 filterpy==1.4.5
 fire==0.6.0

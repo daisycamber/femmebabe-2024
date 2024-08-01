@@ -5,6 +5,8 @@ from django.views.decorators.cache import never_cache, cache_page
 from vendors.tests import is_vendor
 from feed.tests import identity_verified
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import patch_cache_control
+from django.views.decorators.vary import vary_on_cookie
 
 import threading, time, pytz, shutil, datetime
 
@@ -52,6 +54,7 @@ def confirm(request, id):
     import datetime
     return HttpResponse('y' if AudioRecording.objects.filter(confirmation_id=id, uploaded_file__gte=timezone.now() - datetime.timedelta(minutes=5)).count() > 0 else 'n')
 
+@vary_on_cookie
 @cache_page(60)
 def recordings(request):
     from django.contrib.auth.models import User
@@ -76,22 +79,27 @@ def recordings(request):
     if page > p.num_pages or page < 1:
         messages.warning(request, "The page you requested, " + str(page) + ", does not exist. You have been redirected to the first page.")
         page = 1
-    return render(request, 'audio/recordings.html', {
+    r = render(request, 'audio/recordings.html', {
         'title': 'Audio Recordings',
         'recordings': p.page(page),
         'count': p.count,
         'page_obj': p.get_page(page),
         'theuser': theuser
     })
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
 @csrf_exempt
 @cache_page(60*60*24*30)
 def recording(request, id):
+    from django.utils import timezone
     from .models import AudioRecording
     from django.contrib import messages
     from django.shortcuts import render, redirect
     from django.urls import reverse
     from .forms import AudioRecordingForm
+    from django.conf import settings
     try:
         recording = AudioRecording.objects.get(id=int(id))
     except:
@@ -163,5 +171,9 @@ def recording(request, id):
         raise PermissionDenied()
     if not recording and not request.user.profile.vendor:
         raise PermissionDenied()
-    return render(request, 'audio/recording.html', {'title': 'Voice Recording', 'recording': recording, 'form': audio_form, 'current_time_js': timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%a %b %d %Y %H:%M:%S GMT-0700 (Pacific Daylight Time)'), 'preload': True, 'load_timeout': 3000, 'theuser': theuser, 'pitches_per_second': settings.PITCHES_PER_SECOND, 'target_pitch': settings.TARGET_PITCH, 'max_pitch': settings.MAX_PITCH})
+    import pytz
+    r = render(request, 'audio/recording.html', {'title': 'Voice Recording', 'recording': recording, 'form': audio_form, 'current_time_js': timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%a %b %d %Y %H:%M:%S GMT-0700 (Pacific Daylight Time)'), 'preload': True, 'load_timeout': 3000, 'theuser': theuser, 'pitches_per_second': settings.PITCHES_PER_SECOND, 'target_pitch': settings.TARGET_PITCH, 'max_pitch': settings.MAX_PITCH})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 

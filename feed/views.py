@@ -76,10 +76,10 @@ def auction(request, id):
                 sendwelcomeemail(user)
             elif not valid:
                 messages.warning(request, 'Invalid or undeliverable email, please check the email and try again')
-                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
+                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID, 'small': True, 'post': post})
             elif not safe:
                 messages.warning(request, 'You are using a risky IP address, and your contact request has been denied.')
-                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
+                return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID, 'small': True, 'post': post})
             us = User.objects.filter(email=e).last()
             try:
                 if (post.bids.last().bid if post.bids.count() else settings.MIN_BID) < int(form.cleaned_data['bid']):
@@ -93,7 +93,7 @@ def auction(request, id):
                 print(traceback.format_exc())
                 messages.warning(request, 'Your bid failed.')
         else: messages.warning(request, str(form.errors))
-    return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, 'small': True, 'post': post})
+    return render(request, 'feed/bid.html', {'title': 'Auction', 'form': UserBidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}) if request.user.is_authenticated else BidForm(post.bids.last().bid if post.bids.count() else settings.MIN_BID + 1, initial={'bid': settings.MIN_BID + 1 if not post.bids.count() else post.bids.last() + 1}), 'current_bid': post.bids.last().bid if post.bids.count() else settings.MIN_BID, 'small': True, 'post': post})
 
 @csrf_exempt
 @login_required

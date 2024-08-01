@@ -25,6 +25,7 @@ def render_agreement(name, parent, mother):
         'the_date': timezone.now().strftime('%B %d, %Y'),
     })
 
+@vary_on_cookie
 @cache_page(60*60*24*365)
 def cancel(request):
     from django.shortcuts import render
@@ -34,6 +35,7 @@ def cancel(request):
     else: patch_cache_control(r, public=True)
     return r
 
+@vary_on_cookie
 @cache_page(60*60*24*365)
 def success(request):
     from django.shortcuts import render
@@ -42,6 +44,7 @@ def success(request):
     else: patch_cache_control(r, public=True)
     return r
 
+@vary_on_cookie
 @cache_page(60*60*24*365)
 def webdev(request):
     from django.shortcuts import render
@@ -58,6 +61,7 @@ def webdev(request):
     return r
 
 
+@vary_on_cookie
 @cache_page(60*60*24*365)
 def idscan(request):
     from django.conf import settings
@@ -68,6 +72,7 @@ def idscan(request):
     else: patch_cache_control(r, public=True)
     return r
 
+@vary_on_cookie
 @cache_page(60*60*24*365)
 def surrogacy(request, username):
     from django.conf import settings
@@ -83,6 +88,7 @@ def surrogacy(request, username):
     else: patch_cache_control(r, public=True)
     return r
 
+@vary_on_cookie
 @cache_page(60*60*24*7)
 def surrogacy_info(request, username):
     from django.conf import settings
@@ -596,6 +602,7 @@ def cancel_subscription(request, username):
         'model': model
     })
 
+@vary_on_cookie
 @cache_page(60*60*24*7)
 def subscribe_card(request, username):
     from django.contrib.auth.models import User
@@ -778,6 +785,8 @@ def tip_bitcoin(request, username, tip):
     from django.shortcuts import render
     return render(request, 'payments/tip_crypto.html', {'title': 'Tip with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced)}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
 
+@vary_on_cookie
+@cache_page(60*60*3)
 def buy_photo_crypto(request, username):
     from security.middleware import get_qs
     from django.conf import settings
@@ -842,8 +851,12 @@ def buy_photo_crypto(request, username):
     if request.user.is_authenticated:
         from femmebabe.celery import validate_photo_payment
         validate_photo_payment.apply_async(timeout=60*5, args=(request.user.id, user.id, float(fee_reduced) * settings.MIN_BITCOIN_PERCENTAGE, transaction_id, id,),)
-    return render(request, 'payments/buy_photo_crypto.html', {'title': 'Buy photo with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
+    r = render(request, 'payments/buy_photo_crypto.html', {'title': 'Buy photo with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
 
+@vary_on_cookie
 @cache_page(60*60*24*7)
 def buy_photo_card(request, username):
     from security.middleware import get_qs
@@ -907,6 +920,7 @@ def charge_card(request):
     from django.shortcuts import render
     return render(request, 'payments/charge_card.html', {'title': 'Charge a Credit or Debit Card', 'card_info_form': CardInfoForm(request.user), 'card_number_form': CardNumberForm(request.user), 'payment_form': PaymentForm(), 'username': profile.vendor.profile.name})
 
+@vary_on_cookie
 @cache_page(60*60*3)
 def tip_crypto_simple(request, username):
     from django.shortcuts import redirect

@@ -18,6 +18,3 @@ mailbox/root
 client_secret.json
 mailbox/
 config/etc_dovecot_passwd
-client_secret.json
-mailbox/
-config/etc_dovecot_passwd

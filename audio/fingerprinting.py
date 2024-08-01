@@ -1,6 +1,6 @@
 import numpy as np
 from django.conf import settings
-import librosa
+import librosa, uuid, os
 
 def fingerprint(audio_file):
   """Generates a fingerprint for an audio file.
@@ -22,13 +22,12 @@ def fingerprint(audio_file):
   fingerprint = np.mean(mag_spectrogram, axis=1)
   return fingerprint
 
-import os
+fingerprint_database = os.path.join(settings.BASE_DIR, 'media/audio/fingerprints')
 
-fingerprint_database = os.path.join(settings.BASE_DIR, 'audio/fingerprints/')
 # Generate a fingerprint for the audio file.
 def save_fingerprint(file):
     fingerprint = fingerprint(file)
-    print_file = os.path.join(fingerprint_database, "{}.npy".format(str(uuid.uuid4()))
+    print_file = os.path.join(fingerprint_database, '{}.npy'.format(str(uuid.uuid4())))
     # Save the fingerprint to a file.
     np.save(print_file, fingerprint)
     return print_file
@@ -36,10 +35,10 @@ def save_fingerprint(file):
 def is_in_database(path_load):
     op = []
     for file in os.listdir(fingerprint_database):
-        if load_fingerprint(path_load, file): op + op + [file]):
+        if load_fingerprint(path_load, file): op = op + [file]
     return False if len(op) == 0 else op
 
-fidelity = settings.AUDIO_FINGERPRINT_SAMPLES
+fidelity = settings.AUDIO_FINGERPRINT_FIDELITY
 
 def load_fingerprint(path_load, known_path):
     known_fingerprint = np.load(known_path)

@@ -635,3 +635,119 @@
 2024-07-30T23:54:02.605967-07:00 femmebabe team: team [3027536]: source venv/bin/activate
 2024-07-30T23:54:33.557286-07:00 femmebabe team: team [3027536]: python manage.py shell
 2024-07-30T23:54:46.076432-07:00 femmebabe team: team [3027536]: sudo systemctl reload apache2
+2024-07-31T02:01:50.825998-07:00 femmebabe team: team [3134087]: sudo systemctl restart apache2
+2024-07-31T02:02:02.542055-07:00 femmebabe team: team [3134087]: cat /var/log/mail.log
+2024-07-31T15:22:00.650289-07:00 femmebabe team: team [3598128]: sudo systemctl reload apache2
+2024-07-31T15:22:03.401497-07:00 femmebabe team: team [3598128]: cd femmebabe
+2024-07-31T15:22:11.108417-07:00 femmebabe team: team [3598128]: source venv/bin/activate
+2024-07-31T15:22:59.583102-07:00 femmebabe team: team [3598128]: nano feed/views.py 
+2024-07-31T15:23:06.732662-07:00 femmebabe team: team [3598128]: sudo systemctl reload apache2
+2024-07-31T15:54:39.025939-07:00 femmebabe team: team [3617407]: sudo systemctl reload apache2
+2024-07-31T15:54:55.313498-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T15:54:56.685911-07:00 femmebabe team: team [3617611]: cd femmebabe
+2024-07-31T15:55:00.608049-07:00 femmebabe team: team [3617611]: source venv/bin/activate
+2024-07-31T15:55:03.511735-07:00 femmebabe team: team [3617611]: cat security/models.py
+2024-07-31T15:55:55.800083-07:00 femmebabe team: team [3617407]: ls
+2024-07-31T15:56:23.560433-07:00 femmebabe team: team [3617611]: python manage.py shell
+2024-07-31T15:56:23.706608-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T15:56:35.924570-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T15:56:57.927719-07:00 femmebabe team: team [3617611]: logs | grep webauth
+2024-07-31T15:57:10.805189-07:00 femmebabe team: team [3617611]: logs | grep webauth
+2024-07-31T15:57:20.717731-07:00 femmebabe team: team [3617611]: sudo tail -1000 /var/log/apache2/error.log | grep webauth
+2024-07-31T15:57:43.416190-07:00 femmebabe team: team [3617611]: nano security/vi
+2024-07-31T15:58:11.350889-07:00 femmebabe team: team [3617611]: nano security/views.py 
+2024-07-31T15:58:14.169901-07:00 femmebabe team: team [3617611]: nano security/vi
+2024-07-31T15:58:16.482503-07:00 femmebabe team: team [3617611]: nano security/views.py 
+2024-07-31T15:58:21.736406-07:00 femmebabe team: team [3617611]: nano security/urls.py 
+2024-07-31T15:58:31.314246-07:00 femmebabe team: team [3617611]: nano security/middleware.py
+2024-07-31T15:58:38.728520-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T15:59:04.620490-07:00 femmebabe team: team [3620134]: ls
+2024-07-31T15:59:26.113220-07:00 femmebabe team: team [3620134]: ls
+2024-07-31T15:59:36.512783-07:00 femmebabe team: team [3620557]: ls
+2024-07-31T15:59:44.779384-07:00 femmebabe team: team [3617611]: python manage.py shell
+2024-07-31T15:59:53.874090-07:00 femmebabe team: team [3620557]: ls
+2024-07-31T16:20:27.042935-07:00 femmebabe team: team [3617611]: nano audio/vo
+2024-07-31T16:21:54.681393-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:21:56.872183-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:22:41.961469-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:22:42.815042-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:24:06.979731-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:24:07.803324-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:24:10.540735-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:24:11.616522-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:24:13.101120-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:24:16.024199-07:00 femmebabe team: team [3617611]: clear
+2024-07-31T16:24:36.358151-07:00 femmebabe team: team [3617611]: clear
+2024-07-31T16:24:36.880517-07:00 femmebabe team: team [3617611]: ls
+2024-07-31T16:26:33.271736-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:26:53.603912-07:00 femmebabe team: team [3617611]: nano audio/slic
+2024-07-31T16:27:02.681948-07:00 femmebabe team: team [3617611]: nano tts/slice.py 
+2024-07-31T16:27:17.002163-07:00 femmebabe team: team [3617611]: pip install ffmpeg
+2024-07-31T16:27:31.604182-07:00 femmebabe team: team [3617611]: pip install --upgrade pip
+2024-07-31T16:27:33.836868-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:28:08.682414-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:28:41.761040-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:29:07.996944-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:30:38.646448-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:30:39.934333-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:30:49.112409-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:30:50.697664-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:30:51.780003-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:30:52.933122-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:30:54.138538-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:32:28.185550-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:32:29.600444-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:32:40.160076-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:32:41.348365-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:32:42.599337-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:33:10.387221-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:34:28.744393-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:34:30.056927-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:35:00.117615-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:35:01.945142-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:35:17.783127-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:35:49.215847-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:35:51.024880-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:36:01.057883-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:36:02.289210-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:36:03.715067-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:36:04.983861-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:36:06.018118-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:36:24.566770-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:36:27.831043-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:38:05.267790-07:00 femmebabe team: team [3617611]: LOGS
+2024-07-31T16:38:06.155642-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:38:13.008461-07:00 femmebabe team: team [3617611]: sudo ascript setup_mail.py 
+2024-07-31T16:38:27.036057-07:00 femmebabe team: team [3617611]: sudo ascript setup
+2024-07-31T16:38:44.752671-07:00 femmebabe team: team [3617611]: nano audio/fingerprinting.py 
+2024-07-31T16:38:47.405821-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:38:58.916043-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:00.078330-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:00.948223-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:02.017827-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:02.933897-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:03.793710-07:00 femmebabe team: team [3617611]: logs
+2024-07-31T16:39:23.124143-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:39:35.154622-07:00 femmebabe team: team [3617611]: nano feed/views.py 
+2024-07-31T16:40:18.950795-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:40:23.925207-07:00 femmebabe team: team [3617611]: nano feed/views.py 
+2024-07-31T16:40:31.423472-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:42:46.013858-07:00 femmebabe team: team [3617611]: nano payments/views.py 
+2024-07-31T16:43:52.685208-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:43:56.176173-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:45:35.543767-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:45:41.412440-07:00 femmebabe team: team [3617611]: nano audio/templates/audio/recording
+2024-07-31T16:45:53.890199-07:00 femmebabe team: team [3617611]: nano audio/templates/audio/recording.html 
+2024-07-31T16:46:00.841419-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:46:03.122268-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:46:13.441307-07:00 femmebabe team: team [3617611]: cat femmebabe/settings.py | grep -nH MAX_P
+2024-07-31T16:46:27.653646-07:00 femmebabe team: team [3617611]: nano femmebabe/settings.py 
+2024-07-31T16:46:30.431715-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:46:51.840491-07:00 femmebabe team: team [3617611]: nano audio/templates/audio/recording.html 
+2024-07-31T16:46:55.437107-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2
+2024-07-31T16:47:43.211717-07:00 femmebabe team: team [3617611]: nano audio/templates/audio/recording.html 
+2024-07-31T16:47:47.942607-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:47:58.704709-07:00 femmebabe team: team [3617611]: nano audio/views.py 
+2024-07-31T16:48:01.513997-07:00 femmebabe team: team [3617611]: sudo purgecache
+2024-07-31T16:48:32.383325-07:00 femmebabe team: team [3617611]: nano femmebabe/settings.py 
+2024-07-31T16:48:34.940949-07:00 femmebabe team: team [3617611]: sudo systemctl reload apache2

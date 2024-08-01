@@ -23,7 +23,7 @@ def webauth_begin(request):
         return redirect('/webauth/verify/?next=/security/biometric/?next=' + request.GET.get('next', '/'))
     return redirect(request.GET.get('next', '/'))
 
-@webauth_required
+#@webauth_required
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def webauth_redirect(request):
