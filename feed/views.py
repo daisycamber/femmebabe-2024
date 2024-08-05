@@ -719,6 +719,7 @@ def new_post(request):
 #            form.instance.published = True
             if request.GET.get('save', False):
                 post = form.save()
+                post.upload()
                 return HttpResponse(200)
             form.instance.posted = True
             files = request.FILES.getlist('image')
@@ -738,6 +739,7 @@ def new_post(request):
                         file.write(chunk)
                     form.instance.file = path
             post = form.save()
+            post.upload()
 #            Post.objects.create(public=True, private=False, published=False, posted=False, content='', author=request.user)
             first = True
             if files:
@@ -753,6 +755,7 @@ def new_post(request):
                         post.public = form.instance.public
                         post.private = form.instance.private
                         post.save()
+                        post.upload()
                     first = False
             first = True
             files = request.FILES.getlist('file')
@@ -769,6 +772,7 @@ def new_post(request):
                         post.public = form.instance.public
                         post.private = form.instance.private
                         post.save()
+                        post.upload()
                     first = False
 #            from lotteh.celery import remove_duplicates
             from .duplicates import remove_post_duplicates

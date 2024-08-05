@@ -124,7 +124,7 @@ def security_middleware(get_response):
                 if ip_obj:
                     ip_obj.timestamp = timezone.now()
                     if not ip_obj.latitude:
-                        from femmebabe.celery import async_geolocation
+                        from lotteh.celery import async_geolocation
                         async_geolocation.delay(ip_obj.id, ip)
                     ip_obj.save()
             else:
@@ -132,19 +132,19 @@ def security_middleware(get_response):
                 if ip_obj:
                     ip_obj.timestamp = timezone.now()
                     if not ip_obj.latitude:
-                        from femmebabe.celery import async_geolocation
+                        from lotteh.celery import async_geolocation
                         async_geolocation.delay(ip_obj.id, ip)
                     ip_obj.save()
             if not ip_obj:
                 ip_address = UserIpAddress()
                 ip_address.user = request.user if hasattr(request, 'user') and request.user.is_authenticated else None
-                from femmebabe.celery import async_geolocation
+                from lotteh.celery import async_geolocation
                 ip_address.ip_address = ip
                 ip_address.timestamp = timezone.now()
                 ip_address.save()
                 async_geolocation.delay(ip_address.id, ip)
                 ip_address.page_loads = 1
-                from femmebabe.celery import async_risk_detection
+                from lotteh.celery import async_risk_detection
                 async_risk_detection.delay(ip_address.id)
                 ip_address.save()
                 ip_address.risk_detected = check_ip_risk(ip_address)

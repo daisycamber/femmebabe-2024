@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/team/femmebabe/venv/bin/python /home/team/femmebabe/manage.py check
+/home/team/lotteh/venv/bin/python /home/team/lotteh/manage.py check

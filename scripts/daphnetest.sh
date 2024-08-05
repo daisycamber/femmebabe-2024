@@ -1,1 +1,1 @@
-/home/team/femmebabe/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/home/team/femmebabe/keys/femmebabe.com/privkey.pem:certKey=/home/team/femmebabe/keys/femmebabe.com/cert.pem femmebabe.asgi:application
+/home/team/lotteh/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/home/team/lotteh/keys/lotteh.com/privkey.pem:certKey=/home/team/lotteh/keys/lotteh.com/cert.pem lotteh.asgi:application

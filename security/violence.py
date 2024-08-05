@@ -23,7 +23,7 @@ EXCLUDED_LABELS = [
 
 def detect(image):
     import sys
-    sys.path.append('/home/team/femmebabe/violence-detection/')
+    sys.path.append('/home/team/lotteh/violence-detection/')
     from model import Model
     import cv2
     model = Model()

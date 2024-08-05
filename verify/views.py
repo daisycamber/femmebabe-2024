@@ -273,7 +273,7 @@ def verify(request):
     from feed.models import Post
     from django.conf import settings
     from .verify import validate_id
-    from femmebabe.celery import pend_id_verification
+    from lotteh.celery import pend_id_verification
     if request.user.faces.count() == 0:
         messages.warning(request, 'Please take a photo of your face to continue.')
         return redirect(request.user.profile.create_face_url())

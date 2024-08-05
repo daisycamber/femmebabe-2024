@@ -52,7 +52,13 @@ function showVideoCall() {
 let otherPerson;
 const username = "{{ thename }}";
 const socketUrl = `wss://${location.host}/ws/chat/Daisy/video/`;
-const socket = new WebSocket(socketUrl);
+var socket = new WebSocket(socketUrl);
+socket.addEventListener("close", () => {
+	console.log("websocket closed");
+	setTimeout(function() {
+		socket = new WebSocket(socketUrl);
+	}, 10000);
+});
 /**
  * Sends the message over the socket.
  * @param {WebSocketMessage} message The message to send

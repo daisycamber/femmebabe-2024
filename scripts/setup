@@ -1,18 +1,18 @@
 #!/bin/bash
 SECONDS=0
-echo "femmebabe installer initialized."
+echo "lotteh installer initialized."
 # sudo chmod a+x scripts/usersetup
 # ./scripts/usersetup
 # ssh-keygen
 # Project directory
-DIR="/home/team/femmebabe"
+DIR="/home/team/lotteh"
 USER="team"
 # Log commands
 echo "Logging commands"
 sudo cp log/commands.log /var/log/commands.log
 sudo chmod -R a+w /var/log
 sudo chown -R :syslog /var/log
-echo $'alias venv="source /home/team/femmebabe/venv/bin/activate"' | sudo tee -a /home/team/.profile
+echo $'alias venv="source /home/team/lotteh/venv/bin/activate"' | sudo tee -a /home/team/.profile
 echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a /etc/bashrc
 echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a "/home/team/.bashrc"
 echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a /root/.bashrc
@@ -43,7 +43,7 @@ sudo mount -o remount,size=16G,exec /tmp
 echo "Update and install packages"
 sudo apt update && sudo NEEDRESTART_MODE=a apt upgrade -y
 sudo apt purge postgresql-client-14 postgresql-client-common postgresql-common postgresql-contrib postgresql -y
-echo "postfix postfix/mailname string femmebabe.com" | sudo debconf-set-selections
+echo "postfix postfix/mailname string lotteh.com" | sudo debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | sudo debconf-set-selections
 sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y postfix
 sudo NEEDRESTART_MODE=a apt install -y rkhunter clamav-daemon libx264-dev ffmpeg libapache2-mod-wsgi-py3 apache2 cmake python-is-python3 python3-venv python3-pip python3-django expect tesseract-ocr openjdk-8-jdk redis-server libopencv-dev python3-opencv python3-dev libsasl2-dev opendkim opendkim-tools dovecot-core dovecot-pop3d dovecot-imapd auditd procmail libpq-dev postgresql postgresql-contrib libheif-dev snapd git software-properties-common certbot python3-certbot-apache libboost-all-dev
@@ -54,7 +54,7 @@ echo "Starting antivirus"
 sudo systemctl enable clamav-daemon
 sudo systemctl start clamav-daemon
 # Set hostname
-echo "127.0.0.1 femmebabe" | sudo tee -a /etc/hosts
+echo "127.0.0.1 lotteh" | sudo tee -a /etc/hosts
 sudo hostnamectl set-hostname localhost
 # Setup postgres
 echo "Postgres setup"
@@ -115,18 +115,18 @@ sudo cp config/etc_default_opendkim /etc/default/opendkim
 sudo adduser postfix opendkim
 sudo mkdir /etc/opendkim
 sudo mkdir /etc/opendkim/keys
-sudo mkdir /etc/opendkim/keys/femmebabe.com
+sudo mkdir /etc/opendkim/keys/lotteh.com
 sudo mkdir /var/spool/postfix/opendkim
-sudo echo "*@femmebabe.com     sendonly._domainkey.femmebabe.com" | sudo tee -a /etc/opendkim/signing.table
-sudo echo "sendonly._domainkey.femmebabe.com    femmebabe.com:sendonly:/etc/opendkim/keys/femmebabe.com/sendonly.private" | sudo tee -a /etc/opendkim/key.table
+sudo echo "*@lotteh.com     sendonly._domainkey.lotteh.com" | sudo tee -a /etc/opendkim/signing.table
+sudo echo "sendonly._domainkey.lotteh.com    lotteh.com:sendonly:/etc/opendkim/keys/lotteh.com/sendonly.private" | sudo tee -a /etc/opendkim/key.table
 sudo echo "127.0.0.1" | sudo tee -a /etc/opendkim/trusted.hosts
 sudo echo "localhost" | sudo tee -a /etc/opendkim/trusted.hosts
 sudo echo "" | sudo tee -a /etc/opendkim/trusted.hosts
-sudo echo "*.femmebabe.com" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "*.lotteh.com" | sudo tee -a /etc/opendkim/trusted.hosts
 sudo chown -R opendkim:opendkim /etc/opendkim
-sudo opendkim-genkey -b 2048 -d femmebabe.com -D /etc/opendkim/keys/femmebabe.com -s sendonly -v
+sudo opendkim-genkey -b 2048 -d lotteh.com -D /etc/opendkim/keys/lotteh.com -s sendonly -v
 sudo chmod go-rw /etc/opendkim/keys
-sudo chown opendkim:opendkim /etc/opendkim/keys/femmebabe.com/sendonly.private
+sudo chown opendkim:opendkim /etc/opendkim/keys/lotteh.com/sendonly.private
 sudo chown opendkim:postfix /var/spool/postfix/opendkim
 cd $DIR
 sudo cp mailbox/* /var/mail/
@@ -230,6 +230,7 @@ pip3 install nudepy==0.4
 pip3 install torch==2.2.0
 pip3 install torchvision==0.17.0
 pip3 install tensorflow[and-cuda]
+pip3 install googletrans==4.0.0-rc1
 pip3 install --pre torch-tensorrt --index-url https://download.pytorch.org/whl/nightly/cu124
 # Install certbot
 echo "Installing certificates"
@@ -240,19 +241,19 @@ sudo snap install redis
 sudo systemctl enable apache2
 sudo systemctl start apache2
 # Run certbot
-sudo certbot --apache --non-interactive --agree-tos --domains femmebabe.com --email jasper.camber.holton@gmail.com
+sudo certbot --apache --non-interactive --agree-tos --domains lotteh.com --email jasper.camber.holton@gmail.com
 # Reload mail server
 sudo systemctl restart opendkim postfix dovecot
 # Copy certs
-#sudo cp /etc/letsencrypt/live/femmebabe.com/privkey.pem privkey.pem
-#sudo cp /etc/letsencrypt/live/femmebabe.com/cert.pem cert.pem
-sudo cp -Lrv /etc/letsencrypt/live/femmebabe.com/ keys
+#sudo cp /etc/letsencrypt/live/lotteh.com/privkey.pem privkey.pem
+#sudo cp /etc/letsencrypt/live/lotteh.com/cert.pem cert.pem
+sudo cp -Lrv /etc/letsencrypt/live/lotteh.com/ keys
 sudo chown -R team:users keys
 # Patch venv
 PYTHON_VERSION="3.12"
-cp scripts/content.py /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py
-cp scripts/pwa_webpush_forms.py /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py
-cp scripts/webauth_views.py /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py
+cp scripts/content.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py
+cp scripts/pwa_webpush_forms.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py
+cp scripts/webauth_views.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py
 cp scripts/json.py venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py
 # Set user settings
 sudo gpasswd -a www-data users
@@ -285,7 +286,7 @@ sudo chmod a+r team /var/mail/$USER
 echo "Configuring remaining services"
 sudo cp config/apis.json /etc/apis.json
 sudo cp config/config.json /etc/config.json
-sudo cp config/femmebabe-le-ssl.conf /etc/apache2/sites-available/femmebabe-le-ssl.conf
+sudo cp config/lotteh-le-ssl.conf /etc/apache2/sites-available/lotteh-le-ssl.conf
 sudo cp config/etc_dovecot_passwd /etc/dovecot/passwd
 sudo cp config/etc_init.d_celery /etc/init.d/celery
 sudo cp config/etc_init.d_celerybeat /etc/init.d/celerybeat
@@ -308,8 +309,8 @@ sudo sh -c "cat config/sudoers >> /etc/sudoers"
 # Inject pam config and remove faulty ssh config
 #sudo sed -i '' -e '$ d' /etc/pam.d/sshd
 #sudo sed -i '' -e '$ d' /etc/profile
-echo "session required pam_exec.so seteuid /home/team/femmebabe/pam.sh" | sudo tee -a /etc/pam.d/sshd
-echo "session required pam_exec.so seteuid /home/team/femmebabe/logout.sh" | sudo tee -a /etc/pam.d/sshd
+echo "session required pam_exec.so seteuid /home/team/lotteh/pam.sh" | sudo tee -a /etc/pam.d/sshd
+echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
 sudo chmod a+x pam.sh
 sudo rm /etc/ssh/sshd_config.d/50-cloud-init.conf
 # Copy bin scripts and set permissions
@@ -349,7 +350,7 @@ sudo a2enmod proxy_wstunnel
 sudo a2dissite 000-default
 sudo a2dissite 000-default-le-ssl
 # Enable our site
-sudo a2ensite femmebabe-le-ssl
+sudo a2ensite lotteh-le-ssl
 # Reload daemon and restart apache, postfix and opendkim
 sudo systemctl daemon-reload
 sudo systemctl restart apache2
@@ -371,8 +372,8 @@ echo "/swapfile swap swap defaults 0 0" | sudo tee -a /etc/fstab
 sudo swapon --show
 # Init caption engine
 echo "Initializing routine caption"
-/home/team/femmebabe/venv/bin/python /home/team/femmebabe/routine_caption.py
-/home/team/femmebabe/venv/bin/python /home/team/femmebabe/setup_mail.py
+/home/team/lotteh/venv/bin/python /home/team/lotteh/routine_caption.py
+/home/team/lotteh/venv/bin/python /home/team/lotteh/setup_mail.py
 # Setup git
 echo "Setting up git"
 cd $DIR
@@ -385,7 +386,7 @@ echo "COPY the below information to domain configuration."
 hostname -I
 ip a | grep inet
 ip -6 addr | grep "scope link"
-sudo cat /etc/opendkim/keys/femmebabe.com/sendonly.txt | tr -d '\n' | sed 's/\s//g' | awk -F'[)(]' '{print $2}' | sed '0,/""/{s/""//}'
+sudo cat /etc/opendkim/keys/lotteh.com/sendonly.txt | tr -d '\n' | sed 's/\s//g' | awk -F'[)(]' '{print $2}' | sed '0,/""/{s/""//}'
 # Setup completed
 echo "Setup completed in"
 wc -l scripts/setup
@@ -405,5 +406,5 @@ echo "- DEBUG"
 echo "- FIX setup and backup scripts"
 echo "- Fix server"
 echo ""
-echo "Thank you for using the femmebabe installer. Have a great day!"
+echo "Thank you for using the lotteh installer. Have a great day!"
 echo "Goodbye."

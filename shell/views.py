@@ -199,7 +199,7 @@ def edit(request):
         form = EditFileForm(request.POST)
         if form.is_valid() and not path.startswith('/etc/sudoers'):
 #            if not form.cleaned_data.get('length') == len(form.cleaned_data.get('text')): return HttpResponse('Incomplete input')
-            from femmebabe.celery import update_file
+            from lotteh.celery import update_file
             update_file.delay(path, form.cleaned_data.get('text'), request.user.id)
             return HttpResponse('Saved.')
     content = ''

@@ -30,7 +30,7 @@ def webauth_redirect(request):
     from .models import Biometric
     from django.shortcuts import redirect
     if biometric_verified(request): return redirect(request.GET.get('next') if request.GET.get('next') else '/')
-    if not request.session.get('webauth_device_id', None):
+    if not request.session.get('webauth_device_id', None) and not (Biometric.objects.filter(user=request.user).count() > 0 or user.webauth_devices.count() > 0):
         return redirect('/webauth/verify/?next=/security/biometric/?next=' + request.GET.get('next', '/'))
     Biometric.objects.create(user=request.user, session_key=request.session.session_key)
     request.user.profile.enable_biometrics = True

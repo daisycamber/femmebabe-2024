@@ -78,7 +78,7 @@ class MRZScan(models.Model):
         path, url = get_private_secure_path(self.image.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_FILE_SECONDS)
         return url #reverse('feed:secure-photo', kwargs={'filename': url})
 
@@ -162,7 +162,7 @@ class SessionDedup(models.Model):
     time = models.DateTimeField(default=timezone.now)
 
     def async_delete(self):
-        from femmebabe.celery import delay_delete_session
+        from lotteh.celery import delay_delete_session
         delay_delete_session.apply_async([self.id], countdown=30)
 
 admin.site.register(Session)

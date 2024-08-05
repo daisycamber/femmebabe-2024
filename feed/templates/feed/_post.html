@@ -26,7 +26,7 @@
     {% endautoescape %}
  
     {% if post.image %} 
-{% if post.author == request.user and not post.public and not request.GET.show %}
+{% if not post.public and not request.GET.show %}
     {% with post.get_blur_thumb_url as imurl %}
    <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
     {% endwith %}

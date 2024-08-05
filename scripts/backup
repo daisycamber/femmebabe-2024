@@ -1,6 +1,6 @@
 #!/bin/bash
 U="team"
-DIR="femmebabe"
+DIR="lotteh"
 PYTHON_VERSION="3.12"
 git config --global --add safe.directory $"/home/$U/$DIR"
 cd /usr/bin
@@ -14,7 +14,7 @@ sudo cp /var/log/audit/auditd.log log/auditd.log
 sudo cp /var/log/commands.log log/commands.log
 # TEMPORARY
 sudo rm .git/index.lock
-sudo cp /etc/apache2/sites-available/femmebabe-le-ssl.conf config/femmebabe-le-ssl.conf
+sudo cp /etc/apache2/sites-available/lotteh-le-ssl.conf config/lotteh-le-ssl.conf
 sudo cp /etc/default/celery config/etc_default_celery
 sudo cp /etc/init.d/celery config/etc_init.d_celery
 sudo cp /etc/init.d/celerybeat config/etc_init.d_celerybeat
@@ -34,13 +34,13 @@ sudo cp /etc/apis.json config/apis.json
 sudo cp /etc/config.json config/config.json
 sudo tail -n +55 /etc/sudoers > config/sudoers
 sudo tail -n +4 /var/spool/cron/crontabs/root > config/crontab
-sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py scripts/content.py
-sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py scripts/pwa_webpush_forms.py
-sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py scripts/webauth_views.py
-sudo cp /home/team/femmebabe/violence-detection/requirements.txt config/vd-requirements.txt
-sudo cp /home/team/femmebabe/violence-detection/model.py config/vd-model.py
-sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py scripts/json.py
-sudo cp /home/team/femmebabe/venv/lib/python$PYTHON_VERSION/site-packages/googletrans/client.py scripts/client.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py scripts/content.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py scripts/pwa_webpush_forms.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py scripts/webauth_views.py
+sudo cp /home/team/lotteh/violence-detection/requirements.txt config/vd-requirements.txt
+sudo cp /home/team/lotteh/violence-detection/model.py config/vd-model.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py scripts/json.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/googletrans/client.py scripts/client.py
 sudo cp /etc/pam.d/sshd config/etc_pam.d_sshd
 sudo cp /etc/pam.d/login config/etc_pam.d_login
 sudo cp /etc/banner config/banner
@@ -94,14 +94,21 @@ sed -i '/docbarcodes/d' requirements.txt
 sed -i '/webauthn/d' requirements.txt
 sed -i '/numpy/d' requirements.txt
 sed -i '/urllib3/d' requirements.txt
+sed -i '/pytorch-triton/d' requirements.txt
+sed -i '/torch_tensorrt/d' requirements.txt
+sed -i '/jpype1/d' requirements.txt
+sed -i '/twilio/d' requirements.txt
+sed -i '/setuptools/d' requirements.txt
+sed -i '/aiohappyeyeballs/d' requirements.txt
 #sed -i '//d' requirements.txt
+echo "setuptools==58.2.0" | tee -a requirements.txt
+echo "twilio" | tee -a requirements.txt
 echo "autocorrect" | tee -a requirements.txt
 echo "paramiko" | tee -a requirements.txt
 echo "ccxt" | tee -a requirements.txt
-echo "numpy==1.26.0" | tee -a requirements.txt
+echo "numpy" | tee -a requirements.txt
 echo "urllib3" | tee -a requirements.txt
 echo "webauthn" | tee -a requirements.txt
-echo "docbarcodes" | tee -a requirements.txt
 #echo "" | tee -a requirements.txt
 #echo "typing_extensions" | tee -a requirements.txt
 #echo "asgiref" | tee -a requirements.txt
@@ -117,7 +124,7 @@ HOD=$(date +%H)
 if ["$DOW" -eq 1 && "$HOD" -eq 0]; then
 	sudo rm -r .git
 	git init --initial-branch=main
-	# git@gitlab.com:femme-babe/femmebabe2024-05.git
+	# git@gitlab.com:femme-babe/lotteh2024-05.git
 fi
 git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-06.git
 git add --all
@@ -174,19 +181,19 @@ sudo git push -u -f originhub main
 cd $"/home/$U"
 sudo mkdir /mnt/backup
 sudo mount /dev/sdb2 /mnt/backup
-sudo mkdir /mnt/backup/femmebabe/
-sudo cp -r $"/home/$U/$DIR" /mnt/backup/femmebabe/
-sudo cp -r $"/home/$U/$dir" /mnt/backup/femmebabe/
-sudo cp -r $"/home/$U/$diropen" /mnt/backup/femmebabe/
+sudo mkdir /mnt/backup/lotteh/
+sudo cp -r $"/home/$U/$DIR" /mnt/backup/lotteh/
+sudo cp -r $"/home/$U/$dir" /mnt/backup/lotteh/
+sudo cp -r $"/home/$U/$diropen" /mnt/backup/lotteh/
 #sudo rm -r $"/home/$U/$dir"
-#sudo rm -r /home/team/femmebabe-backup*
+#sudo rm -r /home/team/lotteh-backup*
 #/usr/bin/expect <<EOD
 #spawn git push -u originhub master
 #set timeout -1
 #expect "Username"
 #send "jasper.camber.holton@gmail.com\n"
 #expect "Password"
-#send "ghp_efemmebabepSxuCazLcrDcdeUQFYMGXrheu7a4gC30W\n"
+#send "ghp_elottehpSxuCazLcrDcdeUQFYMGXrheu7a4gC30W\n"
 #expect eof
 #EOD
 #/usr/bin/expect <<EOD

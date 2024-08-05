@@ -1,3 +1,8 @@
+def post_ai_response(user, text):
+    from feed.models import Post
+    post, created = Post.objects.get_or_create(posted=True, published=True, public=True, private=False, feed='news', author=user, content=text)
+    post.save()
+
 def get_ai_response(text):
     from openai import OpenAI
     from django.conf import settings
@@ -8,4 +13,4 @@ def get_ai_response(text):
             {"role": "user", "content": text}
         ]
     )
-    return completion
+    return completion.choices[0].message.content

@@ -1,24 +1,27 @@
 #!/bin/bash
 cd
 cd femmebabe
-OLDNAME='Uglek'
-NEWNAME='Femme Babe'
-OLDDOMAIN='uglek.com'
-NEWDOMAIN='femmebabe.com'
-OLDHOST='uglek'
-NEWHOST='femmebabe'
+OLDNAME='Femme Babe'
+NEWNAME='Lotte Harper'
+OLDDOMAIN='femmebabe.com'
+NEWDOMAIN='lotteh.com'
+OLDHOST='femmebabe'
+NEWHOST='lotteh'
 OLDUSER='team'
 NEWUSER='team'
-OLDPROJ='uglek'
-NEWPROJ='femmebabe'
-OLDSET='uglek'
-NEWSET='femmebabe'
+OLDPROJ='femmebabe'
+NEWPROJ='lotteh'
+OLDSET='femmebabe'
+NEWSET='lotteh'
+OLDPREF='Daisy'
+NEWPREF='Lotte'
 string0="s@${OLDDOMAIN}@${NEWDOMAIN}@g"
 string1="s@${OLDHOST}@${NEWHOST}@g"
 string2="s@${OLDUSER}@${NEWUSER}@g"
 string3="s@${OLDPROJ}@${NEWPROJ}@g"
 string4="s@${OLDNAME}@${NEWNAME}@g"
 string5="s@${OLDSET}@${NEWSET}@g"
+string6="s@${OLDPREF}@${NEWPREF}@g"
 FILES="scripts/setup
 scripts/backup
 scripts/activate
@@ -68,7 +71,17 @@ scripts/reload
 $OLDPROJ/celery.py
 $OLDPROJ/wsgi.py
 $OLDPROJ/asgi.py
-shell/templates/shell/edit.html"
+shell/templates/shell/edit.html
+users/templates/users/password_reset_email.html
+users/templates/users/password_reset_html_email.html"
+while read p; do
+	sudo sed -i "$string0" $"/usr/bin/$p"
+	sudo sed -i "$string1" $"/usr/bin/$p"
+	sudo sed -i "$string2" $"/usr/bin/$p"
+	sudo sed -i "$string3" $"/usr/bin/$p"
+	sudo sed -i "$string4" $"/usr/bin/$p"
+	sudo sed -i "$string5" $"/usr/bin/$p"
+done < /etc/ascripts
 for f in $FILES; do
 	sed -i "$string0" "$f"
 	sed -i "$string1" "$f"
@@ -85,6 +98,12 @@ while read f; do
 	sed -i "$string4" "$f"
 	sed -i "$string5" "$f"
 done < config/ascripts
+for f in */*.py; do
+	sed -i "$string3" "$f"
+done
+for f in *.py; do
+	sed -i "$string3" "$f"
+done
 for f in *.py; do
 	sed -i "$string5" "$f"
 done

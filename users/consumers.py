@@ -24,6 +24,7 @@ class AuthConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
         self.connected = True
+        import threading
         t = threading.Thread(target=user_thread, args=(self,))
         t.start()
         pass

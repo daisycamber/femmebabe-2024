@@ -1,6 +1,6 @@
 #!/bin/bash
 U="team"
-DIR="femmebabe"
+DIR="lotteh"
 cd $"/home/$U/$DIR/"
 source venv/bin/activate
 python generate_site.py

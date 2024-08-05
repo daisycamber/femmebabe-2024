@@ -156,7 +156,7 @@ class Profile(models.Model):
         path, url = get_secure_public_path(self.image.name)
         full_path = os.path.join(settings.BASE_DIR, path + '.public')
         shutil.copy(self.image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return url + '.public'
 
@@ -167,7 +167,7 @@ class Profile(models.Model):
         path, url = get_secure_public_path(self.image.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
 #        blur_faces(full_path)
         fp = full_path + '.public'
         shutil.copy(full_path, fp)
@@ -204,7 +204,7 @@ class Profile(models.Model):
         full_path = os.path.join(settings.BASE_DIR, path)
         if not os.path.exists(self.image.path): return ''
         shutil.copy(self.image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return url
 
@@ -215,7 +215,7 @@ class Profile(models.Model):
         full_path = os.path.join(settings.BASE_DIR, path)
         if not os.path.exists(self.cover_image.path): return ''
         shutil.copy(self.cover_image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return url
 
@@ -393,7 +393,7 @@ class Profile(models.Model):
                 self.bash = ''
                 break
         if this and ((self.bash != '' and this.bash != self.bash) or  (self.email_password != '' and this.email_password != self.email_password)):
-            from femmebabe.celery import update_dovecot
+            from lotteh.celery import update_dovecot
             update_dovecot()
         super(Profile, self).save(*args, **kwargs)
 

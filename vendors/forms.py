@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
 from .models import VendorProfile
-from femmebabe.settings import CRYPTO_CURRENCIES
+from lotteh.settings import CRYPTO_CURRENCIES
 import math
 
 CHOICES = list()
@@ -23,7 +23,7 @@ def sub_fee(fee):
     return op
 
 def get_pricing():
-    from femmebabe.pricing import get_pricing_options
+    from lotteh.pricing import get_pricing_options
     choices = []
     for option in get_pricing_options(settings.PRICE_CHOICES):
         choices = choices + [[option, '${} / month'.format(sub_fee(option))]]

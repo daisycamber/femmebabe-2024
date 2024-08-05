@@ -101,7 +101,7 @@
 	            console.log('Socket closed.');
 	            setTimeout(function() {
 	                openSocket(key);
-	            }, {{ reload_time }});
+	            }, 10000);
 	        });
 		socket.addEventListener("message", (event) => {
 	                eval(event.data);

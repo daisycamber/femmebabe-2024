@@ -232,13 +232,23 @@ def voice(request):
     if phone == '+1': user = None
     resp = VoiceResponse()
     client = Client(account_sid, auth_token)
-    if request.POST.get('Speech'):
-        speech = request.POST.get('Speech', '')
+    if request.POST.get('SpeechResult') or request.POST.get('UnstableSpeechResult'):
+        speech = request.POST.get('SpeechResult', '') if request.POST.get('SpeechResult', False) else request.POST.get('UnstableSpeechResult', '')
+        l = speech.lower()
+        from voice.ai import get_ai_response, post_ai_response
+        text_nl = get_ai_response(speech)
+        if user and user.profile.vendor:
+            post_ai_response(user, speech.capitalize() + '\n\n' + text_nl)
+        text = text_nl.replace('\n', ' ')
         if user and hasattr(user, 'voice_profile'):
-            user.voice_profile.call_logs = user.voice_profile.call_logs + speech
+            user.voice_profile.call_logs = user.voice_profile.call_logs + speech + '***' + text + '***'
             user.voice_profile.save()
-        from voice.ai import get_ai_repsonse
-        resp.say(get_ai_response(speech), voice='alice')
+        resp.say(text, voice='alice')
+        gather = Gather(input='speech', timeout=15, action=reverse('voice:voice'))
+        gather.say('What else can I help you with?', voice='alice')
+        resp.append(gather)
+        resp.redirect(reverse('voice:voice'))
+        return HttpResponse(str(resp), content_type='text/xml')
     if request.POST.get('Digits'):
         choice = request.POST.get('Digits')
         if user and hasattr(user, 'voice_profile'):
@@ -293,13 +303,14 @@ def voice(request):
         elif choice == '5':
             resp.play(interactive('record'))
             resp.record()
-        elif False and choice == '6':
-            gather = Gather(input='speech', timeout=12)
-            gather.say('What else do you need? Leave me a message with your voice and I will record your input and help you.', voice='alice')
+        elif choice == '6':
+            gather = Gather(input='speech', timeout=15, action=reverse('voice:voice'))
+            gather.say('What else do you need? Talk to me, or ask me a question.', voice='alice')
             resp.append(gather)
-            print(response)
+            resp.redirect(reverse('voice:voice'))
         else:
             resp.play(interactive('sorry'))
+            resp.redirect(reverse('voice:voice'))
             return HttpResponse(str(resp), content_type='text/xml')
     called = False
     if user:

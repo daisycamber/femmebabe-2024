@@ -1,7 +1,7 @@
 from __future__ import division, print_function, absolute_import
 
 import sys
-sys.path.append('/home/team/femmebabe/security/Human-Violence-Detection/')
+sys.path.append('/home/team/lotteh/security/Human-Violence-Detection/')
 from models.openpose_model import pose_detection_model
 
 from timeit import time

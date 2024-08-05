@@ -50,7 +50,7 @@ class AudioInteractive(models.Model):
             self.content = str(self.content.path).replace('..','.')
             self.save()
         shutil.copy(self.content.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=30)
         return url
 

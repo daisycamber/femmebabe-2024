@@ -176,6 +176,7 @@ def tfa(request, username, usertoken):
             p = user.profile
             is_verified = False
 #            try:
+            from .tfa import check_verification_code
             is_verified = check_verification_code(user, token, code)
             print('Is verified?')
 #            except:

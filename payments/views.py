@@ -732,7 +732,7 @@ def subscribe_bitcoin(request, username):
                             send_registration_push(cus_user)
                             sendwelcomeemail(cus_user)
                     except: pass
-            from femmebabe.celery import validate_bitcoin_payment
+            from lotteh.celery import validate_bitcoin_payment
             validate_bitcoin_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), usd_fee,),)
             validate_bitcoin_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), usd_fee,),)
             return redirect(reverse('payments:subscribe-bitcoin-thankyou', kwargs={'username': user.profile.name}))
@@ -741,7 +741,7 @@ def subscribe_bitcoin(request, username):
     fee_reduced = fee.split('.')[0] + '.' + fee.split('.')[1][:settings.BITCOIN_DECIMALS]
     from payments.crypto import get_payment_address
     address, transaction_id = get_payment_address(user, crypto, float(fee_reduced))
-    from femmebabe.celery import validate_bitcoin_payment
+    from lotteh.celery import validate_bitcoin_payment
     validate_bitcoin_payment.apply_async(timeout=60*10, args=(request.user.id, user.id, float(fee_reduced) * settings.MIN_BITCOIN_PERCENTAGE, transaction_id, usd_fee,),)
     from feed.models import Post
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
@@ -837,7 +837,7 @@ def buy_photo_crypto(request, username):
                     except: pass
             from django.contrib import messages
             messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
-            from femmebabe.celery import validate_photo_payment
+            from lotteh.celery import validate_photo_payment
             validate_photo_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), id,),)
             validate_photo_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), id,),)
             return redirect(reverse('feed:post-detail', kwargs={'id': id}))
@@ -849,7 +849,7 @@ def buy_photo_crypto(request, username):
     address, transaction_id = get_payment_address(user, crypto, float(fee_reduced))
     from django.shortcuts import render
     if request.user.is_authenticated:
-        from femmebabe.celery import validate_photo_payment
+        from lotteh.celery import validate_photo_payment
         validate_photo_payment.apply_async(timeout=60*5, args=(request.user.id, user.id, float(fee_reduced) * settings.MIN_BITCOIN_PERCENTAGE, transaction_id, id,),)
     r = render(request, 'payments/buy_photo_crypto.html', {'title': 'Buy photo with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
     if request.user.is_authenticated: patch_cache_control(r, private=True)

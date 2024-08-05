@@ -12,22 +12,26 @@ def adstxt(request):
 
 @cache_page(60*60*24*30)
 def sitemap(request):
+    from .sitemap import languages
     from .sitemap import urls
     from .sitemap import vendor_urls
-    from .sitemap import languages
+    from .sitemap import surrogate_urls
+    from .sitemap import vendor_feeds
     from django.shortcuts import render
-    return render(request, 'misc/sitemap.xml', {'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'vendors': User.objects.filter(profile__vendor=True, is_active=True), 'vendor_urls': vendor_urls, 'urls': urls, 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d')}, content_type='application/xml')
+    from feed.models import Post
+    from django.contrib.auth.models import User
+    from django.conf import settings
+    from django.utils import timezone
+    surrogate_urls = ['/surrogacy/', '/surrogacy/checkout/']
+    return render(request, 'misc/sitemap.xml', {'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'vendors': User.objects.filter(profile__vendor=True, is_active=True), 'surrogates': User.objects.filter(profile__vendor=True, is_active=True, vendor_profile__activate_surrogacy=True), 'vendor_urls': vendor_urls, 'urls': urls, 'surrogate_urls': surrogate_urls, 'vendor_feeds': vendor_feeds, 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d')}, content_type='application/xml')
 
 @cache_page(60*60*24)
 def news(request):
     from .sitemap import languages
     languages = ['en']
-    urls = ['/landing/', '/about/', '/accounts/login/', '/accounts/register/', '/']
-    vendor_urls = ['/feed/grid/', '/feed/profile/', '/payments/photo/', '/payments/subscribe/', '/payments/crypto/']
-    surrogate_urls = ['/surrogacy/', '/surrogacy/checkout/']
     from django.contrib.auth.models import User
     from django.shortcuts import render
-    return render(request, 'misc/news.xml', {'profiles': User.objects.filter(is_active=True, profile__vendor=True), 'surrogates': User.objects.filter(is_active=True, profile__vendor=True, vendor_profile__activate_surrogacy=True), 'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d'), 'urls': urls, 'vendor_urls': vendor_urls, 'surrogate_urls': surrogate_urls}, content_type='application/xml')
+    return render(request, 'misc/news.xml', {'profiles': User.objects.filter(is_active=True, profile__vendor=True), 'surrogates': User.objects.filter(is_active=True, profile__vendor=True, vendor_profile__activate_surrogacy=True), 'posts': Post.objects.filter(public=True, private=False, published=True).exclude(content=''), 'languages': languages, 'base_url': settings.BASE_URL, 'date': timezone.now().strftime('%Y-%m-%d')}, content_type='application/xml')
 
 @cache_page(60*60*24*30*3)
 def idscan(request):

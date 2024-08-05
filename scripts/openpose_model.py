@@ -124,7 +124,7 @@ def pose_detection_architecture():
 
 def pose_detection_model():
     
-    weights_path='/home/team/femmebabe/security/Human-Violence-Detection/models/openpose.h5'
+    weights_path='/home/team/lotteh/security/Human-Violence-Detection/models/openpose.h5'
 
     model=pose_detection_architecture()
     model.load_weights(weights_path)

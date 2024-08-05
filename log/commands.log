@@ -347,3 +347,204 @@
 2024-08-05T09:21:51.804178-07:00 lotteh team: team [227703]: du -sh /
 2024-08-05T09:21:56.185335-07:00 lotteh team: team [227703]: df -h /\
 2024-08-05T09:21:57.758273-07:00 lotteh team: team [227703]: df -h /
+2024-08-05T09:37:37.687835-07:00 lotteh team: team [240775]: sudo systemctl restart daphne apache2
+2024-08-05T09:37:38.686215-07:00 lotteh team: team [240775]: cd lotteh
+2024-08-05T09:37:56.763949-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:37:59.307160-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:38:40.297798-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:38:42.062767-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:38:53.688092-07:00 lotteh team: team [240775]: du -sh .git
+2024-08-05T09:39:00.115063-07:00 lotteh team: team [240775]: du -sh media
+2024-08-05T09:39:06.537774-07:00 lotteh team: team [240775]: du -sh media/books/
+2024-08-05T09:39:10.634822-07:00 lotteh team: team [240775]: du -sh media/live/
+2024-08-05T09:39:19.428474-07:00 lotteh team: team [240775]: du -sh media/images/
+2024-08-05T09:39:35.902008-07:00 lotteh team: team [240775]: sudo rm -r media/images/*
+2024-08-05T09:39:36.239905-07:00 lotteh team: team [242175]: sudo systemctl restart daphne apache2
+2024-08-05T09:39:37.883787-07:00 lotteh team: team [242175]: cd lotteh
+2024-08-05T09:39:41.770164-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:39:56.725997-07:00 lotteh team: team [240775]: cat ../femmebabe-backup/chat/templates/chat/rtc.js 
+2024-08-05T09:40:57.392745-07:00 lotteh team: team [240775]: nano chat/templates/chat/rtc.js 
+2024-08-05T09:41:05.137903-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T09:43:14.393187-07:00 lotteh team: team [240775]: nano web/templates/web/base.html 
+2024-08-05T09:43:40.468173-07:00 lotteh team: team [240775]: sudo pushweb
+2024-08-05T10:07:19.811014-07:00 lotteh team: team [227703]: sudo backup
+2024-08-05T10:51:00.202037-07:00 lotteh team: team [227703]: cd lotteh
+2024-08-05T10:51:06.225742-07:00 lotteh team: team [227703]: tail /tmp/daphne-access.log 
+2024-08-05T10:51:10.480988-07:00 lotteh team: team [227703]: tail /tmp/daphne-error.log 
+2024-08-05T10:51:32.726839-07:00 lotteh team: team [227703]: du -sh /tmp/daphne-error.log 
+2024-08-05T10:51:37.291512-07:00 lotteh team: team [227703]: ls media
+2024-08-05T10:51:46.404036-07:00 lotteh team: team [227703]: du -sh media/images
+2024-08-05T10:51:58.775300-07:00 lotteh team: team [227703]: du -sh ./
+2024-08-05T10:52:10.497103-07:00 lotteh team: team [227703]: ls /mnt
+2024-08-05T10:52:14.341083-07:00 lotteh team: team [227703]: ls /mnt/backup
+2024-08-05T10:52:19.478096-07:00 lotteh team: team [227703]: du -sh /mnt/backup
+2024-08-05T10:52:30.718944-07:00 lotteh team: team [227703]: df -h /
+2024-08-05T10:53:14.120768-07:00 lotteh team: team [292304]: nano chat/templates/chat/rtc.js 
+2024-08-05T10:53:18.017228-07:00 lotteh team: team [292304]: cd lotteh
+2024-08-05T10:53:40.082384-07:00 lotteh team: team [292304]: nano users/consumers.py 
+2024-08-05T10:55:44.557877-07:00 lotteh team: team [292304]: nano users/views.py 
+2024-08-05T10:56:04.501828-07:00 lotteh team: team [292304]: sudo systemctl reload apache2
+2024-08-05T10:56:28.889780-07:00 lotteh team: team [292304]: sudo systemctl restart daphne &
+2024-08-05T10:57:29.684000-07:00 lotteh team: team [292304]: nano users/views.py 
+2024-08-05T10:57:32.754246-07:00 lotteh team: team [292304]: sudo systemctl reload apache2
+2024-08-05T11:01:34.824832-07:00 lotteh team: team [240775]: nano scripts/setup
+2024-08-05T11:02:13.846082-07:00 lotteh team: team [240775]: nano venv/lib/python3.12/site-packages/webauth/views.py 
+2024-08-05T11:02:19.767467-07:00 lotteh team: team [240775]: source venv/bin/activate
+2024-08-05T11:02:30.375042-07:00 lotteh team: team [240775]: source venv/bin/activate
+2024-08-05T11:02:35.561343-07:00 lotteh team: team [240775]: source venv/bin/activate
+2024-08-05T11:02:38.239533-07:00 lotteh team: team [240775]: nano security/vi
+2024-08-05T11:03:13.040303-07:00 lotteh team: team [240775]: nano security/views.py 
+2024-08-05T11:04:50.329586-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:05:06.065843-07:00 lotteh team: team [240775]: nano venv/lib/python3.12/site-packages/webauth/models.py 
+2024-08-05T11:06:09.088504-07:00 lotteh team: team [240775]: nano security/views.py 
+2024-08-05T11:06:23.474870-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:12:37.468594-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:13:25.875064-07:00 lotteh team: team [240775]: cp scripts/webauth_views.py venv/lib/python3.12/site-packages/webauth/views.py 
+2024-08-05T11:13:28.569916-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:14:16.512699-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:14:37.452391-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:17:50.887643-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:17:57.483976-07:00 lotteh team: team [240775]: nano scripts/webauth_views.py 
+2024-08-05T11:18:01.084688-07:00 lotteh team: team [240775]: rm scripts/webauth_views.py 
+2024-08-05T11:18:10.794899-07:00 lotteh team: team [240775]: nano scripts/webauth_views.py 
+2024-08-05T11:18:13.125651-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:18:29.548385-07:00 lotteh team: team [240775]: cp scripts/webauth_views.py venv/lib/python3.12/site-packages/webauth/views.py 
+2024-08-05T11:19:22.457057-07:00 lotteh team: team [240775]: nano venv/lib/python3.12/site-packages/webauth/views.py 
+2024-08-05T11:19:24.281817-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:29:48.169136-07:00 lotteh team: team [292304]: python force_publish.py
+2024-08-05T11:29:58.347381-07:00 lotteh team: team [292304]: source venv/bin/activate
+2024-08-05T11:30:09.199314-07:00 lotteh team: team [292304]: python force_publish.py 
+2024-08-05T11:32:38.799091-07:00 lotteh team: team [292304]: python manage.py shell
+2024-08-05T11:32:59.783948-07:00 lotteh team: team [292304]: sudo purgecache
+2024-08-05T11:35:42.069609-07:00 lotteh team: team [292304]: sudo systemctl reload apache2
+2024-08-05T11:36:02.208860-07:00 lotteh team: team [292304]: logs
+2024-08-05T11:37:02.433986-07:00 lotteh team: team [292304]: logs
+2024-08-05T11:39:09.291634-07:00 lotteh team: team [240775]: nano  feed/models.py
+2024-08-05T11:39:10.334792-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:39:18.280725-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:19.685296-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:20.712022-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:21.675596-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:22.665477-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:23.658019-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:24.790172-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:25.842883-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:26.948748-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:28.071674-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:39:29.901516-07:00 lotteh team: team [240775]: loggs
+2024-08-05T11:39:31.053236-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:40:27.477472-07:00 lotteh team: team [240775]: python bucket_posts.py 
+2024-08-05T11:40:43.038771-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:41:22.782224-07:00 lotteh team: team [240775]: sudo purgecache
+2024-08-05T11:44:40.638914-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:45:14.943270-07:00 lotteh team: team [240775]: nano feed/templates/feed/_post.html
+2024-08-05T11:45:20.675704-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:45:26.691200-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:45:28.132034-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:45:30.834585-07:00 lotteh team: team [240775]: sudo purgecache
+2024-08-05T11:45:33.993118-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:47:50.480493-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:47:53.669410-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:47:54.792317-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:47:55.910412-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:47:57.042941-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:47:58.514959-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:00.679666-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:02.608026-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:05.215267-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:06.778997-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:09.013190-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:10.714484-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:12.286916-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:13.818551-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:15.416084-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:16.633333-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:48:29.202509-07:00 lotteh team: team [240775]: python force_publish.py 
+2024-08-05T11:48:37.562333-07:00 lotteh team: team [240775]: python bucket_posts.py 
+2024-08-05T11:48:50.389891-07:00 lotteh team: team [240775]: python bucket_posts.py 
+2024-08-05T11:48:55.900177-07:00 lotteh team: team [240775]: purgecache
+2024-08-05T11:51:05.628006-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:51:33.144691-07:00 lotteh team: team [240775]: nano feed/models.py
+2024-08-05T11:52:48.908294-07:00 lotteh team: team [240775]: nano feed/views.py 
+2024-08-05T11:53:28.026359-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:53:36.578736-07:00 lotteh team: team [240775]: nano feed/views.py 
+2024-08-05T11:54:11.911451-07:00 lotteh team: team [240775]: nano feed/models.py
+2024-08-05T11:54:18.226464-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:54:20.945034-07:00 lotteh team: team [240775]: sudo purgecache
+2024-08-05T11:55:11.484163-07:00 lotteh team: team [240775]: nano force_publish.py 
+2024-08-05T11:57:04.541497-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:57:29.760696-07:00 lotteh team: team [240775]: nano feed/models.py
+2024-08-05T11:57:33.499750-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:59:17.490564-07:00 lotteh team: team [240775]: python manage.py shell
+2024-08-05T11:59:33.626545-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:59:41.802836-07:00 lotteh team: team [240775]: sudo systemctl reload apache2
+2024-08-05T11:59:45.256384-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:59:55.710755-07:00 lotteh team: team [240775]: logs
+2024-08-05T11:59:59.659695-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:00.837632-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:08.553624-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:09.656136-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:10.814898-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:11.858374-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:12.985381-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:14.009500-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:14.937657-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:15.892173-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:16.974760-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:18.219376-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:19.265035-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:20.380067-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:21.560228-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:22.602452-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:23.717349-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:24.773637-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:25.878218-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:31.086822-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:32.755655-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:34.032650-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:36.767845-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:38.043258-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:40.703581-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:42.255660-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:43.307624-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:44.368671-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:46.123348-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:47.484834-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:49.025038-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:50.040108-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:51.249016-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:52.673288-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:53.865998-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:55.402497-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:56.190297-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:57.064959-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:58.120257-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:00:58.938090-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:01:04.802296-07:00 lotteh team: team [240775]: watchlogs
+2024-08-05T12:01:05.653101-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:01:12.654557-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:01:14.247612-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:01:16.029682-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:44.766886-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:46.842245-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:47.953003-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:49.023955-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:50.081671-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:51.210044-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:52.232322-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:53.456283-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:54.497536-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:55.472816-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:56.419711-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:57.441273-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:58.413422-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:02:59.547404-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:12:57.371464-07:00 lotteh team: team [227703]: df -h /
+2024-08-05T12:13:33.844651-07:00 lotteh team: team [240775]: watchlogs
+2024-08-05T12:13:35.568220-07:00 lotteh team: team [240775]: logs
+2024-08-05T12:14:21.830124-07:00 lotteh team: team [240775]: python force_publish.py 
+2024-08-05T12:14:27.600003-07:00 lotteh team: team [240775]: sudo purgecache 
+2024-08-05T12:14:56.801129-07:00 lotteh team: team [240775]: python bucket_posts.py 
+2024-08-05T12:15:06.188806-07:00 lotteh team: team [240775]: python bucket_posts.py 
+2024-08-05T12:15:25.734346-07:00 lotteh team: team [240775]: python force_publish.py 
+2024-08-05T12:15:30.182349-07:00 lotteh team: team [240775]: purgecache
