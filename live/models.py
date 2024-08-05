@@ -110,7 +110,7 @@ class VideoFrame(models.Model):
         path, url = get_secure_still_path(self.still_thumbnail.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.still_thumbnail.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_STILL_TIMEOUT_SECONDS)
         return reverse('live:still', kwargs={'filename': url})
 
@@ -143,7 +143,7 @@ class VideoFrame(models.Model):
         path, url = get_secure_still_path(self.still.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.still.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_STILL_TIMEOUT_SECONDS)
         return reverse('live:still', kwargs={'filename': url})
 
@@ -151,7 +151,7 @@ class VideoFrame(models.Model):
         path, url = get_secure_live_path(self.frame.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.frame.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_VIDEO_SECONDS)
         return reverse('live:stream-secure-video', kwargs={'filename': url})
 
@@ -218,7 +218,7 @@ class VideoCamera(models.Model):
         path, url = get_secure_live_path(self.frame.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.frame.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_VIDEO_SECONDS)
         return reverse('live:stream-secure-video', kwargs={'filename': url})
 
@@ -234,7 +234,7 @@ class VideoCamera(models.Model):
         except:
             self.still = get_still(self.frame.path + '.jpg', path)
             self.save()
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return reverse('live:still', kwargs={'filename': url})
 
@@ -257,7 +257,7 @@ class VideoCamera(models.Model):
         try:
             camera = VideoCamera.objects.get(user=self.user)
             if camera.frame != self.frame and self.frame and self.frame.path != str(os.path.join(settings.BASE_DIR,'/media/frame.webm')):
-                from femmebabe.celery import delay_remove
+                from lotteh.celery import delay_remove
                 delay_remove.apply_async([camera.frame.path], countdown=30)
                 delay_remove.apply_async([camera.frame.still], countdown=30)
         except: pass
@@ -289,7 +289,7 @@ class VideoRecording(models.Model):
         path, url = get_secure_live_path(self.file.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.file.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_FILE_SECONDS)
         return reverse('live:stream-secure-video', kwargs={'filename': url})
 

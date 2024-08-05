@@ -1,6 +1,6 @@
 uid = 1
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'femmebabe.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lotteh.settings')
 
 import django
 django.setup()

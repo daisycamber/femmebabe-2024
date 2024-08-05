@@ -7,7 +7,6 @@ from feed.tests import identity_verified
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import patch_cache_control
 from django.views.decorators.vary import vary_on_cookie
-
 import threading, time, pytz, shutil, datetime
 
 @login_required
@@ -23,7 +22,7 @@ def add_post(request, id):
         audio_feed = request.GET.get('feed') if request.GET.get('feed', None) else 'samples'
         path = os.path.join(settings.MEDIA_ROOT, get_file_path(audio, audio.content.name))
         shutil.copy(audio.content.path, path)
-        post = Post.objects.create(author=request.user, public=True, private=False, published=True, paid_file=True, price='5', feed=audio_feed, file=path, content=audio.transcript)
+        post = Post.objects.create(author=request.user, public=True, private=False, published=True, paid_file=True, price='5', feed=audio_feed, file=path, content=audio.notes + ' - ' + audio.transcript)
         return redirect(reverse('feed:post-detail', kwargs={'uuid': post.uuid}))
 
 @csrf_exempt
@@ -140,7 +139,7 @@ def recording(request, id):
                     audio_feed = request.GET.get('feed') if request.GET.get('feed', None) else 'samples'
                     path = os.path.join(settings.MEDIA_ROOT, get_file_path(audio, audio.content.name))
                     shutil.copy(audio.content.path, path)
-                    post = Post.objects.create(author=request.user, public=True, private=False, published=True, paid_file=True, price='5', feed=audio_feed, file=path, content=audio.transcript)
+                    post = Post.objects.create(author=request.user, public=True, private=False, published=True, paid_file=True, price='5', feed=audio_feed, file=path, content=audio.notes + ' - ' + audio.transcript)
                 pd = True
                 for p in recording.pitch_notes.split(','):
                     if p != 'NaN':

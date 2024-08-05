@@ -112,12 +112,14 @@ class Post(models.Model):
     def make_file_sample(self):
 #        if self.file_sample_bucket: return self.file_sample_bucket.url
         if not self.file or not os.path.exists(self.file.path): self.download_file()
-        from pydub import AudioSegment
-        audio = AudioSegment.from_file(self.file.path)
-        ten_seconds = audio[:settings.FREE_AUDIO_MS]
-        ten_seconds.export(str(self.file.path) + '.short.mp3', format="mp3")
-        self.file_sample = str(self.file.path) + '.short.mp3'
-        self.save()
+        try:
+            from pydub import AudioSegment
+            audio = AudioSegment.from_file(self.file.path)
+            ten_seconds = audio[:settings.FREE_AUDIO_MS]
+            ten_seconds.export(str(self.file.path) + '.short.mp3', format="mp3")
+            self.file_sample = str(self.file.path) + '.short.mp3'
+            self.save()
+        except: pass
         return self
 
     def get_image_url(self):
@@ -140,7 +142,7 @@ class Post(models.Model):
                 except:
                     if len(self.content) < 120: self.delete()
                     return '/media/static/default.png'
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         add_logo(full_path)
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return url
@@ -170,7 +172,7 @@ class Post(models.Model):
         path, url = get_private_secure_path(self.image_thumbnail.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.image_thumbnail.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_SECONDS)
         return url
 
@@ -207,7 +209,7 @@ class Post(models.Model):
             path, url = get_secure_path(self.image_censored.name)
             full_path = os.path.join(settings.BASE_DIR, path)
             shutil.copy(self.image_censored.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=120)
         return url
 
@@ -227,7 +229,7 @@ class Post(models.Model):
         path, url = get_secure_path(self.image_censored_thumbnail.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.image_censored_thumbnail.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=120)
         return url
 
@@ -242,7 +244,7 @@ class Post(models.Model):
             shutil.copy(self.image_original.path, self.image.path)
             shutil.copy(self.image_original.path, full_path)
             return
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
 #        blur_faces(full_path)
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_BLUR_TIMEOUT_SECONDS)
         return url
@@ -286,7 +288,7 @@ class Post(models.Model):
         if not self.public:
             shutil.copy(self.image_thumbnail.path, full_path)
 #            blur_faces(full_path)
-            from femmebabe.celery import remove_secure
+            from lotteh.celery import remove_secure
             remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_BLUR_TIMEOUT_SECONDS)
         if self.public and (not self.image_public or not os.path.exists(self.image_public.path)):
             shutil.copy(self.image_thumbnail.path, full_path)
@@ -310,7 +312,7 @@ class Post(models.Model):
         path, url = get_secure_video_path(self.file.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.file.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=settings.REMOVE_SECURE_TIMEOUT_FILE_SECONDS)
         return reverse('live:stream-secure-video', kwargs={'filename': url})
 
@@ -337,7 +339,7 @@ class Post(models.Model):
         content = strip_tags(self.content).split('\n')[0]
         #if self.friendly_name and not self.content: reverse('feed:post-detail', kwargs={'uuid': self.friendly_name})
         import urllib.parse
-        name = urllib.parse.quote_plus(((content[:content.rfind(' ', 20, 32) if content.rfind(' ', 20, 32) else 32].strip() if content else 'post').replace(' ', '-')).lower()[:255])
+        name = urllib.parse.quote_plus(((content[:content.rfind(' ', 20, 32) if content.rfind(' ', 20, 32) else 32].strip() if content else 'post').replace(' ', '-').replace('"', '').replace('\'', '').replace('?', '').replace('\\', '').replace('/', '').replace(',', '')).lower()[:255])
         if Post.objects.filter(friendly_name=name).count() == 0:
             self.friendly_name = name
             self.save()
@@ -603,22 +605,19 @@ class Post(models.Model):
                 towrite.write(file.read())
             towrite.close()
             self.file_sample_bucket = self.file_sample.path
-        if self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))) and self.image_original.name != 'static/default.png':
+        if not settings.FIX_CONTENT and self and self.image_original and ((this and self.image_original != this.image_original and self.image_original) or (not self.image_hash and self.image_original and os.path.exists(self.image_original.path))) and self.image_original.name != 'static/default.png':
             with open(self.image_original.path, 'rb') as f:
                 self.image_hash = hashlib.md5(f.read()).hexdigest()
         if self.content == '' and not self.image and not self.file and not self.image_bucket and not self.file_bucket:
             self.private = True
         if (not this or this.private != self.private or this.public != self.public or this.image != self.image):
-            super(Post, self).save(*args, **kwargs)
-            from femmebabe.celery import upload_post
+            from lotteh.celery import upload_post
             upload_post.delay(self.id)
-        else:
-            super(Post, self).save(*args, **kwargs)
         if (not this or (this.content != self.content)) and len(self.content) > 32: self.get_friendly_name()
         if (this and this.content != self.content or not this) and len(self.content) > 500 and '***' in self.content and self.posted:
-            from femmebabe.celery import write_post_book
+            from lotteh.celery import write_post_book
             write_post_book.delay(self.id)
-
+#        super(Post, self).save(*args, **kwargs)
 
     def delete(self):
         if self.image:

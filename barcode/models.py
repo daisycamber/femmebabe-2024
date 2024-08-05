@@ -60,7 +60,7 @@ class DocumentScan(models.Model):
         max = settings.BARCODE_SIZE # 500
         super(DocumentScan, self).save(*args, **kwargs)
         if not this or this.document != self.document:
-            from femmebabe.celery import remove_if_nude
+            from lotteh.celery import remove_if_nude
             remove_if_nude.delay(self.id)
             full_path = os.path.join(settings.BASE_DIR, 'media/', get_document_path(self, self.document.name))
             img = Image.open(self.document.path)

@@ -320,7 +320,7 @@ def golivevideo(request):
     from django.utils import timezone
     from django.http import HttpResponse
     from django.conf import settings
-    from femmebabe.celery import delay_remove_frame
+    from lotteh.celery import delay_remove_frame
     name = request.GET.get('camera')
     if not name:
         name = 'private'

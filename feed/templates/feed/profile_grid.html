@@ -195,17 +195,9 @@ function readyFrame(index){
     inFocus = true;
     $(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
     document.getElementById('large-frame').src = e.target.src;
-    swipeTimeout = setTimeout(function() {
-     xhr = $.ajax({
-      type: "POST",
-      url: e.target.dataset.fullurl,
-      timeout: 1000 * 60 * 5,
-      success: function(result) {
-        document.getElementById('large-frame').src = result;
-	$('#loader-container').addClass('hide');
-      },
-     });
-    }, 1500);
+    {% if request.user.is_authenticated and profile.user in request.user.profile.subscriptions.all %}
+        document.getElementById('large-frame').src = e.target.dataset.fullurl;
+    {% endif %}
     document.getElementById('view').href = e.target.dataset.title;
     document.getElementById('content').innerHTML = e.target.dataset.value;
   }

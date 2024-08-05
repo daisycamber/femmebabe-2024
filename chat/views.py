@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import (
     DeleteView
 )
+
 from .models import Message
 
 
@@ -25,6 +26,24 @@ class ChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if identity_verified(self.request.user) and is_vendor(self.request.user) or self.request.user == post.sender or (self.request.user.is_superuser and not post.author.is_superuser) and not fraud_detect(request, True):
             return True
         return False
+
+def video_redirect(request, s):
+    from django.shortcuts import redirect
+    from django.urls import reverse
+    return redirect(reverse('chat:video'))
+
+def mirror(request):
+    from django.shortcuts import render, redirect, get_object_or_404
+    return render(request, 'chat/mirror.html', {'hidenavbar': True, 'full': True})
+
+@never_cache
+def video(request): #, username):
+    from django.shortcuts import render, redirect, get_object_or_404
+#    from users.models import Profile
+#    profile = get_object_or_404(Profile, name=username)
+    from users.username_generator import generate_username
+    profile = None
+    return render(request, 'chat/video.html', {'title': 'Video Chat', 'profile': profile, 'thename': generate_username(), 'full': True})
 
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')
@@ -200,3 +219,4 @@ def raw(request, username):
         'page_obj': p.get_page(page),
     }
     return render(request, 'chat/messages_raw.html', context)
+

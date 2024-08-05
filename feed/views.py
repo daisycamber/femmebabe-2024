@@ -287,11 +287,13 @@ def grid_api(request, index):
         elif not post.public:
             url = post.get_blur_url() if not square else post.get_blur_thumb_url()
             #if not url or url == '/media/static/default.png': url = post.get_face_blur_url() if not square else post.get_face_blur_thumb_url()
-    full_url = request.path + get_qs(request.GET)
+    full_url = url #request.path + get_qs(request.GET)
     if square:
         addstyle = ''
-        from feed.templatetags.app_filters import highlight_query 
+        from feed.templatetags.app_filters import highlight_query
         if not post.public and not (post.recipient == request.user or (request.user.is_authenticated and post.author in request.user.profile.subscriptions.all())) and not (request.user == post.author and request.GET.get('show', False)): addstyle = 'filter: blur(8px); '
+        if request.user.is_authenticated and (post.author in request.user.profile.subscriptions.all() or (request.user == post.author or (post.recipient and post.recipient == request.user))):
+            full_url = post.get_image_url()
         result = '<img id="image{}" style="{}position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%;" data-value="'.format(index, addstyle) + '@{} - {}'.format(post.author.profile.name, highlight_query(request.GET.get('q', None), translate(request, post.content)) if request.GET.get('q') else translate(request, post.content)) + '" data-title="' + post.get_absolute_url() + '" data-fullurl="' + full_url + '" src="' + url + '" class="frame rounded hide"></img>' # width="30%"
     else:
         result = url
@@ -317,7 +319,7 @@ def profile_grid(request, username):
     from feed.models import Post
     from django.http import HttpResponse
     from django.shortcuts import render, get_object_or_404
-    from femmebabe.pricing import get_pricing_options
+    from lotteh.pricing import get_pricing_options
     now = timezone.now()
     likes = request.GET.get('likes')
     profile = get_object_or_404(Profile, name=username, vendor=True)
@@ -342,7 +344,7 @@ def profile_grid(request, username):
         priv = Post.objects.filter(id__in=list(priv_ids)).order_by('?')[:settings.PAID_POSTS]
         rec = list(Post.objects.filter(posted=True, author=profile.user, private=False, public=False, pinned=False, recipient=request.user if request.user.is_authenticated else None, published=True, date_posted__lte=now, feed=settings.DEFAULT_FEED).exclude(image=None, feed='blog').order_by('-date_posted') if request.user.is_authenticated else [])
         posts = unique(list(chain(pins, priv, rec, ids)))[:settings.FREE_POSTS]
-    from femmebabe.pricing import get_pricing_options
+    from lotteh.pricing import get_pricing_options
     choices = []
     for option in get_pricing_options(settings.PHOTO_CHOICES):
         choices = choices + [['${}'.format(sub_fee(option))]]
@@ -569,7 +571,7 @@ def profile(request, username):
     if page > p.num_pages or page < 1:
         messages.warning(request, "The page you requested, " + str(page) + ", does not exist. You have been redirected to the first page.")
         page = 1
-    from femmebabe.pricing import get_pricing_options
+    from lotteh.pricing import get_pricing_options
     choices = []
     for option in get_pricing_options(settings.PHOTO_CHOICES):
         choices = choices + [['${}'.format(sub_fee(option))]]
@@ -768,7 +770,7 @@ def new_post(request):
                         post.private = form.instance.private
                         post.save()
                     first = False
-#            from femmebabe.celery import remove_duplicates
+#            from lotteh.celery import remove_duplicates
             from .duplicates import remove_post_duplicates
             remove_post_duplicates() #.apply_async([post.id], countdown=60)
             messages.success(request, f'Your content has been posted.')

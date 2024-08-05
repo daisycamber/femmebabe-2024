@@ -16,7 +16,7 @@ def sub_fee(fee):
     return op
 
 def get_pricing():
-    from femmebabe.pricing import get_pricing_options
+    from lotteh.pricing import get_pricing_options
     choices = []
     for option in get_pricing_options(settings.PHOTO_CHOICES):
         choices = choices + [[option, '${}'.format(sub_fee(option))]]

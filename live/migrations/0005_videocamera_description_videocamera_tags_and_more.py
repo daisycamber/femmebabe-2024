@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='videocamera',
             name='description',
-            field=models.CharField(default='Femme Babe is live at femmebabe.com', max_length=1000),
+            field=models.CharField(default='Femme Babe is live at lotteh.com', max_length=1000),
         ),
         migrations.AddField(
             model_name='videocamera',

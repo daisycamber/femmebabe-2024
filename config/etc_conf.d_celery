@@ -5,12 +5,12 @@ CELERYD_NODES="w1 w2"
 #CELERYD_NODES="w1 w2 w3"
 
 # Absolute or relative path to the 'celery' command:
-CELERY_BIN="/home/team/femmebabe/venv"
+CELERY_BIN="/home/team/lotteh/venv"
 #CELERY_BIN="/virtualenvs/def/bin/celery"
 
 # App instance to use
 # comment out this line if you don't use an app
-CELERY_APP="femmebabe"
+CELERY_APP="lotteh"
 # or fully qualified:
 #CELERY_APP="proj.tasks:app"
 

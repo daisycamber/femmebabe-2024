@@ -46,7 +46,7 @@ class Face(models.Model):
         path, url = get_secure_face_path(self.image.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.image.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=60*5)
         return url
 
@@ -93,7 +93,7 @@ class Face(models.Model):
             with self.image.open('rb') as file:
                 towrite.write(file.read())
             self.image_bucket = self.image.path
-            from femmebabe.celery import delay_remove
+            from lotteh.celery import delay_remove
             delay_remove.apply_async([self.image.path], countdown=60*10)
             super(Face, self).save(*args, **kwargs)
 

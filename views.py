@@ -13,7 +13,7 @@ from django.contrib import messages
 from .models import CustomerPaymentsProfile, VendorPaymentsProfile, CardPayment
 from .forms import BitcoinPaymentForm, PaymentForm
 from .apis import get_crypto_price
-from femmebabe.celery import validate_bitcoin_payment
+from lotteh.celery import validate_bitcoin_payment
 from django.conf import settings
 from .forms import CardNumberForm, CardInfoForm
 from .authorizenet import pay_fee

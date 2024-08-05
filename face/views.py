@@ -18,7 +18,7 @@ def secure_photo(request, filename):
     from django.contrib.auth.models import User
     from users.models import Profile
     from .forms import FaceForm
-    #from femmebabe.celery import face_id_task
+    #from lotteh.celery import face_id_task
     from .models import Face, FaceToken
     from django.contrib import messages
     from django import forms
@@ -61,7 +61,7 @@ def all_faces(request):
     from django.contrib.auth.models import User
     from users.models import Profile
     from .forms import FaceForm
-    #from femmebabe.celery import face_id_task
+    #from lotteh.celery import face_id_task
     from .models import Face, FaceToken
     from django.contrib import messages
     from django import forms
@@ -106,7 +106,7 @@ def auth_url(request, username, token):
     from django.contrib.auth.models import User
     from users.models import Profile
     from .forms import FaceForm
-    #from femmebabe.celery import face_id_task
+    #from lotteh.celery import face_id_task
     from .models import Face, FaceToken
     from django.contrib import messages
     from django import forms
@@ -156,7 +156,7 @@ def face_verify(request, username, token):
     from django.contrib.auth.models import User
     from users.models import Profile
     from .forms import FaceForm
-    #from femmebabe.celery import face_id_task
+    #from lotteh.celery import face_id_task
     from .models import Face, FaceToken
     from django.contrib import messages
     from django import forms

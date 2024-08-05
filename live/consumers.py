@@ -45,7 +45,7 @@ def update_camera(camera_user, camera_name, camera_data, key=None):
     from urllib.parse import parse_qs
     from feed.tests import identity_really_verified
     from live.still import is_still
-    from femmebabe.celery import process_live, process_recording
+    from lotteh.celery import process_live, process_recording
     camera = None
     if key:
         camera = VideoCamera.objects.filter(user__profile__name=camera_user, name=camera_name, key=key).first()

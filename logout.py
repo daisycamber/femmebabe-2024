@@ -37,7 +37,7 @@ def thread_function(ip_address):
 
 if ip != '127.0.0.1':
     import os
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'femmebabe.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lotteh.settings')
     import django
     django.setup()
     from django.conf import settings

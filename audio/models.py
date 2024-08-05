@@ -40,7 +40,7 @@ class AudioRecording(models.Model):
         path, url = get_secure_path(self.content.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.content.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=60)
         return url
 
@@ -48,7 +48,7 @@ class AudioRecording(models.Model):
         path, url = get_secure_path(self.plot.name)
         full_path = os.path.join(settings.BASE_DIR, path)
         shutil.copy(self.plot.path, full_path)
-        from femmebabe.celery import remove_secure
+        from lotteh.celery import remove_secure
         remove_secure.apply_async([full_path], countdown=60)
         return url
 

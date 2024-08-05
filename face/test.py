@@ -21,12 +21,12 @@ import json
 KEY = "ebebcce1a1d94e028fc34410eeb47cfe"
 
 # This endpoint will be used in all examples in this quickstart.
-ENDPOINT = "https://femmebabe.cognitiveservices.azure.com/"
+ENDPOINT = "https://lotteh.cognitiveservices.azure.com/"
 
 # Base url for the Verify and Facelist/Large Facelist operations
 IMAGE_BASE_URL = 'https://csdx.blob.core.windows.net/resources/Face/Images/'
 
-PERSON_GROUP_ID = str("femmebabe-group") # assign a random ID (or name it anything)
+PERSON_GROUP_ID = str("lotteh-group") # assign a random ID (or name it anything)
 
 def get_face_id(single_face_image_url):
     # Create an authenticated FaceClient.
@@ -69,5 +69,5 @@ def get_face_id(single_face_image_url):
         return res
     return False
 
-f = 'https://femmebabe.com/media/face/b387d75d-b401-405d-8b5b-fc46129e6057.png'
+f = 'https://lotteh.com/media/face/b387d75d-b401-405d-8b5b-fc46129e6057.png'
 print(get_face_id(f))

@@ -19,7 +19,7 @@ def scan_barcode(request):
     from django.shortcuts import render, redirect, get_object_or_404
     from django.contrib.auth.models import User
     from users.models import Profile
-    #from femmebabe.celery import face_id_task
+    #from lotteh.celery import face_id_task
     from django.contrib import messages
     from django import forms
     from django.http import HttpResponse, HttpResponseRedirect
