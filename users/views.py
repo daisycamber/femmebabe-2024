@@ -15,26 +15,56 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
 
-@csrf_exempt
-@login_required
-@user_passes_test(is_superuser_or_vendor)
+#@csrf_exempt
+#@login_required
+#@user_passes_test(is_superuser_or_vendor)
 def google_auth(request):
     from django.shortcuts import redirect
     from users.oauth import get_auth_url
-    return redirect(get_auth_url(request.user.email, request.user.profile.uuid))
+    import uuid
+    url, state = get_auth_url(request, request.user.email if request.user.is_authenticated else None)
+    print(state)
+    request.session['state'] = state
+    return redirect(url)
+
+#@login_required
+#@user_passes_test(is_superuser_or_vendor)
 
 @csrf_exempt
-@login_required
-@user_passes_test(is_superuser_or_vendor)
 def google_auth_callback(request):
+    print(request.session.get('state'))
     from users.oauth import parse_callback_url
     from security.middleware import get_qs
     from django.urls import reverse
-    url = settings.BASE_URL + request.path + get_qs(request.GET)
-    token, refresh = parse_callback_url(url)
-    request.user.profile.token = token
-    request.user.profile.refresh_token = refresh
-    request.user.profile.save()
+    from django.conf import settings
+#    url = request.GET.get('code', None)
+    url = settings.BASE_URL + request.path + request.GET.urlencode()
+    email, token, refresh = parse_callback_url(request, url)
+    from django.contrib.auth.models import User
+    user = User.objects.filter(email=email).order_by('-last_seen').last()
+    if not user:
+        from users.username_generator import generate_username as get_random_username
+        user = User.objects.create_user(email=e, username=get_random_username(), password=get_random_string(length=8))
+        if not hasattr(user, 'profile'):
+            from users.models import Profile
+            from security.models import SecurityProfile
+            profile = Profile.objects.create(user=user)
+            profile.finished_signup = False
+            profile.save()
+            security_profile = SecurityProfile.objects.create(user=user)
+            security_profile.save()
+        from django.contrib import messages
+        messages.success(request, 'You are now subscribed, check your email for a confirmation. When you get the chance, fill out the form below to make an account.')
+        from users.email import send_verification_email, sendwelcomeemail
+        send_verification_email(user)
+        send_registration_push(user)
+        sendwelcomeemail(user)
+    user.profile.token = token
+    user.profile.refresh_token = refresh
+    user.profile.save()
+    from django.contrib.auth import login as auth_login
+    auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+    from django.contrib import messages
     messages.success(request, 'Successfully linked Google account')
     return reverse('/')
 

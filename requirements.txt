@@ -42,6 +42,7 @@ distro==1.9.0
 Django==5.0.7
 django-address==0.2.8
 django-allauth==64.0.0
+django-cors-headers==4.4.0
 django-crispy-forms==2.3
 django-debug-toolbar==4.4.6
 django-jsignature==0.12
@@ -82,7 +83,7 @@ google-api-core==2.19.1
 google-api-python-client==2.139.0
 google-auth==2.32.0
 google-auth-httplib2==0.2.0
-google-auth-oauthlib==1.2.1
+google-auth-oauthlib==1.1.0
 google-pasta==0.2.0
 googleapis-common-protos==1.63.2
 googletrans==4.0.0rc1

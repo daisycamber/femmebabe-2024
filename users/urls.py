@@ -44,6 +44,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('user/<int:pk>/delete/', UserDeleteView.as_view(template_name='blog/user_confirm_delete.html'), name='delete-user'),
     path('user/<int:pk>/active/', views.toggle_user_active, name='toggle-user-active'),
-    path('youtube/', views.google_auth, name='youtube'),
-    path('youtube/callback/', views.google_auth_callback, name='oauth'),
+    path('auth/google/', views.google_auth, name='youtube'),
+    path('auth/callback/', views.google_auth_callback, name='oauth'),
 ]

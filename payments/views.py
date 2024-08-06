@@ -785,8 +785,8 @@ def tip_bitcoin(request, username, tip):
     from django.shortcuts import render
     return render(request, 'payments/tip_crypto.html', {'title': 'Tip with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced)}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
 
-@vary_on_cookie
-@cache_page(60*60*3)
+#@vary_on_cookie
+#@cache_page(60*60*3)
 def buy_photo_crypto(request, username):
     from security.middleware import get_qs
     from django.conf import settings
@@ -852,8 +852,8 @@ def buy_photo_crypto(request, username):
         from lotteh.celery import validate_photo_payment
         validate_photo_payment.apply_async(timeout=60*5, args=(request.user.id, user.id, float(fee_reduced) * settings.MIN_BITCOIN_PERCENTAGE, transaction_id, id,),)
     r = render(request, 'payments/buy_photo_crypto.html', {'title': 'Buy photo with Crypto', 'username': username, 'crypto_address': address, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post})
-    if request.user.is_authenticated: patch_cache_control(r, private=True)
-    else: patch_cache_control(r, public=True)
+#    if request.user.is_authenticated: patch_cache_control(r, private=True)
+#    else: patch_cache_control(r, public=True)
     return r
 
 @vary_on_cookie

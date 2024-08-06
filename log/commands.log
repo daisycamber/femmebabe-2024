@@ -548,3 +548,326 @@
 2024-08-05T12:15:06.188806-07:00 lotteh team: team [240775]: python bucket_posts.py 
 2024-08-05T12:15:25.734346-07:00 lotteh team: team [240775]: python force_publish.py 
 2024-08-05T12:15:30.182349-07:00 lotteh team: team [240775]: purgecache
+2024-08-05T12:52:39.513111-07:00 lotteh team: team [227703]: sudo backup
+2024-08-05T19:13:26.175959-07:00 lotteh team: team [636014]: purgecache
+2024-08-05T19:13:27.574402-07:00 lotteh team: team [636014]: cd lotteh/
+2024-08-05T19:13:34.616438-07:00 lotteh team: team [636014]: source venv/bin/activate
+2024-08-05T19:13:57.255080-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:14:42.592623-07:00 lotteh team: team [636014]: nano templates/base.html 
+2024-08-05T19:14:49.198030-07:00 lotteh team: team [636014]: sudo systemctl reload apache2
+2024-08-05T19:14:54.705463-07:00 lotteh team: team [636014]: sudo systemctl daemon-reload
+2024-08-05T19:14:59.053309-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:01.827954-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:06.771115-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:08.360925-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:18.455865-07:00 lotteh team: team [636014]: python manage.py check
+2024-08-05T19:15:22.448707-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:24.606285-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:25.726469-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:26.945189-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:27.849056-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:15:29.580115-07:00 lotteh team: team [636014]: logs
+2024-08-05T19:16:23.995852-07:00 lotteh team: team [636014]: nano templates/base.html 
+2024-08-05T19:16:27.069166-07:00 lotteh team: team [636014]: sudo systemctl reload apache2
+2024-08-05T20:13:54.978621-07:00 lotteh team: team [636014]: nano payments/views.py 
+2024-08-05T20:13:55.940028-07:00 lotteh team: team [636014]: sudo systemctl reload apache2
+2024-08-05T21:10:48.950697-07:00 lotteh team: team [636014]: nano payments/templates/payments/buy_photo_crypto.html 
+2024-08-05T21:11:01.291082-07:00 lotteh team: team [636014]: nano payments/templates/payments/subscribe_crypto.html 
+2024-08-05T21:11:03.429368-07:00 lotteh team: team [636014]: sudo systemctl reload apache2
+2024-08-05T22:41:53.727079-07:00 lotteh team: team [777770]: logs
+2024-08-05T22:41:54.463530-07:00 lotteh team: team [777770]: logs
+2024-08-05T22:58:10.677451-07:00 lotteh team: team [788376]: logs
+2024-08-05T22:58:11.472038-07:00 lotteh team: team [788376]: cd lotte
+2024-08-05T22:58:12.717677-07:00 lotteh team: team [788376]: cd lotteh/
+2024-08-05T22:58:16.336055-07:00 lotteh team: team [788376]: source venv/bin/activate
+2024-08-05T23:00:30.288046-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-05T23:02:46.970730-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-05T23:02:53.459205-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:04:53.755597-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-05T23:20:58.419278-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-05T23:21:35.561502-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-05T23:21:54.655790-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-05T23:21:56.816528-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:24:14.165889-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-05T23:31:56.778126-07:00 lotteh team: team [788376]: pip3 install django-cors-headers 
+2024-08-05T23:31:57.690063-07:00 lotteh team: team [813492]: logs
+2024-08-05T23:35:09.274382-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-05T23:36:23.487976-07:00 lotteh team: team [788376]: nano verify/views.py 
+2024-08-05T23:36:33.459741-07:00 lotteh team: team [788376]: python manage.py check
+2024-08-05T23:36:33.632258-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:36:51.479123-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-05T23:37:21.029222-07:00 lotteh team: team [788376]: ls venv/lib/python3.12/site-packages/corsheaders/middleware.py 
+2024-08-05T23:37:27.219749-07:00 lotteh team: team [788376]: ls venv/lib/python3.12/site-packages/corsheaders/defaults.py 
+2024-08-05T23:38:16.417658-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-05T23:38:38.941313-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/femmebabe-le-ssl.conf 
+2024-08-05T23:39:01.322474-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-05T23:39:04.520011-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:39:37.726133-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:39:48.605853-07:00 lotteh team: team [788376]: nano verify/views.py 
+2024-08-05T23:39:50.183097-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:41:48.130346-07:00 lotteh team: team [788376]: nano verify/handlers.py
+2024-08-05T23:42:07.107283-07:00 lotteh team: team [788376]: nano verify/apps.py 
+2024-08-05T23:42:10.006978-07:00 lotteh team: team [788376]: nano verify/handlers.py
+2024-08-05T23:42:12.538706-07:00 lotteh team: team [788376]: nano verify/apps.py 
+2024-08-05T23:42:22.373531-07:00 lotteh team: team [788376]: nano verify/views.py 
+2024-08-05T23:42:24.775932-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:42:31.578396-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:42:32.680095-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:43:04.811822-07:00 lotteh team: team [788376]: watchlogs
+2024-08-05T23:43:05.729592-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:43:59.029378-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:43:59.849223-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:04.271995-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:05.664848-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:06.803039-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:07.960989-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:09.133931-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:10.360949-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:11.555098-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:12.796859-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:14.156677-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:15.419720-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:44:16.453998-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:46:04.103546-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-05T23:46:06.160866-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:47:02.561738-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-05T23:47:04.290370-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:47:10.317627-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:47:11.118403-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:47:11.824551-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:47:12.431999-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:47:24.214721-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-05T23:47:25.715546-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:47:54.679964-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:49:28.833866-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-05T23:49:30.293609-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:50:31.319884-07:00 lotteh team: team [788376]: nano verify/handlers.py
+2024-08-05T23:50:43.297771-07:00 lotteh team: team [788376]: nano remote/handlers.py
+2024-08-05T23:50:56.616886-07:00 lotteh team: team [788376]: nano remote/handlers.py
+2024-08-05T23:51:28.740124-07:00 lotteh team: team [788376]: nano remote/apps.py 
+2024-08-05T23:51:30.346387-07:00 lotteh team: team [788376]: nano remote/handlers.py
+2024-08-05T23:51:38.610720-07:00 lotteh team: team [788376]: nano verify/apps.py 
+2024-08-05T23:51:40.426568-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:51:51.466262-07:00 lotteh team: team [788376]: python manage.py check
+2024-08-05T23:52:31.833708-07:00 lotteh team: team [788376]: nano remote/handlers.py
+2024-08-05T23:52:42.875861-07:00 lotteh team: team [788376]: nano verify/apps.py 
+2024-08-05T23:53:09.877358-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-05T23:53:31.116630-07:00 lotteh team: team [788376]: nano /home/team/lotteh/venv/lib/python3.12/site-packages/django/apps/registry.py
+2024-08-05T23:53:39.917199-07:00 lotteh team: team [788376]: python manage.py check
+2024-08-05T23:54:04.058397-07:00 lotteh team: team [788376]: nano /home/team/lotteh/venv/lib/python3.12/site-packages/django/apps/registry.py
+2024-08-05T23:54:19.355684-07:00 lotteh team: team [788376]: nano remote/apps.py 
+2024-08-05T23:54:27.100855-07:00 lotteh team: team [788376]: python manage.py check
+2024-08-05T23:54:27.238743-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:54:34.705169-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:54:38.907679-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:54:40.010294-07:00 lotteh team: team [788376]: logs
+2024-08-05T23:55:20.781399-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-05T23:55:22.757728-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:55:48.273596-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-05T23:55:49.142044-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:56:11.644192-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-05T23:56:12.586107-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:56:39.384090-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-05T23:56:40.509908-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:57:10.873133-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-05T23:58:39.988887-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-05T23:58:41.547878-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:02:22.954376-07:00 lotteh team: team [788376]: nano remote/views.py 
+2024-08-06T00:02:35.006349-07:00 lotteh team: team [788376]: nano verify/views.py 
+2024-08-06T00:02:36.645642-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:02:56.503853-07:00 lotteh team: team [788376]: nano verify/views.py 
+2024-08-06T00:03:34.292382-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:05:26.936186-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:05:28.388714-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:06:28.293310-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:06:29.234564-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:07:07.755385-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:07:08.849162-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:08:25.347236-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:09:29.897570-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-06T00:09:46.641097-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:09:48.300460-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:10:15.645620-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:10:17.263181-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:10:20.263802-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:10:21.054196-07:00 lotteh team: team [788376]: logs
+2024-08-06T00:10:29.986411-07:00 lotteh team: team [788376]: sudo systemctl status apache2
+2024-08-06T00:13:21.934673-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:13:24.837627-07:00 lotteh team: team [788376]: sudo systemctl status apache2
+2024-08-06T00:13:27.188825-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:14:03.920200-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:14:04.883323-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:15:43.861617-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:15:44.853309-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:18:43.767576-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:25:00.831612-07:00 lotteh team: team [788376]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-08-06T00:25:06.897078-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-06T00:25:10.725217-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-06T00:27:24.755247-07:00 lotteh team: team [788376]: nano chat/templates/chat/video.html 
+2024-08-06T00:27:37.864169-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T00:27:41.728164-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:32:45.717745-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T00:32:46.750365-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T00:34:37.837939-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T00:58:00.833676-07:00 lotteh team: team [874525]: logs
+2024-08-06T00:58:04.925460-07:00 lotteh team: team [874525]: cd lotteh/
+2024-08-06T00:58:34.307445-07:00 lotteh team: team [874525]: nano web/site/ads.txt
+2024-08-06T00:58:44.161770-07:00 lotteh team: team [874525]: nano web/site/ads.txt
+2024-08-06T01:18:19.647404-07:00 lotteh team: team [788376]: nano chat/consumers.py 
+2024-08-06T01:19:02.368723-07:00 lotteh team: team [788376]: nano chat/video_consumers.py 
+2024-08-06T01:19:07.276982-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T01:22:11.342417-07:00 lotteh team: team [788376]: sudo systemctl restart daphne
+2024-08-06T01:26:41.578993-07:00 lotteh team: team [788376]: nano chat/video_consumers.py 
+2024-08-06T01:32:15.923787-07:00 lotteh team: team [788376]: nano chat/video_consumers.py 
+2024-08-06T01:32:19.949629-07:00 lotteh team: team [788376]: sudo systemctl restart daphne
+2024-08-06T01:33:00.683037-07:00 lotteh team: team [788376]: nano chat/video_consumers.py 
+2024-08-06T01:33:02.324794-07:00 lotteh team: team [788376]: sudo systemctl restart daphne
+2024-08-06T01:35:26.347917-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T01:35:29.166706-07:00 lotteh team: team [788376]: sudo systemctl restart daphne
+2024-08-06T01:35:33.352694-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T01:38:27.780251-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T01:38:29.264712-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T01:52:58.457627-07:00 lotteh team: team [788376]: nano chat/templates/chat/rtc.js 
+2024-08-06T01:52:59.596938-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:07:54.178229-07:00 lotteh team: team [788376]: nano client_secret.json 
+2024-08-06T03:07:56.471417-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:09:52.856731-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-06T03:09:58.616477-07:00 lotteh team: team [788376]: sudo nano /etc/kernel
+2024-08-06T03:10:46.293972-07:00 lotteh team: team [788376]: sudo nano /etc/apis.json 
+2024-08-06T03:10:48.945415-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:20:12.461002-07:00 lotteh team: team [788376]: nano lotteh/settings.py 
+2024-08-06T03:20:13.429756-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:21:32.044106-07:00 lotteh team: team [788376]: nano live/urls.py 
+2024-08-06T03:21:54.319408-07:00 lotteh team: team [788376]: ls
+2024-08-06T03:22:24.269270-07:00 lotteh team: team [788376]: nano recordings/youtube.py 
+2024-08-06T03:22:29.018397-07:00 lotteh team: team [788376]: nano recordings/urls.py 
+2024-08-06T03:23:19.074916-07:00 lotteh team: team [788376]: nano users/urls.py 
+2024-08-06T03:23:53.713287-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:26:48.350758-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:26:51.123157-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:28:54.166392-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:28:55.876903-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:29:00.188192-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:29:42.219361-07:00 lotteh team: team [788376]: nano users/urls.py 
+2024-08-06T03:29:46.198014-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:30:18.581128-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:30:36.563940-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:31:04.612898-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:32:18.363392-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:32:26.802314-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:32:28.439982-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:34:41.472425-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:34:42.248228-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:35:11.931605-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:35:35.283431-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:35:36.946531-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:36:24.593033-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:36:59.178206-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:37:49.462455-07:00 lotteh team: team [788376]: nano users/urls.py 
+2024-08-06T03:38:09.038237-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:38:12.479465-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:39:24.414249-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:39:25.370628-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:40:54.289642-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:40:55.427796-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:41:25.862940-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:41:27.170653-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:43:14.464923-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:44:33.892126-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:44:42.247530-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:45:12.523272-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:46:14.173536-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:46:25.355614-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:46:28.931370-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:46:31.943455-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:47:38.993020-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:47:40.185499-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:48:39.533953-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:48:40.673312-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:49:44.809619-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:50:37.996300-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:50:39.380029-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:51:38.973408-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:51:40.115275-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:52:02.776358-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:52:03.998009-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:52:37.965858-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:52:39.292986-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:53:14.094724-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:53:23.745011-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:53:35.435662-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:53:36.867256-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:55:22.027355-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:55:35.400400-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:55:37.496178-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T03:57:06.978568-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T03:59:44.751203-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T03:59:46.876784-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:00:18.111557-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:00:56.943361-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:02:12.556246-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:02:15.695537-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:03:14.184758-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:03:55.116329-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:03:56.352520-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:04:54.814034-07:00 lotteh team: team [788376]: nano users/urls.py 
+2024-08-06T04:05:05.598280-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:08:50.041393-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:08:51.556534-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:09:44.764467-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:09:45.742227-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:10:18.180309-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:11:30.964300-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:11:32.125796-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:11:35.932078-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:12:32.972178-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:12:34.432719-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:14:29.691863-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:15:29.173273-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:15:56.500276-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:16:15.550857-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:16:17.303627-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:18:33.794935-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:18:36.199947-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:19:29.424580-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:19:30.746381-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:22:23.521211-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:22:24.607171-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:22:40.955532-07:00 lotteh team: team [788376]: logs
+2024-08-06T04:23:03.417039-07:00 lotteh team: team [788376]: logs
+2024-08-06T04:23:24.741583-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:23:29.601610-07:00 lotteh team: team [788376]: logs
+2024-08-06T04:24:06.497155-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:24:18.767759-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:24:23.106218-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:41:53.869115-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:42:11.061356-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:42:12.367571-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:43:49.086192-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:43:50.259335-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:45:22.979568-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:49:44.184044-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:49:45.692544-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:50:36.926394-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:50:37.824707-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:55:08.781234-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:55:13.090449-07:00 lotteh team: team [788376]: nano users/username_generator.py 
+2024-08-06T04:56:42.543526-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T04:56:54.786063-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T04:57:04.704402-07:00 lotteh team: team [788376]: logs
+2024-08-06T04:57:53.234545-07:00 lotteh team: team [788376]: nano users/username_generator.py 
+2024-08-06T04:58:59.425229-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:59:17.581863-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T04:59:19.908384-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T05:00:18.459571-07:00 lotteh team: team [788376]: nano users/views.py 
+2024-08-06T05:00:19.616315-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T05:04:15.737384-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T05:04:16.952015-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T05:05:24.775394-07:00 lotteh team: team [788376]: pip3 list oauth
+2024-08-06T05:06:16.505638-07:00 lotteh team: team [788376]: pip3 list google-auth-oauthlib
+2024-08-06T05:07:09.261003-07:00 lotteh team: team [788376]: pip index versions google-auth-oauthlib
+2024-08-06T05:07:34.292987-07:00 lotteh team: team [788376]: pip3 install google-auth-oauthlib==1.2.0
+2024-08-06T05:07:39.520816-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T05:08:45.643095-07:00 lotteh team: team [788376]: pip3 install google-auth-oauthlib==1.1.0
+2024-08-06T05:08:47.840467-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
+2024-08-06T05:13:24.419035-07:00 lotteh team: team [788376]: nano users/oauth.py 

@@ -7,6 +7,7 @@ async def forward_message(sender, message):
     receiver = await find_user_by_name(message['otherPerson'])
     if not receiver: return
     message['otherPerson'] = sender['name']
+#    j = {'message': message, 'otherPerson': sender['name']}
     await receiver['socket'].send(text_data=json.dumps(message))
 
 async def find_user_by_socket(socket):
@@ -23,7 +24,7 @@ async def find_user_by_name(name):
 
 async def add_connected_user(socket, name):
     global connected_users
-    if not await find_user_by_name(name):
+    if name and not await find_user_by_name(name):
         connected_users = connected_users + [{'socket': socket, 'name': name}]
         return True
     return False
@@ -66,7 +67,8 @@ class VideoConsumer(AsyncWebsocketConsumer):
 #        print('message: {}'.format(json.dumps(message)))
         match message['channel']:
             case 'login':
-                await add_connected_user(self, message['name'])
+                if message['name']:
+                    await add_connected_user(self, message['name'])
             case 'start_call':
                 await forward_message(sender, message)
             case 'webrtc_ice_candidate':

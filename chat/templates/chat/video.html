@@ -17,7 +17,7 @@
           margin: 0 auto;
         }
 
-        #call-button {
+        .call-button {
           padding: 1rem 2rem;
           border: none;
           border-radius: 3px;
@@ -58,8 +58,9 @@
 {% block content %}
 <legend>Video Chat</legend>
 <div id="all-div">
-<p id="call-div">Your username is <b id="thename">{{ thename }}</b> <button onclick="copyToClipboard('thename');" class="btn btn-outline-primary">Copy</button></p>
-<button id="call-button">Call someone</button>
+<p class="hide" id="thelink">{{ base_url }}{% url 'chat:video' %}?key={{ thename }}</p>
+<p id="call-div">Your username is <b id="thename">{{ thename }}</b> <button class="call-button" onclick="copyToClipboard('thename');" class="btn btn-outline-primary">Copy code</button> <button class="call-button" onclick="copyToClipboard('thelink');" class="btn btn-outline-primary">Copy link</button></p>
+<button id="call-button" class="call-button">Call someone</button>
 <div>
     <div id="video-container" class="centered">
       <div id="videos">

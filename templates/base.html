@@ -189,7 +189,9 @@ $(document).ready(function() {
         qrdiv.onclick = downloadQr;
 });
 </script>
+{% if show_ads %}
 {% include 'rrm.html' %}
+{% endif %}
 </body>
 </html>
 {% endlinebreakless %}

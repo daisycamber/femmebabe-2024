@@ -22,6 +22,7 @@ const allDiv = document.getElementById("all-div");
 const pleaseInteract = document.getElementById("please-interact");
 const videoContainer = document.getElementById("video-container");
 
+
 function playVideos() {
   try {
     document.getElementById('remote-video').play();
@@ -148,22 +149,40 @@ webrtc.addEventListener("track", (event) => {
   remoteVideo.play();
   playVideos();
 });
+var callStarted = false;
+var videoStarted = false;
 document.addEventListener("click", async () => {
-  hideElement(pleaseInteract);
-  showElement(allDiv);
-  navigator
-    .mediaDevices
-    .getUserMedia({ video: true, audio: { echoCancellation: true } })
-    .then((localStream) => {
-      /** @type {HTMLVideoElement} */
-      for (const track of localStream.getTracks()) {
-        webrtc.addTrack(track, localStream);
-      }
-    });
+  if(!videoStarted) {
+	  hideElement(pleaseInteract);
+	  showElement(allDiv);
+	  navigator
+	    .mediaDevices
+	    .getUserMedia({ video: true, audio: { echoCancellation: true } })
+	    .then((localStream) => {
+	      /** @type {HTMLVideoElement} */
+	      for (const track of localStream.getTracks()) {
+	        webrtc.addTrack(track, localStream);
+	      }
+	    });
+	    videoStarted = true;
+	  } else if(!callStarted) {
+		  const urParams = new URLSearchParams(window.location.search);
+		  var key = urParams.get('key');
+		  if(key) {
+		    callButton.click();
+		  }
+		  callStarted = true;
+	  }
 });
 hideVideoCall();
 callButton.addEventListener("click", async () => {
-  otherPerson = prompt("Who would you like to call?");
+  const urParams = new URLSearchParams(window.location.search);
+  var key = urParams.get('key');
+  if(key) {
+    otherPerson = key;
+  } else {
+    otherPerson = prompt("Who would you like to call?");
+  }
   if(otherPerson) {
     showVideoCall();
     sendMessageToSignallingServer({

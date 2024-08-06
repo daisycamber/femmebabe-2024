@@ -18,8 +18,14 @@ def generate_session(request):
     ip = get_client_ip(request)
     sessions = Session.objects.filter(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path if not request.GET.get('path', None) else request.GET.get('path'), method=request.method, time__gte=timezone.now() - datetime.timedelta(seconds=30), index=settings.SESSION_INDEX)
     s = sessions.last()
-    return HttpResponse(s.injection_key if s else '500')
-
+    if not s:
+        s, created = Session.objects.get_or_create(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path if not request.GET.get('path', None) else request.GET.get('path'), method=request.method, time=timezone.now(), index=settings.SESSION_INDEX, injection_key=str(uuid.uuid4()))
+    if not s.injection_key:
+        s.injection_key = str(uuid.uuid4())
+        s.save()
+    r = HttpResponse(s.injection_key if s else '500')
+    r['Access-Control-Allow-Origin'] = request.GET.get('path') if request.GET.get('path', None) else settings.BASE_URL
+    return r
 @csrf_exempt
 @login_required
 @user_passes_test(identity_verified, login_url='/verify/', redirect_field_name='next')

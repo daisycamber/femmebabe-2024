@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'landing',
     'users',
     'crispy_forms',
@@ -135,6 +136,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -235,6 +237,12 @@ CACHES = {
         "LOCATION": str(os.path.join(BASE_DIR, 'cache/')),
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://{}".format(STATIC_DOMAIN),
+    "https://{}".format(ADD_DOMAIN),
+]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -617,7 +625,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'https://www.googleapis.com/auth/youtube.upload'
         ],
         'AUTH_PARAMS': {
-            'access_type': 'offline',
+            'access_type': 'online',
         }
     }
 }
