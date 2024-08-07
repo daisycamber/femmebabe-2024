@@ -112,7 +112,9 @@ def take_birth_control_time(request):
     from django.conf import settings
     last_pill = BirthControlPill.objects.filter(patient=request.user).last()
     pills = BirthControlPill.objects.filter(patient=request.user)
-    seclast_pill = pills[pills.count() - 2]
+    seclast_pill = None
+    if pills.count() > 1:
+        seclast_pill = pills[pills.count() - 2]
     if request.method == 'POST':
         form = BirthControlTimeForm(request.POST)
         if form.is_valid():
@@ -130,7 +132,7 @@ def take_birth_control_time(request):
             return redirect(reverse('go:go'))
     return render(request, 'birthcontrol/take_time.html', {
         'title': 'Edit BC time',
-        'form': BirthControlTimeForm(initial={'date': (seclast_pill.time_taken.astimezone(pytz.timezone(settings.TIME_ZONE)) + datetime.timedelta(hours=24)).strftime("%Y-%m-%d"), 'time': seclast_pill.time_taken.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime("%H:%M:00")}),
+        'form': BirthControlTimeForm(initial={'date': ((seclast_pill if seclast_pill else last_pill).time_taken.astimezone(pytz.timezone(settings.TIME_ZONE)) + datetime.timedelta(hours=24)).strftime("%Y-%m-%d"), 'time': (seclast_pill if seclast_pill else last_pill).time_taken.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime("%H:%M:00")}),
         'last_pill': last_pill,
         'current_time': timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%a %b %d %Y %H:%M:%S GMT-0700 (Pacific Daylight Time)')
     })
@@ -156,11 +158,14 @@ def take_birth_control(request):
     if request.method == 'POST':
         form = BirthControlForm(request.POST)
         if form.is_valid():
+            if not form.data.get('taken_now'):
+                form = BirthControlForm(request.POST, instance=last_pill)
+                if not form.is_valid(): print('Invalid form with instance')
             form.instance.patient = request.user
             extra = ''
             if form.instance.notes:
                 extra = ' Nice note!'
-            if last_pill and last_pill.time_taken + datetime.timedelta(minutes=1435) < timezone.now():
+            if last_pill and last_pill.time_taken + datetime.timedelta(minutes=1435) < timezone.now() or not form.data.get('taken_now', False):
                 if last_pill:
                     last_pill.notes_save = ''
                     form.instance.reminders = profile.reminders
@@ -168,7 +173,7 @@ def take_birth_control(request):
                     profile.reminders = 0
                     profile.save()
                     last_pill.save()
-                if not form.data.get('taken_now'):
+                if form.data.get('taken_now'):
                     form.instance.time_taken = last_pill.time_taken + datetime.timedelta(hours=24)
                     form.save()
                     messages.success(request, 'You took your birth control.' + extra + ' Please supply a time if different from the last.')

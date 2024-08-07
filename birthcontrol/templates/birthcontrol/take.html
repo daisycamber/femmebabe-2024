@@ -47,7 +47,7 @@ function resetForm() {
                 {% endwith %}
 	</div>
 	<small>{{ pill.time_taken|date:"F d, Y" }} {{ pill.time_taken|time:"H:i" }} {% with pill.time_taken as time %}({{ time|stime|capitalize }} {{ time|ampm }}){% endwith %}</small>
-	<i>with food: {{ pill.taken_with_food|boolread }}, flow: {{ pill.flow|boolread }}, intercourse: {{ pill.intercourse|boolread }}</i>
+	<i>with food: {{ pill.taken_with_food|boolread }}, flow: {{ pill.flow|boolread }}, intercourse: {{ pill.intercourse|boolread }}, temp: {{ pill.temperature }}°F</i>
 	</div>
 <p>{{ pill.notes }}</p>
 {% endfor %}

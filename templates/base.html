@@ -160,10 +160,15 @@ $(document).ready(function() {
 			}, 1000);
 		}, 2000);
 	}, 20000);
-	setTimeout(function(){
+	{% if load_timeout %}
+    setTimeout(function(){
 		$('body').addClass('loaded');
 		$('#loader-wrapper-init').addClass('hide');
-	}, {% if load_timeout %}{{ load_timeout }}{% else %}3000{% endif %});
+	}, {% if load_timeout %}{{ load_timeout }}{% else %}{% endif %});
+    {% else %}
+	$('body').addClass('loaded');
+	$('#loader-wrapper-init').addClass('hide');
+    {% endif %}
 	setTimeout(function() {
 		$('#loader-wrapper-init').addClass('fade-hidden-fast');
 	}, 100);
@@ -189,7 +194,7 @@ $(document).ready(function() {
         qrdiv.onclick = downloadQr;
 });
 </script>
-{% if show_ads %}
+{% if show_ads and not hiderrm %}
 {% include 'rrm.html' %}
 {% endif %}
 </body>

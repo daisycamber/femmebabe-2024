@@ -62,17 +62,7 @@ function readTag() {
        try {
         if(successfulWrite) { return; }
         if(successfulRead) { return; }
-        document.getElementById('errors').innerHTML= 'Read tag.';
-        signal.innerHTML = '<i class="bi bi-reception-3"></i>';
-        const decoder = new TextDecoder();
-        for (const record of event.message.records) {
-           if(decoder.decode(record.data) == '{{ base_url }}') continue;
-           document.getElementById('errors').innerHTML= 'Record detected.';
-           document.getElementById('id_nfc_data_read').value = decoder.decode(record.data);
-           document.getElementById('id_nfc_id').value = event.serialNumber;
-           successfulRead = true;
-         }
-	{% if request.GET.generate %}
+ 	{% if request.GET.generate %}
 		var toWrite = {records: [{
                   recordType: "url",
                   data: "{{ towrite_url }}"
@@ -82,6 +72,16 @@ function readTag() {
 		}],};
 		ndef.write(toWrite);
 	{% endif %}
+       document.getElementById('errors').innerHTML= 'Read tag.';
+        signal.innerHTML = '<i class="bi bi-reception-3"></i>';
+        const decoder = new TextDecoder();
+        for (const record of event.message.records) {
+           if(decoder.decode(record.data) == '{{ base_url }}') continue;
+           document.getElementById('errors').innerHTML= 'Record detected.';
+           document.getElementById('id_nfc_data_read').value = decoder.decode(record.data);
+           document.getElementById('id_nfc_id').value = event.serialNumber;
+           successfulRead = true;
+         }
                            successfulWrite = true;
 			      signal.innerHTML = '<i class="bi bi-reception-4"></i>';
                            document.getElementById('errors').innerHTML= 'Data written, confirming.';

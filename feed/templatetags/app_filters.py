@@ -1,53 +1,14 @@
-from django.template.defaultfilters import stringfilter
 from django import template
-from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
-from feed.models import Post
-import re
-import math
-from django.utils.html import strip_tags, escape
-import six
-#from django import template
-from django.template.base import Node
-from django.utils.functional import keep_lazy
-import urllib.parse
-from django.contrib import messages
-import traceback
-from django.core.validators import URLValidator, ValidationError
-from urlextract import URLExtract
-import requests
-import http.client
-from django.utils.html import escape
-from users.middleware import get_current_user
-from feed.middleware import get_current_request
-from django.conf import settings
-import pytz, uuid, html
-from vendors.forms import VendorProfileUpdateForm
-from misc.regex import SEARCH_REGEX
-from misc.regex import ESCAPED_QUERIES
-import regex
-import datetime
-from django.utils import timezone
-from django.utils.safestring import mark_safe
-
-extractor = URLExtract()
-
-validate = URLValidator()
 
 register = template.Library()
 
-escaped_domains = ['manage.py','apps.py','facebook.com', 'models.py', '|detectlanguage', 'test.com']
-
-from .nts import nts as number_to_string
-from tts.models import Word
-from django.utils.dateparse import parse_datetime
-from security.middleware import get_qs as get_querystring
-from translate.translate import translate
-import urllib
-from live.models import VideoCamera
-
 @register.filter('islive')
 def islive(profile):
+    from feed.middleware import get_current_request
+    from live.models import VideoCamera
+    import datetime
+    from django.utils import timezone
+    from django.conf import settings
     request = get_current_request()
     cameras = VideoCamera.objects.filter(user=profile.user, name=request.GET.get('camera') if request.GET.get('camera') else 'private')
     if not cameras.first() or not cameras.first().last_frame > timezone.now() - datetime.timedelta(seconds=settings.LIVE_INTERVAL/1000*3): return False
@@ -55,29 +16,36 @@ def islive(profile):
 
 @register.filter('charcountreader')
 def charcountreader(text):
+    from django.conf import settings
     return len(text) > settings.POST_READER_LENGTH
 
 @register.filter('trimlength')
 def trimlength(text):
+    from django.conf import settings
     t = str(text)[0:settings.POST_READER_LENGTH]
     if len(text) > settings.POST_READER_LENGTH: t = t + '...'
     return t
 
 @register.filter('objecttype')
 def objecttype(object):
+    from feed.models import Post
     if isinstance(object, Post): return 'post'
     return None
 
 @register.filter('urlready')
 def urlready(input):
+    import urllib.parse
     return urllib.parse.quote_plus(input)
 
 @register.filter('urltouri')
 def urltouri(input):
+    import urllib.parse
     return urllib.parse.quote_plus(input)
 
 @register.filter('translang')
 def translang(content, target):
+    from translate.translate import translate
+    from feed.middleware import get_current_request
     return translate(get_current_request(), content, target)
 
 def do_blocktrans(parser, token):
@@ -91,6 +59,8 @@ class TransNode(template.Node):
 
     def render(self, context):
         output = self.nodelist.render(context)
+        from translate.translate import translate
+        from feed.middleware import get_current_request
         return translate(get_current_request(), output)
 
 register.tag('blocktrans', do_blocktrans)
@@ -104,12 +74,15 @@ def updateurlparam(context, key, val):
     request = context['request']
     request.GET.mutable = True
     request.GET[key] = val
+    from security.middleware import get_qs as get_querystring
     qs = get_querystring(request.GET)
     return qs
 
 
 @register.filter('trans')
 def trans(content):
+    from translate.translate import translate
+    from feed.middleware import get_current_request
     return translate(get_current_request(), content)
 
 @register.filter('stripsender')
@@ -120,24 +93,32 @@ def stripsender(sender):
 
 @register.filter('crypto_earnings_day')
 def crypto_earnings_day(trades):
+    import datetime
+    from django.utils import timezone
     if trades.count() == 0: return 'N/A'
     old = trades.filter(timestamp__lte=timezone.now() - datetime.timedelta(hours=24))
     return trades.last().amount_usd - old.last().amount_usd if old.last() else 0
 
 @register.filter('crypto_earnings_week')
 def crypto_earnings_week(trades):
+    import datetime
+    from django.utils import timezone
     if trades.count() == 0: return 'N/A'
     old = trades.filter(timestamp__lte=timezone.now() - datetime.timedelta(hours=24))
     return trades.last().amount_usd - old.last().amount_usd if old.last() else 0
 
 @register.filter('crypto_earnings_month')
 def crypto_earnings_month(trades):
+    import datetime
+    from django.utils import timezone
     if trades.count() == 0: return 'N/A'
     old = trades.filter(timestamp__lte=timezone.now() - datetime.timedelta(hours=24*7))
     return trades.last().amount_usd - old.last().amount_usd if old.last() else 0
 
 @register.filter('crypto_earnings_year')
 def crypto_earnings_year(trades):
+    import datetime
+    from django.utils import timezone
     if trades.count() == 0: return 'N/A'
     old = trades.filter(timestamp__lte=timezone.now() - datetime.timedelta(hours=24*30))
     if old.count() == 0: return 'N/A'
@@ -161,6 +142,8 @@ def censorcard(input):
 
 @register.simple_tag(takes_context=True)
 def show_ip_counts(context, user):
+    from users.middleware import get_current_user
+    from feed.middlewarre import get_current_request
     user = get_current_user() if get_current_user() and get_current_user().is_authenticated else None
     if user and user.is_superuser or (hasattr(user, 'profile') and user.profile.vendor):
         if get_current_request() and get_current_request().path.startswith('/face/') or user.is_authenticated:
@@ -185,20 +168,24 @@ def splitlines(content):
 
 @register.filter('recordingindex')
 def recordingindex(index):
+    from django.conf import settings
     index = (int(index) - 1) * settings.LIVE_INTERVAL/1000
     return index
 
 @register.simple_tag(takes_context=True)
 def get_qs(context):
+    from security.middleware import get_qs as get_querystring
     request = context['request']
     return get_querystring(request.GET)[1:]
 
 @register.simple_tag(takes_context=True)
 def get_key(context):
+    import uuid
     return str(uuid.uuid4())
 
 @register.filter('sub_fee')
 def sub_fee(fee):
+    import math
     op = ''
     of = len(str(fee))%3
     op = op + str(fee)[0:of] + (',' if of > 0 else '')
@@ -217,6 +204,7 @@ def weekday(time):
 
 @register.filter('sessioncount')
 def sessioncount(sessions):
+    from .nts import nts as number_to_string
     s = int(sessions)
     se = 'session'
     if s > 1: se = se + 's'
@@ -236,6 +224,7 @@ def buildlink(c):
 
 @register.filter('linkspeech')
 def linkspeech(text):
+    from tts.models import Word
     split = text.split(' ')
     t = ''
     for x in range(len(split)-2):
@@ -264,14 +253,14 @@ def linkspeech(text):
             t = t + c + ' '
     return t.strip()
 
-pn = {'He': 'He/Him/His', 'Her': 'She/Her/Hers', 'They': 'They/Them/Theirs'}
-
 @register.filter('pronouns')
 def pronouns(pronoun):
+    pn = {'He': 'He/Him/His', 'Her': 'She/Her/Hers', 'They': 'They/Them/Theirs'}
     return pn[pronoun]
 
 @register.filter('nts')
 def nts(number):
+    from .nts import nts as number_to_string
     result = 'no'
     try:
         result = number_to_string(int(number))
@@ -283,6 +272,7 @@ def nts(number):
 
 @register.filter('nonts')
 def nonts(number):
+    from .nts import nts as number_to_string
     if int(number) == 0: return 'none'
     try:
        return number_to_string(int(number))
@@ -295,6 +285,10 @@ def tostring(input):
 
 @register.filter('stime')
 def stime(thetime):
+    from django.conf import settings
+    import pytz
+    from .nts import nts as number_to_string
+    from django.utils.dateparse import parse_datetime
     time = parse_datetime(str(thetime))
     print(time)
     if time == None:
@@ -310,6 +304,9 @@ def stime(thetime):
 
 @register.filter('ampm')
 def ampm(thetime):
+    from django.conf import settings
+    import pytz
+    from django.utils.dateparse import parse_datetime
     time = parse_datetime(str(thetime))
     if time == None:
         return '---'
@@ -347,11 +344,14 @@ def capitalize(input):
 
 @register.filter('urlparams')
 def urlparams(page):
+    from feed.middleware import get_current_request
     query = get_current_request().GET.copy()
     query['page'] = str(page)
     return query.urlencode()
 
 def highlight_query(query, text):
+    from misc.regex import SEARCH_REGEX, ESCAPED_QUERIES
+    import re
     if not query: return text
     q = query.split(' ')
     text = ' {} '.format(text)
@@ -371,10 +371,12 @@ def highlight_query(query, text):
 
 @register.filter('highlightsearchquery')
 def highlightsearchquery(text):
+    from feed.middleware import get_current_request
     q = get_current_request().GET['q']
     return highlight_query(q, text)
 
 def get_lang():
+    from feed.middleware import get_current_request
     request = get_current_request()
     lang = request.LANGUAGE_CODE
     if(request.GET.get('lang', '') != ''):
@@ -402,6 +404,7 @@ def detectlanguage(value):
 
 @register.filter(name='removelinks')
 def removelinks(value):
+    import re
     urls = re.findall("(?P<url>https?://[^\s]+)", value)
     dic = {}
     for url in urls:
@@ -412,35 +415,27 @@ def removelinks(value):
 
 @register.filter(name='urltouri')
 def urltouri(value):
+    import urllib.parse
     return urllib.parse.quote(value, safe='')
 
 @register.filter(name='urlready')
 def urlready(value):
     return value.replace(" ", "%20")
 
-@register.tag
-def linebreakless(parser, token):
-    nodelist = parser.parse(('endlinebreakless',))
-    parser.delete_first_token()
-    return LinebreaklessNode(nodelist)
-
-class LinebreaklessNode(Node):
-    def __init__(self, nodelist):
-        self.nodelist = nodelist
-
-    def render(self, context):
-        strip_line_breaks = keep_lazy(six.text_type)(lambda x: x.replace('\n', ''))
-        return strip_line_breaks(self.nodelist.render(context).strip())
-
 @register.filter(name='comments')
 def comments(value):
+    from feed.models import Post
     post = Post.objects.get(id=int(value))
-    comments = Comment.objects.filter(post=post, public=True).order_by('-date_posted')
-    return comments[:3]
+    return False
+#    comments = Comment.objects.filter(post=post, public=True).order_by('-date_posted')
+#    return comments[:3]
 
 @register.filter(name='addhttpstodomains')
 def addhttpstodomains(value):
+    escaped_domains = ['manage.py','apps.py','facebook.com', 'models.py', '|detectlanguage', 'test.com']
     if not value: return value
+    import re, requests
+    from django.conf import settings
     domains = re.findall('https?://(\S+)', value)
     dic = {}
     output = ""
@@ -468,6 +463,7 @@ def addhttpstodomains(value):
 
 @register.filter(name='removehttps')
 def removehttps(value):
+    import re
     if not value: return value
     domains = re.findall(r'((https?):\/\/)', value) # '\s(?:www.)?(\w+.(com|org|net|markets))', value)
     dic = {}
@@ -479,7 +475,11 @@ def removehttps(value):
 
 @register.filter(name='embedlinks')
 def embedlinks(value):
+    from django.conf import settings
+    import requests
     if not value: return value
+    from urlextract import URLExtract
+    extractor = URLExtract()
     lang = ''
     try:
         lang = get_lang()
@@ -520,13 +520,14 @@ def embedlinks(value):
 
 @register.filter(name='tagusers')
 def tagusers(value):
+    import re
     if not value: return value
     lang = ''
     try:
         lang = get_lang()
     except:
         lang = 'en'
-    User = get_user_model()
+    from django.contrib.auth.models import User
     usernames = re.findall(r"@\s?\w+", value)
     for username in usernames:
         user = username[1:]
@@ -556,7 +557,8 @@ def filetype(value):
 
 @register.filter(name='userlikes')
 def userlikes(value):
-    user = get_current_user()
+    from feed.models import Post
+    from django.contrib.auth.models import User
     pk = int(value)
     post = Post.objects.get(pk=pk)
     if user in post.likes.all():
@@ -565,24 +567,28 @@ def userlikes(value):
 
 @register.filter(name='postviews')
 def postviews(value):
+    from feed.models import Post
     post = Post.objects.get(pk=int(value))
     return post.views.count()
 
 @register.filter(name='viewername')
 def viewername(value):
-    User = get_user_model()
+    from django.contrib.auth.models import User
     pk = int(value)
     user = User.objects.get(pk=pk)
     return '@' + str(user.username)
 
 @register.filter(name='postcount')
 def postcount(value):
+    from feed.models import Post
     return str(Post.objects.filter(topic=value).count())
 
 @register.filter(name='commentcount')
 def commentcount(value):
+    from feed.models import Post
     post = Post.objects.get(id=int(value))
-    return int(Comment.objects.filter(post=post, public=True).count())
+    return False
+#    return int(Comment.objects.filter(post=post, public=True).count())
 
 def clean_html(html):
     if html == '': return html
@@ -605,6 +611,7 @@ def clean(text):
 
 @register.filter(name='shorttitle')
 def shorttitle(value):
+    from feed.models import Post
     post = Post.objects.get(id=int(value))
     pagetitle = ''
     post.content = clean_html(post.content)
@@ -616,6 +623,7 @@ def shorttitle(value):
 
 @register.filter(name='shortdescription')
 def shortdescription(value):
+    from feed.models import Post
     post = Post.objects.get(id=int(value))
     pagetitle = ''
     description = ''
@@ -643,6 +651,7 @@ def shortdescription(value):
 
 @register.filter(name='geturl')
 def geturl(value):
+    import re
     urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', value)
     if not len(urls) > 0:
         return ""
@@ -650,10 +659,12 @@ def geturl(value):
 
 @register.filter(name='div2')
 def div2(value):
+    import math
     return int(math.floor(value/2.0))
 
 @register.filter(name='idscanprice')
 def idscanprice(value):
+    import math
     return int(math.floor(int(value) * 2.0))
 
 @register.filter(name='striptags')
@@ -662,6 +673,7 @@ def striptags(value):
 
 @register.filter(name='trimbio')
 def trimbio(value):
+    from django.utils.html import strip_tags
     value = strip_tags(value)
     if len(value) > 120:
         return value[0:120].rsplit(' ', 1)[0] + '...'
@@ -669,6 +681,8 @@ def trimbio(value):
 
 @register.filter(name='highlightcode')
 def highlightcode(value):
+    import html, re
+    from django.conf import settings
     if not value: return value
     if not settings.USE_PRISM: return value
     op = []
@@ -696,3 +710,22 @@ def marksafe(value):
 @register.filter(name='caps')
 def caps(input):
     return str(input).capitalize()
+
+@register.tag
+def linebreakless(parser, token):
+    nodelist = parser.parse(('endlinebreakless',))
+    parser.delete_first_token()
+    return LinebreaklessNode(nodelist)
+
+from django.template.base import Node
+
+class LinebreaklessNode(Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        from django.utils.functional import keep_lazy
+        import six
+        strip_line_breaks = keep_lazy(six.text_type)(lambda x: x.replace('\n', ''))
+        return strip_line_breaks(self.nodelist.render(context).strip())
+

@@ -871,3 +871,115 @@
 2024-08-06T05:08:45.643095-07:00 lotteh team: team [788376]: pip3 install google-auth-oauthlib==1.1.0
 2024-08-06T05:08:47.840467-07:00 lotteh team: team [788376]: sudo systemctl reload apache2
 2024-08-06T05:13:24.419035-07:00 lotteh team: team [788376]: nano users/oauth.py 
+2024-08-06T15:54:52.862513-07:00 lotteh team: team [1495748]: nano users/oauth.py 
+2024-08-06T15:54:53.012917-07:00 lotteh team: team [1495748]: cd lotte
+2024-08-06T15:54:54.767979-07:00 lotteh team: team [1495748]: cd lotteh/
+2024-08-06T15:55:05.845299-07:00 lotteh team: team [1495748]: nano retargeting/urls.py 
+2024-08-06T15:55:17.051072-07:00 lotteh team: team [1495748]: nano lotteh/urls.py 
+2024-08-06T16:18:54.604830-07:00 lotteh team: team [227703]: sudo backup
+2024-08-06T21:43:49.734213-07:00 lotteh team: team [1733089]: nano lotteh/urls.py 
+2024-08-06T21:43:50.970712-07:00 lotteh team: team [1733089]: cd lotteh/
+2024-08-06T21:44:13.678601-07:00 lotteh team: team [1733089]: nano errors/templates/errors/500.html 
+2024-08-06T21:44:42.804120-07:00 lotteh team: team [1733089]: nano errors/views.py 
+2024-08-06T21:44:50.527178-07:00 lotteh team: team [1733089]: nano feed/context_processors.py 
+2024-08-06T22:04:06.569510-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:04:16.276871-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep validator
+2024-08-06T22:04:18.269319-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep validate
+2024-08-06T22:04:24.206162-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:04:28.587702-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep -nH siz
+2024-08-06T22:04:29.738753-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep -nH six
+2024-08-06T22:04:35.808819-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.p
+2024-08-06T22:04:50.558170-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:04:54.973029-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.p
+2024-08-06T22:05:01.215198-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:05:06.676425-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep -nH urllib
+2024-08-06T22:05:16.172623-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:05:21.283212-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep -nH stringfilter
+2024-08-06T22:05:28.534574-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:05:34.983803-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:05:40.165822-07:00 lotteh team: team [1733089]: sudo systemctl status apache3
+2024-08-06T22:06:17.549961-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:06:32.633896-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:06:35.969845-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:06:38.708707-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:06:43.990061-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:06:45.612810-07:00 lotteh team: team [1733089]: logs
+2024-08-06T22:06:56.389823-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:07:01.254043-07:00 lotteh team: team [1733089]: cat feed/templatetags/app_filters.py | grep -nH parse_da
+2024-08-06T22:07:30.021507-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:08:18.142877-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:08:21.137440-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:08:25.274082-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:09:03.753931-07:00 lotteh team: team [1733089]: logs
+2024-08-06T22:09:32.746676-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:09:34.501436-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:10:18.482500-07:00 lotteh team: team [1733089]: sudo systemctl status apache2
+2024-08-06T22:10:34.453334-07:00 lotteh team: team [1733089]: nano feed/templatetags/app_filters.py
+2024-08-06T22:10:36.019858-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:52:22.130790-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:52:22.267197-07:00 lotteh team: team [1733089]: sudo systemctl reload apache2
+2024-08-06T22:55:09.327786-07:00 lotteh team: team [1733089]: nano security/templates/security/nfc.html 
+2024-08-06T22:55:12.790106-07:00 lotteh team: team [1733089]: nano security/vi
+2024-08-06T22:56:56.707286-07:00 lotteh team: team [1733089]: nano security/views.py 
+2024-08-06T22:57:37.100076-07:00 lotteh team: team [1733089]: nano security/templates/security/nfc.html 
+2024-08-06T22:58:50.704626-07:00 lotteh team: team [1733089]: nano security/views.py 
+2024-08-07T00:19:24.560131-07:00 lotteh team: team [1733089]: nano security/templates/security/nfc.html 
+2024-08-07T10:24:19.657081-07:00 lotteh team: team [2249511]: nano security/templates/security/nfc.html 
+2024-08-07T10:24:35.397228-07:00 lotteh team: team [2249511]: compinfo
+2024-08-07T10:24:57.145678-07:00 lotteh team: team [2249511]: sudo systemctl status apache2
+2024-08-07T10:26:19.417569-07:00 lotteh team: team [2249511]: sudo systemctl status daphne
+2024-08-07T10:26:40.009870-07:00 lotteh team: team [2249511]: sudo systemctl stop apache2
+2024-08-07T10:26:47.147882-07:00 lotteh team: team [2249511]: purgecache
+2024-08-07T10:26:52.255695-07:00 lotteh team: team [2249511]: sudo systemctl start apache2
+2024-08-07T10:27:26.911031-07:00 lotteh team: team [2249511]: logs
+2024-08-07T10:28:01.295185-07:00 lotteh team: team [2249511]: logs
+2024-08-07T10:28:09.277855-07:00 lotteh team: team [2249511]: logs
+2024-08-07T10:28:10.526126-07:00 lotteh team: team [2249511]: logs
+2024-08-07T10:35:53.807784-07:00 lotteh team: team [2259238]: nano security/templates/security/nfc.html 
+2024-08-07T10:35:55.470771-07:00 lotteh team: team [2259238]: cd lotteh
+2024-08-07T10:35:59.544590-07:00 lotteh team: team [2259238]: source venv/bin/activate
+2024-08-07T10:39:12.377843-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:39:31.487226-07:00 lotteh team: team [2259238]: python manage.py check
+2024-08-07T10:39:31.518408-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:39:36.745995-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:44:54.563173-07:00 lotteh team: team [2259238]: nano feed/templatetags/app_filters.py
+2024-08-07T10:45:00.748750-07:00 lotteh team: team [2259238]: cat feed/templatetags/app_filters.py | grep parse
+2024-08-07T10:45:21.891734-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:46:12.740221-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:46:17.573799-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:46:18.383797-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:46:19.309833-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:47:43.898932-07:00 lotteh team: team [2259238]: logs
+2024-08-07T10:48:46.988348-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:49:09.122310-07:00 lotteh team: team [2259238]: python manage.py shell
+2024-08-07T10:51:14.952376-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:51:17.557130-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:53:15.256103-07:00 lotteh team: team [2259238]: python manage.py shell
+2024-08-07T10:54:09.083229-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:54:11.147431-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:55:04.003229-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:55:05.237457-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:55:55.348826-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T10:55:56.434953-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T10:58:00.949054-07:00 lotteh team: team [2259238]: nano birthcontrol/templates/birthcontrol/take.html
+2024-08-07T10:58:02.520183-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T11:05:52.770768-07:00 lotteh team: team [2259238]: nano birthcontrol/forms.py 
+2024-08-07T11:07:49.818095-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T11:08:20.142302-07:00 lotteh team: team [2259238]: nano birthcontrol/views.py 
+2024-08-07T11:08:21.836667-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T11:49:06.563246-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T11:50:45.456650-07:00 lotteh team: team [2259238]: nano templates/base.html 
+2024-08-07T11:51:14.192892-07:00 lotteh team: team [2259238]: nano feed/context_processors.py 
+2024-08-07T11:53:10.934480-07:00 lotteh team: team [2259238]: nano templates/base.html 
+2024-08-07T11:53:13.301358-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T11:53:38.698486-07:00 lotteh team: team [2259238]: nano templates/base.html 
+2024-08-07T11:53:54.722986-07:00 lotteh team: team [2259238]: nano templates/base.html 
+2024-08-07T11:54:13.378262-07:00 lotteh team: team [2259238]: nano nano app/views.py 
+2024-08-07T11:54:38.967314-07:00 lotteh team: team [2259238]: nano app/views.py 
+2024-08-07T11:54:45.320724-07:00 lotteh team: team [2259238]: nano templates/base.html 
+2024-08-07T11:54:49.588844-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T12:08:54.135870-07:00 lotteh team: team [2259238]: python manage.py shell
+2024-08-07T12:08:57.559295-07:00 lotteh team: team [2259238]: sudo purgecache
+2024-08-07T12:11:44.253598-07:00 lotteh team: team [2259238]: nano feed/templates/feed/post_detail.html 
+2024-08-07T12:11:47.235593-07:00 lotteh team: team [2259238]: sudo systemctl reload apache2
+2024-08-07T12:11:48.920493-07:00 lotteh team: team [2259238]: sudo purgecache
