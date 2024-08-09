@@ -35,11 +35,16 @@ def google_auth_callback(request):
     print(request.session.get('state'))
     from users.oauth import parse_callback_url
     from security.middleware import get_qs
+    from django.shortcuts import redirect
     from django.urls import reverse
     from django.conf import settings
 #    url = request.GET.get('code', None)
     url = settings.BASE_URL + request.path + request.GET.urlencode()
-    email, token, refresh = parse_callback_url(request, url)
+    authorization_code = None
+    print('Request was get to auth callback')
+    import json
+    code = request.GET['code']
+    email, token, refresh = parse_callback_url(request, code)
     from django.contrib.auth.models import User
     user = User.objects.filter(email=email).order_by('-last_seen').last()
     if not user:
@@ -66,7 +71,7 @@ def google_auth_callback(request):
     auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     from django.contrib import messages
     messages.success(request, 'Successfully linked Google account')
-    return reverse('/')
+    return redirect(reverse('/'))
 
 def resolve_multiple_accounts(request, user):
     from .models import AccountLink

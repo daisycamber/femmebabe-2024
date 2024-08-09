@@ -553,7 +553,7 @@ def tagusers(value):
 
 @register.filter(name='filetype')
 def filetype(value):
-    return value[-3:].lower()
+    return value.split('.')[-1].lower()
 
 @register.filter(name='userlikes')
 def userlikes(value):
@@ -705,6 +705,7 @@ def highlightcode(value):
 @register.filter(name='marksafe')
 def marksafe(value):
     import html
+    from django.utils.html import mark_safe
     return mark_safe(html.unescape(value))
 
 @register.filter(name='caps')

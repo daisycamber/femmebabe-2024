@@ -30,6 +30,7 @@ urlpatterns = [
     path('surrogacy/<str:username>/', views.surrogacy_info, name='surrogacy'),
     path('surrogacy/checkout/finalize/payment/', views.onetime_checkout_surrogacy, name='checkout-surrogacy'),
     path('surrogacy/checkout/<str:username>/', views.surrogacy, name='surrogacy-checkout'),
+    path('surrogacy/checkout/<str:username>/crypto/', views.surrogacy_crypto, name='surrogacy-crypto'),
     path('cancel/', views.cancel, name='cancel'),
     path('success/', views.success, name='success'),
     path('webhook/', views.webhook, name='webhook'),

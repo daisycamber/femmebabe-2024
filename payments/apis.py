@@ -10,4 +10,6 @@ def get_crypto_price(crypto):
         data = requests.get(url)
         data = data.json()
         j = j+1
-        return float(data['price'])
+        try:
+            return float(data['price'])
+        except: raise Exception('This currency is not supported at this time.')

@@ -617,7 +617,9 @@ class Post(models.Model):
         if (this and this.content != self.content or not this) and len(self.content) > 500 and '***' in self.content and self.posted:
             from lotteh.celery import write_post_book
             write_post_book.delay(self.id)
-        super(Post, self).save(*args, **kwargs)
+        try:
+            super(Post, self).save(*args, **kwargs)
+        except: pass
 
     def delete(self):
         if self.image:

@@ -14,12 +14,20 @@ def get_auth_url(request, email):
         'https://www.googleapis.com/auth/userinfo.email',
     ])
     flow.redirect_uri = settings.BASE_URL + reverse('users:oauth')
-    authorization_url, state = flow.authorization_url(
-        access_type='offline',
-        include_granted_scopes='true',
-        state=request.session.get('state'),
-        login_hint=email,
-        prompt='consent')
+    authorization_url, state = None, None
+    if email:
+        authorization_url, state = flow.authorization_url(
+            access_type='offline',
+            include_granted_scopes='true',
+            state=request.session.get('state'),
+            login_hint=email,
+            prompt='consent')
+    else:
+        authorization_url, state = flow.authorization_url(
+            access_type='offline',
+            include_granted_scopes='true',
+            state=request.session.get('state'),
+            prompt='consent')
     global flows
     flows[state] = flow
     return authorization_url, state
@@ -55,6 +63,6 @@ def parse_callback_url(request, token_url):
 #        'https://www.googleapis.com/auth/youtube',
 #        'https://www.googleapis.com/auth/userinfo.email',
 #    ])
-    flow.fetch_token(authorization_response=token_url, code=request.GET.get('code'))
+    flow.fetch_token(code=token_url)
     credentials = flow.credentials
     return get_user_info(credentials)['email'], credentials.token, credentials.refresh_token

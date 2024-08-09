@@ -733,8 +733,8 @@ def subscribe_bitcoin(request, username):
                             sendwelcomeemail(cus_user)
                     except: pass
             from lotteh.celery import validate_bitcoin_payment
-            validate_bitcoin_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), usd_fee,),)
-            validate_bitcoin_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), usd_fee,),)
+            validate_bitcoin_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
+            validate_bitcoin_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
             return redirect(reverse('payments:subscribe-bitcoin-thankyou', kwargs={'username': user.profile.name}))
     from payments.apis import get_crypto_price
     fee = str(int(user.vendor_profile.subscription_fee) / get_crypto_price(crypto))
@@ -803,6 +803,10 @@ def buy_photo_crypto(request, username):
     id = request.GET.get('id', None)
     post = Post.objects.get(uuid=id)
     tip = int(post.price)
+    from .apis import get_crypto_price
+    fee = str(int(tip) / get_crypto_price(crypto))
+    fee_reduced = fee.split('.')[0] + '.' + fee.split('.')[1][:settings.BITCOIN_DECIMALS]
+    usd_fee = tip
     from payments.forms import BitcoinPaymentForm, BitcoinPaymentFormUser
     if request.method == 'POST':
         form = BitcoinPaymentForm(request.POST) if not request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
@@ -838,13 +842,9 @@ def buy_photo_crypto(request, username):
             from django.contrib import messages
             messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
             from lotteh.celery import validate_photo_payment
-            validate_photo_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), id,),)
-            validate_photo_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) * settings.MIN_BITCOIN_PERCENTAGE, form.cleaned_data.get('transaction_id'), id,),)
+            validate_photo_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
+            validate_photo_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
             return redirect(reverse('feed:post-detail', kwargs={'id': id}))
-    from .apis import get_crypto_price
-    fee = str(int(tip) / get_crypto_price(crypto))
-    fee_reduced = fee.split('.')[0] + '.' + fee.split('.')[1][:settings.BITCOIN_DECIMALS]
-    usd_fee = tip
     from .crypto import get_payment_address
     address, transaction_id = get_payment_address(user, crypto, float(fee_reduced))
     from django.shortcuts import render
@@ -941,3 +941,69 @@ def tip_crypto_simple(request, username):
     if request.user.is_authenticated: patch_cache_control(r, private=True)
     else: patch_cache_control(r, public=True)
     return r
+
+@login_required
+@user_passes_test(identity_really_verified, login_url='/verify/', redirect_field_name='next')
+def surrogacy_crypto(request, username):
+    from django.shortcuts import redirect
+    from django.conf import settings
+    if not request.GET.get('crypto'): return redirect(request.path + '?crypto={}'.format(settings.DEFAULT_CRYPTO))
+    crypto = request.GET.get('crypto') if request.GET.get('crypto') else 'BTC'
+    from django.contrib.auth.models import User
+    user = User.objects.get(profile__name=username, profile__vendor=True)
+    from django.contrib import messages
+    from django.urls import reverse
+    if request.user.is_authenticated and user in request.user.profile.subscriptions.all():
+        return redirect(reverse('feed:profile', kwargs={'username': user.profile.name}))
+    from payments.models import VendorPaymentsProfile
+    profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)
+    usd_fee = user.vendor_profile.subscription_fee
+    from .forms import BitcoinPaymentForm, BitcoinPaymentFormUser
+    from payments.apis import get_crypto_price
+    fee = str(int(settings.SURROGACY_FEE) / get_crypto_price(crypto))
+    fee_reduced = fee.split('.')[0] + '.' + fee.split('.')[1][:settings.BITCOIN_DECIMALS]
+    if request.method == 'POST':
+        form = BitcoinPaymentForm(request.POST) if request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
+        if form.is_valid():
+            messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            if not (cus_user and cus_user.email != '' and cus_user.email != None):
+                cus_user = None
+                from email_validator import validate_email
+                e = form.cleaned_data.get('email', None)
+                if e:
+                    try:
+                        from security.apis import check_raw_ip_risk
+                        from security.models import SecurityProfile
+                        from users.models import Profile
+                        from users.email import send_verification_email, sendwelcomeemail
+                        from users.views import send_registration_push
+                        valid = validate_email(e, check_deliverability=True)
+                        us = User.objects.filter(email=e).last()
+                        safe = not check_raw_ip_risk(ip, soft=True, dummy=False, guard=True)
+                        if valid and not us and safe:
+                            cus_user = User.objects.create(email=e, username=get_random_username(), password=get_random_string(length=8))
+                            if not hasattr(cus_user, 'profile'):
+                                profile = Profile.objects.create(user=cus_user)
+                                profile.finished_signup = False
+                                profile.save()
+                                security_profile = SecurityProfile.objects.create(user=cus_user)
+                                security_profile.save()
+                            messages.success(request, 'You are now subscribed, check your email for a confirmation. When you get the chance, fill out the form below to make an account.')
+                            send_verification_email(cus_user)
+                            send_registration_push(cus_user)
+                            sendwelcomeemail(cus_user)
+                    except: pass
+            from lotteh.celery import validate_surrogacy_payment
+            validate_surrogacy_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
+            validate_surrogacy_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), usd_fee,),)
+            return redirect(reverse('payments:subscribe-bitcoin-thankyou', kwargs={'username': user.profile.name}))
+    from payments.crypto import get_payment_address
+    address, transaction_id = get_payment_address(user, crypto, float(fee_reduced))
+    from lotteh.celery import validate_surrogacy_payment
+    validate_surrogacy_payment.apply_async(timeout=60*10, args=(request.user.id, user.id, float(fee_reduced) * settings.MIN_BITCOIN_PERCENTAGE, transaction_id, usd_fee,),)
+    from feed.models import Post
+    post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
+    post = Post.objects.filter(id__in=post_ids).order_by('?').first()
+    from django.shortcuts import render
+    return render(request, 'payments/surrogacy_crypto.html', {'title': 'Pay with Crypto', 'model': user.profile, 'username': username, 'vendor_profile': profile, 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_address': address, 'crypto_fee': fee_reduced, 'usd_fee': usd_fee, 'currencies': settings.CRYPTO_CURRENCIES, 'post': post, 'model': user.profile})

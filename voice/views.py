@@ -238,7 +238,9 @@ def voice(request):
         from voice.ai import get_ai_response, post_ai_response
         text_nl = get_ai_response(speech)
         if user and user.profile.vendor:
-            post_ai_response(user, speech.capitalize() + '\n\n' + text_nl)
+            from autocorrect import Speller
+            spell = Speller(lang=settings.DEFAULT_LANG)
+            post_ai_response(user, spell(speech.capitalize()) + '\n\n' + text_nl)
         text = text_nl.replace('\n', ' ')
         if user and hasattr(user, 'voice_profile'):
             user.voice_profile.call_logs = user.voice_profile.call_logs + speech + '***' + text + '***'

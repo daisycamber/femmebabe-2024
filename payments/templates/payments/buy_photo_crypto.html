@@ -12,6 +12,7 @@
 <div style="display: inline-block;">
 <a href="{{ request.path }}?crypto={{ request.GET.crypto }}" title="See another photo" class="btn btn-outline-dark pink-borders">See Another Photo</a>
 <hr>
+<p>This purchase is subject to <a href="{% url 'misc:terms' %}" title="View the terms and coniditons">the terms and conditions and privacy policy</a> of {{ the_site_name }}</p>
 <div class="dropdown" style="display: inline-block;">
     <a class="btn btn-outline-dark pink-borders dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     	<i class="bi bi-currency-bitcoin"></i> Change Currency
@@ -39,7 +40,7 @@
 <b><i>{{ crypto_address }}</i></b>
 <button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> Copy</button>
 <hr style="background-color: green;">
-<p>Enter your email and press the "Send" button to confirm your payment once you have initiated the transfer.</p>
+<p>{% if not request.user.is_authenticated %}Enter your email and press{% else %}Press{% endif %} the "Send" button to confirm your payment once you have initiated the transfer.</p>
 {{ form|crispy }}
 <button type="submit" class="btn btn-outline-success">Send</button>
 </form>

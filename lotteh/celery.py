@@ -383,6 +383,19 @@ def validate_bitcoin_payment(uid, mid, balance, transaction_id, fee):
         Subscription.objects.create(user=user, model=model, expire_date = timezone.now() + datetime.timedelta(days=30), fee=fee)
 
 @app.task
+def validate_surrogacy_payment(uid, mid, balance, transaction_id, fee):
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=uid)
+    model = User.objects.get(id=mid)
+    if not model in user.profile.subscriptions.all() and model.vendor_payments_profile.validate_crypto_transaction(user, balance, transaction_id):
+        from users.tfa import send_user_text
+        send_user_text(model, '{} has sucessfully sunscribed to your profile with bitcoin, {}.'.format(user.profile.name, model.profile.preferred_name))
+        mother = model
+        send_user_text(mother, '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
+        from payments.surrogacy import save_and_send_agreement
+        save_and_send_agreement(mother, user)
+
+@app.task
 def validate_photo_payment(uid, mid, balance, transaction_id, post_id):
     from django.contrib.auth.models import User
     user = User.objects.get(id=uid)

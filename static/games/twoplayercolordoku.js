@@ -1,7 +1,9 @@
+
 // By Charlotte Grace Harper. V0.0.98
 (function twoplayercolordoku(){
   let canvasid = "game";
   let canvas = document.getElementById(canvasid);
+  if(!canvas) return;
   let width = canvas.width;
   let height = canvas.height;
 
@@ -70,6 +72,7 @@ try {
         //console.log("Three Thirteen - No game.")
         stage.canvas.height = 0;
         canvas.style.height = 0;
+        return;
       }
     less = window.innerWidth;
     if(canvasHeight < less){

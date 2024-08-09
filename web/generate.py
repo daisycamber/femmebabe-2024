@@ -17,6 +17,7 @@ def generate_site():
     blog = ''
     for post in Post.objects.filter(public=True, posted=True, published=True, feed="news").order_by('-date_posted'):
         text = ''
+        print(post.content)
         for obj in highlightcode(post.content):
             text = embedlinks(addhttpstodomains(obj['text'])) + ('<pre class="language-{}"><code>{}</code></pre>'.format(obj['lang'], obj['code']) if ('code' in obj) and ('lang' in obj) else '')
             blog = blog + text

@@ -23,8 +23,7 @@
     {% if post.content|charcountreader %}
     {% include 'reader.html' %}
     {% endif %}
-    {% endautoescape %}
- 
+    {% endautoescape %} 
     {% if post.image %} 
 {% if not post.public and not request.GET.show %}
     {% with post.get_blur_thumb_url as imurl %}
@@ -82,10 +81,10 @@
         Your browser does not support the video tag.
     </video>
     {% else %}
-    <p>This post contains a downloadable file. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
+    <p>This post contains a downloadable file in .{{ post.file_bucket.name|filetype }} format. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
     {% endif %}
     {% else %}
-    <p>This post contains a paid file. Please buy the post to see the file.</p>
+    <p>This post contains a paid file in .{{ post.file_bucket.name|filetype }} format. Please buy the post in order to download the file.</p>
     {% endif %}
     {% endif %}
 {% if post.image_sightengine %}<p>SightEngine Image Output - {{ post.image_sightengine }}</p>{% endif %}
