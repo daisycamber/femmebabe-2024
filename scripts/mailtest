@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "test" | mail -s "Test Email" $1

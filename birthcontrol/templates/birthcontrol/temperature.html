@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% load feed_filters %}
+{% block head %}
+<script type="text/javascript" src="/static/audio/chart.js"></script>
+{% endblock %}
+{% block content %}
+<legend>Temperature Graphs</legend>
+{% for pills in months %}
+<p>Month {{ forloop.counter0 }} - First pill taken at {{ pills.first.time_taken }}</p>
+<canvas id="temp-chart{{ forloop.counter0 }}" height="220px"></canvas>
+<hr>
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}
+{% block javascript %}
+{% for pills in months %}
+const ctx = document.getElementById('temp-chart{{ forloop.counter0 }}');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [{% for pill in pills %}{{ pill.time_taken.day }},{% endfor %}],
+      datasets: [{
+        label: 'Temp',
+        data: [{% for pill in pills %}pill.temperature,{% endfor %}],
+	fill: false,
+	borderColor: 'rgb(255, 0, 0)',
+	tension: 1
+      }]
+    },
+  options: {
+    responsive: true,
+    spanGaps: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Daily Temperature'
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    scales: {
+      y: {
+        min: 70,
+        max: 120,
+      }
+    },
+    height: 100
+  },
+});
+{% endfor %}
+{% endblock %}

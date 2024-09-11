@@ -1,0 +1,1 @@
+sudo tail -300 /var/log/commands.log

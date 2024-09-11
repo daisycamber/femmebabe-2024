@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<a href="{% url 'voice:recordings' %}" class="btn btn-outline-primary btn-sm">Back to recordings</a>
+<h1>Recording Loop</h1>
+{% if request.user == recording.user or not recording %}
+<small>Uploaded file - {{ recording.uploaded_file }}</small>
+<form method="POST" enctype="multipart/form-data" id="audio-form">
+{% csrf_token %}
+<p><i style="color: green";>+</i> <a href="{% url 'voice:option-add' %}" target="popup" onclick="window.open('{% url 'voice:option-add' %}','popup','width=600,height=500'); return false;">Add more options</a></p>
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success">Submit</button>
+</form>
+<hr>
+{% if not recording.content %}
+<div style="display: flex; justify-content: space-around;">
+<button onclick="record();" class="btn btn-outline-danger"><i class="bi bi-mic-fill"></i> Record</button>
+<button onclick="stop();" class="btn btn-outline-danger"><i class="bi bi-mic"></i> Stop</button>
+</div>
+{% endif %}
+{% endif %}
+{% if recording.content %}
+<div>
+    <audio controls src="{{ recording.get_secure_url }}" style="width: 100%;">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</div>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+var mediaRecorder;
+function record() {
+	mediaRecorder.start();
+}
+function stop() {
+	mediaRecorder.stop();
+}
+var chunks = [];
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  console.log("getUserMedia supported.");
+  navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+        mediaRecorder = new MediaRecorder(stream);
+	mediaRecorder.ondataavailable = function (e) {
+	  chunks.push(e.data);
+	  uploadData();
+	};
+    }).catch(function (err) {
+      console.log("The following getUserMedia error occurred: " + err);
+    });
+} else {
+  console.log("getUserMedia not supported on your browser!");
+}
+function uploadData() {
+	  var form = document.getElementById("audio-form");
+          let blob = new Blob(chunks, {"type" : "audio/webm; codecs=opus" });
+	  var formData = new FormData(form);
+	  formData.append("content", blob, "audio.webm");
+	  console.log(formData);
+          $.ajax({
+	    type: "POST",
+	    url: window.location.href,
+	    data: formData,
+	    processData: false,
+	    contentType: false,
+	    success: function(){
+		window.location.reload();
+            },
+	  });
+}
+{% endblock %}

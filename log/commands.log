@@ -1,0 +1,1145 @@
+2024-09-08T00:05:26.370730-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html 
+2024-09-08T00:06:59.104401-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html 
+2024-09-08T00:09:08.253521-07:00 femmebabe team: team [1468009]: sudo pushweb
+2024-09-08T00:15:34.435185-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html 
+2024-09-08T00:15:47.353221-07:00 femmebabe team: team [1468009]: sudo rm -r media/images/*
+2024-09-08T00:15:53.222553-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html 
+2024-09-08T00:15:58.021751-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html
+2024-09-08T00:16:17.020896-07:00 femmebabe team: team [1468009]: nano web/templates/web/index.html
+2024-09-08T00:16:28.536463-07:00 femmebabe team: team [1468009]: nano web/templates/web/.index.html.swp 
+2024-09-08T00:20:29.775272-07:00 femmebabe team: team [1584747]: python manage.py shell
+2024-09-08T00:20:34.289603-07:00 femmebabe team: team [1584747]: cd
+2024-09-08T00:20:35.667018-07:00 femmebabe team: team [1584747]: ls
+2024-09-08T00:20:44.868311-07:00 femmebabe team: team [1584747]: sudo rm -r femmebabe-backup/media/images/
+2024-09-08T00:20:52.363534-07:00 femmebabe team: team [1584747]: sudo rm -r femmebabe-backup-open/media/images/
+2024-09-08T00:21:51.667616-07:00 femmebabe team: team [1584747]: df -h /
+2024-09-08T00:23:11.944582-07:00 femmebabe team: team [1584747]: ls /dev/sda*
+2024-09-08T00:23:18.397672-07:00 femmebabe team: team [1584747]: ls /dev/sda1
+2024-09-08T00:23:43.398906-07:00 femmebabe team: team [1584747]: findmnt
+2024-09-08T00:23:51.987654-07:00 femmebabe team: team [1584747]: ls /dev/sda1
+2024-09-08T00:23:54.113503-07:00 femmebabe team: team [1584747]: ls /dev/sda*
+2024-09-08T01:04:05.440823-07:00 femmebabe team: team [6188]: sudo purgecache
+2024-09-08T01:04:08.384966-07:00 femmebabe team: team [6188]: cd lotteh/
+2024-09-08T01:04:13.329800-07:00 femmebabe team: team [6188]: source venv/bin/activate
+2024-09-08T01:04:31.589486-07:00 femmebabe team: team [6188]: nano web/templates/web/index.html 
+2024-09-08T01:05:43.453799-07:00 femmebabe team: team [6188]: nano web/templates/web/index.html 
+2024-09-08T01:05:59.903923-07:00 femmebabe team: team [6188]: cat ../femmebabe-backup/web/templates/web/index.html 
+2024-09-08T01:07:17.422294-07:00 femmebabe team: team [6188]: nano web/templates/web/index.html 
+2024-09-08T01:07:28.806282-07:00 femmebabe team: team [6188]: sudo pushweb
+2024-09-08T01:08:02.061405-07:00 femmebabe team: team [9289]: sudo purgecache
+2024-09-08T01:08:02.070488-07:00 femmebabe team: team [9289]: sudo purgecache
+2024-09-08T01:08:10.796082-07:00 femmebabe team: team [9289]: cd femmebabe-backup
+2024-09-08T01:08:12.578135-07:00 femmebabe team: team [9289]: ls .git
+2024-09-08T01:08:16.854424-07:00 femmebabe team: team [9289]: git init --initial-branch=main
+2024-09-08T01:08:35.762295-07:00 femmebabe team: team [6188]: sudo pushweb
+2024-09-08T01:10:44.695156-07:00 femmebabe team: team [9289]: git init --initial-branch=main
+2024-09-08T01:10:46.409689-07:00 femmebabe team: team [9289]: git remote add origin git@gitlab.com:femme-babe/femmebabe-backup-2024-09.git
+2024-09-08T01:10:54.467384-07:00 femmebabe team: team [9289]: cd ..
+2024-09-08T01:11:58.071850-07:00 femmebabe team: team [9289]: sudo ascript backup
+2024-09-08T01:13:03.948679-07:00 femmebabe team: team [9289]: cd lotteh/
+2024-09-08T01:15:09.768570-07:00 femmebabe team: team [9289]: nano web/templates/web/index.html 
+2024-09-08T01:21:55.595642-07:00 femmebabe team: team [9289]: nano web/templates/web/index.html 
+2024-09-08T01:22:10.656679-07:00 femmebabe team: team [9289]: nano web/templates/web/index.html 
+2024-09-08T01:22:32.783558-07:00 femmebabe team: team [6188]: sudo pushweb
+2024-09-08T02:22:53.109325-07:00 femmebabe team: team [9289]: ls
+2024-09-08T02:23:00.118027-07:00 femmebabe team: team [9289]: sudo systemctl status apache2
+2024-09-08T02:23:04.464251-07:00 femmebabe team: team [9289]: sudo doreload
+2024-09-08T02:23:07.290730-07:00 femmebabe team: team [9289]: logs
+2024-02024-09-08T02:39:57.338609-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:39:59.831700-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:40:00.848685-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:40:01.692393-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:40:02.570535-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:40:40.100342-07:00 femmebabe team: team [9289]: cd lotteh/
+2024-09-08T02:40:50.852238-07:00 femmebabe team: team [9289]: cat scripts/pgsetup 
+2024-09-08T02:41:15.909023-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACCUM FULL database;"
+2024-09-08T02:41:25.489395-07:00 femmebabe team: team [9289]: sudo systemctl stop postgresql
+2024-09-08T02:41:26.413942-07:00 femmebabe team: team [9289]: ls
+2024-09-08T02:41:39.420791-07:00 femmebabe team: team [9289]: cd ..
+2024-09-08T02:41:45.180322-07:00 femmebabe team: team [9289]: cd femmebabe-backup
+2024-09-08T02:41:45.635204-07:00 femmebabe team: team [9289]: ls
+2024-09-08T02:41:49.822811-07:00 femmebabe team: team [9289]: sudo rm db.json.*
+2024-09-08T02:41:51.172624-07:00 femmebabe team: team [9289]: ls db
+2024-09-08T02:41:52.751624-07:00 femmebabe team: team [9289]: ls db*
+2024-09-08T02:41:56.579132-07:00 femmebabe team: team [9289]: cd ..
+2024-09-08T02:42:29.940241-07:00 femmebabe team: team [9289]: sudo systemctl restart postgresql
+2024-09-08T02:42:37.069973-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACCUM FULL database;"
+2024-09-08T02:42:45.879466-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACUUM FULL database;"
+2024-09-08T02:43:02.212220-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACUUM FULL;"
+2024-09-08T02:43:08.225433-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:09.811021-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:11.061007-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:12.206150-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:13.263176-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:14.683980-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:16.091800-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:17.179333-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:43:26.096356-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACUUM FULL;"
+2024-09-08T02:43:28.455676-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:44:18.340207-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "VACUUM FULL;"
+2024-09-08T02:44:20.440776-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:44:32.579583-07:00 femmebabe team: team [9289]: cd lotteh/
+2024-09-08T02:44:35.647269-07:00 femmebabe team: team [9289]: du -sh db.json.a
+2024-09-08T02:44:37.613204-07:00 femmebabe team: team [9289]: du -sh db.json
+2024-09-08T02:44:40.686211-07:00 femmebabe team: team [9289]: du -sh db.json*
+2024-09-08T02:47:31.221387-07:00 femmebabe team: team [9289]: du -sh db.json*
+2024-09-08T02:47:52.650270-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "SELECT pg_database_size('database');"
+2024-09-08T02:48:28.332131-07:00 femmebabe team: team [9289]: psql
+2024-09-08T02:48:57.887528-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "\list"
+2024-09-08T02:49:04.144362-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "SELECT pg_database_size('postgres');"
+2024-09-08T02:49:09.544480-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "\list"
+2024-09-08T02:49:12.861437-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "\list"
+2024-09-08T02:49:19.786603-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "SELECT pg_database_size('template0');"
+2024-09-08T02:49:22.200721-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "SELECT pg_database_size('template1');"
+2024-09-08T02:49:27.014646-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "SELECT pg_database_size('postgres');"
+2024-09-08T02:49:46.117812-07:00 femmebabe team: team [9289]: sudo -u postgres psql -U postgres -c "\list"
+2024-09-08T02:50:24.303132-07:00 femmebabe team: team [9289]: sudo du -sh /var/lib/postgresql/16/*
+2024-09-08T02:50:39.606549-07:00 femmebabe team: team [9289]: * sudo du -sh /var/lib/p
+2024-09-08T02:50:45.642923-07:00 femmebabe team: team [9289]: du -h /
+2024-09-08T02:50:58.771033-07:00 femmebabe team: team [9289]: sudo du -sh ./
+2024-09-08T02:51:01.753525-07:00 femmebabe team: team [9289]: sudo du -sh ./
+2024-09-08T02:51:05.515997-07:00 femmebabe team: team [9289]: ls .git
+2024-09-08T02:51:08.726870-07:00 femmebabe team: team [9289]: du -sh .git
+2024-09-08T02:51:14.753490-07:00 femmebabe team: team [9289]: du -sh ./
+2024-09-08T02:51:17.493426-07:00 femmebabe team: team [9289]: du -sh ./*
+2024-09-08T02:53:58.605587-07:00 femmebabe team: team [9289]: du -sh ./* | grep G
+2024-09-08T02:54:05.086334-07:00 femmebabe team: team [9289]: ls celery
+2024-09-08T02:54:13.365447-07:00 femmebabe team: team [9289]: sudo rm celery/log/*
+2024-09-08T02:54:14.742236-07:00 femmebabe team: team [9289]: cd
+2024-09-08T02:54:18.267867-07:00 femmebabe team: team [9289]: du -sh /
+2024-09-08T02:54:20.092356-07:00 femmebabe team: team [9289]: df -h /
+2024-09-08T02:54:31.409719-07:00 femmebabe team: team [9289]: du -sh ./
+2024-09-08T02:54:38.345124-07:00 femmebabe team: team [9289]: du -sh ./*
+2024-09-08T02:54:38.432226-07:00 femmebabe team: team [9289]: du -sh ./*
+2024-09-08T02:54:42.182267-07:00 femmebabe team: team [9289]: du -sh ./* | grep G
+2024-09-08T02:54:47.882219-07:00 femmebabe team: team [9289]: ls Documents/
+2024-09-08T02:54:49.981575-07:00 femmebabe team: team [9289]: cd Documents/
+2024-09-08T02:54:50.404592-07:00 femmebabe team: team [9289]: ls
+2024-09-08T02:54:58.977456-07:00 femmebabe team: team [9289]: ls /mnt
+2024-09-08T02:55:07.597221-07:00 femmebabe team: team [9289]: cat scripc
+2024-09-08T02:55:08.794279-07:00 femmebabe team: team [9289]: cd
+2024-09-08T02:55:12.776982-07:00 femmebabe team: team [9289]: cd lotteh/
+2024-09-08T02:55:17.462039-07:00 femmebabe team: team [9289]: cat scripts/backup 
+2024-09-08T02:55:41.024320-07:00 femmebabe team: team [9289]: sudo mount /dev/sdb2 /mnt/backup
+2024-09-08T02:55:47.695665-07:00 femmebabe team: team [9289]: cd
+2024-09-08T02:55:51.868981-07:00 femmebabe team: team [9289]: cd Documents/
+2024-09-08T02:56:58.619756-07:00 femmebabe team: team [6188]: sudo ascript backup
+2024-09-08T02:57:07.481370-07:00 femmebabe team: team [6188]: df -h /
+2024-09-08T02:57:14.547695-07:00 femmebabe team: message repeated 6 times: [ team [6188]: df -h /]
+2024-09-08T02:57:17.979405-07:00 femmebabe team: team [6188]: ps -aux | grep mv
+2024-09-08T03:00:43.478363-07:00 femmebabe team: team [6188]: ps -aux | grep mv
+2024-09-08T03:00:46.165802-07:00 femmebabe team: team [6188]: df -h /
+2024-09-08T03:06:07.391920-07:00 femmebabe team: team [9289]: mv daisys-laptop-backup/ /mnt/backup/daisys-laptop-backup
+2024-09-08T23:37:14.590304-07:00 femmebabe team: team [4054]: sudo purgecache
+2024-09-08T23:37:21.122864-07:00 femmebabe team: team [4054]: cd lotteh/
+2024-09-08T23:37:30.181111-07:00 femmebabe team: team [4054]: source venv/bin/activate
+2024-09-08T23:37:46.935530-07:00 femmebabe team: team [4701]: sudo purgecache
+2024-09-08T23:37:47.061452-07:00 femmebabe team: team [4054]: python last_logins.py 
+2024-09-08T23:37:58.964741-07:00 femmebabe team: team [4701]: df -h /
+2024-09-08T23:40:41.579669-07:00 femmebabe team: team [8216]: sudo purgecache
+2024-09-08T23:41:02.679691-07:00 femmebabe team: team [8216]: df -h /
+2024-09-08T23:41:16.644786-07:00 femmebabe team: team [8216]: cd lotteh/
+2024-09-08T23:41:22.269771-07:00 femmebabe team: team [8216]: source venv/bin/activate
+2024-09-08T23:43:30.324070-07:00 femmebabe team: team [8216]: nano web/templates/web/index.html 
+2024-09-08T23:43:35.563365-07:00 femmebabe team: team [8216]: ls
+2024-09-08T23:44:30.241422-07:00 femmebabe team: team [8216]: cat constraints.txt 
+2024-09-08T23:44:47.096803-07:00 femmebabe team: team [8216]: rm constraints.txt 
+2024-09-08T23:45:09.689083-07:00 femmebabe team: team [8216]: pip install --upgrade numpy
+2024-09-08T23:45:22.081753-07:00 femmebabe team: team [8216]: nano web/generate.py 
+2024-09-08T23:46:03.174935-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T00:02:07.266357-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:02:10.937594-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:02:14.071727-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:02:18.746387-07:00 femmebabe team: team [8216]: mkdir media/images/
+2024-09-09T00:11:12.786500-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:11:21.774566-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:11:25.462645-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:11:27.276170-07:00 femmebabe team: team [8216]: logs
+2024-09-09T00:11:56.774320-07:00 femmebabe team: team [8216]: watchlogs
+2024-09-09T00:12:15.213305-07:00 femmebabe team: team [8216]: python force_publish.py 
+2024-09-09T00:12:36.783955-07:00 femmebabe team: team [8216]: python force_publish.py 
+2024-09-09T00:12:44.353701-07:00 femmebabe team: team [8216]: ls
+2024-09-09T00:13:31.134062-07:00 femmebabe team: team [8216]: python upload_posts.py 
+2024-09-09T00:13:52.610612-07:00 femmebabe team: team [8216]: python bucket_posts.py 
+2024-09-09T00:14:06.862724-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T00:14:15.512772-07:00 femmebabe team: team [8216]: nano web/generate.py 
+2024-09-09T00:14:27.311780-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T00:14:33.289975-07:00 femmebabe team: team [8216]: ls web/site
+2024-09-09T00:14:47.681213-07:00 femmebabe team: team [8216]: ls web/site
+2024-09-09T00:15:17.145659-07:00 femmebabe team: team [8216]: ls web/site
+2024-09-09T00:17:06.618256-07:00 femmebabe team: team [8216]: nano web/site/sw.js
+2024-09-09T00:17:12.301729-07:00 femmebabe team: team [8216]: ls web/site/static
+2024-09-09T00:19:31.471842-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:20:35.238144-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:20:43.171685-07:00 femmebabe team: team [8216]: ls web/site/media/
+2024-09-09T00:20:46.426326-07:00 femmebabe team: team [8216]: ls web/site/media/icons
+2024-09-09T00:20:51.424809-07:00 femmebabe team: team [8216]: ls web/site/static
+2024-09-09T00:21:05.377526-07:00 femmebabe team: team [8216]: ls web/site/static/js
+2024-09-09T00:21:26.747924-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:21:34.373555-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:21:36.122032-07:00 femmebabe team: team [8216]: ls web/site/static/js
+2024-09-09T00:21:37.688349-07:00 femmebabe team: team [8216]: ls web/site/static
+2024-09-09T00:22:06.416504-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:22:43.812073-07:00 femmebabe team: message repeated 3 times: [ team [8216]: nano web/site/serviceworker.js]
+2024-09-09T00:23:03.675042-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:23:25.062413-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:23:45.717071-07:00 femmebabe team: message repeated 2 times: [ team [8216]: nano web/site/serviceworker.js]
+2024-09-09T00:23:52.684528-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:24:17.766674-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:24:32.346651-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:24:41.576673-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:24:44.951940-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:24:46.866448-07:00 femmebabe team: team [8216]: ls media
+2024-09-09T00:24:53.435016-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:25:03.728719-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js
+2024-09-09T00:25:59.550261-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T00:29:01.901570-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T00:29:07.229607-07:00 femmebabe team: team [8216]: nano static/serviceworker.js 
+2024-09-09T00:29:13.852530-07:00 femmebabe team: team [8216]: nano web/site/serviceworker.js 
+2024-09-09T00:31:19.495181-07:00 femmebabe team: team [8216]: nano web/templates/web/base.html 
+2024-09-09T00:31:44.624903-07:00 femmebabe team: team [8216]: nano web/generate.py 
+2024-09-09T00:39:49.245380-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T01:35:59.467010-07:00 femmebabe team: team [8216]: sudo systemctl status apache2
+2024-09-09T01:36:01.827924-07:00 femmebabe team: team [8216]: sudo purgecache
+2024-09-09T01:36:07.025894-07:00 femmebabe team: team [8216]: sudo purgecache
+2024-09-09T01:37:57.453085-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:37:58.285675-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:39:44.804569-07:00 femmebabe team: team [8216]: watchlogs
+2024-09-09T01:39:49.983365-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:40:06.904249-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T01:40:16.030089-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:40:17.285158-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:40:53.613577-07:00 femmebabe team: team [8216]: watchlogs
+2024-09-09T01:41:11.772913-07:00 femmebabe team: team [8216]: watchlogs
+2024-09-09T01:41:13.308277-07:00 femmebabe team: team [8216]: logs
+2024-09-09T01:56:30.212729-07:00 femmebabe team: team [8216]: compinfo
+2024-09-09T01:56:59.084874-07:00 femmebabe team: team [8216]: nano lotteh/celery.py 
+2024-09-09T01:57:55.917550-07:00 femmebabe team: team [8216]: nano feed/views.py 
+2024-09-09T01:58:04.408038-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:01:54.106570-07:00 femmebabe team: team [8216]: nano feed/templates/feed/private.html 
+2024-09-09T02:01:57.568944-07:00 femmebabe team: team [8216]: nano feed/templates/feed/scroll
+2024-09-09T02:04:03.360910-07:00 femmebabe team: team [8216]: nano feed/templates/feed/scroll.html 
+2024-09-09T02:04:14.627765-07:00 femmebabe team: team [8216]: nano feed/templates/feed/private.html 
+2024-09-09T02:04:17.369019-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:05:06.769182-07:00 femmebabe team: team [8216]: nano feed/templates/feed/_post.html
+2024-09-09T02:14:08.846010-07:00 femmebabe team: team [8216]: nano feed/templates/feed/new_post.html
+2024-09-09T02:14:25.173994-07:00 femmebabe team: team [8216]: nano feed/templates/feed/post_edit_form.html 
+2024-09-09T02:14:48.082184-07:00 femmebabe team: team [8216]: nano feed/templates/feed/new_post.html
+2024-09-09T02:15:13.613769-07:00 femmebabe team: team [8216]: nano feed/templates/feed/post_edit_form.html 
+2024-09-09T02:15:38.936657-07:00 femmebabe team: team [8216]: nano feed/templates/feed/new_post.html
+2024-09-09T02:16:00.499379-07:00 femmebabe team: team [8216]: nano feed/templates/feed/new_post.html
+2024-09-09T02:16:07.119798-07:00 femmebabe team: team [8216]: nano feed/templates/feed/post_edit_form.html 
+2024-09-09T02:16:11.779171-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:18:20.781612-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:18:25.908953-07:00 femmebabe team: team [8216]: nano feed/views.py 
+2024-09-09T02:19:33.761686-07:00 femmebabe team: team [8216]: nano payments/views.py 
+2024-09-09T02:20:23.782531-07:00 femmebabe team: team [8216]: nano payments/views.py 
+2024-09-09T02:20:25.814327-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:23:18.023372-07:00 femmebabe team: team [8216]: python manage.py shell
+2024-09-09T02:23:42.709648-07:00 femmebabe team: team [8216]: sudo pushweb
+2024-09-09T02:23:47.090485-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T02:23:49.533970-07:00 femmebabe team: team [8216]: sudo purgecache
+2024-09-09T02:24:21.750287-07:00 femmebabe team: team [8216]: logs
+2024-09-09T02:30:38.546355-07:00 femmebabe team: team [8216]: logs
+2024-09-09T02:31:08.648593-07:00 femmebabe team: team [8216]: nano payments/templates/payments/buy_photo_crypto.html 
+2024-09-09T02:31:21.565690-07:00 femmebabe team: team [8216]: nano payments/templates/payments/subscribe_crypto.html 
+2024-09-09T02:31:32.729506-07:00 femmebabe team: team [8216]: nano payments/templates/payments/subscribe_crypto.html 
+2024-09-09T02:31:43.815802-07:00 femmebabe team: team [8216]: nano payments/templates/payments/surrogacy_crypto.html 
+2024-09-09T02:32:10.357504-07:00 femmebabe team: team [8216]: nano payments/templates/payments/tip_crypto_simple.html 
+2024-09-09T02:32:20.699261-07:00 femmebabe team: team [8216]: nano payments/templates/payments/tip_crypto.html 
+2024-09-09T02:32:46.684027-07:00 femmebabe team: team [8216]: rm payments/templates/payments/subscribe_bitcoin.html 
+2024-09-09T02:36:09.936703-07:00 femmebabe team: team [8216]: nano feed/views.py 
+2024-09-09T02:36:36.663046-07:00 femmebabe team: team [8216]: nano payments/views.py 
+2024-09-09T02:36:41.427978-07:00 femmebabe team: team [8216]: sudo doreload
+2024-09-09T05:22:00.874788-07:00 femmebabe team: team [8205]: python last_logins.py 
+2024-09-09T05:22:14.421721-07:00 femmebabe team: team [8205]: cd lotteh/
+2024-09-09T05:22:18.262425-07:00 femmebabe team: team [8205]: source venv/bin/activate
+2024-09-09T05:23:53.572392-07:00 femmebabe team: team [8205]: nano shell/templates/shell/logins.html 
+2024-09-09T06:09:02.185108-07:00 femmebabe team: team [8205]: nano shell/templates/shell/logins.html 
+2024-09-09T09:11:39.518823-07:00 femmebabe team: team [16851]: python last_logins.py 
+2024-09-09T09:11:41.253729-07:00 femmebabe team: team [16851]: ls
+2024-09-09T09:11:43.730359-07:00 femmebabe team: team [16851]: cleR
+2024-09-09T09:11:46.318148-07:00 femmebabe team: team [16851]: clear
+2024-09-09T10:17:02.798298-07:00 femmebabe team: team [20623]: clear
+2024-09-09T10:17:29.810147-07:00 femmebabe team: team [20754]: clear
+2024-09-09T10:17:37.028691-07:00 femmebabe team: team [20754]: cd lotteh
+2024-09-09T10:18:21.662523-07:00 femmebabe team: team [20754]: ls barcode
+2024-09-09T10:18:22.981667-07:00 femmebabe team: team [20754]: ls verify
+2024-09-09T10:21:43.935133-07:00 femmebabe team: team [21239]: clear
+2024-09-09T10:21:57.927790-07:00 femmebabe team: team [21239]: cat lotteh/settings.py
+2024-09-09T10:22:04.598082-07:00 femmebabe team: team [21239]: cd lotteh
+2024-09-09T10:22:07.721839-07:00 femmebabe team: team [21239]: cd lotteh
+2024-09-09T10:22:12.870125-07:00 femmebabe team: team [21239]: cat lotteh/settings.py
+2024-09-09T10:36:49.101066-07:00 femmebabe team: team [21861]: clear
+2024-09-09T10:49:46.783714-07:00 femmebabe team: team [21861]: ls
+2024-09-09T23:36:47.789546-07:00 femmebabe team: team [290596]: ls
+2024-09-09T23:36:50.579577-07:00 femmebabe team: team [290596]: cd lotteh/
+2024-09-09T23:36:52.876861-07:00 femmebabe team: team [290596]: df -h /
+2024-09-09T23:37:01.673877-07:00 femmebabe team: team [290596]: ls
+2024-09-09T23:37:08.659230-07:00 femmebabe team: team [290596]: ls /mnt
+2024-09-09T23:37:13.792992-07:00 femmebabe team: team [290596]: du -sh /mnt/backup
+2024-09-09T23:37:24.149481-07:00 femmebabe team: team [290596]: sudo du -sh /mnt/backup
+2024-09-09T23:37:43.081801-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-09T23:38:02.238595-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-09T23:38:08.248765-07:00 femmebabe team: team [290596]: ls /mnt/backup/lotteh
+2024-09-09T23:38:34.958287-07:00 femmebabe team: team [290596]: sudo rm -r /mnt/backup/lotteh/femmebabe-backup-open/
+2024-09-09T23:38:40.338049-07:00 femmebabe team: team [290596]: du -sh /
+2024-09-09T23:38:41.936133-07:00 femmebabe team: team [290596]: df -h /
+2024-09-09T23:39:18.342441-07:00 femmebabe team: team [290596]: sudo rm -r /mnt/backup/*
+2024-09-09T23:39:20.546175-07:00 femmebabe team: team [290596]: df -h /
+2024-09-09T23:39:25.295382-07:00 femmebabe team: team [290596]: sudo systemctl reload apache2
+2024-09-09T23:43:10.426137-07:00 femmebabe team: team [290596]: sudo ascript backup
+2024-09-09T23:43:15.852183-07:00 femmebabe team: team [290596]: sudo mount /dev/sdb2 /mnt/backup
+2024-09-09T23:43:18.991582-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-09T23:43:25.618546-07:00 femmebabe team: team [290596]: sudo umount /mnt/backup
+2024-09-09T23:43:31.420346-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-09T23:43:51.235815-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-09T23:43:53.200813-07:00 femmebabe team: team [290596]: df -h /
+2024-09-09T23:44:12.184884-07:00 femmebabe team: team [290596]: du -sh /var
+2024-09-09T23:44:14.736392-07:00 femmebabe team: team [290596]: sudo du -sh /var
+2024-09-09T23:44:26.491376-07:00 femmebabe team: team [290596]: sudo du -sh /var/*
+2024-09-09T23:44:38.015852-07:00 femmebabe team: team [290596]: cd /var/lib
+2024-09-09T23:44:38.510100-07:00 femmebabe team: team [290596]: ls
+2024-09-09T23:44:43.523237-07:00 femmebabe team: team [290596]: du -sh /var/log
+2024-09-09T23:44:45.961993-07:00 femmebabe team: team [290596]: du -sh /var/lib
+2024-09-09T23:44:48.846052-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib
+2024-09-09T23:44:51.212588-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib/*
+2024-09-09T23:45:02.970234-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib
+2024-09-09T23:45:09.891666-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib/postgresql
+2024-09-09T23:45:18.123861-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib/postgresql/*
+2024-09-09T23:45:20.985704-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib/postgresql/16
+2024-09-09T23:46:28.829847-07:00 femmebabe team: team [290596]: sudo du -sh /var/lib/postgresql/16
+2024-09-09T23:46:29.816740-07:00 femmebabe team: team [290596]: cd 
+2024-09-09T23:46:31.577540-07:00 femmebabe team: team [290596]: cd lotteh/
+2024-09-09T23:46:34.401007-07:00 femmebabe team: team [290596]: cat scripts/pgsetup 
+2024-09-09T23:47:04.704813-07:00 femmebabe team: team [290596]: sudo -u postgres psql -U postgres -c"\l+"
+2024-09-09T23:47:18.814350-07:00 femmebabe team: team [290596]: cp scripts/pgsetup scripts/pgsetupfix
+2024-09-09T23:49:09.894286-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:49:11.257442-07:00 femmebabe team: team [290596]: ls db.json.a
+2024-09-09T23:49:13.498469-07:00 femmebabe team: team [290596]: ls db.json
+2024-09-09T23:49:31.651601-07:00 femmebabe team: team [290596]: sudo ascript backup
+2024-09-09T23:50:00.526053-07:00 femmebabe team: team [290596]: sudo ascript setup
+2024-09-09T23:50:07.973523-07:00 femmebabe team: team [290596]: cat scripts/backup | grep cat
+2024-09-09T23:50:13.432292-07:00 femmebabe team: team [290596]: cat scripts/setup | grep cat
+2024-09-09T23:50:29.317568-07:00 femmebabe team: team [290596]: cat db.json.?? > db.json
+2024-09-09T23:51:08.631628-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:51:14.296375-07:00 femmebabe team: team [290596]: nano scripts/back
+2024-09-09T23:51:21.038485-07:00 femmebabe team: team [290596]: nano scripts/convert
+2024-09-09T23:51:32.901918-07:00 femmebabe team: team [290596]: nano scripts/backup
+2024-09-09T23:51:45.644308-07:00 femmebabe team: team [290596]: nano scripts/convert
+2024-09-09T23:57:57.455389-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:58:10.680227-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:58:16.462109-07:00 femmebabe team: team [290596]: cat lotteh/settings.py | grep database
+2024-09-09T23:58:36.028542-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:58:51.154139-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-09T23:59:03.606823-07:00 femmebabe team: team [290596]: nano users/models.py 
+2024-09-09T23:59:14.260482-07:00 femmebabe team: team [290596]: nano users/admin.py 
+2024-09-09T23:59:39.843426-07:00 femmebabe team: team [290596]: nano users/models.py 
+2024-09-10T00:00:03.647835-07:00 femmebabe team: team [290596]: nano users/admin.py 
+2024-09-10T00:07:28.197148-07:00 femmebabe team: team [290596]: nano users/patch.py
+2024-09-10T00:09:10.855521-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:09:14.189611-07:00 femmebabe team: team [290596]: nano scripts/back
+2024-09-10T00:09:30.471609-07:00 femmebabe team: team [290596]: nano scripts/backup 
+2024-09-10T00:11:05.665283-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:14:23.296732-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:16:06.593736-07:00 femmebabe team: team [290596]: nano users/patch.py
+2024-09-10T00:16:22.986227-07:00 femmebabe team: team [290596]: cp cp login.py patch_users.py
+2024-09-10T00:16:31.168389-07:00 femmebabe team: team [290596]: cp login.py patch_users.py
+2024-09-10T00:17:12.104956-07:00 femmebabe team: team [290596]: nano patch_users.py 
+2024-09-10T00:18:14.162884-07:00 femmebabe team: team [290596]: nano users/patch.py
+2024-09-10T00:18:16.946020-07:00 femmebabe team: team [290596]: nano users/patch.py
+2024-09-10T00:18:38.437659-07:00 femmebabe team: team [290596]: nano patch_users.py 
+2024-09-10T00:18:46.264977-07:00 femmebabe team: team [290596]: nano users/patch.py
+2024-09-10T00:18:54.122302-07:00 femmebabe team: team [290596]: nano patch_users.py 
+2024-09-10T00:19:22.386152-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:19:29.531979-07:00 femmebabe team: team [290596]: cp patch_users.py patch_database.py
+2024-09-10T00:19:36.346175-07:00 femmebabe team: team [290596]: nano patch_database.py 
+2024-09-10T00:19:40.083660-07:00 femmebabe team: team [290596]: rm patch_users.py 
+2024-09-10T00:21:51.677553-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:22:02.744056-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T00:22:09.413783-07:00 femmebabe team: team [290596]: du -sh db.json.*
+2024-09-10T00:22:34.889380-07:00 femmebabe team: team [290596]: cat db.json.?? > db.json
+2024-09-10T00:22:40.108372-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T00:22:45.031084-07:00 femmebabe team: team [290596]: rm db.json
+2024-09-10T00:23:22.657658-07:00 femmebabe team: team [290596]: cat db.json.?? > db.json
+2024-09-10T00:23:45.733843-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T00:24:02.974359-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T00:24:25.569335-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:25:28.121646-07:00 femmebabe team: team [290596]: sudo sh -c "./home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:25:46.410413-07:00 femmebabe team: team [290596]: sudo sh -c "/home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:25:46.716745-07:00 femmebabe team: team [290596]: sudo sh -c "/home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:26:57.145777-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T00:31:53.229467-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:32:06.892408-07:00 femmebabe team: team [290596]: sudo sh -c "/home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:32:07.264956-07:00 femmebabe team: team [290596]: sudo sh -c "/home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:32:33.707906-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T00:33:54.308149-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:34:17.145526-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T00:34:22.238205-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:35:21.139864-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:38:01.958664-07:00 femmebabe team: team [295894]: ls
+2024-09-10T00:38:34.877896-07:00 femmebabe team: team [296029]: ls
+2024-09-10T00:38:54.894184-07:00 femmebabe team: team [290596]: sudo sh -c "/home/team/lotteh/scripts/pgsetupfix" team
+2024-09-10T00:39:22.540170-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T00:39:33.600057-07:00 femmebabe team: team [296029]: cd lotteh/
+2024-09-10T00:39:34.095820-07:00 femmebabe team: team [296029]: ls
+2024-09-10T00:39:34.826042-07:00 femmebabe team: team [290596]: cat db.json.?? > dbfix.json
+2024-09-10T00:39:44.546280-07:00 femmebabe team: team [290596]: du -sh dbfix.json
+2024-09-10T00:39:49.878258-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T00:39:56.319150-07:00 femmebabe team: team [290596]: rm db.json
+2024-09-10T00:40:03.144993-07:00 femmebabe team: team [290596]: cat scripts/backup 
+2024-09-10T00:40:52.183867-07:00 femmebabe team: team [290596]: source venv/bin/activate
+2024-09-10T00:41:06.458448-07:00 femmebabe team: team [296029]: source venv/bin/activate
+2024-09-10T00:41:17.050751-07:00 femmebabe team: team [295894]: cd lott
+2024-09-10T00:41:18.234141-07:00 femmebabe team: team [295894]: cd lotteh/
+2024-09-10T00:41:24.406506-07:00 femmebabe team: team [295894]: nano lotteh/settings.py 
+2024-09-10T00:41:35.690868-07:00 femmebabe team: team [295894]: rm dbfix.json 
+2024-09-10T00:41:43.244487-07:00 femmebabe team: team [296029]: python manage.py makemigrations && python manage.py migrate
+2024-09-10T00:41:48.768745-07:00 femmebabe team: team [295894]: ls db.js*
+2024-09-10T00:51:50.205628-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json
+2024-09-10T02:28:16.121451-07:00 femmebabe team: team [290596]: du -sh db.json
+2024-09-10T02:28:20.252778-07:00 femmebabe team: team [290596]: du -sh dbfix.json
+2024-09-10T02:28:22.846625-07:00 femmebabe team: team [290596]: du -sh dbfix.json
+2024-09-10T02:29:51.391970-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T02:30:00.263861-07:00 femmebabe team: team [290596]: rm dbfix.json
+2024-09-10T02:30:12.430213-07:00 femmebabe team: team [290596]: rm dbfix.json
+2024-09-10T02:30:23.880861-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T02:31:06.793695-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T02:31:19.805733-07:00 femmebabe team: team [290596]: rm dbfix.json
+2024-09-10T02:38:05.950466-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json
+2024-09-10T02:57:17.458938-07:00 femmebabe team: team [296029]: du -sh /
+2024-09-10T02:57:19.798246-07:00 femmebabe team: team [296029]: df -h /
+2024-09-10T02:57:41.345376-07:00 femmebabe team: team [296029]: ls
+2024-09-10T02:57:52.235592-07:00 femmebabe team: team [296029]: sudo crontab -e
+2024-09-10T02:57:58.864267-07:00 femmebabe team: team [296029]: sudo systemctl stop celery celerybeat
+2024-09-10T02:58:00.101494-07:00 femmebabe team: team [296029]: sudo systemctl stop celery celerybeat
+2024-09-10T02:58:02.275966-07:00 femmebabe team: team [296029]: sudo systemctl stop celery celerybeat &
+2024-09-10T02:58:07.965790-07:00 femmebabe team: team [296029]: sudo crontab -e
+2024-09-10T02:58:17.940841-07:00 femmebabe team: team [290596]: rm db.json.*
+2024-09-10T02:58:22.988652-07:00 femmebabe team: team [290596]: sudo rm db.json.*
+2024-09-10T02:58:26.161336-07:00 femmebabe team: team [290596]: ls
+2024-09-10T02:58:30.327452-07:00 femmebabe team: team [290596]: ls media/images/
+2024-09-10T02:58:43.585985-07:00 femmebabe team: team [290596]: sudo rm media/images/*
+2024-09-10T02:58:51.350726-07:00 femmebabe team: team [290596]: ls
+2024-09-10T02:59:03.049670-07:00 femmebabe team: team [290596]: ps -aux | grep backup
+2024-09-10T02:59:24.094403-07:00 femmebabe team: team [290596]: ls /mnt/backup
+2024-09-10T02:59:44.932856-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json
+2024-09-10T02:59:46.961139-07:00 femmebabe team: team [290596]: rm dbfix.json 
+2024-09-10T02:59:48.178893-07:00 femmebabe team: team [290596]: ls
+2024-09-10T03:16:20.367225-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json
+2024-09-10T03:16:47.657332-07:00 femmebabe team: team [290596]: du -sh dbfix.json
+2024-09-10T03:19:45.233999-07:00 femmebabe team: team [290596]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T03:19:49.308945-07:00 femmebabe team: team [290596]: rm dbfix.json 
+2024-09-10T03:31:11.377423-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json
+2024-09-10T03:33:31.901937-07:00 femmebabe team: team [290596]: pip3 install django-extensions
+2024-09-10T03:33:55.872928-07:00 femmebabe team: team [290596]: python manage.py sqldiff -a -t
+2024-09-10T03:34:51.576951-07:00 femmebabe team: team [290596]: python manage.py sqldiff -a -t
+2024-09-10T03:35:28.400410-07:00 femmebabe team: team [290596]: python3 manage.py sqldiff -a -t
+2024-09-10T03:36:52.275760-07:00 femmebabe team: team [290596]: sqldiff
+2024-09-10T03:37:29.955210-07:00 femmebabe team: team [290596]: python manage.py help
+2024-09-10T03:39:07.528997-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T03:39:19.636387-07:00 femmebabe team: team [290596]: python3 manage.py sqldiff -a -t
+2024-09-10T03:54:30.138827-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json --exclude account
+2024-09-10T03:54:30.188348-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes > dbfix.json --exclude account
+2024-09-10T03:55:57.943354-07:00 femmebabe team: team [290596]: cat scripts/pgsetup
+2024-09-10T03:56:31.962766-07:00 femmebabe team: team [290596]: sudo -u postgres psql -U postgres -c "\l+"
+2024-09-10T04:00:16.296836-07:00 femmebabe team: team [295894]: ls db.js*
+2024-09-10T04:00:22.296344-07:00 femmebabe team: team [295894]: ls db.js*
+2024-09-10T04:08:18.502369-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T04:20:52.382735-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T04:21:02.329788-07:00 femmebabe team: team [290596]: nano scripts/pgsetup
+2024-09-10T04:21:32.080042-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T04:21:44.796557-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T04:21:47.218493-07:00 femmebabe team: team [290596]: nano scripts/pgsetupfix 
+2024-09-10T04:22:11.623547-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T04:24:09.232527-07:00 femmebabe team: team [290596]: nano lotteh/settings.py 
+2024-09-10T04:24:31.123662-07:00 femmebabe team: team [290596]: python manage.py makemigrations && python manage.py migrate
+2024-09-10T04:24:39.507078-07:00 femmebabe team: team [295894]: source venv/bin/activate
+2024-09-10T04:24:47.553370-07:00 femmebabe team: team [290596]: python manage.py makemigrations && python manage.py migrate
+2024-09-10T04:24:49.517344-07:00 femmebabe team: team [295894]: python manage.py test
+2024-09-10T04:25:31.961150-07:00 femmebabe team: team [295894]: nano face/test.py 
+2024-09-10T04:25:47.356719-07:00 femmebabe team: team [295894]: rm face/test.py 
+2024-09-10T04:25:55.975999-07:00 femmebabe team: team [295894]: python manage.py test
+2024-09-10T04:26:07.653974-07:00 femmebabe team: team [295894]: nano lotteh/test.py
+2024-09-10T04:26:11.288150-07:00 femmebabe team: team [295894]: rm lotteh/test.py
+2024-09-10T04:26:16.338129-07:00 femmebabe team: team [295894]: rm lotteh/test.py
+2024-09-10T04:26:19.600467-07:00 femmebabe team: team [295894]: nano test.py 
+2024-09-10T04:26:21.431311-07:00 femmebabe team: team [295894]: rm test.py
+2024-09-10T04:26:30.183929-07:00 femmebabe team: team [295894]: python manage.py test
+2024-09-10T04:30:13.160421-07:00 femmebabe team: team [295894]: python manage.py test
+2024-09-10T04:30:29.965222-07:00 femmebabe team: team [295894]: nano lotteh/settings.py 
+2024-09-10T04:37:26.954114-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T04:46:03.003464-07:00 femmebabe team: team [290596]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T04:46:10.406349-07:00 femmebabe team: team [290596]: du -sh ./
+2024-09-10T04:46:12.490094-07:00 femmebabe team: team [290596]: df -h /
+2024-09-10T04:46:49.792404-07:00 femmebabe team: team [290596]: df -h /
+2024-09-10T04:46:59.219099-07:00 femmebabe team: team [290596]: nano scripts/dbfix
+2024-09-10T04:47:01.386080-07:00 femmebabe team: team [290596]: sudo reboot
+2024-09-10T04:59:19.975899-07:00 femmebabe team: team [8025]: cat lotteh/settings.py
+2024-09-10T04:59:26.913265-07:00 femmebabe team: team [8025]: cd lotteh
+2024-09-10T04:59:31.256954-07:00 femmebabe team: team [8025]: source venv/bin/activate
+2024-09-10T04:59:55.730865-07:00 femmebabe team: team [8025]: python manage.py check
+2024-09-10T05:00:31.629338-07:00 femmebabe team: team [8025]: nano blacklist.txt 
+2024-09-10T05:00:58.912506-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:01:10.492114-07:00 femmebabe team: team [8025]: tail --lines 600 /var/log/auth.log
+2024-09-10T05:02:03.058731-07:00 femmebabe team: team [8025]: ssh team@lotteh.com
+2024-09-10T05:02:12.541308-07:00 femmebabe team: team [8025]: ssh team@lotteh.com -p 42672
+2024-09-10T05:02:25.949179-07:00 femmebabe team: team [8025]: tail --lines 600 /var/log/auth.log
+2024-09-10T05:02:38.457217-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:03:34.150562-07:00 femmebabe team: team [8025]: nano pam.py 
+2024-09-10T05:03:47.348640-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:04:05.261469-07:00 femmebabe team: team [8025]: nano pam.py 
+2024-09-10T05:04:10.470455-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:05:17.596680-07:00 femmebabe team: team [8025]: nano pam.py 
+2024-09-10T05:05:22.645859-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:05:26.901726-07:00 femmebabe team: team [8025]: ssh team@lotteh.com -p 42672
+2024-09-10T05:05:33.123810-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:05:44.222476-07:00 femmebabe team: team [8025]: tail --lines 5000 /var/log/auth.log
+2024-09-10T05:05:56.690797-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:05:58.426617-07:00 femmebabe team: team [8025]: tail --lines 5000 /var/log/auth.log
+2024-09-10T05:06:49.776681-07:00 femmebabe team: team [8025]: nano pam.py 
+2024-09-10T05:06:53.752998-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:06:55.113842-07:00 femmebabe team: team [8025]: ./pam.sh 
+2024-09-10T05:07:42.906972-07:00 femmebabe team: team [8025]: nano pam.py 
+2024-09-10T05:08:02.840166-07:00 femmebabe team: team [8025]: ./logout.sh 
+2024-09-10T05:08:50.707801-07:00 femmebabe team: team [9260]: cat lotteh/settings.py
+2024-09-10T05:08:54.287238-07:00 femmebabe team: team [9260]: cd lotteh/
+2024-09-10T05:08:56.830431-07:00 femmebabe team: team [9260]: ls scripts/
+2024-09-10T05:09:03.938247-07:00 femmebabe team: team [9260]: cat scripts/dbfix 
+2024-09-10T05:09:10.428213-07:00 femmebabe team: team [9260]: sudo chmod a+x scripts/dbfix 
+2024-09-10T05:09:16.358757-07:00 femmebabe team: team [9260]: ./scripts/dbfix 
+2024-09-10T05:09:21.371353-07:00 femmebabe team: team [9260]: ./scripts/dbfix 
+2024-09-10T05:09:39.800388-07:00 femmebabe team: team [9260]: nano scripts/dbfix 
+2024-09-10T05:09:40.751854-07:00 femmebabe team: team [8025]: sudo apt update && sudo apt upgrade
+2024-09-10T05:15:44.475055-07:00 femmebabe team: team [9260]: ./scripts/dbfix 
+2024-09-10T05:17:37.553751-07:00 femmebabe team: team [9260]: rm dbfix.json 
+2024-09-10T05:17:50.374226-07:00 femmebabe team: team [9260]: source venv/bin/activate
+2024-09-10T05:17:52.764469-07:00 femmebabe team: team [9260]: rm dbfix.json 
+2024-09-10T05:17:57.649021-07:00 femmebabe team: team [9260]: rm dbfix.json 
+2024-09-10T05:24:12.984458-07:00 femmebabe team: team [9260]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T06:26:23.745753-07:00 femmebabe team: team [23480]: cat lotteh/settings.py
+2024-09-10T06:26:24.019252-07:00 femmebabe team: team [23498]: cat lotteh/settings.py
+2024-09-10T06:26:40.026373-07:00 femmebabe team: team [23498]: cd lotteh/
+2024-09-10T06:26:46.711178-07:00 femmebabe team: team [23498]: nano users/models.py 
+2024-09-10T06:26:54.187758-07:00 femmebabe team: team [23498]: cat users/models.py | grep -nH 
+2024-09-10T06:26:56.892009-07:00 femmebabe team: team [23498]: cat users/models.py | grep -nH crop
+2024-09-10T06:29:39.938760-07:00 femmebabe team: team [23498]: nano users/models.py 
+2024-09-10T06:47:36.892450-07:00 femmebabe team: team [23498]: nano users/models.py 
+2024-09-10T06:47:40.646747-07:00 femmebabe team: team [23498]: cat users/models.py | grep -nH upload_posts.py 
+2024-09-10T06:48:26.369736-07:00 femmebabe team: team [23498]: nano feed/models.py
+2024-09-10T06:48:32.179774-07:00 femmebabe team: team [23480]: cd lotteh/
+2024-09-10T06:48:50.032032-07:00 femmebabe team: team [23498]: du -sh dbfix.json 
+2024-09-10T06:49:00.444846-07:00 femmebabe team: team [23480]: cat scripts/dbfix 
+2024-09-10T06:49:06.803615-07:00 femmebabe team: team [23480]: cat scripts/dbfix 
+2024-09-10T06:49:11.950032-07:00 femmebabe team: team [23480]: source venv/bin/activate
+2024-09-10T06:49:17.003169-07:00 femmebabe team: team [23480]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T06:49:17.011498-07:00 femmebabe team: team [23480]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T06:49:24.047044-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T06:49:36.424331-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T06:49:43.102931-07:00 femmebabe team: team [23480]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T06:50:02.472072-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T06:50:13.132123-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T06:50:32.332297-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/apps/registry.py 
+2024-09-10T06:50:38.529308-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T06:51:03.535932-07:00 femmebabe team: team [23480]: nano live/models.py 
+2024-09-10T06:51:05.612284-07:00 femmebabe team: team [23480]: cat feed/crop.py 
+2024-09-10T06:51:12.876187-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T06:51:21.579561-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/apps/registry.py 
+2024-09-10T06:51:40.805853-07:00 femmebabe team: team [23498]: du -sh dbfix.json 
+2024-09-10T06:56:32.475221-07:00 femmebabe team: team [23480]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json
+2024-09-10T07:05:08.616651-07:00 femmebabe team: team [23480]: cat scripts/pgsetup
+2024-09-10T07:05:22.864877-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c"
+2024-09-10T07:05:27.760805-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c;"
+2024-09-10T07:05:30.096973-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c"
+2024-09-10T07:05:35.659895-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c django"
+2024-09-10T07:05:43.577399-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c database"
+2024-09-10T07:05:45.465606-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c database"
+2024-09-10T07:06:01.649237-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres
+2024-09-10T07:06:19.267960-07:00 femmebabe team: team [23480]: sudo -u postgres psql
+2024-09-10T07:06:28.440288-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\l"
+2024-09-10T07:06:43.494835-07:00 femmebabe team: team [23480]: sudo -u postgres psql -U postgres -c "\c database"
+2024-09-10T07:07:35.344687-07:00 femmebabe team: team [23480]: sudo -u postgres psql
+2024-09-10T07:11:56.330509-07:00 femmebabe team: team [23480]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:15:50.421142-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:15:50.767128-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:16:02.769982-07:00 femmebabe team: team [23480]: nano  users/models.py 
+2024-09-10T07:16:27.435759-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T07:16:36.188807-07:00 femmebabe team: team [23498]: watch du -sh dbfix.json 
+2024-09-10T07:16:51.378472-07:00 femmebabe team: team [23498]: watch du -sh dbfix.json 
+2024-09-10T07:16:58.269718-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:17:22.260148-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T07:18:07.817771-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:18:08.317635-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:19:04.935931-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T07:20:45.829546-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:20:54.524512-07:00 femmebabe team: team [23480]: nano web/generate.py 
+2024-09-10T07:20:55.926259-07:00 femmebabe team: team [23498]: watch du -sh dbfix.json 
+2024-09-10T07:21:04.713823-07:00 femmebabe team: team [23498]: cp login.py make_email_list.py
+2024-09-10T07:22:24.790316-07:00 femmebabe team: team [23498]: nano make_email_list.py
+2024-09-10T07:22:28.155201-07:00 femmebabe team: team [23498]: python make_email_list.py 
+2024-09-10T07:22:34.807822-07:00 femmebabe team: team [23498]: source venv/bin/activate
+2024-09-10T07:22:40.438312-07:00 femmebabe team: team [23480]: nano web/generate.py 
+2024-09-10T07:22:40.964436-07:00 femmebabe team: team [23498]: python make_email_list.py 
+2024-09-10T07:22:45.809459-07:00 femmebabe team: team [23480]: cat email_list.txt 
+2024-09-10T07:23:11.483100-07:00 femmebabe team: team [23480]: sudo ascript backup
+2024-09-10T07:23:15.028015-07:00 femmebabe team: team [23480]: cat email_list.txt 
+2024-09-10T07:23:17.469950-07:00 femmebabe team: message repeated 3 times: [ team [23480]: cat email_list.txt ]
+2024-09-10T07:23:18.145903-07:00 femmebabe team: team [23498]: python make_email_list.py 
+2024-09-10T07:23:18.780976-07:00 femmebabe team: team [23480]: cat email_list.txt 
+2024-09-10T07:23:20.501886-07:00 femmebabe team: message repeated 2 times: [ team [23480]: cat email_list.txt ]
+2024-09-10T07:23:53.163405-07:00 femmebabe team: team [23498]: nano make_email_list.py
+2024-09-10T07:23:54.815764-07:00 femmebabe team: team [23498]: python make_email_list.py 
+2024-09-10T07:24:06.593957-07:00 femmebabe team: team [23498]: nano make_email_list.py
+2024-09-10T07:24:14.284342-07:00 femmebabe team: team [23498]: python make_email_list.py 
+2024-09-10T07:25:16.163968-07:00 femmebabe team: team [23498]: cat requirements.txt 
+2024-09-10T07:35:00.939464-07:00 femmebabe team: team [23498]: cat requirements.txt 
+2024-09-10T07:35:06.070965-07:00 femmebabe team: team [23498]: cat scripts/dbfix 
+2024-09-10T07:35:38.527066-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T07:36:01.571356-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:36:08.953235-07:00 femmebabe team: team [23480]: sudo systemctl status apache2
+2024-09-10T07:37:58.541616-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:39:04.952068-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:41:13.188164-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:41:24.892484-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:41:39.452231-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:41:55.103769-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:41:59.187352-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:42:02.542539-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:42:18.015050-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:43:20.557921-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:44:07.807548-07:00 femmebabe team: message repeated 2 times: [ team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py ]
+2024-09-10T07:44:15.314252-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:46:49.915026-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:46:58.006307-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:47:56.379906-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:48:08.045857-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:48:10.864610-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:48:19.783932-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:48:22.836908-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:48:26.057606-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:48:27.078398-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:48:35.896023-07:00 femmebabe team: team [23480]: pip3 install ijson
+2024-09-10T07:48:41.780096-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:49:29.615552-07:00 femmebabe team: team [23498]: pip3 install msgpack
+2024-09-10T07:49:30.844517-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:49:35.144217-07:00 femmebabe team: team [23498]: pip3 install msgpack
+2024-09-10T07:49:59.318113-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:50:07.770247-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:50:07.783053-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:50:26.881225-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:50:33.958686-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:51:49.295423-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:51:52.626674-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:51:59.312274-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:52:07.680431-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:52:34.474769-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:52:41.411912-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T07:53:15.206315-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:54:03.022170-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:54:09.128051-07:00 femmebabe team: team [23480]: watch du -sh db.json
+2024-09-10T07:54:27.196401-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:54:32.866165-07:00 femmebabe team: team [23480]: sudo systemctl start celery
+2024-09-10T07:54:51.351831-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:55:13.529138-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T07:55:26.310141-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T07:55:33.000491-07:00 femmebabe team: team [23480]: ps -aux | grep loaddata
+2024-09-10T07:55:39.498186-07:00 femmebabe team: team [23480]: kill 43063
+2024-09-10T07:55:43.535252-07:00 femmebabe team: team [23480]: kill 2284
+2024-09-10T07:55:54.034492-07:00 femmebabe team: team [23480]: kill 9144
+2024-09-10T07:55:56.349248-07:00 femmebabe team: team [23480]: ps -aux | grep loaddata
+2024-09-10T07:55:59.941760-07:00 femmebabe team: message repeated 3 times: [ team [23480]: ps -aux | grep loaddata]
+2024-09-10T08:02:05.329353-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T08:02:05.565763-07:00 femmebabe team: team [23480]: n
+2024-09-10T08:02:05.590139-07:00 femmebabe team: message repeated 2 times: [ team [23480]: n]
+2024-09-10T08:02:06.183148-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T08:03:15.547475-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T08:03:17.596265-07:00 femmebabe team: team [23480]: n
+2024-09-10T08:03:27.696147-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T08:03:35.454368-07:00 femmebabe team: team [23480]: watch du -sh db.json
+2024-09-10T08:09:22.216244-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T13:53:05.954548-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:53:17.152059-07:00 femmebabe team: message repeated 2 times: [ team [23480]: watch du -sh dbfix.json]
+2024-09-10T13:53:30.019982-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T13:54:27.440737-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:54:36.723656-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:54:38.583679-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:55:10.246398-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:55:11.761222-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:55:50.429223-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:55:52.308019-07:00 femmebabe team: team [23480]: free -h
+2024-09-10T13:56:00.911438-07:00 femmebabe team: message repeated 8 times: [ team [23480]: free -h]
+2024-09-10T13:56:10.870566-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:56:13.557521-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:56:33.674655-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:56:35.861487-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:56:43.800818-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:56:47.785850-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:56:53.728739-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:56:57.549958-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:57:01.020144-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T13:57:08.197104-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:57:12.527799-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:57:35.666056-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T13:58:25.541912-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T13:58:25.767225-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T14:00:28.270762-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:00:38.557879-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:00:50.881044-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T14:00:58.232073-07:00 femmebabe team: message repeated 2 times: [ team [23480]: watch du -sh dbfix.json]
+2024-09-10T14:01:01.691370-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:01:04.224365-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T14:01:10.710888-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:01:13.466689-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:01:17.027546-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T14:02:50.179507-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:02:51.712465-07:00 femmebabe team: team [23480]: free -h
+2024-09-10T14:04:24.517968-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:05:02.550948-07:00 femmebabe team: team [23480]: ompinfo
+2024-09-10T14:05:02.816751-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T14:05:18.262952-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:05:33.455050-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:09:53.845083-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account > dbfix.json
+2024-09-10T14:13:56.095991-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T14:14:00.326971-07:00 femmebabe team: team [23480]: watch du -sh dbfix.json
+2024-09-10T14:17:16.152846-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --format xml > dbfix.json
+2024-09-10T14:17:20.144315-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:18:12.202605-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T14:18:41.232127-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T14:20:29.872324-07:00 femmebabe team: team [23480]: python manage.py shell
+2024-09-10T14:20:32.944357-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T14:20:40.308097-07:00 femmebabe team: team [23480]: free -h
+2024-09-10T14:20:52.841523-07:00 femmebabe team: message repeated 14 times: [ team [23480]: free -h]
+2024-09-10T14:21:03.415010-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --format xml > dbfix.xml
+2024-09-10T14:21:07.694525-07:00 femmebabe team: team [23480]: watch free -h
+2024-09-10T14:21:18.123170-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:21:30.522553-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:21:53.908857-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:24:42.728318-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:24:52.322527-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --format xml > dbfix.xml
+2024-09-10T14:25:06.263664-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/serializers/json.py 
+2024-09-10T14:25:20.128685-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:26:03.816151-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:26:53.869037-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:27:04.396073-07:00 femmebabe team: team [23480]: killall manage.py
+2024-09-10T14:27:10.713308-07:00 femmebabe team: team [23480]: killall dumpdata
+2024-09-10T14:27:18.678453-07:00 femmebabe team: team [23480]: killall "python manage.py"
+2024-09-10T14:30:20.534172-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --format xml > dbfix.xml
+2024-09-10T14:33:01.007541-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:33:14.178152-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:33:55.658359-07:00 femmebabe team: team [23480]: tail --lines 300 dbfix.xml
+2024-09-10T14:34:43.558910-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --format xml > dbfix.xml
+2024-09-10T14:34:57.976278-07:00 femmebabe team: team [23480]: tail --lines 300 dbfix.xml
+2024-09-10T14:36:39.600650-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:36:43.252341-07:00 femmebabe team: team [23480]: tail --lines 300 dbfix.xml
+2024-09-10T14:37:42.428862-07:00 femmebabe team: message repeated 9 times: [ team [23480]: tail --lines 300 dbfix.xml]
+2024-09-10T14:37:48.061045-07:00 femmebabe team: team [23480]: du -sh dbfix.xml 
+2024-09-10T14:37:57.562208-07:00 femmebabe team: message repeated 10 times: [ team [23480]: du -sh dbfix.xml ]
+2024-09-10T14:38:07.419220-07:00 femmebabe team: team [23480]: compinfo
+2024-09-10T14:38:09.389991-07:00 femmebabe team: team [23480]: du -sh dbfix.xml 
+2024-09-10T14:38:50.650939-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:40:09.925623-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:40:35.584987-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T14:40:38.983891-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:41:29.491398-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --format xml > dbfix.xml
+2024-09-10T14:42:24.533157-07:00 femmebabe team: team [23480]: nano venv/lib/python3.12/site-packages/django/core/management/commands/dumpdata.py 
+2024-09-10T14:42:29.530731-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:42:41.325805-07:00 femmebabe team: message repeated 11 times: [ team [23480]: tail --lines 10 dbfix.xml]
+2024-09-10T14:42:46.166986-07:00 femmebabe team: team [23480]: head --lines 10 dbfix.xml
+2024-09-10T14:42:54.476287-07:00 femmebabe team: message repeated 3 times: [ team [23480]: head --lines 10 dbfix.xml]
+2024-09-10T14:42:55.663158-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:44:30.422303-07:00 femmebabe team: message repeated 14 times: [ team [23480]: tail --lines 10 dbfix.xml]
+2024-09-10T14:45:46.903861-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:46:01.625895-07:00 femmebabe team: message repeated 12 times: [ team [23480]: tail --lines 10 dbfix.xml]
+2024-09-10T14:48:19.171018-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:48:19.571510-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --format xml --indent=2 > dbfix.xml
+2024-09-10T14:48:22.908066-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:49:22.357391-07:00 femmebabe team: team [23480]: python manage.py shell
+2024-09-10T14:49:23.668837-07:00 femmebabe team: team [23480]: tail --lines 10 dbfix.xml
+2024-09-10T14:49:38.075370-07:00 femmebabe team: team [23480]: tail --lines 100 dbfix.xml
+2024-09-10T14:49:57.069688-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:50:36.676748-07:00 femmebabe team: team [23480]: python manage.py shell
+2024-09-10T14:50:49.816336-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T14:50:51.397347-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:51:04.811001-07:00 femmebabe team: message repeated 10 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T14:51:07.512255-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T14:51:08.820936-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:51:49.928760-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T14:54:51.196227-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 > dbfix.xml
+2024-09-10T14:55:06.596372-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:56:11.752298-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T14:56:13.019733-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:56:23.928064-07:00 femmebabe team: message repeated 8 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T14:56:29.445022-07:00 femmebabe team: team [23480]: nano users/models.py 
+2024-09-10T14:56:52.555191-07:00 femmebabe team: message repeated 3 times: [ team [23480]: nano users/models.py ]
+2024-09-10T14:56:53.727935-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T14:57:24.737148-07:00 femmebabe team: message repeated 4 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T14:58:28.757768-07:00 femmebabe team: team [23480]: python manage.py shell
+2024-09-10T14:58:34.883517-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:01:49.397752-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:01:49.460810-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:01:49.462770-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:01:49.463837-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users.mfatoken > dbfix.xml
+2024-09-10T15:01:49.467775-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users.mfatoken > dbfix.xml
+2024-09-10T15:01:49.469018-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users.mfatoken > dbfix.xml
+2024-09-10T15:01:52.871216-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:02:09.474820-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:02:17.338122-07:00 femmebabe team: message repeated 5 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T15:04:24.988334-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:04:26.445968-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:04:41.490037-07:00 femmebabe team: message repeated 13 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T15:04:44.483087-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:04:45.787515-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:04:51.553702-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:04:53.525028-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:04:54.434312-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:05:05.058094-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:05:06.664230-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:05:19.310484-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:05:25.099804-07:00 femmebabe team: message repeated 6 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T15:06:43.186311-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users > dbfix.xml
+2024-09-10T15:07:18.908868-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml 
+2024-09-10T15:07:38.858871-07:00 femmebabe team: message repeated 18 times: [ team [23480]: watch du -sh dbfix.xml ]
+2024-09-10T15:08:33.103529-07:00 femmebabe team: team [23480]: python manage.py dumpdata users > users.json
+2024-09-10T15:08:33.314340-07:00 femmebabe team: team [23480]: python manage.py dumpdata users > users.json
+2024-09-10T15:08:43.091915-07:00 femmebabe team: team [23480]: python manage.py dumpdata auth.user > users.json
+2024-09-10T15:08:49.439397-07:00 femmebabe team: team [23480]: cat users.json 
+2024-09-10T15:08:59.779468-07:00 femmebabe team: team [23480]: du -sh users.json
+2024-09-10T15:09:16.526666-07:00 femmebabe team: team [23480]: pip3 remove Django
+2024-09-10T15:09:58.798285-07:00 femmebabe team: team [23480]: pip3 uninstall Django
+2024-09-10T15:10:18.264262-07:00 femmebabe team: team [23480]: pip3 install Django
+2024-09-10T15:10:21.682979-07:00 femmebabe team: team [23480]: du -sh users.json
+2024-09-10T15:10:39.566264-07:00 femmebabe team: team [23480]: python manage.py dumpdata auth.user > users.json
+2024-09-10T15:10:42.936964-07:00 femmebabe team: team [23480]: du -sh users.json
+2024-09-10T15:11:01.122397-07:00 femmebabe team: team [23480]: python manage.py dumpdata auth.user > users.json
+2024-09-10T15:15:49.734595-07:00 femmebabe team: team [23480]: du -sh users.json
+2024-09-10T15:17:07.765984-07:00 femmebabe team: team [23480]: du -sh dbfix.json
+2024-09-10T15:17:07.804134-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users --exclude sessions > dbfix.xml
+2024-09-10T15:17:07.805270-07:00 femmebabe team: message repeated 2 times: [ team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude users --exclude sessions > dbfix.xml]
+2024-09-10T15:17:33.494281-07:00 femmebabe team: team [23480]: du -sh dbfix.xml
+2024-09-10T15:17:34.753723-07:00 femmebabe team: team [23480]: du -sh dbfix.xml
+2024-09-10T15:17:39.371572-07:00 femmebabe team: message repeated 6 times: [ team [23480]: du -sh dbfix.xml]
+2024-09-10T15:17:50.979856-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T15:17:52.475566-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T15:18:01.630461-07:00 femmebabe team: team [23480]: tail --lines 1000 dbfix.xml
+2024-09-10T15:18:05.151257-07:00 femmebabe team: message repeated 2 times: [ team [23480]: tail --lines 1000 dbfix.xml]
+2024-09-10T15:18:17.671905-07:00 femmebabe team: team [23480]: ps -aux 
+2024-09-10T15:18:20.934365-07:00 femmebabe team: team [23480]: ps -aux | grep python
+2024-09-10T15:18:33.486625-07:00 femmebabe team: team [23480]: kill 132904
+2024-09-10T15:18:33.943053-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude sessions > dbfix.xml
+2024-09-10T15:23:35.192032-07:00 femmebabe team: team [23480]: watch du -sh dbfix.xml
+2024-09-10T15:23:37.697015-07:00 femmebabe team: team [23498]: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --exclude verify --exclude vendors --format xml --indent=2 --exclude sessions --exclude users > dbfix.xml
+2024-09-10T15:23:59.648992-07:00 femmebabe team: team [23480]: cat users.json 
+2024-09-10T15:24:23.436718-07:00 femmebabe team: team [23480]: python manage.py dumpdata auth.user --exclude auth.permission > users.json
+2024-09-10T15:24:55.959067-07:00 femmebabe team: team [23498]: sudo ascript backup
+2024-09-10T15:26:19.098143-07:00 femmebabe team: team [23480]: cat users.json 
+2024-09-10T15:26:33.941888-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T15:27:00.356447-07:00 femmebabe team: team [23480]: cat users.json 
+2024-09-10T15:27:06.725612-07:00 femmebabe team: team [23480]: cat users.json 
+2024-09-10T15:27:30.430122-07:00 femmebabe team: team [23480]: sudo ascript backup
+2024-09-10T15:27:35.706376-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:29:01.589239-07:00 femmebabe team: message repeated 19 times: [ team [23480]: du -sh feed.json]
+2024-09-10T15:29:04.010548-07:00 femmebabe team: team [23480]: free -h
+2024-09-10T15:29:20.813080-07:00 femmebabe team: message repeated 21 times: [ team [23480]: free -h]
+2024-09-10T15:29:36.866527-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T15:29:38.050563-07:00 femmebabe team: team [23480]: free -h
+2024-09-10T15:32:00.720644-07:00 femmebabe team: team [23498]: python manage.py dumpdata feed > feed.json
+2024-09-10T15:42:48.751639-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T15:45:07.042052-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T15:45:15.464301-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T15:45:43.788484-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T15:45:48.778830-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T15:46:03.524553-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T15:46:09.055409-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T15:46:17.264978-07:00 femmebabe team: team [23480]: python manage.py check
+2024-09-10T15:46:24.041429-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:46:26.023168-07:00 femmebabe team: message repeated 2 times: [ team [23480]: du -sh feed.json]
+2024-09-10T15:46:26.869591-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:46:34.679261-07:00 femmebabe team: message repeated 9 times: [ team [23480]: du -sh feed.json]
+2024-09-10T15:46:36.882988-07:00 femmebabe team: team [23480]: cat feed.json
+2024-09-10T15:46:46.734303-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:46:49.473734-07:00 femmebabe team: message repeated 3 times: [ team [23480]: du -sh feed.json]
+2024-09-10T15:49:48.008958-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:49:54.397357-07:00 femmebabe team: team [23480]: ps -aux | grep python
+2024-09-10T15:49:57.489183-07:00 femmebabe team: team [23480]: du -sh feed.json
+2024-09-10T15:49:59.423489-07:00 femmebabe team: team [23480]: ps -aux | grep python
+2024-09-10T15:50:24.432206-07:00 femmebabe team: team [23480]: kill 137809
+2024-09-10T15:50:25.551558-07:00 femmebabe team: team [23498]: python manage.py dumpdata feed > feed.json
+2024-09-10T15:50:45.292738-07:00 femmebabe team: team [23498]: python manage.py dumpdata barcode > barcode.json
+2024-09-10T15:50:50.857108-07:00 femmebabe team: team [23480]: du -sh barcode.json 
+2024-09-10T15:51:05.405043-07:00 femmebabe team: team [23498]: python manage.py dumpdata verify > verify.json
+2024-09-10T15:51:13.650903-07:00 femmebabe team: team [23498]: ls data
+2024-09-10T15:51:17.519181-07:00 femmebabe team: team [23498]: mkdir dat
+2024-09-10T15:51:19.410162-07:00 femmebabe team: team [23498]: mkdir dat
+2024-09-10T15:51:21.916547-07:00 femmebabe team: team [23498]: rm dat
+2024-09-10T15:51:25.523548-07:00 femmebabe team: team [23498]: rm -r dat
+2024-09-10T15:51:27.921304-07:00 femmebabe team: team [23498]: mkdir data
+2024-09-10T15:51:38.864209-07:00 femmebabe team: team [23498]: python manage.py dumpdata verify > data/verify.json
+2024-09-10T15:52:00.522698-07:00 femmebabe team: team [23498]: python manage.py dumpdata barcode > data/barcode.json
+2024-09-10T15:52:09.806550-07:00 femmebabe team: team [23498]: ls
+2024-09-10T15:52:27.017733-07:00 femmebabe team: team [23498]: python manage.py dumpdata vendors > data/vendors.json
+2024-09-10T15:53:50.148360-07:00 femmebabe team: team [23498]: python manage.py dumpdata birthcontrol > data/birthcontrol.json
+2024-09-10T15:54:44.779429-07:00 femmebabe team: team [23498]: python manage.py dumpdata crypto > data/crypto.json
+2024-09-10T15:55:07.904174-07:00 femmebabe team: team [23498]: python manage.py dumpdata vendors > data/vendors.json
+2024-09-10T15:55:35.220638-07:00 femmebabe team: team [23480]: du -sh barcode.json 
+2024-09-10T15:55:39.199338-07:00 femmebabe team: team [23480]: du -sh data/security.json 
+2024-09-10T15:56:20.334813-07:00 femmebabe team: message repeated 58 times: [ team [23480]: du -sh data/security.json ]
+2024-09-10T15:56:25.174768-07:00 femmebabe team: team [23480]: du -sh data/*
+2024-09-10T15:59:14.829910-07:00 femmebabe team: message repeated 28 times: [ team [23480]: du -sh data/*]
+2024-09-10T15:59:30.171583-07:00 femmebabe team: team [23498]: python manage.py dumpdata security > data/security.json
+2024-09-10T15:59:54.139759-07:00 femmebabe team: team [23498]: python manage.py dumpdata security > data/security.json
+2024-09-10T16:00:17.581402-07:00 femmebabe team: team [23480]: watch du -sh data/*
+2024-09-10T16:00:37.329050-07:00 femmebabe team: team [23480]: sudo ascript backup
+2024-09-10T16:00:52.263708-07:00 femmebabe team: team [23480]: sudo ascript backup
+2024-09-10T16:01:20.019790-07:00 femmebabe team: team [23498]: split -b99M data/security.json > data/security.json.
+2024-09-10T16:01:26.664793-07:00 femmebabe team: team [23498]: ls data/secur*
+2024-09-10T16:01:37.109909-07:00 femmebabe team: team [23498]: split -b99M data/security.json  data/security.json.
+2024-09-10T16:01:39.315714-07:00 femmebabe team: team [23498]: ls data/secur*
+2024-09-10T16:01:43.928130-07:00 femmebabe team: team [23498]: rm data/security.json.
+2024-09-10T16:01:45.569996-07:00 femmebabe team: team [23498]: ls data/secur*
+2024-09-10T16:02:10.432415-07:00 femmebabe team: team [23498]: python manage.py dumpdata face > data/face.json
+2024-09-10T16:02:26.096073-07:00 femmebabe team: team [23498]: python manage.py dumpdata webauth > data/webauth.json
+2024-09-10T16:02:39.607010-07:00 femmebabe team: team [23498]: python manage.py translate webauth > data/translate.json
+2024-09-10T16:02:48.983000-07:00 femmebabe team: team [23498]: python manage.py translate > data/translate.json
+2024-09-10T16:02:49.603042-07:00 femmebabe team: team [23480]: sudo ascript backup
+2024-09-10T16:03:01.659844-07:00 femmebabe team: team [23498]: python manage.py dumpdata translate > data/translate.json
+2024-09-10T16:03:03.738822-07:00 femmebabe team: team [23480]: du -sh data/translate.json 
+2024-09-10T16:03:09.795173-07:00 femmebabe team: message repeated 3 times: [ team [23480]: du -sh data/translate.json ]
+2024-09-10T16:03:16.955057-07:00 femmebabe team: team [23480]: cat data/translate.json 
+2024-09-10T16:03:23.601644-07:00 femmebabe team: team [23498]: ls data
+2024-09-10T16:03:28.027024-07:00 femmebabe team: team [23498]: du -sh data/*
+2024-09-10T16:03:38.544821-07:00 femmebabe team: team [23480]: cat scripts/back
+2024-09-10T16:03:40.184093-07:00 femmebabe team: team [23480]: cat scripts/backup
+2024-09-10T16:04:56.058216-07:00 femmebabe team: team [23498]: python manage.py dumpdata auth.user --exclude auth.permission --exclude contenttypes> data/users.json
+2024-09-10T16:05:08.175227-07:00 femmebabe team: team [23498]: du -sh data/users.json 
+2024-09-10T16:05:12.688602-07:00 femmebabe team: team [23498]: du -sh users.json 
+2024-09-10T16:05:22.758662-07:00 femmebabe team: team [23480]: git remote -v
+2024-09-10T16:05:40.899853-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T16:05:41.689690-07:00 femmebabe team: team [23480]: sudo backup
+2024-09-10T16:07:28.285559-07:00 femmebabe team: team [23480]: nano feed/models.py
+2024-09-10T22:11:27.868889-07:00 localhost team: team [4282]: sudo reboot
+2024-09-10T22:12:10.255853-07:00 localhost team: team [5250]: sudo reboot
+2024-09-10T22:12:12.785524-07:00 localhost team: team [4282]: sudo apt install openssh-server
+2024-09-10T22:12:33.734834-07:00 localhost team: team [5250]: sudo ascript setup
+2024-09-10T22:12:55.302799-07:00 localhost team: team [5250]: sudo ufw show
+2024-09-10T22:12:59.906137-07:00 localhost team: team [5250]: sudo ufw status
+2024-09-10T22:13:16.111100-07:00 localhost team: team [5250]: sudo ufw status
+2024-09-10T22:13:27.815660-07:00 localhost team: team [5250]: cd lotteh/
+2024-09-10T22:13:37.596333-07:00 localhost team: team [5250]: nano scripts/setup
+2024-09-10T22:14:08.616658-07:00 localhost team: team [5250]: nano scripts/setup
+2024-09-10T22:15:10.769742-07:00 localhost team: team [5250]: nano scripts/setup
+2024-09-10T22:15:14.031871-07:00 localhost team: team [5250]: echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
+2024-09-10T22:15:25.270582-07:00 localhost team: team [5250]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:16:10.894313-07:00 localhost team: team [5250]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:16:14.242814-07:00 localhost team: team [5250]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:16:20.227202-07:00 localhost team: team [5250]: rm /etc/pam.d/sshd
+2024-09-10T22:16:27.906100-07:00 localhost team: team [5250]: sudo rm /etc/pam.d/sshd
+2024-09-10T22:18:47.303042-07:00 localhost team: team [5250]: sudo apt install --reinstall -o Dpkg::Options::="--force-confmiss" $(dpkg -S /etc/pam.d/\* | cut -d ':' -f 1)
+2024-09-10T22:21:03.838260-07:00 localhost team: team [5250]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:21:10.785337-07:00 localhost team: team [5250]: echo "session required pam_exec.so seteuid /home/team/lotteh/pam.sh" | sudo tee -a /etc/pam.d/sshd
+2024-09-10T22:21:15.870747-07:00 localhost team: team [5250]: echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
+2024-09-10T22:21:33.844476-07:00 localhost team: team [4282]: sudo ufw status
+2024-09-10T22:21:37.768398-07:00 localhost team: team [4282]: sudo ufw status
+2024-09-10T22:21:47.659934-07:00 localhost team: team [5250]: sudo nano /etc/ssh/sshd_config
+2024-09-10T22:22:03.348597-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:22:23.131663-07:00 localhost team: team [4282]: sudo ufw allow 42961/tcp
+2024-09-10T22:22:29.431118-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:22:30.076248-07:00 localhost team: team [4282]: sudo ufw reload
+2024-09-10T22:22:30.499775-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:22:34.657175-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:22:47.715567-07:00 localhost team: team [4282]: nano .ssh/authorized_keys 
+2024-09-10T22:22:50.555303-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:22:53.803730-07:00 localhost team: team [5250]: ssh team@localhost -p 42961
+2024-09-10T22:23:01.487001-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42961
+2024-09-10T22:23:11.874633-07:00 localhost team: team [4282]: sudo systemctl status sshd
+2024-09-10T22:23:14.126719-07:00 localhost team: team [4282]: sudo systemctl status ssh
+2024-09-10T22:23:20.219835-07:00 localhost team: team [4282]: sudo systemctl enable ssh
+2024-09-10T22:23:26.148020-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42961
+2024-09-10T22:23:27.026307-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42961
+2024-09-10T22:23:27.068589-07:00 localhost team: team [4282]: sudo systemctl start ssh
+2024-09-10T22:23:32.801830-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42961
+2024-09-10T22:23:49.898137-07:00 localhost team: team [5250]: ./pam.sh 
+2024-09-10T22:24:21.164443-07:00 localhost team: team [5250]: nano pam.py 
+2024-09-10T22:24:25.542205-07:00 localhost team: team [5250]: ./pam.sh 
+2024-09-10T22:24:33.034242-07:00 localhost team: team [16637]: sudo reboot
+2024-09-10T22:25:14.792954-07:00 localhost team: team [16637]: sudo nano /etc/hosts
+2024-09-10T22:25:59.538775-07:00 localhost team: team [4282]: sudo ufw status
+2024-09-10T22:26:10.194115-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42961
+2024-09-10T22:26:12.316967-07:00 localhost team: team [5250]: google-chrome
+2024-09-10T22:26:19.573646-07:00 localhost team: team [5250]: killall chrome
+2024-09-10T22:26:23.621043-07:00 localhost team: team [5250]: killall google-chrome
+2024-09-10T22:26:32.030274-07:00 localhost team: team [5250]: ps -aux | grep google_chrome
+2024-09-10T22:26:35.331951-07:00 localhost team: team [5250]: ps -aux | grep google chrome
+2024-09-10T22:26:37.849333-07:00 localhost team: team [5250]: ps -aux | grep google
+2024-09-10T22:26:39.478573-07:00 localhost team: team [5250]: ps -aux | grep google
+2024-09-10T22:26:43.866712-07:00 localhost team: team [5250]: ps -aux | grep chrome
+2024-09-10T22:28:32.477705-07:00 localhost team: team [4282]: nano .ssh/authorized_keys 
+2024-09-10T22:32:23.140867-07:00 localhost team: team [4282]: cd lotteh/
+2024-09-10T22:32:29.691749-07:00 localhost team: team [4282]: nano shell/views.py 
+2024-09-10T22:32:30.536292-07:00 localhost team: team [4282]: nano shell/views.py 
+2024-09-10T22:32:41.193553-07:00 localhost team: team [4282]: nano shell/consumers.py 
+2024-09-10T22:32:46.190272-07:00 localhost team: team [4282]: sudo doreload
+2024-09-10T22:32:51.970371-07:00 localhost team: team [4282]: sudo systemctl restart daphne
+2024-09-10T22:34:13.773817-07:00 localhost team: team [4282]: logs
+2024-09-10T22:34:25.748690-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:34:37.161560-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:35:00.543069-07:00 localhost team: team [4282]: sudo systemctl restart postgresql
+2024-09-10T22:35:05.733798-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:35:25.292748-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:35:28.431490-07:00 localhost team: team [4282]: cat scripts/pgsetup
+2024-09-10T22:35:40.398343-07:00 localhost team: team [4282]: sudo -u postgres psql -U postgres -c "\l+"
+2024-09-10T22:35:52.500275-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:07.807971-07:00 localhost team: team [4282]: sudo systemctl stop postgresql
+2024-09-10T22:36:11.085448-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:36:12.936999-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:14.767224-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:15.703978-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:16.562401-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:18.190315-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:19.041100-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:19.818551-07:00 localhost team: team [4282]: tail /var/log/postgresql/postgresql-16-main.log 
+2024-09-10T22:36:49.807776-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:36:51.739369-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:36:54.814318-07:00 localhost team: team [4282]: sudo systemctl status postgresql-16
+2024-09-10T22:37:01.090180-07:00 localhost team: team [4282]: sudo systemctl status postgresql@16-main.service 
+2024-09-10T22:37:06.796636-07:00 localhost team: team [4282]: sudo systemctl stop postgresql@16-main.service 
+2024-09-10T22:37:14.814828-07:00 localhost team: team [4282]: sudo systemctl start postgresql@16-main.service 
+2024-09-10T22:38:03.012433-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:38:06.875824-07:00 localhost team: team [4282]: sudo systemctl stop postgresql@16-main.service \
+2024-09-10T22:38:08.627704-07:00 localhost team: team [4282]: sudo systemctl stop postgresql@16-main.service\
+2024-09-10T22:38:09.403192-07:00 localhost team: team [4282]: sudo systemctl stop postgresql@16-main.service
+2024-09-10T22:38:19.669487-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:38:25.052024-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:38:27.403978-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:38:31.901657-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:39:39.504137-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:39:50.331870-07:00 localhost team: team [5250]: cat scripts/pgsetupfix 
+2024-09-10T22:39:56.056846-07:00 localhost team: team [5250]: cat scripts/pgsetup
+2024-09-10T22:40:12.409728-07:00 localhost team: team [5250]: cat scripts/pgsetup
+2024-09-10T22:40:26.296048-07:00 localhost team: team [5250]: cat scripts/dbfix 
+2024-09-10T22:40:41.647863-07:00 localhost team: team [5250]: cat scripts/pgsetupfix 
+2024-09-10T22:40:54.632545-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:42:42.556983-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:42:44.898900-07:00 localhost team: team [4282]: chown postgres:postgres /var/log/postgresql
+2024-09-10T22:42:52.076710-07:00 localhost root: root [20097]: 
+2024-09-10T22:42:54.735139-07:00 localhost root: root [20097]: chown postgres:postgres /var/log/postgresql
+2024-09-10T22:42:58.896954-07:00 localhost team: team [4282]: sudo su
+2024-09-10T22:43:03.807585-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:43:13.105771-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:43:23.365852-07:00 localhost team: team [4282]: sudo systemctl start postgresql@16-main.service
+2024-09-10T22:44:24.631798-07:00 localhost team: team [4282]: sudo systemctl status postgresql@16-main.service
+2024-09-10T22:44:32.043784-07:00 localhost team: team [4282]: sudo systemctl status postgresql@16-main.service
+2024-09-10T22:44:51.014384-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:44:52.929023-07:00 localhost team: team [4282]: sudo systemctl start postgresql@16-main.service
+2024-09-10T22:44:57.612419-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:45:09.127121-07:00 localhost team: team [4282]: ls /var/lib/postgresql/
+2024-09-10T22:45:14.216763-07:00 localhost team: team [4282]: ls /var/lib/postgresql/16
+2024-09-10T22:45:34.260446-07:00 localhost team: team [4282]: sudo systemctl stop postgresql
+2024-09-10T22:45:44.976942-07:00 localhost team: team [4282]: sudo systemctl stop postgresql@16-main
+2024-09-10T22:45:49.801946-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:45:57.680076-07:00 localhost team: team [4282]: sudo systemctl status postgresql
+2024-09-10T22:46:12.818546-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:46:21.541675-07:00 localhost team: team [4282]: sudo systemctl start postgresql
+2024-09-10T22:46:28.179205-07:00 localhost team: team [4282]: journalctl -xeu postgresql@16-main.service
+2024-09-10T22:46:53.407317-07:00 localhost team: team [4282]: chown postgres:postgres /var/log/postgresql -R
+2024-09-10T22:47:00.387354-07:00 localhost team: team [4282]: sudo chown postgres:postgres /var/log/postgresql -R
+2024-09-10T22:47:15.200294-07:00 localhost team: team [4282]: chmod 0700 /var/log/postgresql -R
+2024-09-10T22:47:18.848196-07:00 localhost team: team [4282]: sudo chmod 0700 /var/log/postgresql -R
+2024-09-10T22:47:27.665066-07:00 localhost team: team [4282]: sudo systemctl start postgresql@16-main
+2024-09-10T22:47:50.695835-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:48:46.285394-07:00 localhost team: team [4282]: sudo ascript setup
+2024-09-10T22:49:10.984362-07:00 localhost team: team [21631]: exit
+2024-09-10T22:49:22.364601-07:00 localhost team: team [21631]: exit
+2024-09-10T22:49:40.408251-07:00 localhost team: team [21631]: nano .ssh/authorized_keys 
+2024-09-10T22:51:20.241844-07:00 localhost team: team [21631]: nano .ssh/authorized_keys 
+2024-09-10T22:51:31.336093-07:00 localhost team: team [22080]: exit
+2024-09-10T22:51:52.041469-07:00 localhost team: team [4282]: ./pam.sh 
+2024-09-10T22:52:12.306688-07:00 localhost team: team [4282]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:52:15.329796-07:00 localhost team: team [4282]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:52:20.941546-07:00 localhost team: team [22283]: exit
+2024-09-10T22:52:24.539523-07:00 localhost team: team [5250]: cat scripts/pgsetupfix 
+2024-09-10T22:52:31.707455-07:00 localhost team: team [5250]: ssh team@lotteh.com
+2024-09-10T22:52:38.491583-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:52:45.227005-07:00 localhost team: team [5250]: ssh team@lotteh.com -p 42691
+2024-09-10T22:53:01.376167-07:00 localhost team: team [22518]: exit
+2024-09-10T22:53:29.833318-07:00 localhost team: team [22518]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:53:46.757036-07:00 localhost team: team [22518]: sudo nano /etc/ssh/sshd_config
+2024-09-10T22:53:52.076150-07:00 localhost team: team [22518]: sudo systemctl restart pam
+2024-09-10T22:53:53.840674-07:00 localhost team: team [22518]: sudo systemctl restart pam.d
+2024-09-10T22:53:58.306785-07:00 localhost team: team [22518]: sudo systemctl restart ssh
+2024-09-10T22:54:16.248746-07:00 localhost team: team [22797]: exit
+2024-09-10T22:54:52.023752-07:00 localhost team: team [22518]: sudo apt uninstall --purge openssh-server -y
+2024-09-10T22:54:58.492898-07:00 localhost team: team [22518]: sudo apt remove--purge openssh-server -y
+2024-09-10T22:55:24.607420-07:00 localhost team: team [4282]: cat /etc/ssh/sshd_config
+2024-09-10T22:55:30.030558-07:00 localhost team: team [22518]: sudo apt remove --purge openssh-server -y
+2024-09-10T22:55:52.010697-07:00 localhost team: team [22518]: sudo nano /etc/pam.d/sshd
+2024-09-10T22:56:20.995061-07:00 localhost team: team [22518]: sudo apt install openssh-server -y
+2024-09-10T22:56:24.310539-07:00 localhost team: team [4282]: cat /etc/ssh/sshd_config
+2024-09-10T22:56:57.442754-07:00 localhost team: team [4282]: sudo nano /etc/ssh/sshd_config
+2024-09-10T22:57:05.258719-07:00 localhost team: team [4282]: sudo systemctl restart ssh
+2024-09-10T22:57:18.590218-07:00 localhost team: team [22518]: cat lotteh/scripts/setup
+2024-09-10T22:57:27.106409-07:00 localhost team: team [22518]: echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
+2024-09-10T22:57:29.126949-07:00 localhost team: team [4282]: sudo nano /etc/pam.d/sshd 
+2024-09-10T22:57:32.381937-07:00 localhost team: team [4282]: sudo nano /etc/pam.d/sshd 
+2024-09-10T22:57:52.025062-07:00 localhost team: team [4282]: sudo systemctl restart ssh
+2024-09-10T22:57:59.287019-07:00 localhost team: team [22518]: echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
+2024-09-10T22:58:08.680017-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:58:09.481315-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:58:10.473601-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T22:58:18.219332-07:00 localhost team: team [4282]: sudo nano /etc/ssh/sshd_config
+2024-09-10T22:58:23.775243-07:00 localhost team: team [4282]: sudo systemctl restart ssh-server
+2024-09-10T22:58:26.473743-07:00 localhost team: team [4282]: sudo systemctl restart openssh-server
+2024-09-10T22:58:31.538205-07:00 localhost team: team [4282]: sudo systemctl restart sshd
+2024-09-10T22:58:33.150045-07:00 localhost team: team [4282]: sudo systemctl restart ssh
+2024-09-10T22:58:40.921586-07:00 localhost team: team [4282]: sudo systemctl status ssh
+2024-09-10T22:58:42.048953-07:00 localhost team: team [4282]: sudo systemctl status ssh
+2024-09-10T22:58:55.999798-07:00 localhost team: team [4282]: sudo systemctl enable ssh
+2024-09-10T22:59:05.170614-07:00 localhost team: team [4282]: sudo systemctl restart ssh
+2024-09-10T22:59:10.629368-07:00 localhost team: team [4282]: sudo ufw reload
+2024-09-10T22:59:15.242110-07:00 localhost team: team [26866]: nano .ssh/authorized_keys 
+2024-09-10T22:59:25.598662-07:00 localhost team: team [4282]: ./pam.sh 
+2024-09-10T22:59:41.062924-07:00 localhost team: team [4282]: ./logout.sh 
+2024-09-10T23:00:36.720195-07:00 localhost team: team [4282]: nano logout.py 
+2024-09-10T23:00:56.683767-07:00 localhost team: team [4282]: ./logout.sh 
+2024-09-10T23:00:57.324391-07:00 localhost team: team [22518]: ssh team@lotteh.com -p
+2024-09-10T23:01:03.223889-07:00 localhost team: team [4282]: netstat -plant | grep LISTEN
+2024-09-10T23:01:08.096337-07:00 localhost team: team [22518]: ssh team@lotteh.com -p 42961
+2024-09-10T23:01:15.635414-07:00 localhost team: team [22518]: ssh team@lotteh.com -p 42961ssh-keygen -f '/home/team/.ssh/known_hosts' -R '[lotteh.com]:42961'
+2024-09-10T23:01:17.723290-07:00 localhost team: team [22518]: ssh-keygen -f '/home/team/.ssh/known_hosts' -R '[lotteh.com]:42961'
+2024-09-10T23:01:56.744927-07:00 localhost team: team [4282]: nano logout
+2024-09-10T23:02:25.521427-07:00 localhost team: team [4282]: nano logout.py 
+2024-09-10T23:02:29.758272-07:00 localhost team: team [4282]: ./logout.py 
+2024-09-10T23:02:41.390859-07:00 localhost team: team [27672]: nano .ssh/authorized_keys 
+2024-09-10T23:02:48.879679-07:00 localhost team: team [27672]: nano .ssh/authorized_keys 
+2024-09-10T23:03:37.787609-07:00 localhost team: team [4282]: ./logout.sh
+2024-09-10T23:03:42.355669-07:00 localhost team: team [4282]: nano logout
+2024-09-10T23:04:13.995258-07:00 localhost team: team [4282]: nano logout.py 
+2024-09-10T23:06:46.213886-07:00 localhost team: team [22518]: ssh team@lotteh.com -p 42961
+2024-09-10T23:08:22.223756-07:00 localhost team: team [27672]: ssh team@lotteh.com -p 42961
+2024-09-10T23:27:11.761055-07:00 localhost team: team [33212]: nano .ssh/authorized_keys 
+2024-09-10T23:27:22.370784-07:00 localhost team: team [33212]: nano .ssh/authorized_keys 
+2024-09-10T23:27:27.400476-07:00 localhost team: team [33212]: cd lotteh/
+2024-09-10T23:27:33.217646-07:00 localhost team: team [33212]: python bucket_posts.py 
+2024-09-10T23:27:37.821355-07:00 localhost team: team [33212]: source venv/bin/activate
+2024-09-10T23:27:45.582782-07:00 localhost team: team [33212]: python bucket_posts.py 
+2024-09-10T23:28:00.512710-07:00 localhost team: team [33212]: python force_publish.py
+2024-09-10T23:28:03.959644-07:00 localhost team: team [33212]: python routine_caption
+2024-09-10T23:28:22.920165-07:00 localhost team: team [33212]: python routine_caption.py 
+2024-09-10T23:42:41.264724-07:00 localhost team: team [33212]: python force_publish.py
+2024-09-10T23:43:16.986185-07:00 localhost team: team [33212]: nano feed/models.py
+2024-09-10T23:43:30.022484-07:00 localhost team: team [33212]: python force_publish.py
+2024-09-10T23:44:02.872318-07:00 localhost team: team [33212]: logs
+2024-09-10T23:44:27.355733-07:00 localhost team: team [33212]: nano usersmod
+2024-09-10T23:45:11.574607-07:00 localhost team: team [33212]: nano users/models.py 
+2024-09-10T23:45:14.591766-07:00 localhost team: team [33212]: sudo doreload
+2024-09-10T23:46:58.710177-07:00 localhost team: team [33212]: nano users/models.py 
+2024-09-10T23:46:59.801710-07:00 localhost team: team [33212]: sudo doreload
+2024-09-10T23:48:35.660860-07:00 localhost team: team [33212]: nano users/models.py 
+2024-09-10T23:48:36.745108-07:00 localhost team: team [33212]: sudo doreload
+2024-09-10T23:50:30.849639-07:00 localhost team: team [33212]: nano feed/models.py
+2024-09-10T23:50:32.020981-07:00 localhost team: team [33212]: sudo doreload
+2024-09-10T23:51:03.918818-07:00 localhost team: team [33212]: logs
+2024-09-10T23:51:05.858589-07:00 localhost team: team [33212]: logs
+2024-09-10T23:51:08.011167-07:00 localhost team: team [33212]: logs
+2024-09-10T23:51:09.373800-07:00 localhost team: team [33212]: logs
+2024-09-10T23:53:14.185317-07:00 localhost team: team [33212]: python manage.py shell
+2024-09-10T23:54:15.404673-07:00 localhost team: team [33212]: nano feed/templatetags/app_filters.py

@@ -1,0 +1,1 @@
+/home/team/lotteh/venv/lib/python3.10/site-packages/django/apps/registry.py

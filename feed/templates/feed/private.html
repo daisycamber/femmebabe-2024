@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_filters %}
+<div class="content">
+{% if request.GET.page == None or request.GET.page == '1' %}
+<h1 style="text-align:center;">@{{ profile.name }}</h1>
+<p style="text-align:center;"><small class="text-muted">Last Seen: {{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small> - <small class="text-muted"> Joined: {{ profile.date_joined|date:"F d, Y" }} {{ profile.date_joined|time:"H:i" }}</small></p>
+<hr style="background-color: red;" class="mb-5">
+{% endif %}
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+</div>
+<div class="container">
+<div style="position: fixed; left: 0; top: 0; background-color: #ffcccc; width: 100%; height: 100%;" class="cmodal hide">
+<div class="hide" id="large-frame"></div>
+<h1 id="current-text" style="font-size: 60px; word-wrap: break-word; text-align: center; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">(Tap the screen)</h1>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+var text = [];
+var index = 0;
+var next = true;
+$('.frame').click(function(e) {
+  $(document.getElementById("clemn-navbar")).autoHidingNavbar().toggleClass("hide");
+  $('.cmodal').removeClass('hide');
+  $('.content').addClass('hide');
+  document.getElementById('large-frame').innerHTML = e.target.dataset.name;
+  e.preventDefault();
+  index = 0;
+});
+$('.cmodal').click(function(e) {
+  text = document.getElementById("large-frame").innerHTML.split('\n');
+  if(index < text.length){
+	if(next) {
+		next = false;
+		$('#current-text').toggleClass('fade-hidden-fast');
+		setTimeout(function() {
+			$('#current-text').toggleClass('fade-in-fast');
+			$('#current-text').toggleClass('fade-hidden-fast');
+			document.getElementById("current-text").innerHTML = text[index];
+			document.getElementById("current-text").style.fontSize = ({% if private_text_large %}35{% else %}25{% endif %} * 10/Math.sqrt(text[index].length)) + "px";
+			index++;
+			setTimeout(function() { 
+				next = true;
+				$('#current-text').toggleClass('fade-in-fast');
+			}, 2500);
+		}, 700);
+	}
+  } else {
+	document.getElementById("current-text").innerHTML = "";
+	$('.cmodal').addClass('hide');
+	$('.content').removeClass('hide');
+	$(document.getElementById("clemn-navbar")).autoHidingNavbar().toggleClass("hide");
+  }
+  e.preventDefault();
+});
+function editForm() {
+    var elements = document.querySelectorAll(".edit-form");
+    for(var x = 0; x < elements.length; x++) {
+        if(!$(elements[x]).hasClass('init')) {
+                $(elements[x]).addClass('init');
+        $(elements[x]).attr('last-action', new String(new Date().getTime()));
+                $(elements[x]).on('click', function(event) {
+            if(parseInt($(elements[x]).prop('last-action')) - new Date().getTime() > -1000) return;
+            $(elements[x]).attr('last-action', new String(new Date().getTime()));
+                        console.log('edit');
+            var edit_iframe = document.querySelector("#iframe" + event.target.id);
+            if(edit_iframe) {
+                if($(edit_iframe).hasClass('hide')) {
+                                    edit_iframe.src = edit_iframe.dataset.src;
+                } else {
+                                     edit_iframe.src = '';
+                }
+                $(edit_iframe).toggleClass('hide');
+            }
+         });
+       }
+    }
+}
+editForm();
+{% endblock %}

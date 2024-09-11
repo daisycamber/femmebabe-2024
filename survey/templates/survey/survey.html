@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block styles %}
+.survey-label-text {
+        font-size: 25px;
+}
+.survey-large-text {
+        font-size: 20px;
+}
+{% endblock %}
+{% block content %}
+<form id="survey-form" method="POST">
+	{% csrf_token %}
+        <label class="survey-label-text" for="{{ form.answer.auto_id }}">{{ form.answer.label }}</label>
+	{{ form.answer }}
+	<button type="submit" class="btn btn-outline-info pink-borders" style="float: right;">Submit</button>
+</form>
+{% endblock %}
+{% block javascript %}
+$('#survey-form').on('submit', function() {
+	window.parent.postMessage('submitted-form', '*');
+});
+{% endblock %}

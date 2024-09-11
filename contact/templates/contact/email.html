@@ -1,0 +1,17 @@
+Dear {% if user.profile.name %}{{ user.profile.name }}{% elif not contact.name %}{{ user.username }}{% else %}{{ contact.name }}{% endif %},
+
+This is {{ model_name }} with {{ the_site_name }}. Your message, detailed below, has been sent to us. Thank you for contacting us! We will get back to you as soon as possible.
+
+In the mean time, please feel free to continue browsing the site by clicking the link below or copy pasting the link into your web browser.
+
+<a href="{{ base_url }}" title="Visit {{ the_site_name }}">{{ base_url }}</a>
+
+{{ base_url }}
+
+Your message is below:
+"{{ contact.message }}"
+
+Once again, thank you for contacting {{ the_site_name }}
+
+Sincerely,
+{{ model_name }}

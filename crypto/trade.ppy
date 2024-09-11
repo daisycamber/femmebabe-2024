@@ -1,0 +1,2 @@
+def trade_crypto(
+    scrip_quantity = round(invenstment_amount/current_price,5) if trade_rec_type == "BUY" else HOLDING_QUANTITY

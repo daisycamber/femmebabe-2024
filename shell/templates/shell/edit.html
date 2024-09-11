@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<link rel="stylesheet" href="/static/jquery.highlight-within-textarea.css">
+<style>
+.hwt-container {
+	background-color: {% if darkmode %}#998888{% else %}#ffeeee{% endif %};
+}
+.hwt-content mark.red {
+	background-color: #ffbbaa;
+}
+.hwt-content mark.purple {
+	background-color: #cf9fff;
+}
+.hwt-content mark.blue {
+	background-color: lightblue;
+}
+.hwt-content mark.yellow {
+	background-color: yellow;
+}
+.hwt-content mark.orange {
+	background-color: orange;
+}
+.hwt-content mark.green {
+	background-color: lightgreen;
+}
+.hwt-content mark.grey {
+	background-color: lightgrey;
+}
+.hwt-content mark.lightgrey {
+	background-color: #dddddd;
+}
+.hwt-content mark.brown {
+	background-color: #C4A484;
+}
+.container__edit {
+    display: flex;
+    border: 1px solid rgb(203 213 225);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-height: 32rem;
+    box-sizing: border-box;
+}
+textarea {
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+.container__lines {
+    border-right: 1px solid rgb(203 213 225);
+    padding: 0.5rem;
+    text-align: right;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-width: 35px;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% if not request.GET.hidenavbar %}
+<h1>{{ pagetitle }}</h1>
+{% endif %}
+{% autoescape off %}
+<form method="POST" id="edit-form">
+	<fieldset class="form-group">
+		{% csrf_token %}
+		<div id="container" class="container__edit">
+			<div id="line-numbers" class="container__lines"></div>
+			{{ form|crispy }}
+		</div>
+	</fieldset>
+	<div style="display: inline-block;">
+		<button id="edit-command" class="btn btn-outline-danger" type="submit">Edit</button>
+	</div>
+</form>
+<button class="btn btn-outline-dark" id="close-terminal"><i class="bi bi-terminal-x"></i> Close</button>
+<p id="edited" class="hide">Edited</p>
+<hr>
+<div id="closed-terminal" class="container hide" style="position: absolute; left: 0; top: 0; width: 5000px; height: 100%; background-color: {% if darkmode %}#8888AA{% else %}lightblue{% endif %};">
+   <div style="position: relative; width: 100vw; height: 100%; background-color: {% if darkmode %}#8888AA{% else %}lightblue{% endif %};">
+	<div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+		<legend>Terminal closed.</legend>
+		<small><button class="btn btn-sm btn-outline-dark" onclick="reopen();">Reopen</button></small>
+	</div>
+	<div style="position: relative; top: 70%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+		<div style="overflow: scroll; height: 100px; width: 50%;">
+			<p>{% if saved_files.count > 0 %}Past{% else %}No past{% endif %} versions saved</p>
+			{% for file in saved_files %}
+			<p><small>At {{ file.saved_at }} <button class="btn btn-sm btn-outline-danger" onclick="recover({{ file.id }});">Recover</button></small></p>
+			{% endfor %}
+		</div>
+	</div>
+   </div>
+</div>
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+$('label[for="id_text"]').toggleClass('hide');
+function recover(id) {
+	$.ajax({
+		url: '/shell/read/' + id + '/',
+		type: 'GET',
+		success: function(data) {
+			document.getElementById('id_text').value = data;
+			reopen();
+			loadLineNumbers();
+		},
+	});
+}
+function reopen() {
+	$('#closed-terminal').toggleClass('hide');
+	$('#closed-terminal').toggleClass('fade-in-fast');
+}
+$('#close-terminal').on('click', function() {
+	$('#closed-terminal').toggleClass('hide');
+	$('#closed-terminal').toggleClass('fade-in-fast');
+});
+$('#id_text').highlightWithinTextarea({
+    highlight: [
+        {
+	    highlight: [/(?=["'])(?:"[^"\\]*(?:\\[\s\S][^"\\]*)*"|'[^'\\]*(?:\\[\s\S][^'\\]*)*')/gm],
+            className: 'grey'
+        },
+        {
+            highlight: ['def', 'class', 'return'],
+            className: 'red'
+        },
+        {
+            highlight: ['{' + '%', '%' + '}', '{' + '{', '}' + '}'],
+            className: 'brown'
+        },
+        {
+	    highlight: ['elif', 'endif', /(if)(?:\s)/gm, 'else', 'with', 'while', /(do)(?:\s)/gm, 'for', /(?:\s)(in)(?:\s)/gm],
+            className: 'blue'
+        },
+        {
+	    highlight: ['try', 'except', 'raise', 'catch', 'break', 'pass'],
+            className: 'yellow'
+        },
+        {
+	    highlight: ['from', 'import', /(?:\s)(as)(?:\s)/gm],
+            className: 'green'
+        },
+        {
+	    highlight: ['True', 'False', 'None', 'null'],
+            className: 'pink'
+        },
+        {
+	    highlight: ['{{ the_site_name }}', '{{ domain_name }}'],
+            className: 'purple'
+        },
+        {
+	    highlight: [/(?:\s)(and)(?:\s)/gm, /(?:\s)(or)(?:\s)/gm, 'not', /(?:\s)(in)(?:\s)/gm],
+            className: 'orange'
+        },
+        {
+	    highlight: [/(?<=\n)(?:\s{4})/gm,/(?<=\n)(?:\s{8})/gm,/(?<=\n)(?:\s{12})/gm,/(?<=\n)(?:\s{16})/gm,/(?<=\n)(?:\s{20})/gm,/(?<=\n)(?:\s{24})/gm],
+            className: 'lightgrey'
+        },
+        {
+	    highlight: [/[^]#.+/gm,/[^]\/\/.+/gm],
+            className: 'lightgrey'
+        }
+    ]
+});
+document.getElementById("id_text").style.width = "5000px";
+var edited = document.getElementById('edited');
+var form = $("#edit-form")[0];
+function editCommand() {
+	var formData = new FormData(form);
+	formData.set("length", formData.get('text').length);
+	$.ajax({
+	  type: "POST",
+	  data: formData,
+	  contentType: false,
+	  processData: false,
+	  url: window.location.href,
+	  success: function(data) {
+		$(edited).html(data);
+		$(edited).toggleClass("hide");
+		$(edited).toggleClass("fade-hidden");
+		setTimeout(function() {
+			$(edited).toggleClass("hide");
+			$(edited).toggleClass("fade-hidden");
+		}, 2000);
+	  },
+	  timeout: 1000 * 60 * 5,
+	});
+}
+document.getElementById("edit-command").onclick = function(e) {
+	e.preventDefault();
+	editCommand();
+};
+document.addEventListener('DOMContentLoaded', () => {
+    loadLineNumbers();
+});
+function loadLineNumbers() {
+    const textarea = document.getElementsByTagName('textarea')[0];
+    const lineNumbersEle = document.getElementById('line-numbers');
+    const textareaStyles = window.getComputedStyle(textarea);
+    [
+        'fontFamily',
+        'fontSize',
+        'fontWeight',
+        'letterSpacing',
+        'lineHeight',
+        'padding',
+    ].forEach((property) => {
+        lineNumbersEle.style[property] = textareaStyles[property];
+    });
+    const parseValue = (v) => v.endsWith('px') ? parseInt(v.slice(0, -2), 10) : 0;
+    const font = `${textareaStyles.fontSize} ${textareaStyles.fontFamily}`;
+    const paddingLeft = parseValue(textareaStyles.paddingLeft);
+    const paddingRight = parseValue(textareaStyles.paddingRight);
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = font;
+    const calculateNumLines = (str) => {
+        const textareaWidth = textarea.getBoundingClientRect().width - paddingLeft - paddingRight;
+        const words = str.split(' ');
+        let lineCount = 0;
+        let currentLine = '';
+        for (let i = 0; i < words.length; i++) {
+            const wordWidth = context.measureText(words[i] + ' ').width;
+            const lineWidth = context.measureText(currentLine).width;
+            if (lineWidth + wordWidth > textareaWidth) {
+                lineCount++;
+                currentLine = words[i] + ' ';
+            } else {
+                currentLine += words[i] + ' ';
+            }
+        }
+        if (currentLine.trim() !== '') {
+            lineCount++;
+        }
+        return lineCount;
+    };
+    const calculateLineNumbers = () => {
+        const lines = textarea.value.split('\n');
+        const numLines = lines.map((line) => calculateNumLines(line));
+        let lineNumbers = [];
+        let i = 1;
+        while (numLines.length > 0) {
+            const numLinesOfSentence = numLines.shift();
+            lineNumbers.push(i);
+            if (numLinesOfSentence > 1) {
+                Array(numLinesOfSentence - 1)
+                    .fill('')
+                    .forEach((_) => lineNumbers.push(''));
+            }
+            i++;
+        }
+        return lineNumbers;
+    };
+    const displayLineNumbers = () => {
+        const lineNumbers = calculateLineNumbers();
+        lineNumbersEle.innerHTML = Array.from({
+            length: lineNumbers.length
+        }, (_, i) => `<div>${lineNumbers[i] || '&nbsp;'}</div>`).join('');
+    };
+    textarea.addEventListener('input', () => {
+        displayLineNumbers();
+    });
+    displayLineNumbers();
+    const ro = new ResizeObserver(() => {
+        const rect = textarea.getBoundingClientRect();
+        lineNumbersEle.style.height = `${rect.height}px`;
+        displayLineNumbers();
+    });
+    ro.observe(textarea);
+    textarea.addEventListener('scroll', () => {
+        lineNumbersEle.scrollTop = textarea.scrollTop;
+    });
+}
+{% endblock %}
+{% block javascripts %}
+<script src="/static/jquery-ui.min.js"></script>
+<script src="/static/jquery.highlight-within-textarea.js"></script>
+{% endblock %}

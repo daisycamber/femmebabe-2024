@@ -1,0 +1,492 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% if request.GET.handtrack %}
+<script src="/static/handtrack.min.js"></script>
+{% endif %}
+{% endblock %}
+{% block styles %}
+.fade-in {
+	animation: fadeIn 1s;
+	opacity: 1;
+}
+.frame {
+	width: 30%;
+}
+@media screen and (min-width: 1024px) {
+	.frame {
+		width: 14%;
+	}
+}
+@media screen and (min-width: 2048px) {
+	.frame {
+		width: 9%;
+	}
+}
+b {
+	color: black;
+}
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user %}
+{% include 'banner_ad.html' %}
+{% endif %}
+<div id="profile" class="hide fade-in">
+{% if not request.GET.grid and profile %}
+{% include 'feed/_full_profile.html' %}
+{% elif not request.GET.grid %}
+<h1>Search</h1>
+<p>{{ 'Your search'|trans }}, "{{ request.GET.q }}", {% blocktrans %}returned {{ count|nts }} results.{% endblocktrans %}</p>
+<a class="btn btn-sm btn-outline-info" href="{{ request.path }}?q={{ query }}" title="{{ 'Standard view'|trans }}">{{ 'Standard'|trans }}</a>
+{% include 'search.html' %}
+<div class="gcse-search"></div>
+{% endif %}
+<div style="display: flex; justify-content: space-around;">
+{% if profile %}<a href="{% url 'feed:profile' profile.name %}" class="btn btn-outline-info" title="{{ 'See'|trans }} {{ profile.name }}'s {{ 'profile'|trans }}">{{ 'Profile'|trans }}</a>{% endif %}
+<div style="width: 130px;">
+{% include 'jumptoindex.html' %}
+</div>
+{% if request.GET.handtrack %}
+<a href="{{ request.path }}{% if request.GET.q %}?q={{ request.GET.q }}{% endif %}" class="btn btn-outline-primary"><i class="bi bi-hand-index-thumb"></i></a>
+{% else %}
+<a href="{{ request.path }}?handtrack=t&{% if request.GET.q %}q={{ request.GET.q }}{% endif %}" class="btn btn-outline-primary"><i class="bi bi-hand-index-thumb-fill"></i></a>
+{% endif %}
+<div style="height: 100%;"><div style="vertical-align: middle;">{% if request.GET.index %}{{ request.GET.index }}{% else %}1{% endif %} of {{ count }}.</div></div>
+<b>Loading...</b>
+</div>
+<hr style="background-color: red;" class="mb-5">
+{% include 'feed/login_register_buttons.html' %}
+{% include 'social.html' %}
+</div>
+<div id="minified">
+<div style="display: flex; justify-content: space-around;">
+<img class="p-1 m-1" style="width: 20vw; height: 20vw; max-width: 300px; max-height: 300px; border-radius: 50%;" src="{% if profile.user in request.user.profile.subscriptions.all %}{{ profile.get_image_url }}{% else %}{{ profile.get_face_blur_url }}{% endif %}">
+<h1 class="m-1 p-1"> @{{ profile.name }}</h1>
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all %}
+<form class="m-1 p-1" action="{% url 'payments:subscribe-card' profile.name %}" method="GET">
+<button type="submit" class="btn btn-lg btn-outline-primary">{{ 'Subscribe'|trans }}
+(${{ profile.user.vendor_profile.subscription_fee|sub_fee }})
+{{ 'Live, +more'|trans }}
+</button>
+</form>
+{% endif %}
+</div>
+<p>{{ profile.bio|trans }}</p>
+<p style="text-align:center;"><small class="text-muted">{{ 'Last Seen'|trans }}: {{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small> - <small class="text-muted"> Joined: {{ profile.date_joined|date:"F d, Y" }} {{ profile.date_joined|time:"H:i" }}</small></p>
+<i>(Expand)</i>
+</div>
+<hr style="background-color: red;" class="mb-5">
+<div class="display: inline-block;" id="feed-grid">
+</div>
+{% include 'search.html' %}
+<div class="container">
+<div style="z-index: 1000; position: fixed; left: 0; top: 0; background-color: #ffaaaa; width: 100%; height: 100%;" class="cmodal hide">
+<div style="vertical-align: middle; position: relative; margin: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+<div style="display: flex; justify-content: space-around;">
+<i class="bi bi-hand-index-thumb-fill" class="hide" id="hand-indicator"></i>
+</div>
+<div style="display: inline-block;">
+<a class="btn btn-outline-info" id="view">{{ 'View'|trans }}</a>
+<div class="container" style="margin-right: 5px; margin-left: 5px;"><div id="content"></div></div>
+<img id="large-frame" style="min-height: 40vh; max-height: 50vh; text-align: center;" class="center rounded shadow fade-in-fast"></img>
+</div>
+</div>
+{% include 'banner_ad_horizontal.html' %}
+</div>
+<div style="z-index: 1001; position: fixed; left: 0; top: 0; background-color: transparent; height: 120vh; width: 100%; pointer-events: none; touch-action: none;" id="loader-container" class="hide">
+<div id="spin-loader" style="position: relative; margin: auto; top: 50%; text-align: center;" class="spin-loader">
+</div>
+</div>
+<div class="hide">
+<video id="handtrack-video" width="100%" autoplay="true"></video>
+</div>
+{% endblock %}
+{% block javascript %}
+$('#minified').on('click', function(e) {
+	$('#profile').removeClass('hide');
+	$('#minified').addClass('fade-hidden-fast');
+	setTimeout(function() {
+		$('#profile').removeClass('fade-in');
+		$('#minified').addClass('hide');
+	});
+});
+var xhr;
+var swipeTimeout;
+var inFocus = false;
+var detectHands = true;
+var currentId;
+function nextImage() {
+	$('#loader-container').addClass('hide');
+	if(xhr) xhr.abort();
+       	if(swipeTimeout) clearTimeout(swipeTimeout);
+	inFocus = false;
+	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+	if(currentId <= {{ count }}) currentId++;
+	if(document.getElementById('image' + (currentId+1))) {
+		$('#image' + currentId).click();
+	}
+	detectHands = false;
+	setTimeout(function() { detectHands = true; }, 3000);
+}
+function lastImage() {
+	$('#loader-container').addClass('hide');
+	if(xhr) xhr.abort();
+       	if(swipeTimeout) clearTimeout(swipeTimeout);
+	inFocus = false;
+	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+	if(currentId > 0) currentId--;
+	if(document.getElementById('image' + (currentId-1))) {
+		$('#image' + currentId).click();
+	}
+	detectHands = false;
+	setTimeout(function() { detectHands = true; }, 3000);
+}
+var viewButtons = document.querySelectorAll('[id=view]');
+for(var x = 0; x < viewButtons.length; x++){
+        viewButtons[x].onclick = function(event) {
+                event.preventDefault();
+                window.location.href = event.target.href;
+        };
+}
+var start = {% if request.GET.index %}{{ request.GET.index }}{% else %}0{% endif %};
+if(isNaN(start) || start < 0 || start > {{ count }}) {
+	start = 0;
+}
+const tries = 2;
+const LOAD_INTERVAL = 666;
+var grid = document.getElementById('grid');
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+$('#large-frame').on('load', function() {
+	$('#large-frame').toggleClass('fade-in-fast');
+	$('#large-frame').toggleClass('fade-in-fast');
+});
+var can_click = false;
+function handleClick(event) {
+	var min_click = window.innerWidth/7;
+	if(window.innerHeight < window.innerWidth) { min_click = window.innerHeight/5; }
+	if(can_click && event.screenX < min_click) {
+		lastImage();		
+		event.preventDefault();
+                return true;
+	}
+	if(can_click && window.innerWidth - event.screenX < min_click) {
+		nextImage();
+		event.preventDefault();
+                return true;
+	}
+        return false;
+}
+var garbage = 60;
+function readyFrame(index){
+ $('.frame').on('click', function(e) {
+  can_click = false;
+  if(handleClick(e)) return;
+  setTimeout(function() {
+    can_click = true;
+  }, 1000);
+  if(!inFocus) {
+    $('.content').addClass('hide');
+    $('.cmodal').removeClass('hide');
+    $('.cmodal').addClass('fade-in');
+    $('.cmodal').removeClass('fade-hidden-fast');
+    $('#loader-container').removeClass('hide');
+    currentId = parseInt(e.target.id.substring(5));
+    inFocus = true;
+    $(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
+    document.getElementById('large-frame').src = e.target.src;
+    {% if request.user.is_authenticated and profile.user in request.user.profile.subscriptions.all %}
+        document.getElementById('large-frame').src = e.target.dataset.fullurl;
+    {% endif %}
+    document.getElementById('view').href = e.target.dataset.title;
+    document.getElementById('content').innerHTML = e.target.dataset.value;
+  }
+ });
+}
+$('.cmodal').click(function(e) {
+  if(!can_click) { return; }
+  if(handleClick(e)) return;
+  $('.content').removeClass('hide');
+  $('.cmodal').removeClass('fade-in');
+  $('.cmodal').addClass('fade-hidden-fast');
+  setTimeout(function() {
+  	$('.cmodal').addClass('hide');
+	inFocus = false;
+	$('#loader-container').addClass('hide');
+	if(xhr) xhr.abort();
+  }, 500);
+  $(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+  e.preventDefault();
+});
+var shouldLoad = false;
+var shouldLoadLast = false;
+var i = start;
+var li = start;
+var ii;
+var try_count = new Array({{ count }});
+var time = String(new Date().getTime());
+function loadNext(status) {
+    var sl = null;
+    if(status) {
+	ii = i;
+	sl = true;
+    }
+    if(!status) {
+	ii = li;
+	sl = false;
+    }
+    if(ii > {{ count }} - 1 || ii < 0) return;
+    $.ajax({
+      type: "POST",
+      url: '/feed/grid/api/' + ii + '/?square=true{% if request.GET.name %}&name={{ request.GET.name }}{% elif profile.name %}&name={{ profile.name }}{% endif %}{% if request.GET.show %}&show=true{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&time=' + time,
+      index: ii,
+      sl: sl,
+      timeout: 1000 * 60 * 5,
+      success: function(result) {
+	if(result.startsWith('<img ') && !result.includes('Error 500') && !result.includes('Error 404') && !result.includes('Are you over')) {
+		if(this.sl) {
+        		document.getElementById('feed-grid').insertAdjacentHTML("beforeend", result);
+	        } else {
+        		document.getElementById('feed-grid').insertAdjacentHTML("afterbegin", result);
+		}
+		readyFrame(this.index);
+		var frame = document.getElementById('image' + this.index);
+		if(frame) {
+		frame.onload = function(event) {
+			var index = parseInt(event.target.id.substring(5));
+			if((index-2)%3 == 0) {
+				for(var x = index - 2; x <= index; x++){
+					if(document.getElementById('image'+x)) {
+						$('#image' + x).removeClass('hide');
+						$('#image' + x).addClass('fade-in-fast');
+					}
+				}
+				for(var x = index + 2; x >= index; x--){
+					if(document.getElementById('image'+x)) {
+						$('#image' + x).removeClass('hide');
+						$('#image' + x).addClass('fade-in-fast');					
+					}
+				}
+			}
+		};
+		}
+	} else if(try_count[this.index] < tries && !result.includes('Error 500')) {
+		sleep(5000);
+		$.ajax(this);
+		try_count[this.index]++;
+	}
+      },
+    });
+    if(status){
+        i++;
+    }
+    if(!status){
+        li--;
+    }
+  }
+  if((ii-start)%3 == 0) {
+    for(var x = ii - garbage - 3; x < ii - garbage; x++) {
+        var im = document.getElementById('image' + x);
+	if(im) im.remove();
+    }
+    for(var x = ii + garbage + 3; x > ii + garbage; x--) {
+        var im = document.getElementById('image' + x);
+	if(im) im.remove();
+    }
+}
+const scroll_factor = 6;
+var lastScroll = 0;
+$(window).scroll(function() {
+   lastScroll = $(window).scrollTop();
+   if($(window).scrollTop() + $(window).height() > $(document).height() - $(document).height()/scroll_factor) {
+	shouldLoad = true;
+   } else {
+	shouldLoad = false;
+   }
+   if($(window).scrollTop() < $(document).height()/scroll_factor + 1000) {
+	shouldLoadLast = true;
+   } else {
+	shouldLoadLast = false;
+   }
+});
+setInterval(function() {
+	if(shouldLoad) {
+		loadNext(true);
+	}
+	if(!shouldLoad && shouldLoadLast) {
+		loadNext(false);
+	}
+}, LOAD_INTERVAL);
+var count = 1;
+var interval = setInterval(function() {
+	if(!shouldLoad) {
+		if(count > 12) {
+			clearInterval(interval);
+			return;
+		}
+		loadNext(true);
+		count++;
+	}
+}, LOAD_INTERVAL);
+var modal = document.getElementsByClassName('cmodal')[0];
+modal.addEventListener('touchstart', handleTouchStart, false);        
+modal.addEventListener('touchmove', handleTouchMove, false);
+modal.addEventListener('mousedown', handleTouchStart, false);        
+modal.addEventListener('mousemove', handleTouchMove, false);
+var xDown = null;                                                        
+var yDown = null;
+function getTouches(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+function handleTouchStart(evt) {
+    if(handleClick(evt)) return;
+    if(evt.clientX) {
+        xDown = evt.clientX;
+        yDown = evt.clientY;
+        return;
+    }
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+function handleTouchMove(evt) {
+    var xUp;
+    var yUp;
+    if(evt.clientX) {
+        xUp = evt.clientX;
+        yUp = evt.clientY;
+    } else {
+        xUp = evt.touches[0].clientX;                                    
+        yUp = evt.touches[0].clientY;
+        if (evt.touches.length > 1) {
+            return;
+        }
+    }
+    if (!xDown || !yDown) {
+        return;
+    }
+    handleTouch(xUp, yUp);
+}
+var min_diff = 0;
+function handleTouch(xUp, yUp) {
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if (xDiff > min_diff) {
+		nextImage();
+        } else if(xDiff < min_diff * -1) {
+		lastImage();
+        }
+    }
+    xDown = null;
+    yDown = null;                                             
+};
+{% if request.GET.handtrack %}
+(async() => {
+var detectHands = true;
+var videoElement = document.getElementById('handtrack-video');
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({video:{width:{ideal: 360}}})
+    .then(async function (stream) {
+      videoElement.srcObject = stream;
+      videoElement.play();
+      startVideo(); 
+   })
+   .catch(function (error) {
+      console.log("Something went wrong!");
+   });
+}
+const static = 0.1;
+var lastHandX = null;
+let cameraFrame = null;
+let handCount = 0;
+var model = null;
+const modelParams = {
+	flipHorizontal: false,   // flip e.g for video  
+	outputStride: 16,
+	imageScaleFactor: 1,
+	maxNumBoxes: 20,
+	iouThreshold: 0.2,
+	scoreThreshold: 0.7,
+	modelType: "ssd640fpnlite",
+	modelSize: "small",
+	bboxLineWidth: "2",
+	fontSize: 17,
+}
+function startVideo() {
+        handTrack.load(modelParams).then(mdl => { 
+            model = mdl;
+		handTrack.startVideo(videoElement).then(status => {
+			if(status) {
+				startDetection(model);
+			} else {
+				console.log('error');
+			}
+		});
+        }).catch(err => {
+        });
+}
+function startDetection(model) {
+	setInterval(function() {
+	    model.detect(videoElement).then(predictions => {
+	        renderPredictions(predictions);
+	    });
+	}, 800);
+}
+var handIndicator = document.getElementById("hand-indicator");
+function fixOverflow() {
+    detectHands = false;
+    setTimeout(function() {
+        detectHands = true;
+    }, 3000);
+    handIndicator.classList.add('hide');
+    handIndicator.classList.remove('fade-in-fast');
+}
+
+function renderPredictions(predictions) {
+    if(predictions[0]) {
+        console.log(predictions[0]['label']);
+    }
+	if(predictions[0] && (predictions[0]['label'] == 'open' || predictions[0]['label'] == 'point' || predictions[0]['label'] == 'closed') && detectHands) {
+		var bbox = predictions[0]['bbox'];
+		var handX = bbox[2] - bbox[0];
+		if(lastHandX) {
+			var diff = lastHandX - handX;
+			console.log(diff);
+			if(diff > static) {
+				nextImage();
+                fixOverflow();
+			} else if(diff < static * -1) {
+				lastImage();
+                fixOverflow();
+	        	}
+		} else {
+            setTimeout(function() {
+                handIndicator.classList.remove('hide');
+                handIndicator.classList.add('fade-in-fast');
+            }, 300);
+            handIndicator.classList.add('hide');
+            handIndicator.classList.remove('fade-in-fast');
+        }
+		lastHandX = handX;
+	} else {
+		lastHandX = null;
+	}
+}
+})();
+{% endif %}
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == '37') {
+        lastImage();
+    } else {
+        nextImage();
+    }
+});
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% if payment_processor == 'helcim' %}
+<script type="text/javascript" src="https://secure.helcim.app/helcim-pay/services/start.js"></script>
+{% elif payment_processor == 'stripe' %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endif %}
+{% endblock %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<legend><i class="bi bi-credit-card-fill"></i> Subscribe to @{{ username }} with Card</legend>
+<div style="display: inline-block;">
+<img align="left" src="{{ model.get_face_blur_url }}" style="width:33%; margin-right: 10px;" class="rounded"></img>
+<img class="mr-2 img-fluid rounded" src="{{ post.get_blur_thumb_url }}" style="float: left; width: 40%; max-width: 400px;" alt="See photos like these"></img>
+</div>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+{% include 'payments/_subscription_perks.html' %}
+<p> - {{ profile.name }}</p>
+<b>Items:</b>
+<ul>
+<li>Subscription to {{ username }} with {{ the_site_name }} (${{ fee|sub_fee }})</li>
+<li>Billed monthly, until cancellation.{% if not profile.user.vendor_profile.free_trial == '0' %} The first {{ profile.user.vendor_profile.free_trial }} days will be free, with an opportunity to cancel your subscription before a payment is made should you choose to.{% endif %}</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "{{ statement_descriptor }} SUBS".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<p>You will be redirected to a checkout page to buy the product. Please enter your credit or debit card information, you will be billed monthly until you cancel through the website, or by email, cancellation service, or any other form of cancellation request.</p>
+<p>You will pay ${{ fee|sub_fee }} USD. Please click the button below to continue.</p>
+{% if request.GET.coupon %}
+<p><legend>You have received a coupon!</legend> - Use coupon code {{ request.GET.coupon }} at checkout to get a discount on your purchase.</p>
+{% endif %}
+<form id="pay-form" onsubmit="event.preventDefault(); payFee();">
+{{ form|crispy }}
+<button type="submit" class="btn btn-lg btn-outline-success" title="Submit">Submit</button>
+</form>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var product = 'membership';
+var pid = {{ profile.user.id }};
+var price = {{ fee }};
+var vendor = {{ profile.user.id }};
+var payForm = document.getElementById('pay-form');
+{% if payment_processor == 'paypal' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:paypal-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid + '&sub=t',
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'square' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:square-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid + '&sub=t',
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'helcim' %}
+var checkoutToken;
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:invoice' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            var j = JSON.parse(data);
+            checkoutToken = j.checkoutToken;
+            $(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
+            appendHelcimPayIframe(j.checkoutToken);
+        },
+    });
+}
+window.addEventListener('message', (event) => {
+
+  const helcimPayJsIdentifierKey = 'helcim-pay-js-' + checkoutToken;
+
+  if(event.data.eventName === helcimPayJsIdentifierKey){
+
+    if(event.data.eventStatus === 'ABORTED'){
+      console.error('Transaction failed!', event.data.eventMessage);
+    }
+
+    if(event.data.eventStatus === 'SUCCESS'){
+      validateResponse(event.data.eventMessage)
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    }
+  }
+});
+
+function validateResponse(eventMessage) {
+  const payload = {
+    'rawDataResponse': eventMessage.data,
+  };
+  return fetch('{{ base_url }}/payments/helcim/', {body: payload, method: "POST"});
+}
+{% elif payment_processor == 'stripe' %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function payFee(){
+      fetch("/payments/checkout/monthly/?plan={{ fee }}&vendor={{ profile.stripe_id }}")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endif %}
+{% endblock %}
+

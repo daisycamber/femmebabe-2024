@@ -1,0 +1,38 @@
+#!/bin/bash
+cd /home/team
+cd femmebabe
+sudo chown -R team:users cache/
+sudo chmod a+rwx -R cache/
+sudo chown -R team:users /var/run/
+sudo chown root:root /run/sudo/ts -R
+sudo chown -R redis:redis /var/lib/redis
+sudo chown -R redis:redis /var/log/redis
+sudo chmod -R u+rwX,g+rwX,u+rx /var/log/redis
+sudo chown -R team:users /var/log/
+sudo chown -R :users .././
+sudo chmod -R g+rwX ./
+sudo chmod -R g+rX .././
+sudo chmod -R g-rwX ../.ssh
+sudo chmod 774 ./
+sudo chmod 664 db.sqlite3
+sudo chown -R www-data:www-data media/
+sudo chown www-data:users db.sqlite3
+sudo chown www-data:users ./
+sudo chown -R team:users media/
+sudo chown -R team:users ./
+sudo chown -R team:users ./gfpgan/
+sudo chown -R team:users ./temp/
+sudo chmod a+r team /var/mail/$USER
+cd /home/team
+sudo chmod u+rw,go-rwx .ssh/id_rsa
+sudo chmod u+rw,go-rwx .ssh/id_rsa.pub
+sudo chmod u+rw,go-rwx .ssh/authorized_keys
+sudo chmod u+rw,go-rwx .ssh/known_hosts
+sudo chmod u+rw,go-rwx .ssh/config
+sudo chmod 600 .ssh/id_rsa
+sudo chmod 600 .ssh/id_rsa.pub
+sudo chmod 600 .ssh/authorized_keys
+sudo chmod 600 .ssh/known_hosts
+sudo chmod 600 .ssh/config
+sudo chown team:users .ssh/authorized_keys
+sudo chown root:utmp /var/log/btmp && sudo chmod 600 /var/log/btmp

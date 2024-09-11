@@ -1,0 +1,42 @@
+#!/bin/bash
+U="team"
+DIR="femmebabe"
+date=$(date '+%Y-%m-%d_%H:%M:%S')
+dir=$"femmebabe-backup$date"
+cd $"/home/$U"
+mkdir $"/home/$U/$dir"
+cd $"/home/$U/$DIR"
+sudo cp -r ./ $"/home/$U/$dir"
+cd $"/home/$U/$dir"
+sudo chown -R team:team ./
+sudo rm -r .git
+git init --initial-branch=main
+sudo rm config/apis.json
+sudo rm config/keys.json
+sudo rm db.json*
+cd media/
+ls --hide=static/ | xargs -d '\n' rm -r
+cd ..
+echo "var_mail_team" >> .gitignore
+git add --all
+git commit -m "open source"
+git remote add originhub git@github.com:daisycamber/femmebabe-2024.git
+git push -u -f originhub main
+cd $"/home/$U"
+#sudo rm -r $"/home/$U/$dir"
+#/usr/bin/expect <<EOD
+#spawn git push -u originhub master
+#set timeout -1
+#expect "Username"
+#send "jasper.camber.holton@gmail.com\n"
+#expect "Password"
+#send "ghp_efemmebabepSxuCazLcrDcdeUQFYMGXrheu7a4gC30W\n"
+#expect eof
+#EOD
+#/usr/bin/expect <<EOD
+#spawn git push -u origin master
+#set timeout -1
+#expect "Password"
+#send "ATBB4x4q9VM6UJhFMwPXSy3aT35U5242955F\n"
+#expect eof
+#EOD

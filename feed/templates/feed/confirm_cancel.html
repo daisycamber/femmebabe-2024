@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Cancel your subscription to @{{ cancel_user.profile.name }}'s profile?</h1>
+<p>They'd hate to see you go.</p>
+<form method="POST">
+{% csrf_token %}
+<button type="submit" class="btn btn-outline-danger">Cancel Subscription</button>
+</form>
+{% endblock %}

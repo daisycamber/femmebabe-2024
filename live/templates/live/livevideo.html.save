@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the live feed.</legend>
+{% if not hidenavbar %}
+<h1>@{{ profile.user.username }}'s Live Video</h1>
+{% endif %}
+<div id="lastFrame"></div>
+<div id="videoDiv" class="nopadding" style="overflow: hidden; width: 100%; background-position: center; background-size: cover;">
+<video id="video" preload="auto" width="100%"></video>
+</div>
+{% if not hidenavbar %}
+<legend class="text-center">Chat</legend>
+<iframe src="/chat/{{ profile.user.username }}/?hidenavbar=t" width="100%" height="500px"></iframe>
+{% endif %}
+<canvas id="canvas" width="100" height="100" style="position: absolute; display: none; visibility: hidden;">
+{% endblock %}
+{% block javascript %}
+{% if should_compress_live %}{% include 'live/compressor.js' %}{% endif %}
+var vw = 1280; // 810 910 1280
+var vh = 720;// 720
+var isReset = false;
+var firstResize = true;
+var loh = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		setInterval(render, {{ video_interval }});
+		render();
+	}
+}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+
+var video = document.getElementById('video');
+var videodiv = document.getElementById('videoDiv');
+var canvas = document.getElementById('canvas');
+canvas.width = 539;
+canvas.height = 404;
+var lastFrame = document.getElementById("lastFrame");
+let xhr = new XMLHttpRequest();
+let xhr2 = new XMLHttpRequest();
+var ctx = canvas.getContext('2d');
+var stillFrame;
+var offsetFactor = 1;
+var lastsrc = "";
+function loadListener2(){
+        if (xhr2.readyState === xhr2.DONE) {
+	    if(!xhr2.responseText.includes("Error 500")){
+	        lastFrame.innerHTML = xhr2.responseText;
+            }
+	}
+}
+function loadListener(){
+        if (xhr.readyState === xhr.DONE) {
+            var data = xhr.responseText.substring(0, xhr.responseText.length);
+      {% if should_compress_live %}
+       de(data, function(data) {
+	    data = data.replace(' ', '+');
+	    data = data.replace('\n','');
+            if(!data.includes("Error 500") && data.length > 500){
+		drawImage();
+		video.poster = stillFrame;
+		videodiv.style.backgroundImage = stillFrame;
+		video.src = data;
+                var playPromise = video.play();
+		if (playPromise !== undefined) {
+  playPromise.then(function() {
+	lastsrc = data
+	video.addEventListener('loadeddata', function() {
+	    if(video.offsetHeight > 0){
+		videodiv.style.height = video.offsetHeight + "px";
+		videodiv.style.width = video.offsetWidth + "px";
+	    }
+		if(firstResize){
+			firstResize = false;
+			window.top.postMessage('resize', '*')
+		}
+	});
+  }).catch(function(error) {
+        video.poster = stillFrame;
+        videodiv.style.backgroundImage = stillFrame;
+	video.src = lastsrc;
+	video.play(); 
+		if(firstResize){
+			firstResize = false;
+			window.top.postMessage('resize', '*')
+		}
+  });
+	}
+	}
+	});
+		{% else %}
+            if(!data.includes("Error 500") && data.length > 500){
+                drawImage();
+                video.poster = stillFrame;
+                videodiv.style.backgroundImage = stillFrame;
+                video.src = data;
+                var playPromise = video.play();
+		if (playPromise !== undefined) {
+	playPromise.then(function() {
+	    lastsrc = data;
+		if(firstResize){
+			firstResize = false;
+			window.top.postMessage('resize', '*')
+		}
+	video.addEventListener('loadeddata', function() {
+	    if(video.offsetHeight > 0){
+		videodiv.style.height = video.offsetHeight + "px";
+		videodiv.style.width = video.offsetWidth + "px";
+	    }
+	}, false);
+  }).catch(function(error) {
+        video.poster = stillFrame;
+        videodiv.style.backgroundImage = stillFrame;
+	video.src = lastsrc;
+	video.play(); 
+  });
+	}
+            }
+    {% endif %}
+        }
+}
+function render() {
+        xhr.addEventListener("load", loadListener);
+        xhr.open("POST", window.location.pathname + "frame/", true);
+        xhr.send(null);
+	xhr2.addEventListener("load", loadListener2);
+        xhr2.open("POST", window.location.pathname + "frame/last/", true)
+        xhr2.send(null);
+}
+function drawImage(){
+    ctx.drawImage(video, 0, 0, parseInt(canvas.width), parseInt(canvas.height));
+    ctx.save();
+    stillFrame = canvas.toDataURL('image/png').replace(' ', '+')
+    stillFrame = stillFrame.replace('\n', '');
+}
+
+function reportWindowSize() {
+//  video.height = video.offsetWidth * vh/vw + "px";
+  videodiv.style.height = video.offsetHeight + "px";
+}
+
+window.onresize = reportWindowSize;
+{% endblock %}

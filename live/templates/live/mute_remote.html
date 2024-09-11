@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'live:mute' %}?camera={% if request.GET.camera %}{{ request.GET.camera }}{% else %}private{% endif %}&key={{ camera.key }}&user={{ camera.user.profile.name }}" method="POST" id="liveRemote" class="mute-button">
+<button id="mutebutton" class="btn btn-outline-dark pink-borders" type="submit">{% if camera.muted %}<i class="bi bi-mic-fill"></i>{% else %}<i class="bi bi-mic-muted-fill"></i>{% endif %}</button>
+</form>

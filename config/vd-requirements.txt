@@ -1,0 +1,12 @@
+numpy
+pyheif==0.5.1
+requests==2.26.0
+torch==2.2.0
+torchvision==0.17.0
+openai-clip
+matplotlib
+whatimage==0.0.3
+streamlit
+Pillow
+opencv-python
+pyaml

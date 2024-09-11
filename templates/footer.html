@@ -1,0 +1,20 @@
+<hr style="visibility: hidden;">
+{% load app_filters %}
+{% if not stacktrace_context == '' and not is_404 and not is_403 %}
+<p style="white-space: pre-wrap;">{{ stacktrace_context }}</p>
+<hr>
+{% endif %}
+     <div class="d-flex justify-content-between">
+        <div style="float:left;">
+          <p><span class="badge bg-light text-dark shadow p-1">&copy;{% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated and not hide_logo %} {{ the_site_name }},{% endif %} {{ currentyear }}</span></p>
+        </div>
+	{% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated and not hide_logo %}
+	<div style="text-align: center;">
+          {% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated %}{% if show_social_links %} <a href="{{ instagram_link }}" about="_blank" title="Visit me on Instagram" style="font-size: 20px;" class="ml-1"><i class="bi bi-instagram"></i></a> <a href="{{ twitter_link }}" about="_blank" title="Visit me on Twitter" style="font-size: 20px;" class="ml-1"><i class="bi bi-twitter"></i></a> <a href="{{ youtube_link }}" about="_blank" title="Watch me on YouTube" style="font-size: 20px;" class="ml-1"><i class="bi bi-youtube"></i></a>{% endif %}{% endif %}
+          <img alt="{{ 'Accepting Visa and Mastercard'|trans }}" style="height: auto; width: 80%; max-width: 75px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+	</div>
+	{% endif %}
+	<div style="float:right;">
+          <p><span class="badge bg-{% if darkmode %}dark{% else %}light{% endif %} text-dark shadow p-1"><a href="{% url 'misc:terms' %}" title="{{ 'See the terms of service'|trans }}" id="login-button">{{ 'Terms of Service'|trans }}</a></span></p>
+        </div>
+      </div>

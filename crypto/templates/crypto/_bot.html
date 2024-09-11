@@ -1,0 +1,21 @@
+<div style="display: flex; justify-content: space-around;">
+<a class="btn btn-outline-primary" href="{% url 'crypto:edit-bot' bot.id %}">Edit</a>
+<a class="btn btn-outline-danger" href="{% url 'crypto:delete-bot' bot.id %}">Delete</a>
+</div>
+<p><i class="bi bi-robot" style="color: {% if bot.test_mode %}red{% else %}black{% endif %};"></i> <i class="bi bi-handbag{% if bot.holding %}-fill{% endif %}" style="color: {% if bot.test_mode %}red{% else %}black{% endif %};"></i> <b><i class="bi bi-tag-fill"></i> {{ bot.ticker }}</b> <i>({{ bot.rec }})</i> <i class="bi bi-cash-stack"></i> ${{ bot.investment_amount_usd }} <i class="bi bi-currency-dollar"></i><i>${{ bot.holding_amount_usd }}</i></p>
+{% if bot.trades.count > 0 %}
+{% load feed_filters %}
+<i>Earnings - Day: {{ bot.trades.all|crypto_earnings_day }}, Week: {{ bot.trades.all|crypto_earnings_week }}, Month: {{ bot.trades.all|crypto_earnings_month }}, Year (predicted): {{ bot.trades.all|crypto_earnings_year }}</i>
+<div style="overflow: scroll; height: 300px;">
+<div style="white-space: pre-wrap;">
+<ul>
+{% for trade in bot.trades.all reversed %}
+<li><i class="bi-graph-{% if trade.position == 'SELL' %}up{% else %}down{% endif %}"></i> <i>{{ trade.timestamp }}</i> {{ trade.position }}, <i class="bi bi-currency-bitcoin"></i>{{ trade.amount }}, ${{ trade.amount_usd }}</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+{% else %}
+<p>No trades as of yet.</p>
+{% endif %}
+<hr>

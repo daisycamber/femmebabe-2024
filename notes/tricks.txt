@@ -1,0 +1,4 @@
+chmod -R go+rX
+redis-cli KEYS "celery*" | xargs redis-cli DEL
+/home/team/clemn/venv/lib/python3.10/site-packages/django/apps/registry.py
+

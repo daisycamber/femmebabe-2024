@@ -1,0 +1,10 @@
+{% load app_filters %}
+<b>{{ 'Perks for following me:'|trans }}</b>
+<ul class="article-content">
+<li>{{ 'Access my library of high resolution, high quality still photos, videos and audio securely visible to you with'|trans }} {{ the_site_name }}.</li>
+{% blocktrans %}<li>Access other content from {{ the_site_name }}, including books, games, samples, and exclusive blog posts.</li>
+<li>Call my phone and listen to interactive audio on the phone.</li>
+<li>Send me text messages and text for a photo or status.</li>
+<li>Would you like something else? Just ask me! We can talk about implementing your custom request.</li>
+{% endblocktrans %}
+</ul>

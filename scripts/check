@@ -1,0 +1,2 @@
+#!/bin/bash
+/home/team/lotteh/venv/bin/python /home/team/lotteh/manage.py check

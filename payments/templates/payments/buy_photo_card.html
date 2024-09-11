@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+{% if payment_processor == 'helcim' %}
+<script type="text/javascript" src="https://secure.helcim.app/helcim-pay/services/start.js"></script>
+{% elif payment_processor == 'stripe' %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endif %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<!--<script src="https://js.stripe.com/v3/"></script>-->
+{% endblock %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-credit-card-fill"></i> Buy this {% if not post.file %}photo{% else %}product{% endif %} of @{{ username }} with Card</h1>
+{% if post.image %}<img class="mr-2 img-fluid rounded" style="float: left; filter: blur(8px); width: 50%; max-width: 400px; margin-right: 13px;" src="{{ post.get_blur_thumb_url }}" alt="Buy this photo for ${{ fee|sub_fee }} USD"></img>{% endif %}
+<div style="display: inline-block;">
+<a href="{{ request.path }}{% if request.GET.coupon %}?coupon={{ request.GET.coupon }}{% endif %}" title="See another photo" class="btn btn-outline-dark pink-borders">See Another Photo</a>
+</div>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+<b>Items:</b>
+<ul>
+<li>One private {% if not post.file %}photo{% else %}download, video or audio{% endif %} featuring {{ username }} (${{ fee|sub_fee }})</li>
+<li>Billed once only.</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "{{ statement_descriptor }} AUDIOVISUAL".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<p>You will pay ${{ fee|sub_fee }} USD. Please enter your credit or debit card information.</p>
+{% if request.GET.coupon %}
+<p><legend>You have received a coupon!</legend> - Use coupon code <b id="coupon-code">{{ request.GET.coupon }}</b> <button class="btn btn-primary btn-sm" onclick="copyToClipboard('coupon-code');">Copy</button> at checkout to get a discount on your purchase.</p>
+{% endif %}
+<hr style="background-color: blue;">
+<form id="pay-form" onsubmit="event.preventDefault(); payFee();">
+{{ form|crispy }}
+<button type="submit" class="btn btn-lg btn-outline-success" title="Submit">Submit</button>
+</form>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var product = 'post';
+var pid = {{ post.id }};
+var price = {{ post.price }};
+var vendor = {{ post.author.id }};
+var payForm = document.getElementById('pay-form');
+var checkoutToken;
+{% if payment_processor == 'paypal' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:paypal-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'square' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:square-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'helcim' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:invoice' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            var j = JSON.parse(data);
+            checkoutToken = j.checkoutToken;
+            $(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
+            appendHelcimPayIframe(j.checkoutToken);
+        },
+    });
+}
+window.addEventListener('message', (event) => {
+
+  const helcimPayJsIdentifierKey = 'helcim-pay-js-' + checkoutToken;
+
+  if(event.data.eventName === helcimPayJsIdentifierKey){
+
+    if(event.data.eventStatus === 'ABORTED'){
+      console.error('Transaction failed!', event.data.eventMessage);
+    }
+
+    if(event.data.eventStatus === 'SUCCESS'){
+      validateResponse(event.data.eventMessage)
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    }
+  }
+});
+function validateResponse(eventMessage) {
+  const payload = {
+    'rawDataResponse': eventMessage.data,
+  };
+  return fetch('{{ base_url }}/payments/helcim/', {body: payload, method: "POST"});
+}
+{% elif payment_processor == 'stripe' %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function payFee(){
+        fetch("/payments/audiovisual/checkout/?photo={{ post.id }}")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load app_filters %}
+<div>
+<img src="{{ user.profile.get_image_url }}" alt="@{{ user.profile.name }}'s profile photo" width="120" height="120" align="left" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+    <div class="article-metadata">
+      <p class="mr-2">@{{ user.username }} - {{ user.profile.name }} ({{ user.profile.preferred_name }})</p>
+      <small class="text-muted">Last seen {{ user.profile.last_seen|date:"F d, Y" }} {{ user.profile.last_seen|time:"H:i" }}</small>
+      <small class="text-muted">Joined on {{ user.profile.date_joined|date:"F d, Y" }} {{ user.profile.date_joined|time:"H:i" }}</small>
+      <small>{{ user.email }}</small>
+      {% if user.profile.phone_number %}<small><i class="bi bi-phone-fill"></i>{{ user.profile.phone_number }}</small>{% endif %}
+      {% if user.verifications.last %}
+      <small>'{{ user.verifications.last.full_name }}'</small>
+      <small><i class="bi bi-123"></i> {{ user.verifications.last.document_number }}</small>
+      <small><i class="bi bi-calendar-heart-fill"></i> {{ user.verifications.last.birthdate }}</small>
+      <a href="{{ user|document_front }}" class="btn btn-sm btn-outline-primary" title="ID front"><i class="bi bi-person-badge-fill"></i> ID front</a>
+      <a href="{{ user|document_back }}" class="btn btn-sm btn-outline-primary" title="ID back"><i class="bi bi-upc-scan"></i> ID back</a>
+      {% endif %}
+      <small>#{{ user.id }}</small>
+      <small>{% if user.profile.subscribed %}Subscribed{% else %}Not subscribed{% endif %}</small>
+    </div>
+    {%if not user.is_superuser %}
+    <div style="float: right;">{% include 'users/toggle_active.html' %}</div>
+    {% endif %}
+    {% autoescape off %}    
+    <p class="article-content">{{ user.bio }}</p>
+    {% endautoescape %}
+    <hr>
+    <p>{% if user.profile.identity_verified %}Verified user.{% else %}Unverified user.{% endif %} Verifications: {{ user.verifications.count|nts }}</p>
+</div>

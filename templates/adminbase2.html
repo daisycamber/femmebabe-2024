@@ -1,0 +1,130 @@
+{% load static %}{% load feed_filters %}{% load filters %}{% linebreakless %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% if not hidega %}
+{% include 'gtmhead.html' %}
+{% endif %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="/secure/static/favicon.ico">
+  {% if title %}
+  <title>{{ title }} - {{ the_site_name }}</title>
+  {% else %}
+  <title>{{ the_site_name }}</title>
+  {% endif %}
+  <meta name="description" content="{% if description != None %}{{ description }}{% else %}Clementine - Author, Poet, Entreprenuer{% endif %}">
+  <meta name="author" content="{{ author_name }}">
+<link rel="canonical" href="{{ base_url }}{{ request.path }}"/>
+<link rel="stylesheet" href="/static/main.css">
+<link rel="stylesheet" href="/static/clock/sclock.css">
+<link rel="stylesheet" href="/static/clock/clock.css">
+<style>
+{% if darkmode %}
+p, h1, h2, h3, h4, h5, legend, i, nav-link, navbar-brand, div, small, b {
+	color: white;
+	text-color: white;
+}
+hr {
+	border-color: white;
+}
+a {
+	color: #94c7ff;
+}
+.text-muted {
+	color: white !important;
+	text-color: white !important;
+}
+.card, .card-body {
+  background-color: #343a40 !important;
+}
+a:hover {
+  color: lightgreen;
+}
+{% else %}
+nav-link, nav-item {
+	color: black;
+}
+{% endif %}
+</style>
+<style>
+{% block styles %}
+{% endblock %}
+</style>
+{% block extra_head %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+<script src="/static/head.js"></script> 
+<link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
+</head>
+<body>
+{% if not hidega %}
+{% include 'gtmbody.html' %}
+{% endif %}
+{% include 'preload.html' %}
+{% if not hidenavbar %}
+{% include 'navbar.html' %}
+{% endif %}
+<main class="container-fluid clemn" style="width: {% if full or request.path|startswith:'/admin/' %}100{% else %}90{% endif %}%;{% if not hidenavbar %} padding-top: 5rem;{% endif %} ml-0 mr-0">
+{% if not request.path|startswith:'/admin/' %}
+  <div class="col-md-8 mx-auto align-self-center">
+        {% autoescape off %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+		{{ message.message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endautoescape %}
+  </div>
+{% endif %}
+{% include 'header.html' %}
+<div id="main" class="{% if xsmall %}col-sm-3{% elif small %}col-sm-6{% elif medium %}col-md-6{% else %}w-100{% endif %} align-self-center mx-auto ml-0 mr-0">
+{% endlinebreakless %}
+{% block content %}{% endblock %}
+{% if splash %}
+{% include 'feed/modal.html' %}
+{% endif %}
+</div> 
+{% if not dontshowsidebar %}
+{% include 'sidebar.html' %}
+{% endif %}
+{% if not hidenavbar or showfooter %}
+{% include 'footer.html' %}
+{% endif %}
+</main>
+<audio id="base-audio" hidden>
+</audio>
+<script src="/static/main.js"></script> 
+{% block javascripts%}{% endblock %}
+<script>{% block javascript %}{% endblock %}</script>
+<script>
+{% if splash %}
+{% include 'feed/modal.js' %}
+{% endif %}
+{% include 'kick.js' %}
+{% if accl_logout or request.user.is_authenticated and not request.path == '/accounts/logout/' and request.user.profile.shake_to_logout %}
+{% include 'accl_logout.js' %}
+{% endif %}
+{% include 'clock.js' %}
+$(document).ready(function() {
+    setTimeout(function(){
+	if(!document.getElementById("main-window-clemn")) {
+	    setTimeout(function() {
+			$('#clemn-navbar').removeClass('hide');
+			$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+			$('#clemn-navbar').addClass('fade-in-fast');
+	    }, 800);
+	}
+	$('body').addClass('loaded');
+	$('#loader-wrapper-init').addClass('hide');
+    }, {% if load_timeout %}{{ load_timeout }}{% else %}3000{% endif %});
+    setTimeout(function() {
+	$('#loader-wrapper-init').addClass('fade-hidden-fast');
+    }, 100);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% load feed_filters %}
+{% include 'users/register_modal.html' %}
+<h1><i class="bi bi-hospital"></i> Surrogacy Plans</h1>
+<legend>Hire a surrogate mother, and follow your dreams of parenthood.</legend>
+<p>Surrogacy opens the possibility for anyone to become a parent. With a surrogate mother through {{ the_site_name }}, you can count on us to help you build your family and join you in your journey of parentage.</p>
+<div style="display: inline-block;">
+<img align="left" src="{{ vendor.profile.get_face_blur_url }}" style="width:33%; margin-right: 10px;" class="rounded"/>
+<img class="mr-2 img-fluid rounded" src="{{ post.get_thumb_url }}" style="float: left; width: 40%; max-width: 400px;" alt="Hire {{ vendor.profile.name }} as a surrogate mother or gestational carrier through {{ the_site_name }}"/>
+</div>
+<p>Given the option of a gestational carrier or traditional surrogate mother, we can help you become a parent by carrying your child, or you and your partner's child.</p>
+<p>If you think surrogacy might be right for you, please continue to get started or contact us for help. We will reach out with further details and make arrangements for you.</p>
+<p>Please don't hesitate to reach out through email, phone or the contact form below. Please ask us any of your questions, and feel free to inquire about services. Thank you for your interest.</p>
+<legend><i class="bi bi-gender-female"></i><i class="bi bi-prescription2"></i><i class="bi bi-capsule-pill"></i><i class="bi bi-prescription"></i><i class="bi bi-egg"></i><i class="bi bi-flower1"></i><i class="bi bi-heart-pulse"></i><i class="bi bi-peace-fill"></i><i class="bi bi-rainbow"></i><i class="bi bi-postcard-heart-fill"></i><i class="bi bi-house-heart"></i><i class="bi bi-chat-heart"></i><i class="bi bi-clipboard2-heart"></i><i class="bi bi-person-hearts-fill"></i><i class="bi bi-baloon-heart"></i><i class="bi bi-calendar-heart"></i><i class="bi bi-shield-shaded"></i></legend>
+<legend>Starting at ${{ surrogacy_fee|sub_fee }}</legend>
+<div>
+<img{% if darkmode %} style="filter: invert(100%);"{% endif %} style="margin: 7px;" align="left" width="35" alt="The rod of Asclepius" src="/media/static/rod-of-asclepius.png"></img>
+<a href="{% url 'payments:surrogacy-checkout' vendor.profile.name %}" class="m-2 btn btn-light border border-dark btn-lg" title="Agreements and checkout">Continue</a>
+</div>
+<hr>
+{% include 'contact/form.html' %}
+<div id="register-modal" class="m-3 rounded mx-auto center" style="background-color: #{% if not darkmode %}DDDDDD{% else %}666666{% endif %}; max-width: 500px;">
+<div style="position: relative;" style="margin: 5px; padding: 5px;" class="m-1 p-1">
+<legend class="center" style="text-align: center"><i class="bi bi-envelope-paper-heart"></i> {{ 'Ready to get started? Create an account to let us know you\'re interested.'|trans }}</legend>
+<p><small>{{ 'Begin below by entering your email to create an account with'|trans }} {{ the_site_name }}.</small></p>
+{% if use_allauth %}{% load socialaccount %}<a class="btn btn-light border border-dark" href="{% provider_login_url 'google' %}" title="{{ 'Log in with Google'|trans }}" target="_blank"><i class="bi bi-google" style="text-color: black !important; color: black !important;"></i> Log in with Google</a>{% endif %}
+<hr>
+{% include 'users/email.html' %}
+<p>{{ 'We won\'t send you any spam, or any marketing related to anyone else\'s projects. Unsubscribe at any time through your email or profile.'|trans }}</p>
+</div>
+</div>
+<h3><i class="bi bi-award-fill"></i> As heard on NPR - National Public Radio</h3>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+{% include 'users/register_modal.js' %}
+{% endblock %}

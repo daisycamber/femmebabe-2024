@@ -1,0 +1,15 @@
+<h1>{{ site_name }} - Your monthly ID scanner update</h1>
+<p>Hello {{ user.username }},</p>
+<p>The following are all the valid IDs you scanned since your last update.</p>
+{% for scan in photo_urls %}
+{% if scan.name and scan.number %}<p>ID Name: <b>{{ scan.name }}</b> ID Number: <i>{{ scan.number }}</i></p>{% endif %}
+<p>IDWare Data: {{ scan.idscan }}</p>
+<p>Barcode Data: {{ scan.data }}</p>
+<hr>
+{% endfor %}
+<p>Use this link to visit the site - <a href="{{ protocol }}://{{ domain }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}</p>
+<p>Thanks for using our software.</p>
+<p>Thank you,</p>
+<p>Clementine</p>

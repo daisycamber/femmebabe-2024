@@ -1,0 +1,4 @@
+<form style="display: inline-block;" action="{% url 'payments:card' card.id %}" method="POST" id="publishForm">
+{% csrf_token %}
+<button class="btn btn-outline-success" type="submit">{% if card.primary %}<i class="bi bi-pin-angle-fill"></i>{% else %}<i class="bi bi-pin-fill"></i>{% endif %}</button>
+</form>

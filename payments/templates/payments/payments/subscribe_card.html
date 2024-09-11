@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<legend><i class="bi bi-credit-card-fill"></i> Subscribe to @{{ username }} with Card</legend>
+<div style="display: inline-block;">
+<img align="left" src="{{ model.get_face_blur_url }}" style="width:33%; margin-right: 10px;" class="rounded"></img>
+<img class="mr-2 img-fluid rounded" src="{{ post.get_blur_thumb_url }}" style="float: left; width: 40%; max-width: 400px;" alt="See photos like these"></img>
+</div>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+{% include 'payments/_subscription_perks.html' %}
+<p> - {{ p_user.profile.name }}</p>
+<b>Items:</b>
+<ul>
+<li>Subscription to {{ username }} with {{ the_site_name }} (${{ fee|sub_fee }})</li>
+<li>Billed monthly, until cancellation.{% if not profile.user.vendor_profile.free_trial == '0' %} The first {{ profile.user.vendor_profile.free_trial }} days will be free, with an opportunity to cancel your subscription before a payment is made should you choose to.{% endif %}</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "FEMMEBABE.COM SUBS".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<p>You will be redirected to a checkout page to buy the product. Please enter your credit or debit card information, you will be billed monthly until you cancel through the website, or by email, cancellation service, or any other form of cancellation request.</p>
+<p>You will pay ${{ fee|sub_fee }} USD. Please click the button below to continue.</p>
+<button onclick="monthlyPlan({{ fee }});" class="btn btn-lg btn-outline-primary">Subscribe</button>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function monthlyPlan(plan){
+        fetch("/payments/checkout/monthly/?plan=" + plan + "&vendor=" + "{{ profile.stripe_id }}")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+	    console.log(JSON.stringify(data));
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endblock %}
+

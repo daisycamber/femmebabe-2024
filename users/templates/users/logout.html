@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'opc.html' %}
+<legend>You have been logged out.</legend>
+<p><a href="{% url 'users:login' %}" title="Log in again">Login again</a></p>
+{% include 'clc.html' %}
+{% endblock %}

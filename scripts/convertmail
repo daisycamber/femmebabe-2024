@@ -1,0 +1,42 @@
+#!/bin/bash
+cd
+cd lotteh
+OLDNAME='Femme Babe'
+NEWNAME='Lotte Harper'
+OLDDOMAIN='lotteh.com'
+NEWDOMAIN='femmebabe.com'
+OLDHOST='femmebabe'
+NEWHOST='lotteh'
+OLDUSER='team'
+NEWUSER='team'
+OLDPROJ='femmebabe'
+NEWPROJ='lotteh'
+OLDSET='femmebabe'
+NEWSET='lotteh'
+OLDPREF='Daisy'
+NEWPREF='Lotte'
+string0="s@${OLDDOMAIN}@${NEWDOMAIN}@g"
+#string1="s@${OLDHOST}@${NEWHOST}@g"
+#string2="s@${OLDUSER}@${NEWUSER}@g"
+#string3="s@${OLDPROJ}@${NEWPROJ}@g"
+#string4="s@${OLDNAME}@${NEWNAME}@g"
+#string5="s@${OLDSET}@${NEWSET}@g"
+#string6="s@${OLDPREF}@${NEWPREF}@g"
+FILES="config/etc_default_opendkim
+config/etc_dovecot_conf.d_10-auth.conf
+config/etc_dovecot_conf.d_10-master.conf
+config/etc_dovecot_dovecot.conf
+config/etc_dovecot_passwd
+config/etc_opendkim.conf
+config/etc_postfix_main.cf
+config/etc_postfix_master.cf"
+for f in $FILES; do
+	sed -i "$string0" "$f"
+#	sed -i "$string1" "$f"
+#	sed -i "$string2" "$f"
+#	sed -i "$string3" "$f"
+#	sed -i "$string4" "$f"
+#	sed -i "$string5" "$f"
+done
+cd ~
+echo "Replaced $OLDPROJ with $NEWPROJ"

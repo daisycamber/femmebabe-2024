@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Success</h1>
+<h2>You are now unsubscribed.</h2>
+<p>To subscribe again, please click the button below.</p>
+<form method="POST" action="{{ feed }}">
+{% csrf_token %}
+<p><button type="submit" class="btn btn-outline-primary">Resubscribe</button></p>
+</form>
+<p>Or, please <a href="{% url 'users:profile' %}" title="Visit your profile">visit your profile</a>, check the box, and submit.</p>
+<p><a href="{% url 'app:app' %}" class="btn btn-primary" title="See new posts"><i class="bi bi-globe"></i> Explore</a></p>
+{% endblock %}

@@ -1,0 +1,55 @@
+var zip = new JSZip();
+function en(text, callback){
+//	console.log(text);
+        var thefile = zip.file("file.zip", text);
+        var reader = new FileReader();
+        reader.onload=callback // e.target.result
+        thefile.generateAsync({ type: "blob" }).then(function (content) {
+		reader.readAsDataURL(content);
+	});
+}
+/*
+function dataURItoBlob(dataurl) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {type:mime});
+}*/
+
+function dataURItoBlob(dataURI) {
+//	console.log(dataURI);
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+    var byteString = atob(decodeURIComponendataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    //Old Code
+    //write the ArrayBuffer to a blob, and you're done
+    //var bb = new BlobBuilder();
+    //bb.append(ab);
+    //return bb.getBlob(mimeString);
+
+    //New Code
+    return new Blob([ab], {type: mimeString});
+}
+
+function de(text, callback){
+        zip.loadAsync(dataURItoBlob(text), {type: "blob"}).then(function (zip) {
+                Object.keys(zip.files).forEach(function (filename) {
+                        zip.files[filename].async('string').then(function (fileData) {
+                                callback(fileData);
+                        })
+                })
+        })
+}

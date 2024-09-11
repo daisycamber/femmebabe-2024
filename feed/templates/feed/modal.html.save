@@ -1,0 +1,26 @@
+<div style="position: fixed; left: 0; top: 0; background-color: #ccddff; width: 100%; height: 120%;" class="cmodal hide">
+<div class="disappear">
+<img src="/media/static/clemn.png" alt="{{ the_site_name }}" width="50" height="50" style="position: absolute; left: 5px; top: 5px;">
+<p style="margin-top: 15px; text-align: center;" id="current-text2">{{ current_time_text }}</p>
+<div style="position: absolute; right: 5px; top: 5px;">
+{% include 'sclock.html' %}
+</div>
+</div>
+<div class="hide" id="large-frame">{{ splash }}</div>
+<div class="hide" id="main-window-clemn" hidden></div>
+<div style="position: relative; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 100%;" id="center-text">
+<div class="container center">
+<h1 id="current-text" style="font-size: 50px; word-wrap: break-word; text-align: center;" class="center"></h1>
+</div>
+</div>
+<div class="disappear" style="position: absolute; bottom: 18%; left: 10px; width: 95%;">
+<img style="margin-right: 7px;" align="left" width="35" alt="The rod of Asclepius" src="/media/static/rod-of-asclepius.png"></img>
+<div class="container">
+
+<small>* Tap or click the screen to continue.</small>
+<div class="text-right" style="text-align: right;"><small>Already signed up? {% if request.user.is_authenticated %}<a id="login-button" href="{% url 'go:go' %}" title="Go somewhere useful">Go</a>{% else %}<a id="login-button" href="{% url 'users:login' %}" title="Log in to {{ the_site_name }} here" class="btn btn-sm btn-outline-primary"><i class="bi bi-door-open-fill"></i> Login</a>{% endif %}</small></div>
+<small>{% if location %}{{ location }} {% endif %}
+- Property of {{ the_site_name }}, a division of {{ company_name }} UBI {{ ubi }}, by {{ author_name }}</small>
+</div>
+</div>
+</div>

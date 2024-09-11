@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>All faces</legend>
+<div style="display: inline-block;">
+{% if not request.GET.all %}<a href="{{ request.path }}?model={{ request.GET.model }}&all=t" title="Include unauthorized">All</a>{% endif %}
+<button onclick="render();" class="btn btn-primary" title="Render faces">Render</button>
+</div>
+<div class="slidecontainer">
+  <input type="range" min="1500" max="5000" value="3000" class="slider" id="range" style="width: 100%;">
+</div>
+<img width="100%;" id="you" src="{{ faces.first.get_secure_url }}"></img>
+<div style="display: flex; justify-content: space-around;">
+<button class="btn btn-primary" onclick="last();">Last</button>
+<button class="btn btn-primary" onclick="reset();">Reset</button>
+<button class="btn btn-primary" onclick="next();">Next</button>
+</div>
+<div class="slidecontainer">
+  <input type="range" min="1" max="{{ faces.count }}" value="0" class="slider" id="range2" style="width: 100%;">
+</div>
+{% endblock %}
+{% block javascript %}
+var faces = [{% for face in faces %}"{{face.get_secure_url}}",{% endfor %}];
+var c = 0;
+var interval = null;
+var image = document.getElementById("you");
+var range = document.getElementById("range");
+var rangeFace = document.getElementById("range2");
+rangeFace.onchange = function(){
+	clearInterval(interval);
+	c = parseInt(this.value-1);
+	image.src = faces[c];
+};
+function render(){
+	if(interval != null) {
+		clearInterval(interval);
+	}
+	interval = setInterval(function() {
+		image.src = faces[c++];
+		rangeFace.value = c + 1;
+		if(c >= faces.length){
+			clearInterval(interval);
+			interval = null;
+			c = 0;
+		}
+	}, range.value);
+}
+
+function last() {
+	if(c > 0) {
+		image.src = faces[c--];
+		rangeFace.value = c + 1;
+	}
+}
+
+function next() {
+	if(c < faces.length) {
+		image.src = faces[c++];
+		rangeFace.value = c + 1;
+	}
+}
+
+function reset() {
+	c = 0;
+	rangeFace.value = 1;
+	image.src = faces[c];
+	clearInterval(interval);
+}
+{% endblock %}
+

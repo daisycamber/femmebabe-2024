@@ -1,0 +1,8 @@
+{% load app_filters %}
+<form class="d-flex">
+    {% for key, val in request.GET.items %}
+    <input type="hidden" class="hide" type="text" id="{{ key }}" name="{{ key }}" value="{{ val }}">
+    {% endfor %}
+	<input class="form-control mr-sm-2" type="number" placeholder="Page" aria-label="Page" required id="page" name="page">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Jump</button>
+</form>
