@@ -1,4 +1,4 @@
-overwrite = False
+overwrite = True
 import os
 from feed.models import Post
 from django.template.loader import render_to_string
@@ -43,7 +43,7 @@ def generate_site():
         img_url = post.get_image_url()
         if not img_url: img_url = post.image_bucket.url if post.image_bucket else post.author.profile.get_image_url()
         blog = blog + '<div id="feed{}">{}'.format(count, post.content_compiled) + ('<img width="100%" height="auto" src="{}" id="img{}" alt="{}"/>'.format(img_url, count, title) if post.image else '')
-        blog = blog + '<p>{} | {} | {}</p></div><hr>\n'.format('<a href="/{}" title="{}">View</a>'.format(post.friendly_name, 'View Post - {} by {}'.format(shorttitle(post.id), post.author.profile.name)), '<a href="{}" title="{}">Buy</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid), 'Buy on {}'.format(settings.SITE_NAME)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
+        blog = blog + '<p>{} | {} | {}</p></div><hr>\n'.format('<a href="/{}" title="{}">View</a>'.format(post.friendly_name, 'View Post - {} by {}'.format(title, post.author.profile.name)), '<a href="{}" title="{}">Buy</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid), 'Buy on {}'.format(settings.SITE_NAME)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
         count = count + 1
         if count%5 == 0:
             blog = blog + render_to_string('banner_ad.html', {'show_ads': True})

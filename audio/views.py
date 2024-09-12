@@ -104,16 +104,16 @@ def recording(request, id):
     except:
         recording = None
     theuser = recording.user if recording else None
-    if not theuser and request.user.profile.vendor:
+    if request.user.is_authenticated and not theuser and request.user.profile.vendor:
         theuser = request.user
-    elif not theuser:
+    elif not theuser and request.user.is_authenticated:
         messages.warning(request, 'The user matching your query does not exist.')
         return redirect(reverse('landing:landing'))
 #    elif not request.user.profile.vendor:
 #        if not theuser in request.user.profile.subscriptions.all():
 #            raise PermissionDenied()
     recording = None
-    if theuser == request.user and request.user.profile.vendor and request.method == 'POST' and (not recording or request.user == recording.user):
+    if request.user.is_authenticated and theuser == request.user and request.user.profile.vendor and request.method == 'POST' and (not recording or request.user == recording.user):
         from tts.slice import process_user_audio
         from .transcription import get_transcript
         from audio.fingerprinting import save_fingerprint, is_in_database
@@ -168,7 +168,7 @@ def recording(request, id):
     from django.core.exceptions import PermissionDenied
     if recording and not recording.public and not recording.user == theuser:
         raise PermissionDenied()
-    if not recording and not request.user.profile.vendor:
+    if request.user.is_authenticated and not recording and not request.user.profile.vendor:
         raise PermissionDenied()
     import pytz
     r = render(request, 'audio/recording.html', {'title': 'Voice Recording', 'recording': recording, 'form': audio_form, 'current_time_js': timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%a %b %d %Y %H:%M:%S GMT-0700 (Pacific Daylight Time)'), 'preload': True, 'load_timeout': 3000, 'theuser': theuser, 'pitches_per_second': settings.PITCHES_PER_SECOND, 'target_pitch': settings.TARGET_PITCH, 'max_pitch': settings.MAX_PITCH})

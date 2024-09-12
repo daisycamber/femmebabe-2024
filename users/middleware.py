@@ -62,6 +62,7 @@ def redirect_path(path):
            return False
     return True
 
+from lotteh.celery import async_user_tasks
 
 def simple_middleware(get_response):
     # One-time configuration and initialization.
@@ -93,7 +94,6 @@ def simple_middleware(get_response):
                     response = HttpResponseRedirect(reverse('landing:index'))
                     response.set_cookie('return_visit', True, max_age=max_age, expires=expires)
                     return response
-            from lotteh.celery import async_user_tasks
             async_user_tasks.delay(request.user.is_authenticated, request.user.id if request.user.is_authenticated else None, ip, request.LANGUAGE_CODE)
             if request.user.is_authenticated and (request.user.profile.enable_two_factor_authentication or request.user.profile.vendor) and not request.path.startswith('/accounts/tfa/') and not request.path.startswith('/accounts/logout/') and not request.path.startswith("/face/") and not request.path.startswith("/verify/"):
                 if not request.user.profile.phone_number or len(request.user.profile.phone_number) < 11:

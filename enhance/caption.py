@@ -2,7 +2,7 @@ import re
 #import streamlit as st
 from PIL import Image
 #from tqdm import tqdm
-from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
+from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 import torch
 from PIL import Image
 #from tqdm import tqdm
@@ -14,13 +14,13 @@ from feed.models import Post
 
 TF_URL = "https://app.truefoundry.com/"
 
-replace = {'man': 'woman', 'boy': 'woman', 'his': 'her', 'man\'s': 'woman\'s', 'men': 'women', 'him': 'her', 'beard': 'piercing', 'knife': 'pose', 'mustache': 'makeup', 'a makeup': 'makeup', 'with makeup': 'wearing makeup'}
+replace = {'man': 'woman', 'boy': 'woman', 'his': 'her', 'man\'s': 'woman\'s', 'men': 'women', 'him': 'her', 'beard': 'piercing', 'knife': 'pose', 'mustache': 'makeup', 'a makeup': 'makeup', 'with makeup': 'wearing makeup', 'dog': 'phone'}
 
 def caption_image(image_path):
     os.environ['MLF_HOST'] = TF_URL
     os.environ['MLF_API_KEY'] = settings.TF_API_KEY
     model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
-    feature_extractor = ViTFeatureExtractor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+    feature_extractor = ViTImageProcessor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
     tokenizer = AutoTokenizer.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
     device = torch.device("cpu") #"cuda" if torch.cuda.is_available() else 
     model.to(device)

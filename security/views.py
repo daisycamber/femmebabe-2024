@@ -10,7 +10,6 @@ from face.tests import is_superuser_or_vendor
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
-
 current_challenges = {}
 
 @login_required

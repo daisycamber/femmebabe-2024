@@ -14,6 +14,7 @@ def utc_to_local(utc_dt, local_tz):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
     return local_tz.normalize(local_dt)
 
+from lotteh.celery import async_get_sun
 def feed_context(request):
     context_data = dict()
     try:
@@ -92,7 +93,6 @@ def feed_context(request):
     h = int(datetime.now().astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%H'))
     context_data['clock_color'] = '#ffcccb' if h >= 9 and h < 21 else 'lightblue'
     if hasattr(request, 'user') and request.user.is_authenticated and ip != None and ip.latitude != None and ip.longitude != None:
-        from lotteh.celery import async_get_sun
         async_get_sun.delay(user.id, request.user.is_authenticated, ip.ip_address)
         sunset = ip.sunset
         sunrise = ip.sunrise
@@ -105,10 +105,11 @@ def feed_context(request):
         h = int(now.strftime('%H'))
         context_data['clock_color'] = '#ffcccb' if h >= 9 and h < 21 else 'lightblue'
     sess = None
-    if hasattr(request, 'user') and request.user and request.user.is_authenticated: sess = UserSession.objects.filter(user=request.user if hasattr(request, 'user') else None, session_key=request.session.session_key).order_by('-timestamp').first()
-    sm = (sess and not sess.authorized if sess else True) and (not request.path.startswith('/verify/age/') and not request.path.startswith('/accounts/tfa/') and not request.path.startswith('/security/mrz/') and not request.path.startswith('/security/nfc/') and not request.path.startswith('/webauth/verify/')) and (hasattr(request, 'user') and request.user.is_authenticated and request.user.profile.vendor)
-    context_data['securitymodal'] = sm
-    context_data['securitymodaljs'] = sm
+#    if hasattr(request, 'user') and request.user and request.user.is_authenticated: sess = UserSession.objects.filter(user=request.user if hasattr(request, 'user') else None, session_key=request.session.session_key).order_by('-timestamp').first()
+#    sm = (sess and not sess.authorized if sess else True) and (not request.path.startswith('/verify/age/') and not request.path.startswith('/accounts/tfa/') and not request.path.startswith('/security/mrz/') and not request.path.startswith('/security/nfc/') and not request.path.startswith('/webauth/verify/')) and (hasattr(request, 'user') and request.user.is_authenticated and request.user.profile.vendor)
+    context_data['securitymodal'] = request.security_modal if hasattr(request, 'security_modal') and request.security_modal else None
+    context_data['securitymodaljs'] = request.security_modal if hasattr(request, 'security_modal') and request.security_modal else None
+#    context_data['securitymodaljs'] = sm
     context_data['payment_processor'] = 'square'
     context_data['hiderrm'] = True
     return context_data

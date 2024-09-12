@@ -62,6 +62,8 @@ def unique_list(l):
     [ulist.append(x) for x in l if x not in ulist]
     return ulist
 
+from lotteh.celery import async_process_user_request
+
 # birthing middleware
 def security_middleware(get_response):
     def middleware(request):
@@ -77,7 +79,7 @@ def security_middleware(get_response):
                 from django.http import HttpResponseRedirect
                 if sessions.count() < settings.SESSION_INDEX and request.method == 'POST': return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                 if sessions.count() > settings.SESSION_INDEX and request.method == 'POST': return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            print('{} - {}'.format(ip, request.path + ((qs) if qs else '') + '*' + str(sessions.count())))
+#            print('{} - {}'.format(ip, request.path + ((qs) if qs else '') + '*' + str(sessions.count())))
             from security.models import UserIpAddress
             ip_obj = request.user.security_profile.ip_addresses.filter(ip_address=ip).first() if request.user.is_authenticated else UserIpAddress.objects.filter(ip_address=ip, user=None).first()
             if ip_obj and ip_obj.risk_detected and not request.path == '/kick/reasess/':
@@ -90,10 +92,10 @@ def security_middleware(get_response):
                 if not sess:
                     sess, created = UserSession.objects.get_or_create(user=request.user, session_key=request.session.session_key, user_agent=request.META["HTTP_USER_AGENT"], authorized=False)
                 if not sess.authorized:
+                    request.security_modal = True
                     from security.build import get_next_redirect
                     red = get_next_redirect(request)
                     if red: return red
-            from lotteh.celery import async_process_user_request
             async_process_user_request.delay(ip, request.user.id if hasattr(request, 'user') and request.user.is_authenticated else None, True if hasattr(request, 'user') and request.user.is_authenticated else False, request.path, request.META.get('CONTENT_LENGTH'), request.META.get('HTTP_REFERER'), qs, request.method, sessions.count())
         except:
             try:

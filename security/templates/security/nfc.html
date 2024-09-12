@@ -40,7 +40,9 @@ function writeData() {
                    if(response == 'y' && !redirecting) {
                         redirecting = true;
           	           document.getElementById('errors').innerHTML= 'Redirecting.';
-                           window.navigator.vibrate({{ default_vibration }});
+                            try {
+                            window.navigator.vibrate({{ default_vibration }});
+                            } catch {}
                            window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}';
                    } else {
                        successfulRead = false;
@@ -102,7 +104,9 @@ function initialize() {
     if(!reading) {
         reading = true;
         readTag();
+        try {
         window.navigator.vibrate({{ default_vibration }});
+        } catch {}
     }
 }
 document.body.addEventListener('click', function(event) {

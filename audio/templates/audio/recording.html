@@ -9,7 +9,8 @@
 -->
 {% endblock %}
 {% block content %}
-{% if theuser == request.user %}
+<h1>Audio Recording</h1>
+{% if user.is_authenticated %}
 <div style="display: flex; justify-content: space-around;">
 <a href="{% url 'audio:recordings' %}" class="btn btn-outline-primary btn-sm">Back to recordings</a>
 <a href="{% url 'audio:record' 'record' %}?live=true" class="btn btn-outline-danger btn-sm">Live</a>
@@ -19,7 +20,6 @@
 {% endif %}
 </div>
 {% endif %}
-<h1>Audio Recording</h1>
 {% if not recording.content and request.user == theuser %}
 <small><i>Current time is</i> <small id="currentTime">{{ current_time_js }}</small></small>
 <form action="{{ request.path }}?{% for key, value in request.GET.items %}{{ key }}={{ value }}&{% endfor %}" method="POST" enctype="multipart/form-data" id="audio-form">
@@ -34,18 +34,10 @@
 <hr style="background-color: red;">
 <p class="text-center"><i id="recordingid" class="bi bi-record-circle-fill"></i> <i class="text-center" id="elapsed-seconds"></i></p>
 <i class="hide" id="posted" style="float: right; text-color: green;">Saved.</i>
-<div id="pitch-container" style="width: 100%; overflow-x: scroll;">
-<div style="width: 3000px; height: 400px;">
-<canvas id="pitch-chart-live" height="400px" width="3000px" class="hide"></canvas>
-<canvas id="pitch-chart-live2" height="400px" width="3000px" class="hide"></canvas>
-</div>
-</div>
 <hr>
-{% else %}
-{% if request.user == theuser %}
+{% if user == theuser and recording %}
 <a href="{% url 'synthesizer:edit-audio' recording.id %}" title="Edit this audio" class="btn btn-outline-success">Edit</a>
 <div style="float: right;">{% include 'audio/publish.html' %}</div>
-{% endif %}
 {% with recording as content %}{% include 'clock.html' %}{% endwith %}
 <small><i>Uploaded file</i> {{ recording.uploaded_file|date:"D d M Y" }} at {{ recording.uploaded_file|time:"g:i:s a" }}</small>
 {% autoescape off %}
@@ -64,6 +56,13 @@
 </div>
 <canvas id="pitch-chart" height="400px" width="100%"></canvas>
 {% endif %}
+{% endif %}
+<div id="pitch-container" style="width: 100%; overflow-x: scroll;">
+<div style="width: 3000px; height: 400px;{% if darkmode %} background-color: #DDDDDD;{% endif %}">
+<canvas id="pitch-chart-live" height="400px" width="3000px" class="hide"></canvas>
+<canvas id="pitch-chart-live2" height="400px" width="3000px" class="hide"></canvas>
+</div>
+</div>
 <div style="display: flex; justify-content: space-around;">
 <div><legend id="note-verbose" style="color: green; !important;">(Tap)</legend></div>
 <div><legend id="pitch-verbose" style="color: green; !important;"></legend></div>
@@ -76,6 +75,7 @@
 </div>
 {% endblock %}
 {% block javascript %}
+const theGain = 100;
 var scrollContainer = true;
 var container = document.getElementById('pitch-container');
 container.addEventListener('scroll', function(e) {
@@ -230,6 +230,10 @@ function updateLive() {
                         display: true
                     },
                     position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Note (C0-C6), 1/4s avg. autocorrelated'
+                    }
                 },
                 y: {
                     suggestedMin: 100,
@@ -293,7 +297,7 @@ function noteToPitch(note) {
 	return frequency;
 }
 const targetPitch = noteToPitch('{{ target_pitch }}').toFixed(PITCH_DIGITS);
-const minimumPitch = noteToPitch('C1').toFixed(PITCH_DIGITS);
+const minimumPitch = noteToPitch('E0').toFixed(PITCH_DIGITS);
 const maximumPitch = noteToPitch('C6').toFixed(PITCH_DIGITS);
 document.getElementById('target-note-verbose').innerHTML = "{{ target_pitch }}";
 document.getElementById('target-pitch-verbose').innerHTML = String(targetPitch) + " Hz";
@@ -304,15 +308,18 @@ var audioContext;
 function initialize() {
     if(!reading) {
         reading = true;
-    	window.navigator.vibrate({{ default_vibration }});
+    	try { window.navigator.vibrate({{ default_vibration }}); } catch {}
     	audioContext = new (window.AudioContext || window.webkitAudioContext)();
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           console.log("getUserMedia supported.");
           navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+            const gain = audioContext.createGain();
+            gain.gain.value = theGain;
         	analyser = audioContext.createAnalyser();
-        	analyser.minDecibels = -100;
-        	analyser.maxDecibels = -10;
+        	analyser.minDecibels = -300; // -100
+        	analyser.maxDecibels = 3000;
         	analyser.smoothingTimeConstant = 0.85;
+            gain.connect(analyser);
         	source = audioContext.createMediaStreamSource(stream);
         	source.connect(analyser);
             var pitchInterval = 
@@ -349,11 +356,11 @@ function initialize() {
                 		volumes.push(volume);
                         var thecolor;
                 		if(pitch >= targetPitch) {
-                            thecolor = 'rgb(0,255,0)';
+                            thecolor = '#ff4fd6';//'rgb(0,255,0)';
                 			noteVerbose.style = 'color: green; !important';
                 			pitchVerbose.style = 'color: green; !important';
                 		} else if(pitch > minimumPitch) {
-                            thecolor = 'rgb(255,0,0)';
+                            thecolor = '#4f66ff';//'rgb(255,0,0)';
                             noteVerbose.style = 'color: red; !important';
                 			{% if darkmode %}
                 			pitchVerbose.style = 'color: lightblue; !important';
@@ -370,7 +377,14 @@ function initialize() {
                             lcolors.push(thecolor)
                 			noteVerbose.innerHTML = note;
                 			pitchVerbose.innerHTML = pitch.toFixed(PITCH_DIGITS) + " Hz";
-                		}
+                		} else {
+/*                    		lpitches.shift();
+                            lnotes.shift();
+                            lcolors.shift()
+                            lpitches.push(null);
+                    		lnotes.push('NaN');
+                            lcolors.push(thecolor);*/
+                        }
                         {% if not recording.content %}updateLive();{% endif %}
                 	}
                 	pitchCount = pitchCount + 1;
@@ -399,7 +413,7 @@ document.body.addEventListener('click', function(event) {
 document.body.addEventListener('touchmove', function(event) {
     initialize();
 });
-{% if not recording.content and request.user == theuser %}
+{% if not recording.content and request.user == theuser and request.user.is_authenticated %}
 var form = document.getElementById("audio-form");
 function makeid(length) {
     let result = '';
@@ -662,14 +676,15 @@ form.addEventListener("submit", function(e) {
             var pitchAvg = 0;
             var pitchCount = 0;
             for(segment of segments) {
-                console.log('Segment');
-                console.log(segment);
-                analyser = audioContext.createAnalyser();
-                analyser.minDecibels = -100;
-                analyser.maxDecibels = -10;
-                analyser.smoothingTimeConstant = 0.85;
+                const gain = audioContext.createGain();
+                gain.gain.value = theGain;
+            	analyser = audioContext.createAnalyser();
+            	analyser.minDecibels = -300; // -100
+            	analyser.maxDecibels = 3000;
+            	analyser.smoothingTimeConstant = 0.85;
                 var source = audioContext.createBufferSource();
                 source.buffer = segment;
+                gain.connect(analyser);
                 source.connect(analyser);
                 var bufferLength = analyser.fftSize;
                 var buffer = new Float32Array(bufferLength);

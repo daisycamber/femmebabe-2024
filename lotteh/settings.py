@@ -55,7 +55,7 @@ INTERNAL_IPS = [
 # Application definition
 INSTALLED_APPS = [
     'daphne',
-    'simple_history',
+#    'simple_history',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,7 +136,7 @@ AUTHENTICATION_BACKENDS = [
 
 # Middleware goes between a URL pattern and a view
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

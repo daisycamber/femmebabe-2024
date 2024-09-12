@@ -2076,3 +2076,575 @@
 2024-09-11T17:35:12.621476-07:00 localhost team: team [11717]: logs
 2024-09-11T17:36:28.978324-07:00 localhost team: team [11717]: watchlogs
 2024-09-11T17:36:30.349877-07:00 localhost team: team [11717]: logs
+2024-09-12T02:01:04.866355-07:00 localhost team: team [204535]: logs
+2024-09-12T02:01:09.427310-07:00 localhost team: team [204535]: cd lotteh
+2024-09-12T02:01:13.621051-07:00 localhost team: team [204535]: source venv/bin/activate
+2024-09-12T02:02:34.522204-07:00 localhost team: team [204535]: nano lotteh/settings.py
+2024-09-12T02:03:02.898259-07:00 localhost team: team [204535]: python last_logins.py 
+2024-09-12T02:03:25.479046-07:00 localhost team: team [204535]: python approve_login.py 1
+2024-09-12T02:03:48.382636-07:00 localhost team: team [205096]: logs
+2024-09-12T02:03:54.941945-07:00 localhost team: team [205096]: cd lotteh
+2024-09-12T02:04:05.904874-07:00 localhost team: team [205096]: sudo systemctl status apache21
+2024-09-12T02:04:19.775080-07:00 localhost team: team [205096]: sudo systemctl status apache2
+2024-09-12T02:04:29.596220-07:00 localhost team: team [204535]: python approve_login.py 1
+2024-09-12T02:04:32.102422-07:00 localhost team: team [205096]: source venv/bin/activate
+2024-09-12T02:04:39.276262-07:00 localhost team: team [205424]: logs
+2024-09-12T02:04:53.000201-07:00 localhost team: team [205424]: ps -aux | grep python
+2024-09-12T02:04:54.982963-07:00 localhost team: team [205096]: sudo systemctl stop apache2
+2024-09-12T02:05:11.671641-07:00 localhost team: team [205096]: python routine_caption
+2024-09-12T02:05:26.078084-07:00 localhost team: team [205424]: compinf
+2024-09-12T02:05:30.434908-07:00 localhost team: team [205424]: compinfo
+2024-09-12T02:05:37.595413-07:00 localhost team: team [205424]: sudo systemctl status cudo-miner
+2024-09-12T02:05:47.017142-07:00 localhost team: team [205424]: sudo systemctl stop cudo-miner
+2024-09-12T02:06:01.807379-07:00 localhost team: team [205424]: sudo systemctl disable cudo-miner
+2024-09-12T02:08:48.427111-07:00 localhost team: team [205424]: sudo systemctl status apache2
+2024-09-12T02:08:57.110965-07:00 localhost team: team [205424]: sudo systemctl start apache2
+2024-09-12T02:09:09.682730-07:00 localhost team: team [205424]: cd lotteh/
+2024-09-12T02:09:24.368120-07:00 localhost team: team [205424]: nano routine_caption.py
+2024-09-12T02:11:12.319472-07:00 localhost team: team [205096]: python routine_caption.py 
+2024-09-12T02:11:12.461154-07:00 localhost team: message repeated 4 times: [ team [205096]: python routine_caption.py ]
+2024-09-12T02:11:21.173992-07:00 localhost team: team [207480]: python approve_login.py 1
+2024-09-12T02:11:43.423872-07:00 localhost team: team [207637]: python approve_login.py 1
+2024-09-12T02:12:10.533658-07:00 localhost team: team [205096]: nano lotteh/celery.py 
+2024-09-12T02:12:13.084875-07:00 localhost team: team [205424]: nano routine_caption.py
+2024-09-12T02:12:15.949999-07:00 localhost team: team [205424]: nano routine_caption.py
+2024-09-12T02:12:44.874654-07:00 localhost team: team [205424]: nano enhance/caption.py 
+2024-09-12T02:12:48.805788-07:00 localhost team: team [205096]: nano lotteh/celery.py 
+2024-09-12T02:13:07.220547-07:00 localhost team: team [205096]: sudo systemctl status apache2
+2024-09-12T02:13:14.302204-07:00 localhost team: team [205096]: ps -aux | grep python
+2024-09-12T02:13:44.381057-07:00 localhost team: team [205096]: sudo systemctl stop celery daphne apache2 &
+2024-09-12T02:13:55.721390-07:00 localhost team: team [205096]: sudo systemctl status celery daphne apache2 
+2024-09-12T02:14:04.850063-07:00 localhost team: team [205096]: ps -aux | grep python
+2024-09-12T02:14:16.149242-07:00 localhost team: team [205096]: ps -aux | grep python
+2024-09-12T02:14:29.847545-07:00 localhost team: team [205096]: sudo systemctl stop celerybeat
+2024-09-12T02:14:31.244240-07:00 localhost team: team [205096]: ps -aux | grep python
+2024-09-12T02:15:02.841295-07:00 localhost team: team [205096]: sudo systemctl stop daphne
+2024-09-12T02:15:04.619854-07:00 localhost team: team [205096]: sudo systemctl stop daphne &
+2024-09-12T02:15:11.644187-07:00 localhost team: team [205096]: sudo systemctl status daphne
+2024-09-12T02:15:14.672147-07:00 localhost team: team [205096]: sudo systemctl status daphne
+2024-09-12T02:15:18.767536-07:00 localhost team: team [205096]: sudo systemctl status daphne
+2024-09-12T02:15:20.226227-07:00 localhost team: team [205096]: sudo systemctl status daphne
+2024-09-12T02:15:22.325109-07:00 localhost team: team [205096]: ps -aux | grep pytho
+2024-09-12T02:15:40.125106-07:00 localhost team: team [205096]: killall python
+2024-09-12T02:15:44.035672-07:00 localhost team: team [205096]: sudo killall python
+2024-09-12T02:15:49.113276-07:00 localhost team: team [205096]: ps -aux | grep pytho
+2024-09-12T02:16:25.141556-07:00 localhost team: team [205096]: sudo systemctl start celery celerybeat daphne apache2 &
+2024-09-12T02:16:34.497633-07:00 localhost team: team [205096]: sudo systemctl status celery celerybeat daphne apache2
+2024-09-12T02:16:36.038788-07:00 localhost team: team [205096]: sudo systemctl status celery celerybeat daphne apache2
+2024-09-12T02:16:36.886135-07:00 localhost team: team [205096]: sudo systemctl status celery celerybeat daphne apache2
+2024-09-12T02:16:38.131370-07:00 localhost team: team [205096]: logs
+2024-09-12T02:16:42.961074-07:00 localhost team: team [205096]: logs
+2024-09-12T02:16:44.382560-07:00 localhost team: team [205096]: logs
+2024-09-12T02:16:47.652832-07:00 localhost team: team [209054]: python approve_login.py 1
+2024-09-12T02:16:51.540756-07:00 localhost team: team [209054]: logs
+2024-09-12T02:17:18.167889-07:00 localhost team: team [205096]: logs
+2024-09-12T02:22:20.791054-07:00 localhost team: team [205096]: nano audio/templates/audio/rec
+2024-09-12T02:22:24.212950-07:00 localhost team: team [205096]: nano audio/templates/audio/recording
+2024-09-12T02:23:43.991816-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T02:23:46.986499-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:24:25.420255-07:00 localhost team: team [219465]: logs
+2024-09-12T02:25:15.045845-07:00 localhost team: team [205096]: sudo watchlogs
+2024-09-12T02:26:25.818779-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:29:50.668227-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T02:29:53.328201-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:30:32.522876-07:00 localhost team: team [223229]: logs
+2024-09-12T02:32:36.139964-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:32:37.478603-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:32:56.085922-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:33:18.380184-07:00 localhost team: team [223814]: logs
+2024-09-12T02:34:09.286013-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:34:11.105939-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:34:51.826245-07:00 localhost team: team [224364]: logs
+2024-09-12T02:35:21.902161-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:35:23.249056-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:36:04.735019-07:00 localhost team: team [224953]: logs
+2024-09-12T02:36:14.079109-07:00 localhost team: team [205096]: watchlogs
+2024-09-12T02:36:16.598681-07:00 localhost team: team [205096]: nano audio/views.py 
+2024-09-12T02:36:50.711941-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T02:36:52.561085-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:37:33.141657-07:00 localhost team: team [225622]: logs
+2024-09-12T02:38:47.503879-07:00 localhost team: team [205096]: watchlogs
+2024-09-12T02:39:59.351740-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T02:41:12.933183-07:00 localhost team: team [205096]: nano security/templates/security/nfc.html 
+2024-09-12T02:41:17.216050-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T02:41:59.798988-07:00 localhost team: team [226706]: logs
+2024-09-12T02:42:25.513771-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:16:46.217944-07:00 localhost team: team [205096]: nano melanin/kabsch.py 
+2024-09-12T03:19:58.075053-07:00 localhost team: team [205096]: nano melanin/kabsch.py 
+2024-09-12T03:23:32.973718-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:23:50.356830-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:23:52.106975-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:23:55.486431-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:23:58.050320-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:23:59.432578-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:27:35.632552-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:27:37.010945-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:27:39.788778-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:27:58.508202-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:32:08.721442-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:32:10.159932-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:32:26.545379-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:32:28.157495-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:33:57.828282-07:00 localhost team: team [205096]: logs
+2024-09-12T03:34:02.224119-07:00 localhost team: team [205096]: logs
+2024-09-12T03:35:38.528557-07:00 localhost team: team [205096]: sudo systemctl restart daphne
+2024-09-12T03:43:41.437770-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:43:47.081394-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:43:50.192338-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:43:53.276658-07:00 localhost team: team [205096]: purgecace
+2024-09-12T03:43:54.799880-07:00 localhost team: team [205096]: purgecache
+2024-09-12T03:44:01.138326-07:00 localhost team: team [205096]: watchlogs
+2024-09-12T03:44:02.955641-07:00 localhost team: team [205096]: logs
+2024-09-12T03:44:04.774215-07:00 localhost team: team [205096]: logs
+2024-09-12T03:53:39.105908-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:53:41.199695-07:00 localhost team: team [205096]: purgecache
+2024-09-12T03:53:43.736192-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:56:11.679865-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:56:13.399846-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:56:18.553488-07:00 localhost team: team [205096]: purgecache
+2024-09-12T03:57:18.880426-07:00 localhost team: team [205096]: watchlogs
+2024-09-12T03:57:20.288559-07:00 localhost team: team [205096]: logs
+2024-09-12T03:57:42.966370-07:00 localhost team: team [205096]: sudo systemctl restart daphne
+2024-09-12T03:59:19.356012-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:59:22.529237-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T03:59:25.087957-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T03:59:42.494055-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T03:59:46.535103-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T04:00:04.667648-07:00 localhost team: team [205096]: logs
+2024-09-12T04:00:23.267405-07:00 localhost team: team [205096]: sudo systemctl restart daphne
+2024-09-12T04:00:35.873589-07:00 localhost team: team [205096]: logs
+2024-09-12T04:00:39.020178-07:00 localhost team: team [205096]: logs
+2024-09-12T04:00:42.070472-07:00 localhost team: team [205096]: logs
+2024-09-12T04:00:44.448599-07:00 localhost team: team [205096]: logs
+2024-09-12T04:00:45.928643-07:00 localhost team: team [205096]: logs
+2024-09-12T04:01:56.431319-07:00 localhost team: team [205096]: nano audio/templates/audio/recording.html 
+2024-09-12T04:01:59.993052-07:00 localhost team: team [205096]: sudo doreload
+2024-09-12T04:02:03.473342-07:00 localhost team: team [205096]: sudo purgecache
+2024-09-12T04:58:50.171797-07:00 localhost team: team [253390]: logs
+2024-09-12T05:00:21.189118-07:00 localhost team: team [253390]: cd lotteh/
+2024-09-12T05:00:36.409956-07:00 localhost team: team [253390]: ps -aux | grep python
+2024-09-12T05:00:37.984777-07:00 localhost team: team [253390]: ps -aux | grep python
+2024-09-12T05:00:50.125011-07:00 localhost team: team [253390]: sudo systemctl stop daphne apache2 celery celerybeat
+2024-09-12T05:00:51.440361-07:00 localhost team: team [253390]: sudo systemctl stop daphne apache2 celery celerybeat &
+2024-09-12T05:01:31.790232-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:01:38.258007-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:01:42.561963-07:00 localhost team: team [253390]: source venv/bin/activate
+2024-09-12T05:01:46.303064-07:00 localhost team: team [253390]: sudo killall python
+2024-09-12T05:01:54.428635-07:00 localhost team: team [253390]: python routine_caption
+2024-09-12T05:02:22.642777-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:02:27.629162-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:02:31.566346-07:00 localhost team: team [253390]: nano routine_caption
+2024-09-12T05:02:35.741484-07:00 localhost team: team [253390]: nano routine_caption.py 
+2024-09-12T05:03:41.756997-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:03:41.791691-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:03:46.804084-07:00 localhost team: team [253390]: python manage.py
+2024-09-12T05:04:06.482743-07:00 localhost team: team [253390]: python manage.py shell
+2024-09-12T05:04:10.518818-07:00 localhost team: team [253390]: nano routine_caption.py 
+2024-09-12T05:04:42.323112-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:04:44.954977-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:04:48.590891-07:00 localhost team: team [253390]: python routine_caption
+2024-09-12T05:04:49.929393-07:00 localhost team: team [253390]: python routine_caption.
+2024-09-12T05:05:40.249706-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:07:43.229013-07:00 localhost team: team [253390]: python manage.py shell
+2024-09-12T05:07:46.845160-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:08:01.494441-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:08:03.544143-07:00 localhost team: team [253390]: lsgpu
+2024-09-12T05:08:10.084504-07:00 localhost team: team [253390]: nvidia-smi
+2024-09-12T05:08:33.807409-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:08:47.960709-07:00 localhost team: team [253390]: python enhance/caption.py 
+2024-09-12T05:08:54.639902-07:00 localhost team: team [253390]: python routine_caption
+2024-09-12T05:09:22.959556-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:09:38.540467-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:09:54.761116-07:00 localhost team: team [253390]: pip install --upgrade transformers torch
+2024-09-12T05:12:55.992409-07:00 localhost team: team [253390]: pip3 install --upgrade transformers torch
+2024-09-12T05:13:14.119906-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:13:46.523716-07:00 localhost team: team [253390]: pip install --upgrade torchvision torchaudio
+2024-09-12T05:14:19.468777-07:00 localhost team: team [253390]: python routine_caption.py 
+2024-09-12T05:15:14.566603-07:00 localhost team: team [253390]: sudo ascript setup
+2024-09-12T05:15:48.016872-07:00 localhost team: team [253390]: python routine_caption.py
+2024-09-12T05:16:14.542356-07:00 localhost team: team [253390]: python routine_caption.py
+2024-09-12T05:16:39.985232-07:00 localhost team: team [253390]: python routine_caption.py
+2024-09-12T05:16:56.281364-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:17:05.880218-07:00 localhost team: team [253390]: nano patch_posts.py 
+2024-09-12T05:17:17.002239-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:17:20.033538-07:00 localhost team: team [253390]: nano patch_posts.py 
+2024-09-12T05:17:23.253650-07:00 localhost team: team [253390]: nano enhance/caption.py 
+2024-09-12T05:17:25.535794-07:00 localhost team: team [253390]: cat enhance/caption.py 
+2024-09-12T05:17:39.510122-07:00 localhost team: team [253390]: nano patch_posts.py 
+2024-09-12T05:17:53.440654-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:17:55.654084-07:00 localhost team: team [253390]: nano patch_posts.py 
+2024-09-12T05:17:57.188816-07:00 localhost team: team [253390]: cat enhance/caption.py 
+2024-09-12T05:18:13.468372-07:00 localhost team: team [253390]: nano patch_posts.py 
+2024-09-12T05:19:07.638929-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:19:27.826229-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:19:52.499156-07:00 localhost team: team [253390]: python fix_content.py 
+2024-09-12T05:20:42.182999-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:20:52.508286-07:00 localhost team: team [253390]: python fix_content.py 
+2024-09-12T05:21:04.493878-07:00 localhost team: team [253390]: nano fix_content.py 
+2024-09-12T05:21:11.221365-07:00 localhost team: team [253390]: python fix_content.py 
+2024-09-12T05:21:36.100398-07:00 localhost team: team [253390]: sudo systemctl restart apache2
+2024-09-12T05:21:39.753919-07:00 localhost team: team [253390]: sudo systemctl restart apache2 daphne
+2024-09-12T05:21:58.220314-07:00 localhost team: team [253390]: sudo systemctl start celery celerybeat
+2024-09-12T05:22:55.642957-07:00 localhost team: team [253390]: sudo purgecache
+2024-09-12T05:34:43.351022-07:00 localhost team: team [253390]: sudo purgecache
+2024-09-12T05:34:46.847722-07:00 localhost team: team [265769]: logs
+2024-09-12T05:34:53.555554-07:00 localhost team: team [253390]: python approve_login.py 1
+2024-09-12T05:35:00.315955-07:00 localhost team: team [265965]: logs
+2024-09-12T05:35:04.096945-07:00 localhost team: team [253390]: python approve_login.py 1
+2024-09-12T05:35:14.563121-07:00 localhost team: team [253390]: cd
+2024-09-12T05:35:15.063402-07:00 localhost team: team [253390]: ls
+2024-09-12T05:35:20.290153-07:00 localhost team: team [253390]: unzip favicon_io\ \(3\).zip 
+2024-09-12T05:35:55.479341-07:00 localhost team: team [253390]: cp favicon_io\ \(3\).zip lotteh/media/static/
+2024-09-12T05:35:59.195436-07:00 localhost team: team [253390]: cd lotteh/
+2024-09-12T05:36:02.395063-07:00 localhost team: team [253390]: cd media/static/
+2024-09-12T05:36:36.574316-07:00 localhost team: team [253390]: unzip favicon_io\ \(3\).zip 
+2024-09-12T05:36:45.650601-07:00 localhost team: team [253390]: cd ..
+2024-09-12T05:36:46.252746-07:00 localhost team: team [253390]: cd ..
+2024-09-12T05:37:47.360838-07:00 localhost team: team [253390]: nano templates/base.html
+2024-09-12T05:38:10.059056-07:00 localhost team: team [253390]: cp ../losgo.png media/static/logo.png 
+2024-09-12T05:38:24.613094-07:00 localhost team: team [253390]: cp media/static/logo.png media/static/oldlogo.png
+2024-09-12T05:38:30.432583-07:00 localhost team: team [253390]: cp ../logo.png media/static/logo.png 
+2024-09-12T05:38:34.484554-07:00 localhost team: team [253390]: cp ../logo.png media/static/lotteh.png 
+2024-09-12T05:38:40.042037-07:00 localhost team: team [253390]: sudo systemctl reload apache2
+2024-09-12T05:38:44.380750-07:00 localhost team: team [253390]: sudo purgecache
+2024-09-12T05:38:49.274120-07:00 localhost team: team [253390]: ps -aux | grep python
+2024-09-12T05:54:17.495682-07:00 localhost team: team [270826]: nano enhance/caption.py 
+2024-09-12T07:16:37.088002-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T07:23:13.419140-07:00 localhost team: team [294183]: cd lotteh/
+2024-09-12T07:23:14.532705-07:00 localhost team: team [294183]: ls
+2024-09-12T07:23:22.734641-07:00 localhost team: team [294183]: ls
+2024-09-12T07:23:27.343726-07:00 localhost team: team [294183]: cat xae 
+2024-09-12T07:23:28.127921-07:00 localhost team: message repeated 3 times: [ team [294183]: cat xae ]
+2024-09-12T07:26:04.461835-07:00 localhost team: team [294183]: nano users/middleware.py 
+2024-09-12T07:27:55.197304-07:00 localhost team: team [294183]: nano security/middleware.py
+2024-09-12T07:28:02.147711-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T07:28:16.374390-07:00 localhost team: team [294183]: ls */middleware.py
+2024-09-12T07:29:05.638857-07:00 localhost team: team [294183]: nano security/middleware.py
+2024-09-12T07:29:09.862373-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T07:30:18.760183-07:00 localhost team: team [294183]: nano security/middleware.py
+2024-09-12T07:32:54.235872-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T07:32:57.763166-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T07:34:03.511626-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T07:34:08.077905-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T07:34:10.621969-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T07:34:24.106885-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:26.268154-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:27.404213-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:28.505830-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:29.572472-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:30.722981-07:00 localhost team: team [294183]: logs
+2024-09-12T07:34:31.804002-07:00 localhost team: team [294183]: logs
+2024-09-12T07:36:34.496228-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T07:36:35.826129-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T07:36:38.673025-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T07:40:32.829301-07:00 localhost team: team [294183]: nano audio/templates/audio/recording
+2024-09-12T07:47:31.868994-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T07:47:34.292986-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T07:47:37.357589-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T07:47:57.970833-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T08:16:55.022713-07:00 localhost team: team [294183]: nano feed/context_processors.py 
+2024-09-12T08:18:22.633011-07:00 localhost team: team [294183]: nano users/middleware.py 
+2024-09-12T08:18:54.126050-07:00 localhost team: team [294183]: nano security/middleware.py
+2024-09-12T08:19:08.151978-07:00 localhost team: team [294183]: nano security/middleware.py
+2024-09-12T08:20:37.270074-07:00 localhost team: team [294183]: nano feed/context_processors.py 
+2024-09-12T08:20:41.221719-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:37:00.601270-07:00 localhost team: team [294183]: nano feed/context_processors.py 
+2024-09-12T08:39:25.604302-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T08:39:33.688132-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T08:39:37.517704-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:40:46.100260-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:40:47.610934-07:00 localhost team: team [294183]: logs
+2024-09-12T08:41:06.586867-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:42:04.108043-07:00 localhost team: team [294183]: nano feed/context_processors.py 
+2024-09-12T08:42:08.002251-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T08:42:10.726497-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:42:55.454030-07:00 localhost team: team [294183]: nano feed/context_processors.py 
+2024-09-12T08:43:29.741598-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:43:31.388693-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:44:54.722367-07:00 localhost team: team [294183]: nano audio/templates/audio/recording
+2024-09-12T08:45:34.030951-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T08:45:35.744668-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:53:02.672073-07:00 localhost team: team [294183]: watchlogs
+2024-09-12T08:54:03.046092-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T08:54:07.050600-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T08:54:08.832312-07:00 localhost team: team [294183]: sudo doreloa
+2024-09-12T08:54:10.251920-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:54:15.406930-07:00 localhost team: team [294183]: sudo systemctl start cudo-miner
+2024-09-12T08:55:41.990364-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T08:56:26.732494-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T08:56:37.157900-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:56:39.199289-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T08:56:45.546054-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T08:57:23.974446-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:57:29.498983-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T08:57:31.541181-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T08:58:37.227110-07:00 localhost team: team [294183]: nano go/views.py 
+2024-09-12T08:58:41.652838-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T08:59:24.610482-07:00 localhost team: team [294183]: nano users/models.py 
+2024-09-12T08:59:32.916418-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:00:19.442304-07:00 localhost team: team [329260]: ps -aux | grep python
+2024-09-12T09:01:35.605362-07:00 localhost team: team [294183]: sudo systemctl restart daphne
+2024-09-12T09:01:37.892559-07:00 localhost team: team [294183]: sudo systemctl restart daphne &
+2024-09-12T09:02:44.978418-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:02:48.558128-07:00 localhost team: team [330434]: ps -aux | grep python
+2024-09-12T09:02:49.115278-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:02:58.820724-07:00 localhost team: team [330620]: ps -aux | grep python
+2024-09-12T09:03:27.756215-07:00 localhost team: team [331041]: ps -aux | grep python
+2024-09-12T09:03:39.013031-07:00 localhost team: team [331211]: ps -aux | grep python
+2024-09-12T09:03:59.824485-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:04:01.006875-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:04:21.235816-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:04:41.090908-07:00 localhost team: team [331982]: ps -aux | grep python
+2024-09-12T09:04:41.512827-07:00 localhost team: team [294183]: nano users/models.py 
+2024-09-12T09:05:08.253382-07:00 localhost team: team [332244]: ps -aux | grep python
+2024-09-12T09:05:17.913100-07:00 localhost team: team [294183]: nano users/models.py 
+2024-09-12T09:05:35.263746-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:05:37.853373-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:05:56.571509-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:06:17.456351-07:00 localhost team: team [333016]: ps -aux | grep python
+2024-09-12T09:06:33.062958-07:00 localhost team: team [333185]: ps -aux | grep python
+2024-09-12T09:06:36.985212-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:07:49.259769-07:00 localhost team: team [294183]: nano shell/consumers.py 
+2024-09-12T09:07:56.184244-07:00 localhost team: team [294183]: sudo systemctl restart daphe
+2024-09-12T09:08:13.516167-07:00 localhost team: team [294183]: sudo systemctl restart daphne
+2024-09-12T09:08:18.779650-07:00 localhost team: team [294183]: sudo systemctl restart daphne &
+2024-09-12T09:08:21.386663-07:00 localhost team: team [294183]: nano shell/consumers.py 
+2024-09-12T09:08:49.670237-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:08:53.104048-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:09:50.473880-07:00 localhost team: team [294183]: sudo systemctl status daphne
+2024-09-12T09:09:54.679704-07:00 localhost team: team [334696]: ps -aux | grep python
+2024-09-12T09:10:05.407164-07:00 localhost team: team [334884]: ps -aux | grep python
+2024-09-12T09:10:05.420936-07:00 localhost team: team [334696]: ls
+2024-09-12T09:10:05.473277-07:00 localhost team: message repeated 3 times: [ team [334696]: ls]
+2024-09-12T09:10:07.603176-07:00 localhost team: team [334696]: clear
+2024-09-12T09:11:02.875201-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:11:05.800414-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:11:44.267057-07:00 localhost team: team [335796]: nano test.txt
+2024-09-12T09:11:56.796967-07:00 localhost team: team [335954]: nano test.txt
+2024-09-12T09:12:28.762073-07:00 localhost team: team [294183]: nano shell/consumers.py 
+2024-09-12T09:12:30.523825-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:13:10.961578-07:00 localhost team: team [336709]: nano test.txt
+2024-09-12T09:13:23.202743-07:00 localhost team: team [336853]: nano test.txt
+2024-09-12T09:13:49.095077-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:14:26.135915-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:14:36.288734-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:14:48.746392-07:00 localhost team: team [294183]: sudo systemctl restart daphne &
+2024-09-12T09:14:53.347946-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:16:29.463538-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:16:31.738478-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:16:39.206560-07:00 localhost team: team [294183]: logs
+2024-09-12T09:16:40.895272-07:00 localhost team: team [294183]: logs
+2024-09-12T09:16:42.189932-07:00 localhost team: team [294183]: logs
+2024-09-12T09:16:49.390040-07:00 localhost team: team [338555]: nano test.txt
+2024-09-12T09:17:08.625494-07:00 localhost team: team [338805]: nano test.txt
+2024-09-12T09:17:28.847699-07:00 localhost team: team [338805]: nano test.txt
+2024-09-12T09:17:39.934230-07:00 localhost team: team [338805]: nano test.txt
+2024-09-12T09:17:48.918733-07:00 localhost team: team [338805]: nano test.txt
+2024-09-12T09:17:58.537071-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:18:02.582271-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:18:17.070115-07:00 localhost team: team [294183]: logs
+2024-09-12T09:18:47.028215-07:00 localhost team: team [339740]: nano test.txt
+2024-09-12T09:19:54.677132-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:19:56.407170-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T09:20:43.438018-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:46.642137-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:47.845043-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:47.871997-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:47.892010-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:48.344370-07:00 localhost team: message repeated 24 times: [ team [340814]: nano test.txt]
+2024-09-12T09:20:49.087505-07:00 localhost team: team [340814]: nano test.txt
+2024-09-12T09:20:49.462490-07:00 localhost team: message repeated 12 times: [ team [340814]: nano test.txt]
+2024-09-12T09:22:40.307187-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:22:46.050933-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:23:18.808219-07:00 localhost team: team [342192]: nano test.txt
+2024-09-12T09:23:22.069407-07:00 localhost team: team [342192]: nano test.txt
+2024-09-12T09:23:23.802936-07:00 localhost team: message repeated 25 times: [ team [342192]: nano test.txt]
+2024-09-12T09:23:24.549260-07:00 localhost team: team [342192]: nano test.txt
+2024-09-12T09:23:24.692960-07:00 localhost team: message repeated 7 times: [ team [342192]: nano test.txt]
+2024-09-12T09:23:48.092240-07:00 localhost team: team [342192]: nano test.txt
+2024-09-12T09:24:07.079907-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:24:10.097138-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:24:38.911584-07:00 localhost team: team [343127]: nano test.txt
+2024-09-12T09:25:23.918848-07:00 localhost team: team [343516]: nano test.txt
+2024-09-12T09:31:49.236201-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:31:51.049897-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:32:00.574623-07:00 localhost team: team [343516]: nano test.txt
+2024-09-12T09:32:28.636463-07:00 localhost team: team [346461]: exit
+2024-09-12T09:33:24.410051-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:33:25.534647-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:34:06.174403-07:00 localhost team: team [347244]: nano test.txt
+2024-09-12T09:36:25.279905-07:00 localhost team: team [347244]: nano test.txt
+2024-09-12T09:36:33.962668-07:00 localhost team: team [347244]: nano test.txt
+2024-09-12T09:38:41.784012-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:38:43.226317-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:39:16.203277-07:00 localhost team: team [349345]: nano test.txt
+2024-09-12T09:42:27.636513-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:42:28.865153-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T09:42:35.036529-07:00 localhost team: team [349345]: nano test.txt
+2024-09-12T09:42:39.154219-07:00 localhost team: team [349345]: clear
+2024-09-12T09:43:00.624127-07:00 localhost team: team [350995]: clear
+2024-09-12T09:44:21.456781-07:00 localhost team: team [350995]: nano test.txt
+2024-09-12T09:44:25.679338-07:00 localhost team: team [350995]: rm test.txt
+2024-09-12T09:44:57.382663-07:00 localhost team: team [351830]: rm test.txt
+2024-09-12T09:45:12.072021-07:00 localhost team: team [351830]: clear
+2024-09-12T09:45:21.625133-07:00 localhost team: team [351830]: clear
+2024-09-12T09:45:22.463197-07:00 localhost team: team [351830]: cd lotteh
+2024-09-12T09:46:28.059316-07:00 localhost team: team [351830]: nano lotteh/settings.py
+2024-09-12T09:48:21.440467-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T09:48:25.064413-07:00 localhost team: team [294183]: nano security/vi
+2024-09-12T09:49:14.269567-07:00 localhost team: team [294183]: nano security/views.py 
+2024-09-12T09:50:03.597541-07:00 localhost team: team [351830]: nano lotteh/settings.py
+2024-09-12T09:50:10.840000-07:00 localhost team: team [351830]: source venv/bin/activate
+2024-09-12T09:50:43.098232-07:00 localhost team: team [351830]: python force_publish.py 
+2024-09-12T10:03:40.722916-07:00 localhost team: team [294183]: compinfo
+2024-09-12T10:03:46.770865-07:00 localhost team: team [294183]: sudo systemctl status cudo-miner
+2024-09-12T10:03:51.667979-07:00 localhost team: team [294183]: sudo systemctl stop cudo-miner
+2024-09-12T10:04:04.971479-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:07.774827-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:09.212934-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:10.358236-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:11.553904-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:12.703989-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:13.865702-07:00 localhost team: team [294183]: sudo systemctl status apache2
+2024-09-12T10:04:25.940986-07:00 localhost team: team [351830]: watchlogs
+2024-09-12T10:04:51.726116-07:00 localhost team: team [294183]: ps -aux | grep python
+2024-09-12T10:05:07.786384-07:00 localhost team: team [294183]: python force_publish.py 
+2024-09-12T10:05:13.733228-07:00 localhost team: team [294183]: source venv/bin/activate
+2024-09-12T10:05:15.573855-07:00 localhost team: team [351830]: compinfo
+2024-09-12T10:05:28.098998-07:00 localhost team: team [351830]: compinfo
+2024-09-12T10:05:28.347057-07:00 localhost team: team [351830]: compinfo
+2024-09-12T10:05:46.932004-07:00 localhost team: team [351830]: python force_publish.py
+2024-09-12T10:07:56.034998-07:00 localhost team: team [294183]: compinfo
+2024-09-12T10:08:30.766017-07:00 localhost team: team [351830]: python force_publish.py
+2024-09-12T10:11:34.006049-07:00 localhost team: team [351830]: python manage.py shell
+2024-09-12T10:11:44.015809-07:00 localhost team: team [294183]: sudo systemctl status cudo-miner
+2024-09-12T10:11:46.968929-07:00 localhost team: team [294183]: ls *.py
+2024-09-12T10:11:54.491349-07:00 localhost team: team [294183]: nano count.py 
+2024-09-12T10:12:21.491001-07:00 localhost team: team [294183]: watch /home/team/lotteh/venv/bin/python count.py
+2024-09-12T10:14:24.900033-07:00 localhost team: team [351830]: watch /home/team/lotteh/venv/bin/python count.py~
+2024-09-12T10:14:35.873634-07:00 localhost team: team [351830]: watch /home/team/lotteh/venv/bin/python count.py~
+2024-09-12T10:15:29.335291-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:15:37.799942-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T10:16:20.441862-07:00 localhost team: team [363443]: tvenveenvh/venv/bin/python count.py~
+2024-09-12T10:16:41.059161-07:00 localhost team: team [363626]: tvenveenvh/venv/bin/python count.py~
+2024-09-12T10:16:48.391863-07:00 localhost team: team [294183]: logs
+2024-09-12T10:17:01.001141-07:00 localhost team: team [363791]: tvenveenvh/venv/bin/python count.py~
+2024-09-12T10:19:13.909549-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:19:15.832849-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T10:19:36.975598-07:00 localhost team: team [363791]: tvenveenvh/venv/bin/python count.py~
+2024-09-12T10:19:37.263326-07:00 localhost team: team [363791]: clear
+2024-09-12T10:20:11.702686-07:00 localhost team: team [364678]: clear
+2024-09-12T10:20:54.540520-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:20:55.951926-07:00 localhost team: team [294183]: sudo systemctl reload apache2
+2024-09-12T10:22:02.952368-07:00 localhost team: team [365284]: clear
+2024-09-12T10:23:20.633430-07:00 localhost team: team [365592]: clear
+2024-09-12T10:23:43.005774-07:00 localhost team: team [365739]: clear
+2024-09-12T10:24:07.629366-07:00 localhost team: team [365901]: clear
+2024-09-12T10:24:26.835568-07:00 localhost team: team [366011]: clear
+2024-09-12T10:24:28.630071-07:00 localhost team: team [294183]: logs
+2024-09-12T10:26:07.258055-07:00 localhost team: team [294183]: sudo systemctl restart daphne
+2024-09-12T10:26:34.490001-07:00 localhost team: team [366693]: clear
+2024-09-12T10:26:47.418071-07:00 localhost team: team [366693]: lklsamflmfslkamksafmkklfasllksfalmkfsksaf
+2024-09-12T10:26:48.514730-07:00 localhost team: message repeated 5 times: [ team [366693]: lklsamflmfslkamksafmkklfasllksfalmkfsksaf]
+2024-09-12T10:27:02.103045-07:00 localhost team: team [366693]: lklsamflmfslkamksafmkklfasllksfalmkfsksaf
+2024-09-12T10:27:48.454667-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:27:53.928848-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:27:55.776778-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:28:33.986459-07:00 localhost team: team [367573]: nano test.txt
+2024-09-12T10:29:06.321216-07:00 localhost team: team [367573]: nano test.txt
+2024-09-12T10:29:11.036622-07:00 localhost team: team [367573]: lear
+2024-09-12T10:29:14.850060-07:00 localhost team: team [367573]: clear
+2024-09-12T10:30:16.525572-07:00 localhost team: team [367573]: nano test.txt
+2024-09-12T10:30:52.581329-07:00 localhost team: team [368246]: nano test.txt
+2024-09-12T10:31:30.997897-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:31:37.880969-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:31:39.066907-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:32:23.001470-07:00 localhost team: team [368819]: nano test.txt
+2024-09-12T10:32:30.579736-07:00 localhost team: team [368819]: cd lotteh
+2024-09-12T10:32:54.688078-07:00 localhost team: team [294183]: nano shell/templates/shell/terminal.html 
+2024-09-12T10:32:56.041592-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:32:57.653246-07:00 localhost team: team [368819]: nano test.txt
+2024-09-12T10:33:37.994386-07:00 localhost team: team [369361]: nano test.txt
+2024-09-12T10:34:29.282034-07:00 localhost team: team [369361]: nano test.txt
+2024-09-12T10:37:17.061985-07:00 localhost team: team [369361]: nano test.txt
+2024-09-12T10:37:23.699897-07:00 localhost team: team [369361]: nano test.txt
+2024-09-12T10:37:27.246913-07:00 localhost team: team [369361]: rm test.txt
+2024-09-12T10:37:31.691004-07:00 localhost team: team [369361]: cd lotteh
+2024-09-12T10:37:35.394949-07:00 localhost team: team [369361]: cat test.txt
+2024-09-12T10:37:39.402033-07:00 localhost team: team [369361]: rm test.txt
+2024-09-12T10:40:56.121017-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T10:44:49.308719-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T10:44:50.955070-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:45:09.420490-07:00 localhost team: team [294183]: logs
+2024-09-12T10:45:21.279798-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T10:45:25.200937-07:00 localhost team: team [294183]: logs
+2024-09-12T10:45:27.323954-07:00 localhost team: team [294183]: logs
+2024-09-12T10:45:30.065904-07:00 localhost team: team [372281]: rm test.txt
+2024-09-12T10:45:31.255583-07:00 localhost team: team [294183]: logs
+2024-09-12T10:49:06.176011-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T10:49:08.492988-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T10:49:11.187950-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:49:13.497946-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T10:49:18.386901-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T10:49:50.970419-07:00 localhost team: team [373572]: rm test.txt
+2024-09-12T10:55:19.226352-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T10:55:20.582832-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T10:55:24.297976-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T10:56:04.721920-07:00 localhost team: team [375441]: rm test.txt
+2024-09-12T10:57:12.219839-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T11:02:48.458130-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T11:02:50.421738-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T11:02:51.883728-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T11:02:53.496002-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T11:03:32.754992-07:00 localhost team: team [377657]: rm test.txt
+2024-09-12T11:08:42.935052-07:00 localhost team: team [377657]: rm test.txt
+2024-09-12T11:08:50.520019-07:00 localhost team: team [377657]: cd lotteh
+2024-09-12T11:08:53.015461-07:00 localhost team: team [377657]: source venv/bin/activate
+2024-09-12T11:08:59.298245-07:00 localhost team: team [294183]: sudo hostnamectl set-hostname femmebabe
+2024-09-12T11:09:08.840804-07:00 localhost team: team [294183]: sudo nano /etc/hosts
+2024-09-12T11:09:15.359973-07:00 localhost root: root [379050]: exit
+2024-09-12T11:09:19.867932-07:00 localhost team: team [377657]: sudo su
+2024-09-12T11:09:48.755849-07:00 localhost team: team [379266]: exit
+2024-09-12T11:10:00.110348-07:00 localhost team: message repeated 2 times: [ team [379266]: exit]
+2024-09-12T11:10:01.824174-07:00 localhost team: team [379266]: exit
+2024-09-12T11:10:07.361271-07:00 localhost team: message repeated 33 times: [ team [379266]: exit]
+2024-09-12T11:10:07.378165-07:00 localhost team: team [379266]: exit
+2024-09-12T11:10:07.398988-07:00 localhost team: team [379266]: exit
+2024-09-12T11:10:07.418084-07:00 localhost team: team [379266]: exit
+2024-09-12T11:10:11.456835-07:00 localhost team: message repeated 148 times: [ team [379266]: exit]
+2024-09-12T11:10:17.124720-07:00 localhost team: team [379266]: clear
+2024-09-12T11:10:25.016696-07:00 localhost team: team [379266]: cd lotteh
+2024-09-12T11:10:28.669013-07:00 localhost team: team [379266]: source venv/bin/activate
+2024-09-12T11:10:39.236850-07:00 localhost team: team [379266]: pytho count.py 
+2024-09-12T11:10:51.741220-07:00 localhost team: team [379266]: python count.py 
+2024-09-12T11:10:59.077020-07:00 localhost team: team [379266]: python count.py 
+2024-09-12T11:11:00.205518-07:00 localhost team: team [294183]: sudo nano /etc/hosts
+2024-09-12T11:11:09.336348-07:00 localhost team: team [294183]: compinfo
+2024-09-12T11:11:14.850493-07:00 localhost team: team [294183]: sudo systemctl status cudo-miner
+2024-09-12T11:11:15.723931-07:00 localhost team: team [379266]: python force_publish.py
+2024-09-12T11:11:25.093114-07:00 localhost team: team [294183]: sudo systemctl start cudo-miner
+2024-09-12T11:11:42.034958-07:00 localhost team: team [294183]: python bucket_posts.py 
+2024-09-12T11:27:11.919494-07:00 localhost team: team [294183]: nano feed/views.py 
+2024-09-12T11:27:22.771729-07:00 localhost team: team [294183]: python force_publish.py 
+2024-09-12T11:27:40.155998-07:00 localhost team: team [294183]: nano web/generate.py 
+2024-09-12T11:27:48.497922-07:00 localhost team: team [294183]: python bucket_posts.py 
+2024-09-12T11:27:51.248306-07:00 localhost team: team [294183]: python bucket_posts.py 
+2024-09-12T11:28:26.324437-07:00 localhost team: team [294183]: sudo pushweb
+2024-09-12T11:29:34.564484-07:00 localhost team: team [294183]: nano web/generate.py 
+2024-09-12T11:30:21.043637-07:00 localhost team: team [294183]: sudo pushweb
+2024-09-12T11:31:21.514702-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:33:08.621384-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:33:54.240304-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:34:00.757053-07:00 localhost team: team [294183]: cat feed/templatetags/app_filters.py | grep clean
+2024-09-12T11:34:42.230879-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:36:15.787357-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:36:47.507044-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:37:31.844862-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:38:12.617811-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:38:21.364805-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:39:05.914442-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:41:16.852147-07:00 localhost team: team [294183]: nano feed/models.py
+2024-09-12T11:41:40.534369-07:00 localhost team: team [294183]: python manage.py shell
+2024-09-12T11:45:31.694937-07:00 localhost team: team [294183]: sudo pushweb
+2024-09-12T11:52:02.216059-07:00 localhost team: team [393382]: python force_publish.py
+2024-09-12T11:52:21.415133-07:00 localhost team: team [393595]: python force_publish.py

@@ -83,6 +83,7 @@ def terminal_thread(self, channel):
 class TerminalConsumer(AsyncWebsocketConsumer):
     channel = None
     rows = None
+    cols = None
     connected = False
     x = None
     async def connect(self):
@@ -94,6 +95,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
 #        auth3 = await get_req(self.scope)
         if not (auth and auth2): return
         if 'rows' in query_params and query_params['rows']: self.rows = int(query_params.get('rows', '28')[0])
+        if 'cols' in query_params and query_params['cols']: self.cols = int(query_params.get('cols', '32')[0])
         await self.accept()
 #        self.send(query_params['token'])
         self.connected = True
@@ -119,7 +121,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
                     print("Could not connect to %s. Giving up" % host_ip)
                     return None
         self.ssh = ssh
-        self.channel = ssh.invoke_shell(width=120, height=self.rows)
+        self.channel = ssh.invoke_shell(width=self.cols, height=self.rows)
 #        await terminal_thread(self, self.channel)
 #        multiprocessing.Process(target=terminal_thread, args=(self, self.channel)).start()
         self.x = threading.Thread(target=terminal_thread, args=(self,self.channel,))

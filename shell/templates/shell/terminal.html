@@ -4,11 +4,7 @@
 <script type="text/javascript" src="/static/xterm.min.js"></script>
 {% endblock %}
 {% block content %}
-<div id="scroll-container" style="overflow: scroll;">
-<div style="width: 2000px;">
-<div id="terminal" style="width: 100%; height: 100%;"></div>
-</div>
-</div>
+<div id="terminal" style="width: 100%; height: 100%; white-space: nowrap;"></div>
 <div style="display: inline-block;">
 <button onclick="fireKey('^');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
 </div>
@@ -18,12 +14,14 @@ var prompt = document.getElementById('prompt');
 var terminalElement = document.getElementById('terminal');
 var termWebsocket;
 var rows = parseInt(window.innerHeight/27);
+var cols = parseInt(terminalElement.clientWidth/9.2);
 const term = new Terminal({
-	cols: 120,
+	cols: cols,
 	rows: rows,
 	cursorBlink: true,
 	macOptionIsMeta: true,
-	scrollback: true,
+	scrollback: false,
+    windowsMode: true,
 });
 function fireKey(key) {
 	term.write(key);
@@ -108,7 +106,7 @@ async function simpleShell(data) {
 term.open(terminalElement);
 var socketOpen = false;
 function openTermSocket() {
-	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&token={{ token }}");
+	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&cols=" + cols + "&token={{ token }}");
 	termWebsocket.onmessage = (event) => {
 		term.write(event.data);
 	};
