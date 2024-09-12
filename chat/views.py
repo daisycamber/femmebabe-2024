@@ -114,6 +114,7 @@ def chat(request, username):
             message.sender = request.user
             message.recipient = profile.user
             message.save()
+            from django.conf import settings
             payload = {'head': 'New message from {}'.format(message.sender.username), 'body': message.content, 'icon': '{}{}'.format(settings.BASE_URL, settings.ICON_URL)}
             from pwa_webpush import send_user_notification
             try:

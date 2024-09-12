@@ -156,7 +156,9 @@ body {
 {% include 'securitymodal.js' %}
 $(document).ready(function() {
 	{% if not hidenavbar %}
-	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+    try {
+    	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+    } catch {}
 	{% endif %}
 	{% if splash %}
 		{% include 'feed/modal.js' %}

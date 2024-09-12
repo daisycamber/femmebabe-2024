@@ -669,7 +669,7 @@ class Post(models.Model):
                 self.image_hash = hashlib.md5(f.read()).hexdigest()
         if self.content == '' and not self.image and not self.file and not self.image_bucket and not self.file_bucket:
             self.private = True
-        if (not this or this.private != self.private or this.public != self.public or this.image != self.image):
+        if (not this or this.private != self.private or this.public != self.public or this.image != self.image) and self.image:
             from lotteh.celery import upload_post
             upload_post.delay(self.id)
         if (not this or (this.content != self.content)): # and self.content and len(self.content) > 32:
@@ -719,6 +719,7 @@ def resize_image(image_path):
     max = img.width
     if img.height < img.width:
         max = img.height
+    from feed.crop import crop_center
     img = crop_center(img,max,max)
     img.save(image_path)
     img = Image.open(image_path)

@@ -87,6 +87,21 @@ class Face(models.Model):
     def __str__(self):
         return 'user {} face id {} timestamp {}'.format(self.user.username if self.user else 'none', self.id, self.timestamp.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime("%m/%d/%Y at %H:%M:%S"))
 
+    def download_photo(self):
+        import os
+        from django.conf import settings
+        try:
+            if self.image and os.path.exists(self.image.path): return
+        except: pass
+        with self.image_bucket.storage.open(str(self.image_bucket), mode='rb') as bucket_file:
+            full_path = os.path.join(settings.BASE_DIR, 'media/', get_face_path(self, 'image.png'))
+            with open(full_path, "wb") as image_file:
+                image_file.write(bucket_file.read())
+            image_file.close()
+            self.image = full_path
+            self.save()
+        bucket_file.close()
+
     def save(self, *args, **kwargs):
         super(Face, self).save(*args, **kwargs)
         if self.image and not self.image_bucket:

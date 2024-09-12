@@ -204,7 +204,7 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
-        'DISABLE_SERVER_SIDE_CURSORS': True,
+#        'DISABLE_SERVER_SIDE_CURSORS': True,
     },
     'lotteh2024': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -213,7 +213,7 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
-        'DISABLE_SERVER_SIDE_CURSORS': True,
+#        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
@@ -629,7 +629,7 @@ BASH_PASS = BASH_USER
 USE_PRISM = True
 
 # the text on the main screen
-SPLASH = 642
+SPLASH = 280
 
 # Default feed name
 DEFAULT_FEED = 'private'

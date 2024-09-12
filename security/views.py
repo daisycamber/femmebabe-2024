@@ -143,6 +143,8 @@ def webauth(request):
 @login_required
 @user_passes_test(is_superuser_or_vendor)
 def approve_login(request, id):
+    from security.models import UserSession
+    from django.http import HttpResponse
     login = UserSession.objects.filter(id=id).first()
     if request.method == 'POST' and login:
         login.bypass = True
@@ -154,6 +156,9 @@ def approve_login(request, id):
 def logins(request):
     from .models import UserSession
     from django.shortcuts import render
+    from django.utils import timezone
+    import datetime
+    from django.conf import settings
     the_logins = UserSession.objects.filter(bypass=False, user=request.user, timestamp__gte=timezone.now() - datetime.timedelta(minutes=settings.LOGIN_VALID_MINUTES)).order_by('-timestamp')
     return render(request, 'security/bypass.html', {
         'title': 'Approve Logins',

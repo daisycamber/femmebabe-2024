@@ -4,6 +4,9 @@
 {% load feed_filters %}
 {% block head %}
 <script type="text/javascript" src="/static/audio/chart.js"></script>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+-->
 {% endblock %}
 {% block content %}
 {% if theuser == request.user %}
@@ -31,8 +34,12 @@
 <hr style="background-color: red;">
 <p class="text-center"><i id="recordingid" class="bi bi-record-circle-fill"></i> <i class="text-center" id="elapsed-seconds"></i></p>
 <i class="hide" id="posted" style="float: right; text-color: green;">Saved.</i>
-<canvas id="pitch-chart-live" height="220px" class="hide"></canvas>
-<canvas id="pitch-chart-live2" height="220px" class="hide"></canvas>
+<div id="pitch-container" style="width: 100%; overflow-x: scroll;">
+<div style="width: 3000px; height: 400px;">
+<canvas id="pitch-chart-live" height="400px" width="3000px" class="hide"></canvas>
+<canvas id="pitch-chart-live2" height="400px" width="3000px" class="hide"></canvas>
+</div>
+</div>
 <hr>
 {% else %}
 {% if request.user == theuser %}
@@ -55,7 +62,7 @@
             <code>audio</code> element.
     </audio>
 </div>
-<canvas id="pitch-chart" height="220px"></canvas>
+<canvas id="pitch-chart" height="400px" width="100%"></canvas>
 {% endif %}
 <div style="display: flex; justify-content: space-around;">
 <div><legend id="note-verbose" style="color: green; !important;">(Tap)</legend></div>
@@ -69,7 +76,16 @@
 </div>
 {% endblock %}
 {% block javascript %}
-const SECONDS_TO_GRAPH = 6;
+var scrollContainer = true;
+var container = document.getElementById('pitch-container');
+container.addEventListener('scroll', function(e) {
+    if(this.scrollLeft > (3000 - window.innerWidth) * 0.95) {
+        scrollContainer = true;
+    } else {
+        scrollContainer = false;
+    }
+});
+const SECONDS_TO_GRAPH = 30;
 {% if recording.content %}
 const ctx = document.getElementById('pitch-chart');
 var pitchData = {{ recording.get_pitch_code }};
@@ -89,26 +105,34 @@ new Chart(ctx, {
       }]
     },
   options: {
-    responsive: true,
+    responsive: false,
     spanGaps: true,
     plugins: {
       title: {
         display: true,
-        text: 'Pitch'
+        text: 'Pitch (Hz)'
       }
     },
-    elements: {
-      point: {
-        radius: 0
-      }
+    tooltips: {
+        mode: 'index'
     },
     scales: {
       y: {
         min: 100,
         max: {{ max_pitch }},
-      }
+        title: {
+            display: true,
+            text: 'Pitch (Hz)'
+        },
+      },
     },
-    height: 200
+    elements: {
+      point: {
+        radius: 4,
+        hoverRadius: 8, // ex.: to make it bigger when user hovers put larger number than radius.
+      }
+    }
+
   },
 });
 {% endif %}
@@ -118,6 +142,7 @@ var lcolors = [];
 var liveChart;
 var liveChart2;
 var lc = false;
+var firstScroll = true;
 function updateLive() {
     var ctxLive;
     var c;
@@ -132,46 +157,121 @@ function updateLive() {
     if(lc) c2 = liveChart2;
     else c2 = liveChart;
     if(c) c.destroy();
+    var datasets = [];
+    var d = [];
+    var lastColor = lcolors[0];
+    var index = 0;
+    for(var x = 0; x < lcolors.length; x++) {
+        if(lcolors[x] == lastColor) {
+            d.push([lpitches[x], lnotes[x], lcolors[x], x]);
+        } else {
+            if(d.length > 0) datasets.push(d);
+            d = [];
+            d.push([lpitches[x], lnotes[x], lcolors[x], x]);
+        }
+        lastColor = lcolors[x];
+    }
+    datasets.push(d);
+    var data = [];
+    var count = 0;
+    var total = 0;
+    var lastLen = 0;
+    for(d in datasets) {
+        total = total + d.length;
+    }
+    var count = total;
+    for(var i = datasets.length - 1; i > 0; i--) {
+        var ds = datasets[i];
+        var label = 'Below';
+        if(ds[0][2] == 'rgb(0,255,0)') {
+            label = 'Target';
+        }
+        var pt = [];
+        for(var j = 0; j < (30 * 4); j++) {
+            pt.push('NaN');
+        }
+        for(var j = 0; j < ds.length; j++) {
+            pt.shift();
+            pt[(lcolors.length - lastLen - 1) + j] = parseInt(ds[j][0]);
+        }
+        data.push({
+            label: label,
+            data: pt,
+            fill: true,
+            lineTension: true,
+            borderColor: ds[0][2],
+            backgroundColor: ds[0][2]
+        });
+        lastLen+=ds.length;
+    }
     c = new Chart(ctxLive, {
         type: 'line',
         data: {
           labels: lnotes,
-          datasets: [{
-            label: 'Live Pitch',
-            data: lpitches,
-    	fill: false,
-    	borderColor: lcolors,
-    	tension: 1
-          }]
+          datasets: data
         },
-      options: {
-        animations: false,
-        responsive: true,
-        spanGaps: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Live Pitch'
-          }
-        },
-        elements: {
-          point: {
-            radius: 0
-          }
-        },
-        scales: {
-          y: {
-            min: 100,
-            max: {{ max_pitch }},
-          }
-        },
-        height: 200
-      },
+        options: {
+            animations: false,
+            responsive: true,
+            spanGaps: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Pitch'
+              }
+            },
+            tooltips: {
+                mode: 'index'
+            },
+            scales: {
+                x: {
+                    display: true,
+                    scaleLabel: {
+                        display: true
+                    },
+                    position: 'right',
+                },
+                y: {
+                    suggestedMin: 100,
+                    suggestedMax: {{ max_pitch }},
+                    position: "left",
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Pitch (Hz)'
+                    }
+                },
+                y1: {
+                    position: "right",
+                    afterBuildTicks: (axis) => {
+                      axis.ticks = [...axis.chart.scales.y.ticks];
+                      axis.min = axis.chart.scales.y.min;
+                      axis.max = axis.chart.scales.y.max;
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pitch (Hz)'
+                    }
+                },
+             }
+          },
+          elements: {
+            point: {
+              radius: 4,
+              hoverRadius: 8, // ex.: to make it bigger when user hovers put larger number than radius.
+            }
+          },
     });
     ctxLive.classList.remove('hide');
     octxLive.classList.add('hide');
     if(lc) liveChart = c;
     else liveChart2 = c;
+    if(scrollContainer) {
+        container.scrollBy(200, 0);
+    } else if(firstScroll) {
+        container.scrollBy(3000, 0);
+        firstScroll = false;
+    }
 }
 const PITCH_DIGITS = 0;
 var pitchMediaRecorder;
@@ -249,11 +349,11 @@ function initialize() {
                 		volumes.push(volume);
                         var thecolor;
                 		if(pitch >= targetPitch) {
-                            thecolor = 'rgb(0, 255, 0)';
+                            thecolor = 'rgb(0,255,0)';
                 			noteVerbose.style = 'color: green; !important';
                 			pitchVerbose.style = 'color: green; !important';
                 		} else if(pitch > minimumPitch) {
-                            thecolor = 'rgb(255, 0, 0)';
+                            thecolor = 'rgb(255,0,0)';
                             noteVerbose.style = 'color: red; !important';
                 			{% if darkmode %}
                 			pitchVerbose.style = 'color: lightblue; !important';
@@ -267,7 +367,7 @@ function initialize() {
                             lcolors.shift()
                             lpitches.push(pitch.toFixed(PITCH_DIGITS));
                     		lnotes.push(note);
-                            lcolors.unshift(thecolor)
+                            lcolors.push(thecolor)
                 			noteVerbose.innerHTML = note;
                 			pitchVerbose.innerHTML = pitch.toFixed(PITCH_DIGITS) + " Hz";
                 		}

@@ -37,7 +37,11 @@
                 
 		<div id="summernote">
             {{ form.feed|as_crispy_field }}
-            {{ form.content|safe }}
+            {% if request.GET.raw %}
+            {{ form.content|as_crispy_field }}
+            {% else %}
+            {{ form.content|as_crispy_field|safe }}
+            {% endif %}            
             {{ form.image|as_crispy_field }}
             {{ form.file|as_crispy_field }}
             {{ form.price|as_crispy_field }}
@@ -82,7 +86,7 @@
 {% endblock %}
 {% block javascript %}
 {% if not request.GET.raw %}
-$("#id_content").summernote();
+/*$("#id_content").summernote();*/
 var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
 var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
   return new bootstrap.Dropdown(dropdownToggleEl)

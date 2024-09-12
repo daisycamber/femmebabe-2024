@@ -15,7 +15,6 @@ from django.utils.crypto import get_random_string
 from django.conf import settings
 from security.secure import get_secure_path, get_secure_public_path
 from feed.apis import is_safe_public_image
-from verify.validation import verify_id_document
 from verify.forensics import text_matches_name, text_matches_birthday
 from verify.ocr import get_image_text
 from datetime import date
@@ -68,6 +67,7 @@ def validate_id(verification):
     if not verification.user.profile.disable_id_face_match and (id_path == None or faces.count() == 0):
         print("Failed to verify document due to face mismatch.")
         return False
+    from verify.validation import verify_id_document
     if not verification.user.profile.disable_id_face_match and not verify_id_document(id_path, faces):
         print("Failed to verify document due to face mismatch.")
         return False

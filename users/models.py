@@ -101,9 +101,9 @@ class Profile(models.Model):
     can_scan_id = models.DateTimeField(default=timezone.now)
     can_like = models.DateTimeField(default=timezone.now, null=True)
     timezone = models.CharField(max_length=32, default='', null=True, blank=True)
-    image_offsite = models.CharField(max_length=64, default='', null=True, blank=True)
-    image_cover_offsite = models.CharField(max_length=64, default='', null=True, blank=True)
-    image_thumb_offsite = models.CharField(max_length=64, default='', null=True, blank=True)
+    image_offsite = models.CharField(max_length=255, default='', null=True, blank=True)
+    image_cover_offsite = models.CharField(max_length=255, default='', null=True, blank=True)
+    image_thumb_offsite = models.CharField(max_length=255, default='', null=True, blank=True)
     interactive = models.CharField(max_length=100,default='', null=True, blank=True)
     interactive_uuid = models.CharField(max_length=36,default='', null=True, blank=True)
     uuid = models.CharField(max_length=36, default=uuid.uuid4)
@@ -400,9 +400,10 @@ class Profile(models.Model):
             i1, i2 = upload_photo(self.image.path)
             self.image_offsite = i1
             self.image_thumb_offsite = i2
+        img = None
         try:
             from PIL import Image
-            if self.cover_image and self.cover_image.name != 'static/default.png':
+            if self.cover_image and self.cover_image != this.cover_image and self.cover_image.name != 'static/default.png':
                 img = Image.open(self.cover_image.path)
             if img:
                 max = img.width
@@ -417,9 +418,8 @@ class Profile(models.Model):
                 img.save(self.cover_image.path)
                 img = Image.open(self.cover_image.path)
                 img.thumbnail(output_size)
-                img.save(self.image.path)
+                img.save(self.cover_image.path)
         except: pass
-
         if self.cover_image and ((this and this.cover_image != self.cover_image) or not this) and self.cover_image.name != 'static/default.png':
             self.cover_image_bucket = None
             self.cover_image_bucket = self.cover_image.path
@@ -476,8 +476,8 @@ class Profile(models.Model):
         img = Image.open(self.image.path)
         img = img.rotate(-angle, expand=0)
         max = img.width
-        if img.height < img.width:
-            max = img.height
+#        if img.height < img.width:
+#            max = img.height
         from feed.crop import crop_center
         img = crop_center(img,max,max)
         width, height = img.size

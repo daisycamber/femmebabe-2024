@@ -31,7 +31,7 @@ def translate(request, content, target=None, language=None):
     if str(lang_code).startswith(str(lang)):
         return content
     from .models import CachedTranslation
-    trans = CachedTranslation.objects.filter(src_content=content, src=lang, dest=lang_code).last()
+    trans = CachedTranslation.objects.filter(src_content=content, src=lang, dest=lang_code).first()
     if trans: return trans.dest_content
     text = ''
     pronunciation = ''

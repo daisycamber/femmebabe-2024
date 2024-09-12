@@ -38,7 +38,9 @@ def verify_face_score(face_path, faces):
     total_score = len(use_models) * len(faces)
     for model in use_models:
         for face in faces:
+            import os
             try:
+                if not face.image or not os.path.exists(face.image.path): face.download_photo()
                 result = DeepFace.verify(img1_path=face_path, img2_path=face.image.path, model_name=models[model])
                 if not result['verified']:
                     fail_count = fail_count + 1
