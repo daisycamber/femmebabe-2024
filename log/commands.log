@@ -2648,3 +2648,253 @@
 2024-09-12T11:45:31.694937-07:00 localhost team: team [294183]: sudo pushweb
 2024-09-12T11:52:02.216059-07:00 localhost team: team [393382]: python force_publish.py
 2024-09-12T11:52:21.415133-07:00 localhost team: team [393595]: python force_publish.py
+2024-09-12T14:43:24.093244-07:00 localhost team: team [294183]: python bucket_posts.py 
+2024-09-12T14:48:45.486171-07:00 localhost team: team [294183]: sudo ufw show
+2024-09-12T14:48:50.110558-07:00 localhost team: team [294183]: sudo ufw status
+2024-09-12T14:52:05.927950-07:00 localhost team: team [294183]: cd media/
+2024-09-12T14:52:15.446382-07:00 localhost team: team [294183]: wget https://raw.githubusercontent.com/daisycamber/unix-setup/main/logo%20(1).png
+2024-09-12T14:52:26.206374-07:00 localhost team: team [294183]: wget 'https://raw.githubusercontent.com/daisycamber/unix-setup/main/logo%20(1).png'
+2024-09-12T14:52:41.483755-07:00 localhost team: team [294183]: cp logo\ \(1\).png lotteh.png
+2024-09-12T14:53:00.420133-07:00 localhost team: team [294183]: cp logo\ \(1\).png static/lotteh.png 
+2024-09-12T14:53:26.003106-07:00 localhost team: team [294183]: cp logo\ \(1\).png static/logo.png 
+2024-09-12T14:58:03.417474-07:00 localhost team: team [393595]: p
+2024-09-12T14:58:07.558133-07:00 localhost team: message repeated 3 times: [ team [393595]: p]
+2024-09-12T14:58:20.652176-07:00 localhost team: team [393595]: python last_logins.py
+2024-09-12T14:58:30.396619-07:00 localhost team: team [393595]: cd lotteh
+2024-09-12T14:58:40.540379-07:00 localhost team: team [393595]: source venv/bin/activate
+2024-09-12T14:58:59.236772-07:00 localhost team: team [393595]: source venv/bin/activate
+2024-09-12T14:59:02.465767-07:00 localhost team: team [393595]: source venv/bin/activate
+2024-09-12T14:59:27.535987-07:00 localhost team: team [393595]: cd lotteh
+2024-09-12T14:59:33.007533-07:00 localhost team: team [393595]: cd ..
+2024-09-12T14:59:56.985827-07:00 localhost team: team [393595]: python approve_login.py 1
+2024-09-12T14:59:56.996548-07:00 localhost team: team [393595]: python approve_login.py 1
+2024-09-12T15:01:48.843838-07:00 localhost team: team [294183]: cd ..
+2024-09-12T15:02:02.770730-07:00 localhost team: team [294183]: cp ../favicon_io\ \(4\).zip media/static/
+2024-09-12T15:02:05.173170-07:00 localhost team: team [294183]: cd media/static
+2024-09-12T15:02:23.468181-07:00 localhost team: team [294183]: unzip favicon_io\ \(4\).zip 
+2024-09-12T15:10:48.678953-07:00 localhost team: team [294183]: unzip favicon_io\ \(4\).zip 
+2024-09-12T15:10:53.811500-07:00 localhost team: team [294183]: cd ..
+2024-09-12T15:10:56.292389-07:00 localhost team: team [294183]: cd ..
+2024-09-12T15:14:03.482821-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T15:14:15.098331-07:00 localhost team: team [294183]: nano audio/views.py 
+2024-09-12T15:14:29.746434-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:14:44.014805-07:00 localhost team: team [294183]: cat lotteh/settings.py |grep -nH PITCHE
+2024-09-12T15:15:43.594943-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:16:16.252607-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:16:21.402645-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:16:23.186771-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T15:16:31.471904-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T15:17:13.483513-07:00 localhost team: team [294183]: watchlogs
+2024-09-12T15:17:17.900971-07:00 localhost team: team [294183]: cat lotteh/settings.py |grep -nH PITCHE
+2024-09-12T15:17:21.212637-07:00 localhost team: team [294183]: cat lotteh/settings.py |grep -nH PITCHE
+2024-09-12T15:17:46.106821-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:17:48.114439-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T15:17:50.790203-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T15:17:53.324381-07:00 localhost team: team [294183]: logs
+2024-09-12T15:17:55.359068-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T15:17:57.033220-07:00 localhost team: team [294183]: logs
+2024-09-12T15:18:07.227926-07:00 localhost team: team [294183]: watchlogs
+2024-09-12T15:18:13.687184-07:00 localhost team: team [294183]: watchlogs
+2024-09-12T15:20:45.006033-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T15:20:48.636974-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T15:20:50.653538-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T15:29:28.195655-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T15:29:30.438274-07:00 localhost team: team [294183]: cd ..
+2024-09-12T15:29:44.433768-07:00 localhost team: team [294183]: unzip favicon_io\ \(4\).zip 
+2024-09-12T15:29:47.240663-07:00 localhost team: team [294183]: cat site.webmanifest 
+2024-09-12T15:29:54.006401-07:00 localhost team: team [294183]: cat site.webmanifest 
+2024-09-12T15:30:05.292567-07:00 localhost team: team [294183]: cd lotteh/
+2024-09-12T15:30:26.038185-07:00 localhost team: team [294183]: nano templates/base.html
+2024-09-12T15:30:35.412028-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:32:11.325601-07:00 localhost team: team [294183]: nano lotteh/settings.py 
+2024-09-12T15:32:15.283522-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T15:32:30.401193-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T16:15:02.907448-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T16:15:04.175329-07:00 localhost team: team [294183]: sudo purgecache
+2024-09-12T16:15:07.540720-07:00 localhost team: team [294183]: sudo doreload
+2024-09-12T16:15:20.460262-07:00 localhost team: team [294183]: sudo purgecache && sudo doreloadd
+2024-09-12T16:15:26.550703-07:00 localhost team: team [294183]: sudo purgecache && sudo doreloadd
+2024-09-12T16:22:50.457320-07:00 localhost team: team [294183]: nano audio/templates/audio/recording.html 
+2024-09-12T18:03:52.867616-07:00 localhost team: team [463333]: python approve_login.py 1
+2024-09-12T18:04:51.856933-07:00 localhost team: team [463508]: python approve_login.py 1
+2024-09-12T18:05:33.342943-07:00 localhost team: team [463719]: python approve_login.py 1
+2024-09-12T18:06:08.733283-07:00 localhost team: team [463846]: python approve_login.py 1
+2024-09-12T18:06:13.100244-07:00 localhost team: team [463333]: cd lotteh/
+2024-09-12T18:06:26.830388-07:00 localhost team: team [463333]: sudo systemctl restart daphne @
+2024-09-12T18:06:30.000013-07:00 localhost team: team [463333]: sudo systemctl restart daphne &
+2024-09-12T18:07:30.946774-07:00 localhost team: team [463333]: sudo systemctl restart daphne &
+2024-09-12T18:07:31.456051-07:00 localhost team: team [463333]: sudo systemctl restart daphne &
+2024-09-12T18:07:34.148362-07:00 localhost team: team [463333]: logs
+2024-09-12T18:07:35.733968-07:00 localhost team: team [463333]: logs
+2024-09-12T18:07:37.113381-07:00 localhost team: team [463333]: logs
+2024-09-12T18:07:38.300648-07:00 localhost team: team [463333]: logs
+2024-09-12T18:07:39.575841-07:00 localhost team: team [463333]: logs
+2024-09-12T18:08:09.711929-07:00 localhost team: team [464331]: python approve_login.py 1
+2024-09-12T18:08:15.212466-07:00 localhost team: team [464331]: cd lotteh/
+2024-09-12T18:08:16.565609-07:00 localhost team: team [464331]: ls
+2024-09-12T18:08:23.484434-07:00 localhost team: team [464331]: source venv/bin/activate
+2024-09-12T18:09:38.177826-07:00 localhost team: team [463333]: watchlogs
+2024-09-12T18:09:39.846172-07:00 localhost team: team [463333]: doreload
+2024-09-12T18:09:48.666608-07:00 localhost team: team [463333]: logs
+2024-09-12T18:09:50.947560-07:00 localhost team: team [463333]: logs
+2024-09-12T18:09:52.319008-07:00 localhost team: team [463333]: logs
+2024-09-12T18:09:53.606082-07:00 localhost team: team [463333]: logs
+2024-09-12T18:09:55.081504-07:00 localhost team: team [463333]: logs
+2024-09-12T18:09:56.396718-07:00 localhost team: team [463333]: logs
+2024-09-12T18:10:08.442299-07:00 localhost team: team [463333]: logs
+2024-09-12T18:10:10.804314-07:00 localhost team: team [463333]: logs
+2024-09-12T18:10:17.261674-07:00 localhost team: team [465166]: python manage.py shell
+2024-09-12T18:10:19.642589-07:00 localhost team: team [465166]: ls
+2024-09-12T18:10:22.193921-07:00 localhost team: team [465166]: clear
+2024-09-12T18:10:30.883456-07:00 localhost team: team [465166]: rm apple-touch-icon.png 
+2024-09-12T18:10:32.748291-07:00 localhost team: team [465166]: ls
+2024-09-12T18:10:37.836016-07:00 localhost team: team [465166]: rm android*
+2024-09-12T18:10:55.815938-07:00 localhost team: team [465166]: rm favicon*
+2024-09-12T18:10:58.403802-07:00 localhost team: team [465166]: ls
+2024-09-12T18:11:05.727754-07:00 localhost team: team [465166]: rm test.t*
+2024-09-12T18:11:07.453776-07:00 localhost team: team [465166]: ls
+2024-09-12T18:11:26.021596-07:00 localhost team: team [465166]: rm llogo.png
+2024-09-12T18:11:33.589798-07:00 localhost team: team [465166]: rm logo.png
+2024-09-12T18:11:42.609203-07:00 localhost team: team [465166]: rm site.webmanifest 
+2024-09-12T18:15:26.718912-07:00 localhost team: team [463333]: compinfo
+2024-09-12T18:15:34.598113-07:00 localhost team: team [463333]: sudo systemctl status daphne
+2024-09-12T18:16:27.480450-07:00 localhost team: team [463333]: sudo systemctl status daphne
+2024-09-12T18:16:31.586839-07:00 localhost team: team [463333]: sudo systemctl status daphne
+2024-09-12T18:16:45.897056-07:00 localhost team: team [463333]: sudo ascript doreload
+2024-09-12T18:16:47.321580-07:00 localhost team: team [463333]: doreload
+2024-09-12T18:18:41.519259-07:00 localhost team: team [466461]: rm site.webmanifest 
+2024-09-12T18:21:46.021911-07:00 localhost team: team [463333]: sudo systemctl status daphne
+2024-09-12T18:22:13.120241-07:00 localhost team: team [463333]: cat /tmp/daphne-error.log 
+2024-09-12T18:22:27.590777-07:00 localhost team: team [463333]: sudo systemctl stop daphne
+2024-09-12T18:22:30.867574-07:00 localhost team: team [463333]: sudo systemctl stop daphne &
+2024-09-12T18:22:41.434690-07:00 localhost team: team [463333]: ./scripts/daphnetest.sh 
+2024-09-12T18:22:51.550911-07:00 localhost team: team [463333]: sudo systemctl stop daphne &
+2024-09-12T18:22:57.256421-07:00 localhost team: team [463333]: ./scripts/daphnetest.sh 
+2024-09-12T18:23:21.370187-07:00 localhost team: team [463333]: ./scripts/daphnetest.sh 
+2024-09-12T18:23:27.245888-07:00 localhost team: team [463333]: sudo systemctl stop daphne &
+2024-09-12T18:23:30.359137-07:00 localhost team: team [463333]: sudo systemctl stop daphne &
+2024-09-12T18:23:36.577720-07:00 localhost team: team [463333]: ./scripts/daphnetest.sh 
+2024-09-12T18:24:14.632918-07:00 localhost team: team [467301]: rm site.webmanifest 
+2024-09-12T18:38:22.569667-07:00 localhost team: team [468989]: rm site.webmanifest 
+2024-09-12T18:38:30.395751-07:00 localhost team: team [469009]: rm site.webmanifest 
+2024-09-12T18:38:36.340421-07:00 localhost team: team [468989]: cd lotteh/
+2024-09-12T18:38:41.880541-07:00 localhost team: team [468989]: sudo systemctl stop daphne
+2024-09-12T18:39:07.371240-07:00 localhost team: team [469185]: rm site.webmanifest 
+2024-09-12T18:39:17.244369-07:00 localhost team: team [469276]: rm site.webmanifest 
+2024-09-12T18:42:05.757585-07:00 localhost team: team [469009]: compinfo
+2024-09-12T18:42:13.355199-07:00 localhost team: team [469009]: sudo systemctl status daphne
+2024-09-12T18:42:19.041023-07:00 localhost team: team [469009]: sudo systemctl stop daphne
+2024-09-12T18:42:26.996370-07:00 localhost team: team [469009]: ps -aux | grep daphne
+2024-09-12T18:42:39.363868-07:00 localhost team: team [469009]: killall daphne
+2024-09-12T18:42:48.331103-07:00 localhost team: team [469009]: killall daphne
+2024-09-12T18:42:50.852725-07:00 localhost team: team [469009]: ps -aux | grep daphne
+2024-09-12T18:42:58.296286-07:00 localhost team: team [469009]: ps -aux | grep daphne
+2024-09-12T18:43:17.291159-07:00 localhost team: team [469009]: kill 469073
+2024-09-12T18:43:22.586382-07:00 localhost team: team [469009]: kill 467203
+2024-09-12T18:43:25.663753-07:00 localhost team: team [469009]: kill 467203
+2024-09-12T18:43:29.628390-07:00 localhost team: team [469009]: ps -aux | grep daphne
+2024-09-12T18:43:49.583253-07:00 localhost team: team [469009]: sudo kilalll 469073
+2024-09-12T18:43:52.600667-07:00 localhost team: team [469009]: sudo kilall 469073
+2024-09-12T18:43:53.908244-07:00 localhost team: team [469009]: sudo kilall 469073
+2024-09-12T18:44:02.580770-07:00 localhost team: team [469009]: ps -aux | grep daphne
+2024-09-12T18:48:36.401914-07:00 localhost team: team [469009]: ps -aux | grep python
+2024-09-12T18:48:49.420969-07:00 localhost team: team [469009]: ps -aux | grep python
+2024-09-12T18:48:56.463018-07:00 localhost team: team [469009]: sudo systemctl status daphne
+2024-09-12T18:49:03.573169-07:00 localhost team: team [469009]: killall python3
+2024-09-12T18:49:07.711068-07:00 localhost team: team [469009]: killall python3
+2024-09-12T18:49:11.322391-07:00 localhost team: team [469009]: killall python
+2024-09-12T18:49:14.142130-07:00 localhost team: team [469009]: killall python
+2024-09-12T18:49:18.870859-07:00 localhost team: team [469009]: ps -aux | grep python
+2024-09-12T18:49:28.493252-07:00 localhost team: team [469009]: killall /home/tesm/lotteh/venv/bin/python3
+2024-09-12T18:49:33.406243-07:00 localhost team: team [469009]: killall /home/tesm/lotteh/venv/bin/python
+2024-09-12T18:49:38.543770-07:00 localhost team: team [469009]: killall /home/team/lotteh/venv/bin/python
+2024-09-12T18:49:40.088392-07:00 localhost team: team [469009]: killall /home/team/lotteh/venv/bin/python3
+2024-09-12T18:49:47.593868-07:00 localhost team: team [469009]: ps -aux | grep python
+2024-09-12T18:50:11.577910-07:00 localhost team: team [469009]: killall /home/team/lotteh/venv/bin/python3
+2024-09-12T18:50:14.219249-07:00 localhost team: team [469009]: killall /home/team/lotteh/venv/bin/python
+2024-09-12T18:50:17.684709-07:00 localhost team: team [469009]: killall python
+2024-09-12T18:50:20.178029-07:00 localhost team: message repeated 2 times: [ team [469009]: killall python]
+2024-09-12T18:50:21.122027-07:00 localhost team: team [469009]: killall python3
+2024-09-12T18:50:31.881797-07:00 localhost team: team [469009]: sudo reboot
+2024-09-12T18:52:05.339547-07:00 femmebabe team: team [3606]: ./scripts/daphnetest.sh 
+2024-09-12T18:52:05.340659-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.sh 
+2024-09-12T18:52:15.409371-07:00 femmebabe team: team [3605]: cd lotteh/
+2024-09-12T18:52:19.737376-07:00 femmebabe team: team [3605]: source venv/bin/activate
+2024-09-12T18:52:31.687180-07:00 femmebabe team: team [3605]: sudo systemctl stop daphne
+2024-09-12T18:52:33.977823-07:00 femmebabe team: team [3605]: sudo systemctl stop daphne &
+2024-09-12T18:52:39.844160-07:00 femmebabe team: team [3605]: sudo systemctl stop daphne &
+2024-09-12T18:52:41.577831-07:00 femmebabe team: message repeated 2 times: [ team [3605]: sudo systemctl stop daphne &]
+2024-09-12T18:52:47.952450-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.shs
+2024-09-12T18:52:50.559016-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.shs
+2024-09-12T18:52:55.429811-07:00 femmebabe team: team [3605]: sudo systemctl stop daphne &
+2024-09-12T18:52:58.132523-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.shs
+2024-09-12T18:53:02.613752-07:00 femmebabe team: message repeated 4 times: [ team [3605]: ./scripts/daphnetest.shs]
+2024-09-12T18:53:04.142943-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.shs
+2024-09-12T18:53:05.128342-07:00 femmebabe team: team [3605]: ./scripts/daphnetest.shs
+2024-09-12T18:53:13.227748-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:17.224431-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:19.296423-07:00 femmebabe team: team [3605]: sudo systemctl stop daphne &
+2024-09-12T18:53:21.950330-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:26.130288-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:27.370580-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:28.567282-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:29.515521-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:31.172113-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:32.356921-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:33.958769-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:36.041077-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:37.365418-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:39.187296-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:40.451119-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:41.674514-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:44.212067-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:45.713033-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:53:47.964137-07:00 femmebabe team: team [3605]: sudo systemctl status daphne
+2024-09-12T18:54:34.094657-07:00 femmebabe team: team [7412]: ./scripts/daphnetest.sh 
+2024-09-12T18:54:43.033728-07:00 femmebabe team: team [7491]: ./scripts/daphnetest.sh 
+2024-09-12T19:07:52.730243-07:00 femmebabe team: team [8449]: ./scripts/daphnetest.sh 
+2024-09-12T19:08:00.094401-07:00 femmebabe team: team [8509]: ./scripts/daphnetest.sh 
+2024-09-12T19:08:03.820609-07:00 femmebabe team: team [8449]: cd lotteh/
+2024-09-12T19:08:09.429879-07:00 femmebabe team: team [8449]: source venv/bin/activate
+2024-09-12T19:08:13.128387-07:00 femmebabe team: team [8449]: sudo systemctl stop daphne
+2024-09-12T19:08:22.800752-07:00 femmebabe team: team [8449]: sudo systemctl restart daphne
+2024-09-12T19:08:34.426415-07:00 femmebabe team: team [8509]: ./scripts/daphnetest.sh 
+2024-09-12T19:08:36.293270-07:00 femmebabe team: team [8509]: cd lotteh/
+2024-09-12T19:08:42.543881-07:00 femmebabe team: team [8509]: cat lotteh/celery.py | grep POST
+2024-09-12T19:08:45.714880-07:00 femmebabe team: team [8509]: cat lotteh/celery.py | grep post
+2024-09-12T19:08:59.260869-07:00 femmebabe team: team [8509]: cat lotteh/celery.py | grep filter
+2024-09-12T19:09:43.956318-07:00 femmebabe team: team [8509]: cat lotteh/celery.py | grep filter -nH
+2024-09-12T19:09:51.590778-07:00 femmebabe team: team [8509]: cat lotteh/celery.py | grep filter -nH
+2024-09-12T19:15:26.614682-07:00 femmebabe team: team [8509]: nano lotteh/celery.py 
+2024-09-12T19:15:36.230658-07:00 femmebabe team: team [8509]: sudo systemctl start daphne
+2024-09-12T19:24:21.319663-07:00 femmebabe team: team [8509]: sudo systemctl start daphne
+2024-09-12T20:47:37.392188-07:00 femmebabe team: team [39305]: ./scripts/daphnetest.sh 
+2024-09-12T20:47:39.382592-07:00 femmebabe team: team [39335]: ./scripts/daphnetest.sh 
+2024-09-12T20:47:47.988320-07:00 femmebabe team: team [39335]: cd lotteh/
+2024-09-12T20:47:54.358314-07:00 femmebabe team: team [39335]: source venv/bin/activate
+2024-09-12T20:48:19.601813-07:00 femmebabe team: team [39305]: source venv/bin/activate
+2024-09-12T20:48:19.818689-07:00 femmebabe team: team [39335]: pip3 install --upgrade deepface
+2024-09-12T20:48:22.869220-07:00 femmebabe team: team [39305]: cd lotteh
+2024-09-12T20:48:25.770029-07:00 femmebabe team: team [39305]: source venv/bin/activate
+2024-09-12T20:48:29.629540-07:00 femmebabe team: team [39305]: cat face/deep.py 
+2024-09-12T20:49:55.704435-07:00 femmebabe team: team [39305]: python manage.py shell
+2024-09-12T20:50:06.350662-07:00 femmebabe team: team [39305]: sudo systemctl restart daphne
+2024-09-12T22:56:28.534525-07:00 femmebabe team: team [39335]: pip3 install --upgrade deepface
+2024-09-12T22:56:32.419825-07:00 femmebabe team: team [39335]: pip3 install --upgrade deepface
+2024-09-12T22:56:38.177641-07:00 femmebabe team: team [39335]: nano web/generate.py 
+2024-09-12T23:00:40.900906-07:00 femmebabe team: team [39335]: sudo pushweb
+2024-09-12T23:01:36.201382-07:00 femmebabe team: team [39305]: sudo systemctl restart daphne
+2024-09-12T23:01:51.874139-07:00 femmebabe team: team [39305]: compinfo
+2024-09-12T23:02:00.672306-07:00 femmebabe team: team [39305]: sudo systemctl status apache2
+2024-09-12T23:02:06.426670-07:00 femmebabe team: team [39305]: sudo systemctl status celery
+2024-09-12T23:02:20.770608-07:00 femmebabe team: team [39305]: sudo systemctl status daphne
+2024-09-12T23:03:09.333766-07:00 femmebabe team: team [39305]: compinfo
+2024-09-12T23:03:17.283692-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:21.889195-07:00 femmebabe team: team [39305]: sudo systemctl start cudo-miner
+2024-09-12T23:03:25.705587-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:27.119380-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:28.367210-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:30.019845-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:34.957613-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:35.930322-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-12T23:03:36.832310-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner

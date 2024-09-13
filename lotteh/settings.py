@@ -440,8 +440,8 @@ PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
 PWA_APP_ICONS = [
     {
-        'src': PWA_ICON_URL,
-        'sizes': '160x160'
+        'src': '/media/static/android-chrome-192x192.png',
+        'sizes': '192x192'
     }
 ]
 PWA_APP_DIR = 'ltr'
@@ -546,7 +546,7 @@ JSIGNATURE_HEIGHT = 100
 
 # Live video/audio settings
 AUDIO_LIVE_INTERVAL = 1000 * 60 * 3
-PITCHES_PER_SECOND = 4
+PITCHES_PER_SECOND = 8
 TARGET_PITCH = 'G3'
 MAX_PITCH = 1200
 LIVE_INTERVAL = 1000 * 1

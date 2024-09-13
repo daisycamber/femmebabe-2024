@@ -75,7 +75,7 @@
 </div>
 {% endblock %}
 {% block javascript %}
-const theGain = 100;
+const theGain = 60;
 var scrollContainer = true;
 var container = document.getElementById('pitch-container');
 container.addEventListener('scroll', function(e) {
@@ -317,7 +317,7 @@ function initialize() {
             gain.gain.value = theGain;
         	analyser = audioContext.createAnalyser();
         	analyser.minDecibels = -300; // -100
-        	analyser.maxDecibels = 3000;
+        	analyser.maxDecibels = 6000;
         	analyser.smoothingTimeConstant = 0.85;
             gain.connect(analyser);
         	source = audioContext.createMediaStreamSource(stream);
@@ -400,7 +400,7 @@ function initialize() {
         var pitchC = 0;
         var pitchAvg = 0;
         var pitchCount = 0;
-        for(var x = 0; x < {{ pitches_per_second }} * SECONDS_TO_GRAPH; x++) {
+        for(var x = 0; x < {{ pitches_per_second }}/2 * SECONDS_TO_GRAPH; x++) {
             lnotes.push(null);
             lpitches.push(0);
             lcolors.push('rgb(255,0,0)');
@@ -680,7 +680,7 @@ form.addEventListener("submit", function(e) {
                 gain.gain.value = theGain;
             	analyser = audioContext.createAnalyser();
             	analyser.minDecibels = -300; // -100
-            	analyser.maxDecibels = 3000;
+            	analyser.maxDecibels = 6000;
             	analyser.smoothingTimeConstant = 0.85;
                 var source = audioContext.createBufferSource();
                 source.buffer = segment;

@@ -37,7 +37,7 @@ cycler==0.12.1
 Cython==3.0.10
 databricks-cli==0.18.0
 decorator==5.1.1
-deepface==0.0.92
+deepface==0.0.93
 defusedxml==0.7.1
 distro==1.9.0
 Django==5.1.1
@@ -72,6 +72,7 @@ filelock==3.15.4
 filterpy==1.4.5
 fire==0.6.0
 Flask==3.0.3
+Flask-Cors==5.0.0
 flatbuffers==24.3.25
 fonttools==4.53.1
 frozenlist==1.4.1
