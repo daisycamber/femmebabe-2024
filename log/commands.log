@@ -3377,3 +3377,55 @@
 2024-09-13T23:00:55.447239-07:00 femmebabe team: team [39305]: sudo purgecache
 2024-09-13T23:01:03.915047-07:00 femmebabe team: team [39305]: sudo doreload
 2024-09-13T23:01:07.912739-07:00 femmebabe team: team [39305]: sudo purgecache
+2024-09-14T02:03:57.302935-07:00 femmebabe team: team [39305]: sudo systemctl start cudo-miner
+2024-09-14T02:05:44.074650-07:00 femmebabe team: team [39305]: sudo systemctl enable cudo-miner
+2024-09-14T02:05:56.286407-07:00 femmebabe team: team [39305]: sudo systemctl status cudo-miner
+2024-09-14T02:34:24.046903-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:35:01.589345-07:00 femmebabe team: team [39305]: nano templates/base.html
+2024-09-14T02:35:08.640153-07:00 femmebabe team: team [39305]: cat payments/crypto.py 
+2024-09-14T02:44:01.641970-07:00 femmebabe team: team [39305]: python manage.py shell
+2024-09-14T02:44:17.079795-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:45:44.381109-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:46:31.291255-07:00 femmebabe team: team [39305]: nano web/templates/web/index.html 
+2024-09-14T02:47:21.971963-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:47:24.451790-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:47:43.008829-07:00 femmebabe team: team [39305]: nano web/templates/web/index.html 
+2024-09-14T02:48:11.353485-07:00 femmebabe team: team [39305]: nano web/templates/web/base.html 
+2024-09-14T02:48:14.505903-07:00 femmebabe team: team [39305]: nano templates/monero-miner.js
+2024-09-14T02:48:58.086400-07:00 femmebabe team: team [39305]: nano templates/monero-miner.html
+2024-09-14T02:49:13.544278-07:00 femmebabe team: team [39305]: nano web/templates/web/base.html 
+2024-09-14T02:49:24.611075-07:00 femmebabe team: team [39305]: nano templates/monero-miner.html
+2024-09-14T02:49:53.857305-07:00 femmebabe team: team [39305]: nano templates/miner.html
+2024-09-14T02:50:05.474878-07:00 femmebabe team: team [39305]: nano web/templates/web/base.html 
+2024-09-14T02:51:16.171358-07:00 femmebabe team: team [39305]: nano templates/miner.html
+2024-09-14T02:51:26.121369-07:00 femmebabe team: team [39305]: nano templates/miner.html
+2024-09-14T02:51:47.237846-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T02:52:06.775410-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.js
+2024-09-14T02:52:09.144130-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.js
+2024-09-14T02:52:10.991312-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.js
+2024-09-14T02:52:47.972946-07:00 femmebabe team: team [39305]: nano templates/base.html
+2024-09-14T02:53:04.164060-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.js
+2024-09-14T02:53:12.557938-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.js
+2024-09-14T02:53:14.083047-07:00 femmebabe team: team [39305]: cd ..
+2024-09-14T02:54:28.869231-07:00 femmebabe team: team [39305]: nano cm.js
+2024-09-14T02:54:31.184311-07:00 femmebabe team: team [39305]: nano cm.js
+2024-09-14T02:56:08.250476-07:00 femmebabe team: team [39305]: nano test.txt
+2024-09-14T02:56:12.409147-07:00 femmebabe team: team [39305]: cd lotteh/
+2024-09-14T02:56:28.902150-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T02:56:36.096137-07:00 femmebabe team: team [39305]: nano templates/base.html
+2024-09-14T02:56:51.308164-07:00 femmebabe team: team [39305]: nano web/templates/web/base.html 
+2024-09-14T02:57:04.815228-07:00 femmebabe team: team [39305]: nano templates/miner.html 
+2024-09-14T02:57:06.862390-07:00 femmebabe team: team [39305]: nano templates/miner.html 
+2024-09-14T02:57:38.249383-07:00 femmebabe team: team [39305]: sudo pushweb
+2024-09-14T02:57:49.113952-07:00 femmebabe team: team [39305]: sudo pushweb
+2024-09-14T02:57:53.257959-07:00 femmebabe team: team [39305]: cd ..
+2024-09-14T02:57:54.039399-07:00 femmebabe team: team [39305]: ls
+2024-09-14T02:58:07.468443-07:00 femmebabe team: team [39305]: nano test.txt.save 
+2024-09-14T02:58:30.779422-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T02:58:35.020337-07:00 femmebabe team: team [39305]: cd lotteh
+2024-09-14T03:01:25.436325-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T03:01:27.231752-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T03:01:29.382159-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T03:01:50.830624-07:00 femmebabe team: team [39305]: sudo pushweb
+2024-09-14T03:01:56.464627-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
+2024-09-14T03:02:21.380013-07:00 femmebabe team: team [39305]: exit
