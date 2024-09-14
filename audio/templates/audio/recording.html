@@ -192,7 +192,7 @@ function updateLive() {
         }
         for(var j = 0; j < ds.length; j++) {
             pt.shift();
-            pt[(lcolors.length - lastLen - 1) + j] = parseInt(ds[j][0]);
+            pt[(lcolors.length - lastLen) + j] = parseInt(ds[j][0]);
         }
         data.push({
             label: label,
@@ -317,7 +317,7 @@ function initialize() {
             gain.gain.value = theGain;
         	analyser = audioContext.createAnalyser();
         	analyser.minDecibels = -300; // -100
-        	analyser.maxDecibels = 6000;
+        	analyser.maxDecibels = 3000;
         	analyser.smoothingTimeConstant = 0.85;
             gain.connect(analyser);
         	source = audioContext.createMediaStreamSource(stream);
@@ -341,7 +341,7 @@ function initialize() {
                 		pitchC += 1;
                 		pitchAvg += pitch;
                 	}
-                	if(pitchCount % parseInt((25.0 * {{ pitches_per_second }}) / 4.0) == 0) {
+                	if(pitchCount % 25 == 0) {
                 		if(pitchC > 0) {
                 			pitch = parseInt(pitchAvg/pitchC);
                 		} else {
@@ -680,7 +680,7 @@ form.addEventListener("submit", function(e) {
                 gain.gain.value = theGain;
             	analyser = audioContext.createAnalyser();
             	analyser.minDecibels = -300; // -100
-            	analyser.maxDecibels = 6000;
+            	analyser.maxDecibels = 3000;
             	analyser.smoothingTimeConstant = 0.85;
                 var source = audioContext.createBufferSource();
                 source.buffer = segment;

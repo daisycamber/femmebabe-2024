@@ -36,10 +36,11 @@ messageForm.addEventListener("submit", function(e) {
         contentType: false,
         processData: false,
         success: function(result) {
-            document.getElementById("message-form").reset();
-            document.getElementById("id_content").value = "";
+            
         }
     });
+    document.getElementById("message-form").reset();
+    document.getElementById("id_content").value = "";
 });
 {% if request.GET.page == None or request.GET.page == '1' %}
 var msgs = document.getElementById("user-messages");

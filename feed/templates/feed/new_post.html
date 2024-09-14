@@ -100,7 +100,7 @@ var chooseFile = document.getElementById("id_image");
 var chooseVideoFile = document.getElementById("id_file");
 var imgPreview = document.getElementById("uploaded_image");
 var chooseFileFiles = [];
-var cntr = 0;
+/*var cntr = 0;*/
 var changed = false;
 setInterval(function() {
 	if(changed) {
@@ -165,16 +165,18 @@ $(document).ready(function() {
 		});
 	});
 });
-function uploadFile(data) { 
+function uploadFile(data, cntr) { 
     var counter = cntr;
-    $("#progressBars").append('<progress id="progress' + cntr + '" value="0" max="100" style="width: 100%">0%</progress>');
-    progress[cntr] = document.getElementById("progress" + cntr);
+    $("#progressBars").append('<progress id="progress' + counter + '" value="0" max="100" style="width: 100%">0%</progress>');
+    console.log(counter);
+    progress[counter] = document.getElementById("progress" + counter);
     var id = data.get("confirmation_id");
     $.ajax({
-        progressbar: progress[cntr],
 	    xhr: function() {
-            var progressbar = progress[cntr];
-		    var xhr = new window.XMLHttpRequest();
+            var progressbar = progress[counter];
+            console.log(progressBar);
+            console.log(this.progressbar);
+		    var xhr = $.ajaxSettings.xhr(); /*new window.XMLHttpRequest();*/
             xhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
@@ -185,6 +187,7 @@ function uploadFile(data) {
             });
 		    return xhr;
         },
+        progressbar: progress[counter],
         url: window.location.pathname + "?confirmation=" + new String(data.get("confirmation_id")),
         type: "POST",
         data: data,
@@ -226,7 +229,7 @@ function uploadFile(data) {
 		}, 2000);
 	},
     });
-  cntr++;
+/*  cntr++;*/
 }
 var current = 0;
 $(form).submit(function(e){
@@ -243,7 +246,7 @@ $(form).submit(function(e){
 			fd.delete("file");
 	    	uploaded = true;
             (function(fd, current) {
-                setTimeout(uploadFile.bind(null, fd), current * {{ upload_interval }});
+                setTimeout(uploadFile.bind(null, fd, current), current * {{ upload_interval }});
             })(fd, current);
             current++;
 		}
@@ -256,7 +259,7 @@ $(form).submit(function(e){
 			fd.delete("image");
 	    	uploaded = true;
             (function(fd, current) {
-                setTimeout(uploadFile.bind(null, fd), current * {{ upload_interval }});
+                setTimeout(uploadFile.bind(null, fd, current), current * {{ upload_interval }});
             })(fd, current);
             current++;
 		}
@@ -265,7 +268,7 @@ $(form).submit(function(e){
 		var fd = new FormData(form);
 		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
    		uploaded = true;
-        uploadFile(fd);
+        uploadFile(fd, current);
         current++;
 	}
 	form.reset();

@@ -42,10 +42,11 @@ BASE_URL = PROTOCOL + '://' + DOMAIN
 # Static site
 STATIC_DOMAIN = 'glamgirlx.com'
 ADD_DOMAIN = 'qoshlli.com'
+OLD_DOMAIN = 'femmebabe.com'
 
 ADD_URL = PROTOCOL + '://' + ADD_DOMAIN
 
-ALLOWED_HOSTS = [DOMAIN, STATIC_DOMAIN, ADD_DOMAIN, '75.147.182.214']
+ALLOWED_HOSTS = [DOMAIN, STATIC_DOMAIN, ADD_DOMAIN, OLD_DOMAIN, '75.147.182.214']
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -186,6 +187,7 @@ TEMPLATES = [
             'libraries':{
                 'filters': 'templates.tags.filters',
                 'feed_filters': 'feed.templatetags.app_filters',
+                'shell_filters': 'shell.templatetags.shell_filters',
             },
         },
     },
