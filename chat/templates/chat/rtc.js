@@ -345,29 +345,32 @@ function drawRotated(degrees, image, fallback){
     context.restore();
     context.save();
 }
+function openVideoChatSocket() {
+        socket = new WebSocket(socketUrl);
+        socket.addEventListener("close", () => {
+        	console.log("websocket closed");
+        	setTimeout(function() {
+        		openVideoChatocket();
+        	}, 10000);
+        });
+        socket.addEventListener("open", () => {
+          console.log("websocket connected");
+          sendMessageToSignallingServer({
+            channel: "login",
+            name: username,
+            key: ck,
+          });
+          startMembersUpdate();
+        });
+        socket.addEventListener("message", (event) => {
+          const message = JSON.parse(event.data.toString());
+          handleMessage(message);
+        });
+}
 document.addEventListener("click", async () => {
     if(!videoStarted) {
 	  if(!socket) {
-            socket = new WebSocket(socketUrl);
-            socket.addEventListener("close", () => {
-            	console.log("websocket closed");
-            	setTimeout(function() {
-            		socket = new WebSocket(socketUrl);
-            	}, 10000);
-            });
-            socket.addEventListener("open", () => {
-              console.log("websocket connected");
-              sendMessageToSignallingServer({
-                channel: "login",
-                name: username,
-                key: ck,
-              });
-              startMembersUpdate();
-            });
-            socket.addEventListener("message", (event) => {
-              const message = JSON.parse(event.data.toString());
-              handleMessage(message);
-            });
+        openVideoChatSocket();
 	  }
 	  webrtc = new RTCPeerConnection({
 		  iceServers: [

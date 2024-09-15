@@ -3429,3 +3429,490 @@
 2024-09-14T03:01:50.830624-07:00 femmebabe team: team [39305]: sudo pushweb
 2024-09-14T03:01:56.464627-07:00 femmebabe team: team [39305]: nano crypto/templates/crypto/miner.html
 2024-09-14T03:02:21.380013-07:00 femmebabe team: team [39305]: exit
+2024-09-14T16:01:14.082153-07:00 femmebabe team: team [433823]: exit
+2024-09-14T16:01:46.508317-07:00 femmebabe team: team [433950]: exit
+2024-09-14T16:01:51.720060-07:00 femmebabe team: team [433981]: exit
+2024-09-14T16:01:57.329300-07:00 femmebabe team: team [433981]: cd lotteh
+2024-09-14T16:02:00.531530-07:00 femmebabe team: team [433981]: source venv/bin/activate
+2024-09-14T16:02:04.861079-07:00 femmebabe team: team [433981]: nano chat/templates/chat/video.html 
+2024-09-14T16:03:15.366774-07:00 femmebabe team: team [433981]: nano chat/templates/chat/rtc.js
+2024-09-14T16:07:02.422075-07:00 femmebabe team: team [433981]: sudo sh install.sh
+2024-09-14T16:07:08.813450-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:07:16.122671-07:00 femmebabe team: team [433981]: cat install.sh 
+2024-09-14T16:07:57.446452-07:00 femmebabe team: team [433981]: cd
+2024-09-14T16:08:13.715301-07:00 femmebabe team: team [433981]: curl https://raw.githubusercontent.com/JayWalker512/CryptoNoter/master/install.sh > lotteh/install.sh
+2024-09-14T16:08:16.962473-07:00 femmebabe team: team [433981]: curl https://raw.githubusercontent.com/JayWalker512/CryptoNoter/master/install.sh > lotteh/install.sh
+2024-09-14T16:08:19.010544-07:00 femmebabe team: team [433981]: cd lotteh/
+2024-09-14T16:12:40.304668-07:00 femmebabe team: team [433981]: sh install.sh
+2024-09-14T16:12:40.356328-07:00 femmebabe team: message repeated 3 times: [ team [433981]: sh install.sh]
+2024-09-14T16:14:50.758699-07:00 femmebabe team: team [433981]: cd crypto
+2024-09-14T16:14:56.619366-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git
+2024-09-14T16:15:42.464936-07:00 femmebabe team: team [433981]: cd CryptoNoter/
+2024-09-14T16:15:43.197359-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:15:45.374875-07:00 femmebabe team: team [433981]: ls web
+2024-09-14T16:20:59.771723-07:00 femmebabe team: team [433981]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T16:21:06.248769-07:00 femmebabe team: team [433981]: sudo ufw allow 7777
+2024-09-14T16:21:14.464927-07:00 femmebabe team: team [433981]: netstat -plant | grep LISTEN
+2024-09-14T16:21:21.132571-07:00 femmebabe team: team [433981]: netstat -plant | grep LISTEN
+2024-09-14T16:21:40.654808-07:00 femmebabe team: team [433981]: cd ..
+2024-09-14T16:21:41.854120-07:00 femmebabe team: team [433981]: cd ..
+2024-09-14T16:22:03.335797-07:00 femmebabe team: team [433981]: cp -r crypto/CryptoNoter/web/ static/
+2024-09-14T16:22:05.617196-07:00 femmebabe team: team [433981]: ls static/
+2024-09-14T16:22:07.324920-07:00 femmebabe team: team [433981]: ls static/web
+2024-09-14T16:22:37.266842-07:00 femmebabe team: team [433981]: forever start /srv/CryptoNoter/server.js
+2024-09-14T16:23:01.969717-07:00 femmebabe team: team [433981]: node /srv/CryptoNoter/server.js
+2024-09-14T16:23:05.819611-07:00 femmebabe team: team [433981]: node /srv/CryptoNoter/server.js
+2024-09-14T16:23:07.749416-07:00 femmebabe team: team [433981]: ls /srv
+2024-09-14T16:23:10.862188-07:00 femmebabe team: team [433981]: sudo ls /srv
+2024-09-14T16:23:26.769439-07:00 femmebabe team: team [433981]: cd crypto/CryptoNoter/
+2024-09-14T16:23:27.296879-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:23:41.803831-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:24:15.403353-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:24:19.899850-07:00 femmebabe team: team [433981]: service nginx restart
+2024-09-14T16:25:32.010575-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:27:22.068762-07:00 femmebabe team: team [433981]: sh install.sh
+2024-09-14T16:27:34.245405-07:00 femmebabe team: team [433981]: sh install.sh
+2024-09-14T16:27:39.746373-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:27:41.392809-07:00 femmebabe team: team [433981]: ls /srv
+2024-09-14T16:28:34.097853-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:28:35.772785-07:00 femmebabe team: team [433981]: cd /srv
+2024-09-14T16:28:36.235804-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:28:37.911331-07:00 femmebabe team: team [433981]: sudo ls
+2024-09-14T16:28:40.624799-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git -o CryptoNoter
+2024-09-14T16:28:51.108748-07:00 femmebabe team: team [433981]: sudo chown team:team /srv
+2024-09-14T16:28:53.127639-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git -o CryptoNoter
+2024-09-14T16:28:57.594549-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git -o CryptoNoter
+2024-09-14T16:28:59.636088-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git -o CryptoNoter
+2024-09-14T16:29:05.682976-07:00 femmebabe team: team [433981]: git clone https://github.com/JayWalker512/CryptoNoter.git -o CryptoNoter
+2024-09-14T16:29:10.016740-07:00 femmebabe team: team [433981]: cd ..
+2024-09-14T16:29:11.881981-07:00 femmebabe team: team [433981]: cd 
+2024-09-14T16:29:18.346806-07:00 femmebabe team: team [433981]: cd lotteh/crypto/CryptoNoter/
+2024-09-14T16:29:26.622772-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:29:46.521731-07:00 femmebabe team: team [433981]: sh install.sh 
+2024-09-14T16:30:01.532656-07:00 femmebabe team: team [433981]: sh install.sh 
+2024-09-14T16:30:16.433136-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:30:20.293428-07:00 femmebabe team: team [433981]: ls /srv
+2024-09-14T16:30:29.700038-07:00 femmebabe team: team [433981]: cd /srv/CryptoNoter/ 
+2024-09-14T16:30:30.189049-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:30:54.605765-07:00 femmebabe team: team [433981]: nano config.json 
+2024-09-14T16:31:28.060631-07:00 femmebabe team: team [433981]: forever start /srv/CryptoNoter/server.js
+2024-09-14T16:31:34.660931-07:00 femmebabe team: team [433981]: forever start /srv/CryptoNoter/server.js
+2024-09-14T16:31:35.830272-07:00 femmebabe team: team [433981]: node
+2024-09-14T16:31:40.727693-07:00 femmebabe team: team [433981]: node
+2024-09-14T16:31:41.535638-07:00 femmebabe team: team [433981]: cd
+2024-09-14T16:31:45.763491-07:00 femmebabe team: team [433981]: cd lotteh/crypto/CryptoNoter/
+2024-09-14T16:31:46.381001-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:32:06.833170-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:32:08.896137-07:00 femmebabe team: team [433981]: curl -sL https://deb.nodesource.com/setup_18.x | bash -
+2024-09-14T16:32:23.271835-07:00 femmebabe team: team [433981]: curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
+2024-09-14T16:32:23.571220-07:00 femmebabe team: team [433981]: curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
+2024-09-14T16:32:29.956039-07:00 femmebabe team: team [433981]: nano install.sh 
+2024-09-14T16:32:33.911183-07:00 femmebabe team: team [433981]: sudo install.sh
+2024-09-14T16:34:33.839965-07:00 femmebabe team: team [433981]: sudo sh install.sh
+2024-09-14T16:34:43.181281-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:35:10.648904-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:35:13.078293-07:00 femmebabe team: team [433981]: cat install.sh 
+2024-09-14T16:36:04.377284-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:36:12.686238-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:36:16.236918-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:36:20.622210-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:36:27.969882-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:36:42.187878-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:36:50.127098-07:00 femmebabe team: team [433981]: sudo systemctl stop nginx
+2024-09-14T16:36:57.744273-07:00 femmebabe team: team [433981]: sudo systemctl start nginx
+2024-09-14T16:37:00.855289-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:37:49.077478-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:37:53.963182-07:00 femmebabe team: team [433981]: sudo systemctl start nginx
+2024-09-14T16:37:56.575836-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:37:59.159776-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:38:04.697725-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:38:07.029712-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:38:34.968220-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:38:51.923539-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:39:07.331079-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/default 
+2024-09-14T16:39:44.765900-07:00 femmebabe team: team [433981]: sudo ls /etc/nginx
+2024-09-14T16:39:49.862914-07:00 femmebabe team: team [433981]: sudo ls /etc/nginx/sites-enabled/
+2024-09-14T16:39:58.799872-07:00 femmebabe team: team [433981]: sudo rm /etc/nginx/sites-enabled/default 
+2024-09-14T16:40:01.949908-07:00 femmebabe team: team [433981]: sudo rm /etc/nginx/sites-enabled/default 
+2024-09-14T16:40:09.514938-07:00 femmebabe team: team [433981]: sudo ls /etc/nginx/sites-available/default 
+2024-09-14T16:40:13.628309-07:00 femmebabe team: team [433981]: sudo rm /etc/nginx/sites-available/default 
+2024-09-14T16:40:40.583006-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:40:47.551747-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:40:53.451745-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:40:55.317129-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:41:03.572322-07:00 femmebabe team: team [433981]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T16:41:04.827417-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:41:05.420290-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:41:07.045235-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:41:10.596404-07:00 femmebabe team: team [433981]: sudo systemctl restart nginx
+2024-09-14T16:41:26.707278-07:00 femmebabe team: team [433981]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T16:41:29.202190-07:00 femmebabe team: team [433981]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T16:41:30.837496-07:00 femmebabe team: team [433981]: sudo doreload
+2024-09-14T16:41:34.720236-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:41:35.622231-07:00 femmebabe team: team [433981]: sudo systemctl status nginx
+2024-09-14T16:42:05.285923-07:00 femmebabe team: team [433981]: cd ..
+2024-09-14T16:42:06.189795-07:00 femmebabe team: team [433981]: cd ..
+2024-09-14T16:42:08.773570-07:00 femmebabe team: team [433981]: ls static/web
+2024-09-14T16:42:51.829736-07:00 femmebabe team: team [433981]: ls static/web
+2024-09-14T16:42:56.878783-07:00 femmebabe team: team [433981]: cd /srv/CryptoNoter/
+2024-09-14T16:43:02.988655-07:00 femmebabe team: team [433981]: nano worker.js
+2024-09-14T16:43:04.380379-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:43:08.997961-07:00 femmebabe team: team [433981]: cd web
+2024-09-14T16:43:09.528517-07:00 femmebabe team: team [433981]: ls
+2024-09-14T16:43:14.603732-07:00 femmebabe team: team [433981]: ls lib
+2024-09-14T16:43:16.768824-07:00 femmebabe team: team [433981]: cd
+2024-09-14T16:43:20.727634-07:00 femmebabe team: team [433981]: cd lotteh/
+2024-09-14T16:44:34.110422-07:00 femmebabe team: team [433981]: nano static/web/worker.js 
+2024-09-14T16:44:52.519530-07:00 femmebabe team: team [433981]: nano static/web/worker.js 
+2024-09-14T16:44:56.081026-07:00 femmebabe team: team [433981]: ls static/web
+2024-09-14T16:44:58.483039-07:00 femmebabe team: team [433981]: ls static/web/lib
+2024-09-14T16:45:50.047383-07:00 femmebabe team: team [433981]: nano static/web/lib/cryptonight-asmjs.min.js 
+2024-09-14T16:51:19.180348-07:00 femmebabe team: team [442403]: exit
+2024-09-14T16:51:21.814776-07:00 femmebabe team: team [442403]: cd lotteh
+2024-09-14T16:51:28.644277-07:00 femmebabe team: team [442403]: source venv/bin/activate
+2024-09-14T16:51:40.017228-07:00 femmebabe team: team [442403]: cd /srv
+2024-09-14T16:51:43.512874-07:00 femmebabe team: team [442403]: cd CryptoNoter/
+2024-09-14T16:51:44.057476-07:00 femmebabe team: team [442403]: ls
+2024-09-14T16:51:55.667574-07:00 femmebabe team: team [442403]: ls
+2024-09-14T16:51:57.175135-07:00 femmebabe team: team [442403]: cd
+2024-09-14T16:52:01.297765-07:00 femmebabe team: team [442403]: cd lotteh/static/web
+2024-09-14T16:52:01.918587-07:00 femmebabe team: team [442403]: ls
+2024-09-14T16:53:56.890897-07:00 femmebabe team: team [442403]: nano processor.js
+2024-09-14T16:54:05.677155-07:00 femmebabe team: team [442403]: ls lib
+2024-09-14T16:54:34.064908-07:00 femmebabe team: team [442403]: ls lib
+2024-09-14T16:54:36.566273-07:00 femmebabe team: team [442403]: cd ..
+2024-09-14T16:54:37.399494-07:00 femmebabe team: team [442403]: cd ..
+2024-09-14T16:54:49.248406-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T16:55:19.809479-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T16:55:38.372388-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T16:55:40.449116-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T16:56:05.937368-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T16:57:26.280361-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T16:57:28.733187-07:00 femmebabe team: team [442403]: ls static/web
+2024-09-14T16:58:07.598948-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T17:00:03.592185-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T17:15:32.592450-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/
+2024-09-14T17:15:34.946635-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/web/
+2024-09-14T17:15:37.777174-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/web/
+2024-09-14T17:15:44.344012-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/web/processor.js 
+2024-09-14T17:16:02.712870-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/web/processor.js 
+2024-09-14T17:16:02.975214-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/web/processor.js 
+2024-09-14T17:26:37.715978-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/web/processor.js 
+2024-09-14T17:26:53.791428-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/
+2024-09-14T17:26:57.905298-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/web/
+2024-09-14T17:27:07.187523-07:00 femmebabe team: team [442403]: ls /srv/CryptoNoter/web/lib/
+2024-09-14T17:45:05.671508-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T17:45:15.352527-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T17:53:12.205933-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T17:53:32.297590-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:54:19.748946-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T17:54:33.340666-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T17:54:53.312954-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf
+2024-09-14T17:54:58.292954-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T17:55:04.812007-07:00 femmebabe team: team [442403]: sudo systemctl restart nginx
+2024-09-14T17:55:07.623010-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:08.687218-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:10.326456-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:11.856419-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:17.179587-07:00 femmebabe team: team [442403]: sudo systemctl reload nginx
+2024-09-14T17:55:18.518526-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:19.626622-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:25.631894-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T17:55:32.675910-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf
+2024-09-14T17:55:37.605135-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T17:55:39.737077-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:43.994019-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:55:48.345440-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T17:55:51.164550-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T17:55:53.150907-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T17:55:56.479924-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T17:56:35.072454-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T17:56:37.101252-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T17:56:41.566900-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:56:43.179836-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:56:49.026124-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:56:56.137705-07:00 femmebabe team: team [442403]: tail /var/log/nginx/error.log 
+2024-09-14T17:56:59.490261-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T17:57:05.812114-07:00 femmebabe team: team [442403]: tail /var/log/nginx/access.log 
+2024-09-14T17:58:17.337584-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T17:58:22.178783-07:00 femmebabe team: team [442403]: ps -aux | grep LISTEN
+2024-09-14T17:58:23.981447-07:00 femmebabe team: team [442403]: ps -aux | grep LISTEN
+2024-09-14T17:58:31.246694-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T17:58:42.042179-07:00 femmebabe team: team [442403]: sudo systemctl reload apache2
+2024-09-14T17:58:45.943274-07:00 femmebabe team: team [442403]: sudo systemctl reload apache2
+2024-09-14T17:58:46.735467-07:00 femmebabe team: team [442403]: logs
+2024-09-14T17:58:52.656641-07:00 femmebabe team: team [442403]: sudo systemctl restart apache
+2024-09-14T17:59:07.474972-07:00 femmebabe team: team [442403]: sudo systemctl restart apache2
+2024-09-14T17:59:19.559848-07:00 femmebabe team: team [442403]: sudo systemctl status apache2
+2024-09-14T17:59:49.449123-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T17:59:51.098597-07:00 femmebabe team: team [442403]: sudo systemctl restart apache2
+2024-09-14T18:02:35.191421-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T18:03:03.876048-07:00 femmebabe team: team [442403]: sudo systemctl restart apache2
+2024-09-14T18:03:21.617088-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:04:16.823842-07:00 femmebabe team: team [442403]: nano /srv/CryptoNoter/server.js 
+2024-09-14T18:04:37.907351-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:05:31.105192-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T18:05:55.335550-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf
+2024-09-14T18:06:17.234477-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf
+2024-09-14T18:06:20.514676-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf
+2024-09-14T18:06:27.072608-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:06:39.291601-07:00 femmebabe team: team [442403]: sudo systemctl restart nginx
+2024-09-14T18:06:41.743117-07:00 femmebabe team: team [442403]: sudo systemctl restart nginx
+2024-09-14T18:06:43.454139-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T18:06:49.806104-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:10:28.179416-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:10:29.063331-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:10:29.576596-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:10:30.293113-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:10:30.685924-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:11:17.323595-07:00 femmebabe team: team [442403]: nano templates/miner.js
+2024-09-14T18:11:20.849278-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T18:11:32.623850-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T18:11:35.633416-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T18:12:07.461009-07:00 femmebabe team: team [442403]: nano web/templates/web/base.html 
+2024-09-14T18:12:08.936860-07:00 femmebabe team: team [442403]: nano web/templates/web/base.html 
+2024-09-14T18:12:11.898288-07:00 femmebabe team: team [442403]: nano templates/miner.html
+2024-09-14T18:12:15.982397-07:00 femmebabe team: team [442403]: sudo systemctl reload apache2
+2024-09-14T18:12:24.157334-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T18:32:16.236074-07:00 femmebabe team: team [442403]: sudo ufw allow 7779
+2024-09-14T18:32:23.043564-07:00 femmebabe team: team [442403]: sudo ufw reload
+2024-09-14T18:33:00.120356-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:33:16.441134-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:34:10.423340-07:00 femmebabe team: team [442403]: forever lisdt
+2024-09-14T18:34:10.695830-07:00 femmebabe team: team [442403]: forever lisdt
+2024-09-14T18:34:13.408341-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:34:19.444531-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:34:22.336670-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:34:35.531999-07:00 femmebabe team: team [442403]: tail /home/team/.forever/D9dW.log
+2024-09-14T18:34:53.084980-07:00 femmebabe team: team [442403]: nano /srv/CryptoNoter/server.js 
+2024-09-14T18:34:58.704795-07:00 femmebabe team: team [442403]: tail /home/team/.forever/D9dW.log --lines 500
+2024-09-14T18:35:24.770821-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:35:37.023346-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-enabled/CryptoNoter.conf 
+2024-09-14T18:36:04.410589-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/install.sh 
+2024-09-14T18:36:29.002511-07:00 femmebabe team: team [442403]: service nginx restart
+2024-09-14T18:36:36.638708-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:36:38.112222-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:36:38.872592-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:36:39.469833-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:36:40.212943-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:36:55.625891-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:37:13.233902-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:37:16.339381-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:37:26.748468-07:00 femmebabe team: team [442403]: /home/team/.forever/UAEG.log
+2024-09-14T18:37:30.233861-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/UAEG.log
+2024-09-14T18:38:27.254593-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:38:33.034971-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:38:58.376694-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:39:08.547581-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/install.sh 
+2024-09-14T18:39:33.122353-07:00 femmebabe team: team [442403]: nano config/
+2024-09-14T18:39:34.429687-07:00 femmebabe team: team [442403]: nano config/
+2024-09-14T18:39:47.841893-07:00 femmebabe team: team [442403]: nano /srv/CryptoNoter/config.json 
+2024-09-14T18:39:54.765018-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/config.json 
+2024-09-14T18:39:58.561686-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:40:01.682547-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:40:08.860614-07:00 femmebabe team: team [442403]: /home/team/.forever/UP0C.log
+2024-09-14T18:40:12.383826-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/UP0C.log
+2024-09-14T18:40:29.161387-07:00 femmebabe team: team [442403]: sudo systemctl stop apache2
+2024-09-14T18:40:30.510494-07:00 femmebabe team: team [442403]: sudo systemctl stop apache2 &
+2024-09-14T18:40:32.262414-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/UP0C.log
+2024-09-14T18:40:34.495390-07:00 femmebabe team: team [442403]: /home/team/.forever/UP0C.log
+2024-09-14T18:40:38.033541-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:40:42.169120-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:40:56.409692-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/__nw.log
+2024-09-14T18:41:34.166842-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T18:41:40.682785-07:00 femmebabe team: team [442403]: nano conf.test
+2024-09-14T18:41:43.933919-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:41:47.038578-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:41:57.259386-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:00.386148-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:06.503190-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T18:42:07.668703-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:09.797283-07:00 femmebabe team: message repeated 2 times: [ team [442403]: netstat -plant | grep LISTEN]
+2024-09-14T18:42:15.476122-07:00 femmebabe team: team [442403]: sudo systemctl reload apache2
+2024-09-14T18:42:20.367797-07:00 femmebabe team: team [442403]: sudo systemctl start apache2
+2024-09-14T18:42:30.864500-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:31.699654-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:36.367462-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T18:42:37.647496-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:42:38.928904-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:44:19.880707-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:44:23.098099-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:44:29.086864-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:44:34.000769-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T18:44:37.093359-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:44:40.719755-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:45:00.012660-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:45:02.029718-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:45:02.596844-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:45:09.171670-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T18:45:15.711839-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T18:45:20.076854-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:45:30.874388-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/hZfx.log
+2024-09-14T18:45:35.206847-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/hZfx.log --lines 1000
+2024-09-14T18:45:43.726251-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/hZfx.log --lines 1000
+2024-09-14T18:45:54.746428-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T18:45:58.714322-07:00 femmebabe team: team [442403]: cat conf.test 
+2024-09-14T18:46:46.151649-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T18:47:05.038609-07:00 femmebabe team: team [442403]: sudo systemctl restart apache2
+2024-09-14T18:47:35.125899-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:47:42.136956-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/hZfx.log
+2024-09-14T18:47:52.039354-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/hZfx.log --lines 500
+2024-09-14T18:50:00.723858-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:50:35.880845-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T18:50:39.563413-07:00 femmebabe team: team [442403]: npm install -g wscat
+2024-09-14T18:50:42.339096-07:00 femmebabe team: team [442403]: wscat
+2024-09-14T18:50:49.297208-07:00 femmebabe team: team [442403]: sudo apt install node-ws
+2024-09-14T18:51:03.653182-07:00 femmebabe team: team [442403]: sudo apt install node-ws
+2024-09-14T18:51:14.855979-07:00 femmebabe team: team [442403]: sudo apt install node-ws
+2024-09-14T18:52:10.419925-07:00 femmebabe team: team [442403]: npm install -g wscat
+2024-09-14T18:52:18.250057-07:00 femmebabe team: team [442403]: sudo apt install npm
+2024-09-14T18:52:54.714407-07:00 femmebabe team: team [442403]: sudo apt install nodejs
+2024-09-14T18:53:00.248764-07:00 femmebabe team: team [442403]: sudo apt install npm
+2024-09-14T18:53:18.755119-07:00 femmebabe team: team [442403]: sudo apt update
+2024-09-14T18:53:55.015762-07:00 femmebabe team: team [442403]: sudo apt upgrade
+2024-09-14T18:54:01.404347-07:00 femmebabe team: team [442403]: npm install -g wscat
+2024-09-14T18:54:07.111763-07:00 femmebabe team: team [442403]: sudo npm install -g wscat
+2024-09-14T18:54:10.629571-07:00 femmebabe team: team [442403]: wscat 
+2024-09-14T18:54:44.106045-07:00 femmebabe team: team [442403]: wscat -c 'wss://localhost:7779/proxy'
+2024-09-14T18:54:47.499874-07:00 femmebabe team: team [442403]: wscat -c 'wss://localhost:7779'
+2024-09-14T18:54:55.179691-07:00 femmebabe team: team [442403]: wscat -c 'wss://lo127.0.0.1:7779'
+2024-09-14T18:55:03.828347-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:55:14.689473-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:55:21.677944-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:55:21.903123-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:55:56.403808-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:55:58.432075-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:56:02.110432-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:56:09.871049-07:00 femmebabe team: team [442403]: killall 457756
+2024-09-14T18:56:15.093633-07:00 femmebabe team: team [442403]: killall 457744
+2024-09-14T18:56:18.350257-07:00 femmebabe team: team [442403]: kill 457744
+2024-09-14T18:56:24.222362-07:00 femmebabe team: team [442403]: kill 457766
+2024-09-14T18:56:27.820594-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:56:45.562048-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:56:49.497092-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:56:52.474516-07:00 femmebabe team: message repeated 2 times: [ team [442403]: wscat -c 'wss://127.0.0.1:7779']
+2024-09-14T18:57:44.932668-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T18:57:50.137862-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T18:57:51.749545-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T18:57:55.825180-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T18:58:28.219659-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:58:43.519653-07:00 femmebabe team: team [442403]: sudo cp /etc/nginx/sites-available/CryptoNoter.conf CryptoNoter.conf
+2024-09-14T18:58:49.687136-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T18:58:53.929679-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:58:59.042175-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:59:01.921270-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:59:15.950451-07:00 femmebabe team: team [442403]: sudo tail /home/team/.forever/_z-2.log
+2024-09-14T18:59:22.126068-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T18:59:25.181002-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:59:28.427824-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:59:38.036030-07:00 femmebabe team: team [442403]: sudo systemctl stop nginx
+2024-09-14T18:59:40.984979-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T18:59:43.840871-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T18:59:47.746323-07:00 femmebabe team: team [442403]: sudo systemctl start nginx
+2024-09-14T18:59:55.661491-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T18:59:57.392267-07:00 femmebabe team: team [442403]: sudo systemctl status nginx
+2024-09-14T19:00:05.006863-07:00 femmebabe team: team [442403]: sudo tail /var/log/nginx/error.log 
+2024-09-14T19:00:18.592773-07:00 femmebabe team: team [442403]: netstat -plant | grep listen
+2024-09-14T19:00:21.684598-07:00 femmebabe team: team [442403]: sudo netstat -plant | grep listen
+2024-09-14T19:00:26.713981-07:00 femmebabe team: team [442403]: sudo netstat -plant | grep LISTEN
+2024-09-14T19:00:34.162986-07:00 femmebabe team: team [442403]: sudo netstat -plant | grep LISTEN
+2024-09-14T19:00:39.164385-07:00 femmebabe team: team [442403]: killall node
+2024-09-14T19:00:42.589596-07:00 femmebabe team: team [442403]: sudo killall node
+2024-09-14T19:00:48.098470-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T19:00:53.147183-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T19:01:08.659449-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:01:11.850104-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:01:16.200531-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7777'
+2024-09-14T19:01:18.530290-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:01:24.688379-07:00 femmebabe team: team [442403]: wscat -c 'http://127.0.0.1:7779'
+2024-09-14T19:01:28.738528-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:01:32.205865-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:02:00.329079-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T19:02:03.048799-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T19:02:05.324882-07:00 femmebabe team: team [442403]: killall node
+2024-09-14T19:02:10.035800-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T19:02:14.810509-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T19:02:17.771878-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:02:21.806409-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:02:25.009231-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:02:35.675540-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:03:06.705829-07:00 femmebabe team: team [442403]: sudo nano /etc/nginx/sites-available/CryptoNoter.conf 
+2024-09-14T19:03:09.459530-07:00 femmebabe team: team [442403]: killall node
+2024-09-14T19:03:13.296140-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T19:03:16.185445-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T19:03:16.857650-07:00 femmebabe team: team [442403]: forever list
+2024-09-14T19:03:19.067688-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:03:20.637666-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:03:23.440862-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:03:26.881447-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:03:50.180988-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/server.js
+2024-09-14T19:05:52.244378-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/server.js
+2024-09-14T19:07:26.956380-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T19:07:29.162386-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T19:07:34.008057-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:07:38.123593-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7779'
+2024-09-14T19:07:40.452443-07:00 femmebabe team: team [442403]: wscat -c 'ws://127.0.0.1:7777'
+2024-09-14T19:07:43.801744-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7777'
+2024-09-14T19:07:45.234122-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7777'
+2024-09-14T19:07:48.571417-07:00 femmebabe team: message repeated 3 times: [ team [442403]: wscat -c 'wss://127.0.0.1:7777']
+2024-09-14T19:07:50.419931-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:07:52.267384-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:07:57.436880-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:08:01.152564-07:00 femmebabe team: team [442403]: killall node
+2024-09-14T19:08:14.575027-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T19:08:16.396772-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T19:08:23.683844-07:00 femmebabe team: team [442403]: cat /srv/CryptoNoter/config.json 
+2024-09-14T19:08:56.553860-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/config.json 
+2024-09-14T19:08:58.590264-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T19:09:05.840776-07:00 femmebabe team: team [442403]: forever start /srv/CryptoNoter/server.js
+2024-09-14T19:09:08.266558-07:00 femmebabe team: team [442403]: netstat -plant | grep LISTEN
+2024-09-14T19:09:14.254076-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:09:21.481372-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7777'
+2024-09-14T19:09:24.401378-07:00 femmebabe team: team [442403]: wscat -c 'wss://127.0.0.1:7779'
+2024-09-14T19:10:29.359414-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/server.js 
+2024-09-14T19:12:08.314383-07:00 femmebabe team: team [442403]: sudo nano /srv/CryptoNoter/server.js 
+2024-09-14T19:40:57.627321-07:00 femmebabe team: team [442403]: sudo systemctl status apache2
+2024-09-14T19:40:58.499867-07:00 femmebabe team: team [442403]: logs
+2024-09-14T19:41:07.603654-07:00 femmebabe team: team [442403]: logs
+2024-09-14T19:41:22.199094-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T19:41:38.482666-07:00 femmebabe team: team [442403]: sudo systemctl disable nginx
+2024-09-14T19:41:42.264040-07:00 femmebabe team: team [442403]: sudo killall node
+2024-09-14T19:41:58.951161-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T19:42:25.415387-07:00 femmebabe team: team [442403]: sudo nano /etc/apache2/sites-available/lotteh-le-ssl.conf 
+2024-09-14T19:42:30.493245-07:00 femmebabe team: team [442403]: sudo rm -r /srv/CryptoNoter/
+2024-09-14T19:42:38.727813-07:00 femmebabe team: team [442403]: rm crypto/CryptoNoter/
+2024-09-14T19:42:42.289360-07:00 femmebabe team: team [442403]: rm crypto/CryptoNoter/ -r
+2024-09-14T19:42:45.602989-07:00 femmebabe team: team [442403]: sudo rm crypto/CryptoNoter/ -r
+2024-09-14T19:43:01.047386-07:00 femmebabe team: team [442403]: sudo rm -r static/web/
+2024-09-14T19:45:17.222826-07:00 femmebabe team: team [442403]: cd 
+2024-09-14T19:45:21.454767-07:00 femmebabe team: team [442403]: git clone https://github.com/JayWalker512/CryptoNoter.git
+2024-09-14T19:45:26.648141-07:00 femmebabe team: team [442403]: cd CryptoNoter/
+2024-09-14T19:45:27.424167-07:00 femmebabe team: team [442403]: ls
+2024-09-14T19:45:40.866905-07:00 femmebabe team: team [442403]: cat server.js 
+2024-09-14T19:46:09.107462-07:00 femmebabe team: team [442403]: cp server.js ../lotteh/crypto/consumers.py
+2024-09-14T19:46:15.131472-07:00 femmebabe team: team [442403]: nano crypto/consumers.py
+2024-09-14T19:46:15.732491-07:00 femmebabe team: team [442403]: cd
+2024-09-14T19:46:18.087021-07:00 femmebabe team: team [442403]: cd lotteh
+2024-09-14T19:48:28.561918-07:00 femmebabe team: team [442403]: nano crypto/consumers.py 
+2024-09-14T19:49:01.330469-07:00 femmebabe team: team [442403]: cat chat/video_consumers.py >> crypto/consumers.py
+2024-09-14T20:22:19.350526-07:00 femmebabe team: team [442403]: nano crypto/consumers.py 
+2024-09-14T20:22:24.835722-07:00 femmebabe team: team [442403]: logs
+2024-09-14T20:22:27.180495-07:00 femmebabe team: team [442403]: logs
+2024-09-14T20:22:45.433199-07:00 femmebabe team: team [442403]: nano web/templates/web/base.html 
+2024-09-14T20:22:52.409394-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T20:26:30.766598-07:00 femmebabe team: team [442403]: sudo pushweb
+2024-09-14T20:27:02.337357-07:00 femmebabe team: team [442403]: ls crypto
+2024-09-14T20:27:27.217679-07:00 femmebabe team: team [442403]: logs
+2024-09-14T20:29:56.491596-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T20:29:59.389702-07:00 femmebabe team: team [442403]: sudo purgecache
+2024-09-14T20:30:25.299803-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T20:30:31.651069-07:00 femmebabe team: team [442403]: nano templates/miner.html 
+2024-09-14T20:30:44.026697-07:00 femmebabe team: team [442403]: nano templates/base.html
+2024-09-14T20:30:46.573334-07:00 femmebabe team: team [442403]: sudo doreload
+2024-09-14T20:30:48.950012-07:00 femmebabe team: team [442403]: sudo purgecache
+2024-09-14T20:36:07.663552-07:00 femmebabe team: team [442403]: logs
+2024-09-14T20:36:33.294652-07:00 femmebabe team: team [442403]: logs
+2024-09-14T20:39:07.564353-07:00 femmebabe team: team [475157]: nano static/web/lib/cryptonight-asmjs.min.js 
+2024-09-14T20:39:12.585935-07:00 femmebabe team: team [475157]: compinfo
+2024-09-14T20:39:17.944378-07:00 femmebabe team: team [475157]: top
+2024-09-14T20:39:31.652152-07:00 femmebabe team: team [475157]: sudo systemctl stop cudo-miner
