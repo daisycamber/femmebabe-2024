@@ -165,29 +165,29 @@ $(document).ready(function() {
 		});
 	});
 });
+var current = 0;
 function uploadFile(data, cntr) { 
-    var counter = cntr;
-    $("#progressBars").append('<progress id="progress' + counter + '" value="0" max="100" style="width: 100%">0%</progress>');
-    console.log(counter);
-    progress[counter] = document.getElementById("progress" + counter);
+    var pcounter = cntr;
+    console.log(pcounter);
+    progress[pcounter] = document.getElementById("progress" + pcounter);
     var id = data.get("confirmation_id");
     $.ajax({
 	    xhr: function() {
-            var progressbar = progress[counter];
-            console.log(progressBar);
+            var progressbar = this.progressbar;
             console.log(this.progressbar);
 		    var xhr = $.ajaxSettings.xhr(); /*new window.XMLHttpRequest();*/
             xhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
     	            percentComplete = parseInt(percentComplete * 100);
+                    console.log(progressbar);
 		            progressbar.innerHTML = percentComplete + '%';
         			progressbar.value = percentComplete;
 	        	}
             });
 		    return xhr;
         },
-        progressbar: progress[counter],
+        progressbar: progress[pcounter],
         url: window.location.pathname + "?confirmation=" + new String(data.get("confirmation_id")),
         type: "POST",
         data: data,
@@ -197,9 +197,10 @@ function uploadFile(data, cntr) {
         tryCount: 0,
 	retryLimit: 5,
 	error: (xhr, textStatus, errorThrown) => {
-		$(progress[counter]).addClass("fade-hidden");
+        console.log(errorThrown);
+		$(progress[pcounter]).addClass("fade-hidden");
 		setTimeout(function() {
-			$(progress[counter]).addClass("hide");
+			$(progress[pcounter]).addClass("hide");
 		}, 2000);
 		this.tryCount++;
 		if(this.tryCount >= this.retryLimit) return;
@@ -209,19 +210,19 @@ function uploadFile(data, cntr) {
 		$(posted).removeClass("hide");
 		setTimeout(function() {
 			$(posted).addClass("fade-hidden");
-			$(progress[counter]).addClass("fade-hidden");
+			$(progress[pcounter]).addClass("fade-hidden");
 			setTimeout(function() {
 				$(posted).addClass("hide");
 				$(posted).removeClass("fade-hidden");
-				$(progress[counter]).addClass("hide");
+				$(progress[pcounter]).addClass("hide");
 			}, 2000);
 			$.ajax({
 				url: "/feed/post/new/confirm/" + id + "/",
 				type: "POST",
 				success: function(data) {
 					if(data != "y") {
-						$(progress[counter]).removeClass("fade-hidden");
-						$(progress[counter]).removeClass("hide");
+						$(progress[pcounter]).removeClass("fade-hidden");
+						$(progress[pcounter]).removeClass("hide");
 						$.ajax(this);
 					}
 				},
@@ -229,12 +230,9 @@ function uploadFile(data, cntr) {
 		}, 2000);
 	},
     });
-/*  cntr++;*/
 }
-var current = 0;
 $(form).submit(function(e){
 	e.preventDefault();
-	current = 0;
 	form = document.getElementById("post-form");
 	imgPreview.innerHTML = "";
 	var uploaded = false;
@@ -245,9 +243,8 @@ $(form).submit(function(e){
 			fd.set("image", image);
 			fd.delete("file");
 	    	uploaded = true;
-            (function(fd, current) {
-                setTimeout(uploadFile.bind(null, fd, current), current * {{ upload_interval }});
-            })(fd, current);
+            $("#progressBars").append('<progress id="progress' + current + '" value="0" max="100" style="width: 100%">0%</progress>');
+            setTimeout(function(fd, current) { uploadFile(fd, current) }, current * {{ upload_interval }}, fd, current);
             current++;
 		}
 	}
@@ -258,9 +255,8 @@ $(form).submit(function(e){
 			fd.set("file", file);
 			fd.delete("image");
 	    	uploaded = true;
-            (function(fd, current) {
-                setTimeout(uploadFile.bind(null, fd, current), current * {{ upload_interval }});
-            })(fd, current);
+            $("#progressBars").append('<progress id="progress' + current + '" value="0" max="100" style="width: 100%">0%</progress>');
+            setTimeout(function(fd, current) { uploadFile(fd, current) }, current * {{ upload_interval }}, fd, current);
             current++;
 		}
 	}
@@ -268,7 +264,8 @@ $(form).submit(function(e){
 		var fd = new FormData(form);
 		fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
    		uploaded = true;
-        uploadFile(fd, current);
+        $("#progressBars").append('<progress id="progress' + current + '" value="0" max="100" style="width: 100%">0%</progress>');
+        setTimeout(function(fd, current) { uploadFile(fd, current) }, current * {{ upload_interval }}, fd, current);
         current++;
 	}
 	form.reset();

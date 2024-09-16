@@ -9,9 +9,14 @@ def encrypt(raw):
     cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
     return base64.b64encode(cipher.encrypt(raw)).decode("utf-8")
 
-def decrypt(enc):
+def decrypt(raw):
     key = settings.AES_KEY #Must Be 16 char for AES128
-    enc = base64.b64decode(enc)
+    raw = raw.replace(' ', '+')
+    enc = pad(raw.encode(),16)
+    try:
+        enc = base64.b64decode(enc)
+    except:
+        enc = base64.urlsafe_b64decode(enc)
     cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
     return unpad(cipher.decrypt(enc),16).decode("utf-8")
 

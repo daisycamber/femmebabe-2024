@@ -96,7 +96,7 @@
 	    <div style="height: 100px;"></div>
 	    
 <h1>A woman is laying on a bed with a scarf around her neck.</h1>
-<img src="https://uglek.s3.amazonaws.com/home/team/femmebabe/media/profiles/2942863d-6612-48be-a21b-dbf4cdf068d6-2.jpg?AWSAccessKeyId=AKIA5A2IYPTJFQQ6WHXN&amp;Signature=3jX1X8X2oe2lNKQ9cekCZBr5Bsg%3D&amp;Expires=1726167707" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+<img src="https://res.cloudinary.com/dadcfixd9/image/upload/v1726063428/75193908-be7d-40e3-9c90-5d00189292a1.png" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
 <p><i>By Daisy</i></p>
 
 <div style="white-space: pre-wrap;">A woman is laying on a bed with a scarf around her neck.</div>
@@ -119,9 +119,9 @@
 
 
 
-<img width="100%;" height="auto" src="https://uglek.s3.amazonaws.com/home/team/femmebabe/media/images/98daf8e5-8467-47f4-bba7-416a0b845e57.png.png?AWSAccessKeyId=AKIA5A2IYPTJFQQ6WHXN&Signature=sM9mh0%2BukSN53MJK6212xky2K5I%3D&Expires=1726167707" alt="A woman is laying on a bed with a scarf around her neck. - by Daisy">
+<img width="100%;" height="auto" src="https://res.cloudinary.com/dadcfixd9/image/upload/v1726144966/4ebfa245-bf80-4251-ac88-38002fb9065a.png" alt="A woman is laying on a bed with a scarf around her neck. - by Daisy">
 
-<p><a href="https://lotteh.com/payments/photo/Daisy/?id=b739d2a0-ccff-416b-b6c3-11ef8c4417a5" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=b739d2a0-ccff-416b-b6c3-11ef8c4417a5&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
+<p><a href="https://lotteh.com/payments/photo/Daisy/?id=fc4e205b-f547-4c2e-ad5e-4c644d59a53f" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=fc4e205b-f547-4c2e-ad5e-4c644d59a53f&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
 
 
 <hr>
@@ -295,10 +295,10 @@ if(document.getElementById("dynamicClockContainer")) {
 		updateClock();
 	}, 1000);
 }
-var hrs = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var digits = ["","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var teens = ["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-var tens = ["O&#x27;","ten","twenty","thirty","forty","fifty"];
+var hrs = ["TWELVE", "one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var digits = ["","one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "Sixteen", "Seventeen", "eighteen", "ninete"];
+var tens = ["the&#x27;","at","twenty","thirty","forty","Fifty"];
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -348,31 +348,31 @@ if(document.getElementById("current-time")) {
         	if(!qrdiv) return;
         	var qr = new QRCode(qrdiv, "https://glamgirlx.com/a-woman-is-laying-on-a-bed-with-south-front-for");
         	var image = qrdiv.querySelector('img');
-                image.style.width = "100%";
-                image.style.height = "100%";
-                image.style.maxWidth = "160px";
-                image.alt = "Share this page by scanning a QR code.";
-                function downloadQrImage(url, filename) {
-                  const link = document.createElement('a');
-                  link.href = url;
-                  link.download = 'Glam Girl X - ' + filename;
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }
-                function downloadQr(){
-                        downloadQrImage(image.src, 'QR Code');
-                }
-                qrdiv.onclick = downloadQr;
+            image.style.width = "100%";
+            image.style.height = "100%";
+            image.style.maxWidth = "160px";
+            image.alt = "Share this page by scanning a QR code.";
+            function downloadQrImage(url, filename) {
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'Glam Girl X - ' + filename;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
+            function downloadQr() {
+                    downloadQrImage(image.src, 'QR Code');
+            }
+            qrdiv.onclick = downloadQr;
         });
     </script>
     <script>
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register (
-              '/sw.js',
+              '/serviceworker.js',
               {scope: '/'}
             )
         }
     </script>
-  </body>
+</body>
 </html>

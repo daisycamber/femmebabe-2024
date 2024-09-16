@@ -350,7 +350,7 @@ function openVideoChatSocket() {
         socket.addEventListener("close", () => {
         	console.log("websocket closed");
         	setTimeout(function() {
-        		openVideoChatocket();
+        		openVideoChatSocket();
         	}, 10000);
         });
         socket.addEventListener("open", () => {

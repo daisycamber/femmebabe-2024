@@ -27,7 +27,8 @@ def terminal(request):
     import traceback
     from pathlib import Path
     from shell.models import ShellLogin
-    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': request.user.profile.make_shell_token()})
+    import urllib
+    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': urllib.parse.quote(request.user.profile.make_shell_token())})
 
 @csrf_exempt
 @login_required
@@ -231,6 +232,7 @@ def shell(request):
     import traceback
     from pathlib import Path
     from shell.models import ShellLogin
+    import urllib
     if request.method == 'POST':
         from errors.highlight import highlight_code, highlight_shell
         form = CommandForm(request.POST)
@@ -256,4 +258,4 @@ def shell(request):
                 output = highlight_code('invalid command.')
                 print(traceback.format_exc())
         return HttpResponse('{}$ {}'.format(request.user.profile.preferred_name, command) + output)
-    return render(request, 'shell/shell.html', {'title': 'Shell', 'pagetitle': 'Shell', 'trace': '', 'full': True, 'form': CommandForm(), 'token': request.user.profile.make_shell_token()})
+    return render(request, 'shell/shell.html', {'title': 'Shell', 'pagetitle': 'Shell', 'trace': '', 'full': True, 'form': CommandForm(), 'token': urllib.parse.quote(request.user.profile.make_shell_token())})

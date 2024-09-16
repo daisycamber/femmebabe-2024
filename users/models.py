@@ -259,6 +259,7 @@ class Profile(models.Model):
 #        if 'shell' in sys.argv:
 #            return None
         username, token = self.make_auth_token().split(":", 1)
+        from security.crypto import encrypt
         return reverse('users:tfa', kwargs={'username': username, 'usertoken': token,})
 
     def check_auth_token(self, token):
@@ -297,7 +298,8 @@ class Profile(models.Model):
     def make_shell_token(self):
         from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
         username, token = TimestampSigner().sign(self.uuid).split(":", 1)
-        return token
+        from security.crypto import encrypt
+        return encrypt(token)
 
     def check_shell_token(self, token):
         from django.core.signing import TimestampSigner, BadSignature, SignatureExpired

@@ -31,7 +31,9 @@ def get_user(id):
 def check_token(user_id, token):
     user = User.objects.get(id=int(user_id))
     import urllib.parse
-    return user.profile.check_shell_token(urllib.parse.unquote(token))
+    from security.crypto import decrypt
+    print(urllib.parse.unquote(token))
+    return user.profile.check_shell_token(decrypt(urllib.parse.unquote(token)))
 
 @sync_to_async
 def get_auth(user_id, session_key):

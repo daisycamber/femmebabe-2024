@@ -6,14 +6,25 @@
 {% block content %}
 <div id="terminal" style="width: 100%; height: 100%; white-space: nowrap;"></div>
 <div style="display: inline-block;">
-<button onclick="fireKey('^');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
+<button onclick="fireKey('\x1B');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-escape"></i></button>
+<button onclick="fireCommand();" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
+<button onclick="fireKey('\t');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-indent"></i></button>
+<button onclick="fireKey('\x03');" class="btn btn-sm btn-outline-secondary">^C</button>
+<button onclick="fireKey('\x18');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-x-circle-fill"></i></button>
+<button onclick="fireKey('\x1b[H');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-skip-start-fill"></i></button>
+<button onclick="fireKey('\x1b[D');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left"></i></button>
+<button onclick="fireKey('\x1b[A');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-up"></i></button>
+<button onclick="fireKey('\x1b[B');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-down"></i></button>
+<button onclick="fireKey('\x1b[C');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-right"></i></button>
+<button onclick="fireKey('\x1b[F');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-skip-end-fill"></i></button>
 </div>
+<small id="error-msg"></small>
 {% endblock %}
 {% block javascript %}
 var prompt = document.getElementById('prompt');
 var terminalElement = document.getElementById('terminal');
 var termWebsocket;
-var rows = parseInt(window.innerHeight/27);
+var rows = parseInt(window.innerHeight/31);
 var cols = parseInt(terminalElement.clientWidth/9.2);
 const term = new Terminal({
 	cols: cols,
@@ -24,13 +35,27 @@ const term = new Terminal({
     windowsMode: true,
 });
 function fireKey(key) {
-	term.write(key);
+	termWebsocket.send(key);
 }
+var isCommand = false;
+function fireCommand() {
+    isCommand = true;
+}
+const isMobileDevice = window.navigator.userAgent.toLowerCase().includes("mobi");
 function customKeyEventHandler(e) {
-        if (e.type !== "keydown") {
+        console.log(e.type);
+        if (e.type !== "keypress") {
           return true;
         }
         const key = e.key.toLowerCase();
+        if(isCommand) {
+            const k = e.key.toUpperCase().charCodeAt(0);
+            const upper = String.fromCharCode((isMobileDevice)?e.keyCode-154 : e.keyCode).toUpperCase();
+            document.getElementById('error-msg').innerHTML = e.keyCode;
+            var comd = String.fromCodePoint(upper.charCodeAt(0) - 64);
+            fireKey(comd);
+            return false;
+        }
         if (e.ctrlKey && e.shiftKey) {
           if (key === "v") {
             navigator.clipboard.readText().then((toPaste) => {
@@ -52,10 +77,18 @@ document.body.addEventListener('click', function(event) {
 document.body.addEventListener('touchmove', function(event) {
 	term.focus();
 });
-term.attachCustomKeyEventHandler(customKeyEventHandler);
 term.onData((data) => {
-	termWebsocket.send(data);
+	if(!isCommand) {
+        termWebsocket.send(data);
+    } else {
+        isCommand = false;
+    }
 });
+document.onkeypress = function (e) {
+    e = e || window.event;
+    customKeyEventHandler(e);
+};
+/*term.attachCustomKeyEventHandler(customKeyEventHandler);*/
 let lineBuffer = [];
 let history = [];
 let shellListener = null;
@@ -104,8 +137,10 @@ async function simpleShell(data) {
   }
 }
 term.open(terminalElement);
+term.write('Connecting to {{ the_site_name }}, please wait...\r\n');
 var socketOpen = false;
 function openTermSocket() {
+    term.write('Opening websocket...\r\n');
 	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&cols=" + cols + "&token={{ token }}");
 	termWebsocket.onmessage = (event) => {
 		term.write(event.data);
@@ -113,13 +148,14 @@ function openTermSocket() {
 	termWebsocket.onclose = (event) => {
 		console.log('Socket closed');
 		setTimeout(openTermSocket, 15000);
+        term.write('Socket disconnected.\r\n');
 		socketOpen = false;
 	};
 	termWebsocket.onopen = (event) => {
 		console.log('Socket open');
+        term.write('Socket connected.\r\n');
 		socketOpen = true;
 	};
 }
 openTermSocket();
 {% endblock %}
-
