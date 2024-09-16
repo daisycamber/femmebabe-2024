@@ -5,12 +5,7 @@
 {% endblock %}
 {% block content %}
 <div id="terminal" style="width: 100%; height: 100%; white-space: nowrap;"></div>
-<div style="display: inline-block;">
-<button onclick="fireKey('\x1B');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-escape"></i></button>
-<button onclick="fireCommand();" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
-<button onclick="fireKey('\t');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-indent"></i></button>
-<button onclick="fireKey('\x03');" class="btn btn-sm btn-outline-secondary">^C</button>
-<button onclick="fireKey('\x18');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-x-circle-fill"></i></button>
+<div style="display: inline-block;" class="mb-1">
 <button onclick="fireKey('\x1b[H');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-skip-start-fill"></i></button>
 <button onclick="fireKey('\x1b[D');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left"></i></button>
 <button onclick="fireKey('\x1b[A');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-up"></i></button>
@@ -18,9 +13,99 @@
 <button onclick="fireKey('\x1b[C');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-right"></i></button>
 <button onclick="fireKey('\x1b[F');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-skip-end-fill"></i></button>
 </div>
-<small id="error-msg"></small>
+<div style="display: inline-block;">
+<button onclick="fireKey('\x1B');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-escape"></i></button>
+<button onclick="fireCommand();" class="btn btn-sm btn-outline-secondary"><i class="bi bi-command"></i></button>
+<button onclick="toggleKeyboard();" class="btn btn-sm btn-outline-secondary"><i class="bi bi-terminal"></i></button>
+<button onclick="fireKey('\t');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-indent"></i></button>
+<button onclick="fireKey('\x03');" class="btn btn-sm btn-outline-secondary">^C</button>
+<button onclick="fireKey('\x18');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-x-circle-fill"></i></button>
+</div>
+<hr>
+<div id="keyboard" class="col-sm-6 fade-in-fast hide">
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button onclick="fireKey('\t');" class="btn btn-sm btn-outline-secondary"><i class="bi bi-indent"></i></button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('Q');">Q</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('W');">W</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('E');">E</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('R');">R</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('T');">T</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('Y');">Y</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('U');">U</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('I');">I</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('O');">O</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('P');">P</button>
+</div>
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="toggleCapsLock();">Caps</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('A');">A</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('S');">S</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('D');">D</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('F');">F</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('G');">G</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('H');">H</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('J');">J</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('K');">K</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('L');">L</button>
+</div>
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="toggleShift();">Shift</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('Z');">Z</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('X');">X</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('C');">C</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('V');">V</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('B');">B</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('N');">N</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('M');">M</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(',');">,</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('.');">.</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('<');">&lt;</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('>');">&gt;</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('?');">?</button>
+</div>
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('-');">-</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('=');">=</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('_');">_</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('+');">+</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('[');">[</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(']');">]</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('{');">{</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('}');">}</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(';');">;</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(''');">'</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(':');">:</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('"');">"</button>
+</div>
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('`');">`</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('1');">1</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('2');">2</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('3');">3</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('4');">4</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('5');">5</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('6');">6</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('7');">7</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('8');">8</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('9');">9</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('0');">0</button>
+</div>
+<div style="display: flex; justify-content: space-around;" class="mb-1">
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('!');">!</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('@');">@</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('#');">#</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('$');">$</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('%');">%</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('^');">^</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('&');">&</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('*');">*</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('(');">(</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(')');">)</button>
+</div>
+</div>
 {% endblock %}
 {% block javascript %}
+var keyboard = document.getElementById('keyboard');
 var prompt = document.getElementById('prompt');
 var terminalElement = document.getElementById('terminal');
 var termWebsocket;
@@ -39,37 +124,49 @@ function fireKey(key) {
 }
 var isCommand = false;
 function fireCommand() {
-    isCommand = true;
+    isCommand = !isCommand;
+    if(keyboard.classList.contains('hide')) {
+        keyboard.classList.remove('hide');
+    } else {
+        keyboard.classList.add('hide');
+    }
 }
+function toggleKeyboard() { 
+    if(keyboard.classList.contains('hide')) {
+        keyboard.classList.remove('hide');
+    } else {
+        keyboard.classList.add('hide');
+    }
+}
+var capsLock = false;
+function toggleCapsLock() {
+    capsLock = !capsLock;
+}
+var shift = false;
+function toggleShift() {
+    shift = !shift;
+}
+var theEvent;
 const isMobileDevice = window.navigator.userAgent.toLowerCase().includes("mobi");
 function customKeyEventHandler(e) {
-        console.log(e.type);
-        if (e.type !== "keypress") {
-          return true;
-        }
-        const key = e.key.toLowerCase();
-        if(isCommand) {
-            const k = e.key.toUpperCase().charCodeAt(0);
-            const upper = String.fromCharCode((isMobileDevice)?e.keyCode-154 : e.keyCode).toUpperCase();
-            document.getElementById('error-msg').innerHTML = e.keyCode;
-            var comd = String.fromCodePoint(upper.charCodeAt(0) - 64);
-            fireKey(comd);
-            return false;
-        }
-        if (e.ctrlKey && e.shiftKey) {
-          if (key === "v") {
-            navigator.clipboard.readText().then((toPaste) => {
-              term.writeText(toPaste);
-            });
-            return false;
-          } else if (key === "c" || key === "x") {
-            const toCopy = term.getSelection();
-            navigator.clipboard.writeText(toCopy);
-            term.focus();
-            return false;
-          }
-        }
-        return true;
+    if (e.type !== "keyup") {
+      return true;
+    }
+    theEvent = e;
+    if (e.ctrlKey && e.shiftKey) {
+      if (key === "v") {
+        navigator.clipboard.readText().then((toPaste) => {
+          term.writeText(toPaste);
+        });
+        return false;
+      } else if (key === "c" || key === "x") {
+        const toCopy = term.getSelection();
+        navigator.clipboard.writeText(toCopy);
+        term.focus();
+        return false;
+      }
+    }
+    return true;
 }
 document.body.addEventListener('click', function(event) {
 	term.focus();
@@ -82,17 +179,34 @@ term.onData((data) => {
         termWebsocket.send(data);
     } else {
         isCommand = false;
+        keyboard.classList.add('hide');
     }
 });
-document.onkeypress = function (e) {
-    e = e || window.event;
-    customKeyEventHandler(e);
-};
-/*term.attachCustomKeyEventHandler(customKeyEventHandler);*/
+function callCommand(key) {
+    if(isCommand) {
+        const keyCode = key.toUpperCase().charCodeAt(0);
+        const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
+        var comd = String.fromCodePoint(keyCode - 64);
+        fireKey(comd);
+        keyboard.classList.add('hide');
+        return false;
+    } else {
+        var result;
+        if(capsLock || shift) {
+            result = key.toUpperCase();
+            if(shift) {
+                shift = false;
+            }
+        } else {
+            result = key.toLowerCase();
+        }
+        termWebsocket.send(result);
+    }
+}
+term.attachCustomKeyEventHandler(customKeyEventHandler);
 let lineBuffer = [];
 let history = [];
 let shellListener = null;
-
 async function simpleShell(data) {
   // string splitting is needed to also handle multichar input (eg. from copy)
   for (let i = 0; i < data.length; ++i) {
@@ -123,7 +237,7 @@ async function simpleShell(data) {
     } else if (c === '\x7F') {  // <Backspace> was pressed case
       if (lineBuffer.length) {
         // dont delete prompt
-        // this is still wrong for multiline inputs!
+z        // this is still wrong for multiline inputs!
         lineBuffer.pop();
         term.write('\b \b');
       }

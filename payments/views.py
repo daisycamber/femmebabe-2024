@@ -1276,7 +1276,9 @@ def tip_crypto_simple(request, username):
     from payments.models import VendorPaymentsProfile
     profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)
     from payments.crypto import get_payment_address
-    address, transaction_id = get_payment_address(user, crypto, float(1000))
+    from payments.apis import get_crypto_price
+    fee = str(int(10000) / get_crypto_price(crypto))
+    address, transaction_id = get_payment_address(user, crypto, fee)
     from feed.models import Post
     post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
     post = Post.objects.filter(id__in=post_ids).order_by('?').first()
