@@ -47,6 +47,7 @@
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('J');">J</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('K');">K</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('L');">L</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('\n');">Ret</button>
 </div>
 <div style="display: flex; justify-content: space-around;" class="mb-1">
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="toggleShift();">Shift</button>
@@ -70,6 +71,7 @@
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('+');">+</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('[');">[</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(']');">]</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(' ');">___</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('{');">{</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('}');">}</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(';');">;</button>
@@ -101,6 +103,9 @@
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('*');">*</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('(');">(</button>
 <button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand(')');">)</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('\');">\</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('|');">|</button>
+<button class="btn btn-sm btn-outline-secondary cmd-key" onclick="callCommand('/');">/</button>
 </div>
 </div>
 {% endblock %}
@@ -125,11 +130,6 @@ function fireKey(key) {
 var isCommand = false;
 function fireCommand() {
     isCommand = !isCommand;
-    if(keyboard.classList.contains('hide')) {
-        keyboard.classList.remove('hide');
-    } else {
-        keyboard.classList.add('hide');
-    }
 }
 function toggleKeyboard() { 
     if(keyboard.classList.contains('hide')) {
@@ -179,7 +179,6 @@ term.onData((data) => {
         termWebsocket.send(data);
     } else {
         isCommand = false;
-        keyboard.classList.add('hide');
     }
 });
 function callCommand(key) {
@@ -188,7 +187,7 @@ function callCommand(key) {
         const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
         var comd = String.fromCodePoint(keyCode - 64);
         fireKey(comd);
-        keyboard.classList.add('hide');
+        isCommand = false;
         return false;
     } else {
         var result;
