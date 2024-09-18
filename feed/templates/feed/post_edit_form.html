@@ -58,7 +58,7 @@
 {{ form.media }}
 {% endblock %}
 {% block javascript %}
-{% if True %}
+{% if not request.GET.raw %}
 $("#id_content").summernote();
 var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
 var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {

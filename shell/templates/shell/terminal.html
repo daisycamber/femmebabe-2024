@@ -110,11 +110,17 @@
 </div>
 {% endblock %}
 {% block javascript %}
+const isMobileDevice = window.navigator.userAgent.toLowerCase().includes("mobi");
 var keyboard = document.getElementById('keyboard');
 var prompt = document.getElementById('prompt');
 var terminalElement = document.getElementById('terminal');
 var termWebsocket;
-var rows = parseInt(window.innerHeight/31);
+var rows;
+if(isMobileDevice) {
+    rows = parseInt(window.innerHeight/31);
+} else {
+    rows = parseInt(window.innerHeight/19);
+}
 var cols = parseInt(terminalElement.clientWidth/9.2);
 const term = new Terminal({
 	cols: cols,
@@ -147,7 +153,6 @@ function toggleShift() {
     shift = !shift;
 }
 var theEvent;
-const isMobileDevice = window.navigator.userAgent.toLowerCase().includes("mobi");
 function customKeyEventHandler(e) {
     if (e.type !== "keyup") {
       return true;

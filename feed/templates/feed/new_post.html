@@ -173,21 +173,17 @@ function uploadFile(data, cntr) {
     var id = data.get("confirmation_id");
     $.ajax({
 	    xhr: function() {
-            var progressbar = progress[pcounter];
-            console.log(progress[pcounter]);
-		    var xhr = new window.XMLHttpRequest();
-            xhr.addEventListener("progress", function(evt) {
+		    var thexhr = new window.XMLHttpRequest();
+            thexhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
     	            percentComplete = parseInt(percentComplete * 100);
-                    console.log(progressbar);
 		            progress[pcounter].innerHTML = percentComplete + '%';
         			progress[pcounter].value = percentComplete;
 	        	}
             });
-		    return xhr;
+		    return thexhr;
         },
-        progressbar: progress[pcounter],
         url: window.location.pathname + "?confirmation=" + new String(data.get("confirmation_id")),
         type: "POST",
         data: data,

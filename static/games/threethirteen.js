@@ -9,7 +9,7 @@
   const suitnames = ["S", "H", "C", "D"];
   const cardnames = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
   //const cardsroot = "/cards/"
-  const cardsroot = "https://femmebabe.com/media/games/cards/";
+  const cardsroot = "https://lotteh.com/media/games/cards/";
   try {
   var postUuid = document.getElementById("post_id").innerHTML;
   var gameCode = document.getElementById("game_code").innerHTML;
