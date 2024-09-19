@@ -1,5 +1,9 @@
 {% extends 'web/base.html' %}
 {% load feed_filters %}
+{% block head %}
+<meta property="og:image" content="{{ post.get_image_url }}">
+<meta name="pinterest:image" content="{{ post.get_image_url }}"/>
+{% endblock %}
 {% block content %}
 <h1>{{ post.id|shorttitle }}</h1>
 <img src="{{ post.author.profile.get_image_url }}" alt="{{ post.author.profile.name }}'s profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>

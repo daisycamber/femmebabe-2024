@@ -174,12 +174,13 @@ function uploadFile(data, cntr) {
     $.ajax({
 	    xhr: function() {
 		    var thexhr = new window.XMLHttpRequest();
+            var theProgress = progress[pcounter];
             thexhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
     	            percentComplete = parseInt(percentComplete * 100);
-		            progress[pcounter].innerHTML = percentComplete + '%';
-        			progress[pcounter].value = percentComplete;
+		            theProgress.innerHTML = percentComplete + '%';
+        			theProgress.value = percentComplete;
 	        	}
             });
 		    return thexhr;

@@ -219,7 +219,7 @@ class ShellConsumer(AsyncWebsocketConsumer):
             await send(self, output)
         elif command.split(' ')[0] == 'nano':
             file = command.split(' ')[1]
-            output = '$ ' + command + '\n<iframe src="/shell/edit/?hidenavbar=t&path=' + file + '" width="100%;" height="590px;"></iframe>'
+            output = '$ ' + command + '\n<iframe src="/shell/edit/?hidenavbar=t&path=' + file + '" width="100%;" height="690px;"></iframe>'
             await send(self, output)
         elif command.split(' ')[0] == 'cancel':
             self.channel.send("\x03")

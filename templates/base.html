@@ -23,6 +23,19 @@
   {% endif %}
   <meta name="description" content="{% if description != None %}{{ description|trans }}{% else %}({{ min_age }}+) {{ myusername }} - {{ base_description|trans }}{% endif %}">
   <meta name="author" content="{{ author_name }}">
+  {% if post %}
+    <meta property="og:image" content="{{ post.get_image_url }}">
+    <meta name="pinterest:image" content="{{ post.get_image_url }}"/>
+  {% elif profile %}
+    <meta property="og:image" content="{{ profile.get_image_url }}">
+    <meta name="pinterest:image" content="{{ profile.get_image_url }}"/>
+  {% elif vendor %}
+    <meta property="og:image" content="{{ vendor.profile.get_image_url }}">
+    <meta name="pinterest:image" content="{{ vendor.profile.get_image_url }}"/>
+  {% elif model %}
+    <meta property="og:image" content="{{ model.profile.get_image_url }}">
+    <meta name="pinterest:image" content="{{ model.profile.get_image_url }}"/>
+  {% endif %}
 <link rel="canonical" href="{{ base_url }}{{ request.path }}"/>
 {% if not bs4 %}
 <link rel="stylesheet" href="/static/main.css">

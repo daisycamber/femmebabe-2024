@@ -1,5 +1,8 @@
 {% extends 'web/base.html' %}
-{% block content %}
+{% block head %}
+<meta property="og:image" content="{{ model.profile.get_image_url }}">
+<meta name="pinterest:image" content="{{ model.profile.get_image_url }}"/>
+{% endblock %}{% block content %}
 {% load feed_filters %}
 <div id="pg0">
 <div class="mx-auto" style="width: 100%; max-width: 800px;"><img src="{{ model.profile.get_cover_image }}" width="100%" class="rounded"></img></div>
