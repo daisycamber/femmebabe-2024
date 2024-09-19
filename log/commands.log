@@ -1544,3 +1544,45 @@
 2024-09-18T22:00:49.543370-07:00 femmebabe team: team [14428]: logs
 2024-09-18T22:00:51.777868-07:00 femmebabe team: team [14428]: logs
 2024-09-18T22:02:03.308952-07:00 femmebabe team: team [14428]: sudo sh -c "sudo backup &" team
+2024-09-19T09:47:05.671384-07:00 femmebabe team: team [154832]: python manage.py check
+2024-09-19T09:47:13.445303-07:00 femmebabe team: team [154832]: ls
+2024-09-19T09:50:48.909272-07:00 femmebabe team: team [155375]: python manage.py check
+2024-09-19T09:55:55.954922-07:00 femmebabe team: team [155375]: cmda
+2024-09-19T09:56:01.274233-07:00 femmebabe team: team [155375]: cmds
+2024-09-19T09:58:32.956056-07:00 femmebabe team: team [155375]: nano test.txt
+2024-09-19T10:00:37.170260-07:00 femmebabe team: team [155375]: nano test.txt
+2024-09-19T10:02:43.367504-07:00 femmebabe team: team [156887]: ls
+2024-09-19T10:03:02.290163-07:00 femmebabe team: team [157013]: ls
+2024-09-19T10:03:20.777812-07:00 femmebabe team: team [157116]: ls
+2024-09-19T10:07:29.479237-07:00 femmebabe team: team [157702]: ls
+2024-09-19T10:07:38.686630-07:00 femmebabe team: team [157702]: loga
+2024-09-19T10:07:42.652298-07:00 femmebabe team: team [157702]: logs
+2024-09-19T10:08:12.963841-07:00 femmebabe team: team [157896]: nano test.txt
+2024-09-19T10:09:02.345596-07:00 femmebabe team: team [157896]: nano test.txt
+2024-09-19T10:09:29.671259-07:00 femmebabe team: team [157702]: sudo systemctl status celery
+2024-09-19T10:09:57.873782-07:00 femmebabe team: team [157702]: sudo systemctl start celery
+2024-09-19T10:10:05.797688-07:00 femmebabe team: team [157702]: python force_publish.py
+2024-09-19T10:10:10.474496-07:00 femmebabe team: team [157702]: cd lotteh
+2024-09-19T10:10:14.236045-07:00 femmebabe team: team [157702]: source venv/bin/activate
+2024-09-19T10:10:25.952492-07:00 femmebabe team: team [157702]: python force_publish.py
+2024-09-19T10:10:45.236742-07:00 femmebabe team: team [157702]: cat shell/templates/shell/terminal.html
+2024-09-19T10:11:19.913974-07:00 femmebabe team: team [157702]: cat shell/templates/shell/terminal.html
+2024-09-19T10:12:03.614261-07:00 femmebabe team: team [157702]: cat shell/templates/shell/terminal.html
+2024-09-19T10:12:35.476074-07:00 femmebabe team: team [157702]: cat notes/tricks.txt
+2024-09-19T10:12:53.271312-07:00 femmebabe team: team [157702]: sudo systemctl stop celery
+2024-09-19T10:12:58.374236-07:00 femmebabe team: team [157702]: sudo systemctl stop celery &
+2024-09-19T10:13:02.117572-07:00 femmebabe team: team [157702]: chmod -R go+rX redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-09-19T10:13:26.006607-07:00 femmebabe team: team [157702]: redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-09-19T10:13:31.284726-07:00 femmebabe team: team [157702]: redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-09-19T10:13:45.840720-07:00 femmebabe team: team [157702]: rm. celerybeat*
+2024-09-19T10:13:53.930050-07:00 femmebabe team: team [157702]: rm. celerybeat*
+2024-09-19T10:13:53.947676-07:00 femmebabe team: team [157702]: rm. celerybeat*
+2024-09-19T10:14:01.463343-07:00 femmebabe team: team [157702]: rm celerybeat*
+2024-09-19T10:14:09.035477-07:00 femmebabe team: team [157702]: redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-09-19T10:14:23.309337-07:00 femmebabe team: team [157702]: sudo systemctl start celery &
+2024-09-19T10:14:42.038787-07:00 femmebabe team: team [157702]: sudo systemctl status celery
+2024-09-19T10:15:02.772164-07:00 femmebabe team: team [157702]: sudo systemctl status celery
+2024-09-19T10:15:40.644190-07:00 femmebabe team: team [157702]: cat shell/templates/shell/terminal.html
+2024-09-19T11:04:03.753946-07:00 femmebabe team: team [179437]: nano test.txt
+2024-09-19T11:04:12.093367-07:00 femmebabe team: team [179437]: clearlear
+2024-09-19T11:04:14.457471-07:00 femmebabe team: team [179437]: clear

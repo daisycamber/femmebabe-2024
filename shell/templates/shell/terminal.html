@@ -184,6 +184,10 @@ term.onData((data) => {
         termWebsocket.send(data);
     } else {
         isCommand = false;
+        const keyCode = data.toUpperCase().charCodeAt(0);
+        const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
+        var comd = String.fromCodePoint(keyCode - 64);
+        fireKey(comd);
     }
 });
 function callCommand(key) {
