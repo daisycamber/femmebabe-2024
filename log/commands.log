@@ -1586,3 +1586,83 @@
 2024-09-19T11:04:03.753946-07:00 femmebabe team: team [179437]: nano test.txt
 2024-09-19T11:04:12.093367-07:00 femmebabe team: team [179437]: clearlear
 2024-09-19T11:04:14.457471-07:00 femmebabe team: team [179437]: clear
+2024-09-19T13:20:40.990840-07:00 femmebabe team: team [198162]: nano test.txt
+2024-09-19T13:20:47.891048-07:00 femmebabe team: team [198162]: nano test.txt
+2024-09-19T13:21:49.089111-07:00 femmebabe team: team [198478]: clear
+2024-09-19T13:21:52.612364-07:00 femmebabe team: team [198478]: cd lotteh/
+2024-09-19T13:24:17.112099-07:00 femmebabe team: team [198162]: c
+2024-09-19T13:24:24.243878-07:00 femmebabe team: team [198162]: c
+2024-09-19T13:24:30.464932-07:00 femmebabe team: team [198162]: c
+2024-09-19T13:37:22.164144-07:00 femmebabe team: team [200548]: c
+2024-09-19T13:37:48.742681-07:00 femmebabe team: team [200666]: c
+2024-09-19T14:01:45.632770-07:00 femmebabe team: team [205252]: c
+2024-09-19T14:02:13.823098-07:00 femmebabe team: team [205384]: c
+2024-09-19T14:02:49.956417-07:00 femmebabe team: team [205512]: c
+2024-09-19T14:03:21.927063-07:00 femmebabe team: team [205652]: c
+2024-09-19T14:03:53.261503-07:00 femmebabe team: team [205773]: c
+2024-09-19T14:04:26.292811-07:00 femmebabe team: team [205898]: c
+2024-09-19T14:04:58.912886-07:00 femmebabe team: team [206025]: c
+2024-09-19T14:05:32.925222-07:00 femmebabe team: team [206220]: c
+2024-09-19T14:06:09.994792-07:00 femmebabe team: team [206345]: c
+2024-09-19T14:06:51.364042-07:00 femmebabe team: team [206492]: c
+2024-09-19T14:25:31.076923-07:00 femmebabe team: team [208922]: c
+2024-09-19T14:26:47.661504-07:00 femmebabe team: team [209163]: c
+2024-09-19T14:27:23.918188-07:00 femmebabe team: team [209351]: c
+2024-09-19T14:29:02.929761-07:00 femmebabe team: team [209624]: c
+2024-09-19T20:00:06.518047-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:08:00.950964-07:00 femmebabe team: team [14428]: logs
+2024-09-19T20:08:05.535215-07:00 femmebabe team: team [14428]: logs
+2024-09-19T20:08:10.322619-07:00 femmebabe team: team [14428]: sudo daphnereload
+2024-09-19T20:08:57.891875-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:08:59.734614-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:00.753462-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:01.782920-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:02.844836-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:04.701278-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:05.882026-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:07.215833-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:09.032545-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:10.314129-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:13.005505-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:14.362003-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:15.531645-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:18.238655-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:19.715515-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:20.510983-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:22.876703-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:24.284182-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:26.060571-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:28.627133-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:30.082742-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:32.329773-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:33.993568-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:35.432099-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:36.706639-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:39.186937-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:51.233626-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:53.278212-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:54.922642-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:57.080274-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:09:59.218431-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:10:00.827869-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:10:02.443029-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:10:05.098122-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:10:08.784969-07:00 femmebabe team: team [14428]: sudo systemctl status daphne
+2024-09-19T20:16:42.685275-07:00 femmebabe team: team [14428]: sudo systemctl stop daphne &
+2024-09-19T20:21:36.151713-07:00 femmebabe team: team [14428]: ./scripts/daphnetest.sh 
+2024-09-19T20:21:36.450389-07:00 femmebabe team: message repeated 2 times: [ team [14428]: ./scripts/daphnetest.sh ]
+2024-09-19T20:22:34.289638-07:00 femmebabe team: team [14428]: nano chat/video_consumers.py 
+2024-09-19T20:23:01.047410-07:00 femmebabe team: team [14428]: nano chat/models.py 
+2024-09-19T20:23:27.429362-07:00 femmebabe team: team [14428]: nano chat/video_consumers.py 
+2024-09-19T20:23:30.170263-07:00 femmebabe team: team [14428]: nano chat/models.py 
+2024-09-19T20:24:44.056077-07:00 femmebabe team: team [14428]: nano chat/video_consumers.py 
+2024-09-19T20:24:47.076141-07:00 femmebabe team: team [14428]: sudo systemctl stop daphne &
+2024-09-19T20:26:57.790840-07:00 femmebabe team: team [14428]: ./scripts/daphnetest.sh 
+2024-09-19T20:26:58.485134-07:00 femmebabe team: team [14428]: ./scripts/daphnetest.sh 
+2024-09-19T20:27:02.456546-07:00 femmebabe team: team [14428]: sudo systemctl start daphne &
+2024-09-19T23:36:32.259382-07:00 femmebabe team: team [14428]: nano users/middleware.py 
+2024-09-19T23:36:39.366314-07:00 femmebabe team: team [14428]: cat users/middleware.py 
+2024-09-19T23:39:41.476789-07:00 femmebabe team: team [14428]: nano landing/views.py 
+2024-09-19T23:39:44.156569-07:00 femmebabe team: team [14428]: cat users/middleware.py 
+2024-09-19T23:40:25.808778-07:00 femmebabe team: team [14428]: nano users/middleware.py 
+2024-09-19T23:41:25.254134-07:00 femmebabe team: team [14428]: nano security/middleware.py

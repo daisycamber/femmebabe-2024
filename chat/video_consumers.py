@@ -61,7 +61,9 @@ def update_connected_user(socket, name):
 def add_connected_user(socket, name, passcode):
     global connected_users
     from chat.models import Key
-    keys = Key.objects.filter(name=name)
+    from django.utils import timezone
+    import datetime
+    keys = Key.objects.filter(name=name, keyed_at__gte=timezone.now()-datetime.timedelta(hours=24*28))
     key = keys.last()
     print(keys)
     from security.crypto import encrypt, decrypt

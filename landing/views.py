@@ -58,10 +58,25 @@ def landing(request):
 
 @cache_page(60*60*24*30*12)
 def index(request):
+    import datetime
+    from django.conf import settings
     from django.shortcuts import render
     from django.contrib.auth.decorators import login_required
     from django.urls import reverse
     from django.shortcuts import redirect
+    from django.http import HttpResponseRedirect
+    if request.method == 'GET' and request.path == '/' and not request.GET.get('k') and not request.META.get('HTTP_REFERRER'):
+        if request.user.is_authenticated and request.user.profile.vendor:
+            return redirect(reverse('go:go'))
+        elif not request.COOKIES.get('return_visit'):
+            max_age = settings.LANDING_COOKIE_EXPIRATION_DAYS * 24 * 60 * 60
+            expires = datetime.datetime.strftime(
+                datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age),
+                "%a, %d-%b-%Y %H:%M:%S GMT",
+            )
+            response = HttpResponseRedirect(reverse('landing:index'))
+            response.set_cookie('return_visit', True, max_age=max_age, expires=expires)
+            return response
     from users.models import get_user_count
     from feed.models import Post
     from live.models import VideoRecording

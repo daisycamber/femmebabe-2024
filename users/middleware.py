@@ -81,19 +81,6 @@ def simple_middleware(get_response):
                     qs = qs + '{}={}&'.format(key, value)
                 return HttpResponseRedirect(request.path + '?' + qs)
             ip = get_client_ip(request)
-            redirect_url = reverse(settings.LOGIN_REDIRECT_URL) + settings.LOGIN_REDIRECT_QUERYSTRING
-            if request.method == 'GET' and request.path == '/' and not request.GET.get('k') and not request.META.get('HTTP_REFERRER'):
-                if request.user.is_authenticated and request.user.profile.vendor:
-                    return redirect(reverse('go:go'))
-                elif not request.COOKIES.get('return_visit'):
-                    max_age = settings.LANDING_COOKIE_EXPIRATION_DAYS * 24 * 60 * 60
-                    expires = datetime.datetime.strftime(
-                        datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age),
-                        "%a, %d-%b-%Y %H:%M:%S GMT",
-                    )
-                    response = HttpResponseRedirect(reverse('landing:index'))
-                    response.set_cookie('return_visit', True, max_age=max_age, expires=expires)
-                    return response
             async_user_tasks.delay(request.user.is_authenticated, request.user.id if request.user.is_authenticated else None, ip, request.LANGUAGE_CODE)
             if request.user.is_authenticated and (request.user.profile.enable_two_factor_authentication or request.user.profile.vendor) and not request.path.startswith('/accounts/tfa/') and not request.path.startswith('/accounts/logout/') and not request.path.startswith("/face/") and not request.path.startswith("/verify/"):
                 if not request.user.profile.phone_number or len(request.user.profile.phone_number) < 11:
