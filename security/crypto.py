@@ -3,14 +3,16 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad,unpad
 from django.conf import settings
 
-def encrypt(raw):
+def encrypt(raw, secret=None):
     key = settings.AES_KEY #Must Be 16 char for AES128
+    if secret: key = secret
     raw = pad(raw.encode(),16)
     cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
     return base64.b64encode(cipher.encrypt(raw)).decode("utf-8")
 
-def decrypt(raw):
+def decrypt(raw, secret=None):
     key = settings.AES_KEY #Must Be 16 char for AES128
+    if secret: key = secret
     raw = raw.replace(' ', '+')
     enc = pad(raw.encode(),16)
     try:

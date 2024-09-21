@@ -28,7 +28,8 @@ def terminal(request):
     from pathlib import Path
     from shell.models import ShellLogin
     import urllib
-    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': urllib.parse.quote(request.user.profile.make_shell_token())})
+    from django.utils.crypto import get_random_string
+    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': urllib.parse.quote(request.user.profile.make_shell_token()), 'term_key': get_random_string(16)})
 
 @csrf_exempt
 @login_required
@@ -258,4 +259,5 @@ def shell(request):
                 output = highlight_code('invalid command.')
                 print(traceback.format_exc())
         return HttpResponse('{}$ {}'.format(request.user.profile.preferred_name, command) + output)
-    return render(request, 'shell/shell.html', {'title': 'Shell', 'pagetitle': 'Shell', 'trace': '', 'full': True, 'form': CommandForm(), 'token': urllib.parse.quote(request.user.profile.make_shell_token())})
+    from django.utils.crypto import get_random_string
+    return render(request, 'shell/shell.html', {'title': 'Shell', 'pagetitle': 'Shell', 'trace': '', 'full': True, 'form': CommandForm(), 'token': urllib.parse.quote(request.user.profile.make_shell_token()), 'term_key': get_random_string(16)})

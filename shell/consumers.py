@@ -32,7 +32,6 @@ def check_token(user_id, token):
     user = User.objects.get(id=int(user_id))
     import urllib.parse
     from security.crypto import decrypt
-    print(urllib.parse.unquote(token))
     return user.profile.check_shell_token(decrypt(urllib.parse.unquote(token)))
 
 @sync_to_async
@@ -65,7 +64,7 @@ async def send(channel, output):
 def terminal_thread(self, channel):
     while self.connected:
         while not channel.recv_ready():
-            asyncio.sleep(0.1)
+            asyncio.sleep(0.05)
         read = True
         output = ""
         while read:
@@ -73,20 +72,30 @@ def terminal_thread(self, channel):
             if channel.recv_ready():
                 rl, wl, xl = select.select([ channel ], [ ], [ ], 0.0)
                 if len(rl) > 0:
-                    tmp = channel.recv(999999999)
+                    tmp = channel.recv(99999)
                     output = output + tmp.decode()
                     read = True
-                    asyncio.sleep(0.1)
+                    asyncio.sleep(0.05)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(send(self, output))
+        from security.crypto import encrypt
+        import urllib
+        loop.run_until_complete(send(self, urllib.parse.quote(encrypt(output, secret=self.token))))
         loop.close()
+
+@sync_to_async
+def receive_data(self, text_data):
+    from security.crypto import decrypt
+    import urllib
+    self.channel.send(decrypt(urllib.parse.unquote(text_data), secret=self.token))
+
 
 class TerminalConsumer(AsyncWebsocketConsumer):
     channel = None
     rows = None
     cols = None
     connected = False
+    token = None
     x = None
     async def connect(self):
         query_params = parse_qs(self.scope["query_string"].decode())
@@ -137,7 +146,10 @@ class TerminalConsumer(AsyncWebsocketConsumer):
 
     # This function receive messages from WebSocket.
     async def receive(self, text_data):
-        self.channel.send(text_data)
+        if not self.token:
+            self.token = text_data
+            return
+        await receive_data(self, text_data)
         pass
 
     pass
@@ -159,12 +171,38 @@ def shell_thread(self, channel):
                     asyncio.sleep(0.1)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(send(self, highlight_shell(shell_fix(output))))
+        from security.crypto import encrypt
+        import urllib
+        loop.run_until_complete(send(self, urllib.parse.quote(encrypt(highlight_shell(shell_fix(output)), secret=self.key))))
         loop.close()
+
+@sync_to_async
+def receive_data_shell(self, text_data):
+    from security.crypto import encrypt, decrypt
+    import urllib
+    print('Key: {}'.format(self.key))
+    command = decrypt(urllib.parse.unquote(text_data), secret=self.key)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    if command == 'reload':
+        output = highlight_code(safe_reload())
+        loop.run_until_complete(send(self, urllib.parse.quote(encrypt(output, secret=self.key))))
+    elif command.split(' ')[0] == 'clear':
+        output = '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+        loop.run_until_complete(send(self, urllib.parse.quote(encrypt(output, secret=self.key))))
+    elif command.split(' ')[0] == 'nano':
+        file = command.split(' ')[1]
+        output = '$ ' + command + '\n<iframe src="/shell/edit/?hidenavbar=t&path=' + file + '" width="100%;" height="690px;"></iframe>'
+        loop.run_until_complete(send(self, urllib.parse.quote(encrypt(output, secret=self.key))))
+    elif command.split(' ')[0] == 'cancel':
+        self.channel.send("\x03")
+    else:
+        self.channel.send(command + '\n')
 
 class ShellConsumer(AsyncWebsocketConsumer):
     channel = None
     connected = False
+    key = None
     x = None
     async def connect(self):
         query_params = parse_qs(self.scope["query_string"].decode())
@@ -211,20 +249,10 @@ class ShellConsumer(AsyncWebsocketConsumer):
     # This function receive messages from WebSocket.
     async def receive(self, text_data):
         command = text_data
-        if command == 'reload':
-            output = highlight_code(safe_reload())
-            await send(self, output)
-        elif command.split(' ')[0] == 'clear':
-            output = '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
-            await send(self, output)
-        elif command.split(' ')[0] == 'nano':
-            file = command.split(' ')[1]
-            output = '$ ' + command + '\n<iframe src="/shell/edit/?hidenavbar=t&path=' + file + '" width="100%;" height="690px;"></iframe>'
-            await send(self, output)
-        elif command.split(' ')[0] == 'cancel':
-            self.channel.send("\x03")
-        else:
-            self.channel.send(command + '\n')
+        if not self.key:
+            self.key = text_data
+            return
+        await receive_data_shell(self, text_data)
         pass
 
     pass

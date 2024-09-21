@@ -1666,3 +1666,652 @@
 2024-09-19T23:39:44.156569-07:00 femmebabe team: team [14428]: cat users/middleware.py 
 2024-09-19T23:40:25.808778-07:00 femmebabe team: team [14428]: nano users/middleware.py 
 2024-09-19T23:41:25.254134-07:00 femmebabe team: team [14428]: nano security/middleware.py
+2024-09-20T15:21:07.305675-07:00 femmebabe team: team [395206]: nano security/middleware.py
+2024-09-20T15:21:17.087761-07:00 femmebabe team: team [395322]: nano security/middleware.py
+2024-09-20T15:24:46.949023-07:00 femmebabe team: team [396019]: nano security/middleware.py
+2024-09-20T15:24:49.038918-07:00 femmebabe team: team [396019]: cd lotteh/
+2024-09-20T15:24:52.726119-07:00 femmebabe team: team [396019]: source venv/bin/activate
+2024-09-20T15:28:12.080149-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:28:14.697647-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:28:16.426557-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:28:51.721599-07:00 femmebabe team: team [396810]: nano security/middleware.py
+2024-09-20T15:29:13.118828-07:00 femmebabe team: team [396810]: nano security/middleware.py
+2024-09-20T15:31:12.577438-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:31:14.749171-07:00 femmebabe team: team [396019]: doreload
+2024-09-20T15:31:50.022485-07:00 femmebabe team: team [397459]: nano security/middleware.py
+2024-09-20T15:32:11.413774-07:00 femmebabe team: team [397459]: nano security/middleware.py
+2024-09-20T15:33:26.980106-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:33:34.933558-07:00 femmebabe team: team [396019]: cat shell/templates/shell/terminal.html | grep isCommand
+2024-09-20T15:34:14.482528-07:00 femmebabe team: team [396019]: doreload
+2024-09-20T15:34:53.032622-07:00 femmebabe team: team [398092]: nano security/middleware.py
+2024-09-20T15:39:59.231546-07:00 femmebabe team: team [399217]: nano security/middleware.py
+2024-09-20T15:40:13.804728-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:24.329310-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:26.910736-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:31.354298-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:34.284842-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:35.843188-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:39.841663-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:45.505773-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:52.583406-07:00 femmebabe team: message repeated 2 times: [ team [399394]: nano security/middleware.py]
+2024-09-20T15:40:54.911943-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:40:59.705498-07:00 femmebabe team: team [399394]: nano security/middleware.py
+2024-09-20T15:42:19.075344-07:00 femmebabe team: team [399813]: nano security/middleware.py
+2024-09-20T15:43:00.891035-07:00 femmebabe team: team [399813]: nano security/middleware.py
+2024-09-20T15:43:44.536967-07:00 femmebabe team: team [396019]: doreload
+2024-09-20T15:44:31.620698-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:44:34.714274-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:45:15.309127-07:00 femmebabe team: team [400482]: nano security/middleware.py
+2024-09-20T15:45:36.491239-07:00 femmebabe team: team [400658]: nano security/middleware.py
+2024-09-20T15:45:50.246959-07:00 femmebabe team: team [400752]: nano security/middleware.py
+2024-09-20T15:46:10.674707-07:00 femmebabe team: team [400874]: nano security/middleware.py
+2024-09-20T15:46:19.989551-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T15:46:25.233875-07:00 femmebabe team: team [396019]: sudo daphnereload
+2024-09-20T15:46:33.993729-07:00 femmebabe team: team [401033]: nano security/middleware.py
+2024-09-20T15:46:53.114399-07:00 femmebabe team: team [396019]: logs
+2024-09-20T15:47:09.911573-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T15:47:32.848363-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:47:35.965473-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:48:30.459362-07:00 femmebabe team: team [401768]: nano security/middleware.py
+2024-09-20T15:48:40.299633-07:00 femmebabe team: team [401862]: nano security/middleware.py
+2024-09-20T15:48:49.999440-07:00 femmebabe team: team [401956]: nano security/middleware.py
+2024-09-20T15:48:50.391230-07:00 femmebabe team: team [401768]: nano security/middleware.py
+2024-09-20T15:48:57.107071-07:00 femmebabe team: team [401768]: nano security/middleware.py
+2024-09-20T15:49:08.799993-07:00 femmebabe team: team [402115]: nano security/middleware.py
+2024-09-20T15:50:12.810807-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:50:40.866146-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:50:42.827116-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:51:24.028847-07:00 femmebabe team: team [402663]: nano security/middleware.py
+2024-09-20T15:51:35.193025-07:00 femmebabe team: team [402768]: nano security/middleware.py
+2024-09-20T15:51:48.360804-07:00 femmebabe team: team [402891]: nano security/middleware.py
+2024-09-20T15:52:03.153343-07:00 femmebabe team: team [402992]: nano security/middleware.py
+2024-09-20T15:52:16.452589-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:52:18.651387-07:00 femmebabe team: team [396019]: sudo purgecache
+2024-09-20T15:52:38.071263-07:00 femmebabe team: team [403187]: nano security/middleware.py
+2024-09-20T15:52:43.543318-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html A
+2024-09-20T15:54:28.207824-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:54:32.492429-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T15:54:43.787119-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html A
+2024-09-20T15:54:46.923705-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T15:54:49.299850-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:54:50.810559-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:55:34.750579-07:00 femmebabe team: team [403865]: nano security/middleware.py
+2024-09-20T15:55:53.005490-07:00 femmebabe team: team [404026]: nano security/middleware.py
+2024-09-20T15:56:05.016152-07:00 femmebabe team: team [404134]: nano security/middleware.py
+2024-09-20T15:56:12.939768-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T15:56:15.594500-07:00 femmebabe team: team [396019]: sudo daphnereload
+2024-09-20T15:56:40.795779-07:00 femmebabe team: team [404461]: nano security/middleware.py
+2024-09-20T15:56:42.017961-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T15:56:44.403975-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T15:56:46.427486-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:56:52.217034-07:00 femmebabe team: team [404613]: nano security/middleware.py
+2024-09-20T15:58:24.959492-07:00 femmebabe team: team [405067]: nano security/middleware.py
+2024-09-20T15:58:34.471280-07:00 femmebabe team: team [405162]: nano security/middleware.py
+2024-09-20T15:58:40.520949-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T15:58:41.568851-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T15:58:57.378177-07:00 femmebabe team: team [396019]: lohd
+2024-09-20T15:58:58.563967-07:00 femmebabe team: team [396019]: logs
+2024-09-20T15:58:59.751582-07:00 femmebabe team: team [396019]: logs
+2024-09-20T15:59:00.609497-07:00 femmebabe team: team [396019]: logs
+2024-09-20T15:59:20.080560-07:00 femmebabe team: team [405637]: nano security/middleware.py
+2024-09-20T15:59:33.952498-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T15:59:44.520314-07:00 femmebabe team: team [405932]: nano security/middleware.py
+2024-09-20T15:59:45.278918-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T15:59:45.565983-07:00 femmebabe team: message repeated 4 times: [ team [405801]: nano security/middleware.py]
+2024-09-20T15:59:46.497212-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T15:59:47.909039-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T15:59:49.062331-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T15:59:59.814288-07:00 femmebabe team: team [396019]: watchlogs
+2024-09-20T16:00:03.203200-07:00 femmebabe team: team [406165]: nano security/middleware.py
+2024-09-20T16:00:05.164688-07:00 femmebabe team: team [405801]: nano security/middleware.py
+2024-09-20T16:00:18.492653-07:00 femmebabe team: team [406332]: nano security/middleware.py
+2024-09-20T16:00:23.954497-07:00 femmebabe team: team [406332]: nano security/middleware.py
+2024-09-20T16:00:43.602415-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T16:00:46.062909-07:00 femmebabe team: team [396019]: sudo daphnereload
+2024-09-20T16:02:25.631831-07:00 femmebabe team: team [396019]: logs
+2024-09-20T16:02:31.301776-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:02:38.927417-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:02:40.227231-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:02:41.079806-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:02:41.822572-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:02:51.978778-07:00 femmebabe team: team [406989]: nano security/middleware.py
+2024-09-20T16:03:01.480050-07:00 femmebabe team: team [407099]: nano security/middleware.py
+2024-09-20T16:03:13.123347-07:00 femmebabe team: team [407216]: nano security/middleware.py
+2024-09-20T16:03:13.365825-07:00 femmebabe team: team [406989]: nano security/middleware.py
+2024-09-20T16:03:15.157236-07:00 femmebabe team: message repeated 3 times: [ team [406989]: nano security/middleware.py]
+2024-09-20T16:03:52.181766-07:00 femmebabe team: team [407216]: nano security/middleware.py
+2024-09-20T16:03:59.284312-07:00 femmebabe team: team [407216]: c
+2024-09-20T16:04:00.601486-07:00 femmebabe team: team [407216]: c
+2024-09-20T16:04:40.188285-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html
+2024-09-20T16:04:41.911059-07:00 femmebabe team: team [396019]: sudo doreload
+2024-09-20T16:04:50.113692-07:00 femmebabe team: team [396019]: logs
+2024-09-20T16:05:20.494814-07:00 femmebabe team: team [407905]: c
+2024-09-20T16:05:35.054420-07:00 femmebabe team: team [408036]: c
+2024-09-20T16:05:47.265750-07:00 femmebabe team: team [408211]: c
+2024-09-20T16:06:05.347243-07:00 femmebabe team: team [408362]: c
+2024-09-20T16:06:19.366533-07:00 femmebabe team: team [408500]: c
+2024-09-20T16:06:37.953686-07:00 femmebabe team: team [408659]: c
+2024-09-20T16:06:39.094525-07:00 femmebabe team: team [408362]: c
+2024-09-20T16:06:47.231418-07:00 femmebabe team: team [408362]: c
+2024-09-20T16:06:49.520844-07:00 femmebabe team: team [408362]: c
+2024-09-20T16:06:50.794081-07:00 femmebabe team: team [408362]: c
+2024-09-20T16:07:19.480556-07:00 femmebabe team: team [408956]: c
+2024-09-20T16:08:37.601777-07:00 femmebabe team: team [408956]: nano yest.txt
+2024-09-20T16:09:44.746131-07:00 femmebabe team: team [408956]: nano yest.txt
+2024-09-20T16:09:50.404513-07:00 femmebabe team: team [408956]: clear
+2024-09-20T16:10:04.708147-07:00 femmebabe team: team [408956]: ls lotteh/
+2024-09-20T16:12:30.162875-07:00 femmebabe team: team [396019]: watchlogs
+2024-09-20T16:13:25.624602-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T16:15:00.897292-07:00 femmebabe team: team [396019]: sudo systemctl restart daphne
+2024-09-20T16:15:27.943081-07:00 femmebabe team: team [410946]: ls lotteh/
+2024-09-20T16:15:37.081838-07:00 femmebabe team: team [411050]: ls lotteh/
+2024-09-20T16:15:48.037236-07:00 femmebabe team: team [411185]: ls lotteh/
+2024-09-20T16:15:53.394458-07:00 femmebabe team: team [411185]: ls lotteh/
+2024-09-20T16:16:03.538272-07:00 femmebabe team: team [411185]: ls
+2024-09-20T16:16:08.019200-07:00 femmebabe team: team [411185]: clear
+2024-09-20T16:16:14.018217-07:00 femmebabe team: team [411185]: ls
+2024-09-20T16:16:44.607950-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T16:18:16.024629-07:00 femmebabe team: team [396019]: sudo systemctl restart daphne
+2024-09-20T16:18:33.700688-07:00 femmebabe team: team [396019]: sudo systemctl restart daphne
+2024-09-20T16:18:40.349880-07:00 femmebabe team: team [396019]: sudo sysyemctl status daphne
+2024-09-20T16:18:40.703211-07:00 femmebabe team: team [411688]: ls
+2024-09-20T16:18:48.037169-07:00 femmebabe team: team [396019]: sudo systemctl restart daphne
+2024-09-20T16:18:49.707062-07:00 femmebabe team: team [396019]: sudo sysyemctl status daphne
+2024-09-20T16:18:50.130896-07:00 femmebabe team: team [411796]: ls
+2024-09-20T16:19:33.097511-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:41.991486-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:44.274283-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:45.379937-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:45.718070-07:00 femmebabe team: team [412197]: ls
+2024-09-20T16:20:46.770988-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:52.779613-07:00 femmebabe team: team [396019]: sudo systemctl status daphne
+2024-09-20T16:20:53.887237-07:00 femmebabe team: team [396019]: logs
+2024-09-20T16:20:55.157876-07:00 femmebabe team: team [412315]: ls
+2024-09-20T16:20:55.257272-07:00 femmebabe team: team [396019]: logs
+2024-09-20T16:21:10.383084-07:00 femmebabe team: team [412505]: ls
+2024-09-20T16:21:10.499285-07:00 femmebabe team: team [412197]: ls
+2024-09-20T16:21:10.517827-07:00 femmebabe team: team [412197]: ls
+2024-09-20T16:21:13.355556-07:00 femmebabe team: team [412197]: clear
+2024-09-20T16:21:17.426789-07:00 femmebabe team: team [412197]: ls
+2024-09-20T16:21:23.366025-07:00 femmebabe team: team [412197]: cd lotteh/
+2024-09-20T16:22:58.325007-07:00 femmebabe team: team [412197]: nano test.txt
+2024-09-20T16:23:02.612678-07:00 femmebabe team: team [412197]: clear
+2024-09-20T16:24:06.363885-07:00 femmebabe team: team [412197]: clear
+2024-09-20T16:24:29.608974-07:00 femmebabe team: team [412197]: sudo sh -c "sudo backup &" team
+2024-09-20T16:54:58.964855-07:00 femmebabe team: team [412505]: ls
+2024-09-20T18:41:07.031901-07:00 femmebabe team: team [429587]: sudo sh -c "sudo backup &" team
+2024-09-20T18:41:15.820327-07:00 femmebabe team: team [429587]: ls
+2024-09-20T18:41:21.286391-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:41:32.130940-07:00 femmebabe team: team [429587]: cd lotteh
+2024-09-20T18:41:45.069925-07:00 femmebabe team: team [429587]: source venv/bin/activate
+2024-09-20T18:42:20.520004-07:00 femmebabe team: team [429587]: python manage.py check
+2024-09-20T18:42:24.175283-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:42:32.984171-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:42:36.516229-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:43:51.255360-07:00 femmebabe team: team [429587]: ls x*
+2024-09-20T18:43:56.980740-07:00 femmebabe team: team [429587]: ls 
+2024-09-20T18:44:18.331803-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:44:46.897917-07:00 femmebabe team: team [429587]: cd
+2024-09-20T18:44:57.548904-07:00 femmebabe team: team [429587]: cd femmebabe-backup-open/
+2024-09-20T18:45:04.548900-07:00 femmebabe team: team [429587]: ls x*
+2024-09-20T18:45:09.816622-07:00 femmebabe team: team [429587]: rm x*
+2024-09-20T18:47:36.416588-07:00 femmebabe team: team [429587]: sudo ascript backup
+2024-09-20T18:47:44.746782-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:47:52.303981-07:00 femmebabe team: team [429587]: cd
+2024-09-20T18:47:57.667501-07:00 femmebabe team: team [429587]: cd lotteh/
+2024-09-20T18:48:01.964343-07:00 femmebabe team: team [429587]: la x*
+2024-09-20T18:48:24.018196-07:00 femmebabe team: team [429587]: sudo sh -c "sudo backup &" team
+2024-09-20T18:49:00.947712-07:00 femmebabe team: team [429587]: ps -aux | grep backup
+2024-09-20T18:49:07.626980-07:00 femmebabe team: team [429587]: clear
+2024-09-20T18:54:48.997396-07:00 femmebabe team: team [431720]: exit
+2024-09-20T18:55:12.319399-07:00 femmebabe team: team [431836]: exit
+2024-09-20T19:21:32.432174-07:00 femmebabe team: team [435426]: exit
+2024-09-20T19:23:40.475800-07:00 femmebabe team: team [435426]: exit
+2024-09-20T19:23:50.305754-07:00 femmebabe team: team [435426]: exit
+2024-09-20T21:32:41.782661-07:00 femmebabe team: team [412505]: ls
+2024-09-20T21:32:47.857452-07:00 femmebabe team: team [412505]: ls
+2024-09-20T21:32:53.940230-07:00 femmebabe team: team [412505]: ls
+2024-09-20T21:40:59.365418-07:00 femmebabe team: team [396019]: clear
+2024-09-20T21:40:59.940999-07:00 femmebabe team: team [396019]: ls
+2024-09-20T21:43:52.697240-07:00 femmebabe team: team [396019]: nano .gitignore 
+2024-09-20T21:43:53.968316-07:00 femmebabe team: team [396019]: ls data
+2024-09-20T21:44:02.440730-07:00 femmebabe team: team [396019]: nano .gitignore 
+2024-09-20T21:44:10.278067-07:00 femmebabe team: team [396019]: ls data
+2024-09-20T21:44:22.656507-07:00 femmebabe team: team [396019]: cp users.json data/users2.json
+2024-09-20T21:44:26.859266-07:00 femmebabe team: team [396019]: cd 
+2024-09-20T21:44:32.098096-07:00 femmebabe team: team [396019]: nano femmebabe-backup-open/
+2024-09-20T21:44:55.312865-07:00 femmebabe team: team [396019]: nano femmebabe-backup-open/.gitignore 
+2024-09-20T21:45:02.669843-07:00 femmebabe team: team [396019]: rm femmebabe-backup-open/users.json 
+2024-09-20T21:45:07.549480-07:00 femmebabe team: team [396019]: rm femmebabe-backup-open/users.json 
+2024-09-20T21:45:08.859144-07:00 femmebabe team: team [396019]: cd lotteh/
+2024-09-20T21:45:15.657353-07:00 femmebabe team: team [396019]: nano .gitignore 
+2024-09-20T21:45:33.406120-07:00 femmebabe team: team [396019]: nano .gitignore 
+2024-09-20T21:45:34.009927-07:00 femmebabe team: team [396019]: ls
+2024-09-20T21:45:38.094810-07:00 femmebabe team: team [396019]: ls users.json 
+2024-09-20T21:45:41.415531-07:00 femmebabe team: team [396019]: rm users.json 
+2024-09-20T21:45:58.294141-07:00 femmebabe team: team [396019]: rm verify.json 
+2024-09-20T21:46:05.344481-07:00 femmebabe team: team [396019]: rm verify.json 
+2024-09-20T21:46:07.900737-07:00 femmebabe team: team [396019]: rm verify.json 
+2024-09-20T21:46:09.333709-07:00 femmebabe team: team [396019]: cd
+2024-09-20T21:46:11.913764-07:00 femmebabe team: team [396019]: cd femmebabe-backup-open/
+2024-09-20T21:46:14.552580-07:00 femmebabe team: team [396019]: ls .json
+2024-09-20T21:46:17.345861-07:00 femmebabe team: team [396019]: ls *.json
+2024-09-20T21:46:21.948440-07:00 femmebabe team: team [396019]: rm barcode.json 
+2024-09-20T21:46:26.861626-07:00 femmebabe team: team [396019]: rm dbfix.json 
+2024-09-20T21:46:32.933616-07:00 femmebabe team: team [396019]: rm verify.json 
+2024-09-20T21:46:33.698674-07:00 femmebabe team: team [396019]: cd
+2024-09-20T21:46:37.328939-07:00 femmebabe team: team [396019]: cd lotteh/
+2024-09-20T21:46:39.246318-07:00 femmebabe team: team [396019]: ls *.json
+2024-09-20T21:46:43.601164-07:00 femmebabe team: team [396019]: rm barcode.json 
+2024-09-20T21:46:46.957334-07:00 femmebabe team: team [396019]: rm dbfix.json 
+2024-09-20T21:46:53.012292-07:00 femmebabe team: team [396019]: rm dbfix.json 
+2024-09-20T21:46:58.843942-07:00 femmebabe team: team [396019]: rm feed.json 
+2024-09-20T21:47:03.471162-07:00 femmebabe team: team [396019]: ls
+2024-09-20T21:47:14.919610-07:00 femmebabe team: team [396019]: ls
+2024-09-20T21:47:19.585192-07:00 femmebabe team: team [396019]: ls
+2024-09-20T21:47:23.826958-07:00 femmebabe team: team [396019]: cat templates_socialaccount_authentication_error.html 
+2024-09-20T21:47:29.560272-07:00 femmebabe team: team [396019]: rm templates_socialaccount_authentication_error.html 
+2024-09-20T21:47:46.556688-07:00 femmebabe team: team [396019]: ls *.json
+2024-09-20T21:47:57.853451-07:00 femmebabe team: team [396019]: ps -aux | grep backip
+2024-09-20T21:47:59.580954-07:00 femmebabe team: team [396019]: ps -aux | grep backup
+2024-09-20T21:48:14.739748-07:00 femmebabe team: team [396019]: ps -aux | grep backup
+2024-09-20T21:48:25.584143-07:00 femmebabe team: team [396019]: sudo ascript asyncbackup
+2024-09-20T21:48:28.127724-07:00 femmebabe team: team [396019]: asyncbackup
+2024-09-20T21:48:31.545371-07:00 femmebabe team: team [396019]: ps -aux | grep backup
+2024-09-20T21:48:33.843351-07:00 femmebabe team: team [396019]: ps -aux | grep backup
+2024-09-20T21:48:35.657580-07:00 femmebabe team: message repeated 2 times: [ team [396019]: ps -aux | grep backup]
+2024-09-20T21:52:14.730191-07:00 femmebabe team: team [396019]: nano security/crypto.py 
+2024-09-20T21:53:35.894232-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T21:54:17.230960-07:00 femmebabe team: team [396019]: nano shell/views.py 
+2024-09-20T21:54:30.325272-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T21:54:59.181769-07:00 femmebabe team: team [396019]: nano shell/views.py 
+2024-09-20T21:57:33.616062-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T21:59:45.064221-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:00:59.762851-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:01:04.636719-07:00 femmebabe team: team [396019]: cd static
+2024-09-20T22:01:08.064260-07:00 femmebabe team: team [396019]: wget https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js
+2024-09-20T22:01:09.783729-07:00 femmebabe team: team [396019]: ls
+2024-09-20T22:01:12.812037-07:00 femmebabe team: team [396019]: ls
+2024-09-20T22:01:13.681436-07:00 femmebabe team: team [396019]: cd
+2024-09-20T22:01:15.835234-07:00 femmebabe team: team [396019]: cd
+2024-09-20T22:01:18.951673-07:00 femmebabe team: team [396019]: cd lotteh/
+2024-09-20T22:01:31.343688-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:01:36.151990-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:01:50.805093-07:00 femmebabe team: team [396019]: nano shell/templates/shell/shell.html 
+2024-09-20T22:02:01.768989-07:00 femmebabe team: team [396019]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:02:55.639561-07:00 femmebabe team: team [396019]: nano shell/templates/shell/shell.html 
+2024-09-20T22:03:32.804148-07:00 femmebabe team: team [396019]: nano shell/templates/shell/shell.html 
+2024-09-20T22:03:47.237794-07:00 femmebabe team: team [396019]: nano shell/templates/shell/shell.html 
+2024-09-20T22:03:52.458003-07:00 femmebabe team: team [396019]: nano shell/templates/shell/shell.html 
+2024-09-20T22:06:50.271116-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T22:06:55.050752-07:00 femmebabe team: team [396019]: sudo systemctl stop daphne
+2024-09-20T22:06:57.300392-07:00 femmebabe team: team [396019]: sudo systemctl stop daphne &
+2024-09-20T22:06:59.639748-07:00 femmebabe team: team [396019]: ./scripts/daphne
+2024-09-20T22:07:07.478196-07:00 femmebabe team: team [396019]: ./scripts/daphnetest.sh 
+2024-09-20T22:07:30.130314-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T22:07:38.284007-07:00 femmebabe team: team [396019]: ./scripts/daphnetest.sh 
+2024-09-20T22:07:58.285466-07:00 femmebabe team: team [396019]: nano shell/consumers.py 
+2024-09-20T22:09:04.318940-07:00 femmebabe team: team [457593]: exit
+2024-09-20T22:09:39.432278-07:00 femmebabe team: team [457768]: exit
+2024-09-20T22:13:39.134378-07:00 femmebabe team: team [458525]: exit
+2024-09-20T22:13:42.008691-07:00 femmebabe team: team [458525]: cd lotteh/
+2024-09-20T22:13:47.433425-07:00 femmebabe team: team [458525]: cd lotteh/
+2024-09-20T22:15:48.116843-07:00 femmebabe team: team [458951]: exit
+2024-09-20T22:19:40.573584-07:00 femmebabe team: team [458525]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:21:53.230615-07:00 femmebabe team: team [458525]: nano shell/consumers.py 
+2024-09-20T22:22:10.675498-07:00 femmebabe team: team [458525]: nano security/crypto.py 
+2024-09-20T22:22:15.590834-07:00 femmebabe team: team [458525]: sudo systemctl stop daphne
+2024-09-20T22:22:17.479013-07:00 femmebabe team: team [458525]: ./scripts/daphne
+2024-09-20T22:22:38.283082-07:00 femmebabe team: team [459849]: exit
+2024-09-20T22:22:55.151153-07:00 femmebabe team: team [458951]: cd lotteh/
+2024-09-20T22:24:43.152259-07:00 femmebabe team: team [458951]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:24:45.090796-07:00 femmebabe team: team [458951]: sudo doreload
+2024-09-20T22:25:14.402677-07:00 femmebabe team: team [458951]: ./scripts/daphne
+2024-09-20T22:25:34.823189-07:00 femmebabe team: team [460623]: exit
+2024-09-20T22:25:41.850024-07:00 femmebabe team: team [460659]: exit
+2024-09-20T22:26:08.675841-07:00 femmebabe team: team [460970]: exit
+2024-09-20T22:26:27.461579-07:00 femmebabe team: team [460623]: cd lotteh/
+2024-09-20T22:26:31.952214-07:00 femmebabe team: team [460623]: nano shell/views.py 
+2024-09-20T22:30:20.663957-07:00 femmebabe team: team [460623]: nano shell/consumers.py 
+2024-09-20T22:30:28.731580-07:00 femmebabe team: team [460623]: nano shell/views.py 
+2024-09-20T22:32:03.427433-07:00 femmebabe team: team [460623]: nano shell/consumers.py 
+2024-09-20T22:32:09.394014-07:00 femmebabe team: team [460623]: nano shell/consumers.py 
+2024-09-20T22:32:15.266492-07:00 femmebabe team: team [460623]: killall daphne
+2024-09-20T22:32:20.213644-07:00 femmebabe team: team [460623]: sudo systemctl stop daphne
+2024-09-20T22:32:30.565592-07:00 femmebabe team: team [460623]: sudo systemctl stop daphne
+2024-09-20T22:33:50.444105-07:00 femmebabe team: team [460623]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:33:52.298896-07:00 femmebabe team: team [460623]: sudo doreload
+2024-09-20T22:33:58.405695-07:00 femmebabe team: team [460623]: sudo systemctl stop daphne
+2024-09-20T22:34:20.801883-07:00 femmebabe team: team [462400]: ./scripts/daphnetest.sh 
+2024-09-20T22:34:30.290293-07:00 femmebabe team: team [462527]: ./scripts/daphnetest.sh 
+2024-09-20T22:35:11.688787-07:00 femmebabe team: team [462774]: ./scripts/daphnetest.sh 
+2024-09-20T22:35:11.955945-07:00 femmebabe team: team [462795]: ./scripts/daphnetest.sh 
+2024-09-20T22:35:32.303567-07:00 femmebabe team: team [462795]: cd lotteh/
+2024-09-20T22:35:37.662696-07:00 femmebabe team: team [462980]: ./scripts/daphnetest.sh 
+2024-09-20T22:35:44.476220-07:00 femmebabe team: team [463032]: ./scripts/daphnetest.sh 
+2024-09-20T22:35:55.118997-07:00 femmebabe team: team [462795]: nano shell/consumers.py 
+2024-09-20T22:35:58.265578-07:00 femmebabe team: team [462795]: nano shell/consumers.py 
+2024-09-20T22:36:00.213814-07:00 femmebabe team: team [462795]: sudo systemctl stop daphne
+2024-09-20T22:36:17.936634-07:00 femmebabe team: team [463219]: ./scripts/daphnetest.sh 
+2024-09-20T22:36:44.943925-07:00 femmebabe team: team [463366]: ./scripts/daphnetest.sh 
+2024-09-20T22:36:49.642086-07:00 femmebabe team: team [462774]: ./scripts/daphnetest.sh 
+2024-09-20T22:36:50.993565-07:00 femmebabe team: team [462774]: cd lotteh/
+2024-09-20T22:38:19.419204-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:38:29.124793-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:38:52.160451-07:00 femmebabe team: team [462774]: nano security/crypto.py 
+2024-09-20T22:38:52.751805-07:00 femmebabe team: team [463709]: ./scripts/daphnetest.sh 
+2024-09-20T22:39:37.667910-07:00 femmebabe team: team [462774]: nano shell/consumers.py 
+2024-09-20T22:40:11.218321-07:00 femmebabe team: team [463959]: ./scripts/daphnetest.sh 
+2024-09-20T22:40:52.930836-07:00 femmebabe team: team [462774]: nano shell/consumers.py 
+2024-09-20T22:41:12.240143-07:00 femmebabe team: team [464204]: ./scripts/daphnetest.sh 
+2024-09-20T22:42:07.684076-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:42:13.360905-07:00 femmebabe team: team [462774]: sudo doreload
+2024-09-20T22:42:55.188029-07:00 femmebabe team: team [464685]: ./scripts/daphnetest.sh 
+2024-09-20T22:43:32.139097-07:00 femmebabe team: team [464852]: ./scripts/daphnetest.sh 
+2024-09-20T22:44:18.707728-07:00 femmebabe team: team [465010]: ./scripts/daphnetest.sh 
+2024-09-20T22:44:35.292884-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:49:07.369395-07:00 femmebabe team: team [462980]: cd lotteh/
+2024-09-20T22:50:21.531696-07:00 femmebabe team: team [462980]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:50:26.266738-07:00 femmebabe team: team [462980]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:50:30.522845-07:00 femmebabe team: team [462980]: sudo doreload
+2024-09-20T22:51:12.552733-07:00 femmebabe team: team [466088]: ./scripts/daphnetest.sh 
+2024-09-20T22:51:35.727217-07:00 femmebabe team: team [466250]: ./scripts/daphnetest.sh 
+2024-09-20T22:51:42.912149-07:00 femmebabe team: team [466250]: ./scripts/daphnetest.sh 
+2024-09-20T22:51:43.920020-07:00 femmebabe team: team [466250]: ./scripts/daphnetest.sh 
+2024-09-20T22:51:46.977705-07:00 femmebabe team: message repeated 2 times: [ team [466250]: ./scripts/daphnetest.sh ]
+2024-09-20T22:51:49.518024-07:00 femmebabe team: team [466250]: clear
+2024-09-20T22:51:54.698641-07:00 femmebabe team: team [466250]: clear
+2024-09-20T22:51:58.291313-07:00 femmebabe team: team [466250]: ls
+2024-09-20T22:52:24.204009-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:55:08.931694-07:00 femmebabe team: team [462774]: nano shell/templates/shell/shell.html 
+2024-09-20T22:55:34.955965-07:00 femmebabe team: team [462774]: nano shell/consumers.py 
+2024-09-20T22:55:39.238511-07:00 femmebabe team: team [462774]: sudo systemctl start daphne
+2024-09-20T22:55:44.315445-07:00 femmebabe team: team [462774]: sudo systemctl start daphne
+2024-09-20T22:55:57.867608-07:00 femmebabe team: team [466922]: ./scripts/daphnetest.sh 
+2024-09-20T22:55:58.530940-07:00 femmebabe team: team [462774]: sudo systemctl status daphne
+2024-09-20T22:56:51.958264-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:56:54.244314-07:00 femmebabe team: team [462774]: nano shell/templates/shell/terminal.html 
+2024-09-20T22:56:56.000601-07:00 femmebabe team: team [462774]: sudo doreload
+2024-09-20T22:56:58.480001-07:00 femmebabe team: team [466922]: ls
+2024-09-20T22:57:02.857581-07:00 femmebabe team: team [466922]: clear
+2024-09-20T22:57:04.818595-07:00 femmebabe team: team [466922]: logs
+2024-09-20T22:57:33.486263-07:00 femmebabe team: team [467414]: logs
+2024-09-20T22:57:39.311326-07:00 femmebabe team: team [467414]: ls
+2024-09-20T22:57:59.700414-07:00 femmebabe team: team [467582]: ls
+2024-09-20T22:58:12.762972-07:00 femmebabe team: team [467582]: ls
+2024-09-20T22:58:13.796004-07:00 femmebabe team: team [467582]: ls
+2024-09-20T22:58:25.891783-07:00 femmebabe team: team [467582]: clear
+2024-09-20T22:58:26.877121-07:00 femmebabe team: team [467582]: ls
+2024-09-20T22:59:04.177588-07:00 femmebabe team: team [467837]: exit
+2024-09-20T22:59:17.412213-07:00 femmebabe team: team [462774]: sudo doreload
+2024-09-20T23:01:17.366641-07:00 femmebabe team: team [462774]: nano shell/consumers.py 
+2024-09-20T23:01:19.089703-07:00 femmebabe team: team [462774]: sudo doreload
+2024-09-20T23:01:21.035712-07:00 femmebabe team: team [462774]: sudo doreload
+2024-09-20T23:01:30.294068-07:00 femmebabe team: team [462774]: sudo systemctl stop daphne
+2024-09-20T23:01:32.125806-07:00 femmebabe team: team [462774]: sudo systemctl stop daphne &
+2024-09-20T23:01:32.898710-07:00 femmebabe team: team [462774]: clear
+2024-09-20T23:01:35.359698-07:00 femmebabe team: team [462774]: ./scripts/daphne
+2024-09-20T23:01:53.613030-07:00 femmebabe team: team [468497]: exit
+2024-09-20T23:02:22.862763-07:00 femmebabe team: team [468656]: exit
+2024-09-20T23:02:24.046519-07:00 femmebabe team: team [468656]: exit
+2024-09-20T23:02:42.527088-07:00 femmebabe team: team [462980]: sudo doreload
+2024-09-20T23:02:52.418516-07:00 femmebabe team: team [468813]: exit
+2024-09-20T23:03:59.445831-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:04:01.124202-07:00 femmebabe team: team [462980]: sudo doreload
+2024-09-20T23:04:12.073482-07:00 femmebabe team: team [463032]: cd lotteh/
+2024-09-20T23:04:17.770226-07:00 femmebabe team: team [463032]: sudo systemctl stop daphne
+2024-09-20T23:04:21.749010-07:00 femmebabe team: team [463032]: killall daphne
+2024-09-20T23:04:46.512855-07:00 femmebabe team: team [469289]: exit
+2024-09-20T23:04:59.473767-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:07.332650-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:14.972224-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:16.366818-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:19.516199-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:33.872869-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:34.449159-07:00 femmebabe team: message repeated 3 times: [ team [469440]: exit]
+2024-09-20T23:05:36.108166-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:37.244105-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:46.497993-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:46.937815-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:49.757607-07:00 femmebabe team: message repeated 6 times: [ team [469440]: exit]
+2024-09-20T23:05:50.368072-07:00 femmebabe team: team [469440]: exit
+2024-09-20T23:05:52.538629-07:00 femmebabe team: message repeated 3 times: [ team [469440]: exit]
+2024-09-20T23:05:56.112053-07:00 femmebabe team: team [462980]: sudo doreload
+2024-09-20T23:06:16.396575-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:06:38.854509-07:00 femmebabe team: team [462980]: sudo daphnereload
+2024-09-20T23:07:05.779675-07:00 femmebabe team: team [470389]: exit
+2024-09-20T23:07:06.217168-07:00 femmebabe team: team [470408]: exit
+2024-09-20T23:07:08.566182-07:00 femmebabe team: team [470428]: exit
+2024-09-20T23:07:22.304778-07:00 femmebabe team: team [470554]: ./scripts/daphnetest.sh 
+2024-09-20T23:07:34.989472-07:00 femmebabe team: team [462980]: logs
+2024-09-20T23:07:38.496500-07:00 femmebabe team: team [470764]: ./scripts/daphnetest.sh 
+2024-09-20T23:07:45.011112-07:00 femmebabe team: team [462980]: logs
+2024-09-20T23:07:46.242482-07:00 femmebabe team: team [462980]: logs
+2024-09-20T23:07:57.131570-07:00 femmebabe team: team [470764]: ./scripts/daphnetest.sh 
+2024-09-20T23:07:59.065075-07:00 femmebabe team: message repeated 4 times: [ team [470764]: ./scripts/daphnetest.sh ]
+2024-09-20T23:08:23.595761-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:08:26.066989-07:00 femmebabe team: team [470764]: ./scripts/daphnetest.sh 
+2024-09-20T23:08:28.467181-07:00 femmebabe team: message repeated 7 times: [ team [470764]: ./scripts/daphnetest.sh ]
+2024-09-20T23:11:04.273117-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:11:08.668644-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:11:12.462127-07:00 femmebabe team: team [462980]: sudo daphnereload
+2024-09-20T23:11:21.324447-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:22.272438-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:23.031523-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:23.718723-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:24.532092-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:25.216199-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:25.974035-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:26.670850-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:27.403465-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:28.268964-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:28.910094-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:29.694211-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:30.125925-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:11:31.229994-07:00 femmebabe team: team [462980]: watchlogs
+2024-09-20T23:12:11.626925-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:12:13.141054-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:12:14.039407-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:12:15.274160-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:12:16.312686-07:00 femmebabe team: team [462980]: clear
+2024-09-20T23:12:18.340651-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:12:21.393964-07:00 femmebabe team: team [462980]: watch sudo systemctl status daphne
+2024-09-20T23:12:28.185618-07:00 femmebabe team: team [462980]: watch sudo systemctl status daphne
+2024-09-20T23:12:52.625100-07:00 femmebabe team: team [462980]: watch sudo systemctl status daphne
+2024-09-20T23:12:54.145412-07:00 femmebabe team: team [462980]: watch sudo systemctl status daphne
+2024-09-20T23:12:55.342104-07:00 femmebabe team: team [462980]: watch sudo systemctl status daphne
+2024-09-20T23:13:08.467296-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:13:18.978452-07:00 femmebabe team: team [472239]: ./scripts/daphnetest.sh 
+2024-09-20T23:13:25.023283-07:00 femmebabe team: message repeated 9 times: [ team [472239]: ./scripts/daphnetest.sh ]
+2024-09-20T23:13:25.245724-07:00 femmebabe team: team [472239]: ./scripts/daphnetest.sh 
+2024-09-20T23:13:27.241319-07:00 femmebabe team: message repeated 6 times: [ team [472239]: ./scripts/daphnetest.sh ]
+2024-09-20T23:13:29.386632-07:00 femmebabe team: team [472239]: ./scripts/daphnetest.sh 
+2024-09-20T23:13:30.277478-07:00 femmebabe team: message repeated 4 times: [ team [472239]: ./scripts/daphnetest.sh ]
+2024-09-20T23:13:49.971046-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:14:13.952980-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:14:23.863466-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:14:32.198005-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:14:41.990401-07:00 femmebabe team: team [472640]: ./scripts/daphnetest.sh 
+2024-09-20T23:15:49.287128-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:15:54.157623-07:00 femmebabe team: team [462980]: sudo systemctl restart daphne
+2024-09-20T23:15:54.276975-07:00 femmebabe team: team [462980]: sudo systemctl restart daphne
+2024-09-20T23:15:55.475505-07:00 femmebabe team: team [462980]: sudo systemctl restart daphne &
+2024-09-20T23:16:17.624200-07:00 femmebabe team: team [473057]: ./scripts/daphnetest.sh 
+2024-09-20T23:16:25.251484-07:00 femmebabe team: team [462980]: sudo systemctl restart daphne &
+2024-09-20T23:16:29.699153-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:16:32.820853-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:16:49.733820-07:00 femmebabe team: team [473304]: ./scripts/daphnetest.sh 
+2024-09-20T23:16:52.714395-07:00 femmebabe team: team [473304]: ./scripts/daphnetest.sh 
+2024-09-20T23:16:56.229710-07:00 femmebabe team: team [473304]: ./scripts/daphnetest.sh 
+2024-09-20T23:17:09.775693-07:00 femmebabe team: team [473304]: '#012#012#012#012#012#012#012#012#012#012#012./scripts/daphne
+2024-09-20T23:17:10.850983-07:00 femmebabe team: message repeated 3 times: [ team [473304]: '#012#012#012#012#012#012#012#012#012#012#012./scripts/daphne]
+2024-09-20T23:17:21.064055-07:00 femmebabe team: team [470389]: cd lotteh
+2024-09-20T23:18:51.571810-07:00 femmebabe team: team [470389]: nano shell/consumers.py 
+2024-09-20T23:18:56.519375-07:00 femmebabe team: team [470389]: sudo systemctl stop daphne
+2024-09-20T23:19:20.756025-07:00 femmebabe team: team [473761]: ./scripts/daphne
+2024-09-20T23:19:23.699889-07:00 femmebabe team: team [473761]: ./scripts/daphne
+2024-09-20T23:19:25.620059-07:00 femmebabe team: team [473761]: ./scripts/daphne
+2024-09-20T23:19:27.110514-07:00 femmebabe team: team [473761]: ls
+2024-09-20T23:19:29.422793-07:00 femmebabe team: team [473761]: cd lotteh
+2024-09-20T23:19:34.725593-07:00 femmebabe team: message repeated 2 times: [ team [473761]: cd lotteh]
+2024-09-20T23:19:37.232025-07:00 femmebabe team: team [473761]: clear
+2024-09-20T23:19:49.817559-07:00 femmebabe team: team [470554]: sudo systemctl restart daphne
+2024-09-20T23:19:52.311869-07:00 femmebabe team: team [470554]: sudo doreloa
+2024-09-20T23:19:53.427715-07:00 femmebabe team: team [470554]: sudo doreload
+2024-09-20T23:20:06.550344-07:00 femmebabe team: team [474157]: ./scripts/daphne
+2024-09-20T23:20:29.070891-07:00 femmebabe team: team [474365]: ./scripts/daphne
+2024-09-20T23:21:23.053624-07:00 femmebabe team: team [474598]: ./scripts/daphne
+2024-09-20T23:21:24.006895-07:00 femmebabe team: team [474157]: ./scripts/daphne
+2024-09-20T23:21:24.486068-07:00 femmebabe team: message repeated 2 times: [ team [474157]: ./scripts/daphne]
+2024-09-20T23:21:39.251997-07:00 femmebabe team: team [474776]: ./scripts/daphne
+2024-09-20T23:21:51.512291-07:00 femmebabe team: team [474898]: ./scripts/daphne
+2024-09-20T23:22:28.963265-07:00 femmebabe team: team [474776]: ./scripts/daphne
+2024-09-20T23:22:29.153372-07:00 femmebabe team: team [474776]: ./scripts/daphne
+2024-09-20T23:22:34.043821-07:00 femmebabe team: team [470554]: cd lotteh/
+2024-09-20T23:24:52.911919-07:00 femmebabe team: team [470554]: nano shell/consumers.py 
+2024-09-20T23:24:55.303284-07:00 femmebabe team: team [470554]: sudo daphnereload
+2024-09-20T23:26:57.657911-07:00 femmebabe team: team [470554]: nano shell/consumers.py 
+2024-09-20T23:27:00.783276-07:00 femmebabe team: team [470554]: nano shell/consumers.py 
+2024-09-20T23:27:06.182395-07:00 femmebabe team: team [470554]: sudo systemctl status daphne
+2024-09-20T23:27:09.025594-07:00 femmebabe team: team [475895]: ./scripts/daphne
+2024-09-20T23:27:18.771335-07:00 femmebabe team: team [475996]: ./scripts/daphne
+2024-09-20T23:28:36.518543-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:52.423790-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:53.649220-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:54.551930-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:55.605527-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:56.981177-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:28:57.961953-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:29:05.311729-07:00 femmebabe team: team [470554]: sudo systemctl restart daphne
+2024-09-20T23:29:08.138822-07:00 femmebabe team: team [462980]: sudo systemctl status daphne
+2024-09-20T23:29:31.343664-07:00 femmebabe team: team [476597]: ./scripts/daphne
+2024-09-20T23:29:41.525677-07:00 femmebabe team: team [476722]: ./scripts/daphne
+2024-09-20T23:29:51.763277-07:00 femmebabe team: team [470554]: sudo systemctl stop daphne
+2024-09-20T23:29:53.886697-07:00 femmebabe team: team [470554]: sudo systemctl stop daphne &
+2024-09-20T23:30:40.864706-07:00 femmebabe team: team [470554]: nano shell/templates/shell/shell.html 
+2024-09-20T23:30:52.168342-07:00 femmebabe team: team [470554]: nano shell/views.py 
+2024-09-20T23:31:19.319113-07:00 femmebabe team: team [477146]: ./scripts/daphne
+2024-09-20T23:31:29.856596-07:00 femmebabe team: team [477292]: ./scripts/daphne
+2024-09-20T23:32:23.588315-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:32:39.424439-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:33:05.233848-07:00 femmebabe team: team [462980]: nano shell/templates/shell/shell.html 
+2024-09-20T23:33:22.952792-07:00 femmebabe team: team [462980]: nano shell/templates/shell/shell.html 
+2024-09-20T23:33:24.016221-07:00 femmebabe team: team [462980]: nano shell/templates/shell/shell.html 
+2024-09-20T23:33:54.821070-07:00 femmebabe team: team [462980]: nano shell/views.py
+2024-09-20T23:34:11.330597-07:00 femmebabe team: team [470408]: cd lotteh/
+2024-09-20T23:34:15.732819-07:00 femmebabe team: team [470408]: sudo systemctl stop daphne
+2024-09-20T23:34:17.673581-07:00 femmebabe team: team [470408]: killall daphne
+2024-09-20T23:34:19.637323-07:00 femmebabe team: team [470408]: ./scripts/daphne
+2024-09-20T23:34:42.641807-07:00 femmebabe team: team [477867]: clear
+2024-09-20T23:34:53.480888-07:00 femmebabe team: team [477987]: clear
+2024-09-20T23:37:41.732904-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:37:44.789458-07:00 femmebabe team: team [462980]: nano shell/consumers.py 
+2024-09-20T23:38:02.379253-07:00 femmebabe team: team [462980]: sudo systemctl stop daphne
+2024-09-20T23:38:04.480359-07:00 femmebabe team: team [462980]: ./scripts/daphne
+2024-09-20T23:38:22.927422-07:00 femmebabe team: team [478770]: clear
+2024-09-20T23:40:20.625188-07:00 femmebabe team: team [478770]: sudo systemctl restart daphne
+2024-09-20T23:40:37.427518-07:00 femmebabe team: team [479879]: ./scripts/daphnetest.sh 
+2024-09-20T23:40:51.643369-07:00 femmebabe team: team [479995]: ./scripts/daphnetest.sh 
+2024-09-20T23:40:56.533742-07:00 femmebabe team: message repeated 4 times: [ team [479995]: ./scripts/daphnetest.sh ]
+2024-09-20T23:41:13.221368-07:00 femmebabe team: team [478770]: cd lotteh/
+2024-09-20T23:41:18.964975-07:00 femmebabe team: team [478770]: sudo systemctl stop daphne
+2024-09-20T23:41:19.330643-07:00 femmebabe team: team [480183]: ./scripts/daphnetest.sh 
+2024-09-20T23:41:20.036103-07:00 femmebabe team: team [478770]: sudo systemctl stop daphne &
+2024-09-20T23:41:22.293521-07:00 femmebabe team: team [478770]: killall daphne
+2024-09-20T23:41:26.633483-07:00 femmebabe team: team [478770]: ps -aux | grep daphne
+2024-09-20T23:41:34.270331-07:00 femmebabe team: team [478770]: ps -aux | grep daphne
+2024-09-20T23:41:38.766908-07:00 femmebabe team: team [478770]: kill 170724
+2024-09-20T23:41:45.321487-07:00 femmebabe team: team [478770]: kill 901668
+2024-09-20T23:41:52.382976-07:00 femmebabe team: team [478770]: kill 478443
+2024-09-20T23:41:57.563857-07:00 femmebabe team: team [478770]: kill 479674
+2024-09-20T23:42:01.435944-07:00 femmebabe team: team [478770]: kill 479674
+2024-09-20T23:42:29.641659-07:00 femmebabe team: team [480517]: ./scripts/daphnetest.sh 
+2024-09-20T23:42:38.829818-07:00 femmebabe team: team [480613]: ./scripts/daphnetest.sh 
+2024-09-20T23:43:48.600541-07:00 femmebabe team: team [481163]: ./scripts/daphnetest.sh 
+2024-09-20T23:43:50.460819-07:00 femmebabe team: team [481197]: ./scripts/daphnetest.sh 
+2024-09-20T23:43:59.294764-07:00 femmebabe team: team [481197]: cd lotteh/
+2024-09-20T23:44:43.298804-07:00 femmebabe team: team [481197]: nano shell/consumers.py 
+2024-09-20T23:44:54.733945-07:00 femmebabe team: team [481197]: nano shell/consumers.py 
+2024-09-20T23:45:01.496037-07:00 femmebabe team: team [481163]: cd lotteh/
+2024-09-20T23:45:20.263594-07:00 femmebabe team: team [481607]: ./scripts/daphnetest.sh 
+2024-09-20T23:45:30.253332-07:00 femmebabe team: team [481720]: ./scripts/daphnetest.sh 
+2024-09-20T23:46:00.193998-07:00 femmebabe team: team [481877]: ./scripts/daphnetest.sh 
+2024-09-20T23:47:05.061344-07:00 femmebabe team: team [481163]: nano shell/consumers.py 
+2024-09-20T23:47:22.346085-07:00 femmebabe team: team [481163]: nano shell/templates/shell/terminal.html 
+2024-09-20T23:47:39.154117-07:00 femmebabe team: team [481163]: nano shell/templates/shell/shell.html 
+2024-09-20T23:47:42.327870-07:00 femmebabe team: team [481163]: nano shell/templates/shell/shell.html 
+2024-09-20T23:47:43.501951-07:00 femmebabe team: team [481163]: nano shell/templates/shell/shell.html 
+2024-09-20T23:47:46.674390-07:00 femmebabe team: team [481163]: ps -aux | grep daphne
+2024-09-20T23:47:47.778904-07:00 femmebabe team: team [481163]: ps -aux | grep daphne
+2024-09-20T23:47:51.990383-07:00 femmebabe team: team [481163]: sudo killall daphne
+2024-09-20T23:47:53.074261-07:00 femmebabe team: team [481163]: ps -aux | grep daphne
+2024-09-20T23:47:54.189064-07:00 femmebabe team: team [481163]: ps -aux | grep daphne
+2024-09-20T23:47:59.313208-07:00 femmebabe team: team [481163]: sudo systemctl stop daphne
+2024-09-20T23:48:01.351673-07:00 femmebabe team: team [481163]: ./scripts/daphne
+2024-09-20T23:48:25.728900-07:00 femmebabe team: team [482385]: ./scripts/daphnetest.sh 
+2024-09-20T23:50:33.251038-07:00 femmebabe team: team [482934]: ./scripts/daphnetest.sh 
+2024-09-20T23:50:34.006943-07:00 femmebabe team: team [482954]: ./scripts/daphnetest.sh 
+2024-09-20T23:50:35.537726-07:00 femmebabe team: team [482993]: ./scripts/daphnetest.sh 
+2024-09-20T23:50:46.420143-07:00 femmebabe team: team [483114]: ./scripts/daphnetest.sh 
+2024-09-20T23:50:58.421262-07:00 femmebabe team: team [483251]: ./scripts/daphnetest.sh 
+2024-09-20T23:51:11.609976-07:00 femmebabe team: team [483385]: ./scripts/daphnetest.sh 
+2024-09-20T23:51:25.196209-07:00 femmebabe team: team [483492]: ./scripts/daphnetest.sh 
+2024-09-20T23:51:48.697456-07:00 femmebabe team: team [482993]: cd lotteh/
+2024-09-20T23:52:21.508607-07:00 femmebabe team: team [482993]: nano shell/templates/shell/terminal.html 
+2024-09-20T23:52:57.347103-07:00 femmebabe team: team [482993]: nano shell/templates/shell/shell.html 
+2024-09-20T23:53:00.462240-07:00 femmebabe team: team [482993]: sudo doreload
+2024-09-20T23:53:13.817241-07:00 femmebabe team: team [482993]: sudo systemctl restart daphne
+2024-09-20T23:54:19.049586-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:54:47.086227-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:54:54.075883-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:54:57.552538-07:00 femmebabe team: team [482993]: sudo daphnereload
+2024-09-20T23:55:05.278308-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:55:06.419140-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:55:07.360666-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:55:08.354105-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:31.169793-07:00 femmebabe team: team [482993]: watch sudo systemctl status daphne
+2024-09-20T23:56:33.706860-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:38.254196-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:39.324676-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:40.514991-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:41.615492-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:42.644064-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:43.577971-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:44.465046-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:45.307586-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:46.362460-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:47.281229-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:48.158357-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:49.111318-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:56:49.951067-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:16.660137-07:00 femmebabe team: team [485503]: ./scripts/daphnetest.sh 
+2024-09-20T23:57:23.158485-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:24.384851-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:25.494045-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:26.215514-07:00 femmebabe team: team [485635]: ./scripts/daphnetest.sh 
+2024-09-20T23:57:26.891683-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:27.845634-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:36.045443-07:00 femmebabe team: team [485769]: ./scripts/daphnetest.sh 
+2024-09-20T23:57:39.631350-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:40.886913-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:41.761634-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:42.592908-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:43.537287-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:44.448698-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:48.581544-07:00 femmebabe team: team [485968]: ./scripts/daphnetest.sh 
+2024-09-20T23:57:50.002665-07:00 femmebabe team: team [482993]: sudo systemctl status daphne
+2024-09-20T23:57:57.327367-07:00 femmebabe team: team [482993]: tail /tmp/daphne-error.log 
+2024-09-20T23:58:00.521311-07:00 femmebabe team: team [486099]: ./scripts/daphnetest.sh 
+2024-09-20T23:58:07.236394-07:00 femmebabe team: team [482993]: sudo systemctl stop daphne
+2024-09-20T23:58:08.315361-07:00 femmebabe team: team [482993]: sudo systemctl stop daphne
+2024-09-20T23:58:10.992521-07:00 femmebabe team: team [482993]: sudo systemctl stop daphne &
+2024-09-20T23:58:13.716484-07:00 femmebabe team: team [486241]: ./scripts/daphnetest.sh 
+2024-09-20T23:58:50.593689-07:00 femmebabe team: team [486551]: ./scripts/daphnetest.sh 
+2024-09-20T23:59:00.258436-07:00 femmebabe team: team [486668]: ./scripts/daphnetest.sh 
+2024-09-20T23:59:10.329193-07:00 femmebabe team: team [486822]: ./scripts/daphnetest.sh 
+2024-09-20T23:59:25.206532-07:00 femmebabe team: team [487065]: ./scripts/daphnetest.sh 
+2024-09-20T23:59:26.781438-07:00 femmebabe team: team [482934]: cd lotteh/
+2024-09-20T23:59:37.900536-07:00 femmebabe team: team [487198]: ./scripts/daphnetest.sh 
+2024-09-20T23:59:41.338677-07:00 femmebabe team: team [482934]: nano shell/consumers.py 
+2024-09-20T23:59:44.106887-07:00 femmebabe team: team [482934]: nano shell/consumers.py 
+2024-09-20T23:59:55.972076-07:00 femmebabe team: team [487372]: ./scripts/daphnetest.sh 

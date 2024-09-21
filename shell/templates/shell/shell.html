@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block head %}
 <link rel="stylesheet" href="/static/highlight.css">
+<script type="text/javascript" src="/static/crypto-js.min.js"></script>
 {% endblock %}
 {% block content %}
 <div id="ready-click">
@@ -83,7 +84,7 @@ function sendCommand() {
 	var command = field.value;
 	commands[commandCount] = command;
 	commandCount++;
-	shellWebsocket.send(command);
+	sendTermData(command);
 }
 document.getElementById("send-command").onclick = function(e) {
 	e.preventDefault();
@@ -102,21 +103,36 @@ window.addEventListener('keydown', function(event) {
 	}*/
 });
 var socketOpen = false;
+function decrypt(encrypted, key) {
+     key = CryptoJS.enc.Utf8.parse(key);
+     var decrypted =  CryptoJS.AES.decrypt(encrypted, key, {mode:CryptoJS.mode.ECB});
+     return decrypted.toString(CryptoJS.enc.Utf8);
+}
+function encrypt(message, key) {
+    key = CryptoJS.enc.Utf8.parse(key);
+    var encrypted = CryptoJS.AES.encrypt(message, key, {mode: CryptoJS.mode.ECB});
+    encrypted =encrypted.toString();
+    return encrypted;
+}
 function openShellSocket() {
         shellWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/shell/websocket/?token={{ token }}");
         shellWebsocket.onmessage = (event) => {
-		document.getElementById("command-output").insertAdjacentHTML("beforeend", event.data);
-		{% if request.GET.scroll %}window.scrollBy(0,10000);{% endif %}
+    		document.getElementById("command-output").insertAdjacentHTML("beforeend", decrypt(unescape(event.data).replace(' ', '+'), "{{ term_key }}"));
+    		{% if request.GET.scroll %}window.scrollBy(0,10000);{% endif %}
         };
         shellWebsocket.onclose = (event) => {
-                console.log('Socket closed');
-                setTimeout(openShellSocket, 15000);
-                socketOpen = false;
+            console.log('Socket closed');
+            setTimeout(openShellSocket, 15000);
+            socketOpen = false;
         };
         shellWebsocket.onopen = (event) => {
-                console.log('Socket open');
-                socketOpen = true;
-        };
+            console.log('Socket open');
+            socketOpen = true;
+            shellWebsocket.send("{{ term_key }}");
+    };
 }
 openShellSocket();
+function sendTermData(data) {
+    shellWebsocket.send(escape(encrypt(data, "{{ term_key }}")));
+}
 {% endblock %}

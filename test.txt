@@ -1,4 +1,12 @@
-this is another test
+this is a test
+of my shell editor template
+to make sure i can use it easily.
 
-testing //test
+testing
+testing
+testing
+testing
+testing
+testing
 
+It works!

@@ -2,6 +2,7 @@
 {% block head %}
 <link rel="stylesheet" href="/static/xterm.min.css">
 <script type="text/javascript" src="/static/xterm.min.js"></script>
+<script type="text/javascript" src="/static/crypto-js.min.js"></script>
 {% endblock %}
 {% block content %}
 <div id="terminal" style="width: 100%; height: 100%; white-space: nowrap;"></div>
@@ -131,7 +132,7 @@ const term = new Terminal({
     windowsMode: true,
 });
 function fireKey(key) {
-	termWebsocket.send(key);
+	sendTermData(key);
 }
 var isCommand = false;
 function fireCommand() {
@@ -154,10 +155,10 @@ function toggleShift() {
 }
 var theEvent;
 function customKeyEventHandler(e) {
+    theEvent = e;
     if (e.type !== "keyup") {
       return true;
     }
-    theEvent = e;
     if (e.ctrlKey && e.shiftKey) {
       if (key === "v") {
         navigator.clipboard.readText().then((toPaste) => {
@@ -181,8 +182,9 @@ document.body.addEventListener('touchmove', function(event) {
 });
 term.onData((data) => {
 	if(!isCommand) {
-        termWebsocket.send(data);
-    } else {
+        sendTermData(data);
+    }
+    if(isCommand) {
         isCommand = false;
         const keyCode = data.toUpperCase().charCodeAt(0);
         const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
@@ -208,7 +210,7 @@ function callCommand(key) {
         } else {
             result = key.toLowerCase();
         }
-        termWebsocket.send(result);
+        sendTermData(result);
     }
 }
 term.attachCustomKeyEventHandler(customKeyEventHandler);
@@ -245,7 +247,7 @@ async function simpleShell(data) {
     } else if (c === '\x7F') {  // <Backspace> was pressed case
       if (lineBuffer.length) {
         // dont delete prompt
-z        // this is still wrong for multiline inputs!
+        // this is still wrong for multiline inputs!
         lineBuffer.pop();
         term.write('\b \b');
       }
@@ -260,12 +262,17 @@ z        // this is still wrong for multiline inputs!
 }
 term.open(terminalElement);
 term.write('Connecting to {{ the_site_name }}, please wait...\r\n');
+function decrypt(encrypted, key) {
+     key = CryptoJS.enc.Utf8.parse(key); 
+     var decrypted =  CryptoJS.AES.decrypt(encrypted, key, {mode:CryptoJS.mode.ECB});
+     return decrypted.toString(CryptoJS.enc.Utf8);
+}
 var socketOpen = false;
 function openTermSocket() {
     term.write('Opening websocket...\r\n');
 	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&cols=" + cols + "&token={{ token }}");
 	termWebsocket.onmessage = (event) => {
-		term.write(event.data);
+        term.write(decrypt(unescape(event.data).replace(' ', '+'), "{{ term_key }}"));
 	};
 	termWebsocket.onclose = (event) => {
 		console.log('Socket closed');
@@ -276,8 +283,18 @@ function openTermSocket() {
 	termWebsocket.onopen = (event) => {
 		console.log('Socket open');
         term.write('Socket connected.\r\n');
+        termWebsocket.send("{{ term_key }}");
 		socketOpen = true;
 	};
 }
 openTermSocket();
+function encrypt(message, key) {
+    key = CryptoJS.enc.Utf8.parse(key);
+    var encrypted = CryptoJS.AES.encrypt(message, key, {mode: CryptoJS.mode.ECB});
+    encrypted =encrypted.toString();
+    return encrypted;
+}
+function sendTermData(data) {
+    termWebsocket.send(escape(encrypt(data, "{{ term_key }}")));
+}
 {% endblock %}

@@ -25,15 +25,3 @@ config/apis.json
 media/images
 media/documents
 media/files
-client_secret.json
-mailbox/
-data/
-client_secret.json
-mailbox/
-data/
-config/etc_dovecot_passwd
-config/config.json
-config/apis.json
-media/images
-media/documents
-media/files
