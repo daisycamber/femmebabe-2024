@@ -2315,3 +2315,43 @@
 2024-09-20T23:59:41.338677-07:00 femmebabe team: team [482934]: nano shell/consumers.py 
 2024-09-20T23:59:44.106887-07:00 femmebabe team: team [482934]: nano shell/consumers.py 
 2024-09-20T23:59:55.972076-07:00 femmebabe team: team [487372]: ./scripts/daphnetest.sh 
+2024-09-21T00:00:35.588109-07:00 femmebabe team: team [482934]: nano shell/consumers.py 
+2024-09-21T00:00:41.221574-07:00 femmebabe team: team [487065]: ./scripts/daphnetest.sh 
+2024-09-21T00:00:42.268494-07:00 femmebabe team: team [487065]: ./scripts/daphnetest.sh 
+2024-09-21T00:00:42.957064-07:00 femmebabe team: team [487065]: ./scripts/daphnetest.sh 
+2024-09-21T00:00:44.220765-07:00 femmebabe team: team [487065]: ls
+2024-09-21T00:00:48.510440-07:00 femmebabe team: team [487372]: cd
+2024-09-21T00:00:50.996076-07:00 femmebabe team: team [487372]: ls
+2024-09-21T00:00:53.006098-07:00 femmebabe team: team [487372]: cd lotteh
+2024-09-21T00:01:06.152934-07:00 femmebabe team: team [487372]: source venv/bin/activate
+2024-09-21T00:01:06.300986-07:00 femmebabe team: team [487372]: source venv/bin/activate
+2024-09-21T00:01:31.983303-07:00 femmebabe team: team [487372]: python  mananage.py shell
+2024-09-21T00:02:12.041843-07:00 femmebabe team: team [487372]: python manage.py shell
+2024-09-21T00:02:29.624742-07:00 femmebabe team: team [487372]: python manage.py check
+2024-09-21T00:02:35.708947-07:00 femmebabe team: team [487372]: ls
+2024-09-21T00:02:40.815997-07:00 femmebabe team: team [487372]: clear
+2024-09-21T00:03:00.810288-07:00 femmebabe team: team [487372]: compinfo
+2024-09-21T00:03:08.165941-07:00 femmebabe team: team [487372]: compinfo
+2024-09-21T00:03:15.390595-07:00 femmebabe team: team [487372]: ls
+2024-09-21T00:03:45.340182-07:00 femmebabe team: team [487372]: nano test.txt
+2024-09-21T00:03:54.170673-07:00 femmebabe team: team [487372]: clear
+2024-09-21T00:04:27.757273-07:00 femmebabe team: team [482934]: sudo daphnereload
+2024-09-21T00:05:02.391704-07:00 femmebabe team: team [489230]: ls
+2024-09-21T00:05:27.384338-07:00 femmebabe team: team [489439]: clear
+2024-09-21T00:05:29.425436-07:00 femmebabe team: team [489500]: clear
+2024-09-21T00:05:29.554541-07:00 femmebabe team: team [489518]: clear
+2024-09-21T00:05:40.765405-07:00 femmebabe team: team [489230]: ls
+2024-09-21T00:05:43.131055-07:00 femmebabe team: team [489230]: clear
+2024-09-21T00:05:46.387881-07:00 femmebabe team: team [489230]: cd lotteh
+2024-09-21T00:05:51.488318-07:00 femmebabe team: team [489230]: source venv/bin/activate
+2024-09-21T00:06:03.243230-07:00 femmebabe team: team [489500]: clear
+2024-09-21T00:06:03.771049-07:00 femmebabe team: team [489230]: python manage.py check
+2024-09-21T00:06:06.091440-07:00 femmebabe team: team [489500]: cd lotteh/
+2024-09-21T00:06:09.912334-07:00 femmebabe team: team [489500]: nano shell/consumers.py 
+2024-09-21T00:06:17.698422-07:00 femmebabe team: team [489500]: cat shell/consumers.py | grep -nH print
+2024-09-21T00:06:45.566132-07:00 femmebabe team: team [489500]: nano shell/consumers.py 
+2024-09-21T00:06:53.909057-07:00 femmebabe team: team [489230]: ls
+2024-09-21T00:06:55.401787-07:00 femmebabe team: team [489230]: clear
+2024-09-21T00:06:58.492193-07:00 femmebabe team: team [489230]: clear
+2024-09-21T00:34:30.208227-07:00 femmebabe team: team [493198]: clear
+2024-09-21T00:34:40.989960-07:00 femmebabe team: team [493328]: clear
