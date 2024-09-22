@@ -121,7 +121,7 @@ echo "webauthn" | tee -a requirements.txt
 #echo "tensorflow" | tee -a requirements.txt
 python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
 split -b99M db.json db.json.
-python manage.py dumpdata auth.user --exclude auth.permission --exclude contenttypes > users.json
+python manage.py dumpdata auth.user --exclude auth.permission --exclude contenttypes > data/users.json
 #sudo rm db.json
 # Git config
 DOW=$(date +%u)

@@ -135,8 +135,6 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         self.channel = ssh.invoke_shell(width=self.cols, height=self.rows)
 #        await terminal_thread(self, self.channel)
 #        multiprocessing.Process(target=terminal_thread, args=(self, self.channel)).start()
-        self.x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
-        self.x.start()
         pass
 
     async def disconnect(self, close_code):
@@ -148,6 +146,8 @@ class TerminalConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         if not self.token:
             self.token = text_data
+            self.x = threading.Thread(target=terminal_thread, args=(self,self.channel,))
+            self.x.start()
             return
         await receive_data(self, text_data)
         pass
@@ -237,8 +237,6 @@ class ShellConsumer(AsyncWebsocketConsumer):
                     return None
         self.ssh = ssh
         self.channel = ssh.invoke_shell(width=120, height=50)
-        self.x = threading.Thread(target=shell_thread, args=(self,self.channel,))
-        self.x.start()
         pass
 
     async def disconnect(self, close_code):
@@ -251,6 +249,8 @@ class ShellConsumer(AsyncWebsocketConsumer):
         command = text_data
         if not self.key:
             self.key = text_data
+            self.x = threading.Thread(target=shell_thread, args=(self,self.channel,))
+            self.x.start()
             return
         await receive_data_shell(self, text_data)
         pass

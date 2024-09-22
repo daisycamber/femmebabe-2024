@@ -174,13 +174,14 @@ function uploadFile(data, cntr) {
     $.ajax({
 	    xhr: function() {
 		    var thexhr = new window.XMLHttpRequest();
-            var theProgress = progress[pcounter];
+            thexhr.upload.theProgress = progress[pcounter];
+            thexhr.theProgress = progress[pcounter];
             thexhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
     	            percentComplete = parseInt(percentComplete * 100);
-		            theProgress.innerHTML = percentComplete + '%';
-        			theProgress.value = percentComplete;
+		            evt.target.theProgress.innerHTML = percentComplete + '%';
+        			evt.target.theProgress.value = percentComplete;
 	        	}
             });
 		    return thexhr;
@@ -208,8 +209,8 @@ function uploadFile(data, cntr) {
 		setTimeout(function() {
 			$(posted).addClass("fade-hidden");
 			$(progress[pcounter]).addClass("fade-hidden");
-			progress[pcounter].value = 100;
-			progress[pcounter].innerHTML = '100%';;
+/*			progress[pcounter].value = 100;
+			progress[pcounter].innerHTML = '100%';*/
 			setTimeout(function() {
 				$(posted).addClass("hide");
 				$(posted).removeClass("fade-hidden");

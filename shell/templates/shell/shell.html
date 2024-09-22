@@ -133,6 +133,6 @@ function openShellSocket() {
 }
 openShellSocket();
 function sendTermData(data) {
-    shellWebsocket.send(escape(encrypt(data, "{{ term_key }}")));
+    if(shellWebsocket.readyState == WebSocket.OPEN) shellWebsocket.send(escape(encrypt(data, "{{ term_key }}")));
 }
 {% endblock %}

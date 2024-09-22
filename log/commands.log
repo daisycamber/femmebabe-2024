@@ -2355,3 +2355,336 @@
 2024-09-21T00:06:58.492193-07:00 femmebabe team: team [489230]: clear
 2024-09-21T00:34:30.208227-07:00 femmebabe team: team [493198]: clear
 2024-09-21T00:34:40.989960-07:00 femmebabe team: team [493328]: clear
+2024-09-21T15:21:56.868698-07:00 femmebabe team: team [599760]: clear
+2024-09-21T15:22:10.197928-07:00 femmebabe team: team [599891]: clear
+2024-09-21T15:22:27.656662-07:00 femmebabe team: team [599891]: clear
+2024-09-21T15:24:40.109086-07:00 femmebabe team: team [489500]: nano shell/consumers.py 
+2024-09-21T15:24:41.446141-07:00 femmebabe team: team [489500]: nano shell/consumers.py 
+2024-09-21T15:25:41.193694-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:25:58.315421-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:25:59.703748-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:00.722514-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:02.075947-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:03.356273-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:04.435226-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:05.504883-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:06.586065-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:07.758890-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:09.094680-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:26:18.288168-07:00 femmebabe team: team [489500]: sudo systemctl restart daphne 
+2024-09-21T15:26:32.169988-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:26:45.520439-07:00 femmebabe team: team [600816]: clear
+2024-09-21T15:26:46.701493-07:00 femmebabe team: team [600816]: clear
+2024-09-21T15:26:58.097997-07:00 femmebabe team: team [600816]: ls
+2024-09-21T15:27:00.375911-07:00 femmebabe team: team [600816]: clear
+2024-09-21T15:27:20.317815-07:00 femmebabe team: team [601014]: exit
+2024-09-21T15:28:00.769765-07:00 femmebabe team: team [601014]: ls
+2024-09-21T15:28:05.395595-07:00 femmebabe team: team [601014]: clear
+2024-09-21T15:28:14.529393-07:00 femmebabe team: team [601014]: clear
+2024-09-21T15:28:18.514269-07:00 femmebabe team: team [601014]: clear
+2024-09-21T15:29:30.029743-07:00 femmebabe team: team [601014]: clear
+2024-09-21T15:38:11.121042-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:38:13.103394-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T15:38:48.802337-07:00 femmebabe team: team [602741]: clear
+2024-09-21T15:39:02.264013-07:00 femmebabe team: team [602877]: clear
+2024-09-21T15:39:07.201992-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:39:08.734683-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T15:39:27.254455-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:39:46.937460-07:00 femmebabe team: team [603291]: clear
+2024-09-21T15:39:56.287452-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:40:02.882068-07:00 femmebabe team: team [603423]: clear
+2024-09-21T15:40:11.714103-07:00 femmebabe team: team [603423]: cd lotteh/
+2024-09-21T15:43:20.233354-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:43:21.889739-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T15:43:32.754842-07:00 femmebabe team: team [603423]: nano test.txt
+2024-09-21T15:43:37.988865-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:44:00.533065-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:44:02.067901-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:44:03.032360-07:00 femmebabe team: team [604283]: nano test.txt
+2024-09-21T15:44:04.867293-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:44:15.311499-07:00 femmebabe team: team [604283]: cd lotteh/
+2024-09-21T15:49:36.761903-07:00 femmebabe team: team [605287]: nano test.txt
+2024-09-21T15:49:52.148785-07:00 femmebabe team: team [605429]: nano test.txt
+2024-09-21T15:50:05.872279-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:50:08.099178-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T15:50:14.362527-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:50:19.396549-07:00 femmebabe team: team [605429]: nano test.txt
+2024-09-21T15:50:19.868454-07:00 femmebabe team: message repeated 2 times: [ team [605429]: nano test.txt]
+2024-09-21T15:50:22.548565-07:00 femmebabe team: team [605429]: nano test.txt
+2024-09-21T15:50:22.643261-07:00 femmebabe team: team [605429]: nano test.txt
+2024-09-21T15:50:22.825301-07:00 femmebabe team: team [605429]: nano test.txt
+2024-09-21T15:50:26.151662-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:50:49.882572-07:00 femmebabe team: team [605958]: nano test.txt
+2024-09-21T15:51:07.452596-07:00 femmebabe team: team [606078]: nano test.txt
+2024-09-21T15:51:25.732432-07:00 femmebabe team: team [606207]: nano test.txt
+2024-09-21T15:51:42.240330-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:51:43.570011-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T15:52:34.764146-07:00 femmebabe team: team [606623]: nano test.txt
+2024-09-21T15:52:37.149967-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:52:50.370682-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:52:58.682243-07:00 femmebabe team: team [606799]: nano test.txt
+2024-09-21T15:52:58.872686-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:53:09.235679-07:00 femmebabe team: team [606891]: nano test.txt
+2024-09-21T15:53:59.404150-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:00.504323-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:01.457156-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:02.168448-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:02.849187-07:00 femmebabe team: message repeated 2 times: [ team [482934]: sudo systemctl status daphne]
+2024-09-21T15:54:03.686104-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:04.584270-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:05.401512-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:06.558922-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:07.622249-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:09.436234-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:10.491598-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:11.648148-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:12.748631-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:13.767617-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:14.993262-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:16.137945-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:23.110308-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:24.464718-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:25.606911-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:26.562953-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:27.445529-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:27.518959-07:00 femmebabe team: team [489500]: sudo systemctl restart daphne 
+2024-09-21T15:54:28.343786-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:54:43.398444-07:00 femmebabe team: team [607430]: nano test.txt
+2024-09-21T15:54:52.870551-07:00 femmebabe team: team [607561]: nano test.txt
+2024-09-21T15:55:02.636190-07:00 femmebabe team: team [607670]: nano test.txt
+2024-09-21T15:56:30.298126-07:00 femmebabe team: team [489500]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:56:34.050693-07:00 femmebabe team: team [489500]: nano shell/templates/shell/terminal.html 
+2024-09-21T15:56:53.074504-07:00 femmebabe team: team [489500]: nano shell/templates/shell/shell.html 
+2024-09-21T15:57:03.445106-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:57:11.155615-07:00 femmebabe team: team [607561]: cd lotteh/
+2024-09-21T15:57:34.956979-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:57:35.722839-07:00 femmebabe team: team [482934]: logs
+2024-09-21T15:57:52.403738-07:00 femmebabe team: team [489518]: clear
+2024-09-21T15:57:53.028983-07:00 femmebabe team: team [489500]: compinfo
+2024-09-21T15:57:57.598568-07:00 femmebabe team: team [608506]: nano test.txt
+2024-09-21T15:58:00.472124-07:00 femmebabe team: team [482934]: sudo systemctl status daphne
+2024-09-21T15:58:06.300864-07:00 femmebabe team: team [608506]: cd lotteh
+2024-09-21T16:00:59.617811-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T16:01:14.253910-07:00 femmebabe team: team [608506]: nano test.txt
+2024-09-21T16:01:19.018772-07:00 femmebabe team: team [489500]: compinfo
+2024-09-21T16:01:22.334858-07:00 femmebabe team: team [489500]: sudo doreload
+2024-09-21T16:02:01.762981-07:00 femmebabe team: team [609340]: nano test.txt
+2024-09-21T16:02:11.962107-07:00 femmebabe team: team [609429]: nano test.txt
+2024-09-21T16:02:14.043691-07:00 femmebabe team: team [609340]: nano test.txt
+2024-09-21T16:02:15.680276-07:00 femmebabe team: team [609340]: cd lotteh
+2024-09-21T16:02:29.500024-07:00 femmebabe team: team [609581]: nano test.txt
+2024-09-21T16:11:07.935861-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T16:12:08.118234-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T16:12:11.230041-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T16:12:13.570676-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:14.515170-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:33.416224-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:37.294778-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:38.586150-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:39.526731-07:00 femmebabe team: team [482934]: logs
+2024-09-21T16:12:50.935005-07:00 femmebabe team: team [611025]: nano test.txt
+2024-09-21T16:13:02.858162-07:00 femmebabe team: team [611115]: nano test.txt
+2024-09-21T16:13:04.051602-07:00 femmebabe team: team [611025]: nano test.txt
+2024-09-21T16:13:09.728518-07:00 femmebabe team: team [611025]: ls
+2024-09-21T16:13:20.884103-07:00 femmebabe team: team [611258]: nano test.txt
+2024-09-21T16:13:23.444152-07:00 femmebabe team: team [611025]: ls
+2024-09-21T16:13:33.381625-07:00 femmebabe team: team [611025]: cd lotteh
+2024-09-21T16:14:01.996038-07:00 femmebabe team: team [611025]: nano test.txt
+2024-09-21T16:14:11.780402-07:00 femmebabe team: team [611025]: nano test.txt
+2024-09-21T16:15:03.169810-07:00 femmebabe team: team [611025]: nano feed/views.py
+2024-09-21T16:15:12.026279-07:00 femmebabe team: team [611025]: clkear
+2024-09-21T16:15:14.443302-07:00 femmebabe team: team [611025]: clear
+2024-09-21T16:15:21.227030-07:00 femmebabe team: team [489500]: sudo daphnereload
+2024-09-21T16:15:49.017730-07:00 femmebabe team: team [482934]: nano shell/templates/shell/terminal.html 
+2024-09-21T16:15:51.395286-07:00 femmebabe team: team [482934]: sudo doreload
+2024-09-21T16:15:56.272575-07:00 femmebabe team: team [489500]: sudo daphnereload
+2024-09-21T16:17:28.770837-07:00 femmebabe team: team [612445]: clear
+2024-09-21T16:17:37.940403-07:00 femmebabe team: team [612538]: clear
+2024-09-21T16:17:50.418855-07:00 femmebabe team: team [612702]: clear
+2024-09-21T16:18:00.730328-07:00 femmebabe team: team [612797]: clear
+2024-09-21T16:18:03.439903-07:00 femmebabe team: team [612702]: cd lotteh
+2024-09-21T16:18:12.852585-07:00 femmebabe team: team [612702]: nano test.tx
+2024-09-21T16:20:08.480312-07:00 femmebabe team: team [612702]: nano test.txt
+2024-09-21T16:20:11.351219-07:00 femmebabe team: team [612702]: clear
+2024-09-21T16:20:13.758205-07:00 femmebabe team: team [612702]: cd lotteh
+2024-09-21T16:20:16.945230-07:00 femmebabe team: team [612702]: cd ..
+2024-09-21T16:20:22.078622-07:00 femmebabe team: team [612702]: clear
+2024-09-21T16:22:25.209796-07:00 femmebabe team: team [613569]: clear
+2024-09-21T16:22:34.556135-07:00 femmebabe team: team [613569]: cd lotteh
+2024-09-21T16:23:48.634177-07:00 femmebabe team: team [613569]: nano feed/views.py
+2024-09-21T16:23:56.731301-07:00 femmebabe team: team [613569]: clear
+2024-09-21T16:24:33.996832-07:00 femmebabe team: team [613569]: clear
+2024-09-21T16:25:18.744333-07:00 femmebabe team: team [613569]: nano test.txt
+2024-09-21T16:25:51.572704-07:00 femmebabe team: team [613569]: clear
+2024-09-21T16:26:34.500058-07:00 femmebabe team: team [614217]: clear
+2024-09-21T16:26:44.415798-07:00 femmebabe team: team [614217]: clear
+2024-09-21T16:27:03.904606-07:00 femmebabe team: team [614217]: sudo sh -c "sudo backup&" team
+2024-09-21T16:27:18.127707-07:00 femmebabe team: team [614217]: ps -aux | grep backup
+2024-09-21T16:27:27.725756-07:00 femmebabe team: team [614217]: clear
+2024-09-21T16:29:04.227530-07:00 femmebabe team: team [614217]: cd femmebabe-backup-open
+2024-09-21T16:29:08.981111-07:00 femmebabe team: team [614217]: ls x*
+2024-09-21T16:29:15.724064-07:00 femmebabe team: team [614217]: rm x*
+2024-09-21T16:30:31.385199-07:00 femmebabe team: team [614217]: sudo ascript backup
+2024-09-21T16:30:35.057229-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:30:53.756758-07:00 femmebabe team: team [614217]: cd femmebabe-backp
+2024-09-21T16:31:00.297315-07:00 femmebabe team: team [614217]: cd femmebabe-backup
+2024-09-21T16:31:02.734883-07:00 femmebabe team: team [614217]: ls
+2024-09-21T16:31:07.579676-07:00 femmebabe team: team [614217]: rm x*
+2024-09-21T16:31:17.974379-07:00 femmebabe team: team [614217]: rm *.json
+2024-09-21T16:31:21.577318-07:00 femmebabe team: team [614217]: la data
+2024-09-21T16:31:26.027990-07:00 femmebabe team: team [614217]: la data
+2024-09-21T16:31:29.097904-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:31:39.467171-07:00 femmebabe team: team [614217]: cd femmebabe-backup-open/
+2024-09-21T16:31:44.158724-07:00 femmebabe team: team [614217]: ls x*
+2024-09-21T16:31:54.381234-07:00 femmebabe team: team [614217]: ls *.json
+2024-09-21T16:32:16.413067-07:00 femmebabe team: team [614217]: rm *..json
+2024-09-21T16:32:24.050871-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:32:44.432609-07:00 femmebabe team: team [614217]: cd femmebabe-backup
+2024-09-21T16:32:50.080916-07:00 femmebabe team: team [614217]: ls *.json
+2024-09-21T16:32:53.574585-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:33:01.236098-07:00 femmebabe team: team [614217]: cd lotteh/ls *.json
+2024-09-21T16:33:16.924951-07:00 femmebabe team: team [614217]: cd lotteh/
+2024-09-21T16:33:19.983411-07:00 femmebabe team: team [614217]: ls *.jaon
+2024-09-21T16:33:23.960919-07:00 femmebabe team: team [614217]: ls *.json
+2024-09-21T16:33:44.954920-07:00 femmebabe team: team [614217]: rm users.json
+2024-09-21T16:33:49.315757-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:33:55.621373-07:00 femmebabe team: team [614217]: cd femmebabe-backup-open/
+2024-09-21T16:34:01.413835-07:00 femmebabe team: team [614217]: ls *.json
+2024-09-21T16:34:19.307793-07:00 femmebabe team: team [614217]: rm *.json
+2024-09-21T16:34:22.164078-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:34:31.203622-07:00 femmebabe team: team [614217]: cd femmebabe-backup
+2024-09-21T16:34:38.049079-07:00 femmebabe team: team [614217]: ls *.json
+2024-09-21T16:34:41.511435-07:00 femmebabe team: team [614217]: cd
+2024-09-21T16:36:04.387662-07:00 femmebabe team: team [616119]: clear
+2024-09-21T16:36:17.013116-07:00 femmebabe team: team [616119]: ps -aux | grep backup
+2024-09-21T16:36:26.846787-07:00 femmebabe team: team [616119]: ls femmebabe-backup
+2024-09-21T16:36:38.749199-07:00 femmebabe team: team [616119]: ls femmebabe-backup | grep json
+2024-09-21T16:36:59.389668-07:00 femmebabe team: team [616119]: ls femmebabe-backu-openp | grep json
+2024-09-21T16:37:19.779648-07:00 femmebabe team: team [616119]: ls femmebabe-backu-open | grep json
+2024-09-21T16:37:50.510572-07:00 femmebabe team: team [616119]: ls femmebabe-backup-open | grep json
+2024-09-21T16:37:55.061350-07:00 femmebabe team: team [616119]: clear
+2024-09-21T18:07:23.893854-07:00 femmebabe team: team [627216]: clear
+2024-09-21T18:07:26.512788-07:00 femmebabe team: team [627244]: clear
+2024-09-21T18:10:59.645965-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:28.950964-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:31.778586-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:33.217116-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:34.314266-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:35.233902-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:36.211498-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:37.194869-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:38.175224-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:39.088707-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:40.042642-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:40.938040-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:42.060205-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:43.172779-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:44.283411-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:45.340719-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:46.557782-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:48.138342-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:49.416518-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:50.853678-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:11:54.974056-07:00 femmebabe team: team [627216]: cd lotteh/
+2024-09-21T18:20:05.196167-07:00 femmebabe team: team [627216]: nano feed/templates/feed/new_post.html
+2024-09-21T18:20:06.723822-07:00 femmebabe team: team [627216]: nano feed/templates/feed/new_post.html
+2024-09-21T18:20:09.458349-07:00 femmebabe team: team [627216]: sudo doreload
+2024-09-21T18:20:49.773054-07:00 femmebabe team: team [627216]: source venv/bin/activate
+2024-09-21T18:20:53.305712-07:00 femmebabe team: team [627216]: python force_pun
+2024-09-21T18:21:03.427330-07:00 femmebabe team: team [627216]: python force_publish.py 
+2024-09-21T18:21:36.502153-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:40.333279-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:41.699160-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:42.849189-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:43.981195-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:44.981553-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:46.786731-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:47.881046-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:49.005438-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:50.124429-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:21:51.266474-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:23:01.249252-07:00 femmebabe team: team [627216]: nano feed/templates/feed/new_post.html
+2024-09-21T18:23:04.368684-07:00 femmebabe team: team [627216]: sudo doreload
+2024-09-21T18:23:13.259182-07:00 femmebabe team: team [627216]: python force_publish.py 
+2024-09-21T18:23:17.220749-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:23:19.007139-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:23:19.967229-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:23:20.707123-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:23:21.430009-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:24:25.698913-07:00 femmebabe team: team [627216]: watchlogs
+2024-09-21T18:24:26.646034-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:24:49.197595-07:00 femmebabe team: team [627244]: clear
+2024-09-21T18:24:51.880796-07:00 femmebabe team: team [627244]: sudo purgecache
+2024-09-21T18:25:54.487597-07:00 femmebabe team: team [627216]: nano feed/templates/feed/new_post.html
+2024-09-21T18:25:57.817178-07:00 femmebabe team: team [627216]: sudo doreload
+2024-09-21T18:26:02.238096-07:00 femmebabe team: team [627216]: sudo purgecache
+2024-09-21T18:26:03.097474-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:04.125350-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:08.211353-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:08.940721-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:11.338872-07:00 femmebabe team: team [627216]: watchlogs
+2024-09-21T18:26:12.223840-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:13.104915-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:34.629136-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:26:35.797650-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:10.015787-07:00 femmebabe team: team [627216]: nano feed/templates/feed/new_post.html
+2024-09-21T18:27:13.298544-07:00 femmebabe team: team [627216]: sudo doreload
+2024-09-21T18:27:22.290154-07:00 femmebabe team: team [627216]: sudo purgecache
+2024-09-21T18:27:25.440311-07:00 femmebabe team: team [627216]: sudo purgecache
+2024-09-21T18:27:26.283132-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:27.825394-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:28.921784-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:29.948257-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:30.997701-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:32.148726-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:33.238905-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:34.101222-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:34.903330-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:35.995561-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:51.356813-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:52.659049-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:53.798931-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:54.599455-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:55.557177-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:56.626677-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:57.588188-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:58.610205-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:27:59.511262-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:00.340499-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:01.532714-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:02.419878-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:03.469384-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:04.874184-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:05.834813-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:46.995686-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:56.286979-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:58.080086-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:28:59.237863-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:29:00.298078-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:29:01.329222-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:29:12.442636-07:00 femmebabe team: team [627216]: watchlogs
+2024-09-21T18:29:18.888805-07:00 femmebabe team: team [627216]: ps -aux | grep backup
+2024-09-21T18:29:25.457751-07:00 femmebabe team: team [627216]: sudo sh -c "sudo backup&
+2024-09-21T18:29:29.521574-07:00 femmebabe team: team [627216]: sudo sh -c "sudo backup&" team
+2024-09-21T18:38:29.365227-07:00 femmebabe team: team [627216]: ps -aux | grep backup
+2024-09-21T18:40:13.646606-07:00 femmebabe team: team [627216]: LOGS
+2024-09-21T18:40:15.196446-07:00 femmebabe team: team [627216]: logs
+2024-09-21T18:42:24.010102-07:00 femmebabe team: team [627216]: logs
+2024-09-21T23:05:55.989378-07:00 femmebabe team: team [701836]: clear
+2024-09-21T23:06:19.780207-07:00 femmebabe team: team [701836]: cd lotteh/
+2024-09-21T23:06:45.694967-07:00 femmebabe team: team [701836]: nano test.txt
+2024-09-21T23:07:49.155568-07:00 femmebabe team: team [701836]: clear
+2024-09-21T23:07:55.173424-07:00 femmebabe team: team [701836]: clear
+2024-09-21T23:07:58.536038-07:00 femmebabe team: team [701836]: clear
+2024-09-21T23:08:01.366902-07:00 femmebabe team: team [701836]: ls
+2024-09-21T23:08:24.450709-07:00 femmebabe team: team [701836]: rm test.txt.sav*
+2024-09-21T23:08:27.411229-07:00 femmebabe team: team [701836]: ls
+2024-09-21T23:08:56.203567-07:00 femmebabe team: team [701836]: sudp ascript backup
+2024-09-21T23:11:40.597635-07:00 femmebabe team: team [701836]: sudo ascript backup
+2024-09-21T23:12:02.679667-07:00 femmebabe team: team [701836]: rm users.json 
+2024-09-21T23:12:06.624498-07:00 femmebabe team: team [701836]: cd ..
+2024-09-21T23:12:26.229348-07:00 femmebabe team: team [701836]: rm femmebabe-backup/users.json
+2024-09-21T23:12:54.208338-07:00 femmebabe team: team [701836]: rm femmebabe-backup-open/users.json
+2024-09-21T23:13:24.735937-07:00 femmebabe team: team [701836]: cd lotteh
+2024-09-21T23:13:37.695282-07:00 femmebabe team: team [701836]: source venv/bin/activate
+2024-09-21T23:13:43.104151-07:00 femmebabe team: team [701836]: ls
