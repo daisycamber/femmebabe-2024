@@ -79,6 +79,11 @@
             <a class="nav-link" href="{% url 'payments:idscan' %}" title="{{ 'Sign up to scan IDs with a barcode'|trans }}">{{ 'Scan ID'|trans }}</a>
           </li>
           {% endif %}
+          {% if not request.user.profile.vendor %}
+          <li class="nav-item {% if request.path == '/cart/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'payments:cart-card' %}" title="{{ 'Cart'|trans }}">{{ 'Cart'|trans }} <i id="cart-counter"></i></a>
+          </li>
+          {% endif %}
           {% if not request.user.is_authenticated %}
           <li class="nav-item {% if request.path == '/accounts/register/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'users:register' %}" title="{{ 'Join today'|trans }}">{{ 'Sign Up'|trans }}</a>

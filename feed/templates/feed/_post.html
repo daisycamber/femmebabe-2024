@@ -101,6 +101,7 @@
         {% if post.has_auction %}
         <a href="{% url 'feed:auction' post.friendly_name %}" title="{{ 'Bid on this post'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Bid'|trans }}</button></a>
         {% else %}
+        <button class="btn btn-outline-primary" title="Add this to your cart" onclick="addToCart('{{ post.uuid }}');">Add to Cart</button>
 {% if not post.private %}        <a href="{% url 'payments:buy-photo-card' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Buy'|trans }}</button></a>{% endif %}
         <a href="{% url 'payments:buy-photo-crypto' post.author.profile.name %}?id={{ post.uuid }}&crypto={{ default_crypto }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-bitcoin"></i> {{ 'Buy'|trans }}</button></a>
         {% endif %}

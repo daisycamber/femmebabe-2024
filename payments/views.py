@@ -8,6 +8,93 @@ from django.views.decorators.cache import patch_cache_control
 from django.views.decorators.vary import vary_on_cookie
 from .forms import CardPaymentForm
 
+def cart_card(request):
+    from django.conf import settings
+    from django.shortcuts import render
+    from django.contrib.auth.models import User
+    from feed.models import Post
+    from django.template.loader import render_to_string
+    signature = None
+    parent_signature = None
+    vendor = User.objects.get(id=settings.MY_ID, profile__vendor=True)
+    from payments.cart import get_cart_cost
+    from payments.cart import get_cart
+    cart_cost = get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0
+    r = render(request, 'payments/cart_card.html', {'title': 'Shopping Cart', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'business_type': settings.BUSINESS_TYPE, 'helcim_key': settings.HELCIM_KEY, 'form': CardPaymentForm(), 'fee': cart_cost if 'cart' in request.COOKIES else 0, 'cart_contents': get_cart(request.COOKIES), 'vendor': vendor})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
+
+def cart_crypto(request):
+    from django.shortcuts import redirect
+    from django.conf import settings
+    if not request.GET.get('crypto'): return redirect(request.path + '?crypto={}'.format(settings.DEFAULT_CRYPTO))
+    crypto = request.GET.get('crypto')
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=settings.MY_ID, profile__vendor=True)
+    from payments.models import VendorPaymentsProfile
+    profile, created = VendorPaymentsProfile.objects.get_or_create(vendor=user)
+    from payments.crypto import get_payment_address
+    from payments.apis import get_crypto_price
+    from payments.cart import get_cart_cost
+    from payments.cart import get_cart
+    cart_cost = get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0
+    fee = str(int(cart_cost) / get_crypto_price(crypto))
+    address, transaction_id = get_payment_address(user, crypto, fee)
+    from feed.models import Post
+    post_ids = Post.objects.filter(public=True, private=False, published=True).exclude(image=None).order_by('-date_posted').values_list('id', flat=True)[:settings.FREE_POSTS]
+    post = Post.objects.filter(id__in=post_ids).order_by('?').first()
+    from django.shortcuts import render
+    from .forms import BitcoinPaymentForm, BitcoinPaymentFormUser
+    from payments.apis import get_crypto_price
+    usd_fee = int(cart_cost)
+    fee = str(int(cart_cost) / get_crypto_price(crypto))
+    fee_reduced = fee.split('.')[0] + '.' + fee.split('.')[1][:settings.BITCOIN_DECIMALS]
+    if request.method == 'POST':
+        form = BitcoinPaymentForm(request.POST) if request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
+        if form.is_valid():
+            messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            if not (cus_user and cus_user.email != '' and cus_user.email != None):
+                cus_user = None
+                from email_validator import validate_email
+                e = form.cleaned_data.get('email', None)
+                if e:
+                    try:
+                        from security.apis import check_raw_ip_risk
+                        from security.models import SecurityProfile
+                        from users.models import Profile
+                        from users.email import send_verification_email, sendwelcomeemail
+                        from users.views import send_registration_push
+                        valid = validate_email(e, check_deliverability=True)
+                        us = User.objects.filter(email=e).last()
+                        safe = not check_raw_ip_risk(ip, soft=True, dummy=False, guard=True)
+                        if valid and not us and safe:
+                            cus_user = User.objects.create(email=e, username=get_random_username(), password=get_random_string(length=8))
+                            if not hasattr(cus_user, 'profile'):
+                                profile = Profile.objects.create(user=cus_user)
+                                profile.finished_signup = False
+                                profile.save()
+                                security_profile = SecurityProfile.objects.create(user=cus_user)
+                                security_profile.save()
+                            messages.success(request, 'You are now subscribed, check your email for a confirmation. When you get the chance, fill out the form below to make an account.')
+                            send_verification_email(cus_user)
+                            send_registration_push(cus_user)
+                            sendwelcomeemail(cus_user)
+                    except: pass
+            from lotteh.celery import validate_cart_payment
+            cart_cookie = request.COOKIES.get('cart') if 'cart' in request.COOKIES else None
+            validate_cart_payment.apply_async(timeout=60*5, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), cart_cookie,),)
+            validate_cart_payment.apply_async(timeout=60*10, args=(cus_user.id, user.id, float(form.data['amount']) if float(form.data['amount']) > fee_reduced * settings.MIN_BITCOIN_PERCENTAGE else fee_reduced, form.cleaned_data.get('transaction_id'), cart_cookie,),)
+            return redirect(reverse('payments:subscribe-bitcoin-thankyou', kwargs={'username': user.profile.name}))
+    from payments.cart import get_cart_cost
+    from payments.cart import get_cart
+    r = render(request, 'payments/cart_crypto.html', {'title': 'Checkout with Crypto', 'crypto_address': address, 'currencies': settings.CRYPTO_CURRENCIES, 'username': user.profile.name, 'usd_fee': cart_cost, 'cart_contents': get_cart(request.COOKIES), 'profile': profile, 'form': BitcoinPaymentForm(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}) if not request.user.is_authenticated else BitcoinPaymentFormUser(initial={'amount': str(fee_reduced), 'transaction_id': transaction_id}), 'crypto_fee': fee_reduced, 'usd_fee': usd_fee,})
+    if request.user.is_authenticated: patch_cache_control(r, private=True)
+    else: patch_cache_control(r, public=True)
+    return r
+
+
 @csrf_exempt
 def paypal_checkout(request):
     from django.http import HttpResponse
@@ -52,9 +139,14 @@ def paypal_checkout(request):
         'post': 'An exclusive book, video, photo, and or audio from {} delivered by email.'.format(settings.SITE_NAME)
     }
     from django.utils.crypto import get_random_string
+    from payments.cart import get_cart_price
+    from feed.models import Post
+    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
+    if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     token = get_random_string(length=8)
     id, link = get_paypal_link(str(uuid.uuid4()), int(price), token)
-    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, processor='paypal', price=price, pid=pid)
+    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, processor='paypal', price=price, pid=pid, cart=request.COOKIES['cart'] if 'cart' in request.COOKIES else None)
     from django.http import HttpResponse
     import time
     time.sleep(1)
@@ -106,8 +198,12 @@ def square_checkout(request):
     }
     from django.utils.crypto import get_random_string
     token = get_random_string(length=8)
+    from feed.models import Post
+    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
+    if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     id, link = get_payment_link(int(price), str(product), 'Customer Order - ' + product.capitalize() + ' - ' + product_desc[product], email, token, subscription=False if not sub else True)
-    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, price=price, pid=pid, processor='square',)
+    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, price=price, pid=pid, processor='square', cart=request.COOKIES['cart'])
     from django.http import HttpResponse
     import time
     time.sleep(1)
@@ -123,6 +219,9 @@ def paypal(request):
         user = invoice.user
         from django.conf import settings
         vendor = invoice.vendor
+        from payments.cart import process_cart_purchase
+        if invoice.product == 'cart':
+            process_cart_purchase(user, invoice.cart)
         if invoice.product == 'post':
             from feed.models import Post
             post = Post.objects.get(author=vendor, id=invoice.pid)
@@ -183,6 +282,9 @@ def square(request):
         from django.contrib.auth.models import User
         from django.conf import settings
         vendor = invoice.vendor
+        from payments.cart import process_cart_purchase
+        if invoice.product == 'cart':
+            process_cart_purchase(user, invoice.cart)
         if invoice.product == 'post':
             from feed.models import Post
             post = Post.objects.get(author=vendor, id=invoice.pid)
@@ -243,6 +345,9 @@ def helcim(request):
             from django.contrib.auth.models import User
             from django.conf import settings
             vendor = invoice.vendor
+            from payments.cart import process_cart_purchase
+            if invoice.product == 'cart':
+                process_cart_purchase(user, invoice.cart)
             if invoice.product == 'post':
                 from feed.models import Post
                 post = Post.objects.get(author=vendor, id=invoice.pid)
@@ -298,6 +403,10 @@ def invoice(request):
     import random
     from .models import Invoice
     from django.conf import settings
+    from feed.models import Post
+    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
+    if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     headers = {
         'api-token': settings.HELCIM_KEY,
         'content-type': 'application/json'
@@ -391,7 +500,6 @@ def webdev(request):
     if request.user.is_authenticated: patch_cache_control(r, private=True)
     else: patch_cache_control(r, public=True)
     return r
-
 
 @vary_on_cookie
 @cache_page(60*60*24*365)
@@ -509,6 +617,7 @@ def webhook(request):
     from payments.stripe import WEBDEV_DESCRIPTIONS
     from payments.stripe import PROFILE_MEMBERSHIP
     from payments.stripe import PHOTO_PRICE
+    from payments.stripe import CART_ID
     from payments.models import Subscription, PurchasedProduct
     from users.models import Profile
     from security.models import SecurityProfile
@@ -621,6 +730,11 @@ def webhook(request):
                         send_photo_email(user, post)
                         post.paid_users.add(user)
                         post.save()
+                elif account and stripe_product_id == CART_ID:
+                    from payments.cart import process_cart_purchase
+                    invoice = Invoice.objects.filter(pid=int(metadata[0])).first()
+                    if invoice and invoice.product == 'cart':
+                        process_cart_purchase(user, invoice.cart)
                 else:
                     from .stripe import SURROGACY_PRICE_ID
                     if SURROGACY_PRICE_ID == stripe_price_id:
@@ -790,6 +904,53 @@ def onetime_checkout_photo(request):
                 },
             )
             print(checkout_session)
+            return JsonResponse({"sessionId": checkout_session["id"]})
+        except Exception as e:
+            print(str(e))
+            return JsonResponse({"error": str(e)})
+
+@csrf_exempt
+def onetime_checkout_cart(request):
+    import stripe
+    from django.contrib.auth.models import User
+    from django.conf import settings
+    from django.http import JsonResponse
+    from feed.models import Post
+    import random
+    from payments.cart import get_cart_price
+    total = get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0
+    vendor = User.objects.get(id=settings.MY_ID)
+    pid = random.randint(111111, 999999)
+    if request.method == "GET":
+        domain_url = settings.BASE_URL
+        stripe.api_key = settings.STRIPE_API_KEY
+        try:
+            from payments.stripe import CART_ID
+            checkout_session = stripe.checkout.Session.create(
+                client_reference_id = request.user.id if hasattr(request, 'user') and request.user.is_authenticated else random.randint(111111,999999),
+                success_url=domain_url + "/payments/success/?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url=domain_url + "/payments/cancel/",
+                payment_method_types= ["card", "us_bank_account"],
+                mode = "payment",
+                line_items=[
+                    {
+                        "price_data": {"currency": settings.CURRENCY, "unit_amount": int(total) * 100, "product": CART_ID},
+                        "quantity": 1
+                    }
+                ],
+                metadata = [pid],
+                allow_promotion_codes=True,
+                payment_intent_data={
+                    "application_fee_amount": settings.APPLICATION_FEE_PHOTO,
+                    "transfer_data": {"destination": vendor.profile.stripe_id},
+                },
+            )
+            print(checkout_session)
+            from django.utils.crypto import get_random_string
+            token = get_random_string(length=8)
+            from payments.models import Invoice
+            number = ''
+            Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor.id)), number=id, product='cart', processor='stripe', price=total, pid=pid, cart=request.COOKIES['cart'] if 'cart' in request.COOKIES else None)
             return JsonResponse({"sessionId": checkout_session["id"]})
         except Exception as e:
             print(str(e))

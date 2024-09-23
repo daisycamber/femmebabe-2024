@@ -470,7 +470,6 @@ function staticClocks() {
     }
 }
 staticClocks();
-
 function reportContent(uuid){
     var result = window.prompt('What is the issue with this content you would like to report?')
     if(result && result.length > 15) {
@@ -492,3 +491,83 @@ function reportContent(uuid){
         });
     }
 }
+function setCookie(cname, cvalue, exdays) {
+   const d = new Date();
+   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+   let expires = "expires=" + d.toUTCString();
+   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+   let name = cname + "=";
+   let decodedCookie = decodeURIComponent(document.cookie);
+   let ca = decodedCookie.split(';');
+   for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+         c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+         return c.substring(name.length, c.length);
+      }
+   }
+   return "";
+}
+function addToCart(product_id) {
+    var cart = getCookie('cart');
+    if(!cart) {
+        cart = "";
+    }
+    var total;
+    if(cart.includes(product_id)) {
+        var match = cart.match(new RegExp(product_id + '=[0-9]+'));
+        var ms = match[0].split('=');
+        cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + (parseInt(ms[1]) + 1) + ',');
+        total = ms[1] + 1;
+        setCookie('cart', cart, 365);
+    } else {
+        total = 1;
+        cart = cart + product_id + '=1,';
+        setCookie('cart', cart, 365);
+    }
+    totalCart();
+    document.getElementById(product_id + 'total').innerHTML = total;
+}
+function removeFromCart(product_id) {
+    var cart = getCookie('cart');
+    if(!cart) {
+        cart = "";
+    }
+    var total;
+    if(cart.includes(product_id)) {
+        var match = cart.match(new RegExp(product_id + '=[0-9]+'));
+        var ms = match[0].split('=');
+        if(parseInt(ms[1]) > 1) {
+            cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + (parseInt(ms[1]) - 1) + ',');
+            total = ms[1] - 1;
+        } else {
+            cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), '');
+        }
+        setCookie('cart', cart, 365);
+    }
+    cart = getCookie('cart');
+    if(!cart) {
+        cart = "";
+    }
+    if(!cart.includes(product_id)) {
+        total = 0;
+        document.getElementById(product_id).classList.add('fade-hidden');
+        setTimeout(function() {
+            document.getElementById(product_id).classList.add('hide');
+        }, 1000);
+    }
+    totalCart();
+    document.getElementById(product_id + 'total').innerHTML = total;
+}
+function totalCart() {
+    var total = 0;
+    for(match of getCookie('cart').split(',')) {
+        total = total + parseInt(match[1]);
+    }
+    document.getElementById('cart-counter').innerHTML = '(' + new String(total) + ')';
+}
+totalCart();

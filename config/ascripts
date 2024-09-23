@@ -25,3 +25,4 @@ daphnereload
 safereboot
 daphnerestart
 asyncbackup
+makemigrate

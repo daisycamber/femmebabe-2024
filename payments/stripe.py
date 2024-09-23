@@ -14,6 +14,7 @@ WEBDEV_DESCRIPTIONS = ["Simple, static website. Ideal for businesses that don't 
     "Advanced website with facial recognition, biometric security, advanced login, custom authentication, barcode scanning, machine learning and more. Preceding features included. Ideal for large projects and governments. Multiple options available.",
 ]
 SURROGACY_PRICE_ID = "price_1OBuzfDNUMHo0j8JEKdChyTl"
+CART_ID = ""
 
 import stripe
 from django.conf import settings

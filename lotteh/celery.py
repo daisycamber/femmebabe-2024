@@ -440,6 +440,17 @@ def validate_photo_payment(uid, mid, balance, transaction_id, post_id):
         from barcode.tests import document_scanned
         if p.private and document_scanned(user): send_photo_email(user, p)
 
+
+@app.task
+def validate_cart_payment(uid, mid, balance, transaction_id, cart):
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=uid)
+    model = User.objects.get(id=mid)
+    if model.vendor_payments_profile.validate_crypto_transaction(user, balance, transaction_id):
+        from payments.cart import process_cart_purchase
+        process_cart_purchase(user, cart)
+
+
 @app.task
 def remove_secure(path):
     import os

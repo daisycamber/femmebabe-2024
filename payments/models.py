@@ -20,6 +20,7 @@ class Invoice(models.Model):
     processor = models.CharField(max_length=100, default='', null=True, blank=True)
     number = models.CharField(max_length=100, default='', null=True, blank=True)
     token = models.CharField(max_length=100, default='', null=True, blank=True)
+    cart = models.TextField(default='', null=True, blank=True)
 
 class IDScanSubscription(models.Model):
     id = models.AutoField(primary_key=True)
