@@ -768,7 +768,7 @@ USE_OFFSITE = True
 ID_VALID_HOURS = 24 * 12 * 1
 SIG_VALID_HOURS = 24 * 12 * 5
 
-
+ALLOW_MULTIPLE_SALES = False
 
 # Sentry
 import sentry_sdk

@@ -20,7 +20,7 @@ def cart_card(request):
     from payments.cart import get_cart_cost
     from payments.cart import get_cart
     cart_cost = get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0
-    r = render(request, 'payments/cart_card.html', {'title': 'Shopping Cart', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'business_type': settings.BUSINESS_TYPE, 'helcim_key': settings.HELCIM_KEY, 'form': CardPaymentForm(), 'fee': cart_cost if 'cart' in request.COOKIES else 0, 'cart_contents': get_cart(request.COOKIES), 'vendor': vendor})
+    r = render(request, 'payments/cart_card.html', {'title': 'Shopping Cart', 'stripe_pubkey': settings.STRIPE_PUBLIC_KEY, 'business_type': settings.BUSINESS_TYPE, 'helcim_key': settings.HELCIM_KEY, 'form': CardPaymentForm(), 'fee': cart_cost if 'cart' in request.COOKIES else 0, 'cart_contents': get_cart(request.COOKIES), 'vendor': vendor, 'default_crypto': settings.DEFAULT_CRYPTO})
     if request.user.is_authenticated: patch_cache_control(r, private=True)
     else: patch_cache_control(r, public=True)
     return r
@@ -136,12 +136,13 @@ def paypal_checkout(request):
         'membership': 'Subscribe to {}\'s newsletter membership through {}'.format(model.profile.name, settings.SITE_NAME),
         'idscan': 'Buy an ID scanner plan from {}'.format(settings.SITE_NAME),
         'surrogacy': 'Hire a surrogate mother through {}'.format(settings.SITE_NAME),
-        'post': 'An exclusive book, video, photo, and or audio from {} delivered by email.'.format(settings.SITE_NAME)
+        'post': 'An exclusive book, video, photo, and or audio from {} delivered by email.'.format(settings.SITE_NAME),
+        'cart': 'Your selected items, photos, books, video and/or audio, delivered electronically.'
     }
     from django.utils.crypto import get_random_string
-    from payments.cart import get_cart_price
+    from payments.cart import get_cart_cost
     from feed.models import Post
-    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    if product == 'cart' and int((get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0)) != int(price): return HttpResponse(500)
     if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
     if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     token = get_random_string(length=8)
@@ -194,16 +195,18 @@ def square_checkout(request):
         'membership': 'Subscribe to {}\'s newsletter membership through {}'.format(model.profile.name, settings.SITE_NAME),
         'idscan': 'Buy an ID scanner plan from {}'.format(settings.SITE_NAME),
         'surrogacy': 'Hire a surrogate mother through {}'.format(settings.SITE_NAME),
-        'post': 'An exclusive book, video, photo, and or audio from {} delivered by email.'.format(settings.SITE_NAME)
+        'post': 'An exclusive book, video, photo, and or audio from {} delivered by email.'.format(settings.SITE_NAME),
+        'cart': 'Your selected items, photos, books, video and/or audio, delivered electronically.'
     }
     from django.utils.crypto import get_random_string
     token = get_random_string(length=8)
     from feed.models import Post
-    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    from payments.cart import get_cart_cost
+    if product == 'cart' and int((get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0)) != int(price): return HttpResponse(500)
     if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
     if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     id, link = get_payment_link(int(price), str(product), 'Customer Order - ' + product.capitalize() + ' - ' + product_desc[product], email, token, subscription=False if not sub else True)
-    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, price=price, pid=pid, processor='square', cart=request.COOKIES['cart'])
+    Invoice.objects.create(token=token, user=request.user if request.user.is_authenticated else user, vendor=User.objects.get(id=int(vendor)), number=id, product=product, price=price, pid=pid, processor='square', cart=request.COOKIES['cart'] if 'cart' in request.COOKIES else '')
     from django.http import HttpResponse
     import time
     time.sleep(1)
@@ -214,6 +217,12 @@ def paypal(request):
     from .models import Invoice
     invoice = Invoice.objects.get(token=request.GET.get('token', None))
     from payments.paypal import get_payment_status
+    from feed.models import Post
+    from payments.cart import get_cart_cost
+    from django.http import HttpResponse
+    if product == 'cart' and int((get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0)) != int(price): return HttpResponse(500)
+    if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
+    if product == 'membership' and invoice.model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     if get_payment_status(invoice.number):
         from django.contrib.auth.models import User
         user = invoice.user
@@ -404,7 +413,8 @@ def invoice(request):
     from .models import Invoice
     from django.conf import settings
     from feed.models import Post
-    if product == 'cart' and (get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0) != int(price): return HttpResponse(500)
+    from payments.cart import get_cart_cost
+    if product == 'cart' and int((get_cart_cost(request.COOKIES) if 'cart' in request.COOKIES else 0)) != int(price): return HttpResponse(500)
     if product == 'post' and Post.objects.filter(uuid=pid).first().price != str(price): return HttpResponse(500)
     if product == 'membership' and model.vendor_profile.subscription_fee != price: return HttpResponse(500)
     headers = {
@@ -917,8 +927,8 @@ def onetime_checkout_cart(request):
     from django.http import JsonResponse
     from feed.models import Post
     import random
-    from payments.cart import get_cart_price
-    total = get_cart_price(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0
+    from payments.cart import get_cart_cost
+    total = get_cart_cost(request.COOKIES['cart']) if 'cart' in request.COOKIES else 0
     vendor = User.objects.get(id=settings.MY_ID)
     pid = random.randint(111111, 999999)
     if request.method == "GET":

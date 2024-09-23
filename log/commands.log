@@ -517,3 +517,569 @@
 2024-09-22T23:57:04.603707-07:00 femmebabe team: team [818256]: sudo doreload
 2024-09-22T23:57:09.600497-07:00 femmebabe team: team [818256]: sudo daphnereload
 2024-09-22T23:58:20.255907-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T00:01:50.025203-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:02:42.165687-07:00 femmebabe team: team [818256]: nano payments/cart.py
+2024-09-23T00:05:31.251469-07:00 femmebabe team: team [818256]: nano payments/cart.py
+2024-09-23T00:05:34.499637-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:05:37.616485-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:05:50.902486-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:51.855472-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:52.728608-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:53.581495-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:55.019506-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:55.872277-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:56.763250-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:57.659071-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:58.642310-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:05:59.759248-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:06:00.902534-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:06:01.926463-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:06:02.905163-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:09:06.124093-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:09:07.675086-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:09:40.952176-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:09:41.971825-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:10:00.842951-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:10:37.865648-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:10:39.867880-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:10:42.701473-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:10:47.956062-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:10:49.043462-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:10:50.755079-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:10:54.756607-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:10:55.631404-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:10:56.577941-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:10:57.555006-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:10:58.361189-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:10:59.244401-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:00.141468-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:00.965837-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:01.850469-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:03.019664-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:03.997530-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:11:06.079243-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:11:09.977718-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:11:21.320315-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:11:26.020114-07:00 femmebabe team: team [818256]: nano static/main
+2024-09-23T00:12:47.807972-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:13:28.571071-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:13:30.982205-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:13:36.506159-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:13:37.446667-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:13:38.307870-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:14:28.358047-07:00 femmebabe team: team [818256]: purgecache
+2024-09-23T00:19:24.515165-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:19:25.825733-07:00 femmebabe team: team [818256]: purgecache
+2024-09-23T00:19:28.977089-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:22:35.994961-07:00 femmebabe team: team [818256]: nano templates/navbar
+2024-09-23T00:23:24.494200-07:00 femmebabe team: team [818256]: nano templates/navbar.html
+2024-09-23T00:23:28.196261-07:00 femmebabe team: team [818256]: nano templates/navbar.html
+2024-09-23T00:25:30.470918-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:25:34.137377-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:25:36.366727-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T00:25:46.924564-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:47.885112-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:48.681330-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:49.380525-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:50.188760-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:50.972924-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:51.764810-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:52.927126-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:25:59.636663-07:00 femmebabe team: team [818256]: sudo purgecache
+2024-09-23T00:27:24.587961-07:00 femmebabe team: team [818235]: nano static/main
+2024-09-23T00:28:56.639268-07:00 femmebabe team: team [818235]: nano static/main.js 
+2024-09-23T00:29:01.409696-07:00 femmebabe team: team [818235]: nano static/main.js 
+2024-09-23T00:29:03.958795-07:00 femmebabe team: team [818235]: sudo daphnereload
+2024-09-23T00:29:32.906236-07:00 femmebabe team: team [818256]: sudo purgecache
+2024-09-23T00:30:28.937648-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:30:32.402660-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:30:34.192670-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:30:38.412776-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:30:39.524226-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:30:40.422086-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:31:16.084073-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T00:31:33.973903-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:31:35.900728-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:31:39.599744-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:38:54.297706-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:41:11.581334-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:41:12.673707-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:41:15.000068-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:41:16.689681-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:17.591115-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:18.388212-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:19.109767-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:19.850280-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:20.554998-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:21.236418-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:21.979191-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:22.636154-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:23.385444-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:24.176142-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:24.892576-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:25.648998-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:26.400510-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:27.427903-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:28.519010-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:29.375182-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:30.190901-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:30.967112-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:32.090178-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:32.915608-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:33.706954-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:34.574862-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:35.391393-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:41.288787-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:41:42.080199-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:42:16.271726-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:42:53.411407-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:42:57.071719-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T00:44:57.465056-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:44:59.427097-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T00:45:01.246851-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:45:54.590895-07:00 femmebabe team: team [818256]: logs
+2024-09-23T00:47:36.703534-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T00:47:53.659679-07:00 femmebabe team: team [818256]: nano lotteh/settings.py 
+2024-09-23T00:47:56.005644-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T00:48:00.205077-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:13:19.615509-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:13:52.547669-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:14:13.321472-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:14:18.239171-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:18:00.459231-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:18:39.084040-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:20:10.803901-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:20:18.460791-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:20:22.862756-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:22:41.435091-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:23:00.430688-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:23:09.012145-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:23:18.302170-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:24:32.460028-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:26:06.938721-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:27:00.604522-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:27:09.848481-07:00 femmebabe team: team [818256]: sudo systemctl stop daphne
+2024-09-23T01:27:23.887846-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:27:31.548485-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:27:35.452805-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:27:40.963961-07:00 femmebabe team: team [818235]: sudo systemctl stop daphne
+2024-09-23T01:27:42.819774-07:00 femmebabe team: team [818235]: sudo systemctl stop daphne &
+2024-09-23T01:27:51.088390-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:27:58.353475-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:07.736231-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:14.910234-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:22.434605-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:29.371809-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:37.342583-07:00 femmebabe team: team [818235]: ./scripts/daphnetest.sh
+2024-09-23T01:28:40.935576-07:00 femmebabe team: team [818235]: sudo systemctl stop daphne &
+2024-09-23T01:29:26.767773-07:00 femmebabe team: team [903093]: nano feed/views.py
+2024-09-23T01:29:26.784989-07:00 femmebabe team: team [903093]: nano feed/views.py
+2024-09-23T01:29:29.155384-07:00 femmebabe team: team [903093]: nano feed/views.py
+2024-09-23T01:29:30.696118-07:00 femmebabe team: message repeated 7 times: [ team [903093]: nano feed/views.py]
+2024-09-23T01:29:35.978383-07:00 femmebabe team: team [818256]: sudo systemctl stop daphne
+2024-09-23T01:29:39.963235-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:30:11.400537-07:00 femmebabe team: team [903492]: nano feed/views.py
+2024-09-23T01:31:14.834113-07:00 femmebabe team: team [903492]: nano feed/views.py
+2024-09-23T01:31:20.487999-07:00 femmebabe team: team [903492]: clear
+2024-09-23T01:31:23.379439-07:00 femmebabe team: team [903492]: ls
+2024-09-23T01:31:25.263121-07:00 femmebabe team: team [903492]: clear
+2024-09-23T01:31:27.689679-07:00 femmebabe team: team [903492]: ls
+2024-09-23T01:31:29.671713-07:00 femmebabe team: team [903492]: clear
+2024-09-23T01:31:44.154178-07:00 femmebabe team: team [903492]: ps -aux | grep backup
+2024-09-23T01:32:22.810116-07:00 femmebabe team: team [903846]: ps -aux | grep backup
+2024-09-23T01:34:04.051261-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:34:05.381710-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:35:26.684484-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:35:28.238322-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:35:30.849818-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T01:35:37.025902-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:35:38.952066-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:35:39.784148-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:35:40.817430-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:35:41.641578-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:35:43.911830-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:45.008840-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:45.700124-07:00 femmebabe team: message repeated 2 times: [ team [818256]: watchlogs]
+2024-09-23T01:35:46.771252-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:47.192710-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:48.132779-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:49.101972-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:51.107491-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:52.316033-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:53.362978-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:54.305858-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:55.165101-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:56.022323-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:57.114439-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:58.133928-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:35:59.063918-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:36:00.099619-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:36:04.658745-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:36:05.966006-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:36:13.648745-07:00 femmebabe team: team [904947]: ps -aux | grep backup
+2024-09-23T01:36:22.221067-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:36:22.719218-07:00 femmebabe team: team [905081]: ps -aux | grep backup
+2024-09-23T01:36:23.505863-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:37:16.801515-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:37:55.502148-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:38:01.726196-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:38:33.039508-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:38:36.160647-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:38:37.739551-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:38:38.823578-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:38:39.633621-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:39:45.234592-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:39:46.466793-07:00 femmebabe team: team [818256]: logs
+2024-09-23T01:39:57.978834-07:00 femmebabe team: team [818256]: watchlogs
+2024-09-23T01:40:04.509885-07:00 femmebabe team: team [905795]: ps -aux | grep backup
+2024-09-23T01:40:05.229422-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:40:07.835121-07:00 femmebabe team: team [905795]: ps -aux | grep backup
+2024-09-23T01:40:13.183248-07:00 femmebabe team: team [905795]: ps -aux | grep backup
+2024-09-23T01:40:19.237767-07:00 femmebabe team: message repeated 2 times: [ team [905795]: ps -aux | grep backup]
+2024-09-23T01:40:38.085001-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:40:42.565750-07:00 femmebabe team: team [818256]: nano shell/templates/shell/shell.html 
+2024-09-23T01:41:19.741562-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:41:23.118351-07:00 femmebabe team: team [818256]: nano shell/templates/shell/terminal.html 
+2024-09-23T01:41:29.307146-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T01:42:36.837323-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:45.767820-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:47.066055-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:48.054058-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:49.015319-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:50.037722-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:51.033784-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:52.296318-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:53.486144-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:55.267035-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:56.520792-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:57.852490-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:59.092346-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:42:59.495873-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:01.246995-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:02.547500-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:04.017240-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:05.806641-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:07.710147-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:08.792223-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:10.127380-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:16.418896-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T01:43:36.430137-07:00 femmebabe team: team [906674]: ps -aux | grep backup
+2024-09-23T01:43:40.401351-07:00 femmebabe team: team [906674]: clear
+2024-09-23T01:43:44.874445-07:00 femmebabe team: team [906674]: clear
+2024-09-23T01:59:20.498859-07:00 femmebabe team: team [906674]: clear
+2024-09-23T02:27:33.452847-07:00 femmebabe team: team [906674]: clear
+2024-09-23T02:27:38.080515-07:00 femmebabe team: team [906674]: clear
+2024-09-23T02:27:41.211810-07:00 femmebabe team: team [906674]: ls
+2024-09-23T02:36:35.919595-07:00 femmebabe team: team [906674]: ls
+2024-09-23T02:36:48.716665-07:00 femmebabe team: team [906674]: clear
+2024-09-23T02:40:27.085051-07:00 femmebabe team: team [906674]: s
+2024-09-23T02:40:30.172979-07:00 femmebabe team: team [906674]: ls
+2024-09-23T02:40:36.116280-07:00 femmebabe team: team [906674]: ls
+2024-09-23T02:40:44.179752-07:00 femmebabe team: team [906674]: cclear
+2024-09-23T03:05:14.290548-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T03:08:15.855229-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T03:12:26.006052-07:00 femmebabe team: team [818256]: nano feed/email.py 
+2024-09-23T03:12:35.375687-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:16:47.328700-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:16:49.931351-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:20:28.066539-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:20:39.427314-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:20:43.841566-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:21:20.939173-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:21:22.869410-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:22:22.169526-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:24:06.971494-07:00 femmebabe team: team [818256]: nano payments/cart.py 
+2024-09-23T03:24:33.680645-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:24:37.222195-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:24:40.177176-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:24:45.656225-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:50.318037-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:51.930433-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:53.549197-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:54.405124-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:55.074960-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:55.785128-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:56.580054-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:24:57.441233-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:25:00.885609-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:26:35.886614-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:26:37.577535-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:28:41.802790-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:28:43.035351-07:00 femmebabe team: team [818256]: sudo doreload
+2024-09-23T03:28:47.026420-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:28:51.053172-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:52.322763-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:53.549969-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:54.740141-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:55.876462-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:56.924788-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:57.966366-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:28:59.077671-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:31:09.013740-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:31:10.755805-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:37:46.678694-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:37:48.596326-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:38:02.901022-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:38:06.183483-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:41:16.969489-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:41:32.803492-07:00 femmebabe team: team [818256]: nano payments/templates/payments/cart_crypto.html 
+2024-09-23T03:43:15.427149-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:43:18.460926-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:44:26.865784-07:00 femmebabe team: team [818256]: nano payments/templates/payments/cart_crypto.html 
+2024-09-23T03:47:20.299953-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:47:26.128080-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:49:40.663887-07:00 femmebabe team: team [818256]: nano static/main.js 
+2024-09-23T03:49:42.173736-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:50:01.230415-07:00 femmebabe team: team [818256]: logs
+2024-09-23T03:50:09.370112-07:00 femmebabe team: team [818256]: sudo systemctl status daphne
+2024-09-23T03:53:38.857457-07:00 femmebabe team: team [818256]: nano payments/views.py 
+2024-09-23T03:53:49.404113-07:00 femmebabe team: team [818256]: nano payments/views.py 
+2024-09-23T03:54:00.558403-07:00 femmebabe team: team [818256]: nano payments/views.py 
+2024-09-23T03:54:08.267248-07:00 femmebabe team: team [818256]: rm payments/templates/payments/card_card.html 
+2024-09-23T03:54:42.157544-07:00 femmebabe team: team [818256]: nano payments/templates/payments/cart_card.html 
+2024-09-23T03:54:43.459074-07:00 femmebabe team: team [818256]: rm payments/templates/payments/card_card.html 
+2024-09-23T03:54:48.279219-07:00 femmebabe team: team [818256]: sudo daphnereload
+2024-09-23T03:55:07.773693-07:00 femmebabe team: team [818256]: nano payments/views.py 
+2024-09-23T03:56:21.105973-07:00 femmebabe team: team [818256]: sudo sh -c "sudo backup&" team
+2024-09-23T03:56:25.703327-07:00 femmebabe team: team [818256]: ps -aux | grep backup
+2024-09-23T04:04:34.264440-07:00 femmebabe team: team [11172]: sudo purgecache
+2024-09-23T04:04:39.960301-07:00 femmebabe team: team [11172]: clear
+2024-09-23T04:04:42.797834-07:00 femmebabe team: team [11172]: clear
+2024-09-23T04:04:46.240460-07:00 femmebabe team: team [11172]: ls
+2024-09-23T04:04:59.806443-07:00 femmebabe team: team [11172]: ps -aux | grep backup
+2024-09-23T04:05:22.097278-07:00 femmebabe team: team [11172]: cat /etc/ascripts | grep backup
+2024-09-23T04:05:42.623328-07:00 femmebabe team: team [11172]: sudo ascript asyncbackup
+2024-09-23T04:05:49.369313-07:00 femmebabe team: team [11172]: asyncbackup
+2024-09-23T04:05:57.628329-07:00 femmebabe team: team [11172]: ps -aux | grep backup
+2024-09-23T04:08:08.805859-07:00 femmebabe team: team [11172]: nano static/main.js
+2024-09-23T04:08:12.284043-07:00 femmebabe team: team [11172]: cd otteh
+2024-09-23T04:08:15.585708-07:00 femmebabe team: team [11172]: cd lotteh/
+2024-09-23T04:13:17.801028-07:00 femmebabe team: team [11172]: nano static/main.js
+2024-09-23T04:13:56.784567-07:00 femmebabe team: team [11172]: source venv/bin/activate
+2024-09-23T04:14:50.554914-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:14:50.594037-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:15:10.865174-07:00 femmebabe team: team [14261]: sudo purgecache
+2024-09-23T04:15:21.947298-07:00 femmebabe team: team [14261]: cd lotteh/
+2024-09-23T04:15:27.205128-07:00 femmebabe team: team [14261]: ps -aux | grep backup
+2024-09-23T04:15:30.617483-07:00 femmebabe team: team [14261]: ps -aux | grep backup
+2024-09-23T04:15:40.215550-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:15:59.706494-07:00 femmebabe team: team [14501]: sudo purgecache
+2024-09-23T04:30:50.582133-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:30:55.137946-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:30:55.511544-07:00 femmebabe team: message repeated 10 times: [ team [11172]: python approve_login.py 1]
+2024-09-23T04:30:58.194314-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:31:03.448215-07:00 femmebabe team: message repeated 20 times: [ team [11172]: python approve_login.py 1]
+2024-09-23T04:31:03.597636-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:31:04.023457-07:00 femmebabe team: message repeated 2 times: [ team [11172]: python approve_login.py 1]
+2024-09-23T04:31:04.208164-07:00 femmebabe team: team [11172]: python approve_login.py 1
+2024-09-23T04:31:05.517391-07:00 femmebabe team: message repeated 7 times: [ team [11172]: python approve_login.py 1]
+2024-09-23T04:31:09.489550-07:00 femmebabe team: team [11172]: clear
+2024-09-23T05:02:29.122695-07:00 femmebabe team: team [14261]: ps -aux | grep backup
+2024-09-23T05:02:32.632166-07:00 femmebabe team: team [14261]: source venv/bin/activate
+2024-09-23T05:03:09.552089-07:00 femmebabe team: team [14261]: nano crypto/signals.py 
+2024-09-23T05:10:54.315466-07:00 femmebabe team: team [14261]: nano crypto/bot.py 
+2024-09-23T05:11:05.255306-07:00 femmebabe team: team [14261]: sudo systemctl restart celery &
+2024-09-23T05:11:31.042162-07:00 femmebabe team: team [14261]: python force_publish.py 
+2024-09-23T05:14:20.206068-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:07.952886-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:18:13.693632-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:18:16.872895-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T05:18:27.519643-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:29.243526-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:30.302650-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:31.211921-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:32.398376-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:18:33.062011-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:19:00.742008-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:19:43.382318-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:19:48.176048-07:00 femmebabe team: team [14261]: nano payments/cart.py 
+2024-09-23T05:25:18.905486-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:26:47.753068-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:26:54.391866-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T05:26:55.467570-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:27:05.725856-07:00 femmebabe team: team [14261]: cat payments/views.py | grep get_cart_pri
+2024-09-23T05:27:14.589528-07:00 femmebabe team: team [14261]: cat payments/views.py | grep get_cart_pri -nH
+2024-09-23T05:28:17.718341-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:28:30.592147-07:00 femmebabe team: team [14261]: cat lotteh/celery.py | grep -nH payment
+2024-09-23T05:29:26.530922-07:00 femmebabe team: team [14261]: nano payments/verify.py 
+2024-09-23T05:30:46.077096-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:32:57.895706-07:00 femmebabe team: team [14261]: nano payments/verify.py 
+2024-09-23T05:33:04.466838-07:00 femmebabe team: team [14261]: nano payments/models.py 
+2024-09-23T05:34:56.533821-07:00 femmebabe team: team [14261]: nano payments/verify.py 
+2024-09-23T05:35:01.876129-07:00 femmebabe team: team [14261]: nano payments/models.py 
+2024-09-23T05:37:36.201309-07:00 femmebabe team: team [14261]: nano payments/verify.py 
+2024-09-23T05:41:23.482787-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:41:25.002942-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:41:27.886947-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T05:41:32.243284-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:41:33.271468-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:41:34.056482-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:41:41.086232-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T05:41:49.884111-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:42:21.079569-07:00 femmebabe team: team [14501]: logs
+2024-09-23T05:42:23.874697-07:00 femmebabe team: team [14501]: logs
+2024-09-23T05:42:28.821377-07:00 femmebabe team: team [14501]: logs
+2024-09-23T05:42:37.494038-07:00 femmebabe team: team [14501]: logs
+2024-09-23T05:42:39.239991-07:00 femmebabe team: team [14501]: cd lotteh/
+2024-09-23T05:43:06.721505-07:00 femmebabe team: team [14501]: nano payments/views.py 
+2024-09-23T05:43:12.745788-07:00 femmebabe team: team [14501]: cat payments/views.py |grep card
+2024-09-23T05:43:15.331368-07:00 femmebabe team: team [14501]: cat payments/views.py |grep card_cost
+2024-09-23T05:43:18.735792-07:00 femmebabe team: team [14501]: cat payments/views.py |grep card_cost -nH
+2024-09-23T05:43:37.299867-07:00 femmebabe team: team [14501]: nano payments/views.py 
+2024-09-23T05:43:45.171369-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T05:44:05.561746-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:06.762220-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:07.775920-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:08.779999-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:10.018641-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:11.571262-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:13.007220-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:14.351061-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:15.649310-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:17.184396-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:19.300189-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:20.716248-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:21.985338-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:37.024531-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:38.874053-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:39.873448-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:45.895210-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:47.350706-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:48.561430-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:44:49.707320-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:45:38.362715-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:10.902954-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:51:12.445551-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T05:51:17.532454-07:00 femmebabe team: team [14261]: sudo daphnereload
+2024-09-23T05:51:18.528456-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:19.625352-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:20.817521-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:22.183846-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:23.729439-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:24.816888-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:29.923884-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:30.889350-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:31.727831-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:32.644050-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:33.602144-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:34.656590-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:36.063626-07:00 femmebabe team: team [14261]: log
+2024-09-23T05:51:37.109499-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:38.590295-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:39.575680-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:43.501480-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:44.701091-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:45.900630-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:47.229589-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:48.239497-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:49.310760-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:50.303061-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:51.303858-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:52.268420-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:53.169273-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:51:59.358147-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:00.637074-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:01.600195-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:02.894457-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:03.827595-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:04.760495-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:06.774890-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:08.390519-07:00 femmebabe team: team [14261]: sudo systemctl status daphne
+2024-09-23T05:52:36.172856-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:37.943240-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:38.926294-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:40.012289-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:41.155001-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:42.535746-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:43.922724-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:45.246102-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:46.776870-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:48.238646-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:49.733510-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:51.226810-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:53.015771-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:55.714018-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:57.369650-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:52:59.987621-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:53:00.485727-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:53:01.744822-07:00 femmebabe team: team [14261]: watch sudo systemctl status daphne
+2024-09-23T05:53:14.983071-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:16.797667-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:17.873411-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:18.939735-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:20.728773-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:21.525029-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:22.306112-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:24.347027-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:25.228810-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:26.136955-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:27.583574-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:28.541431-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:29.695372-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:30.771260-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:33.014450-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:35.266076-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:53:55.222174-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:55:00.439630-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:55:16.824201-07:00 femmebabe team: team [14261]: sudo tail --lines 5000 /var/log/apache2/error.log
+2024-09-23T05:56:12.582528-07:00 femmebabe team: team [14261]: logs
+2024-09-23T05:57:35.975336-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T05:59:38.022793-07:00 femmebabe team: team [14501]: nano payments/views.py 
+2024-09-23T05:59:43.809324-07:00 femmebabe team: team [14261]: nano payments/templates/payments/cart_card.html 
+2024-09-23T05:59:46.599278-07:00 femmebabe team: team [14261]: nano payments/templates/payments/cart_card.html 
+2024-09-23T05:59:48.906983-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T06:00:47.079447-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:01:02.469274-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:02:10.389124-07:00 femmebabe team: team [14261]: nano payments/templates/payments/cart_card.html 
+2024-09-23T06:04:52.504130-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T06:05:04.130776-07:00 femmebabe team: team [14261]: cat payments/views.py | grep cart -nH
+2024-09-23T06:05:35.490066-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T06:05:50.422236-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T06:05:56.593588-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:06:00.701892-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:06:02.071893-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:06:03.449439-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:06:04.888781-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:06:44.625309-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T06:09:07.683563-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T06:09:31.142665-07:00 femmebabe team: team [14261]: nano payments/cart.py 
+2024-09-23T06:09:46.555091-07:00 femmebabe team: team [14261]: nano payments/verify.py 
+2024-09-23T06:09:49.366327-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T06:10:26.749217-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T06:10:41.178569-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T06:10:47.816409-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T06:10:50.684115-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:16:03.483104-07:00 femmebabe team: team [14261]: nano payments/views.py 
+2024-09-23T06:16:06.943852-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T06:16:30.770114-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:16:32.533700-07:00 femmebabe team: team [14261]: logs
+2024-09-23T06:17:33.552302-07:00 femmebabe team: team [14261]: ps -aux | grep backup
+2024-09-23T06:17:36.578739-07:00 femmebabe team: team [14261]: sudo sh -c 
+2024-09-23T06:17:41.840917-07:00 femmebabe team: team [14261]: sudo sh -c "sudo backup&" team
+2024-09-23T07:43:24.931100-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T07:43:29.011572-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T07:46:27.710101-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:29.787715-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:31.181988-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:32.191472-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:33.474454-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:36.831177-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:46:37.954221-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:48:14.402492-07:00 femmebabe team: team [14261]: logs
+2024-09-23T07:48:18.178684-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T07:48:56.898839-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T07:48:58.648727-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T07:55:04.899112-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T07:55:06.574275-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T08:10:09.321937-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T08:10:10.332179-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T08:10:14.468656-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T08:10:15.894036-07:00 femmebabe team: team [14261]: logs
+2024-09-23T08:12:30.418324-07:00 femmebabe team: team [14501]: nano payments/views.py 
+2024-09-23T08:12:33.500118-07:00 femmebabe team: team [14261]: watchlogs
+2024-09-23T08:12:48.182179-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T08:12:50.350058-07:00 femmebabe team: team [14261]: sudo doreload
+2024-09-23T08:14:40.354794-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T08:14:51.228418-07:00 femmebabe team: team [14261]: nano feed/templates/feed/new_post.html
+2024-09-23T08:15:03.654085-07:00 femmebabe team: team [14261]: nano web/generate.py 
+2024-09-23T08:15:07.306327-07:00 femmebabe team: team [14261]: asyncbackup

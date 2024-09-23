@@ -5,8 +5,8 @@ from .binance import create_order, get_crypto_price
 from datetime import datetime
 import traceback
 
-STOP_LOSS = 0.000000001
-TAKE_PROFIT = 0.000000002
+STOP_LOSS = 0.002
+TAKE_PROFIT = 0.002
 
 def run_bot_once(id):
     bot = Bot.objects.get(id=id)
@@ -19,7 +19,7 @@ def run_bot_once(id):
     if ticker_data is not None:
         # STEP 2: COMPUTE THE TECHNICAL INDICATORS & APPLY THE TRADING STRATEGY
         trade_rec_type = get_trade_recommendation(ticker_data)
-        print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}  TRADING RECOMMENDATION: {trade_rec_type}')
+        print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")} TRADING RECOMMENDATION: {trade_rec_type}')
         # STEP 3: EXECUTE THE TRADE
         if (trade_rec_type == 'BUY' and not currently_holding) or (trade_rec_type == 'SELL' and currently_holding):
             last_trade_price = bot.last_trade_price_holding if currently_holding else bot.last_trade_price_not_holding
@@ -51,8 +51,8 @@ def run_bot_once(id):
             t = Trade.objects.create(ticker=bot.ticker, bot=bot, amount=amount, position=trade_rec_type, amount_usd=amount*current_price)
             bot.notify(trade_rec_type + ' ' + bot.ticker.upper().split('/')[0 if currently_holding else 1] + '/' + bot.ticker.upper().split('/')[1 if currently_holding else 0] - '${}'.format(round(amount * current_price, 2)))
 #            if not trade_successful:
-#                print('Failed trade')
- #               return
+ #                print('Failed trade')
+  #               return
         else:
             bot.rec = trade_rec_type
             bot.save()

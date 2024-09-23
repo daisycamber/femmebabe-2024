@@ -517,12 +517,12 @@ function addToCart(product_id) {
     if(!cart) {
         cart = "";
     }
-    var total;
+    var total = 0;
     if(cart.includes(product_id)) {
         var match = cart.match(new RegExp(product_id + '=[0-9]+'));
         var ms = match[0].split('=');
-        cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + (parseInt(ms[1]) + 1) + ',');
-        total = ms[1] + 1;
+        cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + new String(parseInt(ms[1]) + 1) + ',');
+        total = parseInt(ms[1]) + 1;
         setCookie('cart', cart, 365);
     } else {
         total = 1;
@@ -530,20 +530,23 @@ function addToCart(product_id) {
         setCookie('cart', cart, 365);
     }
     totalCart();
-    document.getElementById(product_id + 'total').innerHTML = total;
+    var pid = document.getElementById(product_id + 'total')
+    if(pid) {
+        pid.innerHTML = total;
+    }
 }
 function removeFromCart(product_id) {
     var cart = getCookie('cart');
     if(!cart) {
         cart = "";
     }
-    var total;
+    var total = 0;
     if(cart.includes(product_id)) {
         var match = cart.match(new RegExp(product_id + '=[0-9]+'));
         var ms = match[0].split('=');
         if(parseInt(ms[1]) > 1) {
-            cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + (parseInt(ms[1]) - 1) + ',');
-            total = ms[1] - 1;
+            cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), ms[0] + '=' + new String(parseInt(ms[1]) - 1) + ',');
+            total = parseInt(ms[1]) - 1;
         } else {
             cart = cart.replace(new RegExp(product_id + '=[0-9]+,'), '');
         }
@@ -561,13 +564,24 @@ function removeFromCart(product_id) {
         }, 1000);
     }
     totalCart();
-    document.getElementById(product_id + 'total').innerHTML = total;
+    var pid = document.getElementById(product_id + 'total')
+    if(pid) {
+        pid.innerHTML = total;
+    }
 }
 function totalCart() {
     var total = 0;
-    for(match of getCookie('cart').split(',')) {
-        total = total + parseInt(match[1]);
+    var arr = getCookie('cart').split(',');
+    for(var x = 0; x < arr.length; x++) {
+        total = total + parseInt(arr[x].split('=')[1]);
     }
-    document.getElementById('cart-counter').innerHTML = '(' + new String(total) + ')';
+    total = arr.length-1;
+    if(document.getElementById('cart-counter')) {
+        if(total > 0) {
+            document.getElementById('cart-counter').innerHTML = '(' + total.toString() + ')';
+        } else {
+            document.getElementById('cart-counter').innerHTML = '';
+        }
+    }
 }
 totalCart();

@@ -133,13 +133,7 @@ const term = new Terminal({
 	scrollback: false,
     windowsMode: true,
 });
-function fireKey(key) {
-	sendTermData(key);
-}
 var isCommand = false;
-function fireCommand() {
-    isCommand = !isCommand;
-}
 function toggleKeyboard() { 
     if(keyboard.classList.contains('hide')) {
         keyboard.classList.remove('hide');
@@ -181,18 +175,6 @@ document.body.addEventListener('click', function(event) {
 });
 document.body.addEventListener('touchmove', function(event) {
 	term.focus();
-});
-term.onData((data) => {
-	if(!isCommand) {
-        sendTermData(data);
-    }
-    if(isCommand) {
-        isCommand = false;
-        const keyCode = data.toUpperCase().charCodeAt(0);
-        const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
-        var comd = String.fromCodePoint(keyCode - 64);
-        fireKey(comd);
-    }
 });
 function callCommand(key) {
     if(isCommand) {
@@ -269,12 +251,25 @@ function decrypt(encrypted, key) {
      var decrypted =  CryptoJS.AES.decrypt(encrypted, key, {mode:CryptoJS.mode.ECB});
      return decrypted.toString(CryptoJS.enc.Utf8);
 }
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+var termKey;
 var socketOpen = false;
 function openTermSocket() {
     term.write('Opening websocket...\r\n');
+    termKey = makeid(16);
 	termWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/terminal/websocket/?rows=" + rows + "&cols=" + cols + "&token={{ token }}");
 	termWebsocket.onmessage = (event) => {
-        term.write(decrypt(unescape(event.data).replace(' ', '+'), "{{ term_key }}"));
+        term.write(decrypt(unescape(event.data).replace(' ', '+'), termKey));
 	};
 	termWebsocket.onclose = (event) => {
 		console.log('Socket closed');
@@ -285,10 +280,28 @@ function openTermSocket() {
 	termWebsocket.onopen = (event) => {
 		console.log('Socket open');
         term.write('Socket connected.\r\n');
-        termWebsocket.send("{{ term_key }}");
+        termWebsocket.send(termKey);
 		socketOpen = true;
 	};
 }
+function fireCommand() {
+    isCommand = !isCommand;
+}
+function fireKey(key) {
+	sendTermData(key);
+}
+term.onData((data) => {
+	if(!isCommand) {
+        sendTermData(data);
+    }
+    if(isCommand) {
+        isCommand = false;
+        const keyCode = data.toUpperCase().charCodeAt(0);
+        const upper = String.fromCharCode((isMobileDevice)?keyCode:keyCode).toUpperCase();
+        var comd = String.fromCodePoint(keyCode - 64);
+        fireKey(comd);
+    }
+});
 openTermSocket();
 function encrypt(message, key) {
     key = CryptoJS.enc.Utf8.parse(key);
@@ -297,6 +310,7 @@ function encrypt(message, key) {
     return encrypted;
 }
 function sendTermData(data) {
-    if(termWebsocket.readyState == WebSocket.OPEN) termWebsocket.send(escape(encrypt(data, "{{ term_key }}")));
+    if(termWebsocket.readyState == WebSocket.OPEN) termWebsocket.send(escape(encrypt(data, termKey)));
 }
 {% endblock %}
+

@@ -166,22 +166,24 @@ $(document).ready(function() {
 	});
 });
 var current = 0;
-function uploadFile(data, cntr) { 
+function uploadFile(data, cntr) {
     var pcounter = cntr;
     console.log(pcounter);
     progress[pcounter] = document.getElementById("progress" + pcounter);
     var id = data.get("confirmation_id");
     $.ajax({
 	    xhr: function() {
-		    var thexhr = new window.XMLHttpRequest();
+		    let thexhr = new window.XMLHttpRequest();
             thexhr.upload.theProgress = progress[pcounter];
             thexhr.theProgress = progress[pcounter];
             thexhr.upload.addEventListener("progress", function(evt) {
       	        if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
     	            percentComplete = parseInt(percentComplete * 100);
-		            evt.target.theProgress.innerHTML = percentComplete + '%';
-        			evt.target.theProgress.value = percentComplete;
+		            let currentProgress = this.theProgress;
+                    if(!currentProgress) { currentProgress = this.upload.theProgress; }
+                    currentProgress.innerHTML = percentComplete + '%';
+        			currentProgress.value = percentComplete;
 	        	}
             });
 		    return thexhr;

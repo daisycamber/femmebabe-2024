@@ -22,6 +22,14 @@ def verify_payments():
             user = invoice.user
             from django.contrib.auth.models import User
             from django.conf import settings
+            from feed.models import Post
+            from payments.cart import get_card_cost
+            from django.http import HttpResponse
+            product = invoice.product
+            price = invoice.price
+            if product == 'cart' and (get_cart_cost(invoice.cart) if invoice.cart else 0) != int(price): return
+            if product == 'post' and Post.objects.filter(uuid=invoice.pid).first().price != str(price): return
+            if product == 'membership' and invoice.vendor.vendor_profile.subscription_fee != price: return
             vendor = invoice.vendor
             if invoice.product == 'post':
                 from feed.models import Post
@@ -37,7 +45,7 @@ def verify_payments():
                     post.paid_users.add(user)
                     post.save()
             if invoice.product == 'surrogacy':
-                mother = User.objects.get(profile__stripe_id=account)
+                mother = vendor
                 from users.tfa import send_user_text
                 send_user_text(mother, '{} (@{}) has purchased a surrogacy plan with you. Please update them with details.'.format(user.verifications.last().full_name, user.username))
                 from payments.surrogacy import save_and_send_agreement

@@ -1,4 +1,4 @@
-overwrite = True
+overwrite = False
 import os
 from feed.models import Post
 from django.template.loader import render_to_string

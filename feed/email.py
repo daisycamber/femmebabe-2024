@@ -15,7 +15,7 @@ def send_photo_email(user, post):
         'photo': photo_url,
     })
     if not post.file or not os.path.exists(post.file.path): post.download_file()
-    att = [post.file.path]
+    att = [post.file.path if post.file else None]
     send_html_email(user, 'Your Photo From  {}, {}'.format(settings.SITE_NAME, user.username), html_message, attachmments=att)
 
 def send_photos_email(user, posts):
@@ -28,9 +28,15 @@ def send_photos_email(user, posts):
     from feed.models import Post
     photo_urls = []
     files = []
+    from feed.tests import document_scanned
+    authenticated = document_scanned(user)
     for photo in posts:
-        if photo.image: photo_urls = photo_urls + [photo.get_image_url()]
-        if photo.file: files = files + [photo.file.path]
+        if authenticated and post.private:
+            if photo.image: photo_urls = photo_urls + [photo.get_image_url()]
+            if photo.file: files = files + [photo.file.path]
+        elif not post.private:
+            if photo.image: photo_urls = photo_urls + [photo.get_image_url()]
+            if photo.file: files = files + [photo.file.path]
     html_message = render_to_string('feed/photo_email.html', {
         'site_name': settings.SITE_NAME,
         'user': user,

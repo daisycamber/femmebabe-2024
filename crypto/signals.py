@@ -1,7 +1,7 @@
 import talib
 import numpy as np
 
-alt = True
+alt = False
 digits = 0
 
 def fix(digit):
