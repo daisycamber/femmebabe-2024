@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/crypto-js.min.js"></script>
+{% endblock %}
 {% block content %}
 <legend>NFC Verification</legend>
 <p>Place the NFC device near the back of the phone. <a href="{% url 'security:mrz' %}" title="Use MRZ instead">Use MRZ instead</a> or <a href="{{ request.path }}" about="_blank" title="New tab">Load in New Tab</a> <button class="btn btn-sm btn-outline-info" onclick="window.location.reload();" style="float: right;"><i class="bi bi-arrow-clockwise"></i></button></p>
@@ -9,11 +12,23 @@
 <p id="errors">Tap the screen to enable NFC.</p>
 {% endblock %}
 {% block javascript %}
+function decrypt(encrypted, key) {
+     key = CryptoJS.enc.Utf8.parse(key);
+     var decrypted = CryptoJS.AES.decrypt(unescape(encrypted), key, {mode:CryptoJS.mode.ECB});
+     return decrypted.toString(CryptoJS.enc.Utf8);
+}
+function encrypt(message, key) {
+    key = CryptoJS.enc.Utf8.parse(key);
+    var encrypted = CryptoJS.AES.encrypt(message, key, {mode: CryptoJS.mode.ECB});
+    encrypted = encrypted.toString();
+    return escape(encrypted);
+}
 var successfulWrite = false;
 var successfulRead = false;
 var form = document.getElementById('nfc-form');
 var signal = document.getElementById('signal');
 var redirecting = false;
+var theKey = "{{ pub_aes_key }}";
 function writeData() {           
             var formData = new FormData(form);
             $.ajax({
@@ -24,17 +39,17 @@ function writeData() {
                cache: false,
                contentType: false,
                processData: false,
-	       tryCount: 0,
-	       retryLimit: 5,
+    	       tryCount: 0,
+    	       retryLimit: 5,
                error: function(xhr, textStatus, errorThrown) {
-			this.tryCount++;
-			if(this.tryCount > this.retryLimit){
-				successfulRead = false;
-				successfulWrite = false;
-				document.getElementById('errors').innerHTML = errorThrown.message;
-				return;
-			}
-			$.ajax(this);
+        			this.tryCount++;
+        			if(this.tryCount > this.retryLimit){
+        				successfulRead = false;
+        				successfulWrite = false;
+        				document.getElementById('errors').innerHTML = errorThrown.message;
+        				return;
+        			}
+        			$.ajax(this);
                },
                success: function(response) {
                    if(response == 'y' && !redirecting) {
@@ -66,29 +81,29 @@ function readTag() {
         if(successfulRead) { return; }
  	{% if request.GET.generate %}
 		var toWrite = {records: [{
-                  recordType: "url",
-                  data: "{{ towrite_url }}"
+            recordType: "url",
+            data: "{{ towrite_url }}"
 		}, {
-                  recordType: "text",
-                  data: "{{ nfc_data }}"
+            recordType: "text",
+            data: "{{ nfc_data }}"
 		}],};
 		ndef.write(toWrite);
 	{% endif %}
-       document.getElementById('errors').innerHTML= 'Read tag.';
+        document.getElementById('errors').innerHTML= 'Read tag.';
         signal.innerHTML = '<i class="bi bi-reception-3"></i>';
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
            if(decoder.decode(record.data) == '{{ base_url }}') continue;
            document.getElementById('errors').innerHTML= 'Record detected.';
-           document.getElementById('id_nfc_data_read').value = decoder.decode(record.data);
-           document.getElementById('id_nfc_id').value = event.serialNumber;
+           document.getElementById('id_nfc_data_read').value = encrypt(decoder.decode(record.data), theKey);
+           document.getElementById('id_nfc_id').value = encrypt(event.serialNumber, theKey);
            successfulRead = true;
          }
-                           successfulWrite = true;
-			      signal.innerHTML = '<i class="bi bi-reception-4"></i>';
-                           document.getElementById('errors').innerHTML= 'Data written, confirming.';
-                           document.getElementById('id_nfc_data_written').value = "{{ nfc_data }}";
-			writeData();
+           successfulWrite = true;
+           signal.innerHTML = '<i class="bi bi-reception-4"></i>';
+           document.getElementById('errors').innerHTML= 'Data written, confirming.';
+           document.getElementById('id_nfc_data_written').value = "{{ nfc_data }}";
+		   writeData();
         } catch(error) {
            document.getElementById('errors').innerHTML= error.message;
         }
@@ -117,7 +132,7 @@ document.body.addEventListener('touchmove', function(event) {
 });
 if (!("NDEFReader" in window)) {
 	var readerPresent = false;
-        document.getElementById('errors').innerHTML= 'Insert the USB NFC reader.';
+    document.getElementById('errors').innerHTML = 'Insert the USB NFC reader.';
 	var nfcid = null;
 	var nfcdata = null;
 	function openSocket() {
@@ -133,16 +148,16 @@ if (!("NDEFReader" in window)) {
 			        document.getElementById('errors').innerHTML= 'Scan the tag.';
 			}
 			readerPresent = true;
-			console.log("Message from server ", event.data);
-			var data = event.data;
-/*			if(data.includes("Text record: ")) {
+			var data = decrypt(event.data, "{{ rel_aes_key }}");
+			console.log("Message from server ", data);
+            /*if(data.includes("Text record: ")) {
 				nfcdata = data.split("Text record: ")[1];
-				document.getElementById('id_nfc_data_read').value = nfcdata;
+				document.getElementById('id_nfc_data_read').value = encrypt(nfcdata, theKey);
 			}*/
 			if(data.includes("NFCID =")) {
 			        signal.innerHTML = '<i class="bi bi-reception-3"></i>';
 				    nfcid = data.split("= ")[1].slice(0, -2).replaceAll(" ", ":");
-	       			document.getElementById('id_nfc_id').value = nfcid;
+	       			document.getElementById('id_nfc_id').value = encrypt(nfcid, theKey);
 			}
 			if(nfcid) {/* && nfcdata) {*/
 				console.log(nfcid);

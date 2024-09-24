@@ -172,7 +172,7 @@ def scan_barcode(path):
     reader = zxing.BarCodeReader()
     barcode = str(reader.decode(path))
     matches = re.findall("raw='([^']+)'", str(barcode))
-    fmatch = re.findall("format='([\w+]+)'", str(barcode))
+    fmatch = re.findall("format='([\\w+]+)'", str(barcode))
     if not 'PDF_417' in fmatch:
         print(fmatch)
         return False
@@ -332,6 +332,11 @@ def scan_nfc(request):
     if request.method == 'POST':
         form = NFCScanForm(request.POST)
         if form.is_valid():
+            from security.crypto import decrypt
+            import urllib.parse
+            print(form.cleaned_data.get('nfc_id'))
+            form.instance.nfc_id = decrypt(urllib.parse.unquote(form.cleaned_data.get('nfc_id', None)), settings.PUB_AES_KEY)
+            form.instance.nfc_data = decrypt(urllib.parse.unquote(form.cleaned_data.get('nfc_data', None)), settings.PUB_AES_KEY) if form.cleaned_data.get('nfc_data', None) else None
             allowed = NFCScan.objects.filter(user=request.user).count() == 0 or (NFCScan.objects.filter(user=request.user, nfc_id=form.cleaned_data.get('nfc_id', None), valid=True).count() > 0) or (request.GET.get('generate', False) and face_mrz_or_nfc_verified(request))
             if not allowed: return HttpResponse('n')
             form.instance.user = request.user
@@ -347,6 +352,8 @@ def scan_nfc(request):
         'session_key': request.session.session_key,
         'base_url': settings.BASE_URL,
         'towrite_url': settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': request.user.profile.name}) + '?coupon=' + settings.COUPON_CODE, #settings.STATIC_SITE_URL,
+        'pub_aes_key': settings.PUB_AES_KEY,
+        'rel_aes_key': settings.REL_AES_KEY
     })
 
 

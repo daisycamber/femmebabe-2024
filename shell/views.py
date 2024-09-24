@@ -29,7 +29,7 @@ def terminal(request):
     from shell.models import ShellLogin
     import urllib
     from django.utils.crypto import get_random_string
-    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': urllib.parse.quote(request.user.profile.make_shell_token()), 'term_key': get_random_string(16)})
+    return render(request, 'shell/terminal.html', {'title': 'Terminal', 'full': True, 'token': urllib.parse.quote(request.user.profile.make_shell_token()), 'term_key': get_random_string(16), 'no_overscroll': True})
 
 @csrf_exempt
 @login_required

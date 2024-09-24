@@ -1,4 +1,5 @@
 overwrite = False
+PRIV_POSTS = 24
 import os
 from feed.models import Post
 from django.template.loader import render_to_string
@@ -11,6 +12,7 @@ from django.urls import reverse
 
 def generate_site():
     global overwrite
+    global priv_posts
     from feed.templatetags.app_filters import embedlinks, addhttpstodomains, highlightcode
     images = ''
     init_images = ''
@@ -78,7 +80,31 @@ def generate_site():
     index = render_to_string('web/index.html', context)
     with open(os.path.join(settings.BASE_DIR, 'web/site/', 'index.html'), 'w') as file:
         file.write(index)
-    urls = ['/','/?p=1','/p=2','/?p=3','/?p=4']
+    news = render_to_string('web/news.html', context)
+    with open(os.path.join(settings.BASE_DIR, 'web/site/', 'news.html'), 'w') as file:
+        file.write(news)
+    contact = render_to_string('web/contact.html', context)
+    with open(os.path.join(settings.BASE_DIR, 'web/site/', 'contact.html'), 'w') as file:
+        file.write(contact)
+    landing = render_to_string('web/landing.html', context)
+    with open(os.path.join(settings.BASE_DIR, 'web/site/', 'landing.html'), 'w') as file:
+        file.write(landing)
+    import urllib.parse
+    from security.crypto import encrypt
+    images = ''
+    count = 0
+    for post in Post.objects.filter(uploaded=True, private=True, posted=True, published=True, feed="private").exclude(image_bucket=None).order_by('-date_posted')[:PRIV_POSTS]:
+        if post.image and post.image:
+            img_url = post.get_image_url()
+            if not img_url: img_url = post.image_bucket.url if post.image_bucket else post.author.profile.get_image_url
+            count = count + 1
+            images = images + '<div id="div{}">{}'.format(count, post.content) + ('<img width="100%" height="auto" src="{}" id="img{}" alt="{}"/>'.format(img_url, count, shorttitle(post.id)) if post.image else '')
+            images = images + '<p>{} | {} | {}</p></div><hr>\n'.format('<a href="{}/{}" title="{}">View</a>'.format(settings.BASE_URL, post.friendly_name, 'View Post - {} by {}'.format(shorttitle(post.id), post.author.profile.name)), '<a href="{}" title="{}">Buy</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid), 'Buy on {}'.format(settings.SITE_NAME)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
+    context['images'] = urllib.parse.quote(encrypt(images, settings.PRV_AES_KEY))
+    private = render_to_string('web/private.html', context)
+    with open(os.path.join(settings.BASE_DIR, 'web/site/', 'private.html'), 'w') as file:
+        file.write(private)
+    urls = ['/', '/news', '/landing','/private','/index','/contact']
     context['footer'] = False
     for post in Post.objects.filter(public=True, posted=True, published=True, feed="blog").union(Post.objects.filter(uploaded=True, public=True, offsite=True, posted=True, published=True, feed="private").exclude(image_bucket=None)).order_by('-date_posted'):
         url = '/{}'.format(post.friendly_name)

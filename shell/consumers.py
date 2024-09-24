@@ -79,14 +79,14 @@ def terminal_thread(self, channel):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         from security.crypto import encrypt
-        import urllib
+        import urllib.parse
         loop.run_until_complete(send(self, urllib.parse.quote(encrypt(output, secret=self.token))))
         loop.close()
 
 @sync_to_async
 def receive_data(self, text_data):
     from security.crypto import decrypt
-    import urllib
+    import urllib.parse
     self.channel.send(decrypt(urllib.parse.unquote(text_data), secret=self.token))
 
 
@@ -172,14 +172,14 @@ def shell_thread(self, channel):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         from security.crypto import encrypt
-        import urllib
+        import urllib.parse
         loop.run_until_complete(send(self, urllib.parse.quote(encrypt(highlight_shell(shell_fix(output)), secret=self.key))))
         loop.close()
 
 @sync_to_async
 def receive_data_shell(self, text_data):
     from security.crypto import encrypt, decrypt
-    import urllib
+    import urllib.parse
     print('Key: {}'.format(self.key))
     command = decrypt(urllib.parse.unquote(text_data), secret=self.key)
     loop = asyncio.new_event_loop()

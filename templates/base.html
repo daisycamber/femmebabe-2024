@@ -71,11 +71,12 @@
         {% endblock %}
         {% block style %}
         {% endblock %}
-        {% if darkmode %}
+        {% if darkmode %}        
         body {
                 background-color: {{ background_color_dark }} !important;
         }
         {% endif %}
+        {% if no_overscroll %}html, body { overscroll-behavior: none; }{% endif %}
         </style>
         <link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
         {% if darkmode %}
