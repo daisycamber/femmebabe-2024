@@ -103,17 +103,7 @@ window.addEventListener('keydown', function(event) {
 	}*/
 });
 var socketOpen = false;
-function decrypt(encrypted, key) {
-     key = CryptoJS.enc.Utf8.parse(key);
-     var decrypted =  CryptoJS.AES.decrypt(encrypted, key, {mode:CryptoJS.mode.ECB});
-     return decrypted.toString(CryptoJS.enc.Utf8);
-}
-function encrypt(message, key) {
-    key = CryptoJS.enc.Utf8.parse(key);
-    var encrypted = CryptoJS.AES.encrypt(message, key, {mode: CryptoJS.mode.ECB});
-    encrypted =encrypted.toString();
-    return encrypted;
-}
+{% include 'crypto.js' %}
 function makeid(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -130,7 +120,7 @@ function openShellSocket() {
     shellWebsocket = new WebSocket("wss://" + window.location.hostname + "/ws/shell/websocket/?token={{ token }}");
     termKey = makeid(16);
     shellWebsocket.onmessage = (event) => {
-	    document.getElementById("command-output").insertAdjacentHTML("beforeend", decrypt(unescape(event.data).replace(' ', '+'), termKey));
+	    document.getElementById("command-output").insertAdjacentHTML("beforeend", decrypt(event.data, termKey));
 		{% if request.GET.scroll %}window.scrollBy(0,10000);{% endif %}
     };
     shellWebsocket.onclose = (event) => {
@@ -146,6 +136,6 @@ function openShellSocket() {
 }
 openShellSocket();
 function sendTermData(data) {
-    if(shellWebsocket.readyState == WebSocket.OPEN) shellWebsocket.send(escape(encrypt(data, termKey)));
+    if(shellWebsocket.readyState == WebSocket.OPEN) shellWebsocket.send(encrypt(data, termKey));
 }
 {% endblock %}

@@ -1,7 +1,9 @@
 import base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad,unpad
+from Crypto import Random
 from django.conf import settings
+from Crypto.Random import get_random_bytes
 
 def encrypt(raw, secret=None):
     key = settings.AES_KEY #Must Be 16 char for AES128
@@ -22,8 +24,3 @@ def decrypt(raw, secret=None):
     cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
     return unpad(cipher.decrypt(enc),16).decode("utf-8")
 
-#encrypted = encrypt(data)
-#print('encrypted ECB Base64:',encrypted.decode("utf-8", "ignore"))
-
-#decrypted = decrypt(encrypted)
-#print('data: ',decrypted.decode("utf-8", "ignore"))

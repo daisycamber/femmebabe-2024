@@ -334,10 +334,23 @@ def scan_nfc(request):
         if form.is_valid():
             from security.crypto import decrypt
             import urllib.parse
-            print(form.cleaned_data.get('nfc_id'))
-            form.instance.nfc_id = decrypt(urllib.parse.unquote(form.cleaned_data.get('nfc_id', None)), settings.PUB_AES_KEY)
-            form.instance.nfc_data = decrypt(urllib.parse.unquote(form.cleaned_data.get('nfc_data', None)), settings.PUB_AES_KEY) if form.cleaned_data.get('nfc_data', None) else None
-            allowed = NFCScan.objects.filter(user=request.user).count() == 0 or (NFCScan.objects.filter(user=request.user, nfc_id=form.cleaned_data.get('nfc_id', None), valid=True).count() > 0) or (request.GET.get('generate', False) and face_mrz_or_nfc_verified(request))
+            id = None
+            data = None
+            try:
+                id = urllib.parse.unquote(form.cleaned_data.get('nfc_id'))
+                print(id)
+                try:
+                    data = urllib.parse.unquote(form.cleaned_data.get('nfc_data'))
+                except: data = None
+                form.instance.nfc_id = decrypt(id, settings.PUB_AES_KEY)
+                form.instance.nfc_data = decrypt(data, settings.PUB_AES_KEY) if form.cleaned_data.get('nfc_data', None) else None
+            except:
+                id = form.cleaned_data.get('nfc_id')
+                data = form.cleaned_data.get('nfc_data')
+                form.instance.nfc_id = decrypt(id, settings.PUB_AES_KEY)
+                form.instance.nfc_data = decrypt(data, settings.PUB_AES_KEY) if form.cleaned_data.get('nfc_data', None) else None
+            print(form.instance.nfc_id)
+            allowed = NFCScan.objects.filter(user=request.user).count() == 0 or (NFCScan.objects.filter(user=request.user, nfc_id=form.instance.nfc_id, valid=True).count() > 0) or (request.GET.get('generate', False) and face_mrz_or_nfc_verified(request))
             if not allowed: return HttpResponse('n')
             form.instance.user = request.user
             form.instance.session_key = request.session.session_key
