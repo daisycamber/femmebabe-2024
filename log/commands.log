@@ -2540,3 +2540,12 @@
 2024-09-24T23:38:41.107990-07:00 femmebabe team: team [384800]: echo "PKGMGR=DPKG" sudo tee -a /etc/rkhunter.conf 
 2024-09-24T23:38:48.219174-07:00 femmebabe team: team [384800]: echo "PKGMGR=DPKG" | sudo tee -a /etc/rkhunter.conf 
 2024-09-24T23:42:15.628151-07:00 femmebabe team: team [384800]: sudo ascript setup
+2024-09-25T01:53:51.058507-07:00 femmebabe team: team [595002]: ps -aux | grep backup
+2024-09-25T01:53:59.546598-07:00 femmebabe team: team [595002]: clear
+2024-09-25T01:54:03.268874-07:00 femmebabe team: team [595002]: ls
+2024-09-25T01:54:23.663992-07:00 femmebabe team: team [595002]: cd lotteh
+2024-09-25T01:54:33.190703-07:00 femmebabe team: team [595002]: ls | grep .json
+2024-09-25T01:55:26.682603-07:00 femmebabe team: team [595002]: ls | grep .json
+2024-09-25T01:56:12.246843-07:00 femmebabe team: team [595002]: nano 
+2024-09-25T01:57:29.334725-07:00 femmebabe team: team [595002]: nano
+2024-09-25T03:12:16.740086-07:00 femmebabe team: team [595002]: ls
