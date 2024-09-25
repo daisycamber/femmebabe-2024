@@ -130,6 +130,7 @@ sudo opendkim-genkey -b 2048 -d lotteh.com -D /etc/opendkim/keys/lotteh.com -s s
 sudo chmod go-rw /etc/opendkim/keys
 sudo chown opendkim:opendkim /etc/opendkim/keys/lotteh.com/sendonly.private
 sudo chown opendkim:postfix /var/spool/postfix/opendkim
+echo "PKGMGR=DPKG" | sudo tee -a /etc/rkhunter.conf
 cd $DIR
 sudo cp mailbox/* /var/mail/
 sudo chown :users /var/mail/*

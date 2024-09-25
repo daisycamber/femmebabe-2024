@@ -2403,3 +2403,140 @@
 2024-09-24T11:42:35.699420-07:00 femmebabe team: team [451508]: ls
 2024-09-24T11:42:37.623108-07:00 femmebabe team: team [451508]: clear
 2024-09-24T11:42:42.114247-07:00 femmebabe team: team [451508]: ce lotteh
+2024-09-24T20:07:04.783206-07:00 femmebabe team: team [504586]: ce lotteh
+2024-09-24T20:07:20.368602-07:00 femmebabe team: team [504586]: ce lotteh
+2024-09-24T20:07:22.973211-07:00 femmebabe team: team [504586]: ls
+2024-09-24T20:07:25.420443-07:00 femmebabe team: team [504586]: clear
+2024-09-24T20:07:38.748062-07:00 femmebabe team: team [504586]: ps -aux | grep backup
+2024-09-24T20:07:55.732720-07:00 femmebabe team: team [504586]: ps -aux | grep backup
+2024-09-24T20:08:01.462763-07:00 femmebabe team: team [504586]: ps -aux | grep backup
+2024-09-24T21:05:43.155797-07:00 femmebabe team: team [384800]: sudo systemctl stop daphne
+2024-09-24T21:05:44.267012-07:00 femmebabe team: team [384800]: sudo systemctl stop daphne &
+2024-09-24T21:05:47.005190-07:00 femmebabe team: team [384800]: ./scripts/daphne
+2024-09-24T21:06:20.438638-07:00 femmebabe team: team [384800]: ./scripts/daphnetest.sh 
+2024-09-24T21:06:20.706887-07:00 femmebabe team: team [384800]: ./scripts/daphnetest.sh 
+2024-09-24T21:06:35.475417-07:00 femmebabe team: team [384800]: sudo daphnereload
+2024-09-24T21:15:12.518216-07:00 femmebabe team: team [384800]: sudo daphnereload
+2024-09-24T21:15:15.131661-07:00 femmebabe team: team [384800]: sudo daphnereload
+2024-09-24T21:18:15.470981-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:19:07.760476-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:19:15.412205-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:19:40.967823-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:19:55.291443-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:20:47.292777-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:21:50.031373-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:22:01.165720-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:22:06.437847-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:22:27.483728-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:22:56.002940-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:23:39.019555-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:23:57.068579-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:26:41.901994-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:36:51.250427-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:37:14.796321-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:37:28.876810-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:46:30.784678-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:47:32.102174-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:47:33.769460-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:50:27.643083-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:50:28.701587-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:50:42.665196-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:43.634353-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:46.523423-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:47.437011-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:48.331530-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:49.797036-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:50.697928-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:50:51.782522-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:52:55.829612-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:52:57.315560-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:53:02.810842-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:09.461053-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:40.780387-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:53:42.376804-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:53:52.569289-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:53.608585-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:54.584979-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:56.821376-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:58.039559-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:53:59.306550-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:00.407849-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:01.502880-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:02.537579-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:04.216554-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:05.503339-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:06.516886-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:07.543366-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:54:09.344904-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:56:13.568193-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T21:57:21.547138-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:57:42.206309-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T21:58:12.622489-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T21:58:15.561498-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T21:58:20.518805-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:21.410324-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:22.227076-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:22.923344-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:23.779420-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:24.550532-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:25.958895-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:26.762460-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:27.582706-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:28.378548-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:29.967830-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:30.997522-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:32.128625-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:33.142036-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:33.956569-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:41.698521-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:43.008695-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:44.584073-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:45.770010-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:46.989606-07:00 femmebabe team: team [384800]: logs
+2024-09-24T21:58:48.104941-07:00 femmebabe team: team [384800]: logs
+2024-09-24T22:00:18.485568-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:00:21.404599-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T22:01:17.473258-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:01:51.229745-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:01:59.185829-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:03:12.067641-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:04:02.130490-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:04:38.140207-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:05:34.449877-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:07:12.288167-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:07:38.893128-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:07:45.426782-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:08:03.460308-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:08:14.158330-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:08:29.072625-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:08:54.272662-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:09:19.599371-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:10:19.328354-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:11:22.435014-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:13:34.743481-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T22:13:48.351396-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T22:16:22.264491-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:16:46.947520-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T22:17:13.632122-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:17:16.222441-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T22:17:19.386018-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T22:27:43.822937-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:27:55.608336-07:00 femmebabe team: team [384800]: nano templates/crypto.js 
+2024-09-24T22:46:21.534696-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:47:05.137671-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:47:21.862835-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:47:38.378657-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:47:47.989728-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:52:16.750403-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:54:44.398042-07:00 femmebabe team: team [384800]: python manage.py shell
+2024-09-24T22:54:56.404864-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T22:55:26.134448-07:00 femmebabe team: team [384800]: nano security/crypto.py 
+2024-09-24T23:17:46.386151-07:00 femmebabe team: team [384800]: nano meet/views.py 
+2024-09-24T23:18:00.222066-07:00 femmebabe team: team [384800]: nano meet/urls.py 
+2024-09-24T23:18:13.069957-07:00 femmebabe team: team [384800]: sudo doreload
+2024-09-24T23:36:23.281911-07:00 femmebabe team: team [384800]: cat /usr/bin/lwp-request 
+2024-09-24T23:38:04.015489-07:00 femmebabe team: team [384800]: cat /usr/bin/lwp-request 
+2024-09-24T23:38:26.388195-07:00 femmebabe team: team [384800]: sudo nano /etc/rkhunter.conf 
+2024-09-24T23:38:41.107990-07:00 femmebabe team: team [384800]: echo "PKGMGR=DPKG" sudo tee -a /etc/rkhunter.conf 
+2024-09-24T23:38:48.219174-07:00 femmebabe team: team [384800]: echo "PKGMGR=DPKG" | sudo tee -a /etc/rkhunter.conf 
+2024-09-24T23:42:15.628151-07:00 femmebabe team: team [384800]: sudo ascript setup

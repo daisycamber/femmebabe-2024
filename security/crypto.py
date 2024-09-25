@@ -24,3 +24,25 @@ def decrypt(raw, secret=None):
     cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
     return unpad(cipher.decrypt(enc),16).decode("utf-8")
 
+
+def encrypt_cbc(data, secret=None):
+    key = settings.AES_KEY #Must Be 16 char for AES128
+    if secret: key = secret
+    data = pad(data.encode(),16)
+    iv = get_random_bytes(16)
+    cipher = AES.new(key.encode('utf-8'),AES.MODE_CBC,iv)
+    print('random IV : ' , base64.b64encode(cipher.iv).decode('utf-8'))
+    print(base64.b64encode(cipher.iv).decode('utf-8'))
+    return base64.b64encode(cipher.iv).decode('utf-8') + base64.b64encode(cipher.encrypt(data)).decode('utf-8')
+
+def decrypt_cbc(raw, secret=None):
+    key = settings.AES_KEY #Must Be 16 char for AES128
+    if secret: key = secret
+    iv = raw[:24]
+    raw = raw[24:]
+    try:
+        enc = base64.b64decode(raw)
+    except:
+        enc = base64.urlsafe_b64decode(raw)
+    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, base64.b64decode(iv))
+    return unpad(cipher.decrypt(enc),16).decode('utf-8')
