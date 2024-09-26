@@ -47,7 +47,6 @@
 	<a href="{% url 'live:golivevideo' %}?camera=private" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Go live</a>
 	<a href="{% url 'live:name-camera' %}?camera=private" class="btn btn-outline-secondary" title="Live remote control"><i class="bi bi-toggle-on"></i> Live Remote</a>
         <a class= "btn btn-outline-danger" href="{% url 'recordings:recordings' request.user.profile.name %}?all=true"><i class="bi bi-person-video2"></i> Video</a>
-        <a class="btn btn-outline-info" href="{% url 'meet:new-meeting' %}"><i class="bi bi-person-video2"></i> New Meeting</a>
 </div>
 <div style="display: flex; justify-content: space-around;">
 	<a href="{% url 'live:choose-live-camera' %}" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Live Camera</a>

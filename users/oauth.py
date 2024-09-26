@@ -8,25 +8,19 @@ flows = {}
 
 def get_auth_url(request, email):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(str(os.path.join(settings.BASE_DIR, 'client_secret.json')),
-    scopes=['https://www.googleapis.com/auth/youtube.force-ssl',
+    scopes=[
         'https://www.googleapis.com/auth/youtube.upload',
-        'https://www.googleapis.com/auth/youtube',
-        'https://www.googleapis.com/auth/userinfo.email',
     ])
     flow.redirect_uri = settings.BASE_URL + reverse('users:oauth')
     authorization_url, state = None, None
     if email:
         authorization_url, state = flow.authorization_url(
-            access_type='offline',
-            include_granted_scopes='true',
-            state=request.session.get('state'),
             login_hint=email,
+#            redirect_uri='https://lotteh.com/accounts/auth/callback/',
             prompt='consent')
     else:
         authorization_url, state = flow.authorization_url(
-            access_type='offline',
-            include_granted_scopes='true',
-            state=request.session.get('state'),
+#            redirect_uri='https://lotteh.com/accounts/auth/callback/',
             prompt='consent')
     global flows
     flows[state] = flow
@@ -54,19 +48,19 @@ def get_user_info(credentials):
   else:
     raise Exception()
 
-def parse_callback_url(request, token_url):
-    print(str(request.body))
+def parse_callback_url(request, response):
+#    print(str(request.body))
     global flows
-    flow = flows[request.GET.get('state')]
-#    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(str(os.path.join(settings.BASE_DIR, 'client_secret.json')),
-#    scopes=['https://www.googleapis.com/auth/youtube.force-ssl',
-#        'https://www.googleapis.com/auth/youtube.upload',
-#        'https://www.googleapis.com/auth/youtube',
-#        'https://www.googleapis.com/auth/userinfo.email',
-#    ])
-    print(token_url)
+#    flow = flows[request.GET.get('state')]
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(str(os.path.join(settings.BASE_DIR, 'client_secret.json')),
+    scopes=['https://www.googleapis.com/auth/youtube.force-ssl',
+        'https://www.googleapis.com/auth/youtube.upload',
+        'https://www.googleapis.com/auth/youtube',
+        'https://www.googleapis.com/auth/userinfo.email',
+    ])
+#    print(token_url)
     from urllib.parse import unquote_plus
     import json
-    flow.fetch_token(authorization_response=unquote_plus(token_url), code=request.GET.get('code')) #json.dumps(request.GET.dict()))
+    flow.fetch_token(code=response) #json.dumps(request.GET.dict()))
     credentials = flow.credentials
     return get_user_info(credentials)['email'], credentials.token, credentials.refresh_token

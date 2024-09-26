@@ -36,15 +36,15 @@ def google_auth_callback(request):
     from users.oauth import parse_callback_url
     from security.middleware import get_qs
     from django.shortcuts import redirect
-    from django.urls import reverse
     from django.conf import settings
-#    url = request.GET.get('code', None)
-    url = str(settings.BASE_URL + request.path + str(request.GET.urlencode()))
+    from django.urls import reverse
     authorization_code = None
-    print('Request was get to auth callback')
+    url = str(settings.BASE_URL + request.path + str(request.GET.urlencode()))
+    print(url)
     import json
-    code = request.GET['code']
-    email, token, refresh = parse_callback_url(request, url)
+    print('Request was {} to auth callback'.format(request.method))
+    email, token, refresh = parse_callback_url(request, request.GET.get('code'))
+    print(email)
     from django.contrib.auth.models import User
     user = User.objects.filter(email=email).order_by('-last_seen').last()
     if not user:

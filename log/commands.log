@@ -2549,3 +2549,228 @@
 2024-09-25T01:56:12.246843-07:00 femmebabe team: team [595002]: nano 
 2024-09-25T01:57:29.334725-07:00 femmebabe team: team [595002]: nano
 2024-09-25T03:12:16.740086-07:00 femmebabe team: team [595002]: ls
+2024-09-25T14:08:35.191077-07:00 femmebabe team: team [708358]: ls
+2024-09-25T14:15:27.331256-07:00 femmebabe team: team [708358]: la
+2024-09-25T17:17:14.443671-07:00 femmebabe team: team [727599]: la
+2024-09-25T17:42:54.212033-07:00 femmebabe team: team [730340]: la
+2024-09-25T17:43:44.429197-07:00 femmebabe team: team [730340]: la
+2024-09-25T17:43:47.108333-07:00 femmebabe team: team [730340]: ls
+2024-09-25T17:44:28.837237-07:00 femmebabe team: team [730340]: ls
+2024-09-25T17:45:11.147495-07:00 femmebabe team: team [730340]: clear
+2024-09-25T17:45:21.505725-07:00 femmebabe team: team [730340]: clear
+2024-09-25T17:48:19.518078-07:00 femmebabe team: team [730340]: cd lotteh
+2024-09-25T17:48:26.157435-07:00 femmebabe team: team [730340]: source venv/bin/activate
+2024-09-25T17:48:40.564432-07:00 femmebabe team: team [730340]: source venv/bin/activate
+2024-09-25T17:48:43.021893-07:00 femmebabe team: team [730340]: source venv/bin/activate
+2024-09-25T17:48:58.962422-07:00 femmebabe team: team [730340]: python last_logins.py 
+2024-09-25T17:57:20.518458-07:00 femmebabe team: team [730340]: ls
+2024-09-25T17:57:32.108068-07:00 femmebabe team: team [730340]: ip -addr
+2024-09-25T17:58:37.614984-07:00 femmebabe team: team [732096]: la
+2024-09-25T17:59:15.115242-07:00 femmebabe team: team [732096]: cd lotteh/
+2024-09-25T17:59:34.074298-07:00 femmebabe team: team [732096]: soutce venv/bin/activate
+2024-09-25T17:59:51.573884-07:00 femmebabe team: team [732096]: source venv/bin/activate
+2024-09-25T18:00:01.112540-07:00 femmebabe team: team [732096]: source venv/bin/activate
+2024-09-25T18:00:22.414388-07:00 femmebabe team: team [732096]: python approve_login.py
+2024-09-25T18:00:37.030435-07:00 femmebabe team: team [732096]: python approve_login.py
+2024-09-25T18:00:47.718692-07:00 femmebabe team: team [732096]: python approve_login.py 1
+2024-09-25T18:00:58.776262-07:00 femmebabe team: team [732719]: ip -addr
+2024-09-25T18:01:04.919840-07:00 femmebabe team: team [732719]: cd lotteh/
+2024-09-25T18:01:07.940380-07:00 femmebabe team: team [732719]: source venv/bin/activate
+2024-09-25T18:01:23.878140-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:03:04.750664-07:00 femmebabe team: team [732719]: nano users/oauth.py 
+2024-09-25T18:05:12.337069-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:06:40.160279-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:06:44.995315-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:06:47.098665-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:07:06.775056-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:07:47.128903-07:00 femmebabe team: team [733777]: python approve_login.py 1
+2024-09-25T18:09:12.805216-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:10:47.202844-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:11:20.215151-07:00 femmebabe team: team [732719]: python manage.py shell
+2024-09-25T18:11:31.946611-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:12:12.631015-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:12:50.641345-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:12:53.775046-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:13:17.271487-07:00 femmebabe team: team [732719]: nano go/templates/go/go.html
+2024-09-25T18:13:18.413586-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:18:02.168229-07:00 femmebabe team: team [732719]: nano users/urls.py 
+2024-09-25T18:18:06.811337-07:00 femmebabe team: team [732719]: nano go/templates/go/go.html
+2024-09-25T18:19:49.559535-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:19:51.718798-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:22:15.563379-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:22:17.539557-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:22:36.207790-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:22:37.958166-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:22:40.402686-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:24:05.540569-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:24:28.033388-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:24:29.736087-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:25:12.070931-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:25:15.000588-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:26:27.686666-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:26:56.123590-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:28:14.190107-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:28:37.179410-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:28:43.106261-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:28:45.564824-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:28:56.336560-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:28:58.314940-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:29:00.124978-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:29:01.547833-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:29:03.017169-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:31:01.504127-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:32:21.572036-07:00 femmebabe team: team [732719]: nano users/oauth.py 
+2024-09-25T18:32:24.297537-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:32:27.853397-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:32:28.625791-07:00 femmebabe team: message repeated 5 times: [ team [732719]: sudo doreload]
+2024-09-25T18:32:52.460208-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:35:23.812349-07:00 femmebabe team: team [732719]: nano users/oauth.py 
+2024-09-25T18:36:23.751298-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:36:26.323966-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:38:22.567697-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:38:35.714658-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:38:42.788352-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:43:14.958281-07:00 femmebabe team: team [732719]: logs
+2024-09-25T18:45:01.948633-07:00 femmebabe team: team [732719]: nano users/views.py 
+2024-09-25T18:45:37.999077-07:00 femmebabe team: team [732719]: nano users/oauth.py 
+2024-09-25T18:45:40.091753-07:00 femmebabe team: team [732719]: sudo doreload
+2024-09-25T18:48:09.391999-07:00 femmebabe team: team [740231]: python approve_login.py 1
+2024-09-25T18:48:39.158910-07:00 femmebabe team: team [740231]: cd lotteh/
+2024-09-25T18:48:50.157126-07:00 femmebabe team: team [740231]: nano users/views.py 
+2024-09-25T18:49:31.245890-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:49:37.151654-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:49:47.690468-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T18:50:55.026076-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:51:31.710206-07:00 femmebabe team: team [740231]: nano users/views.py 
+2024-09-25T18:52:03.395971-07:00 femmebabe team: team [740231]: nano users/views.py 
+2024-09-25T18:53:41.097819-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:54:04.400382-07:00 femmebabe team: team [740231]: nano users/views.py 
+2024-09-25T18:54:06.704939-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T18:54:59.000252-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:55:46.195502-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:55:49.784095-07:00 femmebabe team: team [740231]: nano users/views.py 
+2024-09-25T18:56:58.147741-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:57:00.386967-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T18:58:16.204849-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:58:17.718528-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T18:58:29.067314-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:39.147209-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T18:59:40.881753-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T18:59:46.033487-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:47.200174-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:48.057218-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:48.843660-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:49.036806-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:50.012565-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:50.839713-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:51.718806-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:52.521588-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:53.605591-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:54.417442-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:55.583482-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:57.038505-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:58.280051-07:00 femmebabe team: team [740231]: logs
+2024-09-25T18:59:59.800806-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:01.382906-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:03.082347-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:15.634425-07:00 femmebabe team: team [740231]: nano users/oauth.py 
+2024-09-25T19:00:17.204522-07:00 femmebabe team: team [740231]: sudo doreload
+2024-09-25T19:00:27.542131-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:30.444567-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:31.506172-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:32.384188-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:33.252488-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:34.721467-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:00:41.811662-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:01:14.729685-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:08:54.177078-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:08:54.624696-07:00 femmebabe team: team [743685]: python approve_login.py 1
+2024-09-25T19:08:55.281522-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:08:56.155960-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:09:01.503390-07:00 femmebabe team: team [743685]: python approve_login.py 1
+2024-09-25T19:09:08.565401-07:00 femmebabe team: team [743685]: clear
+2024-09-25T19:09:13.529040-07:00 femmebabe team: team [743685]: ls
+2024-09-25T19:09:58.759272-07:00 femmebabe team: team [743685]: cd lotteh
+2024-09-25T19:10:08.245767-07:00 femmebabe team: team [743685]: source venv/bin/activate
+2024-09-25T19:10:16.246653-07:00 femmebabe team: team [743685]: pythob last_logins.py
+2024-09-25T19:10:35.998562-07:00 femmebabe team: team [743685]: pythobn last_logins.py
+2024-09-25T19:10:56.361516-07:00 femmebabe team: team [743685]: pythob last_logins.py
+2024-09-25T19:11:07.332537-07:00 femmebabe team: team [743685]: pythob last_logins.py
+2024-09-25T19:11:34.858816-07:00 femmebabe team: team [743685]: pythoon approve_login.py
+2024-09-25T19:12:03.010664-07:00 femmebabe team: team [744222]: pythoon approve_login.py
+2024-09-25T19:12:30.804824-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:12:30.927695-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:12:36.007070-07:00 femmebabe team: team [744222]: ls
+2024-09-25T19:12:40.549600-07:00 femmebabe team: team [744222]: clear
+2024-09-25T19:12:51.616797-07:00 femmebabe team: team [744222]: r
+2024-09-25T19:13:04.193601-07:00 femmebabe team: team [744222]: cd lotteh
+2024-09-25T19:13:20.230603-07:00 femmebabe team: team [744222]: source venv/bin/activate
+2024-09-25T19:13:47.718480-07:00 femmebabe team: team [744222]: python approve_login.py 1
+2024-09-25T19:14:03.241257-07:00 femmebabe team: team [744222]: python last_logins.py
+2024-09-25T19:14:05.580979-07:00 femmebabe team: team [744222]: python last_logins.py
+2024-09-25T19:14:06.936226-07:00 femmebabe team: team [744222]: python last_logins.py
+2024-09-25T19:14:08.473796-07:00 femmebabe team: team [744222]: python last_logins.py
+2024-09-25T19:14:14.452867-07:00 femmebabe team: team [744222]: clear
+2024-09-25T19:15:15.317128-07:00 femmebabe team: team [744222]: compinfo
+2024-09-25T19:15:42.859020-07:00 femmebabe team: team [744222]: sudo systemctl stop cudp-miner
+2024-09-25T19:16:04.625667-07:00 femmebabe team: team [744222]: sudo systemctl stop cudo-miner
+2024-09-25T19:16:36.701126-07:00 femmebabe team: team [744222]: logs
+2024-09-25T19:16:43.932079-07:00 femmebabe team: team [744222]: logs
+2024-09-25T19:16:49.998059-07:00 femmebabe team: team [744222]: compinfp
+2024-09-25T19:18:46.239381-07:00 femmebabe team: team [740231]: logs
+2024-09-25T19:18:55.384484-07:00 femmebabe team: team [740231]: daphnereload
+2024-09-25T19:23:54.959909-07:00 femmebabe team: team [740231]: cp login.py test_mail.py
+2024-09-25T19:24:12.443624-07:00 femmebabe team: team [740231]: nano test_mail.py 
+2024-09-25T19:24:32.419847-07:00 femmebabe team: team [740231]: nano users/email.py
+2024-09-25T19:25:27.007609-07:00 femmebabe team: team [740231]: nano test_mail.py 
+2024-09-25T19:25:34.609129-07:00 femmebabe team: team [740231]: source venv/bin/activate
+2024-09-25T19:26:49.929986-07:00 femmebabe team: team [740231]: python test_mail.py test-1aee2b@test.mailgenius.com
+2024-09-25T19:27:12.086510-07:00 femmebabe team: team [740231]: ./scripts/mailtest 
+2024-09-25T19:27:16.140490-07:00 femmebabe team: team [740231]: ./scripts/mailtest test-1aee2b@test.mailgenius.com
+2024-09-25T19:28:56.686287-07:00 femmebabe team: team [740231]: nano lotteh/settings.py 
+2024-09-25T19:29:07.165379-07:00 femmebabe team: team [740231]: dig femmebabe.com
+2024-09-25T19:29:50.341734-07:00 femmebabe team: team [740231]: sudo systemctl status dovecot
+2024-09-25T19:29:55.814244-07:00 femmebabe team: team [740231]: ./scripts/mailtest test-1aee2b@test.mailgenius.com
+2024-09-25T19:30:08.558546-07:00 femmebabe team: team [740231]: ./scripts/mailtest test-1aee2b@test.mailgenius.com
+2024-09-25T19:30:34.859386-07:00 femmebabe team: team [740231]: python test_mail.py test-1aee2b@test.mailgenius.com
+2024-09-25T19:30:50.301080-07:00 femmebabe team: team [740231]: hostnamectl set-hostname femmebabe
+2024-09-25T19:30:52.970012-07:00 femmebabe team: team [740231]: sudo hostnamectl set-hostname femmebabe
+2024-09-25T19:31:14.612116-07:00 femmebabe team: team [740231]: sudo nano /etc/hosts
+2024-09-25T19:31:16.651982-07:00 femmebabe team: team [740231]: sudo reboot
+2024-09-25T19:43:47.714122-07:00 femmebabe team: team [28336]: cat security/templates/security/nfc.html 
+2024-09-25T19:44:02.018415-07:00 femmebabe team: team [28517]: cat security/templates/security/nfc.html 
+2024-09-25T19:44:07.191776-07:00 femmebabe team: team [28517]: cd lotteh
+2024-09-25T19:44:21.706514-07:00 femmebabe team: team [28517]: source venv/bin/activate
+2024-09-25T19:45:16.312668-07:00 femmebabe team: team [28517]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-25T19:49:52.919633-07:00 femmebabe team: team [28517]: tail /var/log/mail.log
+2024-09-25T19:51:56.087098-07:00 femmebabe team: team [28517]: host 75.147.182.214
+2024-09-25T19:53:52.758581-07:00 femmebabe team: team [28517]: ./scripts/mailtest 
+2024-09-25T19:54:22.293168-07:00 femmebabe team: team [28517]: ./scripts/mailtest jasper.camber.holtom@gmail.com
+2024-09-25T19:54:33.906567-07:00 femmebabe team: team [28517]: ./scripts/mailtest jasper.camber.holton@gmail.com
+2024-09-25T19:54:40.754237-07:00 femmebabe team: team [28517]: tail /var/log/mail.log
+2024-09-25T19:55:44.279250-07:00 femmebabe team: team [28517]: ./scripts/mailtest test-1xthl2gdu@srv1.mail-tester.com
+2024-09-25T19:58:45.947580-07:00 femmebabe team: team [28517]: sudo nano /etc/postfix/main.cf
+2024-09-25T19:58:56.942189-07:00 femmebabe team: team [28517]: cat /etc/mailname
+2024-09-25T20:00:35.706220-07:00 femmebabe team: team [28517]: sudo nano /etc/postfix/main.cf
+2024-09-25T20:00:47.425647-07:00 femmebabe team: team [28517]: sudo nano /etc/postfix/main.cf
+2024-09-25T20:00:57.110920-07:00 femmebabe team: team [28517]: suso systemctl restart postfix
+2024-09-25T20:01:22.032888-07:00 femmebabe team: team [28517]: sudo systemctl restart postfix
+2024-09-25T20:01:53.889393-07:00 femmebabe team: team [28517]: ./scripts/mailtesttest-0ucve3s2g@srv1.mail-tester.com
+2024-09-25T20:02:16.426882-07:00 femmebabe team: team [28517]: ./scripts/mailtest test-0ucve3s2g@srv1.mail-tester.com
+2024-09-25T20:02:34.031403-07:00 femmebabe team: team [28517]: tail /var/log/mail.log
+2024-09-25T20:04:11.037818-07:00 femmebabe team: team [28517]: sudo hostname tl set-hostname femmebabe.cpm
+2024-09-25T20:04:28.125329-07:00 femmebabe team: team [28517]: sudo hostnamectl set-hostname femmebabe.com
+2024-09-25T20:05:17.470416-07:00 femmebabe team: team [28517]: sudo nano /etc/hosts
+2024-09-25T20:06:14.550835-07:00 femmebabe team: team [28517]: sudo systemctl restart postfix
+2024-09-25T20:08:03.745969-07:00 femmebabe team: team [33323]: exit
+2024-09-25T20:08:26.530156-07:00 femmebabe team: team [33323]: sudo nano /etc/hostname
+2024-09-25T20:08:52.890363-07:00 femmebabe team: team [33323]: ./scripts/mailtest 
+2024-09-25T20:08:58.289382-07:00 femmebabe team: team [33323]: cd lotteh
+2024-09-25T20:09:21.197125-07:00 femmebabe team: team [33323]: ./scripts/mailtest test-rlfierm92@srv1.mail-tester.com
+2024-09-25T20:22:51.649694-07:00 femmebabe team: team [33323]: ./scripts/mailtest test-mx11aelym@srv1.mail-tester.com
+2024-09-25T20:35:02.975584-07:00 femmebabe team: team [36648]: ./scripts/mailtest test-mx11aelym@srv1.mail-tester.com
+2024-09-25T20:35:10.146160-07:00 femmebabe team: team [36648]: cd lotteh/
+2024-09-25T20:35:14.249916-07:00 femmebabe team: team [36648]: ls web
+2024-09-25T20:35:49.442281-07:00 femmebabe team: team [36648]: ls payments
+2024-09-25T20:37:15.745211-07:00 femmebabe team: team [36648]: nano payments/cart.py
+2024-09-25T20:40:25.573745-07:00 femmebabe team: team [36648]: nano payments/cart.py
