@@ -204,6 +204,7 @@ async function startVideo() {
 async function handleMessage(message) {
   switch (message.channel) {
     case "start_call":
+        if(!calling) {
 		  playSound();
 		  callPrompt.classList.remove("hide");
 		  callText.innerHTML = message.otherPerson + " is calling you, accept?";
@@ -246,6 +247,7 @@ async function handleMessage(message) {
 			  }
 			  }, 1000);
 		  }
+      }
       break;
     case "webrtc_ice_candidate":
       console.log("received ice candidate");

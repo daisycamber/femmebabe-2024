@@ -1,5 +1,7 @@
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
+from apiclient.discovery import build
+from apiclient import errors
 from django.conf import settings
 from django.urls import reverse
 import os
@@ -8,9 +10,12 @@ flows = {}
 
 def get_auth_url(request, email):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(str(os.path.join(settings.BASE_DIR, 'client_secret.json')),
-    scopes=[
+    scopes=['https://www.googleapis.com/auth/youtube.force-ssl',
         'https://www.googleapis.com/auth/youtube.upload',
-    ])
+        'https://www.googleapis.com/auth/youtube',
+        'https://www.googleapis.com/auth/userinfo.email',
+        'openid',
+   ])
     flow.redirect_uri = settings.BASE_URL + reverse('users:oauth')
     authorization_url, state = None, None
     if email:
@@ -37,7 +42,7 @@ def get_user_info(credentials):
   """
   user_info_service = build(
       serviceName='oauth2', version='v2',
-      http=credentials.authorize(httplib2.Http()))
+      credentials=credentials)
   user_info = None
   try:
     user_info = user_info_service.userinfo().get().execute()
@@ -57,10 +62,12 @@ def parse_callback_url(request, response):
         'https://www.googleapis.com/auth/youtube.upload',
         'https://www.googleapis.com/auth/youtube',
         'https://www.googleapis.com/auth/userinfo.email',
+        'openid',
     ])
 #    print(token_url)
+    flow.redirect_uri = settings.BASE_URL + reverse('users:oauth')
     from urllib.parse import unquote_plus
     import json
-    flow.fetch_token(code=response) #json.dumps(request.GET.dict()))
+    flow.fetch_token(authorization_response=response) #json.dumps(request.GET.dict()))
     credentials = flow.credentials
     return get_user_info(credentials)['email'], credentials.token, credentials.refresh_token

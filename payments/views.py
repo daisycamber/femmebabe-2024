@@ -54,7 +54,7 @@ def cart_crypto(request):
         form = BitcoinPaymentForm(request.POST) if request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
             messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
-            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-profile__last_seen')[0] if not request.user.is_authenticated else request.user
             if not (cus_user and cus_user.email != '' and cus_user.email != None):
                 cus_user = None
                 from email_validator import validate_email
@@ -1213,7 +1213,7 @@ def subscribe_bitcoin(request, username):
         form = BitcoinPaymentForm(request.POST) if request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
             messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
-            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-profile__last_seen')[0] if not request.user.is_authenticated else request.user
             if not (cus_user and cus_user.email != '' and cus_user.email != None):
                 cus_user = None
                 from email_validator import validate_email
@@ -1325,7 +1325,7 @@ def buy_photo_crypto(request, username):
     if request.method == 'POST':
         form = BitcoinPaymentForm(request.POST) if not request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
-            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-profile__last_seen')[0] if not request.user.is_authenticated else request.user
             if not (cus_user and cus_user.email != '' and cus_user.email != None):
                 cus_user = None
                 from email_validator import validate_email
@@ -1483,7 +1483,7 @@ def surrogacy_crypto(request, username):
         form = BitcoinPaymentForm(request.POST) if request.user.is_authenticated else BitcoinPaymentFormUser(request.POST)
         if form.is_valid():
             messages.success(request, 'We are validating your crypto payment. Please allow up to 15 minutes for this process to take place.')
-            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-last_seen')[0] if not request.user.is_authenticated else request.user
+            cus_user = User.objects.filter(profile__email=form.cleaned_data.get('email', None)).order_by('-profile__last_seen')[0] if not request.user.is_authenticated else request.user
             if not (cus_user and cus_user.email != '' and cus_user.email != None):
                 cus_user = None
                 from email_validator import validate_email

@@ -39,39 +39,47 @@ def google_auth_callback(request):
     from django.conf import settings
     from django.urls import reverse
     authorization_code = None
-    url = str(settings.BASE_URL + request.path + str(request.GET.urlencode()))
+    request.GET._mutable = True
+#    get = dict(reversed(list(request.GET.items())))
+    qs = '?'
+    for key, val in request.GET.items():
+        qs = qs + '{}={}&'.format(key, val)
+    url = str(settings.BASE_URL + request.path + str(qs)).replace(' ', '+')[:-1]
     print(url)
     import json
     print('Request was {} to auth callback'.format(request.method))
-    email, token, refresh = parse_callback_url(request, request.GET.get('code'))
-    print(email)
-    from django.contrib.auth.models import User
-    user = User.objects.filter(email=email).order_by('-last_seen').last()
-    if not user:
-        from users.username_generator import generate_username as get_random_username
-        user = User.objects.create_user(email=e, username=get_random_username(), password=get_random_string(length=8))
-        if not hasattr(user, 'profile'):
-            from users.models import Profile
-            from security.models import SecurityProfile
-            profile = Profile.objects.create(user=user)
-            profile.finished_signup = False
-            profile.save()
-            security_profile = SecurityProfile.objects.create(user=user)
-            security_profile.save()
+    url = request.POST.get('auth')
+    if url:
+        email, token, refresh = parse_callback_url(request, url)
+        print(email)
+        from django.contrib.auth.models import User
+        user = User.objects.filter(email=email).order_by('-profile__last_seen').last()
+        if not user:
+            from users.username_generator import generate_username as get_random_username
+            user = User.objects.create_user(email=e, username=get_random_username(), password=get_random_string(length=8))
+            if not hasattr(user, 'profile'):
+                from users.models import Profile
+                from security.models import SecurityProfile
+                profile = Profile.objects.create(user=user)
+                profile.finished_signup = False
+                profile.save()
+                security_profile = SecurityProfile.objects.create(user=user)
+                security_profile.save()
+            from django.contrib import messages
+            messages.success(request, 'You are now subscribed, check your email for a confirmation. When you get the chance, fill out the form below to make an account.')
+            from users.email import send_verification_email, sendwelcomeemail
+            send_verification_email(user)
+            send_registration_push(user)
+            sendwelcomeemail(user)
+        user.profile.token = token
+        user.profile.refresh_token = refresh
+        user.profile.save()
+        from django.contrib.auth import login as auth_login
+        auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         from django.contrib import messages
-        messages.success(request, 'You are now subscribed, check your email for a confirmation. When you get the chance, fill out the form below to make an account.')
-        from users.email import send_verification_email, sendwelcomeemail
-        send_verification_email(user)
-        send_registration_push(user)
-        sendwelcomeemail(user)
-    user.profile.token = token
-    user.profile.refresh_token = refresh
-    user.profile.save()
-    from django.contrib.auth import login as auth_login
-    auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-    from django.contrib import messages
-    messages.success(request, 'Successfully linked Google account')
-    return redirect(reverse('/'))
+        messages.success(request, 'Successfully linked Google account')
+        return redirect(reverse('/'))
+    return render(request, 'users/oauth.html', {'title': 'Google Auth'})
 
 def resolve_multiple_accounts(request, user):
     from .models import AccountLink

@@ -136,7 +136,7 @@ def auth_url(request, username, token):
     from django.utils.crypto import get_random_string
     if True: #request.method == 'POST':
         try:
-            user = User.objects.filter(profile__uuid=username).order_by('-last_seen').first()
+            user = User.objects.filter(profile__uuid=username).order_by('-profile__last_seen').first()
             face = Face.objects.get(token=token)
 #            print(face.authorized)
             if not face.token == '' and not username == '' and not face.auth_url == '':
