@@ -3,7 +3,7 @@
 #* * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/routine_enhance.py
 */5 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/routine_caption.py
 #* * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/crypto_trading.py
-*/3 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/upload_post.py
+*/10 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/upload_post.py
 */30 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/process_recordings.py
 0 */12 * * * sh -c "sudo backup" team
 #*/10 * * * * sudo systemctl start apache2
