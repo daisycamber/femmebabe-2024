@@ -2965,3 +2965,198 @@
 2024-09-26T02:49:12.956852-07:00 femmebabe team: team [63232]: logs
 2024-09-26T02:49:26.008651-07:00 femmebabe team: team [63232]: logs
 2024-09-26T02:49:32.889822-07:00 femmebabe team: team [63232]: logs
+2024-09-28T16:58:25.306264-07:00 femmebabe team: team [25958]: logs
+2024-09-28T16:58:37.436340-07:00 femmebabe team: team [25958]: cd lotteh/
+2024-09-28T16:58:42.708424-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T16:58:46.529552-07:00 femmebabe team: team [25958]: source venv/bin/activate
+2024-09-28T17:03:40.920767-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:03:50.872158-07:00 femmebabe team: team [25958]: nano /etc/config.json 
+2024-09-28T17:04:41.506257-07:00 femmebabe team: team [25958]: nano /etc/apis.json 
+2024-09-28T17:05:27.745453-07:00 femmebabe team: team [25958]: sudo nano /etc/apis.json 
+2024-09-28T17:07:12.748812-07:00 femmebabe team: team [25958]: nano lotteh/settings.py 
+2024-09-28T17:07:36.929545-07:00 femmebabe team: team [25958]: nano lotteh/settings.py 
+2024-09-28T17:08:56.671627-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:09:11.134233-07:00 femmebabe team: team [25958]: nano payments/crypto.py 
+2024-09-28T17:10:38.941029-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:10:44.092555-07:00 femmebabe team: team [25958]: nano payments/crypto.py 
+2024-09-28T17:11:01.461906-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:18:50.272089-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:19:42.831508-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:19:47.873654-07:00 femmebabe team: team [25958]: cat feed/models.py| grep thumbnail
+2024-09-28T17:20:02.191327-07:00 femmebabe team: team [25958]: cat feed/models.py| grep thumbnail -nH
+2024-09-28T17:20:05.058448-07:00 femmebabe team: team [25958]: cat feed/models.py| grep thumbnail -nH
+2024-09-28T17:20:28.874005-07:00 femmebabe team: team [25958]: nano feed/models.py
+2024-09-28T17:20:41.452977-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:20:51.368103-07:00 femmebabe team: team [25958]: nano feed/models.py
+2024-09-28T17:23:29.661713-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:23:34.678799-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:23:36.580128-07:00 femmebabe team: team [25958]: nano feed/models.py
+2024-09-28T17:23:41.622053-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:24:24.304381-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:25:47.457056-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:26:04.665834-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:28:16.039793-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:29:05.721557-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:30:30.921406-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:30:41.619754-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:31:34.742383-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:31:34.756719-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:33:37.207385-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:34:58.745217-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:36:04.479835-07:00 femmebabe team: team [25958]: python manage.py shell
+2024-09-28T17:36:11.219793-07:00 femmebabe team: team [25958]: nano feed/upload.py 
+2024-09-28T17:38:42.166137-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:39:11.891594-07:00 femmebabe team: team [31391]: cd lotteh/
+2024-09-28T17:39:28.649154-07:00 femmebabe team: team [31391]: nano feed/context_processors.py 
+2024-09-28T17:39:37.186798-07:00 femmebabe team: team [31391]: nano users/middleware.py 
+2024-09-28T17:40:59.183927-07:00 femmebabe team: team [31391]: nano security/middleware.py
+2024-09-28T17:41:05.537678-07:00 femmebabe team: team [31391]: nano users/middleware.py 
+2024-09-28T17:41:24.764585-07:00 femmebabe team: team [31391]: nano security/middleware.py
+2024-09-28T17:42:57.510569-07:00 femmebabe team: team [31391]: nano security/consumers.py 
+2024-09-28T17:43:14.763074-07:00 femmebabe team: team [31391]: sudo doreload
+2024-09-28T17:43:42.833916-07:00 femmebabe team: team [31391]: sudo daphnereload
+2024-09-28T17:43:49.859097-07:00 femmebabe team: team [31391]: nano security/consumers.py 
+2024-09-28T17:44:12.113844-07:00 femmebabe team: team [31391]: nano security/middleware.py
+2024-09-28T17:44:35.905085-07:00 femmebabe team: team [31391]: nano security/middleware.py
+2024-09-28T17:44:54.113476-07:00 femmebabe team: team [31391]: nano security/build.py 
+2024-09-28T17:44:57.769418-07:00 femmebabe team: team [31391]: sudo daphnereload
+2024-09-28T17:45:23.485903-07:00 femmebabe team: team [31391]: nano security/build.py 
+2024-09-28T17:45:25.907886-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:31.677882-07:00 femmebabe team: team [31391]: sudo systemctl status daphne
+2024-09-28T17:45:33.821654-07:00 femmebabe team: team [31391]: sudo systemctl status daphne
+2024-09-28T17:45:37.187700-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:38.688795-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:40.840338-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:42.150416-07:00 femmebabe team: team [31391]: ogs
+2024-09-28T17:45:44.217577-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:46.169954-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:45:48.709520-07:00 femmebabe team: team [31391]: logs
+2024-09-28T17:46:13.652943-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:46:20.445142-07:00 femmebabe team: team [31391]: source venv/bin/activate
+2024-09-28T17:46:30.880797-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:46:31.127996-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:47:12.944144-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:47:41.631705-07:00 femmebabe team: team [31391]: nano feed/upload.py 
+2024-09-28T17:48:10.031615-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:49:18.263024-07:00 femmebabe team: team [31391]: python manage.py shell
+2024-09-28T17:49:33.463505-07:00 femmebabe team: team [31391]: nano feed/upload.py 
+2024-09-28T17:52:12.758633-07:00 femmebabe team: team [34798]: logs
+2024-09-28T17:52:18.877010-07:00 femmebabe team: team [34798]: cd lotteh/
+2024-09-28T17:52:22.194829-07:00 femmebabe team: team [34798]: source venv/bin/activate
+2024-09-28T17:52:25.409091-07:00 femmebabe team: team [34798]: cat upload_posts.py 
+2024-09-28T17:52:31.676360-07:00 femmebabe team: team [34798]: cat feed/upload.py 
+2024-09-28T17:53:23.039261-07:00 femmebabe team: team [34798]: nano feed/upload.py 
+2024-09-28T17:54:16.512276-07:00 femmebabe team: team [34798]: python manage.py shell
+2024-09-28T17:54:16.533415-07:00 femmebabe team: team [34798]: python manage.py shell
+2024-09-28T17:55:48.045572-07:00 femmebabe team: team [35765]: logs
+2024-09-28T17:55:51.123714-07:00 femmebabe team: team [35765]: cd lotteh/
+2024-09-28T17:55:55.862594-07:00 femmebabe team: team [35765]: source venv/bin/activate
+2024-09-28T17:57:31.050084-07:00 femmebabe team: team [36454]: logs
+2024-09-28T17:57:58.352004-07:00 femmebabe team: team [36454]: sudo safereboot
+2024-09-28T17:59:17.733153-07:00 femmebabe team: team [3585]: sudo safereboot
+2024-09-28T17:59:21.017130-07:00 femmebabe team: team [3585]: cd lotteh/
+2024-09-28T17:59:25.491485-07:00 femmebabe team: team [3585]: source venv/bin/activate
+2024-09-28T18:00:03.800079-07:00 femmebabe team: team [3995]: sudo safereboot
+2024-09-28T18:00:08.589102-07:00 femmebabe team: team [3995]: cd lotteh/
+2024-09-28T18:00:12.983013-07:00 femmebabe team: team [3995]: source venv/bin/activate
+2024-09-28T18:02:06.521949-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T18:02:16.140269-07:00 femmebabe team: team [3995]: nano feed/upload.py 
+2024-09-28T18:52:22.925596-07:00 femmebabe team: team [12436]: sudo safereboot
+2024-09-28T18:52:23.446375-07:00 femmebabe team: team [12457]: sudo safereboot
+2024-09-28T19:04:32.691566-07:00 femmebabe team: team [12436]: cd lotteh
+2024-09-28T19:04:35.910734-07:00 femmebabe team: team [12436]: source venv/bin/activate
+2024-09-28T19:08:29.061239-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:08:46.429427-07:00 femmebabe team: team [12457]: killall "python upload_posts.py"
+2024-09-28T19:09:01.560057-07:00 femmebabe team: team [12457]: kill 3657
+2024-09-28T19:09:01.595047-07:00 femmebabe team: team [3585]: python upload_posts.py
+2024-09-28T19:09:01.609969-07:00 femmebabe team: team [3585]: python upload_posts.py
+2024-09-28T19:09:04.347896-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:09:12.200928-07:00 femmebabe team: team [12457]: kill 4565
+2024-09-28T19:09:12.241529-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:09:12.334572-07:00 femmebabe team: message repeated 6 times: [ team [3995]: python manage.py shell]
+2024-09-28T19:09:26.924930-07:00 femmebabe team: team [12457]: kill 14554
+2024-09-28T19:09:26.944660-07:00 femmebabe team: team [12436]: python manage.py shell
+2024-09-28T19:09:33.503642-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:10:06.848728-07:00 femmebabe team: team [3585]: python upload_posts.py
+2024-09-28T19:10:13.081793-07:00 femmebabe team: team [3585]: nano feed/upl
+2024-09-28T19:10:27.613400-07:00 femmebabe team: team [3585]: nano feed/upload.py 
+2024-09-28T19:22:57.372257-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:23:06.152327-07:00 femmebabe team: team [12457]: kill 15674
+2024-09-28T19:23:06.182954-07:00 femmebabe team: team [3585]: python upload_posts.py
+2024-09-28T19:23:06.197913-07:00 femmebabe team: team [3585]: python upload_posts.py
+2024-09-28T19:26:00.481930-07:00 femmebabe team: team [12457]: kill 15674
+2024-09-28T19:26:02.760660-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:26:08.525784-07:00 femmebabe team: team [12457]: kill 172250
+2024-09-28T19:26:14.428143-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:29:34.019409-07:00 femmebabe team: team [3585]: nano users/templates/users/profile.html
+2024-09-28T19:32:22.138704-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:32:32.387564-07:00 femmebabe team: team [12457]: kill 17250
+2024-09-28T19:32:32.411196-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:35:29.407583-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:37:44.331943-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:37:57.814623-07:00 femmebabe team: team [12457]: kill 18566
+2024-09-28T19:37:57.845391-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:42:48.134711-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:42:55.890716-07:00 femmebabe team: team [12457]: kill 19275
+2024-09-28T19:42:55.921076-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:42:55.935237-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:43:01.419499-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:43:12.316569-07:00 femmebabe team: team [3995]: nano feed/upload.py 
+2024-09-28T19:43:22.673608-07:00 femmebabe team: team [3995]: nano feed/upload.py 
+2024-09-28T19:44:58.931997-07:00 femmebabe team: team [3585]: compinfo
+2024-09-28T19:45:11.651649-07:00 femmebabe team: team [3585]: sudo systemctl stop cudo-miner
+2024-09-28T19:45:19.751748-07:00 femmebabe team: team [3585]: sudo systemctl disable cudo-miner
+2024-09-28T19:45:24.907269-07:00 femmebabe team: team [3585]: compinfo
+2024-09-28T19:45:45.213567-07:00 femmebabe team: team [3585]: sudo systemctl stop celery &
+2024-09-28T19:45:52.061388-07:00 femmebabe team: team [3585]: sudo systemctl status celery
+2024-09-28T19:45:54.234045-07:00 femmebabe team: team [3585]: sudo systemctl status celery
+2024-09-28T19:45:59.393829-07:00 femmebabe team: team [3585]: sudo systemctl status apache2
+2024-09-28T19:46:01.032414-07:00 femmebabe team: team [3585]: sudo systemctl status apache2
+2024-09-28T19:46:04.105186-07:00 femmebabe team: team [3585]: compinfo
+2024-09-28T19:46:11.470326-07:00 femmebabe team: team [3585]: top
+2024-09-28T19:46:37.998805-07:00 femmebabe team: team [3585]: compinfo
+2024-09-28T19:46:44.563352-07:00 femmebabe team: message repeated 3 times: [ team [3585]: compinfo]
+2024-09-28T19:46:55.584401-07:00 femmebabe team: team [3585]: cat */*.py | grep MAX_IMAGE
+2024-09-28T19:47:14.714075-07:00 femmebabe team: team [3585]: grep MAX_IMAGE -nH */*.py
+2024-09-28T19:47:44.013241-07:00 femmebabe team: team [3585]: nano feed/models.py
+2024-09-28T19:47:45.249901-07:00 femmebabe team: team [3585]: grep MAX_IMAGE -nH */*.py
+2024-09-28T19:48:10.764318-07:00 femmebabe team: team [3585]: nano feed/models.py
+2024-09-28T19:48:15.173944-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T19:48:18.331321-07:00 femmebabe team: team [12457]: kill 20246
+2024-09-28T19:48:18.346872-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:48:18.357774-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T19:49:34.745046-07:00 femmebabe team: team [3585]: nano feed/models.py
+2024-09-28T19:49:37.323875-07:00 femmebabe team: team [3585]: grep MAX_IMAGE -nH */*.py
+2024-09-28T20:11:10.241693-07:00 femmebabe team: team [3995]: python manage.py shell
+2024-09-28T20:11:13.405414-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T20:11:23.327820-07:00 femmebabe team: team [12457]: kill 21685
+2024-09-28T20:11:23.343358-07:00 femmebabe team: team [3585]: python upload_posts.py 
+2024-09-28T20:14:12.859570-07:00 femmebabe team: team [3995]: nano feed/upload.py 
+2024-09-28T20:14:21.769155-07:00 femmebabe team: team [3995]: cp upload_posts.py upload_post.py
+2024-09-28T20:14:27.414497-07:00 femmebabe team: team [3995]: cp upload_posts.py upload_post.py
+2024-09-28T20:14:44.805756-07:00 femmebabe team: team [3995]: nano upload_post.py 
+2024-09-28T20:14:49.712351-07:00 femmebabe team: team [3995]: nano upload_post.py 
+2024-09-28T20:15:05.035571-07:00 femmebabe team: team [3995]: nano feed/upload.py 
+2024-09-28T20:16:36.650427-07:00 femmebabe team: team [3995]: sudo crontab -e
+2024-09-28T20:42:18.639879-07:00 femmebabe team: team [3995]: sudo crontab -e
+2024-09-28T22:53:06.155866-07:00 femmebabe team: team [12457]: sudo crontab -e
+2024-09-28T22:53:35.328777-07:00 femmebabe team: team [3995]: sudo crontab -e
+2024-09-28T22:53:55.699016-07:00 femmebabe team: team [12457]: sudo crontab -e
+2024-09-28T22:54:00.993192-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T23:11:21.577319-07:00 femmebabe team: team [3995]: python upload_posts.py 
+2024-09-28T23:42:46.343476-07:00 femmebabe team: team [3995]: sudo crontab -e
+2024-09-28T23:43:26.279043-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T23:43:54.536167-07:00 femmebabe team: team [12457]: sudo systemctl status celery
+2024-09-28T23:44:03.245868-07:00 femmebabe team: team [12457]: sudo systemctl start celery
+2024-09-28T23:44:04.534072-07:00 femmebabe team: team [12457]: sudo systemctl start celery &
+2024-09-28T23:44:11.650235-07:00 femmebabe team: team [12457]: sudo sytemctl status apache2
+2024-09-28T23:44:19.571303-07:00 femmebabe team: team [12457]: sudo systemctl status apache2
+2024-09-28T23:44:28.711264-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T23:44:49.686135-07:00 femmebabe team: message repeated 2 times: [ team [12457]: ps -aux | grep python]
+2024-09-28T23:45:38.902975-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T23:45:50.555963-07:00 femmebabe team: team [12457]: ps -aux | grep python
+2024-09-28T23:45:56.536397-07:00 femmebabe team: team [12457]: source venv/bin/activate
+2024-09-28T23:45:59.825526-07:00 femmebabe team: team [12457]: cd lotteh
+2024-09-28T23:46:00.557751-07:00 femmebabe team: team [12457]: source venv/bin/activate
+2024-09-28T23:46:22.795397-07:00 femmebabe team: team [12457]: python upload_post.py 
+2024-09-28T23:46:50.928664-07:00 femmebabe team: team [12457]: python upload_post.py 

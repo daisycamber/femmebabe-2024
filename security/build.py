@@ -5,7 +5,6 @@ def async_build_session(user_id, session_key):
         for u in us:
             u.authorized = False
             u.save()
-            print('deauth session')
 
 def async_build_sessions():
     from .models import UserSession
@@ -20,6 +19,7 @@ def sync_patch_session(user_id, session_key):
     us = UserSession.objects.filter(user__id=user_id, session_key=session_key)
     for u in us:
         u.authorized = True
+        u.save()
 
 def get_auth(user_id, session_key):
     from security.tests import face_mrz_or_nfc_verified_session_key, pin_verified_skey, biometric_verified_skey

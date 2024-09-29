@@ -20,7 +20,10 @@ def get_user(id):
 def get_auth(user_id, session_key):
     from security.tests import face_mrz_or_nfc_verified_session_key
     user = User.objects.get(id=int(user_id)) if user_id else None
-    return face_mrz_or_nfc_verified_session_key(user, session_key)
+    from security.models import UserSession
+    u = UserSession.objects.filter(user__id=user_id, session_key=session_key).order_by('-timestamp').first()
+    return u.authorized
+#    return face_mrz_or_nfc_verified_session_key(user, session_key)
 
 @sync_to_async
 def reset_session(user_id):

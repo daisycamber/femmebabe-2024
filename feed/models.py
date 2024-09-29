@@ -423,8 +423,8 @@ class Post(models.Model):
             self.save()
 
     def rotate_align(self):
-        import PIL
-        PIL.Image.MAX_IMAGE_PIXELS = 93312000000
+ #       import PIL
+ #       PIL.Image.MAX_IMAGE_PIXELS = 93312000000
         from PIL import Image
         self.download_photo()
         from .align import face_angle_detect
@@ -520,8 +520,8 @@ class Post(models.Model):
         return self.date_posted.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%H:%M:%S')
 
     def save(self, *args, **kwargs):
-        import PIL
-        PIL.Image.MAX_IMAGE_PIXELS = 93312000000
+#        import PIL
+#        PIL.Image.MAX_IMAGE_PIXELS = 93312000000
         from PIL import Image
         from feed.nude import is_nude, is_nude_video
         from django.conf import settings
@@ -712,8 +712,8 @@ class Post(models.Model):
         except: pass
 
 def resize_image(image_path):
-    import PIL
-    PIL.Image.MAX_IMAGE_PIXELS = 93312000000
+#    import PIL
+#    PIL.Image.MAX_IMAGE_PIXELS = 93312000000
     from PIL import Image
     img = Image.open(image_path)
     output_size = (settings.MAX_RED_IMAGE_DIMENSION, settings.MAX_RED_IMAGE_DIMENSION)

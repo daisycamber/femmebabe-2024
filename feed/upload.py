@@ -1,8 +1,49 @@
 import requests, json, base64, os
 from django.conf import settings
 
+def resize_image(image_path):
+    from PIL import Image
+    img = Image.open(image_path)
+    output_size = (settings.MAX_RED_IMAGE_DIMENSION, settings.MAX_RED_IMAGE_DIMENSION)
+    max = img.width
+    if img.height < img.width:
+        max = img.height
+    from feed.crop import crop_center
+    img = crop_center(img,max,max)
+    img.save(image_path)
+    img = Image.open(image_path)
+    img.thumbnail(output_size)
+    return img
+
 def get_as_base64(url):
     return base64.b64encode(requests.get(url).content)
+
+def upload_photo(path):
+    with open(path, "rb") as file:
+        data = file.read()
+        image1 = base64.b64encode(data)
+    from io import BytesIO
+    buffered = BytesIO()
+    im = resize_image(path)
+    im.save(buffered, format="PNG")
+    image2 = base64.b64encode(buffered.getvalue())
+    return upload(image1), upload(image2)
+
+def upload(base64_data):
+#    b64data = 'data:image/png;base64,' + base64_data.decode('utf-8')
+    data = {
+        'image': base64_data,
+        'type': 'base64',
+        'title': '{} - {}'.format(settings.SITE_NAME, settings.AUTHOR_NAME),
+        'description': settings.BASE_DESCRIPTION + ' - from {}'.format(settings.STATIC_DOMAIN),
+    }
+    headers = {"Authorization": "Client-ID {}".format(settings.IMGUR_ID)}
+    out = requests.post('https://api.imgur.com/3/image', data=data, headers=headers)
+    j = out.json()
+    print(json.dumps(j))
+    if j['status'] == 200:
+        return j['data']['link']
+    return None
 
 def upload_photo_old(path):
     files = {'image': ('{}.png'.format(settings.DOMAIN), open(path, 'rb'), 'image/png')}
@@ -15,7 +56,7 @@ def upload_photo_old(path):
 
 MAX_UPLOAD = 1500
 
-def upload_photo(path):
+def upload_photo_cloudinary(path):
     import cloudinary, base64, json, uuid, cv2
     import cloudinary.uploader
     from cloudinary.utils import cloudinary_url
@@ -70,4 +111,13 @@ def upload_posts():
     for post in Post.objects.filter(published=True).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try: upload_post(post)
+            except: pass
+
+def upload_post_async():
+    from feed.models import Post
+    for post in Post.objects.filter(published=True).order_by('-date_posted'):
+        if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
+            try:
+                upload_post(post)
+                return
             except: pass

@@ -400,6 +400,8 @@ OPENAI_KEY = keys['OPENAI_KEY']
 
 HELCIM_KEY = keys['HELCIM_KEY']
 
+IMGUR_ID = keys['IMGUR_ID']
+IMGUR_SECRET = keys['IMGUR_SECRET']
 
 # Message storage dedup middleware
 MESSAGE_STORAGE = 'lotteh.message_storage.SessionDedupStorage'
