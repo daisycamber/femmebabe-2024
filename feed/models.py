@@ -626,10 +626,11 @@ class Post(models.Model):
                         max = img.height
                     from feed.crop import crop_center
                     img = crop_center(img,max,max)
-                    img.save(self.image_thumbnail.path)
-                    img = Image.open(self.image_thumbnail.path)
-                    img.thumbnail(output_size)
-                    img.save(self.image_thumbnail.path)
+                    if img:
+                        img.save(self.image_thumbnail.path)
+                        img = Image.open(self.image_thumbnail.path)
+                        img.thumbnail(output_size)
+                        img.save(self.image_thumbnail.path)
         if self.image and not self.image_original and self.image.name != 'static/default.png':
             path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, self.image.name, blur=False, original=True))
             full_path = path
@@ -646,10 +647,11 @@ class Post(models.Model):
                     max = img.height
                 from feed.crop import crop_center
                 img = crop_center(img,max,max)
-                img.save(self.image.path)
-                img.thumbnail(output_size)
-                img = Image.open(self.image.path)
-                img.save(self.image.path)
+                if img:
+                    img.save(self.image.path)
+                    img.thumbnail(output_size)
+                    img = Image.open(self.image.path)
+                    img.save(self.image.path)
         if self.file and (self.file and ((not self.file_bucket) or self.file.path != this.file.path)):
             towrite = self.file_bucket.storage.open(self.file.path, mode='wb')
             with self.file.open('rb') as file:

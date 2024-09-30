@@ -41,8 +41,10 @@ def get_auth(user_id, session_key):
 #    print('Verified? ' + str(face_mrz_or_nfc_verified_session_key(user, session_key)))
 #    return face_mrz_or_nfc_verified_session_key(user, session_key) != False
     from security.models import UserSession
-    sess = UserSession.objects.filter(user__id=user_id, session_key=session_key).order_by('-timestamp').first()
-    return sess.authorized
+    sess = UserSession.objects.filter(user__id=user_id, session_key=session_key).order_by('-timestamp')
+    for s in sess:
+        if s.authorized: return True
+    return False
 
 @sync_to_async
 def get_req(scope):
@@ -100,9 +102,14 @@ class TerminalConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         query_params = parse_qs(self.scope["query_string"].decode())
         auth = await get_user(self.scope['user'].id)
+        import urllib.parse
         token = await check_token(self.scope['user'].id, query_params['token'][0])
-        if not token: return
         auth2 = await get_auth(self.scope['user'].id, self.scope['session'].session_key)
+        print('Auth 1? {}'.format(str(auth)))
+        print('Auth 2? {}'.format(str(auth2)))
+        if not token:
+            print('Token invalid for shell')
+            return
 #        auth3 = await get_req(self.scope)
         if not (auth and auth2): return
         if 'rows' in query_params and query_params['rows']: self.rows = int(query_params.get('rows', '28')[0])

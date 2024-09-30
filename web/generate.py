@@ -1,4 +1,4 @@
-overwrite = False
+overwrite = True
 PRIV_POSTS = 24
 import os
 from feed.models import Post

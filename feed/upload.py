@@ -39,8 +39,8 @@ def upload(base64_data):
     }
     headers = {"Authorization": "Client-ID {}".format(settings.IMGUR_ID)}
     out = requests.post('https://api.imgur.com/3/image', data=data, headers=headers)
+    print(out)
     j = out.json()
-    print(json.dumps(j))
     if j['status'] == 200:
         return j['data']['link']
     return None
@@ -48,8 +48,8 @@ def upload(base64_data):
 def upload_photo_old(path):
     files = {'image': ('{}.png'.format(settings.DOMAIN), open(path, 'rb'), 'image/png')}
     out = requests.post('https://api.imgbb.com/1/upload?key={}'.format(settings.IMAGE_HOST_KEY), files=files)
+    print(out)
     j = out.json()
-    print(json.dumps(j))
     if j and 'data' in j:
         return j['data']['image']['url'], j['data']['thumb']['url']
     return None, None
@@ -108,14 +108,14 @@ def upload_post(post):
 
 def upload_posts():
     from feed.models import Post
-    for post in Post.objects.filter(published=True).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True, offsite=False).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try: upload_post(post)
             except: pass
 
 def upload_post_async():
     from feed.models import Post
-    for post in Post.objects.filter(published=True).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True, offsite=False).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try:
                 upload_post(post)

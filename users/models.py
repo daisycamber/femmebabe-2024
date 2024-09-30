@@ -307,6 +307,8 @@ class Profile(models.Model):
             key = '%s:%s' % (self.uuid, token)
             TimestampSigner().unsign(key, max_age=60 * 60) # Valid for 60 mins
         except (BadSignature, SignatureExpired):
+            import traceback
+            print(traceback.format_exc())
             return False
         return True
 
