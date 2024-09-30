@@ -32,7 +32,7 @@ smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 smtpd_relay_restrictions = permit_sasl_authenticated, defer_unauth_destination
-myhostname = femmebabe.com
+myhostname = femmebabe
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
@@ -67,4 +67,10 @@ smtpd_recipient_restrictions =
         permit
 
 smtpd_client_restrictions =
-	reject_unknown_client_hostname,
+    reject_rhsbl_helo dbl.spamhaus.org,
+    reject_rhsbl_reverse_client dbl.spamhaus.org,
+    reject_rhsbl_sender dbl.spamhaus.org,
+#    reject_rbl_client zen.spamhaus.org,
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject

@@ -108,16 +108,20 @@ def upload_post(post):
 
 def upload_posts():
     from feed.models import Post
-    for post in Post.objects.filter(published=True, offsite=False).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try: upload_post(post)
-            except: pass
+            except:
+                import traceback
+                print(traceback.format_exc())
 
 def upload_post_async():
     from feed.models import Post
-    for post in Post.objects.filter(published=True, offsite=False).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True).exclude(image_offsite=None).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try:
                 upload_post(post)
                 return
-            except: pass
+            except:
+                import traceback
+                print(traceback.format_exc())

@@ -589,3 +589,207 @@
 2024-09-29T23:58:16.378890-07:00 femmebabe team: team [10828]: cd
 2024-09-29T23:58:27.530266-07:00 femmebabe team: team [10828]: cd lotteh/
 2024-09-29T23:58:29.791149-07:00 femmebabe team: team [10828]: cd
+2024-09-30T00:06:39.523151-07:00 femmebabe team: team [19095]: exit
+2024-09-30T00:06:57.240520-07:00 femmebabe team: team [19095]: ls
+2024-09-30T00:07:08.060682-07:00 femmebabe team: team [19095]: ls
+2024-09-30T00:08:36.066365-07:00 femmebabe team: team [19095]: ls
+2024-09-30T00:09:17.403677-07:00 femmebabe team: team [19095]: ps -aux | grep backup
+2024-09-30T00:09:43.603865-07:00 femmebabe team: team [19095]: ps -aux | grep backup
+2024-09-30T00:09:50.300601-07:00 femmebabe team: team [19095]: ls
+2024-09-30T00:09:53.835702-07:00 femmebabe team: team [19095]: clear
+2024-09-30T00:09:56.397131-07:00 femmebabe team: team [19095]: clear
+2024-09-30T00:10:07.506458-07:00 femmebabe team: team [19095]: sudp systemctl status celery
+2024-09-30T00:10:46.208772-07:00 femmebabe team: team [19095]: sudo systemctl status celery
+2024-09-30T00:10:49.481441-07:00 femmebabe team: team [19095]: clear
+2024-09-30T00:11:03.406192-07:00 femmebabe team: team [19095]: sudo systemctl status celery
+2024-09-30T00:11:11.498792-07:00 femmebabe team: team [19095]: sudo systemctl status celery
+2024-09-30T00:11:17.279436-07:00 femmebabe team: team [19095]: sudo systemctl status celery
+2024-09-30T00:11:22.307845-07:00 femmebabe team: team [19095]: sudo systemctl status celery
+2024-09-30T00:11:24.650734-07:00 femmebabe team: team [19095]: cmew
+2024-09-30T00:11:26.716015-07:00 femmebabe team: team [19095]: cmds
+2024-09-30T00:11:29.725109-07:00 femmebabe team: team [19095]: cmss
+2024-09-30T00:11:31.947156-07:00 femmebabe team: team [19095]: cmds
+2024-09-30T00:11:34.686383-07:00 femmebabe team: team [19095]: clear
+2024-09-30T00:11:37.670252-07:00 femmebabe team: team [19095]: exit
+2024-09-30T00:12:50.292028-07:00 femmebabe team: team [19834]: exit
+2024-09-30T00:12:54.396212-07:00 femmebabe team: team [19834]: ls
+2024-09-30T00:12:58.477856-07:00 femmebabe team: team [19834]: logs
+2024-09-30T00:13:01.897097-07:00 femmebabe team: team [19834]: cmds
+2024-09-30T01:08:57.656835-07:00 femmebabe team: team [11024]: python manage.py shell
+2024-09-30T01:09:05.320349-07:00 femmebabe team: team [11024]: python manage.py shell
+2024-09-30T01:09:08.897823-07:00 femmebabe team: team [11024]: cd lotteh
+2024-09-30T01:09:22.912143-07:00 femmebabe team: team [11024]: cd lotteh
+2024-09-30T01:10:17.289692-07:00 femmebabe team: team [11024]: nano feed/upload.py 
+2024-09-30T01:10:22.360998-07:00 femmebabe team: team [11024]: nano feed/upload.py 
+2024-09-30T01:10:28.842586-07:00 femmebabe team: team [11024]: python upload_post.py 
+2024-09-30T01:10:33.943745-07:00 femmebabe team: team [11024]: source venv/bin/activate
+2024-09-30T01:10:40.358943-07:00 femmebabe team: team [11024]: python upload_post.py 
+2024-09-30T01:17:37.380420-07:00 femmebabe team: team [11024]: nano feed/upload.py 
+2024-09-30T01:17:47.256572-07:00 femmebabe team: team [11024]: python force_publish.py 
+2024-09-30T01:17:51.395341-07:00 femmebabe team: team [11024]: nano feed/upload.py 
+2024-09-30T01:17:57.040009-07:00 femmebabe team: team [11024]: python upload_post.py 
+2024-09-30T01:23:09.928860-07:00 femmebabe team: team [10965]: python upload_post
+2024-09-30T01:23:15.194556-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T01:42:55.534233-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T01:43:25.832553-07:00 femmebabe team: team [10965]: nano feed/upload.py 
+2024-09-30T01:49:29.862100-07:00 femmebabe team: team [10965]: logs
+2024-09-30T01:49:29.864496-07:00 femmebabe team: team [11024]: logs
+2024-09-30T01:50:09.059700-07:00 femmebabe team: team [10965]: compinfo
+2024-09-30T01:50:22.717684-07:00 femmebabe team: team [10965]: sudo systemctl status celery
+2024-09-30T01:50:29.379964-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:50:30.906373-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:50:32.164358-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:50:37.852099-07:00 femmebabe team: team [10965]: compinfo
+2024-09-30T01:50:43.430128-07:00 femmebabe team: team [10965]: sudo systemctl status celery
+2024-09-30T01:52:28.020525-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:29.962637-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:30.468604-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:32.309882-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:34.184508-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:35.554492-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:52:37.275565-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:11.546290-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:13.299764-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:14.667573-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:15.929985-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:17.545888-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:20.787690-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:22.836179-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:53:24.578895-07:00 femmebabe team: team [10965]: sudo systemctl status apache2
+2024-09-30T01:55:14.594404-07:00 femmebabe team: team [10965]: watch sudo systemctl status apache2
+2024-09-30T01:55:32.481241-07:00 femmebabe team: team [10965]: watch sudo systemctl status apache2
+2024-09-30T01:55:55.919110-07:00 femmebabe team: team [10965]: ls *.py
+2024-09-30T01:56:16.498519-07:00 femmebabe team: team [10965]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T01:56:34.258648-07:00 femmebabe team: team [10965]: sudo systemctl restart postfix dovecot opendkim
+2024-09-30T01:56:44.799862-07:00 femmebabe team: team [10965]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T01:57:06.977189-07:00 femmebabe team: team [10965]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T01:57:19.360904-07:00 femmebabe team: team [10965]: sudo nano /etc/postfix/master.cf
+2024-09-30T01:57:55.723674-07:00 femmebabe team: team [10965]: sudo nano /etc/postfix/main.cf
+2024-09-30T01:58:01.965527-07:00 femmebabe team: team [10965]: sudo systemctl restart postfix dovecot opendkim
+2024-09-30T01:58:12.423916-07:00 femmebabe team: team [10965]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T01:58:33.953304-07:00 femmebabe team: team [10965]: sudo nano /etc/postfix/main.cf
+2024-09-30T01:59:06.380101-07:00 femmebabe team: team [10965]: tail /var/log/mail.log
+2024-09-30T02:00:40.822783-07:00 femmebabe team: team [10965]: sudo hostnamectl
+2024-09-30T02:00:58.019825-07:00 femmebabe team: team [10965]: python force_publish.py 
+2024-09-30T02:01:17.249709-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:01:31.878129-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:01:35.603833-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:01:57.587412-07:00 femmebabe team: team [10965]: nano feed/upload.py 
+2024-09-30T02:02:11.350007-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:02:17.118109-07:00 femmebabe team: team [10965]: nano upload_post
+2024-09-30T02:02:19.216413-07:00 femmebabe team: team [10965]: nano upload_posts.py 
+2024-09-30T02:02:21.244989-07:00 femmebabe team: team [10965]: nano upload_posts.py 
+2024-09-30T02:02:37.327403-07:00 femmebabe team: team [10965]: python upload_post.py
+2024-09-30T02:03:21.535711-07:00 femmebabe team: team [10965]: python manage.py shell
+2024-09-30T02:03:23.099140-07:00 femmebabe team: team [10965]: python manage.py shell
+2024-09-30T02:04:02.506685-07:00 femmebabe team: team [10965]: nano feed/upload.py 
+2024-09-30T02:04:06.833277-07:00 femmebabe team: team [10965]: nano feed/upload.py 
+2024-09-30T02:04:09.033593-07:00 femmebabe team: team [10965]: python upload_post
+2024-09-30T02:06:38.079403-07:00 femmebabe team: team [11024]: nano upload_posts.py 
+2024-09-30T02:07:12.557459-07:00 femmebabe team: team [11024]: nano feed/upload.py 
+2024-09-30T02:07:33.385794-07:00 femmebabe team: team [11721]: ps -aux | grep python
+2024-09-30T02:07:39.523132-07:00 femmebabe team: team [11721]: kill 31593
+2024-09-30T02:07:39.535139-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:07:51.329866-07:00 femmebabe team: team [10965]: python upload_posts.py 
+2024-09-30T02:08:02.747812-07:00 femmebabe team: team [10965]: python force_publish.py 
+2024-09-30T02:09:30.303813-07:00 femmebabe team: team [33023]: cmds
+2024-09-30T02:10:01.762856-07:00 femmebabe team: team [11024]: sudo pushweb
+2024-09-30T02:22:53.490752-07:00 femmebabe team: team [33023]: coompungo
+2024-09-30T02:23:01.943676-07:00 femmebabe team: team [33023]: compoinfo
+2024-09-30T02:23:17.173073-07:00 femmebabe team: team [33023]: compinfo
+2024-09-30T02:24:21.146733-07:00 femmebabe team: message repeated 3 times: [ team [33023]: compinfo]
+2024-09-30T02:26:22.988228-07:00 femmebabe team: team [33023]: sudo safereboot
+2024-09-30T02:27:58.934002-07:00 femmebabe team: team [3491]: python manage.py shell
+2024-09-30T02:28:27.303041-07:00 femmebabe team: team [3491]: cat /etc/hostname
+2024-09-30T02:28:31.993962-07:00 femmebabe team: team [3491]: hostnamectl
+2024-09-30T02:30:15.543735-07:00 femmebabe team: team [3491]: sudo nano /etc/hostname
+2024-09-30T02:31:32.941019-07:00 femmebabe team: team [3491]: sudo nano /etc/hosts
+2024-09-30T02:32:10.742976-07:00 femmebabe team: team [3491]: sudo hostnamectl set-hostname femmebabe.com
+2024-09-30T02:32:16.760142-07:00 femmebabe team: team [3491]: hostnamectl
+2024-09-30T02:32:51.727049-07:00 femmebabe team: team [4093]: hostnamectl
+2024-09-30T02:32:58.399538-07:00 femmebabe team: team [4093]: cd lotteh/
+2024-09-30T02:33:12.018526-07:00 femmebabe team: team [4093]: source venv/bin/activate
+2024-09-30T02:33:15.474710-07:00 femmebabe team: team [4311]: hostnamectl
+2024-09-30T02:33:16.641495-07:00 femmebabe team: team [4333]: hostnamectl
+2024-09-30T02:33:18.166559-07:00 femmebabe team: team [4365]: hostnamectl
+2024-09-30T02:33:19.995293-07:00 femmebabe team: team [4093]: python manage.py check
+2024-09-30T02:33:21.176508-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:33:46.048532-07:00 femmebabe team: team [4093]: sudo systemctl status postgresql
+2024-09-30T02:33:48.422934-07:00 femmebabe team: team [4093]: sudo systemctl status postgresql
+2024-09-30T02:33:49.653482-07:00 femmebabe team: team [4093]: sudo systemctl status postgresql
+2024-09-30T02:33:51.922511-07:00 femmebabe team: team [4093]: sudo systemctl status postgresql
+2024-09-30T02:34:17.485192-07:00 femmebabe team: team [4093]: sudo nano /etc/hosts
+2024-09-30T02:34:18.835777-07:00 femmebabe team: team [4093]: hostname
+2024-09-30T02:34:29.385929-07:00 femmebabe team: message repeated 2 times: [ team [4093]: hostname]
+2024-09-30T02:34:42.374855-07:00 femmebabe team: team [4093]: netstat -plant | grep LISTEN
+2024-09-30T02:34:45.005141-07:00 femmebabe team: team [4093]: netstat -plant | grep LISTEN
+2024-09-30T02:34:53.544525-07:00 femmebabe team: team [4093]: LOGS
+2024-09-30T02:34:54.476437-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:02.108573-07:00 femmebabe team: team [4093]: sudo sdystemctl reload apache2
+2024-09-30T02:35:04.006804-07:00 femmebabe team: team [4093]: sudo sdystemctl reload apache2
+2024-09-30T02:35:05.882294-07:00 femmebabe team: team [4093]: sudo doreload
+2024-09-30T02:35:14.504948-07:00 femmebabe team: team [4093]: sudo systemctl restart postgresql
+2024-09-30T02:35:17.560454-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:18.706640-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:20.324291-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:21.516212-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:24.648386-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:26.310992-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:27.522741-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:28.752835-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:30.069110-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:31.186234-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:32.725377-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:34.205553-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:35.617583-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:37.383213-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:35:37.997831-07:00 femmebabe team: team [5026]: hostnamectl
+2024-09-30T02:35:45.289003-07:00 femmebabe team: team [4093]: logs
+2024-09-30T02:36:09.291353-07:00 femmebabe team: team [4093]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T02:36:30.069859-07:00 femmebabe team: team [4093]: tail /var/log/mail
+2024-09-30T02:36:33.390548-07:00 femmebabe team: team [4093]: tail /var/log/mail.log
+2024-09-30T02:38:40.395936-07:00 femmebabe team: team [4093]: sudo nano /etc/postfix/main.cf
+2024-09-30T02:38:48.782599-07:00 femmebabe team: team [4093]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T02:38:55.317949-07:00 femmebabe team: team [4093]: sudo systemctl restart postfix
+2024-09-30T02:39:03.546722-07:00 femmebabe team: team [4093]: python test_mail.py jasper.camber.holton@gmail.com
+2024-09-30T02:39:45.128594-07:00 femmebabe team: team [4093]: sudo pushweb
+2024-09-30T02:40:14.887320-07:00 femmebabe team: team [4311]: hostnamectl
+2024-09-30T02:40:41.283240-07:00 femmebabe team: team [4333]: cd lotteh/
+2024-09-30T02:40:44.362443-07:00 femmebabe team: team [4333]: cat web/site/index.html 
+2024-09-30T02:40:56.485732-07:00 femmebabe team: team [4333]: cat web/site/index.html 
+2024-09-30T02:41:20.461316-07:00 femmebabe team: team [4333]: nano web/generate.py 
+2024-09-30T02:41:24.594233-07:00 femmebabe team: team [4311]: sudo pushweb
+2024-09-30T02:41:25.123236-07:00 femmebabe team: message repeated 14 times: [ team [4311]: sudo pushweb]
+2024-09-30T03:11:18.013669-07:00 femmebabe team: team [5026]: sudo crontab -e
+2024-09-30T03:11:28.657905-07:00 femmebabe team: team [5026]: loga
+2024-09-30T03:11:35.327619-07:00 femmebabe team: team [5026]: logs
+2024-09-30T03:24:12.323813-07:00 femmebabe team: team [5026]: logs
+2024-09-30T03:24:18.197872-07:00 femmebabe team: team [5026]: logs
+2024-09-30T03:31:47.882687-07:00 femmebabe team: team [5026]: sudo safereboot
+2024-09-30T03:33:17.587535-07:00 femmebabe team: team [3515]: sudo pushweb
+2024-09-30T03:53:02.793489-07:00 femmebabe team: team [3515]: sudo hostname femmebabe.com
+2024-09-30T03:53:10.118142-07:00 femmebabe team: team [3515]: hostname
+2024-09-30T03:53:19.537444-07:00 femmebabe team: team [3515]: hostnamectl
+2024-09-30T03:53:39.137658-07:00 femmebabe team: team [4534]: hostnamectl
+2024-09-30T04:00:15.006357-07:00 femmebabe team: team [5645]: hostnamectl
+2024-09-30T04:01:07.422693-07:00 femmebabe team: team [5645]: sudo nano /etc/postfix/main.cf
+2024-09-30T04:04:30.802838-07:00 femmebabe team: team [3490]: sudo nano /etc/postfix/main.cf
+2024-09-30T04:04:35.150404-07:00 femmebabe team: team [3490]: cd lotteh
+2024-09-30T04:04:48.517952-07:00 femmebabe team: team [3490]: cd lotteh
+2024-09-30T04:07:24.066514-07:00 femmebabe team: team [3490]: sudo nano /etc/postfix/main.cf
+2024-09-30T04:07:36.985789-07:00 femmebabe team: team [3490]: sudo systemctl restart postfix
+2024-09-30T04:08:28.798305-07:00 femmebabe team: team [3490]: nano test_mail.py 
+2024-09-30T04:08:39.916070-07:00 femmebabe team: team [3490]: source venv/bin/activate
+2024-09-30T04:09:29.366316-07:00 femmebabe team: team [3490]: pyhon test_mail.py test-tc2zfqq4i@srv1.mail-tester.com
+2024-09-30T04:09:57.650844-07:00 femmebabe team: team [3490]: python test_mail.py test-tc2zfqq4i@srv1.mail-tester.com
+2024-09-30T04:10:55.114100-07:00 femmebabe team: team [3490]: * python test_
+2024-09-30T04:11:16.168088-07:00 femmebabe team: team [3490]: python test_mail.py test-38a714@test.mailgenius.com
+2024-09-30T04:12:14.729462-07:00 femmebabe team: team [3490]: sudo nano /etc/postfix/main.cf
+2024-09-30T04:12:40.285587-07:00 femmebabe team: team [3490]: sudo systemctl restart postfix
+2024-09-30T04:12:52.613907-07:00 femmebabe team: team [3490]: python test_mail.py test-38a714@test.mailgenius.com
+2024-09-30T04:13:57.517947-07:00 femmebabe team: team [3490]: python test_mail.pytest-bzpg8ev2n@srv1.mail-tester.com
+2024-09-30T04:14:23.830197-07:00 femmebabe team: team [3490]: python test_mail.py test-bzpg8ev2n@srv1.mail-tester.com
+2024-09-30T04:17:33.425647-07:00 femmebabe team: team [3490]: sudp ascript async ackup
+2024-09-30T04:17:45.371448-07:00 femmebabe team: team [3490]: sudo ascript async ackup
+2024-09-30T04:18:00.269201-07:00 femmebabe team: team [3490]: sudo ascript asyncbackup
+2024-09-30T04:18:09.148343-07:00 femmebabe team: team [3490]: sudo asyncbackup
