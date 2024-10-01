@@ -27,3 +27,5 @@ daphnerestart
 asyncbackup
 makemigrate
 async
+venv
+vevenv

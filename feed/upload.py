@@ -1,4 +1,4 @@
-import requests, json, base64, os
+import requests, json, base64, os, traceback
 from django.conf import settings
 
 def resize_image(image_path):
@@ -96,9 +96,12 @@ def upload_post(post):
             post.image_offsite = None
             post.save()
             post.get_blur_url()
-        i1, i2 = upload_photo(post.image.path if post.public else post.image_censored.path)
-        post.image_offsite = i1
-        post.image_thumb_offsite = i2
+        try:
+            i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
+            post.image_offsite = i1
+            post.image_thumb_offsite = i2
+        except:
+            print(traceback.format_exc())
         post.offsite = True
         post.save()
 #        except: print(traceback.format_exc())
@@ -108,20 +111,18 @@ def upload_post(post):
 
 def upload_posts():
     from feed.models import Post
-    for post in Post.objects.filter(published=True).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True, image_offsite=None).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try: upload_post(post)
             except:
-                import traceback
                 print(traceback.format_exc())
 
 def upload_post_async():
     from feed.models import Post
-    for post in Post.objects.filter(published=True).exclude(image_offsite=None).order_by('-date_posted'):
+    for post in Post.objects.filter(published=True, image_offsite=None, offsite=False).order_by('-date_posted'):
         if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
             try:
                 upload_post(post)
                 return
             except:
-                import traceback
                 print(traceback.format_exc())

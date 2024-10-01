@@ -793,3 +793,142 @@
 2024-09-30T04:17:45.371448-07:00 femmebabe team: team [3490]: sudo ascript async ackup
 2024-09-30T04:18:00.269201-07:00 femmebabe team: team [3490]: sudo ascript asyncbackup
 2024-09-30T04:18:09.148343-07:00 femmebabe team: team [3490]: sudo asyncbackup
+2024-09-30T14:39:30.557729-07:00 femmebabe team: team [31890]: sudo asyncbackup
+2024-09-30T14:39:44.449831-07:00 femmebabe team: team [32020]: sudo asyncbackup
+2024-09-30T14:40:07.739457-07:00 femmebabe team: team [32020]: cd lotteh
+2024-09-30T14:40:24.812212-07:00 femmebabe team: team [32020]: source venv/bin/activate
+2024-09-30T14:40:30.347875-07:00 femmebabe team: team [32020]: ls
+2024-09-30T14:41:03.845485-07:00 femmebabe team: team [32020]: python upload_post.py 
+2024-09-30T14:46:03.092818-07:00 femmebabe team: team [32020]: python manage.py shell
+2024-09-30T14:46:14.630894-07:00 femmebabe team: team [32531]: sudo asyncbackup
+2024-09-30T14:46:20.008133-07:00 femmebabe team: team [32531]: clear
+2024-09-30T14:46:28.522775-07:00 femmebabe team: team [32531]: clear
+2024-09-30T14:46:39.439255-07:00 femmebabe team: team [32531]: cd lotteh
+2024-09-30T14:46:51.352184-07:00 femmebabe team: team [32531]: source venv/bin/activate
+2024-09-30T14:54:26.519648-07:00 femmebabe team: team [32987]: sudo asyncbackup
+2024-09-30T14:55:33.474844-07:00 femmebabe team: team [32987]: cd lotteh
+2024-09-30T14:55:41.455960-07:00 femmebabe team: team [32987]: cat feed/upload.py
+2024-09-30T15:01:06.017576-07:00 femmebabe team: team [32987]: nano feed/upload.py
+2024-09-30T15:01:49.749820-07:00 femmebabe team: team [32987]: ps -aux | grep puthon
+2024-09-30T15:01:58.650224-07:00 femmebabe team: team [32987]: ps -aux | grep python
+2024-09-30T15:02:11.418988-07:00 femmebabe team: team [32987]: kill 32599
+2024-09-30T15:02:11.438879-07:00 femmebabe team: team [32531]: python manage.py shell
+2024-09-30T15:06:55.323758-07:00 femmebabe team: team [32531]: nano feed/upload.py
+2024-09-30T15:07:10.452588-07:00 femmebabe team: team [32531]: cat feed/upload.py
+2024-09-30T15:07:45.149174-07:00 femmebabe team: team [32531]: python upload_post.py
+2024-09-30T15:07:49.114329-07:00 femmebabe team: team [32531]: python upload_post.py
+2024-09-30T15:08:56.218254-07:00 femmebabe team: team [32987]: source venv/bin/activate
+2024-09-30T15:09:28.703378-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:09:30.075016-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:10:35.615040-07:00 femmebabe team: team [32987]: sudo chown-r :users media/ 
+2024-09-30T15:10:59.000500-07:00 femmebabe team: team [32987]: sudo chown -r :users media/ 
+2024-09-30T15:11:24.885984-07:00 femmebabe team: team [32987]: sudo chown -r Rusers media/ 
+2024-09-30T15:11:52.652487-07:00 femmebabe team: team [32987]: sudo chown -R users media/ 
+2024-09-30T15:12:16.407543-07:00 femmebabe team: team [32987]: sudo chown -R :users media/ 
+2024-09-30T15:12:43.975833-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:12:45.248747-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:14:09.494662-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:14:10.522213-07:00 femmebabe team: team [32987]: python upload_post.py
+2024-09-30T15:14:41.285510-07:00 femmebabe team: team [32987]: sudo chmod -r g+rw media/
+2024-09-30T15:15:19.588726-07:00 femmebabe team: team [32987]: sudo chmod g+rw -r media/
+2024-09-30T15:16:25.130134-07:00 femmebabe team: team [32531]: sudo chmod -R gg+rw media/
+2024-09-30T15:16:30.192328-07:00 femmebabe team: team [32531]: sudo chmod -R gg+rw media/
+2024-09-30T15:16:40.927749-07:00 femmebabe team: team [32531]: sudo chmod -R g+rw media/
+2024-09-30T15:17:00.411383-07:00 femmebabe team: team [32531]: sudo chmod -R g+rw media/
+2024-09-30T15:17:16.831003-07:00 femmebabe team: team [32531]: sudo chmod -R g+rw media/
+2024-09-30T15:18:18.423460-07:00 femmebabe team: team [32531]: python upload_post.py
+2024-09-30T15:18:18.433003-07:00 femmebabe team: team [32531]: python upload_post.py
+2024-09-30T15:19:35.903492-07:00 femmebabe team: team [32531]: sudo crontab -e
+2024-09-30T15:39:56.748261-07:00 femmebabe team: team [32987]: sudo chmod g+rw -r media/
+2024-09-30T15:40:01.970372-07:00 femmebabe team: team [32987]: clear
+2024-09-30T15:40:15.570522-07:00 femmebabe team: team [32531]: sudo pushweb
+2024-09-30T16:23:13.094071-07:00 femmebabe team: team [39279]: clear
+2024-09-30T16:24:57.314704-07:00 femmebabe team: team [39279]: logs
+2024-09-30T16:26:13.658569-07:00 femmebabe team: team [39279]: logs
+2024-09-30T16:26:13.977390-07:00 femmebabe team: team [39279]: logs
+2024-09-30T16:26:27.521365-07:00 femmebabe team: team [39279]: cd lotteh
+2024-09-30T16:26:39.283746-07:00 femmebabe team: team [40365]: clear
+2024-09-30T16:26:48.529861-07:00 femmebabe team: team [39279]: spurce venv/bin/activate
+2024-09-30T16:26:57.855375-07:00 femmebabe team: team [39279]: source venv/bin/activate
+2024-09-30T16:28:23.523246-07:00 femmebabe team: team [39279]: python upload_post.py
+2024-09-30T16:29:14.815987-07:00 femmebabe team: team [39279]: sudo crontab -e
+2024-09-30T16:29:24.312772-07:00 femmebabe team: team [39279]: sudo crontab -e
+2024-09-30T16:29:28.593661-07:00 femmebabe team: team [39279]: clear
+2024-09-30T17:04:31.596441-07:00 femmebabe team: team [49524]: clear
+2024-09-30T18:04:10.718362-07:00 femmebabe team: team [64266]: clear
+2024-09-30T18:04:26.544617-07:00 femmebabe team: team [64423]: clear
+2024-09-30T18:04:55.238641-07:00 femmebabe team: team [64423]: sudo systemctl stop cudo-miner
+2024-09-30T18:05:15.440626-07:00 femmebabe team: team [64423]: cd lotteh
+2024-09-30T18:05:20.346210-07:00 femmebabe team: team [64423]: venv
+2024-09-30T18:06:07.766487-07:00 femmebabe team: team [64423]: source venv/bin/activate
+2024-09-30T18:12:53.101316-07:00 femmebabe team: team [64423]: sudo ascript venv
+2024-09-30T18:13:28.954932-07:00 femmebabe team: team [66804]: exit
+2024-09-30T18:13:41.269861-07:00 femmebabe team: team [66869]: exit
+2024-09-30T18:14:15.217212-07:00 femmebabe team: team [67114]: exit
+2024-09-30T18:14:58.771743-07:00 femmebabe team: team [67114]: sudp ascript vevenv
+2024-09-30T18:15:13.766795-07:00 femmebabe team: team [67114]: sudo ascript vevenv
+2024-09-30T18:16:08.729892-07:00 femmebabe team: team [67114]: sudo ascript venv
+2024-09-30T18:16:26.243603-07:00 femmebabe team: team [67114]: venv
+2024-09-30T18:17:00.126090-07:00 femmebabe team: team [67114]: sudo ascript vevenv
+2024-09-30T18:17:35.663449-07:00 femmebabe team: team [67114]: sudo ascript venv
+2024-09-30T18:17:42.314899-07:00 femmebabe team: team [68059]: exit
+2024-09-30T18:17:55.574626-07:00 femmebabe team: team [68059]: exit
+2024-09-30T18:18:01.838768-07:00 femmebabe team: team [68059]: ls
+2024-09-30T18:18:27.103442-07:00 femmebabe team: team [68059]: python last_logins.py
+2024-09-30T18:19:45.362447-07:00 femmebabe team: team [68059]: python upload_post.py
+2024-09-30T18:38:10.956580-07:00 femmebabe team: team [68059]: lsls
+2024-09-30T18:38:17.101392-07:00 femmebabe team: team [68059]: ls
+2024-09-30T18:42:57.747269-07:00 femmebabe team: team [68059]: nano feed/upload.py 
+2024-09-30T18:43:46.845871-07:00 femmebabe team: team [68059]: python upload_post.py 
+2024-09-30T18:44:04.783736-07:00 femmebabe team: team [68059]: python upload_post.py 
+2024-09-30T18:47:21.890583-07:00 femmebabe team: team [68059]: nano feed/upload.py
+2024-09-30T18:47:56.522236-07:00 femmebabe team: team [68059]: python upload_post.py 
+2024-09-30T18:48:42.623457-07:00 femmebabe team: message repeated 3 times: [ team [68059]: python upload_post.py ]
+2024-09-30T18:52:22.510849-07:00 femmebabe team: team [68059]: nano feed/upload.py
+2024-09-30T18:52:39.716633-07:00 femmebabe team: team [68059]: nano feed/upload.py
+2024-09-30T18:52:45.224138-07:00 femmebabe team: team [68059]: clear
+2024-09-30T18:53:20.621340-07:00 femmebabe team: team [68059]: python upload_post.py
+2024-09-30T18:53:26.870882-07:00 femmebabe team: team [68059]: logs
+2024-09-30T18:53:32.854709-07:00 femmebabe team: team [68059]: cmds
+2024-09-30T18:53:43.309925-07:00 femmebabe team: team [68059]: clear
+2024-09-30T18:53:49.938906-07:00 femmebabe team: team [68059]: cmda
+2024-09-30T18:53:56.125930-07:00 femmebabe team: team [68059]: cmds
+2024-09-30T19:10:00.381550-07:00 femmebabe team: team [68059]: sudo async ackup
+2024-09-30T19:10:29.106451-07:00 femmebabe team: team [68059]: sudo asynb ackup
+2024-09-30T19:10:56.196860-07:00 femmebabe team: team [68059]: sudo asynbackup
+2024-09-30T19:11:24.286672-07:00 femmebabe team: team [68059]: sudo ascynbackup
+2024-09-30T19:11:41.445865-07:00 femmebabe team: team [68059]: sudo async ackup
+2024-09-30T19:11:56.363405-07:00 femmebabe team: team [68059]: sudo asyncbackup
+2024-09-30T19:13:02.358205-07:00 femmebabe team: team [68059]: ps -aux | grep backup
+2024-09-30T19:15:31.363256-07:00 femmebabe team: team [68059]: ps -aux | grep backup
+2024-09-30T19:28:53.693451-07:00 femmebabe team: team [67114]: venv
+2024-09-30T19:29:08.175633-07:00 femmebabe team: team [85167]: ps -aux | grep backup
+2024-09-30T19:29:17.276802-07:00 femmebabe team: team [85167]: cmds
+2024-09-30T19:29:23.018848-07:00 femmebabe team: team [85267]: ps -aux | grep backup
+2024-09-30T19:29:28.467709-07:00 femmebabe team: team [85267]: cmds
+2024-09-30T19:29:36.540966-07:00 femmebabe team: team [85267]: cmds
+2024-09-30T19:29:45.778151-07:00 femmebabe team: team [85267]: cmds
+2024-09-30T19:30:02.202950-07:00 femmebabe team: team [85267]: cmds
+2024-09-30T19:30:07.503871-07:00 femmebabe team: team [85267]: logs
+2024-09-30T19:30:12.919379-07:00 femmebabe team: team [85267]: cmds
+2024-09-30T19:30:25.531716-07:00 femmebabe team: team [85267]: clear
+2024-09-30T20:20:19.529300-07:00 femmebabe team: team [85267]: clear
+2024-09-30T20:20:29.652694-07:00 femmebabe team: team [85267]: suso pusweb
+2024-09-30T20:20:45.750744-07:00 femmebabe team: team [85267]: suso pusweb
+2024-09-30T20:23:50.749851-07:00 femmebabe team: team [85267]: sudo pushweb
+2024-09-30T20:32:15.990294-07:00 femmebabe team: team [85167]: venv
+2024-09-30T21:13:04.675749-07:00 femmebabe team: team [111734]: sudo pushweb
+2024-09-30T21:13:31.416620-07:00 femmebabe team: team [111945]: sudo pushweb
+2024-09-30T21:13:56.995293-07:00 femmebabe team: team [112129]: sudo pushweb
+2024-09-30T21:14:26.827704-07:00 femmebabe team: team [112301]: sudo pushweb
+2024-09-30T21:14:47.431295-07:00 femmebabe team: team [112461]: sudo pushweb
+2024-09-30T21:15:18.744488-07:00 femmebabe team: team [112690]: sudo pushweb
+2024-09-30T21:15:41.149862-07:00 femmebabe team: team [112908]: sudo pushweb
+2024-09-30T21:16:05.495790-07:00 femmebabe team: team [113087]: sudo pushweb
+2024-09-30T22:06:36.064116-07:00 femmebabe team: team [125720]: sudo pushweb
+2024-09-30T22:06:55.309985-07:00 femmebabe team: team [125863]: sudo pushweb
+2024-09-30T22:07:21.929779-07:00 femmebabe team: team [126057]: sudo pushweb
+2024-09-30T22:09:59.891253-07:00 femmebabe team: team [126920]: sudo pushweb
+2024-09-30T22:10:27.506823-07:00 femmebabe team: team [127170]: sudo pushweb
+2024-09-30T22:10:38.959819-07:00 femmebabe team: team [127282]: sudo pushweb
+2024-09-30T22:12:03.793798-07:00 femmebabe team: team [127282]: ls
