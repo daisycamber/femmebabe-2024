@@ -75,6 +75,9 @@
 </div>
 {% endblock %}
 {% block javascript %}
+const maxDecibels = 2000;
+var targetColor = '#ff4fd6';
+var belowColor = '#4f66ff';
 const theGain = 60;
 var scrollContainer = true;
 var container = document.getElementById('pitch-container');
@@ -111,7 +114,7 @@ new Chart(ctx, {
       title: {
         display: true,
         text: 'Pitch (Hz)'
-      }
+      },
     },
     tooltips: {
         mode: 'index'
@@ -143,6 +146,7 @@ var liveChart;
 var liveChart2;
 var lc = false;
 var firstScroll = true;
+var updatedChart = false;
 function updateLive() {
     var ctxLive;
     var c;
@@ -183,7 +187,7 @@ function updateLive() {
     for(var i = datasets.length - 1; i > 0; i--) {
         var ds = datasets[i];
         var label = 'Below';
-        if(ds[0][2] == 'rgb(0,255,0)') {
+        if(ds[0][2] == targetColor) {
             label = 'Target';
         }
         var pt = [];
@@ -218,7 +222,7 @@ function updateLive() {
               title: {
                 display: true,
                 text: 'Pitch'
-              }
+              },
             },
             tooltips: {
                 mode: 'index'
@@ -268,6 +272,7 @@ function updateLive() {
     });
     ctxLive.classList.remove('hide');
     octxLive.classList.add('hide');
+    updatedChart = false;
     if(lc) liveChart = c;
     else liveChart2 = c;
     if(scrollContainer) {
@@ -317,7 +322,7 @@ function initialize() {
             gain.gain.value = theGain;
         	analyser = audioContext.createAnalyser();
         	analyser.minDecibels = -300; // -100
-        	analyser.maxDecibels = 3000;
+        	analyser.maxDecibels = maxDecibels;
         	analyser.smoothingTimeConstant = 0.85;
             gain.connect(analyser);
         	source = audioContext.createMediaStreamSource(stream);
@@ -356,11 +361,11 @@ function initialize() {
                 		volumes.push(volume);
                         var thecolor;
                 		if(pitch >= targetPitch) {
-                            thecolor = '#ff4fd6';//'rgb(0,255,0)';
+                            thecolor = targetColor;//'rgb(0,255,0)';
                 			noteVerbose.style = 'color: green; !important';
                 			pitchVerbose.style = 'color: green; !important';
                 		} else if(pitch > minimumPitch) {
-                            thecolor = '#4f66ff';//'rgb(255,0,0)';
+                            thecolor = belowColor;//'rgb(255,0,0)';
                             noteVerbose.style = 'color: red; !important';
                 			{% if darkmode %}
                 			pitchVerbose.style = 'color: lightblue; !important';
@@ -377,6 +382,7 @@ function initialize() {
                             lcolors.push(thecolor)
                 			noteVerbose.innerHTML = note;
                 			pitchVerbose.innerHTML = pitch.toFixed(PITCH_DIGITS) + " Hz";
+                            updatedChart = true;
                 		} else {
 /*                    		lpitches.shift();
                             lnotes.shift();
@@ -385,7 +391,7 @@ function initialize() {
                     		lnotes.push('NaN');
                             lcolors.push(thecolor);*/
                         }
-                        {% if not recording.content %}updateLive();{% endif %}
+                        {% if not recording.content %}if(updatedChart) updateLive();{% endif %}
                 	}
                 	pitchCount = pitchCount + 1;
                     }, 10);
@@ -680,7 +686,7 @@ form.addEventListener("submit", function(e) {
                 gain.gain.value = theGain;
             	analyser = audioContext.createAnalyser();
             	analyser.minDecibels = -300; // -100
-            	analyser.maxDecibels = 3000;
+            	analyser.maxDecibels = maxDecibels;
             	analyser.smoothingTimeConstant = 0.85;
                 var source = audioContext.createBufferSource();
                 source.buffer = segment;

@@ -10,8 +10,6 @@ def resize_image(image_path):
         max = img.height
     from feed.crop import crop_center
     img = crop_center(img,max,max)
-    img.save(image_path)
-    img = Image.open(image_path)
     img.thumbnail(output_size)
     return img
 
@@ -96,6 +94,7 @@ def upload_post(post):
             post.image_offsite = None
             post.save()
             post.get_blur_url()
+            post = Post.objects.get(id=post.id)
         try:
             i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
             post.image_offsite = i1
