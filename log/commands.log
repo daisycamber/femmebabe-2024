@@ -1135,3 +1135,26 @@
 2024-10-01T20:25:21.325953-07:00 femmebabe team: team [220591]: python upload_post.py 
 2024-10-01T21:10:10.677402-07:00 femmebabe team: team [220591]: le
 2024-10-01T21:16:06.307463-07:00 femmebabe team: team [220591]: ls
+2024-10-02T11:41:14.412974-07:00 femmebabe team: team [267199]: ls
+2024-10-02T11:41:19.906000-07:00 femmebabe team: team [267199]: ls
+2024-10-02T11:41:22.874100-07:00 femmebabe team: team [267199]: clear
+2024-10-02T11:42:11.576358-07:00 femmebabe team: team [267199]: sudo systmctl status celery
+2024-10-02T11:42:36.811492-07:00 femmebabe team: team [267199]: sudo systemctl status celery
+2024-10-02T11:43:09.832679-07:00 femmebabe team: team [267199]: sudo systemctl start celery
+2024-10-02T11:44:30.592845-07:00 femmebabe team: team [279170]: exit
+2024-10-02T11:44:40.948130-07:00 femmebabe team: team [280757]: exit
+2024-10-02T11:45:02.988016-07:00 femmebabe team: team [283946]: exit
+2024-10-02T11:45:22.707410-07:00 femmebabe team: team [280757]: venv
+2024-10-02T11:47:54.948613-07:00 femmebabe team: team [309370]: exit
+2024-10-02T11:47:59.450716-07:00 femmebabe team: team [309370]: logs
+2024-10-02T11:48:24.751243-07:00 femmebabe team: team [309370]: logs
+2024-10-02T11:48:27.199639-07:00 femmebabe team: team [314123]: exit
+2024-10-02T11:49:00.424775-07:00 femmebabe team: team [314123]: exit
+2024-10-02T11:49:19.062867-07:00 femmebabe team: team [314123]: python upload_post.py 
+2024-10-02T11:49:27.140283-07:00 femmebabe team: team [314123]: python upload_post.py 
+2024-10-02T11:50:41.405296-07:00 femmebabe team: team [314123]: nano feed/upload.py
+2024-10-02T11:52:07.417436-07:00 femmebabe team: team [320396]: exit
+2024-10-02T11:54:14.821629-07:00 femmebabe team: team [320396]: logs
+2024-10-02T11:55:53.467039-07:00 femmebabe team: team [320396]: logs
+2024-10-02T11:56:10.340411-07:00 femmebabe team: team [320843]: exit
+2024-10-02T11:56:31.191045-07:00 femmebabe team: team [320843]: nano feed/models.py
