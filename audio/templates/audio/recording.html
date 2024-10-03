@@ -196,7 +196,7 @@ function updateLive() {
         }
         for(var j = 0; j < ds.length; j++) {
             pt.shift();
-            pt[(lcolors.length - lastLen) + j] = parseInt(ds[j][0]);
+            pt[(lcolors.length - lastLen) + j - 1] = parseInt(ds[j][0]);
         }
         data.push({
             label: label,

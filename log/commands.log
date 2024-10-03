@@ -1219,3 +1219,18 @@
 2024-10-02T18:21:32.432768-07:00 femmebabe team: team [203295]: python upload_post.py 
 2024-10-02T18:29:09.939597-07:00 femmebabe team: team [203295]: python upload_post.py 
 2024-10-02T18:29:10.258188-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-03T11:10:06.441138-07:00 femmebabe team: team [207860]: nano audio/templates/audio/recording.html 
+2024-10-03T11:10:15.674228-07:00 femmebabe team: team [207860]: sudo doreload
+2024-10-03T11:10:18.772172-07:00 femmebabe team: team [207860]: purgecache
+2024-10-03T11:10:19.546036-07:00 femmebabe team: team [207860]: logs
+2024-10-03T11:10:33.390368-07:00 femmebabe team: team [207860]: logs
+2024-10-03T11:10:34.935547-07:00 femmebabe team: team [207860]: logs
+2024-10-03T11:15:11.731116-07:00 femmebabe team: team [207860]: nano audio/templates/audio/recording.html 
+2024-10-03T11:19:54.984978-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-03T11:20:02.425193-07:00 femmebabe team: team [203295]: python upload_postl
+2024-10-03T11:20:27.387316-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-03T11:20:27.695779-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-03T11:21:56.356440-07:00 femmebabe team: team [203295]: nano feed/upload.py 
+2024-10-03T11:33:18.622301-07:00 femmebabe team: team [207860]: python manage.py shell
+2024-10-03T11:33:29.889349-07:00 femmebabe team: team [207860]: sudo purgecache
+2024-10-03T11:39:34.949517-07:00 femmebabe team: team [207860]: cat */*.py | grep PIL -nH
