@@ -86,6 +86,7 @@ def upload_photo_cloudinary(path):
 
 def upload_post(post):
     import traceback
+    from feed.models import Post
     if post.image_bucket or (post.image and os.path.exists(post.image.path)):
         post.download_photo()
         if not post.image_censored or not os.path.exists(post.image_censored.path):
@@ -99,8 +100,23 @@ def upload_post(post):
             i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
             post.image_offsite = i1
             post.image_thumb_offsite = i2
-        except:
+        except OSError:
             print(traceback.format_exc())
+            post.image = None
+            post.image_censored = None
+            post.save()
+            post.download_photo()
+            post = Post.objects.get(id=post.id)
+            if not post.image_censored or not os.path.exists(post.image_censored.path):
+                post.image_censored = None
+                post.image_censored_bucket = None
+                post.image_offsite = None
+                post.save()
+                post.get_blur_url()
+                post = Post.objects.get(id=post.id)
+            i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
+            post.image_offsite = i1
+            post.image_thumb_offsite = i2
         post.offsite = True
         post.save()
 #        except: print(traceback.format_exc())

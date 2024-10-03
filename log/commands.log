@@ -1158,3 +1158,64 @@
 2024-10-02T11:55:53.467039-07:00 femmebabe team: team [320396]: logs
 2024-10-02T11:56:10.340411-07:00 femmebabe team: team [320843]: exit
 2024-10-02T11:56:31.191045-07:00 femmebabe team: team [320843]: nano feed/models.py
+2024-10-02T12:02:42.928227-07:00 femmebabe team: team [320843]: nano users/models.py
+2024-10-02T12:03:00.034382-07:00 femmebabe team: team [320843]: python manage.py check
+2024-10-02T12:03:25.052975-07:00 femmebabe team: team [320843]: daphnereload
+2024-10-02T12:05:09.428713-07:00 femmebabe team: team [320396]: venv
+2024-10-02T12:05:09.440678-07:00 femmebabe team: team [309370]: venv
+2024-10-02T12:05:34.332689-07:00 femmebabe team: team [322173]: nano feed/upload.py
+2024-10-02T12:06:09.867375-07:00 femmebabe team: team [322173]: logs
+2024-10-02T12:06:33.735004-07:00 femmebabe team: team [322173]: loga
+2024-10-02T12:06:36.690476-07:00 femmebabe team: team [322173]: logs
+2024-10-02T12:09:14.667060-07:00 femmebabe team: team [322173]: logs
+2024-10-02T12:10:12.407528-07:00 femmebabe team: team [322173]: purgecache
+2024-10-02T12:11:34.116464-07:00 femmebabe team: team [322173]: logs
+2024-10-02T12:12:21.805075-07:00 femmebabe team: team [323064]: nano feed/upload.py
+2024-10-02T12:15:20.937153-07:00 femmebabe team: team [323064]: nano users/models.py
+2024-10-02T12:15:39.258945-07:00 femmebabe team: team [323064]: nano users/models.py
+2024-10-02T12:15:53.503936-07:00 femmebabe team: team [323064]: python manage.py check
+2024-10-02T12:16:06.082610-07:00 femmebabe team: team [323064]: sudo systemctl status cudo-miner
+2024-10-02T12:16:14.057818-07:00 femmebabe team: team [323064]: sudo daphnereload
+2024-10-02T12:16:26.584000-07:00 femmebabe team: team [322173]: venv
+2024-10-02T12:18:22.095882-07:00 femmebabe team: team [324000]: sudo daphnereload
+2024-10-02T12:18:39.308216-07:00 femmebabe team: team [324147]: sudo daphnereload
+2024-10-02T12:19:52.618340-07:00 femmebabe team: team [324147]: purgecache
+2024-10-02T12:24:34.755082-07:00 femmebabe team: team [324147]: logs
+2024-10-02T12:24:54.414444-07:00 femmebabe team: team [324147]: sudo doreload
+2024-10-02T12:25:36.469457-07:00 femmebabe team: team [325300]: sudo doreload
+2024-10-02T12:25:54.136003-07:00 femmebabe team: team [325426]: sudo doreload
+2024-10-02T12:27:22.006796-07:00 femmebabe team: team [325663]: sudo doreload
+2024-10-02T12:30:11.935741-07:00 femmebabe team: team [325663]: python manage.py shell
+2024-10-02T12:30:31.743332-07:00 femmebabe team: team [325663]: purgecache
+2024-10-02T12:30:40.789708-07:00 femmebabe team: team [325663]: daphnereload
+2024-10-02T12:32:28.784196-07:00 femmebabe team: team [325426]: venv
+2024-10-02T12:33:29.439064-07:00 femmebabe team: team [326455]: daphnereload
+2024-10-02T12:38:00.282180-07:00 femmebabe team: team [326455]: sudo pushweb
+2024-10-02T12:39:02.986834-07:00 femmebabe team: team [327179]: sudo pushweb
+2024-10-02T12:48:12.531604-07:00 femmebabe team: team [327922]: sudo pushweb
+2024-10-02T12:48:47.097295-07:00 femmebabe team: team [328058]: sudo pushweb
+2024-10-02T14:49:44.293247-07:00 femmebabe team: team [340698]: sudo pushweb
+2024-10-02T14:50:15.117649-07:00 femmebabe team: team [340698]: clear
+2024-10-02T15:42:45.123279-07:00 femmebabe team: team [342554]: clear
+2024-10-02T16:43:33.779452-07:00 femmebabe team: team [344576]: clear
+2024-10-02T16:43:50.511716-07:00 femmebabe team: team [344576]: venvv
+2024-10-02T16:44:04.433464-07:00 femmebabe team: message repeated 3 times: [ team [344576]: venvv]
+2024-10-02T16:44:14.352163-07:00 femmebabe team: team [344662]: clear
+2024-10-02T16:44:36.339813-07:00 femmebabe team: team [344662]: python upload_posy.py
+2024-10-02T16:45:12.337938-07:00 femmebabe team: team [344662]: python upload_post.py
+2024-10-02T16:46:28.377373-07:00 femmebabe team: team [344662]: nano feed/upload.py 
+2024-10-02T16:52:02.378725-07:00 femmebabe team: team [344662]: python manage.py shell
+2024-10-02T16:52:53.903866-07:00 femmebabe team: team [344662]: python upload_post.py 
+2024-10-02T16:54:24.671645-07:00 femmebabe team: message repeated 5 times: [ team [344662]: python upload_post.py ]
+2024-10-02T16:59:55.868436-07:00 femmebabe team: team [344576]: venv
+2024-10-02T18:14:34.352445-07:00 femmebabe team: team [207860]: sudo crontab 0e
+2024-10-02T18:15:03.564764-07:00 femmebabe team: team [207860]: sudo crontab -e
+2024-10-02T18:15:18.535532-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-02T18:15:46.224059-07:00 femmebabe team: message repeated 4 times: [ team [203295]: python upload_post.py ]
+2024-10-02T18:20:12.810192-07:00 femmebabe team: team [203295]: nano feed/upload.py 
+2024-10-02T18:20:32.436271-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-02T18:20:56.501428-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-02T18:21:19.107390-07:00 femmebabe team: team [203295]: nano feed/upload.py 
+2024-10-02T18:21:32.432768-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-02T18:29:09.939597-07:00 femmebabe team: team [203295]: python upload_post.py 
+2024-10-02T18:29:10.258188-07:00 femmebabe team: team [203295]: python upload_post.py 
