@@ -1234,3 +1234,61 @@
 2024-10-03T11:33:18.622301-07:00 femmebabe team: team [207860]: python manage.py shell
 2024-10-03T11:33:29.889349-07:00 femmebabe team: team [207860]: sudo purgecache
 2024-10-03T11:39:34.949517-07:00 femmebabe team: team [207860]: cat */*.py | grep PIL -nH
+2024-10-03T13:59:05.226528-07:00 femmebabe team: team [203273]: venv
+2024-10-03T13:59:41.008847-07:00 femmebabe team: team [397255]: cat */*.py | grep PIL -nH
+2024-10-03T13:59:41.018176-07:00 femmebabe team: team [397255]: cat */*.py | grep PIL -nH
+2024-10-03T13:59:50.560051-07:00 femmebabe team: team [397299]: cat */*.py | grep PIL -nH
+2024-10-03T13:59:52.925834-07:00 femmebabe team: team [397255]: cd lotteh
+2024-10-03T14:00:00.029631-07:00 femmebabe team: team [397330]: cat */*.py | grep PIL -nH
+2024-10-03T14:00:06.927759-07:00 femmebabe team: team [397330]: python manage.py checl
+2024-10-03T14:00:12.250559-07:00 femmebabe team: team [397330]: python manage.py check
+2024-10-03T14:00:17.525460-07:00 femmebabe team: team [397443]: cat */*.py | grep PIL -nH
+2024-10-03T14:00:56.801091-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:01:45.917303-07:00 femmebabe team: team [397443]: logs
+2024-10-03T14:01:54.482849-07:00 femmebabe team: team [397443]: logs
+2024-10-03T14:02:03.377021-07:00 femmebabe team: team [397443]: sudo daphnereload
+2024-10-03T14:02:13.394092-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:15.049907-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:16.382142-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:18.206945-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:19.496899-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:20.839174-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:22.044967-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:24.874203-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:26.407227-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:27.567817-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:02:29.934739-07:00 femmebabe team: team [397330]: sudo systemctl status daphne
+2024-10-03T14:04:11.151068-07:00 femmebabe team: team [397986]: cat */*.py | grep PIL -nH
+2024-10-03T14:08:56.201318-07:00 femmebabe team: team [397330]: nano web/templates/web/private.html 
+2024-10-03T14:08:58.835632-07:00 femmebabe team: team [397330]: nano web/templates/web/private.html 
+2024-10-03T14:09:05.684180-07:00 femmebabe team: team [397330]: nano web/generate.py 
+2024-10-03T14:09:23.355297-07:00 femmebabe team: team [397330]: sudo pushweb
+2024-10-03T14:17:48.501215-07:00 femmebabe team: team [397986]: ls
+2024-10-03T14:17:50.817003-07:00 femmebabe team: team [397986]: ls
+2024-10-03T14:17:53.817226-07:00 femmebabe team: team [397986]: clear
+2024-10-03T14:18:02.285454-07:00 femmebabe team: team [397986]: c lotteh
+2024-10-03T14:18:08.125290-07:00 femmebabe team: team [397986]: cd lotteh
+2024-10-03T14:18:18.574534-07:00 femmebabe team: team [397986]: source venv/bin/activate
+2024-10-03T14:18:33.040719-07:00 femmebabe team: team [397986]: python manage.py check
+2024-10-03T14:18:36.591924-07:00 femmebabe team: team [397986]: loga
+2024-10-03T14:18:39.566391-07:00 femmebabe team: team [397986]: logs
+2024-10-03T14:18:49.200824-07:00 femmebabe team: team [397986]: cmds
+2024-10-03T14:21:59.573172-07:00 femmebabe team: team [399112]: cmds
+2024-10-03T14:26:15.791120-07:00 femmebabe team: team [397443]: sudo daphnereload
+2024-10-03T14:26:26.388865-07:00 femmebabe team: team [397443]: cd lotteh/
+2024-10-03T14:26:34.570852-07:00 femmebabe team: team [397443]: cd lotteh/
+2024-10-03T14:28:11.566306-07:00 femmebabe team: team [397443]: nano web/generate.py 
+2024-10-03T14:28:34.434526-07:00 femmebabe team: team [397443]: sudo pushweb
+2024-10-03T14:42:20.625606-07:00 femmebabe team: team [400412]: cmds
+2024-10-03T14:42:37.918268-07:00 femmebabe team: team [400516]: cmds
+2024-10-03T14:42:43.203205-07:00 femmebabe team: team [400516]: cmds
+2024-10-03T14:42:47.038857-07:00 femmebabe team: team [400516]: ls
+2024-10-03T14:42:51.309637-07:00 femmebabe team: team [400516]: clear
+2024-10-03T14:42:57.011463-07:00 femmebabe team: team [400516]: ls
+2024-10-03T16:14:19.546102-07:00 femmebabe team: team [403290]: ls
+2024-10-03T19:34:28.743245-07:00 femmebabe team: team [409537]: ls
+2024-10-03T19:34:45.920295-07:00 femmebabe team: team [409616]: ls
+2024-10-03T19:43:32.326998-07:00 femmebabe team: team [409616]: ls
+2024-10-03T19:44:29.842316-07:00 femmebabe team: message repeated 2 times: [ team [409616]: ls]
+2024-10-03T19:44:50.738621-07:00 femmebabe team: team [409616]: Nan
+2024-10-03T19:45:10.510993-07:00 femmebabe team: team [409616]: nano
