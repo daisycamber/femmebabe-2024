@@ -1312,3 +1312,33 @@
 2024-10-04T23:17:17.581085-07:00 femmebabe team: team [465253]: nano
 2024-10-04T23:17:43.415743-07:00 femmebabe team: team [465332]: nano
 2024-10-04T23:18:02.818062-07:00 femmebabe team: team [465332]: nano
+2024-10-05T15:38:06.374423-07:00 femmebabe team: team [397330]: log
+2024-10-05T15:38:07.464777-07:00 femmebabe team: team [397330]: logs
+2024-10-05T15:38:47.070021-07:00 femmebabe team: team [397330]: logs
+2024-10-05T15:40:38.394919-07:00 femmebabe team: team [498108]: nano
+2024-10-05T15:41:01.997683-07:00 femmebabe team: team [498192]: nano
+2024-10-05T15:41:32.171350-07:00 femmebabe team: team [498272]: nano
+2024-10-05T15:41:54.762253-07:00 femmebabe team: team [498347]: nano
+2024-10-05T15:45:14.845303-07:00 femmebabe team: team [498540]: nano
+2024-10-05T15:45:40.935775-07:00 femmebabe team: team [498620]: nano
+2024-10-05T15:46:05.706996-07:00 femmebabe team: team [498699]: nano
+2024-10-05T15:46:32.188673-07:00 femmebabe team: team [498776]: nano
+2024-10-05T15:46:55.507207-07:00 femmebabe team: team [498855]: nano
+2024-10-05T15:48:27.114362-07:00 femmebabe team: team [498958]: nano
+2024-10-05T15:48:56.168538-07:00 femmebabe team: team [499039]: nano
+2024-10-05T15:49:23.914857-07:00 femmebabe team: team [499118]: nano
+2024-10-05T15:49:50.312086-07:00 femmebabe team: team [499198]: nano
+2024-10-05T20:56:48.963752-07:00 femmebabe team: team [397330]: logs
+2024-10-05T20:56:52.941809-07:00 femmebabe team: team [508043]: nano
+2024-10-05T20:56:58.171307-07:00 femmebabe team: team [508043]: cat scripts/mailtest 
+2024-10-05T20:58:13.458828-07:00 femmebabe team: team [508043]: python test_mail.py test-vwyu9o4ku@srv1.mail-tester.com
+2024-10-05T20:58:57.827558-07:00 femmebabe team: team [508043]: python test_mail.py jasper.camber.holton@gmail.com
+2024-10-05T21:03:41.865352-07:00 femmebabe team: team [508043]: python test_mail.py jasper.camber.holton@gmail.com
+2024-10-05T21:18:13.575942-07:00 femmebabe team: team [397443]: nano users/tfa.py 
+2024-10-05T21:18:29.985409-07:00 femmebabe team: team [397443]: sudo daphnereload
+2024-10-05T21:25:32.390158-07:00 femmebabe team: team [397443]: sudo systemctl status celery
+2024-10-05T21:26:36.595040-07:00 femmebabe team: team [508043]: python test_mail.py jasper.camber.holton@gmail.com
+2024-10-05T21:26:38.324628-07:00 femmebabe team: team [508043]: logs
+2024-10-05T21:27:11.564561-07:00 femmebabe team: team [508043]: tail /var/log/mail.log
+2024-10-05T21:28:11.711447-07:00 femmebabe team: team [508043]: sudo chown team:users /var/mail/team
+2024-10-05T21:32:21.339956-07:00 femmebabe team: team [508043]: tail /var/log/mail.log
