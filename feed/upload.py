@@ -10,8 +10,11 @@ def resize_image(image_path):
         max = img.height
     from feed.crop import crop_center
     img = crop_center(img,max,max)
-    img.thumbnail(output_size)
-    return img
+    try:
+        img.thumbnail(output_size)
+        return img
+    except: pass
+    return None
 
 def get_as_base64(url):
     return base64.b64encode(requests.get(url).content)
@@ -20,12 +23,13 @@ def upload_photo(path):
     with open(path, "rb") as file:
         data = file.read()
         image1 = base64.b64encode(data)
+    if not len(image1) > 0: return None, None
     from io import BytesIO
     buffered = BytesIO()
     im = resize_image(path)
     im.save(buffered, format="PNG")
     image2 = base64.b64encode(buffered.getvalue())
-    return upload(image1), upload(image2)
+    return upload(image1) if len(image1) > 0 else None, upload(image2) if len(image2) > 0 else None
 
 def upload(base64_data):
 #    b64data = 'data:image/png;base64,' + base64_data.decode('utf-8')
@@ -102,21 +106,23 @@ def upload_post(post):
             post.image_thumb_offsite = i2
         except OSError:
             print(traceback.format_exc())
-            post.image = None
-            post.image_censored = None
-            post.save()
-            post.download_photo()
-            post = Post.objects.get(id=post.id)
-            if not post.image_censored or not os.path.exists(post.image_censored.path):
+            try:
+                post.image = None
                 post.image_censored = None
-                post.image_censored_bucket = None
-                post.image_offsite = None
                 post.save()
-                post.get_blur_url()
+                post.download_photo()
                 post = Post.objects.get(id=post.id)
-            i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
-            post.image_offsite = i1
-            post.image_thumb_offsite = i2
+                if not post.image_censored or not os.path.exists(post.image_censored.path):
+                    post.image_censored = None
+                    post.image_censored_bucket = None
+                    post.image_offsite = None
+                    post.save()
+                    post.get_blur_url()
+                    post = Post.objects.get(id=post.id)
+                i1, i2 = upload_photo(post.image.path if post.public and not post.private else post.image_censored.path)
+                post.image_offsite = i1
+                post.image_thumb_offsite = i2
+            except: print(traceback.format_exc())
         post.offsite = True
         post.save()
 #        except: print(traceback.format_exc())
@@ -127,7 +133,7 @@ def upload_post(post):
 def upload_posts():
     from feed.models import Post
     for post in Post.objects.filter(published=True, image_offsite=None).order_by('-date_posted'):
-        if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
+        if not (post.image_offsite and len(post.image_offsite) > 0) and post.image: # or (post.image and os.path.exists(post.image.path):
             try: upload_post(post)
             except:
                 print(traceback.format_exc())
@@ -135,7 +141,7 @@ def upload_posts():
 def upload_post_async():
     from feed.models import Post
     for post in Post.objects.filter(published=True, image_offsite=None, offsite=False).order_by('-date_posted'):
-        if not (post.image_offsite and len(post.image_offsite) > 0): # or (post.image and os.path.exists(post.image.path):
+        if not (post.image_offsite and len(post.image_offsite) > 0) and post.image: # or (post.image and os.path.exists(post.image.path):
             try:
                 upload_post(post)
                 return

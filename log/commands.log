@@ -1,0 +1,36 @@
+2024-10-06T12:22:41.980768-07:00 femmebabe team: team [544372]: nano
+2024-10-06T12:23:29.108994-07:00 femmebabe team: team [544400]: nano
+2024-10-06T12:24:44.515930-07:00 femmebabe team: team [544400]: python upload_post.py 
+2024-10-06T12:24:45.408811-07:00 femmebabe team: message repeated 2 times: [ team [544400]: python upload_post.py ]
+2024-10-06T12:26:12.683742-07:00 femmebabe team: team [544400]: nano feed/upload.py 
+2024-10-06T12:26:19.280160-07:00 femmebabe team: team [544400]: nano feed/upload.py 
+2024-10-06T12:27:25.425332-07:00 femmebabe team: team [544400]: sudo crontab -e
+2024-10-06T12:27:39.237932-07:00 femmebabe team: team [544400]: sudo crontab -e
+2024-10-06T12:29:53.276227-07:00 femmebabe team: team [544400]: python upload_post.py 
+2024-10-06T12:29:55.523084-07:00 femmebabe team: team [544400]: python upload_post.py 
+2024-10-06T12:34:10.592718-07:00 femmebabe team: team [397443]: sudo systemctl status celery
+2024-10-06T12:34:11.652239-07:00 femmebabe team: team [397443]: sudo systemctl status celery
+2024-10-06T12:34:21.664555-07:00 femmebabe team: team [397443]: nano feed/upload.py 
+2024-10-06T12:36:20.125829-07:00 femmebabe team: team [397443]: python force_publish.py 
+2024-10-06T12:37:08.339273-07:00 femmebabe team: team [508043]: nano feed/upload.py
+2024-10-06T12:37:17.412901-07:00 femmebabe team: team [545096]: nano
+2024-10-06T12:37:19.811321-07:00 femmebabe team: team [545096]: nano
+2024-10-06T12:37:25.419060-07:00 femmebabe team: team [508043]: nano feed/upload.py
+2024-10-06T12:37:29.883096-07:00 femmebabe team: team [545096]: python force_publish.py 
+2024-10-06T12:38:15.449150-07:00 femmebabe team: team [508043]: python upload_post.py 
+2024-10-06T12:38:40.041361-07:00 femmebabe team: team [508043]: nano feed/upload.py 
+2024-10-06T12:39:11.338276-07:00 femmebabe team: team [508043]: python upload_post.py 
+2024-10-06T12:40:00.579177-07:00 femmebabe team: message repeated 2 times: [ team [508043]: python upload_post.py ]
+2024-10-06T12:41:08.718468-07:00 femmebabe team: team [508043]: nano feed/crop.py 
+2024-10-06T12:43:41.050518-07:00 femmebabe team: team [508043]: nano feed/upload.py 
+2024-10-06T12:43:44.238878-07:00 femmebabe team: team [545096]: nano feed/upload.py 
+2024-10-06T12:43:50.036296-07:00 femmebabe team: team [545096]: python force_publish.py 
+2024-10-06T12:44:07.640077-07:00 femmebabe team: team [508043]: python upload_post.py 
+2024-10-06T12:44:11.453410-07:00 femmebabe team: team [508043]: python upload_post.py 
+2024-10-06T12:47:21.528723-07:00 femmebabe team: team [508043]: nano feed/upload.py 
+2024-10-06T12:47:43.173515-07:00 femmebabe team: team [508043]: nano feed/upload.py 
+2024-10-06T12:48:00.177639-07:00 femmebabe team: team [508043]: python upload_post.py 
+2024-10-06T12:49:32.231958-07:00 femmebabe team: team [544400]: nano feed/upload.py 
+2024-10-06T12:57:40.415386-07:00 femmebabe team: team [544372]: venv
+2024-10-06T13:42:23.753613-07:00 femmebabe team: team [548371]: nano feed/upload.py 
+2024-10-06T17:27:08.345320-07:00 femmebabe team: team [554892]: nano feed/upload.py 
