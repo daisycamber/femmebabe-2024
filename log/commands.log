@@ -46,3 +46,63 @@
 2024-10-07T11:40:08.493037-07:00 femmebabe team: team [286117]: cmds
 2024-10-07T11:45:15.241388-07:00 femmebabe team: team [286069]: venv
 2024-10-07T11:48:18.941470-07:00 femmebabe team: team [286685]: cmds
+2024-10-07T12:10:42.590454-07:00 femmebabe team: team [288111]: cmds
+2024-10-07T14:44:41.979291-07:00 femmebabe team: team [294112]: cmds
+2024-10-07T17:34:10.744559-07:00 femmebabe team: team [299028]: cmds
+2024-10-07T17:34:11.216429-07:00 femmebabe team: team [299046]: cmds
+2024-10-07T17:34:20.120886-07:00 femmebabe team: team [299028]: cd lotteh
+2024-10-07T17:34:21.354674-07:00 femmebabe team: team [299028]: cd
+2024-10-07T17:34:22.022040-07:00 femmebabe team: team [299072]: cmds
+2024-10-07T17:42:16.991213-07:00 femmebabe team: team [299385]: cmds
+2024-10-07T17:42:31.398506-07:00 femmebabe team: team [299470]: cmds
+2024-10-07T17:42:32.670542-07:00 femmebabe team: team [299072]: nano security/middleware.py
+2024-10-07T17:42:56.935225-07:00 femmebabe team: team [299470]: cmds
+2024-10-07T17:43:12.273326-07:00 femmebabe team: team [299470]: clear
+2024-10-07T17:44:04.816140-07:00 femmebabe team: team [299470]: ls
+2024-10-07T17:46:15.102120-07:00 femmebabe team: team [299470]: cd
+2024-10-07T17:46:18.443462-07:00 femmebabe team: team [299619]: cmds
+2024-10-07T17:46:21.814265-07:00 femmebabe team: team [299619]: ls
+2024-10-07T17:46:34.295702-07:00 femmebabe team: team [299619]: cat test.txt
+2024-10-07T17:47:10.044950-07:00 femmebabe team: team [299619]: python last_logins.py
+2024-10-07T17:47:31.863533-07:00 femmebabe team: team [299619]: python last_logins.py
+2024-10-07T17:47:51.987866-07:00 femmebabe team: team [299619]: python approve_login.py 1
+2024-10-07T17:47:57.735371-07:00 femmebabe team: team [299855]: cmds
+2024-10-07T17:48:04.885005-07:00 femmebabe team: team [299619]: python approve_login.py 2
+2024-10-07T17:48:23.739788-07:00 femmebabe team: team [299619]: python approve_login.py 1
+2024-10-07T17:48:31.251457-07:00 femmebabe team: team [299923]: cmds
+2024-10-07T17:48:43.135516-07:00 femmebabe team: team [299923]: cmds
+2024-10-07T17:48:44.529267-07:00 femmebabe team: team [299923]: logs
+2024-10-07T17:48:46.421367-07:00 femmebabe team: team [299923]: cmds
+2024-10-07T17:49:45.720583-07:00 femmebabe team: team [299855]: cd lotteh
+2024-10-07T17:49:47.458109-07:00 femmebabe team: team [299855]: cd
+2024-10-07T17:49:48.517432-07:00 femmebabe team: team [299992]: cmds
+2024-10-07T17:50:04.986229-07:00 femmebabe team: team [299992]: ls
+2024-10-07T17:50:17.570917-07:00 femmebabe team: team [299992]: nano conf.test 
+2024-10-07T17:52:30.701728-07:00 femmebabe team: team [299992]: ls static
+2024-10-07T17:52:48.303050-07:00 femmebabe team: team [299992]: ls static
+2024-10-07T17:53:07.530051-07:00 femmebabe team: team [299992]: cd
+2024-10-07T17:53:08.044818-07:00 femmebabe team: team [299992]: ls
+2024-10-07T17:53:11.623030-07:00 femmebabe team: team [299992]: cd CryptoNoter/
+2024-10-07T17:53:12.601367-07:00 femmebabe team: team [299992]: ls
+2024-10-07T17:53:15.540315-07:00 femmebabe team: team [299992]: ls web
+2024-10-07T17:53:19.374815-07:00 femmebabe team: team [299992]: ls web/lib
+2024-10-07T17:53:22.961083-07:00 femmebabe team: team [299992]: ls web/lib
+2024-10-07T17:53:27.795605-07:00 femmebabe team: team [299992]: cat web/lib/cryptonight-asmjs.min.js 
+2024-10-07T17:55:22.101359-07:00 femmebabe team: team [299992]: cat web/lib/cryptonight-asmjs.min.js 
+2024-10-07T17:55:30.617045-07:00 femmebabe team: team [299992]: cat web/worker.js 
+2024-10-07T17:55:39.589253-07:00 femmebabe team: team [299992]: cat web/worker.js 
+2024-10-07T17:55:50.572920-07:00 femmebabe team: team [299992]: cat web/lib/cryptonight-asmjs.min.js 
+2024-10-07T17:55:57.916782-07:00 femmebabe team: team [299992]: cat web/index.html 
+2024-10-07T17:55:59.973792-07:00 femmebabe team: team [299992]: cat web/index.html 
+2024-10-07T17:56:37.085399-07:00 femmebabe team: team [299992]: ls web/index.html 
+2024-10-07T17:56:44.668813-07:00 femmebabe team: team [299992]: ks
+2024-10-07T17:56:45.459006-07:00 femmebabe team: team [299992]: ls
+2024-10-07T17:56:51.963843-07:00 femmebabe team: team [299992]: cat server.js 
+2024-10-07T17:58:25.308427-07:00 femmebabe team: team [299992]: ls
+2024-10-07T17:58:31.710227-07:00 femmebabe team: team [299992]: cat config.json 
+2024-10-07T18:41:54.280400-07:00 femmebabe team: team [299470]: venv
+2024-10-07T18:51:26.856893-07:00 femmebabe team: team [299923]: cmds
+2024-10-07T18:51:29.727734-07:00 femmebabe team: team [299923]: clear
+2024-10-07T19:43:52.214033-07:00 femmebabe team: team [303495]: python approve_login.py 1
+2024-10-07T20:07:04.893417-07:00 femmebabe team: team [304113]: python approve_login.py 1
+2024-10-07T21:15:32.839916-07:00 femmebabe team: team [303495]: venv
