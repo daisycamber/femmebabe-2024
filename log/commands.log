@@ -106,3 +106,57 @@
 2024-10-07T19:43:52.214033-07:00 femmebabe team: team [303495]: python approve_login.py 1
 2024-10-07T20:07:04.893417-07:00 femmebabe team: team [304113]: python approve_login.py 1
 2024-10-07T21:15:32.839916-07:00 femmebabe team: team [303495]: venv
+2024-10-09T00:10:48.745363-07:00 femmebabe team: team [354784]: python approve_login.py 1
+2024-10-09T00:12:13.024215-07:00 femmebabe team: team [354784]: ls
+2024-10-09T00:12:21.620956-07:00 femmebabe team: team [354784]: clear
+2024-10-09T00:12:33.814411-07:00 femmebabe team: message repeated 2 times: [ team [354784]: clear]
+2024-10-09T00:12:39.131021-07:00 femmebabe team: team [354913]: python approve_login.py 1
+2024-10-09T00:12:55.696774-07:00 femmebabe team: team [354913]: python last_logins.py 
+2024-10-09T00:14:54.454984-07:00 femmebabe team: team [354913]: nano feed/models.py
+2024-10-09T00:43:41.530844-07:00 femmebabe team: team [356069]: python approve_login.py 1
+2024-10-09T00:43:41.548137-07:00 femmebabe team: team [356070]: python approve_login.py 1
+2024-10-09T00:43:45.742862-07:00 femmebabe team: team [356108]: python approve_login.py 1
+2024-10-09T00:43:47.175956-07:00 femmebabe team: team [356126]: python approve_login.py 1
+2024-10-09T00:45:12.194400-07:00 femmebabe team: team [356108]: nano lotteh/settings.py 
+2024-10-09T00:45:13.628032-07:00 femmebabe team: team [356108]: ls mfa
+2024-10-09T00:46:54.608398-07:00 femmebabe team: team [356108]: nano lotteh/settings.py 
+2024-10-09T00:47:05.536965-07:00 femmebabe team: team [356108]: python manage.py check
+2024-10-09T00:47:18.913352-07:00 femmebabe team: team [356108]: sudo daphnereload
+2024-10-09T00:47:20.309321-07:00 femmebabe team: team [356108]: logs
+2024-10-09T00:47:32.540443-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-09T00:47:45.537469-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-09T00:47:47.165670-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-09T00:47:48.424207-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-09T00:47:49.663030-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-09T00:47:53.601165-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:47:54.709886-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:47:55.946489-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:47:57.032488-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:47:58.082304-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:47:59.150345-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:00.236175-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:01.548520-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:03.176635-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:04.548039-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:06.026586-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:07.521001-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:08.835098-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:10.271868-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:12.042893-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:13.577966-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:39.338807-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:41.270076-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:42.352979-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:43.613637-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:48:44.887892-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:01.470579-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:03.644089-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:06.253738-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:07.533226-07:00 femmebabe team: team [354784]: venv
+2024-10-09T00:49:10.601453-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:11.670693-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:14.096339-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:15.328601-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:16.552170-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T00:49:17.661581-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-09T01:43:28.407335-07:00 femmebabe team: team [299855]: venv
