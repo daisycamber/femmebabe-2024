@@ -86,6 +86,30 @@ class Post(models.Model):
 #    def likes(self):
 #        return Profile.objects.filter(likes__in=[self]).count()
 
+    def get_web_url(self):
+        from django.conf import settings
+        return '{}{}/media/images/{}.png'.format('https://', settings.STATIC_DOMAIN, self.uuid)
+
+    def get_web_thumb_url(self):
+        from django.conf import settings
+        return '{}{}/media/images/{}-thumb.png'.format('https://', settings.STATIC_DOMAIN, self.uuid)
+
+    def copy_web(self):
+        import os, shutil
+        from django.conf import settings
+        if not self.image: return
+        new_path = os.path.join(settings.BASE_DIR, 'web/site/media/images/', '{}{}'.format(self.uuid, '.png'))
+        if not os.path.exists(new_path):
+            if not os.path.exists(self.image.path): self.download_photo()
+            if not os.path.exists(self.image.path): return
+            shutil.copy(self.image.path, new_path)
+        new_path_thumb = os.path.join(settings.BASE_DIR, 'web/site/media/images/', '{}{}'.format(self.uuid, '-thumb.png'))
+        if self.image_thumbnail and not os.path.exists(new_path_thumb):
+            if not os.path.exists(self.image_thumbnail.path): self.download_thumbnail()
+            if not os.path.exists(self.image_thumbnail.path): return
+            self.get_image_thumb_url()
+            shutil.copy(self.image_thumbnail.path, new_path_thumb)
+
     def has_auction(self):
         return timezone.now() < self.date_auction
 
@@ -117,7 +141,9 @@ class Post(models.Model):
 
     def get_image_url(self):
         from django.conf import settings
+        import os
         from feed.middleware import get_current_request
+        if os.path.exists(os.path.join(settings.BASE_DIR, 'web/site/media/images/', '{}.png'.format(self.uuid))): return self.get_web_url()
         if settings.USE_OFFSITE and self.image_offsite and self.public and (not get_current_request().user.is_authenticated if get_current_request() else True): return self.image_offsite
         if self.image_bucket: return self.image_bucket.url
         from security.secure import get_secure_path, get_private_secure_path, get_secure_video_path
@@ -150,6 +176,8 @@ class Post(models.Model):
         from django.conf import settings
         from feed.middleware import get_current_request
         from security.secure import get_secure_path, get_private_secure_path, get_secure_video_path
+        import os
+        if os.path.exists(os.path.join(settings.BASE_DIR, 'web/site/media/images/', '{}-thumb.png'.format(self.uuid))): return self.get_web_thumb_url()
         if settings.USE_OFFSITE and self.image_thumb_offsite and self.public and not get_current_request().user.is_authenticated if get_current_request() else False: return self.image_thumb_offsite
         if self.image_thumbnail_bucket: return self.image_thumbnail_bucket.url
         from security.secure import get_secure_path, get_private_secure_path, get_secure_video_path
@@ -471,11 +499,25 @@ class Post(models.Model):
         except: pass
         with self.image_bucket.storage.open(str(self.image_bucket), mode='rb') as bucket_file:
             full_path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, 'image.png'))
-
             with open(full_path, "wb") as image_file:
                 image_file.write(bucket_file.read())
             image_file.close()
             self.image = full_path
+            self.save()
+        bucket_file.close()
+
+    def download_thumbnail(self):
+        import os
+        from django.conf import settings
+        try:
+            if self.image_thumbnail and os.path.exists(self.image_thumbnail.path): return
+        except: pass
+        with self.image_thumbnail_bucket.storage.open(str(self.image_thumbnail_bucket), mode='rb') as bucket_file:
+            full_path = os.path.join(settings.BASE_DIR, 'media/', get_image_path(self, 'image.png'))
+            with open(full_path, "wb") as image_file:
+                image_file.write(bucket_file.read())
+            image_file.close()
+            self.image_thumbnail = full_path
             self.save()
         bucket_file.close()
 
