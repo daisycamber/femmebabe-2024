@@ -220,3 +220,318 @@
 2024-10-10T21:56:03.625010-07:00 femmebabe team: team [356108]: nano feed/models.py
 2024-10-10T21:56:25.840581-07:00 femmebabe team: team [356108]: nano web/generate.py 
 2024-10-10T21:56:42.483515-07:00 femmebabe team: team [356108]: nano feed/models.py
+2024-10-12T01:46:32.813753-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording
+2024-10-12T01:50:04.888047-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T01:50:14.807036-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T01:50:18.492365-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:19.293980-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:20.018735-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:20.772566-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:21.718616-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:22.712601-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:23.747755-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:24.816083-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:26.395309-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:28.155662-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:29.516894-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:30.650901-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:31.786918-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:32.969653-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:34.393689-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:35.948164-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:37.502034-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:38.849720-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:50:47.963694-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T01:56:18.498692-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T01:56:20.734782-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T01:56:23.688273-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T01:56:30.322640-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:32.293047-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:33.293594-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:34.306820-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:35.258099-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:36.230031-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:37.216508-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:38.100715-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:39.051910-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:39.967694-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:40.911762-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:46.756664-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:48.709191-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:50.279717-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:56:51.379377-07:00 femmebabe team: team [356108]: logs
+2024-10-12T01:58:03.912382-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T01:58:06.228064-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:04:25.668255-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:04:26.672307-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:04:28.767642-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:04:39.720913-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:06:02.738332-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:06:04.151338-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:09:37.043748-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:09:38.383532-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:17:36.205299-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:17:37.605098-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:18:06.003157-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:29:12.874391-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:29:14.120899-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:29:35.566159-07:00 femmebabe team: team [356108]: ogs
+2024-10-12T02:29:37.083567-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:29:38.751916-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:33:45.294797-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:33:47.377767-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:34:06.840949-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:37:48.047253-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:38:31.761368-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:38:33.841849-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:38:40.984717-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:42.219319-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:43.006568-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:43.732035-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:44.502853-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:45.258760-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:46.723816-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:51.504834-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:54.059095-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:55.034458-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:55.870964-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:56.706099-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:58.169554-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:38:59.032731-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:00.023032-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:01.092043-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:02.107788-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:03.065449-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:04.222471-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:39:05.324240-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:00.470154-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:40:03.101459-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:40:14.039734-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:15.005657-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:15.840917-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:16.730237-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:17.590967-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:18.414684-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:19.386981-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:20.280305-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:40:21.555980-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:41:25.092308-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:41:26.781236-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:49:08.614445-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:49:14.533124-07:00 femmebabe team: team [356108]: cat audio/templates/audio/recording.html 
+2024-10-12T02:49:19.284509-07:00 femmebabe team: team [356108]: cat audio/templates/audio/recording.html | grep lpitc
+2024-10-12T02:49:23.944164-07:00 femmebabe team: team [356108]: cat audio/templates/audio/recording.html | grep lpitc -nH
+2024-10-12T02:51:09.554294-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:51:12.876138-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:51:19.955862-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:22.174509-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T02:51:23.456249-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:24.587548-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:25.445456-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:26.741073-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:32.461026-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:33.885418-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:51:35.769435-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:36.505300-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:52:39.418352-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:52:41.289396-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T02:52:42.439744-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:45.125858-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:46.300686-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:53.270171-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:54.262329-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:55.321346-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:56.216362-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:57.338747-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:52:58.479640-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:57:04.165857-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:57:06.441762-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:57:08.663675-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T02:57:33.621638-07:00 femmebabe team: team [356108]: logs
+2024-10-12T02:59:13.601314-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T02:59:15.465640-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T02:59:17.193023-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T03:01:01.089889-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T03:01:02.846878-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T03:01:04.255724-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T03:01:06.905219-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:20.577488-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:21.684215-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:22.437837-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:23.182083-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:23.940006-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:01:24.768664-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:03:21.047823-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T03:03:23.104623-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T03:03:24.550501-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T03:03:32.034655-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:03:32.736318-07:00 femmebabe team: team [356108]: logs
+2024-10-12T03:03:35.153419-07:00 femmebabe team: team [356108]: watchlogs
+2024-10-12T03:03:36.279290-07:00 femmebabe team: team [356108]: watchlogs
+2024-10-12T03:03:37.052633-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:34:03.473633-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:34:13.884586-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:34:17.314918-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:35:23.087766-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T04:36:05.065892-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:36:07.531657-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:36:11.902087-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:36:12.978809-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:36:15.263899-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:36:16.724999-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:36:18.122519-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:36:19.930911-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:37:26.359285-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T04:38:40.035359-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:38:42.485956-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:38:52.599102-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:38:54.796620-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:38:56.020695-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:40:29.931107-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:40:31.489104-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:41:41.571015-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T04:46:25.146447-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:46:28.553691-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:46:31.054650-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:46:32.648393-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:46:45.035765-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:46:47.387516-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:52:31.338377-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T04:55:25.585463-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:55:26.824380-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:55:28.999926-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:55:32.904471-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:33.928852-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:35.591284-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:36.556856-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:37.469688-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:38.432287-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:39.498778-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:40.590430-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:41.589347-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:55:42.579389-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:56:43.818704-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T04:57:09.539084-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T04:57:11.580945-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T04:57:13.130781-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T04:57:22.492711-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:23.522693-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:24.617346-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:25.796826-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:26.946238-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:28.254171-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:57:29.677028-07:00 femmebabe team: team [356108]: logs
+2024-10-12T04:58:35.082441-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T05:00:31.558369-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T05:00:34.120765-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:00:36.109761-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:00:39.102846-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:40.207205-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:41.016192-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:41.731714-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:42.420893-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:43.077865-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:43.684055-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:44.335948-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:44.940033-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:45.551973-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:46.250572-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:46.869699-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:47.661119-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:52.655046-07:00 femmebabe team: team [356108]: watchlogs
+2024-10-12T05:00:54.448490-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:00:57.621191-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:58.907771-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:00:59.536203-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:00.273672-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:00.966458-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:01.817808-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:02.711434-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:03.590331-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:01:57.295596-07:00 femmebabe team: team [356126]: nano web/templates/web/base.html 
+2024-10-12T05:03:21.432386-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T05:03:22.579594-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:03:26.034480-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:03:27.573064-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:06:52.023586-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T05:06:53.151498-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:06:55.104097-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:06:56.643362-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:08:24.800811-07:00 femmebabe team: team [356108]: nano audio/templates/audio/recording.html 
+2024-10-12T05:08:26.537844-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:08:28.055997-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:08:29.551406-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:08:29.724258-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-12T05:08:35.103097-07:00 femmebabe team: team [356108]: sudo purgecache
+2024-10-12T05:08:42.466923-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:08:43.968948-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:08:45.092664-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:08:46.658233-07:00 femmebabe team: team [356108]: logs
+2024-10-12T05:08:47.727524-07:00 femmebabe team: team [356108]: logs
+2024-10-12T09:31:00.500650-07:00 femmebabe team: team [476615]: clear
+2024-10-12T09:31:10.619348-07:00 femmebabe team: team [476724]: clear
+2024-10-12T09:31:14.477439-07:00 femmebabe team: team [476743]: clear
+2024-10-12T09:37:14.001294-07:00 femmebabe team: team [476743]: python manage.py shell
+2024-10-12T09:37:27.270748-07:00 femmebabe team: team [476743]: cat feed/models.py
+2024-10-12T09:38:37.480482-07:00 femmebabe team: team [476743]: sudo systemctl status celery
+2024-10-12T09:39:01.859803-07:00 femmebabe team: team [476743]: sudo systemctl start celery
+2024-10-12T09:39:52.710272-07:00 femmebabe team: team [476743]: sudo systemctl status celery
+2024-10-12T09:39:57.889528-07:00 femmebabe team: team [476743]: cat feed/models.py
+2024-10-12T09:41:46.712025-07:00 femmebabe team: team [476724]: venv
+2024-10-12T09:43:48.889696-07:00 femmebabe team: team [534847]: cat feed/models.py
+2024-10-12T09:43:53.539226-07:00 femmebabe team: team [535814]: cat feed/models.py
+2024-10-12T09:45:05.123553-07:00 femmebabe team: team [535814]: cat feed/models.py
+2024-10-12T09:46:36.101310-07:00 femmebabe team: team [534847]: venv
+2024-10-12T09:47:01.185991-07:00 femmebabe team: team [573451]: cat feed/models.py
+2024-10-12T09:47:17.293584-07:00 femmebabe team: team [576108]: cat feed/models.py
+2024-10-12T09:47:38.408369-07:00 femmebabe team: team [576108]: sudo systemctl stop celery celerybeat
+2024-10-12T09:47:47.201966-07:00 femmebabe team: team [576108]: sudo systemctl stop celery celerybeat &
+2024-10-12T09:47:57.686102-07:00 femmebabe team: team [576108]: rm celerybeat-schedule
+2024-10-12T09:48:12.412913-07:00 femmebabe team: team [576108]: cat notes/tricks.txt
+2024-10-12T09:48:34.129872-07:00 femmebabe team: team [576108]: redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-10-12T09:48:38.941632-07:00 femmebabe team: team [576108]: redis-cli KEYS "celery*" | xargs redis-cli DEL
+2024-10-12T09:48:49.251966-07:00 femmebabe team: team [576108]: sudo systemctl stop celery celerybeat &
+2024-10-12T09:49:09.043090-07:00 femmebabe team: team [576108]: sudo systemctl start celery celerybeat
+2024-10-12T09:49:19.925329-07:00 femmebabe team: team [573451]: venv
+2024-10-12T09:49:29.218915-07:00 femmebabe team: team [579776]: sudo systemctl start celery celerybeat
+2024-10-12T09:50:11.809710-07:00 femmebabe team: team [579929]: sudo systemctl start celery celerybeat
+2024-10-12T09:53:04.044247-07:00 femmebabe team: team [579929]: python manage.py shell
+2024-10-12T09:53:16.748226-07:00 femmebabe team: team [579929]: sudo ascript backup
+2024-10-12T09:53:17.574939-07:00 femmebabe team: team [579776]: venv
+2024-10-12T09:53:28.973931-07:00 femmebabe team: team [580268]: sudo ascript backup
+2024-10-12T09:54:49.053374-07:00 femmebabe team: team [580268]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T09:55:16.846719-07:00 femmebabe team: team [580489]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T09:57:36.707926-07:00 femmebabe team: team [580489]: sudo ascript backup
+2024-10-12T09:57:47.432323-07:00 femmebabe team: team [580489]: python manage.py shell
+2024-10-12T09:57:50.340622-07:00 femmebabe team: team [580636]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T09:58:17.718412-07:00 femmebabe team: team [580636]: python manage.py shelll
+2024-10-12T10:00:43.668226-07:00 femmebabe team: team [580636]: python manage.py shell
+2024-10-12T10:01:18.219921-07:00 femmebabe team: team [580636]: sudo chown -R team:users /home/team/lotteh/web/site/media
+2024-10-12T10:02:19.984670-07:00 femmebabe team: team [581017]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T10:02:51.804632-07:00 femmebabe team: team [581071]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T10:05:18.512780-07:00 femmebabe team: team [581071]: python manage.py shell
+2024-10-12T10:10:06.722766-07:00 femmebabe team: team [581071]: sudo pushweb
+2024-10-12T10:20:09.878491-07:00 femmebabe team: team [581071]: python manage.py shell
+2024-10-12T10:20:16.981956-07:00 femmebabe team: team [581071]: compindo
+2024-10-12T10:20:30.286525-07:00 femmebabe team: team [581071]: compinfo
+2024-10-12T10:20:33.631715-07:00 femmebabe team: message repeated 2 times: [ team [581071]: compinfo]
+2024-10-12T10:21:30.184839-07:00 femmebabe team: team [582650]: sudo chown -R :users /home/team/lotteh/web/site/media
+2024-10-12T10:21:54.702846-07:00 femmebabe team: team [581071]: sudo daphnereload
+2024-10-12T10:23:38.622731-07:00 femmebabe team: team [581017]: venv
+2024-10-12T10:23:51.595367-07:00 femmebabe team: team [583057]: sudo daphnereload
+2024-10-12T10:24:04.157799-07:00 femmebabe team: team [583174]: sudo daphnereload
+2024-10-12T10:29:53.665765-07:00 femmebabe team: team [583057]: pushweb
+2024-10-12T10:30:38.904072-07:00 femmebabe team: team [583917]: sudo daphnereload
+2024-10-12T10:31:48.810259-07:00 femmebabe team: team [583917]: nano web/generate.py 
+2024-10-12T10:32:54.200010-07:00 femmebabe team: team [583917]: nano feed/models.py
+2024-10-12T10:35:09.912579-07:00 femmebabe team: team [584346]: sudo daphnereload
+2024-10-12T10:35:21.076437-07:00 femmebabe team: team [584478]: sudo daphnereload
+2024-10-12T10:35:31.291249-07:00 femmebabe team: team [584579]: sudo daphnereload
+2024-10-12T10:35:46.973473-07:00 femmebabe team: team [584674]: sudo daphnereload
+2024-10-12T10:36:03.446121-07:00 femmebabe team: team [584728]: sudo daphnereload
+2024-10-12T10:36:57.516401-07:00 femmebabe team: team [584728]: nano paymments/view
+2024-10-12T10:37:04.592081-07:00 femmebabe team: team [583917]: sudo pushweb
+2024-10-12T10:39:21.279808-07:00 femmebabe team: team [584728]: nano payments/views.py
+2024-10-12T10:44:50.836765-07:00 femmebabe team: team [584674]: venv
+2024-10-12T10:44:50.860210-07:00 femmebabe team: team [583057]: venv
+2024-10-12T10:45:16.978732-07:00 femmebabe team: team [585398]: nano payments/views.py

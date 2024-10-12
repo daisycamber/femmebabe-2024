@@ -184,6 +184,11 @@ function updateLive() {
         total = total + d.length;
     }
     var count = total;
+    var totalLen = 0;
+    var nnotes = [];
+    for(var j = 0; j < lnotes.length; j++) {
+        nnotes.push('');
+    }
     for(var i = datasets.length - 1; i > 0; i--) {
         var ds = datasets[i];
         var label = 'Below';
@@ -191,12 +196,13 @@ function updateLive() {
             label = 'Target';
         }
         var pt = [];
-        for(var j = 0; j < (30 * 4); j++) {
+        for(var j = 0; j < lnotes.length; j++) {
             pt.push('NaN');
         }
         for(var j = 0; j < ds.length; j++) {
-            pt.shift();
-            pt[(lcolors.length - lastLen) + j - 1] = parseInt(ds[j][0]);
+            /*pt.shift();*/
+            pt[(lnotes.length - lastLen) - j - 1] = parseInt(ds[j][0]);
+            nnotes[(lnotes.length - lastLen) - j - 1] = ds[j][1];
         }
         data.push({
             label: label,
@@ -207,11 +213,12 @@ function updateLive() {
             backgroundColor: ds[0][2]
         });
         lastLen+=ds.length;
+        totalLen+=ds.length;
     }
     c = new Chart(ctxLive, {
         type: 'line',
         data: {
-          labels: lnotes,
+          labels: nnotes,
           datasets: data
         },
         options: {
@@ -408,8 +415,8 @@ function initialize() {
         var pitchCount = 0;
         for(var x = 0; x < {{ pitches_per_second }}/2 * SECONDS_TO_GRAPH; x++) {
             lnotes.push(null);
-            lpitches.push(0);
-            lcolors.push('rgb(255,0,0)');
+            lpitches.push('NaN');
+            lcolors.push(belowColor);
         }
     }
 }
@@ -443,10 +450,10 @@ function updateURLParameters() {
 	for (var i = 0; i < boxes.length; i++) {
 		if(document.getElementById(boxes[i]).checked) {
 			qs = qs + labels[i] + "=true&";
-        	}
+        }
 	}
 	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + qs;
-	window.history.pushState({path:newurl},'',newurl);
+	window.history.pushState({path:newurl}, '', newurl);
 }
 for (var i = 0; i < boxes.length; i++) {
 	document.getElementById(boxes[i]).addEventListener('change', e => {
@@ -536,7 +543,7 @@ function startRecording() {
 		start();
         pitches = [];
 	    volumes = [];
-          notes = [];
+        notes = [];
 	}
 }
 function stopRecording() {
