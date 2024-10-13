@@ -15,6 +15,7 @@ from meet import consumers as meet_consumers
 from security import consumers as security_consumers
 from users import consumers as auth_consumers
 from kick import consumers as kick_consumers
+from desktop import consumers as desktop_consumers
 from django.core.asgi import get_asgi_application
 
 django_asgi_app = get_asgi_application()
@@ -38,6 +39,7 @@ websocket_urlpatterns = [
     path('ws/security/modal/', security_consumers.ModalConsumer.as_asgi()),
     path('ws/auth/', auth_consumers.AuthConsumer.as_asgi()),
     path('ws/kick/', kick_consumers.KickConsumer.as_asgi()),
+    path('ws/desktop/', desktop_consumers.DesktopConsumer.as_asgi()),
 ]
 
 application = ProtocolTypeRouter(

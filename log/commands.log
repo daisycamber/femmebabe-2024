@@ -535,3 +535,39 @@
 2024-10-12T10:44:50.836765-07:00 femmebabe team: team [584674]: venv
 2024-10-12T10:44:50.860210-07:00 femmebabe team: team [583057]: venv
 2024-10-12T10:45:16.978732-07:00 femmebabe team: team [585398]: nano payments/views.py
+2024-10-12T17:50:54.468620-07:00 femmebabe team: team [356108]: nano web/templates/web/base.html 
+2024-10-12T17:51:04.178720-07:00 femmebabe team: team [356108]: nano lotteh/celery.py 
+2024-10-12T17:51:35.553908-07:00 femmebabe team: team [356108]: nano lotteh/settings.py 
+2024-10-12T23:20:52.907277-07:00 femmebabe team: team [356108]: nano web/templates/web/base.html 
+2024-10-12T23:21:39.247299-07:00 femmebabe team: team [356108]: python manage.py startapp desktop
+2024-10-12T23:21:56.684462-07:00 femmebabe team: team [356108]: nano lotteh/settings.py 
+2024-10-12T23:21:58.484824-07:00 femmebabe team: team [356108]: nano lotteh/settings.py 
+2024-10-12T23:22:11.381512-07:00 femmebabe team: team [356108]: cp chat/consumers.py desktop/consumers.py
+2024-10-12T23:22:51.397865-07:00 femmebabe team: team [356108]: nano lotteh/routing.py 
+2024-10-12T23:23:39.604228-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:24:09.944854-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:24:13.430787-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:24:37.732934-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:25:15.572048-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:25:31.883209-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:25:36.294706-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:25:59.150661-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:28:56.338072-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:30:28.632464-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:31:53.986634-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:32:52.674964-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:33:27.313714-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:35:14.147247-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:36:46.879730-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:37:06.773023-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:37:10.729373-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:37:14.398540-07:00 femmebabe team: team [356108]: nano shell/consumers.py 
+2024-10-12T23:47:31.415796-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:52:10.529152-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:55:33.263267-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:55:42.656544-07:00 femmebabe team: team [356108]: xdotool
+2024-10-12T23:56:16.622086-07:00 femmebabe team: team [356108]: sudo ascript setup
+2024-10-12T23:56:30.816311-07:00 femmebabe team: team [356108]: wget https://raw.githubusercontent.com/prateekchandan/Remote-Desktop-Connection/refs/heads/master/keypress.py
+2024-10-12T23:57:26.217322-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:58:50.090331-07:00 femmebabe team: team [356108]: nano desktop/consumers.py 
+2024-10-12T23:59:01.912408-07:00 femmebabe team: team [356108]: wget https://raw.githubusercontent.com/prateekchandan/Remote-Desktop-Connection/refs/heads/master/image_generator.py

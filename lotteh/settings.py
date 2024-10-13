@@ -125,6 +125,7 @@ INSTALLED_APPS = [
     'web',
     'meet',
     'django_extensions',
+    'desktop',
 #    '',
 ]
 
