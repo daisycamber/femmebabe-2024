@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from asgiref.sync import sync_to_async
 from django.template.loader import render_to_string
 from django.utils.crypto import get_random_string
-from .models import Message
 from django.shortcuts import render, redirect, get_object_or_404
 from users.models import Profile
 import datetime, subprocess
@@ -75,126 +74,126 @@ class ChatConsumer(AsyncWebsocketConsumer):
         command = text_data
         if not self.token:
             self.token = text_data
-        	self.background = AsyncEvent(self.token)
-        	self.background.start()
-        	self.background_key = AsyncEvent_key(self.token)
-        	self.background_key.start()
-        	self.background_mouse = AsyncEvent_mouse(self.token)
-        	self.background_mouse.start()
-        	self.background_pointer = AsyncEvent_pointer(self.token)
-        	self.background_pointer.start()
+            self.background = AsyncEvent(self.token)
+            self.background.start()
+            self.background_key = AsyncEvent_key(self.token)
+            self.background_key.start()
+            self.background_mouse = AsyncEvent_mouse(self.token)
+            self.background_mouse.start()
+            self.background_pointer = AsyncEvent_pointer(self.token)
+            self.background_pointer.start()
             return
-    	if text_data:
+        if text_data:
             inp = text_data
-    		keys,mouse,pointer = inp.split('|')
-    		self.background_key.event_list.append(keys)
-    		self.background_mouse.event_list.append(mouse)
-    		self.background_pointer.event_list.append(pointer)
-    		os.system("{}python {}image_generator.py {}".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR, self.token))
+            keys,mouse,pointer = inp.split('|')
+            self.background_key.event_list.append(keys)
+            self.background_mouse.event_list.append(mouse)
+            self.background_pointer.event_list.append(pointer)
+            os.system("{}python {}image_generator.py {}".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR, self.token))
             randname = get_random_string(10)
-    		f = open(os.path.join(settings.BASE_DIR, 'temp/', "{}.jpg".format(randname)), "rb")
-    		greeting = f.read()
+            f = open(os.path.join(settings.BASE_DIR, 'temp/', "{}.jpg".format(randname)), "rb")
+            greeting = f.read()
             os.remove(os.path.join(settings.BASE_DIR, 'temp/', "{}.jpg".format(randname)))
             self.send(bytes_data=greeting)
         pass
     pass
 
 def control_events(msg):
-	try:
-		keys,mouse,pointer = msg.split('|')
-		key_events = keys.split(',')
-		for event in key_events:
-			if event != "":
-        		res = os.popen("{}python {}keypress.py ".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR) + event).read()
-		m_events = mouse.split(',')
-		for event in m_events:
-			if event != "":
-				x,y,e=[int(float(a)) for a in event.split(' ')]
-				x=str((x*width)/1000.0)
-				y=str((y*height)/1000.0)
-				e1=str(abs(e))
-				if e > 0:
-					os.system("xdotool mousemove "+x+" "+y+" mousedown "+e1)
-				else:
-					os.system("xdotool mousemove "+x+" "+y+" mouseup "+e1)
-		x,y=[int(float(a)) for a in pointer.split(',')]
-		x=str((x*width)/1000.0)
-		y=str((y*height)/1000.0)
-		os.system("xdotool mousemove "+x+" "+y)
-	except ValueError:
-		pass
+    try:
+        keys,mouse,pointer = msg.split('|')
+        key_events = keys.split(',')
+        for event in key_events:
+            if event != "":
+                res = os.popen("{}python {}keypress.py ".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR) + event).read()
+        m_events = mouse.split(',')
+        for event in m_events:
+            if event != "":
+                x,y,e=[int(float(a)) for a in event.split(' ')]
+                x=str((x*width)/1000.0)
+                y=str((y*height)/1000.0)
+                e1=str(abs(e))
+                if e > 0:
+                    os.system("xdotool mousemove "+x+" "+y+" mousedown "+e1)
+                else:
+                    os.system("xdotool mousemove "+x+" "+y+" mouseup "+e1)
+        x,y=[int(float(a)) for a in pointer.split(',')]
+        x=str((x*width)/1000.0)
+        y=str((y*height)/1000.0)
+        os.system("xdotool mousemove "+x+" "+y)
+    except ValueError:
+        pass
 
 
 def key_control_events(msg, token):
-	key_events = msg.split(',')
+    key_events = msg.split(',')
     global log
-	for event in key_events:
-		if event != "":
-    		res = os.popen("{}python {}keypress.py ".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR) + event).read()
+    for event in key_events:
+        if event != "":
+            res = os.popen("{}python {}keypress.py ".format(settings.BASE_DIR + 'venv/bin/', settings.BASE_DIR) + event).read()
             log[token] = res
 
 def mouse_control_events(msg, token):
-	m_events = msg.split(',')
-	for event in m_events:
-		if event != "":
-			x,y,e=[int(float(a)) for a in event.split(' ')]
-			x=str((x*width)/1000.0)
-			y=str((y*height)/1000.0)
-			e1=str(abs(e))
-			if e > 0:
-				os.system("xdotool mousemove "+x+" "+y+" mousedown "+e1)
-			else:
-				os.system("xdotool mousemove "+x+" "+y+" mouseup "+e1)
+    m_events = msg.split(',')
+    for event in m_events:
+        if event != "":
+            x,y,e=[int(float(a)) for a in event.split(' ')]
+            x=str((x*width)/1000.0)
+            y=str((y*height)/1000.0)
+            e1=str(abs(e))
+            if e > 0:
+                os.system("xdotool mousemove "+x+" "+y+" mousedown "+e1)
+            else:
+                os.system("xdotool mousemove "+x+" "+y+" mouseup "+e1)
 
 
 def pointer_control_events(msg, token):
-	x,y=[int(float(a)) for a in msg.split(',')]
-	x=str((x*width)/1000.0)
-	y=str((y*height)/1000.0)
-	os.system("xdotool mousemove "+x+" "+y)
+    x,y=[int(float(a)) for a in msg.split(',')]
+    x=str((x*width)/1000.0)
+    y=str((y*height)/1000.0)
+    os.system("xdotool mousemove "+x+" "+y)
 
 class AsyncEvent(threading.Thread):
-	def __init__(self):
-		threading.Thread.__init__(self)
-		self.event_list = []
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.event_list = []
         self.token = token
 
-	def run(self):
-		while 1:
-			if len(self.event_list) != 0:
-				control_events(self.event_list.pop(0), self.token)
+    def run(self):
+        while 1:
+            if len(self.event_list) != 0:
+                control_events(self.event_list.pop(0), self.token)
 
 
 class AsyncEvent_key(threading.Thread):
-	def __init__(self, token):
-		threading.Thread.__init__(self)
-		self.event_list = []
+    def __init__(self, token):
+        threading.Thread.__init__(self)
+        self.event_list = []
         self.token = token
 
-	def run(self):
-		while 1:
-			if len(self.event_list) != 0:
-				key_control_events(self.event_list.pop(0), self.token)
+    def run(self):
+        while 1:
+            if len(self.event_list) != 0:
+                key_control_events(self.event_list.pop(0), self.token)
 
 class AsyncEvent_mouse(threading.Thread):
-	def __init__(self):
-		threading.Thread.__init__(self)
-		self.event_list = []
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.event_list = []
         self.token = token
 
-	def run(self):
-		while 1:
-			if len(self.event_list) != 0:
-				mouse_control_events(self.event_list.pop(0), self.token)
+    def run(self):
+        while 1:
+            if len(self.event_list) != 0:
+                mouse_control_events(self.event_list.pop(0), self.token)
 
 class AsyncEvent_pointer(threading.Thread):
-	def __init__(self):
-		threading.Thread.__init__(self)
-		self.event_list = []
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.event_list = []
         self.token = token
 
-	def run(self):
-		while 1:
-			if len(self.event_list) != 0:
-				pointer_control_events(self.event_list.pop(0), self.token)
+    def run(self):
+        while 1:
+            if len(self.event_list) != 0:
+                pointer_control_events(self.event_list.pop(0), self.token)
 

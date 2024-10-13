@@ -40,7 +40,6 @@ body {
 <button id="close-btn" onclick="disconnect()">Close Connection</button>
 <img width="100%" id="ItemPreview" src="" oncontextmenu="return false;" />
 <div id="connection">
-    <input id="passwd" type="password" placeholder="Input Server Password to connect (Max 3 tries)">
     <button onclick="tryconnect()">Connect</button>
     <div id="errmsg"></div>
 </div>
@@ -50,7 +49,7 @@ body {
 </div>
 {% endblock %}
 {% block javascript %}
-var serverAddr = "wss://{{ domain_name }}/ws/desktop/?token={{ shell_token }}";
+var serverAddr = "wss://{{ domain_name }}/ws/desktop/?token={{ token }}";
 var ws=0
 var state=0;
 
@@ -212,6 +211,6 @@ function disconnect(){
 	state=0;
 }
 function tryconnect () {
-	ws.send('{{ enc_key }}');
+	ws.send('{{ term_key }}');
 }
 {% endblock %}
