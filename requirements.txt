@@ -196,6 +196,7 @@ protobuf==4.25.4
 psutil==6.0.0
 psycopg2==2.9.9
 py==1.11.0
+pyaes==1.6.1
 pyaml==24.7.0
 pyarrow==17.0.0
 pyasn1==0.6.0
@@ -215,6 +216,7 @@ pyotp==2.9.0
 pyparsing==3.1.2
 pyquery==2.0.0
 pyreaper==0.0.10
+Pyrogram==2.0.106
 PySocks==1.7.1
 pysptk==1.0.1
 pytesseract==0.3.10
@@ -227,8 +229,10 @@ python-engineio==4.9.1
 python-jose==3.3.0
 python-multipart==0.0.9
 python-socketio==5.11.3
+python-xlib==0.33
 python3-openid==3.2.0
 pytz==2024.1
+PyUserInput==0.1.11
 pyworld==0.3.4
 PyYAML==6.0.1
 questionary==2.0.1
@@ -285,6 +289,7 @@ termcolor==2.4.0
 tf_keras==2.17.0
 tf_nightly==2.18.0.dev20240801
 tfy-mlflow-client==0.0.52
+TgCrypto==1.2.5
 threadpoolctl==3.5.0
 tifffile==2024.7.24
 timezonefinder==6.5.2

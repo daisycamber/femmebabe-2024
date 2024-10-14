@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block head %}
-body {
-    overflow:hidden;
-  }
+<style>
   #message{
     max-height: 200px;
   }
@@ -34,11 +32,13 @@ body {
     margin-top:-9px;
     display: none;
   }
+</style>
 {% endblock %}
 {% block content %}
 <div id="sse">
 <button id="close-btn" onclick="disconnect()">Close Connection</button>
-<img width="100%" id="ItemPreview" src="" oncontextmenu="return false;" />
+
+<img width="80%" id="ItemPreview" src="" oncontextmenu="return false;" />
 <div id="connection">
     <button onclick="tryconnect()">Connect</button>
     <div id="errmsg"></div>
@@ -88,18 +88,14 @@ if ("WebSocket" in window)
 		$('#ItemPreview').css('display','none');	
 		$('#connection').css('display','none');	
 		$('#msg').css('display','block');	
-
 	}
 }
 else
 {
 	$('#ItemPreview').css('display','none');	
 	$('#connection').css('display','none');	
-	$('#msg').css('display','block');	
-	
+	$('#msg').css('display','block');		
 }
-
-
 function ChangeFrame(data){
 	var reader = new window.FileReader();
 	reader.readAsDataURL(data); 
@@ -107,8 +103,6 @@ function ChangeFrame(data){
 		document.getElementById("ItemPreview").src =  reader.result;
   	}
 }
-
-
 /**
  * mouseEvents and keyEvents capture
  */

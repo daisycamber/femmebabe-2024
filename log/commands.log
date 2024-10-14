@@ -86,4 +86,532 @@
 2024-10-13T01:24:48.828126-07:00 femmebabe team: message repeated 9 times: [ team [356108]: sh -c "xrandr | grep '*' | awk '{print $1}'"]
 2024-10-13T01:25:02.632494-07:00 femmebabe team: team [356108]: python approve_login.py 1
 2024-10-13T01:25:04.230433-07:00 femmebabe team: team [356108]: sh -c "xrandr | grep '*' | awk '{print $1}'"
-2024-10-13T01:26:08.210395-07:00 femmebabe te
+2024-10-13T01:26:08.210395-07:00 femmebabe te2024-10-13T16:01:41.257703-07:00 femmebabe team: team [356108]: sh -c "xrandr | grep '*' | awk '{print $1}'"
+2024-10-13T16:02:05.907466-07:00 femmebabe team: team [356108]: sudo doreload
+2024-10-13T16:02:08.740724-07:00 femmebabe team: team [356108]: doreload
+2024-10-13T16:02:18.803922-07:00 femmebabe team: team [356108]: sudo daphnereload
+2024-10-13T16:02:29.289613-07:00 femmebabe team: team [356108]: sudo systemctl status ddaphne
+2024-10-13T16:02:34.400363-07:00 femmebabe team: team [356108]: sudo systemctl status daphne
+2024-10-13T16:02:41.903184-07:00 femmebabe team: team [356108]: sudo systemctl status apache2
+2024-10-13T16:02:42.801017-07:00 femmebabe team: team [356108]: logs
+2024-10-13T16:02:51.696050-07:00 femmebabe team: team [356108]: df -h /
+2024-10-13T16:03:05.775815-07:00 femmebabe team: team [356108]: netstat -plant | grep LISTEN
+2024-10-13T16:03:12.448586-07:00 femmebabe team: team [356108]: netstat -plant | grep LISTEN
+2024-10-13T16:03:20.056237-07:00 femmebabe team: team [356108]: sudo systemctl status postgresql
+2024-10-13T16:03:21.799894-07:00 femmebabe team: team [356108]: sudo systemctl status postgresql
+2024-10-13T16:03:34.506236-07:00 femmebabe team: team [356108]: sudo systemctl restart postgresql
+2024-10-13T16:03:36.390155-07:00 femmebabe team: team [356108]: netstat -plant | grep LISTEN
+2024-10-13T16:03:49.028955-07:00 femmebabe team: team [356108]: netstat -plant | grep LISTEN
+2024-10-13T16:03:57.730821-07:00 femmebabe team: team [356108]: sudo reboot
+2024-10-13T16:07:03.464913-07:00 femmebabe team: team [3790]: venv
+2024-10-13T16:07:06.515036-07:00 femmebabe team: team [3790]: cd lotteh/
+2024-10-13T16:07:11.748664-07:00 femmebabe team: team [3790]: cd lotteh/
+2024-10-13T16:07:18.812387-07:00 femmebabe team: team [3790]: ls
+2024-10-13T16:07:46.131843-07:00 femmebabe team: team [3790]: cd
+2024-10-13T16:07:47.138642-07:00 femmebabe team: team [4009]: venv
+2024-10-13T16:07:51.590415-07:00 femmebabe team: team [4009]: python image_generator.py 
+2024-10-13T16:07:59.807058-07:00 femmebabe team: team [4009]: nano lotteh/im
+2024-10-13T16:08:19.155754-07:00 femmebabe team: team [4009]: nano image_generator.py 
+2024-10-13T16:08:23.578902-07:00 femmebabe team: team [4009]: python image_generator.py test.png
+2024-10-13T16:08:55.776549-07:00 femmebabe team: team [4009]: nano image_generator.py 
+2024-10-13T16:09:06.578680-07:00 femmebabe team: team [4009]: pip3 install pygtk
+2024-10-13T16:09:51.614401-07:00 femmebabe team: team [4009]: pip3 install pygtk
+2024-10-13T16:10:35.180547-07:00 femmebabe team: team [4009]: Could not write pid to lock file in /tmp/.tX1-lock
+2024-10-13T16:10:53.365822-07:00 femmebabe team: team [4009]: sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+2024-10-13T16:11:44.266517-07:00 femmebabe team: team [5432]: venv
+2024-10-13T16:11:46.155961-07:00 femmebabe team: team [5472]: venv
+2024-10-13T16:12:04.485068-07:00 femmebabe team: team [4009]: sudo ascript setup
+2024-10-13T16:12:32.493866-07:00 femmebabe team: team [4009]: pip3 install pygtk
+2024-10-13T16:12:38.579866-07:00 femmebabe team: team [4009]: pip3 install PyGTK
+2024-10-13T16:12:38.590769-07:00 femmebabe team: team [4009]: pip3 install PyGTK
+2024-10-13T16:14:18.199332-07:00 femmebabe team: team [4009]: pip3 install PyGTK
+2024-10-13T16:14:27.331354-07:00 femmebabe team: team [4009]: sudo apt install -y python-gtk3
+2024-10-13T16:14:29.485390-07:00 femmebabe team: team [4009]: sudo apt install -y python-gtk2
+2024-10-13T16:15:21.814495-07:00 femmebabe team: team [4009]: sudo apt-get install ./python-gtk2_2.24.0-5.1ubuntu2_amd64.deb
+2024-10-13T16:16:52.797114-07:00 femmebabe team: team [4009]: sudo apt-get install ./python-gtk2_2.24.0-5.1ubuntu2_amd64.deb
+2024-10-13T16:16:59.952362-07:00 femmebabe team: team [4009]: cd
+2024-10-13T16:17:04.565464-07:00 femmebabe team: team [4009]: cd lott
+2024-10-13T16:17:06.541394-07:00 femmebabe team: team [4009]: cd lotteh/
+2024-10-13T16:17:27.729031-07:00 femmebabe team: team [4009]: nano desktop/consumers.py
+2024-10-13T16:17:30.199739-07:00 femmebabe team: team [4009]: ls
+2024-10-13T16:17:49.662717-07:00 femmebabe team: team [4009]: logs
+2024-10-13T16:18:08.150382-07:00 femmebabe team: team [4009]: nano desktop/consumers.py
+2024-10-13T16:18:10.736948-07:00 femmebabe team: team [4009]: sh -c "xrandr | grep '*' | awk '{print $1}'"
+2024-10-13T16:18:19.051391-07:00 femmebabe team: team [4009]: nano desktop/consumers.py
+2024-10-13T16:18:26.876365-07:00 femmebabe team: team [4009]: sudo systemctl status daphne
+2024-10-13T16:18:32.287055-07:00 femmebabe team: team [4009]: sudo systemctl stop daphne
+2024-10-13T16:18:41.448568-07:00 femmebabe team: team [4009]: ./scripts/daphnetest.sh 
+2024-10-13T16:20:07.086974-07:00 femmebabe team: team [5432]: scrot
+2024-10-13T16:20:30.259176-07:00 femmebabe team: team [5432]: sudo apt install scrot
+2024-10-13T16:21:49.829972-07:00 femmebabe team: team [4009]: nano image_generator.py 
+2024-10-13T16:21:51.117993-07:00 femmebabe team: team [4009]: nano image_generator.py 
+2024-10-13T16:21:53.378169-07:00 femmebabe team: team [4009]: python image_generator.py 
+2024-10-13T16:21:58.114252-07:00 femmebabe team: team [4009]: python image_generator.py test.png
+2024-10-13T16:25:10.237504-07:00 femmebabe team: team [4009]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:25:13.147353-07:00 femmebabe team: team [3790]: venv
+2024-10-13T16:25:14.700905-07:00 femmebabe team: team [8006]: exit
+2024-10-13T16:25:37.142960-07:00 femmebabe team: team [8006]: python approve_login.py 1
+2024-10-13T16:26:01.634272-07:00 femmebabe team: team [8006]: python last_logins.py 
+2024-10-13T16:26:10.019185-07:00 femmebabe team: team [8006]: python approve_login.py 1
+2024-10-13T16:26:12.448011-07:00 femmebabe team: team [8205]: exit
+2024-10-13T16:26:17.166660-07:00 femmebabe team: team [8205]: python image_generator.py test.png
+2024-10-13T16:26:24.627944-07:00 femmebabe team: team [8226]: exit
+2024-10-13T16:26:27.686787-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:26:41.079291-07:00 femmebabe team: team [8226]: sudo systemctl restart sshd sshd
+2024-10-13T16:26:49.598252-07:00 femmebabe team: team [8226]: sudo systemctl status sshs
+2024-10-13T16:27:00.134371-07:00 femmebabe team: team [8226]: sudo systemctl status ssh
+2024-10-13T16:27:08.101302-07:00 femmebabe team: team [8226]: sudo systemctl status ssh
+2024-10-13T16:27:38.202224-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:27:40.342736-07:00 femmebabe team: team [8226]: sudo systemctl restart sshd sshd
+2024-10-13T16:27:51.114798-07:00 femmebabe team: team [8226]: jorunalctl -xeu ssh.service
+2024-10-13T16:28:01.221528-07:00 femmebabe team: team [8226]: journalctl -xeu ssh.service
+2024-10-13T16:28:04.981927-07:00 femmebabe team: team [8226]: sudo systemctl restart sshd
+2024-10-13T16:28:07.205757-07:00 femmebabe team: team [8226]: sudo systemctl restart ssh
+2024-10-13T16:28:15.895917-07:00 femmebabe team: team [8226]: systemctl status ssh
+2024-10-13T16:28:29.702305-07:00 femmebabe team: message repeated 2 times: [ team [8226]: systemctl status ssh]
+2024-10-13T16:28:33.002822-07:00 femmebabe team: team [8226]: systemctl status sshd
+2024-10-13T16:29:19.277146-07:00 femmebabe team: team [8226]: systemctl status sshd
+2024-10-13T16:29:25.627386-07:00 femmebabe team: team [8226]: systemctl reload ssh
+2024-10-13T16:29:27.235006-07:00 femmebabe team: team [8226]: sudo systemctl reload ssh
+2024-10-13T16:29:31.585400-07:00 femmebabe team: team [8226]: sudo systemctl start ssh
+2024-10-13T16:29:36.697957-07:00 femmebabe team: team [8226]: sudo systemctl stop ssh
+2024-10-13T16:29:39.891697-07:00 femmebabe team: team [8226]: sudo systemctl start ssh
+2024-10-13T16:29:54.485900-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:29:56.294425-07:00 femmebabe team: team [8226]: sudo systemctl start ssh
+2024-10-13T16:30:21.172231-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:31:07.849377-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:31:09.376198-07:00 femmebabe team: team [8226]: sudo systemctl start ssh
+2024-10-13T16:31:38.812773-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:34:04.471369-07:00 femmebabe root: root [8745]: exit
+2024-10-13T16:34:08.213498-07:00 femmebabe root: root [8745]: echo $DISPLAY
+2024-10-13T16:34:17.714886-07:00 femmebabe root: root [8745]: export DISPLAY=:0
+2024-10-13T16:34:19.054984-07:00 femmebabe root: root [8745]: echo $DISPLAY
+2024-10-13T16:34:22.344465-07:00 femmebabe root: root [8745]: echo $DISPLAY
+2024-10-13T16:34:23.197962-07:00 femmebabe team: team [8226]: sudo su
+2024-10-13T16:34:30.079330-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:34:37.289556-07:00 femmebabe team: team [8226]: export DISPLAY=:0
+2024-10-13T16:34:38.402371-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:34:40.877957-07:00 femmebabe team: message repeated 2 times: [ team [8226]: python image_generator.py test.png]
+2024-10-13T16:35:52.324559-07:00 femmebabe team: team [8226]: sudo nano /etc/ssh/sshd_config
+2024-10-13T16:35:54.683702-07:00 femmebabe team: team [8226]: sudo systemctl start ssh
+2024-10-13T16:35:58.126116-07:00 femmebabe team: team [8226]: sudo systemctl start ssh sshd
+2024-10-13T16:36:16.973097-07:00 femmebabe team: team [8226]: export DISPLAY=localhost:0.0
+2024-10-13T16:36:33.993097-07:00 femmebabe team: team [8226]: /usr/bin/import -window root screenshot.png
+2024-10-13T16:36:37.509266-07:00 femmebabe team: team [8226]: /usr/bin/import -window root screenshot.png
+2024-10-13T16:37:01.271696-07:00 femmebabe team: team [8226]: sudo apt install imagemagick -y
+2024-10-13T16:37:05.381833-07:00 femmebabe team: team [8226]: /usr/bin/import -window root screenshot.png
+2024-10-13T16:37:13.662882-07:00 femmebabe team: message repeated 2 times: [ team [8226]: /usr/bin/import -window root screenshot.png]
+2024-10-13T16:37:15.270718-07:00 femmebabe team: team [8226]: startc
+2024-10-13T16:37:24.584210-07:00 femmebabe team: team [8226]: startx
+2024-10-13T16:37:30.599096-07:00 femmebabe team: team [8226]: sudo startx
+2024-10-13T16:38:06.242756-07:00 femmebabe team: team [8226]: sudo systemctl status xinit
+2024-10-13T16:38:14.297449-07:00 femmebabe team: team [8226]: ps -aux | grep xinit
+2024-10-13T16:38:22.680559-07:00 femmebabe team: team [8226]: ps -aux | grep x
+2024-10-13T16:38:35.122406-07:00 femmebabe team: message repeated 2 times: [ team [8226]: ps -aux | grep x]
+2024-10-13T16:39:42.173626-07:00 femmebabe team: team [8226]: sudo apt install xvfb
+2024-10-13T16:39:46.143261-07:00 femmebabe team: team [8226]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T16:40:02.277496-07:00 femmebabe team: team [8226]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T16:40:02.566363-07:00 femmebabe team: team [8226]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T16:40:15.256731-07:00 femmebabe team: team [8226]: DISPLAY=:10 your-client
+2024-10-13T16:40:40.304976-07:00 femmebabe team: team [8226]: export DISPLAY=:10
+2024-10-13T16:40:56.582516-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:41:01.492887-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:41:10.272852-07:00 femmebabe team: team [8226]: ls test
+2024-10-13T16:41:11.890372-07:00 femmebabe team: team [8226]: ls test.ong
+2024-10-13T16:41:13.701235-07:00 femmebabe team: team [8226]: ls test.png
+2024-10-13T16:41:24.189785-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:41:25.733918-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:41:50.724739-07:00 femmebabe team: team [8226]: nano image_generator.py 
+2024-10-13T16:41:52.296319-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:42:02.011337-07:00 femmebabe team: team [8226]: ls temp/test.png 
+2024-10-13T16:42:03.434260-07:00 femmebabe team: team [8226]: ls temp/test.png 
+2024-10-13T16:42:07.005240-07:00 femmebabe team: team [8226]: rm temp/test.png 
+2024-10-13T16:42:09.326214-07:00 femmebabe team: team [8226]: python image_generator.py test.png
+2024-10-13T16:42:16.499740-07:00 femmebabe team: team [8226]: ls temp/test.png 
+2024-10-13T16:42:24.799297-07:00 femmebabe team: message repeated 3 times: [ team [8226]: ls temp/test.png ]
+2024-10-13T16:43:00.320391-07:00 femmebabe team: team [8006]: sudo ascript setup
+2024-10-13T16:43:23.459210-07:00 femmebabe team: team [8226]: ls temp/test.png 
+2024-10-13T16:43:55.057476-07:00 femmebabe team: team [8226]: ls temp/test.png 
+2024-10-13T16:44:17.578544-07:00 femmebabe team: team [8226]: nano image_generator.py 
+2024-10-13T16:45:32.077274-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T16:45:59.464249-07:00 femmebabe team: team [8226]: sudo visudo 
+2024-10-13T16:46:31.381528-07:00 femmebabe team: team [8226]: sudo visudo 
+2024-10-13T16:54:35.294247-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T16:57:24.063136-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T16:57:35.770527-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T16:58:07.549554-07:00 femmebabe team: team [5472]: venv
+2024-10-13T16:58:12.148551-07:00 femmebabe team: team [8226]: ls
+2024-10-13T16:58:14.116863-07:00 femmebabe team: team [8226]: ls | grep key
+2024-10-13T16:58:20.686904-07:00 femmebabe team: team [8226]: cat keypress.py 
+2024-10-13T16:58:35.009205-07:00 femmebabe team: team [8226]: nano keypress.py 
+2024-10-13T17:00:51.404332-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T17:01:24.760742-07:00 femmebabe team: team [8226]: pip3 install pykeyboard
+2024-10-13T17:01:36.466392-07:00 femmebabe team: team [8226]: sudo apt install python-xlib
+2024-10-13T17:01:50.853446-07:00 femmebabe team: team [8226]: sudo apt install python3-xlib
+2024-10-13T17:02:04.163718-07:00 femmebabe team: team [5472]: sudo ascript setup
+2024-10-13T17:02:11.079798-07:00 femmebabe team: team [8226]: sudo systemctl stop daphne
+2024-10-13T17:02:19.159045-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:02:24.525059-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:02:57.465515-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T17:03:03.489049-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:03:18.713497-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T17:03:27.148085-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:09:46.200229-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:09:51.711098-07:00 femmebabe team: team [8226]: sudo systemctl stop daphne
+2024-10-13T17:10:40.191024-07:00 femmebabe team: team [11357]: exit
+2024-10-13T17:10:45.214811-07:00 femmebabe team: team [11357]: nano lotteh/settings.py 
+2024-10-13T17:11:18.068343-07:00 femmebabe team: team [11357]: nano lotteh/urls.py 
+2024-10-13T17:11:29.539451-07:00 femmebabe team: team [11357]: nano desktop/views.py 
+2024-10-13T17:11:31.250334-07:00 femmebabe team: team [11357]: nano lotteh/urls.py 
+2024-10-13T17:11:33.600694-07:00 femmebabe team: team [11357]: nano lotteh/urls.py 
+2024-10-13T17:11:35.193404-07:00 femmebabe team: team [11357]: sudo doreload
+2024-10-13T17:12:05.840180-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:12:06.144041-07:00 femmebabe team: message repeated 2 times: [ team [8226]: ./scripts/daphnetest.sh ]
+2024-10-13T17:12:18.316318-07:00 femmebabe team: team [8226]: nano shell/consumers.py 
+2024-10-13T17:12:22.656790-07:00 femmebabe team: team [8226]: nano shell/consumers.py 
+2024-10-13T17:12:29.641379-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T17:12:52.590380-07:00 femmebabe team: team [8226]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T17:12:57.196547-07:00 femmebabe team: team [8226]: sudo systemctl reload apache2
+2024-10-13T17:13:03.916066-07:00 femmebabe team: team [8226]: logs
+2024-10-13T17:13:05.069290-07:00 femmebabe team: team [8226]: logs
+2024-10-13T17:13:06.197001-07:00 femmebabe team: team [8226]: logs
+2024-10-13T17:13:41.834302-07:00 femmebabe team: team [8226]: ./scripts/daphnetest.sh 
+2024-10-13T17:15:11.438097-07:00 femmebabe team: team [8226]: nano desktop/consumers.py
+2024-10-13T17:15:57.595735-07:00 femmebabe team: team [11357]: nano desktop/consumers.py
+2024-10-13T17:16:03.846158-07:00 femmebabe team: team [11357]: nano desktop/consumers.py
+2024-10-13T17:16:07.067034-07:00 femmebabe team: team [11357]: killall daphnetest
+2024-10-13T17:16:13.064138-07:00 femmebabe team: team [11357]: ps -aux | grep scripts/daphnetest
+2024-10-13T17:16:18.661718-07:00 femmebabe team: team [11357]: ps -aux | grep daphnetest
+2024-10-13T17:16:20.803843-07:00 femmebabe team: team [11357]: ps -aux | grep daphnetest
+2024-10-13T17:16:22.577274-07:00 femmebabe team: team [11357]: ps -aux | grep daphnetest
+2024-10-13T17:17:22.988244-07:00 femmebabe team: team [8006]: nano desktop/consumers.py
+2024-10-13T17:17:48.888366-07:00 femmebabe team: message repeated 2 times: [ team [8006]: nano desktop/consumers.py]
+2024-10-13T17:17:51.134419-07:00 femmebabe team: team [8006]: cat scripts/daphne
+2024-10-13T17:17:52.221817-07:00 femmebabe team: team [8006]: cat scripts/daphnetest.sh 
+2024-10-13T17:17:56.243345-07:00 femmebabe team: team [8006]: killall daphne
+2024-10-13T17:18:02.842453-07:00 femmebabe team: team [8006]: killall daphne
+2024-10-13T17:18:05.745766-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:18:11.064831-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:18:15.334763-07:00 femmebabe team: team [8006]: kill 12093
+2024-10-13T17:18:17.350176-07:00 femmebabe team: team [8006]: kill 12220
+2024-10-13T17:18:21.739877-07:00 femmebabe team: team [8006]: kill 12220
+2024-10-13T17:18:35.987626-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:18:43.235072-07:00 femmebabe team: team [8006]: killall 12093
+2024-10-13T17:18:47.922204-07:00 femmebabe team: team [8006]: kill 12220
+2024-10-13T17:19:09.428589-07:00 femmebabe team: team [8006]: sudo kill 12220
+2024-10-13T17:19:11.958245-07:00 femmebabe team: team [8006]: sudo kill 12220
+2024-10-13T17:19:18.226208-07:00 femmebabe team: team [8006]: sudo kill 12220
+2024-10-13T17:19:26.490076-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:19:34.499834-07:00 femmebabe team: team [8006]: kill 974912
+2024-10-13T17:19:43.309514-07:00 femmebabe team: team [8006]: pkill 12093
+2024-10-13T17:19:45.543921-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:20:07.569285-07:00 femmebabe team: team [8006]: ps -aux | grep daphne
+2024-10-13T17:21:38.228325-07:00 femmebabe team: team [12900]: exit
+2024-10-13T17:21:43.312490-07:00 femmebabe team: team [12916]: exit
+2024-10-13T17:21:46.477367-07:00 femmebabe team: team [12916]: ./scripts/daphne
+2024-10-13T17:21:48.458432-07:00 femmebabe team: team [12955]: exit
+2024-10-13T17:22:17.275343-07:00 femmebabe team: team [12955]: exit
+2024-10-13T17:22:18.831248-07:00 femmebabe team: team [13046]: exit
+2024-10-13T17:22:56.185641-07:00 femmebabe team: team [13046]: nano desktop/consumers.py
+2024-10-13T17:24:00.933710-07:00 femmebabe team: team [8006]: nano desktop/consumers.py
+2024-10-13T17:24:09.812014-07:00 femmebabe team: team [8006]: DISPLAY=:10 xrandr | grep '*' | awk '{print $1}'
+2024-10-13T17:24:19.134934-07:00 femmebabe team: message repeated 2 times: [ team [8006]: DISPLAY=:10 xrandr | grep '*' | awk '{print $1}']
+2024-10-13T17:24:27.383164-07:00 femmebabe team: team [8006]: sudo visudo
+2024-10-13T17:24:37.350271-07:00 femmebabe team: team [8006]: cat desktop/consumers.py
+2024-10-13T17:25:08.262463-07:00 femmebabe team: team [8006]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T17:25:11.050333-07:00 femmebabe team: team [8006]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T17:25:17.365666-07:00 femmebabe team: team [8006]: sudo Xvfb :11 -ac -screen 0 1024x768x24 &
+2024-10-13T17:25:19.498334-07:00 femmebabe team: team [8006]: sudo Xvfb :11 -ac -screen 0 1024x768x24 &
+2024-10-13T17:25:21.019297-07:00 femmebabe team: message repeated 2 times: [ team [8006]: sudo Xvfb :11 -ac -screen 0 1024x768x24 &]
+2024-10-13T17:25:50.839327-07:00 femmebabe team: team [13627]: exit
+2024-10-13T17:26:23.821308-07:00 femmebabe team: team [13729]: exit
+2024-10-13T17:27:12.005259-07:00 femmebabe team: team [13729]: nano desktop/consumers.py
+2024-10-13T17:27:48.777750-07:00 femmebabe team: message repeated 2 times: [ team [13729]: nano desktop/consumers.py]
+2024-10-13T17:27:57.414982-07:00 femmebabe team: team [13729]: ./scripts/daphnetest.sh 
+2024-10-13T17:28:08.007593-07:00 femmebabe team: team [13869]: exit
+2024-10-13T17:28:34.378051-07:00 femmebabe team: team [14141]: exit
+2024-10-13T17:28:35.539392-07:00 femmebabe team: team [14167]: exit
+2024-10-13T17:29:19.081573-07:00 femmebabe team: team [13869]: exit
+2024-10-13T17:29:20.861968-07:00 femmebabe team: team [14287]: exit
+2024-10-13T17:29:57.285745-07:00 femmebabe team: team [14287]: nano desktop/consumers.py
+2024-10-13T17:30:06.983841-07:00 femmebabe team: team [14287]: DISPLAY=:720 xrandr | grep '*' | awk '{print $1}'
+2024-10-13T17:30:27.664416-07:00 femmebabe team: team [14287]: DISPLAY=:720 xrandr | grep '*' | awk '{print $1}'
+2024-10-13T17:30:44.253151-07:00 femmebabe team: team [14287]: sudo visudo
+2024-10-13T17:30:47.965114-07:00 femmebabe team: team [14287]: /bin/Xvfb
+2024-10-13T17:30:48.225241-07:00 femmebabe team: team [14287]: /bin/Xvfb
+2024-10-13T17:31:09.519929-07:00 femmebabe team: team [14287]: sudo visudo
+2024-10-13T17:31:14.959573-07:00 femmebabe team: team [14287]: ls /bin/Xvfb
+2024-10-13T17:31:19.092717-07:00 femmebabe team: team [14287]: ls /bin/Xvfb
+2024-10-13T17:32:17.400905-07:00 femmebabe team: team [14580]: exit
+2024-10-13T17:32:29.932849-07:00 femmebabe team: team [14580]: nano desktop/consumers.py
+2024-10-13T17:32:33.866189-07:00 femmebabe team: team [14580]: nano desktop/consumers.py
+2024-10-13T17:34:10.772330-07:00 femmebabe team: team [14777]: exit
+2024-10-13T17:34:45.314711-07:00 femmebabe team: team [14777]: python approve_login.py 1
+2024-10-13T17:34:58.680685-07:00 femmebabe team: message repeated 3 times: [ team [14777]: python approve_login.py 1]
+2024-10-13T17:35:02.858939-07:00 femmebabe team: team [14777]: python approve_login.py 1
+2024-10-13T17:35:07.294640-07:00 femmebabe team: message repeated 2 times: [ team [14777]: python approve_login.py 1]
+2024-10-13T17:35:08.140474-07:00 femmebabe team: team [15329]: exit
+2024-10-13T17:35:11.254511-07:00 femmebabe team: team [15372]: exit
+2024-10-13T17:35:11.838074-07:00 femmebabe team: team [14777]: python approve_login.py 1
+2024-10-13T17:35:14.645728-07:00 femmebabe team: team [15416]: exit
+2024-10-13T17:35:16.208256-07:00 femmebabe team: team [14777]: python approve_login.py 1
+2024-10-13T17:35:17.943548-07:00 femmebabe team: team [15462]: exit
+2024-10-13T17:35:20.229900-07:00 femmebabe team: team [14777]: python approve_login.py 1
+2024-10-13T17:35:27.594762-07:00 femmebabe team: team [14777]: sudo systemctl restart daphne
+2024-10-13T19:52:33.501583-07:00 femmebabe team: team [14141]: venv
+2024-10-13T19:57:59.954626-07:00 femmebabe team: team [20332]: sudo systemctl restart daphne
+2024-10-13T19:58:08.600846-07:00 femmebabe team: team [20332]: cd lotteh/
+2024-10-13T19:58:09.350601-07:00 femmebabe team: team [20370]: sudo systemctl restart daphne
+2024-10-13T19:58:38.785548-07:00 femmebabe team: team [20370]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T19:59:06.081379-07:00 femmebabe team: team [20370]: nano desktop/consumers.py
+2024-10-13T19:59:17.470505-07:00 femmebabe team: team [20370]: nano security/consumers.py 
+2024-10-13T19:59:27.894914-07:00 femmebabe team: team [20370]: sudo daphnereload
+2024-10-13T20:00:04.611428-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:06.280886-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:07.364103-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:08.181592-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:09.058970-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:10.089060-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:11.172368-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:12.290949-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:13.808088-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:15.203527-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:16.470550-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:18.261244-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:19.712871-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:22.601653-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:24.308700-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:25.726038-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:26.738638-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:36.497889-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:37.676164-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:39.353869-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:40.273629-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:43.192083-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:44.403788-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:45.542273-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:47.928670-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:49.303211-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:00:53.703091-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:01:21.861566-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:01:23.726219-07:00 femmebabe team: team [20370]: sudo systemctl status daphne
+2024-10-13T20:02:17.712641-07:00 femmebabe team: team [20370]: sudo systemctl stop daphne
+2024-10-13T20:02:20.184337-07:00 femmebabe team: team [20370]: sudo systemctl stop daphne &
+2024-10-13T20:03:16.565639-07:00 femmebabe team: team [21551]: sudo systemctl restart daphne
+2024-10-13T20:03:17.948302-07:00 femmebabe team: team [21572]: sudo systemctl restart daphne
+2024-10-13T20:03:19.556307-07:00 femmebabe team: team [21594]: sudo systemctl restart daphne
+2024-10-13T20:03:24.001926-07:00 femmebabe team: team [21672]: sudo systemctl restart daphne
+2024-10-13T20:03:25.910624-07:00 femmebabe team: team [21688]: sudo systemctl restart daphne
+2024-10-13T20:05:48.199316-07:00 femmebabe team: team [21688]: nano desktop/consumers.py
+2024-10-13T20:06:15.193837-07:00 femmebabe team: team [21688]: sudo apt install xdotool
+2024-10-13T20:06:36.242959-07:00 femmebabe team: team [22060]: sudo systemctl restart daphne
+2024-10-13T20:06:46.850614-07:00 femmebabe team: team [21672]: sudo systemctl restart daphne
+2024-10-13T20:06:47.725397-07:00 femmebabe team: team [22084]: sudo systemctl restart daphne
+2024-10-13T20:07:40.575899-07:00 femmebabe team: team [22214]: sudo systemctl restart daphne
+2024-10-13T20:09:27.540785-07:00 femmebabe team: team [22624]: sudo systemctl restart daphne
+2024-10-13T20:10:21.368411-07:00 femmebabe team: team [22624]: nano desktop/consumers.py
+2024-10-13T20:10:45.903858-07:00 femmebabe team: team [22624]: nano desktop/consumers.py
+2024-10-13T20:11:06.798469-07:00 femmebabe team: team [22800]: sudo systemctl restart daphne
+2024-10-13T20:11:06.860606-07:00 femmebabe team: team [22817]: sudo systemctl restart daphne
+2024-10-13T20:11:09.171837-07:00 femmebabe team: team [22831]: sudo systemctl restart daphne
+2024-10-13T20:11:11.299304-07:00 femmebabe team: team [22831]: ./scripts/daphne
+2024-10-13T20:11:15.742850-07:00 femmebabe team: team [22831]: sudo systemctl stop daphne
+2024-10-13T20:12:16.475520-07:00 femmebabe team: team [22980]: sudo systemctl restart daphne
+2024-10-13T20:12:20.368819-07:00 femmebabe team: team [22980]: cat desktop/consumers.py
+2024-10-13T20:12:47.549345-07:00 femmebabe team: team [22624]: sudo Xvfb :{} -ac -screen 0 1024x768x24 &
+2024-10-13T20:12:48.604780-07:00 femmebabe team: team [22624]: sudo Xvfb :{} -ac -screen 0 1024x768x24 &
+2024-10-13T20:12:52.664461-07:00 femmebabe team: team [22624]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T20:12:53.940095-07:00 femmebabe team: team [22624]: sudo Xvfb :10 -ac -screen 0 1024x768x24 &
+2024-10-13T20:13:13.030528-07:00 femmebabe team: team [22624]: DISPLAY=:10 xrandr | grep '*' | awk '{print $1}'
+2024-10-13T20:13:14.343859-07:00 femmebabe team: team [22624]: DISPLAY=:10 xrandr | grep '*' | awk '{print $1}'
+2024-10-13T20:14:31.264002-07:00 femmebabe team: team [22624]: nano desktop/consumers.py
+2024-10-13T20:14:34.375657-07:00 femmebabe team: team [22980]: cat desktop/consumers.py
+2024-10-13T20:14:37.497060-07:00 femmebabe team: team [22980]: cat desktop/consumers.py
+2024-10-13T20:15:45.388350-07:00 femmebabe team: team [22624]: nano desktop/consumers.py
+2024-10-13T20:15:54.522897-07:00 femmebabe team: team [22624]: nano photobooth/consumers.py 
+2024-10-13T20:16:02.075104-07:00 femmebabe team: team [22624]: nano security/consumers.py 
+2024-10-13T20:16:04.301749-07:00 femmebabe team: team [22624]: nano security/consumers.py 
+2024-10-13T20:16:50.832887-07:00 femmebabe team: team [21594]: cd lotteh/
+2024-10-13T20:16:52.232030-07:00 femmebabe team: team [21594]: ls tem p
+2024-10-13T20:16:54.824003-07:00 femmebabe team: team [21594]: ls tmp
+2024-10-13T20:16:56.575277-07:00 femmebabe team: team [21594]: ls temp
+2024-10-13T20:17:18.692684-07:00 femmebabe team: team [21594]: ls temp/data
+2024-10-13T20:17:22.810538-07:00 femmebabe team: team [21594]: ls temp/data
+2024-10-13T20:18:09.798774-07:00 femmebabe team: team [21594]: nano desktop/consumers.py
+2024-10-13T20:18:21.286772-07:00 femmebabe team: team [21594]: ./scripts/daphnetest.sh 
+2024-10-13T20:18:25.849335-07:00 femmebabe team: team [23900]: sudo systemctl restart daphne
+2024-10-13T20:18:25.913532-07:00 femmebabe team: team [23913]: sudo systemctl restart daphne
+2024-10-13T20:18:28.596684-07:00 femmebabe team: team [21594]: sudo systemctl stop daphne
+2024-10-13T20:18:38.735103-07:00 femmebabe team: team [23913]: temp
+2024-10-13T20:18:40.418537-07:00 femmebabe team: team [21594]: ./scripts/daphnetest.sh 
+2024-10-13T20:18:41.133305-07:00 femmebabe team: team [23988]: sudo systemctl restart daphne
+2024-10-13T20:18:47.481386-07:00 femmebabe team: team [23988]: sudo systemctl stop daphne
+2024-10-13T20:19:30.388817-07:00 femmebabe team: team [23900]: ls *.jpg
+2024-10-13T20:19:39.178924-07:00 femmebabe team: team [23900]: ls *.jpg
+2024-10-13T20:19:40.062746-07:00 femmebabe team: team [24154]: sudo systemctl restart daphne
+2024-10-13T20:20:02.282222-07:00 femmebabe team: team [24154]: nano desktop/consumers.py
+2024-10-13T20:20:04.012977-07:00 femmebabe team: team [24154]: ls temp
+2024-10-13T20:20:18.303159-07:00 femmebabe team: team [24154]: nano desktop/consumers.py
+2024-10-13T20:20:27.850195-07:00 femmebabe team: team [24154]: nano ls *.p
+2024-10-13T20:20:29.208587-07:00 femmebabe team: team [24154]: nano ls *.p
+2024-10-13T20:20:30.604156-07:00 femmebabe team: team [24154]: ls *.py
+2024-10-13T20:21:01.960077-07:00 femmebabe team: team [24154]: ls *.py
+2024-10-13T20:22:05.981263-07:00 femmebabe team: team [24154]: nano image_generator.py 
+2024-10-13T20:22:59.586725-07:00 femmebabe team: team [21594]: ls temp
+2024-10-13T20:23:02.470812-07:00 femmebabe team: team [21594]: ls temp
+2024-10-13T20:23:30.577210-07:00 femmebabe team: team [21594]: nano desktop/consumers.py
+2024-10-13T20:24:30.844922-07:00 femmebabe team: team [24874]: sudo systemctl restart daphne
+2024-10-13T20:24:32.158045-07:00 femmebabe team: team [24888]: sudo systemctl restart daphne
+2024-10-13T20:25:14.774812-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:25:20.798347-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:25:25.638437-07:00 femmebabe team: team [24888]: ls temp
+2024-10-13T20:25:57.547824-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:26:01.310798-07:00 femmebabe team: team [25020]: sudo systemctl restart daphne
+2024-10-13T20:26:46.138453-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:27:19.722987-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:27:22.270872-07:00 femmebabe team: team [24888]: nano desktop/consumers.py
+2024-10-13T20:27:47.419856-07:00 femmebabe team: team [25413]: sudo systemctl restart daphne
+2024-10-13T20:27:54.899704-07:00 femmebabe team: team [25511]: sudo systemctl restart daphne
+2024-10-13T20:28:23.580734-07:00 femmebabe team: team [25602]: sudo systemctl restart daphne
+2024-10-13T20:28:32.085775-07:00 femmebabe team: team [25625]: sudo systemctl restart daphne
+2024-10-13T20:28:33.511006-07:00 femmebabe team: team [25602]: sudo systemctl restart daphne
+2024-10-13T20:28:34.289912-07:00 femmebabe team: team [25645]: sudo systemctl restart daphne
+2024-10-13T20:28:38.812841-07:00 femmebabe team: team [25658]: sudo systemctl restart daphne
+2024-10-13T20:28:52.593654-07:00 femmebabe team: team [25658]: nano desktop/consumers.py
+2024-10-13T20:28:53.902839-07:00 femmebabe team: team [25658]: ls temp
+2024-10-13T20:29:43.537953-07:00 femmebabe team: team [25658]: nano desktop/consumers.py
+2024-10-13T20:29:55.240945-07:00 femmebabe team: team [25658]: python image_generator.py 10 test.png
+2024-10-13T20:29:57.830820-07:00 femmebabe team: team [25658]: python image_generator.py 10 test2.png
+2024-10-13T20:30:00.864169-07:00 femmebabe team: team [25658]: nano desktop/consumers.py
+2024-10-13T20:30:02.613853-07:00 femmebabe team: team [25658]: ls temp
+2024-10-13T20:30:38.745422-07:00 femmebabe team: team [25658]: nano desktop/consumers.py
+2024-10-13T20:32:04.827411-07:00 femmebabe team: team [25645]: nano desktop/consumers.py
+2024-10-13T20:32:07.407822-07:00 femmebabe team: team [25645]: nano desktop/consumers.py
+2024-10-13T20:32:12.701385-07:00 femmebabe team: team [25645]: sudo systemctl stop daphne
+2024-10-13T20:32:14.203267-07:00 femmebabe team: team [25511]: sudo systemctl restart daphne
+2024-10-13T20:32:15.119887-07:00 femmebabe team: team [25998]: sudo systemctl restart daphne
+2024-10-13T20:33:37.916517-07:00 femmebabe team: team [25645]: mousemove 10 10
+2024-10-13T20:35:17.455368-07:00 femmebabe team: team [28345]: sudo systemctl restart daphne
+2024-10-13T20:35:40.668520-07:00 femmebabe team: team [28345]: pip3 install PyUserInput
+2024-10-13T20:36:06.578279-07:00 femmebabe team: team [25645]: mousemove 10 10
+2024-10-13T20:36:13.602008-07:00 femmebabe team: team [25645]: nano keypress.py 
+2024-10-13T20:36:18.335585-07:00 femmebabe team: team [25645]: pip3 remove pykeyboard
+2024-10-13T20:36:41.239471-07:00 femmebabe team: team [25645]: pip3 uninstall pykeyboard
+2024-10-13T20:36:57.178215-07:00 femmebabe team: team [28345]: sudo systemctl stop daphne
+2024-10-13T20:38:40.262261-07:00 femmebabe team: team [25645]: nano shell/consumers.py 
+2024-10-13T20:39:34.766481-07:00 femmebabe team: team [25645]: nano desktop/consumers.py
+2024-10-13T20:39:44.784482-07:00 femmebabe team: team [25645]: export DISPLAY=:95 google-chrome
+2024-10-13T20:39:57.775040-07:00 femmebabe team: team [25645]: export DISPLAY=:95 test
+2024-10-13T20:40:05.931743-07:00 femmebabe team: team [25645]: export DISPLAY=:95 logs
+2024-10-13T20:40:40.371003-07:00 femmebabe team: team [25645]: export DISPLAY=:95 gnome-terminal
+2024-10-13T20:40:49.425173-07:00 femmebabe team: team [25645]: export DISPLAY=:95 gnome-terminal
+2024-10-13T20:42:18.364257-07:00 femmebabe team: team [25645]: nano desktop/consumers.py
+2024-10-13T20:42:25.284017-07:00 femmebabe team: team [25645]: export DISPLAY=:95
+2024-10-13T20:42:28.285831-07:00 femmebabe team: team [25645]: gnome-termianl
+2024-10-13T20:42:59.394134-07:00 femmebabe team: team [25645]: gnome-terminal
+2024-10-13T20:43:20.644188-07:00 femmebabe team: team [25645]: export DISPLAY=:95
+2024-10-13T20:43:26.937674-07:00 femmebabe team: team [25645]: chrome
+2024-10-13T20:43:30.909907-07:00 femmebabe team: team [25645]: google-chrome
+2024-10-13T20:44:04.731017-07:00 femmebabe team: team [25645]: kill 7909
+2024-10-13T20:44:08.614096-07:00 femmebabe team: team [25645]: killall 7909
+2024-10-13T20:44:11.351556-07:00 femmebabe team: team [25645]: kill google-chrome
+2024-10-13T20:44:13.651625-07:00 femmebabe team: team [25645]: killall chrome
+2024-10-13T20:44:17.833067-07:00 femmebabe team: team [25645]: killall google-chrome
+2024-10-13T20:44:23.685401-07:00 femmebabe team: team [25645]: google-chrome
+2024-10-13T20:44:31.180032-07:00 femmebabe team: team [25645]: kill 7909
+2024-10-13T20:44:33.436340-07:00 femmebabe team: team [25645]: google-chrome
+2024-10-13T20:44:35.615630-07:00 femmebabe team: team [25645]: kill 7909
+2024-10-13T20:44:38.191776-07:00 femmebabe team: team [25645]: killall 7909
+2024-10-13T20:44:43.163899-07:00 femmebabe team: team [25645]: ps -aux | grep google
+2024-10-13T20:44:47.947346-07:00 femmebabe team: team [25645]: ps -aux | grep chrome
+2024-10-13T20:45:23.507513-07:00 femmebabe team: team [25645]: gnome-terminal
+2024-10-13T20:46:23.504688-07:00 femmebabe team: team [25645]: glxinfo | grep Mesa
+2024-10-13T20:47:07.926329-07:00 femmebabe team: team [25645]: sudo apt install mesa-utils
+2024-10-13T20:47:11.377053-07:00 femmebabe team: team [25645]: glxinfo | grep Mesa
+2024-10-13T20:47:18.149540-07:00 femmebabe team: team [25645]: ps -aux | grep chrome
+2024-10-13T20:47:46.306231-07:00 femmebabe team: team [25645]: gnome-terminal
+2024-10-13T20:47:46.361774-07:00 femmebabe team: team [25645]: gnome-terminal
+2024-10-13T22:42:10.401385-07:00 femmebabe team: team [40739]: sudo systemctl restart daphne
+2024-10-13T22:42:10.867900-07:00 femmebabe team: team [40782]: sudo systemctl restart daphne
+2024-10-13T22:42:12.267650-07:00 femmebabe team: team [40799]: sudo systemctl restart daphne
+2024-10-13T22:42:15.567294-07:00 femmebabe team: team [40799]: sudo systemctl stop daphne
+2024-10-13T22:43:06.215030-07:00 femmebabe team: team [41054]: sudo systemctl restart daphne
+2024-10-13T22:44:12.318221-07:00 femmebabe team: team [41054]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:44:21.882224-07:00 femmebabe team: team [41181]: sudo systemctl restart daphne
+2024-10-13T22:44:52.460355-07:00 femmebabe team: team [41181]: sudo systemctl restart daphne
+2024-10-13T22:44:54.101845-07:00 femmebabe team: team [41411]: sudo systemctl restart daphne
+2024-10-13T22:46:03.342643-07:00 femmebabe team: team [41411]: export DISPLAY=46
+2024-10-13T22:46:06.618539-07:00 femmebabe team: team [41411]: export DISPLAY=:46
+2024-10-13T22:46:24.692239-07:00 femmebabe team: team [41411]: gnome-terminal
+2024-10-13T22:46:28.222591-07:00 femmebabe team: team [41411]: gnome-terminal
+2024-10-13T22:46:40.448344-07:00 femmebabe team: team [41411]: cat desktop/consumers.py
+2024-10-13T22:48:37.798804-07:00 femmebabe team: team [41411]: startx
+2024-10-13T22:48:55.931673-07:00 femmebabe team: team [41411]: DISPLAY=:46 startx
+2024-10-13T22:49:09.839550-07:00 femmebabe team: team [41411]: DISPLAY=:46 sudo startx
+2024-10-13T22:49:48.621085-07:00 femmebabe team: team [41411]: sh -c "xrandr | grep '*' | awk '{print $1}'"
+2024-10-13T22:49:50.344554-07:00 femmebabe team: team [41411]: sh -c "xrandr | grep '*' | awk '{print $1}'"
+2024-10-13T22:51:20.676239-07:00 femmebabe team: team [41411]: DISPLAY=:46 firefox
+2024-10-13T22:51:26.177803-07:00 femmebabe team: team [41411]: gnome-terminal
+2024-10-13T22:51:29.821862-07:00 femmebabe team: team [41411]: cat desktop/consumers.py
+2024-10-13T22:52:11.665214-07:00 femmebabe team: team [41411]: nano desktop/consumers.py
+2024-10-13T22:52:29.550828-07:00 femmebabe team: team [41411]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:52:32.561322-07:00 femmebabe team: team [41411]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:52:36.309774-07:00 femmebabe team: team [41411]: sudo doreload
+2024-10-13T22:52:39.823811-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:41.009031-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:42.057526-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:43.045260-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:44.102856-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:45.178884-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:46.307111-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:47.355315-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:48.594444-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:52:49.854995-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:53:25.289896-07:00 femmebabe team: team [41411]: DISPLAY=:48 firefox
+2024-10-13T22:53:50.394086-07:00 femmebabe team: team [41411]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:53:52.731175-07:00 femmebabe team: team [41411]: sudo doreload
+2024-10-13T22:54:00.917109-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:54:01.818074-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:54:02.576849-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:54:03.976762-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:54:05.376228-07:00 femmebabe team: team [41411]: logss
+2024-10-13T22:54:06.244728-07:00 femmebabe team: team [41411]: logs
+2024-10-13T22:55:32.664730-07:00 femmebabe team: team [41411]: display=:67 firefox
+2024-10-13T22:55:55.269285-07:00 femmebabe team: team [41411]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:55:59.552463-07:00 femmebabe team: team [41411]: sudo doreload
+2024-10-13T22:56:31.812456-07:00 femmebabe team: team [41411]: nano desktop/templates/desktop/desktop.html 
+2024-10-13T22:58:48.640871-07:00 femmebabe team: team [41411]: killall Xvfb
+2024-10-13T22:58:52.192339-07:00 femmebabe team: team [41411]: sudo killall Xvfb
+2024-10-13T22:59:31.713976-07:00 femmebabe team: team [41411]: sudo killall Xvfb
+2024-10-13T23:00:21.077335-07:00 femmebabe team: team [25602]: venv
+2024-10-13T23:00:30.040547-07:00 femmebabe team: team [50961]: gnome-terminal
+2024-10-13T23:02:11.078774-07:00 femmebabe team: team [50961]: DISPLAY=:93 firefox
+2024-10-13T23:02:11.131380-07:00 femmebabe team: team [50961]: DISPLAY=:93 firefox
+2024-10-13T23:02:31.112097-07:00 femmebabe team: team [50961]: cd lotteh
+2024-10-13T23:03:11.177503-07:00 femmebabe team: team [54591]: gnome-terminal
+2024-10-13T23:03:12.851057-07:00 femmebabe team: team [54643]: gnome-terminal
+2024-10-13T23:03:14.152006-07:00 femmebabe team: team [54747]: gnome-terminal
+2024-10-13T23:03:31.787531-07:00 femmebabe team: team [54819]: gnome-terminal
+2024-10-13T23:04:53.172067-07:00 femmebabe team: team [54819]: gnome-terminal
+2024-10-13T23:04:54.838804-07:00 femmebabe team: team [54819]: cd lotteh/
+2024-10-13T23:04:57.779316-07:00 femmebabe team: team [54819]: nano web/cons
+2024-10-13T23:05:01.130345-07:00 femmebabe team: team [54819]: nano web/cons
+2024-10-13T23:06:41.860601-07:00 femmebabe team: team [54819]: nano desktop/consumers.py
+2024-10-13T23:06:44.788416-07:00 femmebabe team: team [54819]: xvfb-run
+2024-10-13T23:06:50.988842-07:00 femmebabe team: team [54819]: xvfb-run
+2024-10-13T23:08:01.707995-07:00 femmebabe team: team [54819]: nano desktop/consumers.py
+2024-10-13T23:08:02.880250-07:00 femmebabe team: team [54819]: xvfb-run
+2024-10-13T23:08:07.120877-07:00 femmebabe team: team [54819]: xvfb-run
+2024-10-13T23:09:16.421539-07:00 femmebabe team: team [55886]: gnome-terminal
+2024-10-13T23:09:22.716199-07:00 femmebabe team: team [55886]: nano scripts/daphnetest.sh 
+2024-10-13T23:10:51.564735-07:00 femmebabe team: team [55886]: nano desktop/consumers.py
+2024-10-13T23:11:23.826045-07:00 femmebabe team: team [54747]: gnome-terminal
+2024-10-13T23:11:25.191710-07:00 femmebabe team: team [56244]: gnome-terminal
+2024-10-13T23:12:22.995795-07:00 femmebabe team: team [56244]: nano desktop/consumers.py
+2024-10-13T23:12:25.312540-07:00 femmebabe team: team [56244]: nano desktop/consumers.py
+2024-10-13T23:13:31.401184-07:00 femmebabe team: team [54591]: gnome-terminal
+2024-10-13T23:13:32.869012-07:00 femmebabe team: team [56498]: gnome-terminal
+2024-10-13T23:13:46.756401-07:00 femmebabe team: team [56498]: nano desktop/consumers.py
+2024-10-13T23:13:51.156993-07:00 femmebabe team: team [56498]: nano desktop/consumers.py
+2024-10-13T23:14:04.287794-07:00 femmebabe team: team [56640]: gnome-terminal
+2024-10-13T23:14:04.314237-07:00 femmebabe team: team [56651]: gnome-terminal

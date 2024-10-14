@@ -11,10 +11,6 @@ from django.views.decorators.cache import never_cache
 def desktop(request):
     from stacktrace.models import Error
     from feed.middleware import get_current_exception
-    from .forms import CommandForm, EditFileForm
-    from .execute import run_command
-    from .reload import safe_reload
-    from .tests import is_admin
     import os, io
     from django.conf import settings
     from django.contrib import messages
