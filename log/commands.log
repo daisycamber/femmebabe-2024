@@ -644,3 +644,100 @@
 2024-10-15T17:28:33.258077-07:00 femmebabe team: team [102788]: nano templates/crypto.js
 2024-10-15T17:29:57.333158-07:00 femmebabe team: team [102610]: venv
 2024-10-15T17:30:29.316802-07:00 femmebabe team: team [103212]: nano templates/crypto.js
+2024-10-16T17:39:20.590695-07:00 femmebabe team: team [169399]: nano templates/crypto.js
+2024-10-16T17:39:28.794654-07:00 femmebabe team: team [169518]: nano templates/crypto.js
+2024-10-16T17:42:55.006803-07:00 femmebabe team: team [169518]: netstat -plant
+2024-10-16T17:45:19.892448-07:00 femmebabe team: team [169518]: netstat -plant
+2024-10-16T17:45:20.027969-07:00 femmebabe team: team [169518]: netstat -plant
+2024-10-16T17:46:00.441174-07:00 femmebabe team: team [169977]: netstat -plant
+2024-10-16T17:46:25.737784-07:00 femmebabe team: team [169977]: nano .ssh/authorized_keys 
+2024-10-16T17:47:27.923471-07:00 femmebabe team: team [169977]: nano .ssh/authorized_keys 
+2024-10-16T17:48:16.988295-07:00 femmebabe team: team [169977]: sudo cat /etc/ssh/sshd_config
+2024-10-16T18:11:52.348716-07:00 femmebabe team: team [171351]: netstat -plant
+2024-10-16T18:21:10.127931-07:00 femmebabe team: team [171351]: lear
+2024-10-16T18:21:15.703182-07:00 femmebabe team: team [171351]: clear
+2024-10-16T18:33:11.445791-07:00 femmebabe team: team [172164]: clear
+2024-10-16T20:15:04.712386-07:00 femmebabe team: team [178141]: clear
+2024-10-16T20:15:15.033954-07:00 femmebabe team: team [178238]: clear
+2024-10-16T20:15:39.496106-07:00 femmebabe team: team [178422]: clear
+2024-10-16T20:15:44.827172-07:00 femmebabe team: team [178458]: clear
+2024-10-16T20:16:02.276326-07:00 femmebabe team: team [178458]: python force_publish.py 
+2024-10-16T20:16:17.925158-07:00 femmebabe team: team [178458]: nano web/generate.py
+2024-10-16T20:16:24.790102-07:00 femmebabe team: team [178458]: suso pushweb
+2024-10-16T20:20:40.797626-07:00 femmebabe team: team [179517]: clear
+2024-10-16T20:20:45.118804-07:00 femmebabe team: team [179540]: clear
+2024-10-16T20:21:06.847827-07:00 femmebabe team: team [179540]: sh -c "sudo pushweb&"
+2024-10-16T20:21:11.279729-07:00 femmebabe team: team [179540]: sh -c "sudo pushweb&"
+2024-10-16T20:21:20.164067-07:00 femmebabe root: root [179661]: exit
+2024-10-16T20:21:23.521140-07:00 femmebabe team: team [179540]: sudo su
+2024-10-16T20:21:27.658351-07:00 femmebabe team: team [179540]: sh -c "sudo pushweb&"
+2024-10-16T20:21:57.433695-07:00 femmebabe team: team [178458]: sudo pushweb
+2024-10-16T20:22:26.093396-07:00 femmebabe team: team [179540]: sh -c "sudo pushweb&"
+2024-10-16T20:22:27.549514-07:00 femmebabe team: team [179540]: sh -c "sudo pushweb&"
+2024-10-16T20:23:19.501361-07:00 femmebabe team: team [179517]: venv
+2024-10-16T20:23:50.486662-07:00 femmebabe team: team [180203]: sh -c "sudo pushweb&"
+2024-10-16T20:24:16.222333-07:00 femmebabe team: team [180203]: sh -c "sudp backup&"
+2024-10-16T20:24:19.644026-07:00 femmebabe team: team [180203]: sudo
+2024-10-16T20:24:35.210065-07:00 femmebabe root: root [180312]: exit
+2024-10-16T20:24:41.390584-07:00 femmebabe root: root [180312]: sh -c "backup &"
+2024-10-16T20:26:19.333078-07:00 femmebabe root: root [180312]: sh -c "backup &"
+2024-10-16T20:26:44.387711-07:00 femmebabe root: root [180312]: sh -c "backup &"
+2024-10-16T20:27:02.191017-07:00 femmebabe root: root [180312]: sg -c "pushweb"
+2024-10-16T20:27:20.608753-07:00 femmebabe root: root [180312]: sh -c "pushweb &"
+2024-10-16T20:29:08.769561-07:00 femmebabe root: root [180312]: sh -c "pushweb &"
+2024-10-16T20:29:08.787725-07:00 femmebabe root: root [180312]: sh -c "pushweb &"
+2024-10-16T20:29:27.053062-07:00 femmebabe root: root [180312]: sh -c "pushweb &"
+2024-10-16T20:29:33.614665-07:00 femmebabe root: message repeated 2 times: [ root [180312]: sh -c "pushweb &"]
+2024-10-16T20:29:58.458462-07:00 femmebabe team: team [180203]: sudo su
+2024-10-16T20:30:05.677720-07:00 femmebabe team: team [180203]: cd lotteh/web/site
+2024-10-16T20:30:13.371346-07:00 femmebabe team: team [180203]: git add --alll
+2024-10-16T20:30:24.302983-07:00 femmebabe team: team [180203]: git commit -"push"
+2024-10-16T20:30:37.246382-07:00 femmebabe team: team [180203]: git push -u origin main
+2024-10-16T20:31:27.392446-07:00 femmebabe team: team [180203]: sudo ascript setup
+2024-10-16T20:32:05.301707-07:00 femmebabe team: team [180203]: sudp git push -u origin main
+2024-10-16T20:32:15.874321-07:00 femmebabe team: team [180203]: sudo git push -u origin main
+2024-10-16T20:32:46.231299-07:00 femmebabe team: team [180203]: sudo rm -r .git
+2024-10-16T20:33:03.669835-07:00 femmebabe team: team [180203]: git init --initial-branch=main
+2024-10-16T20:33:18.563970-07:00 femmebabe team: team [180203]: git remote add origin git@github.com:daisycamber/glamgirlx.git
+2024-10-16T20:34:25.072310-07:00 femmebabe team: team [180203]: git add --all
+2024-10-16T20:35:09.308483-07:00 femmebabe team: team [180203]: git add --all
+2024-10-16T20:35:11.497835-07:00 femmebabe team: team [180203]: git commit -m "push"
+2024-10-16T20:39:21.738272-07:00 femmebabe team: team [180203]: sudo git push -u -f origin main
+2024-10-16T20:52:26.612655-07:00 femmebabe team: team [180203]: sudo git push -u -f origin main
+2024-10-16T20:52:51.789869-07:00 femmebabe team: team [180203]: sh -c "sudo pushweb&"
+2024-10-16T20:53:32.304798-07:00 femmebabe team: team [184266]: sh -c "sudo pushweb&"
+2024-10-16T20:53:41.153544-07:00 femmebabe team: team [184266]: sudp su
+2024-10-16T20:53:53.071691-07:00 femmebabe root: root [184367]: exit
+2024-10-16T20:54:06.932170-07:00 femmebabe root: root [184367]: sh -c "sudo bpushweb&"
+2024-10-16T20:54:10.166118-07:00 femmebabe root: root [184367]: sh -c "sudo bpushweb&"
+2024-10-16T20:54:36.229877-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:54:42.053623-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:57:12.078441-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:57:23.444355-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:57:32.662814-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:58:52.326200-07:00 femmebabe root: message repeated 8 times: [ root [184367]: sh -c "sudo pushweb&"]
+2024-10-16T20:59:07.200419-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:59:25.484302-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:59:41.031362-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T20:59:56.581148-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T21:00:03.830528-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T21:00:36.481552-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T21:01:05.543437-07:00 femmebabe root: message repeated 3 times: [ root [184367]: sh -c "sudo pushweb&"]
+2024-10-16T21:03:16.916037-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T21:03:37.846761-07:00 femmebabe root: root [184367]: sh -c "sudo pushweb&"
+2024-10-16T21:03:40.883040-07:00 femmebabe team: team [184266]: sudo su
+2024-10-16T21:03:50.035756-07:00 femmebabe team: team [186626]: sh -c "sudo pushweb&"
+2024-10-16T21:04:23.579632-07:00 femmebabe team: team [186626]: python force_publish.py 
+2024-10-16T21:04:57.171455-07:00 femmebabe team: team [186626]: cat web/generate.py
+2024-10-16T21:10:52.583057-07:00 femmebabe team: team [184266]: venv
+2024-10-16T21:11:30.894338-07:00 femmebabe team: team [187363]: cat web/generate.py
+2024-10-16T21:13:38.567160-07:00 femmebabe team: team [187808]: cat web/generate.py
+2024-10-16T21:13:57.109533-07:00 femmebabe team: team [187927]: cat web/generate.py
+2024-10-16T23:02:46.922811-07:00 femmebabe team: team [209786]: cat web/generate.py
+2024-10-16T23:02:55.876817-07:00 femmebabe team: team [209823]: cat web/generate.py
+2024-10-16T23:03:51.744311-07:00 femmebabe team: team [209823]: python force_publish.py 
+2024-10-16T23:11:59.162262-07:00 femmebabe team: team [209823]: sudo pushweb
+2024-10-16T23:18:58.213449-07:00 femmebabe team: team [209823]: nano web/generate.py 
+2024-10-16T23:21:58.054347-07:00 femmebabe team: team [209823]: python force_publish.py 
+2024-10-16T23:22:18.928164-07:00 femmebabe team: team [209823]: cat web/site/private.html 
+2024-10-16T23:22:46.313544-07:00 femmebabe team: team [209823]: cat web/site/private.html 
