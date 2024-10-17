@@ -741,3 +741,10 @@
 2024-10-16T23:21:58.054347-07:00 femmebabe team: team [209823]: python force_publish.py 
 2024-10-16T23:22:18.928164-07:00 femmebabe team: team [209823]: cat web/site/private.html 
 2024-10-16T23:22:46.313544-07:00 femmebabe team: team [209823]: cat web/site/private.html 
+2024-10-17T01:36:13.904101-07:00 femmebabe team: team [209786]: venv
+2024-10-17T01:36:26.527597-07:00 femmebabe team: team [239911]: cat web/site/private.html 
+2024-10-17T01:36:30.057208-07:00 femmebabe team: team [239911]: cd lotteh/
+2024-10-17T01:36:33.339473-07:00 femmebabe team: team [239911]: source venv/bin/activate
+2024-10-17T01:36:46.698551-07:00 femmebabe team: team [239911]: python force_publish.py 
+2024-10-17T01:37:01.771265-07:00 femmebabe team: team [239911]: python manage.py check
+2024-10-17T01:47:21.639256-07:00 femmebabe team: team [239911]: sudo pushweb
