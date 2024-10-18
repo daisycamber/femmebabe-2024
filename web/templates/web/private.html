@@ -14,6 +14,7 @@
 <hr>
 <p>These are encrypted private photos. You must be 18+ to access these photos. Please ask me for the secret key if you would like to see them.</p>
 <button onclick="decryptPrivateFeed();" class="btn btn-outline-danger btn-lg">Click for access</button>
+<i class="hide" id="decrypting-info">Decrypting, please wait.</i>
 <div id="photo-page">
 {% autoescape off %}
 {% endautoescape %}
@@ -57,6 +58,7 @@
 {% block javascript %}
 {% include 'crypto.js' %}
 {% autoescape off %}
+var info = document.getElementById('decrypting-info');
 function setGetParam(key,value) {
   if (history.pushState) {
     var params = new URLSearchParams(window.location.search);
@@ -109,9 +111,16 @@ data-full-width-responsive="true"></ins>
 </div>
 <hr>`;
 function decryptPrivateFeed() {
-    var res = prompt('What is the secret passcode?')
+    var res = prompt('What is the secret passcode?');
+    info.classList.remove('hide');
+    if(!res) {
+        info.innerHTML = 'No passcode supplied.';
+        return;
+    }
+    info.innerHTML = 'Decrypting...';
     var dec = decrypt(images, res);
     if(dec) {
+        info.innerHTML = 'Successfully decrypted photos.';
         images = dec.split('\n');
         setInterval(function() {
             if($(window).scrollTop() + $(window).height() > $(document).height() - $(document).height()/scroll_factor) {
@@ -148,6 +157,8 @@ function decryptPrivateFeed() {
                 }
             }
         }, 3000);
+    } else {
+        info.innerHTML = 'Could not decrypt photos.';
     }
 }
 {% endblock %}

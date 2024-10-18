@@ -748,3 +748,71 @@
 2024-10-17T01:36:46.698551-07:00 femmebabe team: team [239911]: python force_publish.py 
 2024-10-17T01:37:01.771265-07:00 femmebabe team: team [239911]: python manage.py check
 2024-10-17T01:47:21.639256-07:00 femmebabe team: team [239911]: sudo pushweb
+2024-10-17T20:26:16.509144-07:00 femmebabe team: team [7592]: sudo pushweb
+2024-10-17T20:26:19.562987-07:00 femmebabe team: team [7592]: cd lotteh/
+2024-10-17T20:26:23.226028-07:00 femmebabe team: team [7592]: du -sh .git
+2024-10-17T20:26:30.682838-07:00 femmebabe team: team [7592]: git remote -v
+2024-10-17T20:26:48.486523-07:00 femmebabe team: team [7592]: sudo rm -r .git
+2024-10-17T20:26:57.831946-07:00 femmebabe team: team [7592]: git init --initial-branch=main
+2024-10-17T20:28:31.680063-07:00 femmebabe team: team [7592]: git add remote originlab git@gitlab.com:jasperholton/femmebabe2024-06.git
+2024-10-17T20:28:39.731410-07:00 femmebabe team: team [7592]: git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-06.git
+2024-10-17T20:29:36.975317-07:00 femmebabe team: team [7592]: sudo ascript backup
+2024-10-17T20:29:39.853575-07:00 femmebabe team: team [7592]: cd
+2024-10-17T20:29:41.116690-07:00 femmebabe team: team [7592]: ls
+2024-10-17T20:29:46.934608-07:00 femmebabe team: team [7592]: cd femmebabe-backup
+2024-10-17T20:29:50.736140-07:00 femmebabe team: team [7592]: git remote -v
+2024-10-17T20:29:53.166442-07:00 femmebabe team: team [7592]: git remote -v
+2024-10-17T20:29:59.855624-07:00 femmebabe team: team [7592]: sudo git remote -v
+2024-10-17T20:30:09.245435-07:00 femmebabe team: team [7592]: du -sh /git
+2024-10-17T20:30:12.005567-07:00 femmebabe team: team [7592]: du -sh .git
+2024-10-17T20:30:54.838168-07:00 femmebabe team: team [7592]: sudo ascript setup
+2024-10-17T20:30:56.591009-07:00 femmebabe team: team [7592]: git config --global --add safe.directory /home/team/femmebabe-backup-open
+2024-10-17T20:31:00.448031-07:00 femmebabe team: team [7592]: sudo ascript setup
+2024-10-17T20:31:03.065073-07:00 femmebabe team: team [7592]: du -sh .git
+2024-10-17T20:31:09.595512-07:00 femmebabe team: team [7592]: sudo git remote -v
+2024-10-17T20:31:15.703060-07:00 femmebabe team: team [7592]: sudo rm -r .git
+2024-10-17T20:31:22.980076-07:00 femmebabe team: team [7592]: git init --initial-branch=main
+2024-10-17T20:31:42.374840-07:00 femmebabe team: team [7592]: sudo ascript setup
+2024-10-17T20:34:02.943814-07:00 femmebabe team: team [7592]: sudo ascript backup
+2024-10-17T20:40:16.402609-07:00 femmebabe team: team [7592]: sudo backup
+2024-10-17T20:51:16.991963-07:00 femmebabe team: team [4624]: sudo backup
+2024-10-17T20:51:28.400614-07:00 femmebabe team: team [4856]: sudo backup
+2024-10-17T20:51:48.125936-07:00 femmebabe team: team [4856]: sudo crontab -e
+2024-10-17T20:52:19.622128-07:00 femmebabe team: team [4856]: sudo systemctl stop celery celerybeat apache2 daphne stun
+2024-10-17T20:52:29.288772-07:00 femmebabe team: team [4856]: ping google.com
+2024-10-17T20:52:32.647999-07:00 femmebabe team: team [4856]: ping google.com
+2024-10-17T20:53:08.060553-07:00 femmebabe team: team [4856]: ping google.com
+2024-10-17T21:05:48.410932-07:00 femmebabe team: team [4856]: ping google.com
+2024-10-17T21:06:07.273444-07:00 femmebabe team: team [4856]: nano /usr/bin/backu
+2024-10-17T21:06:46.905773-07:00 femmebabe team: team [4856]: nano /usr/bin/backup
+2024-10-17T21:06:51.026019-07:00 femmebabe team: team [4856]: sudo ascript test
+2024-10-17T21:07:10.095198-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:07:13.916013-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:07:26.277930-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:07:28.442459-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:07:30.652135-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:07:37.815316-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:07:39.639091-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:07:40.318969-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:07:55.838616-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:07:56.647476-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:08:04.649929-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:08:06.124552-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:08:06.855312-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:08:14.688373-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:09:21.739112-07:00 femmebabe team: team [4856]: sudo ascript backup
+2024-10-17T21:09:25.789712-07:00 femmebabe team: team [4856]: sudo ascript test
+2024-10-17T21:09:42.762096-07:00 femmebabe team: team [4856]: sudo ascript testthing
+2024-10-17T21:09:45.359311-07:00 femmebabe team: team [4856]: testthing
+2024-10-17T21:27:10.537212-07:00 femmebabe team: team [4856]: ps -aux | grep backup
+2024-10-17T21:37:26.636411-07:00 femmebabe team: team [4624]: sudo backup
+2024-10-17T21:37:29.367037-07:00 femmebabe team: team [4856]: cd lotteh/
+2024-10-17T21:37:33.044615-07:00 femmebabe team: team [4856]: git remote -v
+2024-10-17T21:37:52.939106-07:00 femmebabe team: team [4856]: git remote remove originlab
+2024-10-17T21:38:02.996655-07:00 femmebabe team: team [4856]: git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-09.git
+2024-10-17T21:38:07.485047-07:00 femmebabe team: team [4856]: git add --all
+2024-10-17T21:38:17.133032-07:00 femmebabe team: team [4856]: sudo git add --all
+2024-10-17T21:38:51.684363-07:00 femmebabe team: team [4624]: cd lotteh/
+2024-10-17T21:41:42.729927-07:00 femmebabe team: team [4856]: sudo git commit -m "backup for redeploy"
+2024-10-17T21:42:58.688984-07:00 femmebabe team: team [4856]: sudo git push -u origin main
+2024-10-17T22:08:11.688902-07:00 femmebabe team: team [4856]: sudo git push -u originlab main

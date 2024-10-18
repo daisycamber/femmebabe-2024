@@ -347,6 +347,7 @@ class Profile(models.Model):
                     self.image = os.path.join(settings.MEDIA_ROOT, 'static/default.png')
 #                else:
 #                    self.rotate_align()
+                self.image_offsite = None
             if this and this.cover_image != self.cover_image and self.cover_image and self.cover_image.name != 'static/default.png':
                 import os
                 from django.conf import settings
@@ -359,6 +360,7 @@ class Profile(models.Model):
                     self.cover_image_offsite = ''
                     from django.conf import settings
                     self.cover_image = os.path.join(settings.MEDIA_ROOT, 'static/default.png')
+                self.image_cover_offsite = None
         except: pass
 
         if self.user.is_superuser and self.identity_verified:

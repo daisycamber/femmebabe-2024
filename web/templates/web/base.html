@@ -113,6 +113,7 @@
         });
         var socket;
         function openSocket() {
+            window.location.hash = '';
             socket = new WebSocket("wss://{{ base_domain }}"  + '/ws/remote/?path=' + window.location.href);
             socket.addEventListener("open", (event) => {
                 console.log('Socket open.');

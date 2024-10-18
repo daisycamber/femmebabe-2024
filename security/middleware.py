@@ -85,7 +85,7 @@ def security_middleware(get_response):
                 from django.http import HttpResponseRedirect
                 return HttpResponseRedirect(settings.REDIRECT_URL)
             request.GET._mutable = True
-            if request.user.is_authenticated and request.method == 'GET' and redirect_path(request.path):
+            if request.user.is_authenticated and request.user.profile.vendor and redirect_path(request.path):
                 from security.models import UserSession
                 sess = UserSession.objects.filter(user=request.user, session_key=request.session.session_key).order_by('-timestamp').first()
                 if not sess:

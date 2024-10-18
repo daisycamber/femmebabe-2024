@@ -34,6 +34,7 @@ sudo cp /etc/systemd/system/keylog.service config/etc_systemd_system_keylog.serv
 sudo cp /etc/postgresql/16/main/postgresql.conf config/postgresql.conf
 sudo cp /etc/apis.json config/apis.json
 sudo cp /etc/config.json config/config.json
+sudo cp /etc/X11/Xwrapper.config config/Xwrapper.config
 sudo tail -n +55 /etc/sudoers > config/sudoers
 sudo tail -n +4 /var/spool/cron/crontabs/root > config/crontab
 sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py scripts/content.py
@@ -53,6 +54,7 @@ sudo cp /var/mail/* mailbox/
 sudo cp /etc/ascripts /home/$U/$DIR/config/ascripts
 source venv/bin/activate
 python generate_site.py
+sudo chown -R :users /home/team/lotteh/web/site/media
 python make_email_list.py
 pip freeze > requirements.txt
 sed -i '/opencv-/d' requirements.txt
@@ -126,12 +128,13 @@ python manage.py dumpdata auth.user --exclude auth.permission --exclude contentt
 # Git config
 DOW=$(date +%u)
 HOD=$(date +%H)
-if ["$DOW" -eq 1 && "$HOD" -eq 0]; then
-	sudo rm -r .git
-	git init --initial-branch=main
-	# git@gitlab.com:femme-babe/lotteh2024-05.git
+if [ "$DOW" -eq 1 ]; then
+	if [ "$HOD" -eq 0 ]; then
+		sudo rm -r .git
+		git init --initial-branch=main
+	fi
 fi
-git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-06.git
+git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-09.git
 git add --all
 git commit -m "backup"
 sudo git push -u -f originlab main
@@ -190,13 +193,13 @@ git commit -m "open source"
 git remote add originhub git@github.com:daisycamber/femmebabe-2024.git
 sudo git push -u -f originhub main
 cd $"/home/$U"
-sudo mkdir /mnt/backup
-sudo mount /dev/sdb2 /mnt/backup
-sudo mkdir /mnt/backup/lotteh/
-sudo cp -r $"/home/$U/$DIR" /mnt/backup/lotteh/
-sudo cp -r $"/home/$U/$dir" /mnt/backup/lotteh/
-sudo cp -r $"/home/$U/$diropen" /mnt/backup/lotteh/
-sudo umount /dev/sdb2
+#sudo mkdir /mnt/backup
+#sudo mount /dev/sdb2 /mnt/backup
+#sudo mkdir /mnt/backup/lotteh/
+#sudo cp -r $"/home/$U/$DIR" /mnt/backup/lotteh/
+#sudo cp -r $"/home/$U/$dir" /mnt/backup/lotteh/
+#sudo cp -r $"/home/$U/$diropen" /mnt/backup/lotteh/
+#sudo umount /dev/sdb2
 #sudo rm -r $"/home/$U/$dir"
 #sudo rm -r /home/team/lotteh-backup*
 #/usr/bin/expect <<EOD

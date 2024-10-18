@@ -45,7 +45,7 @@ def send_verification_email(user, token):
     token.token = code
     token.expires = timezone.now() + datetime.timedelta(minutes=settings.AUTH_VALID_MINUTES)
     token.save()
-    send_html_email(user, "Your verification code for {} is {}".format(settings.SITE_NAME, str(code)), "<p>Dear {},</p><p>Your verification code for {} is {}. Thank you for using this code to secure your account.</p><h2>{}</h2><p>Sincerely, {}</p>".format(user.profile.name, settings.SITE_NAME, str(code), str(code), settings.SITE_NAME))
+    send_html_email(user, "You have requested a code to access your account. Your verification code for {} is {}".format(settings.SITE_NAME, str(code)), "<p>Dear {},</p><p>Your verification code for {} is {}. Use this code to securely access your account. This email is auto-generated. Please do not reply to this email. If you did not request this code, you can safely disregard this email.</p><h2>{}</h2><p>Sincerely, {}</p>".format(user.profile.name, settings.SITE_NAME, str(code), str(code), settings.SITE_NAME))
 
 def send_user_text(user, text):
     send_text(user.profile.phone_number, text)

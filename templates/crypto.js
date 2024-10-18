@@ -29,7 +29,7 @@ function decrypt(encrypted, key) {
 function encrypt_cbc(message, key) {
     key = CryptoJS.enc.Utf8.parse(key);
     var v = btoa(randomString(16));
-    var iv = CryptoJS.enc.Utf8.parse(v.toString());
+    var iv = atob(v.toString());
     var encrypted = CryptoJS.AES.encrypt(base64AddPadding(btoa(message)), key, { iv: iv, mode: CryptoJS.mode.CBC});
     encrypted = encrypted.toString();
     return escape(v.toString() + encrypted);
@@ -37,7 +37,7 @@ function encrypt_cbc(message, key) {
 function decrypt_cbc(encrypted, key) {
     message = unescape(encrypted);
     var Base64CBC = base64AddPadding(message.substr(24));
-    var iv = CryptoJS.enc.Utf8.parse(message.substr(0, 24));
+    var iv = CryptoJS.enc.Utf8.parse(atob(message.substr(0, 24)));
     key = CryptoJS.enc.Utf8.parse(key);
     var decrypted = CryptoJS.AES.decrypt(Base64CBC, key, { iv: iv, mode: CryptoJS.mode.CBC});
     console.log(decrypted.toString(CryptoJS.enc.Utf8));

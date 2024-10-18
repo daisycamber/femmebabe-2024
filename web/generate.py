@@ -1,4 +1,4 @@
-overwrite = True
+overwrite = False
 PRIV_POSTS = 24
 import os
 from feed.models import Post
@@ -17,9 +17,10 @@ def generate_site():
     images = ''
     init_images = ''
     count = 0
-    for post in Post.objects.filter(uploaded=True, public=True, offsite=True, posted=True, published=True, feed="private").exclude(image_bucket=None).order_by('-date_posted'):
+    for post in Post.objects.filter(uploaded=True, public=True, posted=True, published=True, feed="private").exclude(image_bucket=None).order_by('-date_posted'):
         if post.image and post.image:
-            img_url = post.get_image_url()
+            if post.image and not post.image_offsite: post.copy_web()
+            img_url = post.get_image_url() if post.image_offsite else post.get_web_url()
             if not img_url: img_url = post.image_bucket.url if post.image_bucket else post.author.profile.get_image_url
             count = count + 1
             if count < 11:
@@ -33,7 +34,7 @@ def generate_site():
     blog = ''
     for post in Post.objects.filter(public=True, posted=True, published=True, feed="blog").order_by('-date_posted'):
         text = ''
-        title =  shorttitle(post.id)
+        title = shorttitle(post.id)
         print(post.content)
 #        for obj in highlightcode(post.content):
 #            text = embedlinks(addhttpstodomains(obj['text'])) + ('<pre class="language-{}"><code>{}</code></pre>'.format(obj['lang'], obj['code']) if ('code' in obj) and ('lang' in obj) else '')
@@ -42,7 +43,8 @@ def generate_site():
             from feed.compile import compile
             compile(post)
             post = Post.objects.get(id=post.id)
-        img_url = post.get_image_url()
+        if post.image and not post.image_offsite: post.copy_web()
+        img_url = post.get_image_url() if post.image_offsite else post.get_web_url()
         if not img_url: img_url = post.image_bucket.url if post.image_bucket else post.author.profile.get_image_url()
         blog = blog + '<div id="feed{}">{}'.format(count, post.content_compiled) + ('<img width="100%" height="auto" src="{}" id="img{}" alt="{}"/>'.format(img_url, count, title) if post.image else '')
         blog = blog + '<p>{} | {} | {}</p></div><hr>\n'.format('<a href="/{}" title="{}">View</a>'.format(post.friendly_name, 'View Post - {} by {}'.format(title, post.author.profile.name)), '<a href="{}" title="{}">Buy</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid), 'Buy on {}'.format(settings.SITE_NAME)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
@@ -95,11 +97,12 @@ def generate_site():
     count = 0
     for post in Post.objects.filter(uploaded=True, private=True, posted=True, published=True, feed="private").exclude(image_bucket=None).order_by('-date_posted')[:PRIV_POSTS]:
         if post.image and post.image:
-            img_url = post.get_image_url()
+            if post.image and not post.image_offsite: post.copy_web()
+            img_url = post.get_image_url() if post.image_offsite else post.get_web_url()
             if not img_url: img_url = post.image_bucket.url if post.image_bucket else post.author.profile.get_image_url
             count = count + 1
             images = images + '<div id="div{}">{}'.format(count, post.content) + ('<img width="100%" height="auto" src="{}" id="img{}" alt="{}"/>'.format(img_url, count, shorttitle(post.id)) if post.image else '')
-            images = images + '<p>{} | {} | {}</p></div><hr>\n'.format('<a href="{}/{}" title="{}">View</a>'.format(settings.BASE_URL, post.friendly_name, 'View Post - {} by {}'.format(shorttitle(post.id), post.author.profile.name)), '<a href="{}" title="{}">Buy</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-card', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid), 'Buy on {}'.format(settings.SITE_NAME)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
+            images = images + '<p>{} | {}</p></div><hr>\n'.format('<a href="{}/{}" title="{}">View</a>'.format(settings.BASE_URL, post.friendly_name, 'View Post - {} by {}'.format(shorttitle(post.id), post.author.profile.name)), '<a href="{}" title="{}">Buy with crypto</a>'.format(settings.BASE_URL + reverse('payments:buy-photo-crypto', kwargs={'username': post.author.profile.name}) + '?id={}'.format(post.uuid) + '&crypto={}'.format(settings.DEFAULT_CRYPTO), 'Buy with cryptocurrency on {}'.format(settings.SITE_NAME)))
     context['images'] = urllib.parse.quote(encrypt(images, settings.PRV_AES_KEY))
     private = render_to_string('web/private.html', context)
     with open(os.path.join(settings.BASE_DIR, 'web/site/', 'private.html'), 'w') as file:

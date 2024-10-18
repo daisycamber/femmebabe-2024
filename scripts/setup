@@ -36,6 +36,8 @@ sudo git config --global user.email "jasper.camber.holton@gmail.com" && sudo git
 git config --global user.email "jasper.camber.holton@gmail.com"
 git config --global user.name "Jasper Holton"
 git config --global --add safe.directory $"$DIR"
+git config --global --add safe.directory /home/team/femmebabe-backup
+git config --global --add safe.directory /home/team/femmebabe-backup-open
 sudo ssh-keyscan -t rsa gitlab.com | sudo tee -a /root/.ssh/known_hosts
 sudo ssh-keyscan -t rsa github.com | sudo tee -a /root/.ssh/known_hosts
 echo "Mounting setup"
@@ -47,7 +49,7 @@ sudo apt purge postgresql-client-14 postgresql-client-common postgresql-common p
 echo "postfix postfix/mailname string lotteh.com" | sudo debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | sudo debconf-set-selections
 sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y postfix
-sudo NEEDRESTART_MODE=a apt install -y rkhunter clamav-daemon libx264-dev ffmpeg libapache2-mod-wsgi-py3 apache2 cmake python-is-python3 python3-venv python3-pip python3-django expect tesseract-ocr openjdk-8-jdk redis-server libopencv-dev python3-opencv python3-dev libsasl2-dev opendkim opendkim-tools dovecot-core dovecot-pop3d dovecot-imapd auditd procmail libpq-dev postgresql postgresql-contrib libheif-dev snapd git software-properties-common certbot python3-certbot-apache libboost-all-dev g++ make libboost-dev libssl-dev
+sudo NEEDRESTART_MODE=a apt install -y rkhunter clamav-daemon libx264-dev ffmpeg libapache2-mod-wsgi-py3 apache2 cmake python-is-python3 python3-venv python3-pip python3-django expect tesseract-ocr openjdk-8-jdk redis-server libopencv-dev python3-opencv python3-dev libsasl2-dev opendkim opendkim-tools dovecot-core dovecot-pop3d dovecot-imapd auditd procmail libpq-dev postgresql postgresql-contrib libheif-dev snapd git software-properties-common certbot python3-certbot-apache libboost-all-dev g++ make libboost-dev libssl-dev xdotool xvfb python3-xlib
 echo "-a exit,always -F arch=b64 -F euid=0 -S execve" | sudo tee -a /etc/audit/audit.rules
 echo "-a exit,always -F arch=b32 -F euid=0 -S execve" | sudo tee -a /etc/audit/audit.rules
 # Enable ClamAV antivirus
@@ -295,6 +297,7 @@ sudo chmod 750 /home/$USER/.ssh
 sudo chmod 640 /home/$USER/.ssh/authorized_keys
 # Copy config and set permissions
 echo "Configuring remaining services"
+sudo cp config/Xwrapper.config /etc/X11/Xwrapper.config
 sudo cp config/apis.json /etc/apis.json
 sudo cp config/config.json /etc/config.json
 sudo cp config/lotteh-le-ssl.conf /etc/apache2/sites-available/lotteh-le-ssl.conf
