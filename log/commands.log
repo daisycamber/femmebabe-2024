@@ -816,3 +816,146 @@
 2024-10-17T21:41:42.729927-07:00 femmebabe team: team [4856]: sudo git commit -m "backup for redeploy"
 2024-10-17T21:42:58.688984-07:00 femmebabe team: team [4856]: sudo git push -u origin main
 2024-10-17T22:08:11.688902-07:00 femmebabe team: team [4856]: sudo git push -u originlab main
+2024-10-18T00:24:20.492066-07:00 femmebabe team: team [4856]: sudo git push -u originlab main
+2024-10-18T00:29:17.784341-07:00 femmebabe team: team [4856]: df -sh ./
+2024-10-18T00:29:24.615022-07:00 femmebabe team: team [4856]: du -h ./
+2024-10-18T00:29:25.874620-07:00 femmebabe team: team [4856]: cd
+2024-10-18T00:29:33.192272-07:00 femmebabe team: team [4856]: du -h lotteh/
+2024-10-18T00:29:37.606764-07:00 femmebabe team: team [4856]: df -h lotteh/
+2024-10-18T00:29:44.775940-07:00 femmebabe team: team [4856]: du -sh lotteh
+2024-10-18T00:29:51.225972-07:00 femmebabe team: team [4856]: cd lotteh
+2024-10-18T00:29:54.720964-07:00 femmebabe team: team [4856]: ls media/ima
+2024-10-18T00:29:58.421471-07:00 femmebabe team: team [4856]: ls media/images
+2024-10-18T00:30:07.133930-07:00 femmebabe team: team [4856]: du -sh media/images
+2024-10-18T00:31:12.389308-07:00 femmebabe team: team [4856]: cd ..
+2024-10-18T00:31:16.782430-07:00 femmebabe team: team [4856]: cd femmebabe-backup
+2024-10-18T00:31:24.194229-07:00 femmebabe team: team [4856]: du -sh media/images
+2024-10-18T00:31:28.678881-07:00 femmebabe team: team [4856]: du -sh media
+2024-10-18T00:31:31.685950-07:00 femmebabe team: team [4856]: du -sh media
+2024-10-18T00:31:32.920390-07:00 femmebabe team: team [4856]: ls media
+2024-10-18T00:31:43.690327-07:00 femmebabe team: team [4856]: sudo ls media
+2024-10-18T00:31:50.139672-07:00 femmebabe team: team [4856]: cd
+2024-10-18T00:31:51.311155-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:31:54.133518-07:00 femmebabe team: team [4856]: cd lotteh/
+2024-10-18T00:31:54.686190-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:32:10.027957-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:32:15.047119-07:00 femmebabe team: team [4856]: du -sh .
+2024-10-18T00:32:36.709151-07:00 femmebabe team: team [4856]: sudo chown -r team:users media/
+2024-10-18T00:32:43.262168-07:00 femmebabe team: team [4856]: sudo chown -R team:users media/
+2024-10-18T00:32:45.513389-07:00 femmebabe team: team [4856]: du -sh .
+2024-10-18T00:32:47.842588-07:00 femmebabe team: team [4856]: du -sh .
+2024-10-18T00:33:09.276716-07:00 femmebabe team: team [4856]: sudo chmod -R \774 media/
+2024-10-18T00:33:09.461218-07:00 femmebabe team: team [4856]: sudo chmod -R \774 media/
+2024-10-18T00:33:13.012413-07:00 femmebabe team: team [4856]: sudo chmod -R 774 media/
+2024-10-18T00:33:15.609019-07:00 femmebabe team: team [4856]: du -sh .
+2024-10-18T00:33:23.521316-07:00 femmebabe team: team [4856]: du -sh media
+2024-10-18T00:33:36.582594-07:00 femmebabe team: team [4856]: ls /mnt
+2024-10-18T00:33:40.190357-07:00 femmebabe team: team [4856]: ls /mnt/backup
+2024-10-18T00:33:42.099322-07:00 femmebabe team: team [4856]: ls /mnt/backup/
+2024-10-18T00:33:43.161314-07:00 femmebabe team: team [4856]: ls /mnt/backup/
+2024-10-18T00:34:05.239370-07:00 femmebabe team: team [4856]: sudo ascript backup
+2024-10-18T00:34:10.033663-07:00 femmebabe team: team [4856]: sudo mount /dev/sdb2 /mnt/backup
+2024-10-18T00:34:17.856206-07:00 femmebabe team: team [4856]: ls /mnt/backup
+2024-10-18T00:34:21.318519-07:00 femmebabe team: team [4856]: ls /mnt/backup/femmebabe/
+2024-10-18T00:34:27.465506-07:00 femmebabe team: team [4856]: ls /mnt/backup/lotteh/
+2024-10-18T00:34:33.373476-07:00 femmebabe team: team [4856]: ls /mnt/backup/lotteh/femmebabe-backup
+2024-10-18T00:34:36.538136-07:00 femmebabe team: team [4856]: ls /mnt/backup/lotteh/femmebabe-backup/media
+2024-10-18T00:34:48.421235-07:00 femmebabe team: team [4856]: sudo du -sh  /mnt/backup/lotteh/femmebabe-backup/media
+2024-10-18T00:34:57.384200-07:00 femmebabe team: team [4856]: sudo du -sh  /mnt/backup/lotteh/femmebabe/media
+2024-10-18T00:35:07.914966-07:00 femmebabe team: team [4856]: sudo du -sh  /mnt/backup/lotteh/lotteh/media
+2024-10-18T00:35:13.562406-07:00 femmebabe team: team [4856]: cd
+2024-10-18T00:35:15.636618-07:00 femmebabe team: team [4856]: cd lotteh
+2024-10-18T00:35:43.461662-07:00 femmebabe team: team [4856]: sudo rm -r media/images/*
+2024-10-18T00:35:54.642744-07:00 femmebabe team: team [4856]: sudo rm -r media/images/
+2024-10-18T00:35:59.522098-07:00 femmebabe team: team [4856]: du -sh ./\
+2024-10-18T00:36:01.115090-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:36:03.042359-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:36:10.427613-07:00 femmebabe team: team [4856]: du -sh db.json
+2024-10-18T00:36:14.065556-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:36:25.271480-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:36:33.908031-07:00 femmebabe team: team [4856]: du -sh db.json.*
+2024-10-18T00:37:17.417556-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:37:48.571094-07:00 femmebabe team: team [4856]: ps -aux | grep backup
+2024-10-18T00:38:58.619402-07:00 femmebabe team: team [4856]: sudo rm -r db.json.*
+2024-10-18T00:39:03.784997-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:39:07.685183-07:00 femmebabe team: team [4856]: ls media/
+2024-10-18T00:39:11.443671-07:00 femmebabe team: team [4856]: du -sh media/
+2024-10-18T00:39:14.801526-07:00 femmebabe team: team [4856]: du -sh media/*
+2024-10-18T00:39:38.768774-07:00 femmebabe team: team [4856]: sudo rm -r media/secure/*
+2024-10-18T00:39:43.277577-07:00 femmebabe team: team [4856]: cd
+2024-10-18T00:39:44.368980-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:39:47.253307-07:00 femmebabe team: team [4856]: cd lotteh/
+2024-10-18T00:39:51.402905-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:39:54.059183-07:00 femmebabe team: team [4856]: ls
+2024-10-18T00:40:06.451373-07:00 femmebabe team: team [4856]: du -sh ./*\
+2024-10-18T00:40:07.984085-07:00 femmebabe team: team [4856]: du -sh ./*
+2024-10-18T00:40:22.806172-07:00 femmebabe team: team [4856]: sudo rm -r celery/*
+2024-10-18T00:40:44.324202-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T00:47:44.171976-07:00 femmebabe team: team [4624]: cd lotteh/
+2024-10-18T00:47:55.079913-07:00 femmebabe team: team [4624]: sudo gparted
+2024-10-18T00:48:25.141757-07:00 femmebabe team: team [4624]: sudo apt install gparted
+2024-10-18T00:51:41.455583-07:00 femmebabe team: team [14969]: sudo backup
+2024-10-18T00:51:46.534034-07:00 femmebabe team: team [14969]: cd lotteh/
+2024-10-18T00:51:50.541880-07:00 femmebabe team: team [14969]: du -sh ./
+2024-10-18T00:51:54.085471-07:00 femmebabe team: team [14969]: ls
+2024-10-18T00:52:00.520979-07:00 femmebabe team: team [14969]: du -sh ./
+2024-10-18T00:52:03.666789-07:00 femmebabe team: team [14969]: du -sh ./*
+2024-10-18T00:52:20.778803-07:00 femmebabe team: team [14969]: sudo rm -r venv
+2024-10-18T00:53:01.679129-07:00 femmebabe team: team [14969]: ls -la
+2024-10-18T00:53:04.543758-07:00 femmebabe team: team [14969]: du -sh ./
+2024-10-18T00:55:20.724361-07:00 femmebabe team: team [14969]: sudo mount /dev/sdc1 /mnt/sdc1
+2024-10-18T00:55:25.054654-07:00 femmebabe team: team [14969]: mkdir /mnt/sdc1
+2024-10-18T00:55:29.634581-07:00 femmebabe team: team [14969]: sudo mkdir /mnt/sdc1
+2024-10-18T00:55:33.606409-07:00 femmebabe team: team [14969]: sudo mount /dev/sdc1 /mnt/sdc1
+2024-10-18T00:55:52.133747-07:00 femmebabe team: team [14969]: ls /mnt/sdc1
+2024-10-18T00:56:07.142201-07:00 femmebabe team: team [14969]: ls /mnt/sdc1/lost+found/
+2024-10-18T00:56:11.406763-07:00 femmebabe team: team [14969]: sudo ls /mnt/sdc1/lost+found/
+2024-10-18T00:56:24.617223-07:00 femmebabe team: team [14969]: cd
+2024-10-18T01:37:06.324239-07:00 femmebabe team: team [4624]: sudo gparted
+2024-10-18T01:37:13.035505-07:00 femmebabe team: team [4624]: du -sh /mnt/sdc1
+2024-10-18T01:37:29.627124-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:34.323039-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:35.545044-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:55.548869-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:56.387774-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:57.138957-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:57.650042-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:58.158559-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:58.688417-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:37:59.870295-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:39:40.289540-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:43:03.971657-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T01:43:13.054361-07:00 femmebabe team: team [4624]: watchsudo du -sh /mnt/sdc1
+2024-10-18T02:31:36.002271-07:00 femmebabe team: team [14969]: sudo cp -r lotteh/ /mnt/sdc1/
+2024-10-18T02:35:03.176113-07:00 femmebabe team: team [14969]: ls /mnt/sdc1
+2024-10-18T02:35:08.637936-07:00 femmebabe team: team [14969]: ls /mnt/sdc1/lotteh/
+2024-10-18T02:35:33.687406-07:00 femmebabe team: team [14969]: sudo ls /mnt/sdc1/lotteh/
+2024-10-18T02:36:00.024990-07:00 femmebabe team: team [14969]: du -sh lotteh
+2024-10-18T02:39:17.619066-07:00 femmebabe team: team [4624]: watch sudo du -sh /mnt/sdc1
+2024-10-18T02:39:22.405245-07:00 femmebabe team: team [4624]: sudo umount /dev/sdc1
+2024-10-18T02:39:23.998302-07:00 femmebabe team: team [4624]: sudo umount /dev/sdc1
+2024-10-18T02:39:29.861341-07:00 femmebabe team: team [4624]: sudo umount /mnt/sdc1
+2024-10-18T02:39:58.662424-07:00 femmebabe team: team [4624]: sudo mount /dev/sdc1 /mnt/sdc1
+2024-10-18T02:40:04.259077-07:00 femmebabe team: team [4624]: du -sh /mnt/sdc1
+2024-10-18T02:40:06.875100-07:00 femmebabe team: team [4624]: du -sh /mnt/sdc1
+2024-10-18T02:40:11.490959-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:13.528706-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:14.335222-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:15.089653-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:15.866707-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:16.549658-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:17.187282-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:17.788791-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:19.099166-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:40:31.407616-07:00 femmebabe team: team [4856]: du -sh ./
+2024-10-18T02:40:32.446158-07:00 femmebabe team: team [4856]: cd
+2024-10-18T02:40:57.864782-07:00 femmebabe team: team [4856]: sudo cp -r lotteh/ /mnt/sdc1/
+2024-10-18T02:42:18.611766-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:42:19.482938-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:42:20.270927-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:42:21.006753-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:42:21.645597-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
+2024-10-18T02:43:09.778278-07:00 femmebabe team: team [4856]: sudo cp -r lotteh/ /mnt/sdc1/
+2024-10-18T02:43:10.205792-07:00 femmebabe team: message repeated 2 times: [ team [4856]: sudo cp -r lotteh/ /mnt/sdc1/]
+2024-10-18T02:43:27.827426-07:00 femmebabe team: team [4856]: sudo cp -rv lotteh/ /mnt/sdc1/ && sudo umount /dev/sdc1
+2024-10-18T02:43:36.466350-07:00 femmebabe team: team [4856]: sudo rm -r lotteh/cache
