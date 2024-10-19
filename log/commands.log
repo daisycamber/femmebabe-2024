@@ -959,3 +959,8 @@
 2024-10-18T02:43:10.205792-07:00 femmebabe team: message repeated 2 times: [ team [4856]: sudo cp -r lotteh/ /mnt/sdc1/]
 2024-10-18T02:43:27.827426-07:00 femmebabe team: team [4856]: sudo cp -rv lotteh/ /mnt/sdc1/ && sudo umount /dev/sdc1
 2024-10-18T02:43:36.466350-07:00 femmebabe team: team [4856]: sudo rm -r lotteh/cache
+2024-10-18T18:38:46.016115-07:00 femmebabe team: team [4856]: sudo cp -rv lotteh/ /mnt/sdc1/ && sudo umount /dev/sdc1
+2024-10-18T18:39:11.443081-07:00 femmebabe team: team [4624]: watch sudo du -sh /mnt/sdc1
+2024-10-18T18:39:14.853065-07:00 femmebabe team: team [4624]: sudo mount /dev/sdc1 /mnt/sdc1
+2024-10-18T18:39:22.105960-07:00 femmebabe team: team [4624]: du -sh /mnt/sdc1
+2024-10-18T18:39:31.525209-07:00 femmebabe team: team [4624]: sudo du -sh /mnt/sdc1
