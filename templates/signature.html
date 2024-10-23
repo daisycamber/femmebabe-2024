@@ -1,0 +1,6 @@
+{% with theuser.verifications.last.signature as signature %}
+{% load jsignature_filters %}
+{% if signature %}
+<h3><i class="bi bi-vector-pen"></i> <img class="signature" width="166px" height="100" src="{{ signature|signature_base64 }}" alt="{{ theuser.profile.name }}'s handwritten signature"></h3>
+{% endif %}
+{% endwith %}

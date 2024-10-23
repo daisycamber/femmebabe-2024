@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/highlight.css">
+{% endblock %}
+{% block content %}
+<h1>{{ pagetitle }}</h1>
+<p>{{ notes }}</p>
+{% autoescape off %}
+<div id="scroll-container" style="overflow: scroll;">
+<div id="error-container" style="width: 10000px;">
+<div id="error-message" style="word-wrap: break-word; white-space: pre-wrap;">{{ trace }}</div>
+</div>
+</div>
+<button class="btn btn-outline-info" id="toggle-live" onclick="toggleLiveError();">Live</button>
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+document.getElementById('scroll-container').scrollBy(900, 0);
+window.scrollBy(0,20000);
+var liveError = true;
+var scroll;
+function loadError() {
+	$.ajax({
+	  type: "GET",
+	  url: "{% url 'logs-api' %}",
+	  success: function(data) {
+		document.getElementById("error-message").innerHTML = data;
+	  },
+	});
+}
+function toggleLiveError() {
+	liveError = !liveError;
+	var tl = document.getElementById('toggle-live');
+	if(liveError) {
+		loadError();
+		tl.innerHTML = 'Live';
+	} else {
+		tl.innerHTML = 'Paused';
+	}
+}
+setInterval(function() {
+	if(liveError) {
+		loadError();
+	}
+}, 10000);
+{% endblock %}

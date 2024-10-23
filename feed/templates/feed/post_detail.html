@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% if use_prism %}
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<link rel="stylesheet" href="/static/css/prism.css">
+{% endif %}
+{% endblock %}
+{% load feed_filters %}
+{% block content %}
+<div class="display: inline-block;">
+<a class="btn btn-outline-info" href="{% if post.private %}{% url 'feed:private' post.author.profile.name %}{% else %}{% url 'feed:profile' post.author.profile.name %}{% endif %}?feed={{ post.feed }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+  <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+</svg></a>
+{% include 'language.html' %}
+</div>
+{% if user.is_authenticated and post.author == user or user.is_superuser %}
+<a style="float: right;" href="{% url 'feed:post-delete' pk=post.id %}" title="Delete this post"><button type="button" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Delete</button></a>
+{% endif %}
+<h1>{{ pagetitle|trans }}</h1>
+<hr>
+{% include 'feed/_post.html' %}
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+{% if use_prism %}Prism.highlightAll();{% endif %}
+{% include 'reader.js' %}
+{% endblock %}

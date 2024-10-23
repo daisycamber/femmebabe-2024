@@ -1,0 +1,83 @@
+#!/bin/bash
+cd
+cd lotteh
+OLDNAME='Femme Babe'
+NEWNAME='Lotte Harper'
+OLDDOMAIN='femmebabe.com'
+NEWDOMAIN='lotteh.com'
+OLDHOST='femmebabe'
+NEWHOST='lotteh'
+OLDUSER='team'
+NEWUSER='team'
+OLDPROJ='femmebabe'
+NEWPROJ='lotteh'
+OLDSET='femmebabe'
+NEWSET='lotteh'
+OLDPREF='Daisy'
+NEWPREF='Lotte'
+string0="s@${OLDDOMAIN}@${NEWDOMAIN}@g"
+string1="s@${OLDHOST}@${NEWHOST}@g"
+string2="s@${OLDUSER}@${NEWUSER}@g"
+string3="s@${OLDPROJ}@${NEWPROJ}@g"
+string4="s@${OLDNAME}@${NEWNAME}@g"
+string5="s@${OLDSET}@${NEWSET}@g"
+string6="s@${OLDPREF}@${NEWPREF}@g"
+FILES="scripts/setup
+scripts/backup
+scripts/activate
+scripts/check
+scripts/reload
+scripts/daphnetest
+$OLDPROJ/settings.py
+config/$OLDPROJ-le-ssl.conf
+config/crontab
+config/etc_conf.d_celery
+config/etc_default_celery
+config/etc_default_celerybeat
+config/etc_default_celeryd
+config/etc_default_opendkim
+config/etc_dovecot_conf.d_10-auth.conf
+config/etc_dovecot_conf.d_10-master.conf
+config/etc_dovecot_dovecot.conf
+config/etc_dovecot_passwd
+config/etc_init.d_celery
+config/etc_init.d_celerybeat
+config/etc_opendkim.conf
+config/etc_pam.d_login
+config/etc_pam.d_sshd
+config/etc_postfix_main.cf
+config/etc_postfix_master.cf
+config/etc_systemd_system_celery.service
+config/etc_systemd_system_celerybeat.service
+config/etc_systemd_system_celeryd.service
+config/etc_systemd_system_celeryd_beat.service
+config/etc_systemd_system_daphne.service
+config/rewrite.conf
+config/ssh_config
+config/sudoers
+manage.py
+process_recording.py
+logout.py
+login.py
+unlock.py
+force_id_valid.py
+auth_code.py
+crypto_trading.py
+routine_enhance.py
+routine_caption.py
+admin.py
+reload.py
+scripts/reload
+$OLDPROJ/celery.py
+$OLDPROJ/wsgi.py
+$OLDPROJ/asgi.py
+shell/templates/shell/edit.html
+users/templates/users/password_reset_email.html
+users/templates/users/password_reset_html_email.html"
+for f in */*.py; do
+	sed -i "$string3" "$f"
+done
+for f in *.py; do
+	sed -i "$string3" "$f"
+done
+echo "Replaced $OLDPROJ with $NEWPROJ"

@@ -1,0 +1,2 @@
+#!/bin/bash
+watch sudo -u root "sudo -u postgres psql -U postgres -c '\l+'"

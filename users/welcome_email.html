@@ -1,0 +1,13 @@
+<h3>Welcome to {{ site_name }}</h3>
+<p>Hello {{ username }},</p>
+<p>We are happy to see you here! Thank you for joining {{ site_name }} and being a part of the fun. To get started, here are a few things you can do after you verify your identity.</p>
+<ol>
+    <li><a href="{{ base_url }}/" title="Use the app">Use the app</a>. This is the main page of {{ site_name }}</li>
+    <li><a href="{{ base_url }}/feed/profile/{{ model_name }}/" title="See my profile">Visit my private {{ site_name }} profile</a>. This is a page for anyone wanting to get to know me.</li>
+    <li><a href="{{ base_url }}/feed/profiles/" title="See all profiles currently on the site">More profiles</a>. You can find these people on the site, and see their content.</li>
+    <li><a href="{{ base_url }}/feed/all/" title="See everything on {{ site_name }}">See all posts here</a>. This is the private front page of {{ site_name }}.</li>
+</ol>
+<p>There is even more on the site, so feel free to visit and see what you find. You can share the site with any of the social buttons on each page. I hope you enjoy your time with {{ site_name }}! Thanks for being here.</p>
+<p>With much love,</p>
+<p>{{ model_name }}</p>
+<a href="{{ base_url }}" title="{{ site_name }}">{{ base_url }}</a>

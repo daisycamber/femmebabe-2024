@@ -1,0 +1,58 @@
+#!/bin/bash
+U="love"
+DIR="bd"
+cd /usr/bin
+sudo cp ascript /home/$U/$DIR/scripts/
+sudo cp backup /home/$U/$DIR/scripts/
+sudo cp activate /home/$U/$DIR/scripts/
+sudo cp ascript /home/$U/$DIR/scripts/
+sudo cp logs /home/$U/$DIR/scripts/
+sudo cp watchlogs /home/$U/$DIR/scripts/
+sudo cp setup /home/$U/$DIR/scripts/
+sudo cp disgpu /home/$U/$DIR/scripts/
+sudo cp enagpu /home/$U/$DIR/scripts/
+cd /home/$U/$DIR
+sudo cp /etc/apache2/sites-available/bd-le-ssl.conf config/bd-le-ssl.conf
+sudo cp /etc/default/celery config/etc_default_celery
+sudo cp /etc/init.d/celery config/etc_init.d_celery
+sudo cp /etc/init.d/celerybeat config/etc_init.d_celerybeat
+sudo cp /etc/systemd/system/celery.service config/etc_systemd_system_celery.service
+sudo cp /etc/systemd/system/daphne.service config/etc_systemd_system_daphne.service
+sudo cp /etc/systemd/system/celerybeat.service config/etc_systemd_system_celerybeat.service
+sudo cp /etc/apis.json config/apis.json
+sudo cp /etc/config.json config/config.json
+sudo cp /etc/sudoers config/sudoers
+sudo cp /var/spool/cron/crontabs/root config/crontab
+sudo cp /home/love/bd/venv/lib/python3.10/site-packages/pyxb/binding/content.py scripts/content.py
+sudo cp /etc/pam.d/sshd config/etc_pam.d_sshd
+sudo cp /etc/pam.d/login config/etc_pam.d_login
+sudo cp /etc/banner config/banner
+sudo chmod -R a+rwx config/
+sudo chmod -R a+rwx scripts/
+source venv/bin/activate
+pip freeze > _requirements.txt
+sed '/opencv-/d' _requirements.txt > __requirements.txt
+sed '/dlib/d' __requirements.txt > ___requirements.txt
+sed '/backports.zoneinfo/d' ___requirements.txt > ____requirements.txt
+sed '/-e\sgit\+/d' ____requirements.txt > requirements.txt
+# ':!' files not to add
+git add db.sqlite3
+git add --all
+git commit -m "backup"
+git push -u originlab master
+#/usr/bin/expect <<EOD
+#spawn git push -u originhub master
+#set timeout -1
+#expect "Username"
+#send "jasper.camber.holton@gmail.com\n"
+#expect "Password"
+#send "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\n"
+#expect eof
+#EOD
+/usr/bin/expect <<EOD
+spawn git push -u origin master
+set timeout -1
+expect "Password"
+send "ATBB4x4q9VM6UJhFMwPXSy3aT35U5242955F\n"
+expect eof
+EOD

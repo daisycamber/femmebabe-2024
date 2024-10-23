@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if request.GET.page == None or request.GET.page == 1 %}
+<div style="display: flex; justify-content: space-around;">
+<!--{% if not profile.user in request.user.profile.subscriptions.all %}
+<form action="{% url 'feed:follow' profile.user.username %}" method="POST">
+{% csrf_token %}
+<button type="submit" class="btn btn-outline-primary">Follow (${{ profile.user.vendor_profile.subscription_fee }})</button>
+</form>
+{% endif %}
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Tip ($25-$200)
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">$25</a></li>
+    <li><a class="dropdown-item" href="#">$50</a></li>
+    <li><a class="dropdown-item" href="#">$100</a></li>
+    <li><a class="dropdown-item" href="#">$200</a></li>
+  </ul>
+</div> -->
+<a href="{% url 'live:livevideo' profile.user.username %}" class="btn btn-outline-secondary" title="Live Show">Live</a>
+</div>
+<hr style="background-color: red;" class="mb-5">
+<p style="text-align:center;"><img class="center rounded mx-auto" style="width: 80%;" src="{{ profile.image.url }}"></p>
+<h1 style="text-align:center;">@{{ profile.user.username }}</h1>
+<legend>pronouns: {{ profile.user.vendor_profile.pronouns }}</legend>
+<p>{{ profile.bio }}</p>
+<p style="text-align:center;"><small class="text-muted">Last Seen: {{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small> - <small class="text-muted"> Joined: {{ profile.date_joined|date:"F d, Y" }} {{ profile.date_joined|time:"H:i" }}</small></p>
+<div style="text-align:center;">
+<h2>Live Feed</h2>
+<iframe class="nopadding" id="live" src="/live/{{ profile.user.username }}/?hidenavbar=t" width="100%" height="300px"></iframe>
+<h3>Chat</h3>
+<iframe class="nopadding" src="/chat/{{ profile.user.username }}/?hidenavbar=t" width="100%" height="500px"></iframe>
+<hr style="background-color: red;" class="mb-5">
+{% endif %}
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}
+{% block javascript %}
+function resizeIFrameToFitContent(iFrame) {
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+window.onmessage = function(event){
+    if (event.data == 'resize') {
+        var iFrame = document.getElementById('live');
+	resizeIFrameToFitContent(iFrame);
+    }
+};
+{% endblock %}

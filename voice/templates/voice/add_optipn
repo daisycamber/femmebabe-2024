@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+       <form id="interactive" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit" id="submit">Next</button>
+            </div>
+        </form>
+{% endblock content %}
+{% block javascript %}
+var form = document.getElementById("interactive");
+var submit = document.getElementById("submit");
+var wait = true;
+$(form).on('submit', function(e) {
+	e.preventDefault();
+	var button = $(this).find(':submit');
+	button.prop("disabled", true);
+	const message = JSON.stringify({
+	    message: 'signal',
+	    date: Date.now(),
+	});
+	window.parent.postMessage(message, '*');
+	$.ajax({
+		url: $(form).attr('action') || window.location.pathname,
+		type: "POST",
+		data: $(form).serialize(),
+		success: function(data) {
+		},
+	});
+	setTimeout(function() {
+		window.location.reload();
+	}, 5000);
+});
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load app_filters %}
+{% if request.GET.page == None or request.GET.page == '1' %}
+<script>
+function resetForm() {
+    document.getElementById("birthcontrol-form").reset();
+    document.getElementById("id_notes").value = '';
+}
+</script>
+       <form method="POST" enctype="multipart/form-data" id="birthcontrol-form">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Birth Control</legend>
+		<div style="display: flex; justify-content: space-around;">
+			<div class="col-sm-3">
+				{% if request.user.vendor_profile.taking_birth_control %}<small class="text-muted"><i>Last taken </i>{{ request.user.vendor_profile.birth_control_taken|date:"l F d, Y" }} {{ request.user.vendor_profile.birth_control_taken|time:"H:i" }} {% with request.user.vendor_profile.birth_control_taken as time %}({{ time|stime|capitalize }} {{ time|ampm }}){% endwith %}</small>{% endif %}
+			</div>
+			{% if last_pill %}
+			<div class="col-sm-3">
+			{% with last_pill as content %}
+			{% include 'clock.html' %}
+	                {% endwith %}
+			</div>
+			{% endif %}
+			<div class="col-sm-3" style="position: relative; left: 5px;">
+				<small class="ml-3" id="currentTime">{{ the_current_time }}</small>
+			</div>
+		</div>
+		<hr style="background-color: blue;">
+                {{ form|crispy }}
+            </fieldset>
+            <button class="btn btn-outline-info" style="float: right;" type="submit">Take pill</button>
+    </form>
+<button onclick="resetForm();" class="btn btn-sm btn-outline-info">Reset</button>
+<div style="height: 1000px;"></div>
+{% endif %}
+<legend class="border-bottom mb-4">Birth Control Notes</legend>
+<p><a href="{% url 'birthcontrol:profile' %}" class="btn btn-sm btn-outline-primary" title="Birth control profile">Profile</a> / <a href="{% url 'birthcontrol:take-time' %}" class="btn btn-sm btn-outline-danger" title="Birth control profile">Set Time</a></p>
+{% for pill in pills %}
+<hr style="background-color: blue;">
+<div style="display: flex; justify-content: space-around;">
+	<div style="position: relative; right: 5px;" class="mr-3">
+		{% with pill as content %}
+		{% include 'clock.html' %}
+                {% endwith %}
+	</div>
+	<small>{{ pill.time_taken|date:"F d, Y" }} {{ pill.time_taken|time:"H:i" }} {% with pill.time_taken as time %}({{ time|stime|capitalize }} {{ time|ampm }}){% endwith %}</small>
+	<i>with food: {{ pill.taken_with_food|boolread }}, flow: {{ pill.flow|boolread }}, intercourse: {{ pill.intercourse|boolread }}, temp: {{ pill.temperature }}°F</i>
+	</div>
+<p>{{ pill.notes }}</p>
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock content %}
+{% block javascript %}
+staticClocks()
+setInterval(function() {
+	var d = new Date();
+	d.toLocaleString();
+	document.getElementById('currentTime').innerHTML = d;
+}, 1000);
+{% if request.GET.page == None or request.GET.page == '1' %}
+function updatePost() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/birthcontrol/notes/", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+            xhr.send(document.getElementById("id_notes").value);
+}
+setInterval(function() {
+	updatePost();
+}, 10000);
+{% endif %}
+{% endblock %}

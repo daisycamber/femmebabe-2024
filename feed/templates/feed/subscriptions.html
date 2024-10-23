@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Profiles</h1>
+<p>Update your payment details, if needed: <a class="btn btn-outline-primary" href="{% url 'payments:cards' %}" title="Update payment details">Update</a></p>
+<hr style="background-color: red;">
+{% for profile in profiles %}
+{% include 'feed/_subscription_profile.html' %}
+{% endfor %}
+{% if count == 0 %}
+<p>You aren't subscribed to anyone yet. To follow someone new, visit their profile or <a href="{% url 'feed:profiles' %}" title="See active profiles">see active profiles</a>.</p>
+{% endif %}
+{% include 'pagelinks.html' %}
+{% endblock %}

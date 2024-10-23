@@ -1,0 +1,8 @@
+<div style="overflow: auto; height: 400px;">
+<small style="white-space: pre-wrap;">
+{% for survey in user.surveys.all %}
+Q: {{ survey.survey.question }}
+A: {{ survey.answer }}
+{% endfor %}
+</small>
+</div>

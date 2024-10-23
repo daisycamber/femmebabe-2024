@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the recording.</legend>
+{% if not hidenavbar %}
+<a href="{% url 'recordings:recordings' recording.user.profile.name %}" class="btn btn-outline-primary btn-sm">Back to recordings</a>
+<h1>Recording</h1>
+<p>From camera "{{ recording.camera }}"</p>
+<small>Last frame - {{ recording.last_frame }}</small>
+{% endif %}
+{% if recording.camera != 'private' %}
+<a style="float: right;" href="{% url 'recordings:recording-delete' recording.id %}" class="btn btn-sm btn-outline-danger" title="Delete this recording">Delete</a>
+{% endif %}
+{% if request.user == recording.user and recording.camera == 'private' %}
+<form method="POST">
+{% csrf_token %}
+{{ interactive_form|crispy }}
+<p><i style="color: green";>+</i> <a href="{% url 'interactive:option-add' %}" target="popup" onclick="window.open('{% url 'interactive:option-add' %}','popup','width=600,height=500'); return false;">Add more options</a></p>
+{{ choices_form|crispy }}
+<button type="submit" class="btn btn-outline-success">Submit</button>
+</form>
+{% endif %}
+<div id="videoDiv" class="nopadding" style="overflow: hidden; width: 100%; background-position: center; background-size: cover;">
+<video id="video" preload="auto" width="100%" controls autoplay>
+	<source src="{{ recording.get_file_url }}{% if request.GET.index %}#t={{ request.GET.index|recordingindex }}{% endif %}" type="video/webm">
+</video>
+</div>
+<p><b>Transcript:</b> {{ recording.transcript }}</p>
+<canvas id="canvas" width="100" height="100" style="position: absolute; display: none; visibility: hidden;">
+<link rel="preload" as="video" id="link-preload">
+{% endblock %}
+{% block javascript %}
+var vw = 1280; // 810 910 1280
+var vh = 720;// 720
+var isReset = false;
+var firstResize = true;
+var loh = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		video.play();
+	}
+}
+
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+var video = document.getElementById('video');
+var videoLoad = document.getElementById('videoLoad');
+var videodiv = document.getElementById('videoDiv');
+var canvas = document.getElementById('canvas');
+canvas.width = 539;
+canvas.height = 404;
+var ctx = canvas.getContext('2d');
+var stillFrame;
+var offsetFactor = 1;
+var data;
+var lastdata;
+var index = 0;
+var loadIndex = 0;
+var frameIndex = 0;
+var dataFrames = [];
+
+function load() {
+	$.get(window.location.href.split('?')[0] + '/' + index + '/').then(function(data) {
+        	dataFrames[index] = data;
+		index++;
+		document.getElementById('link-preload').href = data;
+	});
+}
+
+function render(){
+	video.src = dataFrames[frameIndex];
+	var playPromise = video.play();
+	if (playPromise !== undefined) {
+		playPromise.then(function() {
+			lastdata = dataFrames[frameIndex];
+                       	if(firstResize){
+                              	firstResize = false;
+                               	window.top.postMessage('resize', '*') 
+               		}
+               		video.addEventListener('loadeddata', function() {
+				if(video.offsetHeight > 0){	                			drawImage();
+       	  				video.poster = stillFrame;
+        	       		 	videodiv.style.backgroundImage = stillFrame;
+                	       		videodiv.style.height = video.offsetHeight + "px";
+                       			videodiv.style.width = video.offsetWidth + "px";
+                       			canvas.height = video.offsetHeight;
+                       			canvas.width = video.offsetWidth;
+               	    		}
+               		}, false);
+		}).catch(function(error) {
+       			video.poster = stillFrame;
+                	videodiv.style.backgroundImage = stillFrame;
+	             	video.src = lastdata;
+        	       	video.play();
+        	});
+        }
+	frameIndex++;
+}
+
+function resizeCanvas(){
+	videodiv.style.height = video.offsetHeight + "px";
+	videodiv.style.width = video.offsetWidth + "px";
+	canvas.height = video.offsetHeight;
+	canvas.width = video.offsetWidth;
+}
+
+function drawImage(){
+	ctx.drawImage(video, 0, 0, parseInt(canvas.width), parseInt(canvas.height));
+	ctx.save();
+	stillFrame = canvas.toDataURL('image/png').replace(' ', '+')
+}
+
+function reportWindowSize() {
+	videodiv.style.height = video.offsetHeight + "px";
+}
+
+window.onresize = reportWindowSize;
+{% endblock %}

@@ -1,0 +1,18 @@
+{% if request.user.is_authenticated and request.user.profile.vendor %}
+<div id="security-modal" {% if not securitymodal %}class="hide" {% endif %}style="position: fixed; left: 0; top: 0; width: 100%; height: 120%; z-index: 1001; background-color: {% if darkmode %}#667788{% else %}#ccddff{% endif %}">
+<div style="position: relative; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 90%;">
+<legend>Verify your identity:</legend>
+<p><i>This window</i></p>
+<p style="text-align: center;">
+<a class="btn btn-outline-secondary btn-lg pink" href="{% url 'security:mrz' %}{% if request.GET.next %}?{{ request.GET.next }}{% endif %}" title="MRZ Verification">MRZ</a>
+<a class="btn btn-outline-primary btn-lg lightblue" href="{% url 'security:nfc' %}{% if request.GET.next %}?{{ request.GET.next }}{% endif %}" title="NFC Verification">NFC</a>
+</p>
+<p><i>New window</i></p>
+<p style="text-align: center;">
+<a target="_blank" class="btn btn-outline-secondary btn-lg pink" href="{% url 'security:mrz' %}" title="MRZ Verification">MRZ</a>
+<a target="_blank" class="btn btn-outline-primary btn-lg lightblue" href="{% url 'security:nfc' %}" title="NFC Verification">NFC</a>
+</p>
+<i>Please select an option below to verify your identity in order to maintain access to this page.</i>
+</div>
+</div>
+{% endif %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ pagetitle }}</h1>
+<p>{{ notes }}</p>
+{% if trace %}
+<p style="white-space: pre-wrap;">{{ trace }}</p>
+{% endif %}
+{% endblock %}

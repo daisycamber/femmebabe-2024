@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/crypto-js.min.js"></script>
+{% endblock %}
+{% block content %}
+<legend>NFC Verification</legend>
+<p>Place the NFC device near the back of the phone. <a href="{% url 'security:mrz' %}" title="Use MRZ instead">Use MRZ instead</a> or <a href="{{ request.path }}" about="_blank" title="New tab">Load in New Tab</a> <button class="btn btn-sm btn-outline-info" onclick="window.location.reload();" style="float: right;"><i class="bi bi-arrow-clockwise"></i></button></p>
+<form action="{{ request.path }}{% if request.GET.generate %}?generate=t{% endif %}" id="nfc-form" method="POST" class="hide">
+{{ form }}
+</form>
+<p class="text-center" style="font-size: 40px" id="signal"><i class="bi bi-reception-1"></i></p>
+<p id="errors">Tap the screen to enable NFC.</p>
+{% endblock %}
+{% block javascript %}
+{% include 'crypto.js' %}
+var successfulWrite = false;
+var successfulRead = false;
+var form = document.getElementById('nfc-form');
+var signal = document.getElementById('signal');
+var redirecting = false;
+var theKey = "{{ pub_aes_key }}";
+function writeData() {           
+    var formData = new FormData(form);
+    $.ajax({
+       url: '{{ request.path }}?{% if request.GET.generate %}generate=t&{% endif %}{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}',
+       data: formData,
+       method: 'POST',
+       timeout: 60 * 1000,
+       cache: false,
+       contentType: false,
+       processData: false,
+       tryCount: 0,
+       retryLimit: 5,
+       error: function(xhr, textStatus, errorThrown) {
+    		this.tryCount++;
+    		if(this.tryCount > this.retryLimit){
+    			successfulRead = false;
+    			successfulWrite = false;
+    			document.getElementById('errors').innerHTML = errorThrown.message;
+    			return;
+    		}
+    		$.ajax(this);
+       },
+       success: function(response) {
+           if(response == 'y' && !redirecting) {
+               redirecting = true;
+    	       document.getElementById('errors').innerHTML= 'Redirecting.';
+              try {
+                  window.navigator.vibrate({{ default_vibration }});
+              } catch {}
+              window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}';
+           } else {
+               successfulRead = false;
+               successfulWrite = false;
+               document.getElementById('errors').innerHTML = 'Invalid tag or tag removed.';
+           }
+       }
+     });
+}
+function readTag() {
+  if ("NDEFReader" in window) {
+    const ndef = new NDEFReader();
+    document.getElementById('errors').innerHtml = 'Initialized.';
+    try {
+     ndef.scan().then(() => {
+      document.getElementById('errors').innerHTML = 'Scanning.';
+      signal.innerHTML = '<i class="bi bi-reception-2"></i>';
+      ndef.onreading = (event) => {
+       try {
+        if(successfulWrite) { return; }
+        if(successfulRead) { return; }
+ 	{% if request.GET.generate %}
+		var toWrite = {records: [{
+            recordType: "url",
+            data: "{{ towrite_url }}"
+		}, {
+            recordType: "text",
+            data: "{{ nfc_data }}"
+		}],};
+		ndef.write(toWrite);
+	{% endif %}
+        document.getElementById('errors').innerHTML= 'Read tag.';
+        signal.innerHTML = '<i class="bi bi-reception-3"></i>';
+        const decoder = new TextDecoder();
+        for (const record of event.message.records) {
+           if(decoder.decode(record.data) == '{{ base_url }}' || successfulRead) continue;
+           document.getElementById('errors').innerHTML= 'Record detected.';
+           try {
+                document.getElementById('id_nfc_data_read').value = encrypt(decoder.decode(record.data), theKey);
+           } catch {}
+           successfulRead = true;
+         }
+           document.getElementById('id_nfc_id').value = encrypt(event.serialNumber, theKey);
+           successfulWrite = true;
+           signal.innerHTML = '<i class="bi bi-reception-4"></i>';
+           document.getElementById('errors').innerHTML= event.serialNumber;
+           document.getElementById('id_nfc_data_written').value = "{{ nfc_data }}";
+		   writeData();
+        } catch(error) {
+           document.getElementById('errors').innerHTML= error.message;
+        }
+       };
+      });
+    } catch(error) {
+      document.getElementById('errors').innerHTML= error.message;
+    }
+  }
+}
+var reading = false;
+function initialize() {
+    if(!reading) {
+        reading = true;
+        readTag();
+        try {
+            window.navigator.vibrate({{ default_vibration }});
+        } catch {}
+    }
+}
+document.body.addEventListener('click', function(event) {
+    initialize();
+});
+document.body.addEventListener('touchmove', function(event) {
+    initialize();
+});
+if (!("NDEFReader" in window)) {
+	var readerPresent = false;
+    document.getElementById('errors').innerHTML = 'Insert the USB NFC reader.';
+	var nfcid = null;
+	var nfcdata = '';
+	function openSocket() {
+		let socket = new WebSocket("ws://localhost:13254");
+		socket.addEventListener("close", (event) => {
+			setTimeout(function() {
+				openSocket();
+			}, 10000);
+		});
+		socket.addEventListener("message", (event) => {
+			if(!readerPresent) {
+				signal.innerHTML = '<i class="bi bi-reception-2"></i>';
+			        document.getElementById('errors').innerHTML= 'Scan the tag.';
+			}
+			readerPresent = true;
+			var data = decrypt(event.data, "{{ rel_aes_key }}");
+			console.log("Message from server ", data);
+            /*if(data.includes("Text record: ")) {
+				nfcdata = data.split("Text record: ")[1];
+				document.getElementById('id_nfc_data_read').value = encrypt(nfcdata, theKey);
+			}*/
+			if(data.includes("NFCID =")) {
+			        signal.innerHTML = '<i class="bi bi-reception-3"></i>';
+				    nfcid = data.split("= ")[1].slice(0, -2).replaceAll(" ", ":");
+	       			document.getElementById('id_nfc_id').value = encrypt(nfcid, theKey);
+			}
+			if(nfcid) {/* && nfcdata) {*/
+				console.log(nfcid);
+				console.log(nfcdata);
+				signal.innerHTML = '<i class="bi bi-reception-4"></i>';
+                        	document.getElementById('errors').innerHTML= 'Data read, confirming.';
+                       		document.getElementById('id_nfc_data_written').value = nfcdata;
+				writeData();
+			}
+		});
+	}
+	openSocket();
+}
+{% if not request.GET.generate %}
+setInterval(function() {
+	$.ajax({
+		url: "{% url 'security:modal' %}",
+		method: 'POST',
+		success: function(data){
+			if(data == 'y') {
+	                    window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/go/{% endif %}';
+			}
+		}
+	});
+}, 15 * 1000);
+{% endif %}
+{% endblock %}

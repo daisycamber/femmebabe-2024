@@ -1,0 +1,178 @@
+#!/bin/bash
+U="team"
+DIR="lotteh"
+PYTHON_VERSION="3.12"
+git config --global --add safe.directory $"/home/$U/$DIR"
+cd /usr/bin
+while read p; do
+  cp /usr/bin/$p /home/$U/$DIR/scripts/$p
+done < /etc/ascripts
+cd /home/$U/$DIR
+date > backup_init_date.txt
+sudo cp /home/team/Documents/keylog/log.py scripts/log.py
+sudo cp /var/log/audit/auditd.log log/auditd.log
+sudo cp /var/log/commands.log log/commands.log
+# TEMPORARY
+sudo rm .git/index.lock
+sudo cp /etc/apache2/sites-available/lotteh-le-ssl.conf config/lotteh-le-ssl.conf
+sudo cp /etc/default/celery config/etc_default_celery
+sudo cp /etc/init.d/celery config/etc_init.d_celery
+sudo cp /etc/init.d/celerybeat config/etc_init.d_celerybeat
+sudo cp /etc/postfix/main.cf config/etc_postfix_main.cf
+sudo cp /etc/postfix/master.cf config/etc_postfix_master.cf
+sudo cp /etc/dovecot/conf.d/10-auth.conf config/etc_dovecot_conf.d_10-auth.conf
+sudo cp /etc/dovecot/conf.d/10-master.conf config/etc_dovecot_conf.d_10-master.conf
+sudo cp /etc/dovecot/dovecot.conf config/etc_dovecot_dovecot.conf
+sudo cp /etc/dovecot/passwd config/etc_dovecot_passwd
+sudo cp /etc/default/opendkim config/etc_default_opendkim
+sudo cp /etc/opendkim.conf config/etc_opendkim.conf
+sudo cp /etc/systemd/system/celery.service config/etc_systemd_system_celery.service
+sudo cp /etc/systemd/system/stun.service config/etc_systemd_system_stun.service
+sudo cp /etc/systemd/system/daphne.service config/etc_systemd_system_daphne.service
+sudo cp /etc/systemd/system/celerybeat.service config/etc_systemd_system_celerybeat.service
+sudo cp /etc/systemd/system/keylog.service config/etc_systemd_system_keylog.service
+sudo cp /etc/postgresql/16/main/postgresql.conf config/postgresql.conf
+sudo cp /etc/apis.json config/apis.json
+sudo cp /etc/config.json config/config.json
+sudo cp /etc/X11/Xwrapper.config config/Xwrapper.config
+sudo tail -n +55 /etc/sudoers > config/sudoers
+sudo tail -n +4 /var/spool/cron/crontabs/root > config/crontab
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py scripts/content.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py scripts/pwa_webpush_forms.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py scripts/webauth_views.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py scripts/json.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py scripts/serializers_json_lowmem.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/googletrans/client.py scripts/client.py
+sudo cp /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/nude.py scripts/nude.py
+sudo cp /home/team/lotteh/violence-detection/requirements.txt config/vd-requirements.txt
+sudo cp /home/team/lotteh/violence-detection/model.py config/vd-model.py
+sudo cp /etc/pam.d/sshd config/etc_pam.d_sshd
+sudo cp /etc/pam.d/login config/etc_pam.d_login
+sudo cp /etc/banner config/banner
+sudo chmod -R a+rwx config/
+sudo chmod -R a+rwx scripts/
+sudo cp /var/mail/* mailbox/
+sudo cp /etc/ascripts /home/$U/$DIR/config/ascripts
+source venv/bin/activate
+#python generate_site.py
+sudo chown -R :users /home/team/lotteh/web/site/media
+python make_email_list.py
+pip freeze > requirements.txt
+sed -i '/opencv-/d' requirements.txt
+sed -i '/dlib/d' requirements.txt
+sed -i '/backports.zoneinfo/d' requirements.txt
+sed -i '/-e\sgit\+/d' requirements.txt
+sed -i '/-e\s\/home\/team\/lotteh\/GFPGAN\+/d' requirements.txt
+sed -i '/typing_extensions/d' requirements.txt
+sed -i '/asgiref/d' requirements.txt
+sed -i '/librosa/d' requirements.txt
+sed -i '/pydantic/d' requirements.txt
+sed -i '/tensorflow/d' requirements.txt
+sed -i '/tensorrt-libs/d' requirements.txt
+sed -i '/cryptography/d' requirements.txt
+sed -i '/charset/d' requirements.txt
+sed -i '/channels/d' requirements.txt
+sed -i '/cffi/d' requirements.txt
+sed -i '/basicsr/d' requirements.txt
+sed -i '/click/d' requirements.txt
+sed -i '/click-repl/d' requirements.txt
+sed -i '/click-didyoumean/d' requirements.txt
+sed -i '/autocorrect/d' requirements.txt
+sed -i '/cachetools/d' requirements.txt
+sed -i '/daphne/d' requirements.txt
+sed -i '/attrs/d' requirements.txt
+sed -i '/ccxt/d' requirements.txt
+sed -i '/autobahn/d' requirements.txt
+sed -i '/automat/d' requirements.txt
+sed -i '/audioread/d' requirements.txt
+sed -i '/audioread/d' requirements.txt
+sed -i '/async-timeout/d' requirements.txt
+sed -i '/addict/d' requirements.txt
+sed -i '/aiodns/d' requirements.txt
+sed -i '/aiohttp/d' requirements.txt
+sed -i '/http-ece/d' requirements.txt
+sed -i '/paramiko/d' requirements.txt
+sed -i '/py-vapid/d' requirements.txt
+sed -i '/pyopenssl/d' requirements.txt
+sed -i '/python-u2flib-server/d' requirements.txt
+sed -i '/pywebpush/d' requirements.txt
+sed -i '/service-identity/d' requirements.txt
+sed -i '/fido2/d' requirements.txt
+sed -i '/docbarcodes/d' requirements.txt
+sed -i '/webauthn/d' requirements.txt
+sed -i '/numpy/d' requirements.txt
+sed -i '/urllib3/d' requirements.txt
+sed -i '/pytorch-triton/d' requirements.txt
+sed -i '/torch_tensorrt/d' requirements.txt
+sed -i '/jpype1/d' requirements.txt
+sed -i '/twilio/d' requirements.txt
+sed -i '/setuptools/d' requirements.txt
+sed -i '/aiohappyeyeballs/d' requirements.txt
+#sed -i '//d' requirements.txt
+echo "setuptools==58.2.0" | tee -a requirements.txt
+echo "twilio" | tee -a requirements.txt
+echo "autocorrect" | tee -a requirements.txt
+echo "paramiko" | tee -a requirements.txt
+echo "ccxt" | tee -a requirements.txt
+echo "numpy" | tee -a requirements.txt
+echo "urllib3" | tee -a requirements.txt
+echo "webauthn" | tee -a requirements.txt
+#echo "" | tee -a requirements.txt
+#echo "typing_extensions" | tee -a requirements.txt
+#echo "asgiref" | tee -a requirements.txt
+#echo "pydantic" | tee -a requirements.txt
+#echo "python-utils" | tee -a requirements.txt
+#echo "tensorflow" | tee -a requirements.txt
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+split -b99M db.json db.json.
+python manage.py dumpdata auth.user --exclude auth.permission --exclude contenttypes > data/users.json
+#sudo rm db.json
+# Git config
+DOW=$(date +%u)
+HOD=$(date +%H)
+if [ "$DOW" -eq 1 ]; then
+	if [ "$HOD" -eq 0 ]; then
+		sudo rm -r .git
+		git init --initial-branch=main
+	fi
+fi
+sudo git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-09.git
+sudo git add --all
+sudo git commit -m "backup"
+sudo sudo git push -u -f originlab main
+date > backup_date.txt
+# Sub website backup
+git config --global --add safe.directory $"/home/$U/$DIR/web/site"
+cd $"/home/$U/$DIR/web/site/"
+#sudo rm -r .git
+sudo git init --initial-branch=main
+sudo git add --all
+sudo git commit -m "website updates"
+sudo git remote add origin git@github.com:daisycamber/glamgirlx.git
+sudo git push -u -f origin main
+sudo rm -r .git
+date=$(date '+%Y-%m-%d_%H:%M:%S')
+diropen=$"femmebabe-backup-open"
+cd $"/home/$U/$DIR"
+rsync -av ./ $"/home/$U/$diropen" --exclude venv --exclude .git --exclude celery --exclude GFPGAN --exclude dlib --exclude media/images --exclude media/documents --exclude media/face --exclude media/files --exclude media/live --exclude media/voice --exclude media/secure --exclude db.json
+git config --global --add safe.directory $"/home/$U/$diropen"
+cd $"/home/$U/$diropen"
+echo "db.json.*" >> .gitignore
+echo "client_secret.json" >> .gitignore
+echo "mailbox/" >> .gitignore
+echo "data/" >> .gitignore
+echo "config/etc_dovecot_passwd" >> .gitignore
+echo "config/config.json" >> .gitignore
+echo "config/apis.json" >> .gitignore
+echo "media/images" >> .gitignore
+echo "media/documents" >> .gitignore
+echo "media/files" >> .gitignore
+echo "media/birthcontrol" >> .gitignore
+sudo chmod -R 774 ./*
+sudo chown -R :users ./*
+sudo git init --initial-branch=main
+sudo git add --all
+sudo git commit -m "open source"
+sudo git remote add originhub git@github.com:daisycamber/femmebabe-2024.git
+sudo git push -u -f originhub main
+cd $"/home/$U"

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Recover your Account</legend>
+<p>
+Drivers License:
+<a class="btn btn-primary" href="{{ document.document.url }}" title="ID front">Front</a>
+<a class="btn btn-primary" href="{{ document.document_back.url }}" title="ID back">Back</a>
+<a class="btn btn-primary" href="{{ front.document_isolated.url }}" title="ID front">Front Isolated</a>
+<a class="btn btn-primary" href="{{ back.document_isolated.url }}" title="ID back">Back Isolated</a>
+</p>
+<p>
+Birth Control:
+<a class="btn btn-primary" href="{{ user.birthcontrol_profile.birth_control }}" title="Birth control">Birth control</a>
+</p>
+<p>
+Email:
+{{ user.email }}
+</p>
+<p>Reset password: <a href="{{ reset_url }}" title="Reset your password" class="btn btn-outline-danger">Reset</a></p>
+{% endblock %}

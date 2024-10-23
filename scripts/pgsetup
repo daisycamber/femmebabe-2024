@@ -1,0 +1,20 @@
+#!/bin/bash
+cd ~
+cd lotteh
+source venv/bin/activate
+echo "Postgres setup"
+sudo -u postgres psql -U postgres -c "DROP DATABASE database WITH (FORCE);"
+sudo -u postgres psql -U postgres -c "CREATE DATABASE database;"
+sudo -u postgres psql -U postgres -c "CREATE USER django WITH PASSWORD 'password';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET client_encoding TO 'utf8';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET default_transaction_isolation TO 'read committed';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET timezone TO 'UTC';"
+sudo -u postgres psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE database TO django;"
+sudo -u postgres psql -U postgres -c "GRANT ALL ON SCHEMA public TO django;"
+sudo -u postgres psql -U postgres -c "ALTER DATABASE database OWNER TO django;"
+python manage.py makemigrations
+python manage.py migrate --run-syncdb
+echo "Loading data, this may take a while"
+python manage.py loaddata db.json
+#python manage.py sqlflush feed.post
+python manage.py loaddata data/feed-post.json

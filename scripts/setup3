@@ -1,0 +1,99 @@
+#!/bin/bash
+DIR="/home/love/bd"
+cd $DIR
+cd ta-lib
+sudo ./configure
+sudo make
+sudo make install
+cd $DIR
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow 22
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw enable
+pip install -U "celery[redis]"
+pip install -r requirements.txt
+pip install opencv-python
+pip install --upgrade opencv-python-headless
+pip install opencv-contrib-python==4.6.0.66
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo snap install redis
+sudo systemctl enable apache2
+sudo systemctl start apache2
+sudo certbot --apache
+cp scripts/content.py /home/love/bd/venv/lib/python3.10/site-packages/pyxb/binding/content.py
+sudo gpasswd -a www-data users
+sudo chown -R :users .././
+sudo chmod -R g+rwX ./
+sudo chmod -R g+rX .././
+sudo chmod -R g-rwX ../.ssh
+sudo chmod 774 ./
+sudo chmod 664 db.sqlite3
+sudo chown -R www-data:www-data media/
+sudo chown www-data:users db.sqlite3
+sudo chown www-data:users ./
+sudo chown -R love:users media/
+sudo chown -R love:users ./
+sudo cp config/apis.json /etc/apis.json
+sudo cp config/config.json /etc/config.json
+sudo cp config/bd-le-ssl.conf /etc/apache2/sites-available/bd-le-ssl.conf
+sudo cp config/etc_init.d_celery /etc/init.d/celery
+sudo cp config/etc_init.d_celerybeat /etc/init.d/celerybeat
+sudo chmod a+x /etc/init.d/celery
+sudo chmod a+x /etc/init.d/celerybeat
+sudo cp config/etc_default_celerybeat /etc/default/celerybeat
+sudo cp config/etc_default_celery /etc/default/celery
+sudo cp config/etc_systemd_system_daphne.service /etc/systemd/system/daphne.service
+sudo cp config/etc_systemd_system_celery.service /etc/systemd/system/celery.service
+sudo cp config/etc_systemd_system_celerybeat.service /etc/systemd/system/celerybeat.service
+#sudo cp config/etc_pam.d_sshd /etc/pam.d/sshd
+#sudo cp config/etc_pam.d_login /etc/pam.d/login
+sudo cp /etc/letsencrypt/live/mamasheen.com/privkey.pem $DIR/
+sudo cp /etc/letsencrypt/live/mamasheen.com/cert.pem $DIR/
+sudo cp scripts/enagpu /usr/bin/
+sudo cp scripts/disgpu /usr/bin/
+sudo cp scripts/activate /usr/bin/
+sudo cp scripts/backup /usr/bin/
+sudo cp scripts/ascript /usr/bin/
+sudo cp scripts/setup /usr/bin/
+sudo cp scripts/addsetup /usr/bin/
+sudo cp scripts/watchlogs /usr/bin/
+sudo cp scripts/logs /usr/bin/
+sudo cp scripts/setup /usr/bin/
+sudo cp config/banner /etc/banner
+sudo rm /etc/ssh/sshd_config.d/50-cloud-init.conf
+cd /usr/bin/
+sudo chmod a+x activate
+sudo chmod a+x backup
+sudo chmod a+x ascript
+sudo systemctl daemon-reload
+sudo systemctl enable apache2.service
+sudo systemctl enable daphne.service
+sudo systemctl enable celery.service
+sudo systemctl enable celerybeat.service
+sudo systemctl start daphne.service
+sudo systemctl start celery.service
+sudo systemctl start celerybeat.service
+sudo systemctl start clamav-daemon
+sudo systemctl enable clamav-daemon
+sudo a2enmod rewrite
+sudo a2enmod wsgi
+sudo a2enmod headers
+sudo a2enmod ssl
+sudo a2enmod proxy
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy_http
+sudo a2enmod proxy_wstunnel
+sudo a2dismod mpm_event
+sudo a2dismod mpm_worker
+sudo a2enmod mpm_prefork
+sudo a2dissite 000-default
+sudo a2dissite 000-default-le-ssl
+sudo a2ensite bd-le-ssl
+sudo systemctl restart apache2
+sudo chown -R :www-data /var/www/
+sudo chown -R :www-data /var/www/.deepface
+sudo systemctl daemon-reload

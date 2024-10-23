@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'opc.html' %}
+{% load crispy_forms_tags %}
+{% load feed_filters %}
+{% load socialaccount %}
+	{% if available_accounts > 0 %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ 'Join Today'|trans }} ({{ min_age }}+)</legend>
+		{% autoescape off %}
+                {{ form|crispy|safe|marksafe }}
+		{% endautoescape %}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">{{ 'Register'|trans|caps }}</button>
+            </div>
+        </form>
+	<div class="border-top pt-3">
+            <small class="text-muted">{{ 'Already Have An Account?'|trans }} <a class="ml-2" href="{% url 'users:login' %}">{{ 'Login'|trans }}</a></small>
+        </div>
+{% if use_allauth %}	<a class="btn btn-light border border-dark btn-lg" href="{% provider_login_url 'google' %}" title="{{ 'Log in with Google'|trans }}" target="_blank"><i class="bi bi-google" style="text-color: black !important; color: black !important;"></i> Log in with Google</a>{% endif %}
+	<hr>
+	{% endif %}
+	<small>{% blocktrans %}{{ available_accounts|nts|capitalize }} accounts may be created during the remainder of today.{% endblocktrans %}</small>
+	<hr>
+	<p>Learn more about the site by visiting the index - <a href="{% url 'landing:index' %}" class="btn btn-outline-primary" title="Visit the landing page to learn about the site">Learn More</a></p>
+{% include 'clc.html' %}
+{% endblock %}

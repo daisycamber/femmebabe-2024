@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %} 
+{% load feed_filters %} 
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %} 
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-currency-bitcoin"></i> {{ 'Pay'|trans }} @{{ username }} {{ 'with'|trans }} {{ request.GET.crypto }}</h1>
+<div style="display: flex; justify-content: space-around;">
+<img class="rounded" style="float: left; width: 50%; max-width: 400px;" src="{% if request.user.is_authenticated %}{{ post.get_image_url }}{% else %}{{ post.get_face_blur_thumb_url }}{% endif %}" alt="Send crypto to {{ username }}"></img>
+<div style="display: inline-block;">
+<div class="dropdown" style="display: inline-block;">
+    <a class="btn btn-outline-dark pink-borders dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    	<i class="bi bi-currency-bitcoin"></i> {{ 'Change Currency'|trans }}
+    </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div style="max-height: 50vh; overflow: scroll;">
+	{% for currency in currencies %}
+		<li><a class="dropdown-item" href="{{ request.path }}?crypto={{ currency }}">{{ currency }}</a></li>
+	{% endfor %}
+    </div>
+  </ul>
+</div>
+</div>
+</div>
+<legend class="border-bottom mb-4">{{ 'Send Crypto'|trans }}</legend>
+<p>{{ 'Send'|trans }} {{ request.GET.crypto }} {{ 'to the following wallet address:'|trans }}</p>
+<b><i>{{ address }}</i></b>
+<button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> {{ 'Copy'|trans }}</button>
+<hr>
+<p>Buy crypto to send here: <a href="{{ crypto_provider }}" title="Buy crypto to send">{{ crypto_provider }}</a></p>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+function copyAddress() {
+	navigator.clipboard.writeText("{{ address }}");
+}
+{% endblock %}

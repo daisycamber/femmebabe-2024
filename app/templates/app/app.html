@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block styles %}
+.bottom-navbar {
+  background-color: #{% if darkmode %}999999{% else %}EEEEEE{% endif %};
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  border: none;
+  width: 100%;
+  z-index: 1;
+}
+{% endblock %}
+{% block content %}
+{% load feed_filters %}
+{% load app_filters %}
+{% include 'users/register_modal.html' %}
+<iframe id="frame1" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<iframe id="frame2" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<iframe id="frame3" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<iframe id="frame4" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<iframe id="frame5" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<iframe id="frame6" class="hide" style="border: none;" width="100%" height="100%"></iframe>
+<div class="bottom-navbar py-0 my-0">
+<div class="py-0 my-0" style="display: flex; justify-content: space-around;">
+<button title="Back" class="btn btn-lg btn-outline-dark" onclick="backWindow();"><i class="bi bi-caret-left-fill"></i></button>
+<button title="Grid" class="btn btn-lg btn-outline-dark" onclick="showPage(1);" id="pagebutton"><i class="bi bi-grid-3x3-gap-fill"></i></button>
+<button title="Profile" class="btn btn-lg btn-outline-dark" onclick="showPage(2);" id="pagebutton"><i class="bi bi-grid-fill"></i></button>
+<button title="News" class="btn btn-lg btn-outline-dark" onclick="showPage(3);" id="pagebutton"><i class="bi bi-book-fill"></i></button>
+<button title="About" class="btn btn-lg btn-outline-dark" onclick="showPage(4);" id="pagebutton"><i class="bi bi-file-earmark-fill"></i></button>
+<button title="Subscribe" class="btn btn-lg btn-outline-dark" onclick="showPage(5);" id="pagebutton"><i class="bi bi-camera-reels-fill"></i></button>
+<button title="Login" class="btn btn-lg btn-outline-dark" onclick="showPage(6);" id="pagebutton"><i class="bi bi-person-circle"></i></button>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+var urls = ["{% url 'feed:profile-grid' profileusername %}",
+"{% url 'feed:profile' profileusername %}?feed=private&embed=t",
+"{% url 'feed:profile' profileusername %}?feed=news&embed=t",
+"{% url 'landing:landing' %}?k={% get_key %}",
+"{% url 'feed:follow' profileusername %}",
+"{% if request.user.is_authenticated and request.user.profile.vendor %}{% url 'go:go' %}{% elif request.user.is_authenticated %}{% url 'users:profile' %}{% elif request.user_signup %}{% url 'users:login' %}?i=t{% else %}{% url 'users:register' %}{% endif %}",];
+var srcdoc = '<!DOCTYPE html><p style="white-space: pre-wrap; font-size: 30px; color: #{% if darkmode %}ADD8E6{% else %}00008B{% endif %}; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><img width="30%" style="max-width: 300px; text-align: center; border-radius: 50%;" src="{{ icon_url }}"></img>\n{{ 'Loading...'|trans }}</p>';
+var oldNumber = {% if request.user_signup %}6{% else %}{{ default_page }}{% endif %};
+var buttons = document.querySelectorAll('#pagebutton');
+function setGetParam(key,value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(key, value);
+    var newUrl = window.location.origin 
+          + window.location.pathname 
+          + '?' + params.toString();
+    window.history.pushState({path:newUrl},'',newUrl);
+  }
+}
+var first = true;
+function showPage(number) {
+    if(number != oldNumber || first) {
+	first = false;
+	if(!$("#frame" + number).attr("src")) $("#frame" + number).attr("src", urls[number-1]);
+        $("#frame" + oldNumber).addClass("hide");
+        $("#frame" + number).removeClass("hide");
+	$("#frame" + number).removeAttr("srcdoc");
+        var iframe = document.getElementById('frame' + number);
+        try {
+		iframe.contentDocument.getElementById("video").muted = false;
+        } catch(e) {}
+        iframe = document.getElementById('frame' + oldNumber);
+        try {
+		iframe.contentDocument.getElementById("video").muted = true;
+        } catch(e) {}
+        oldNumber = number;
+	setGetParam('p', number);
+	for(var button of buttons) {
+		button.style.borderColor = 'black';
+		button.style.borderWidth = 'thin';
+	}
+	var target = buttons[number-1];
+	target.style.borderColor = '#ADD8E6';
+	target.style.borderWidth = 'medium';
+    }
+}
+var offset = -50;
+for(var x = 1; x <= 6; x++) {
+	var frame = document.getElementById("frame" + x)
+	frame.height = (window.innerHeight + offset) + "px";
+	frame.srcdoc = srcdoc;
+}
+function backWindow() {
+    document.getElementById("frame" + oldNumber).contentWindow.history.back();
+}
+window.addEventListener("resize", (event) => {
+    for(var x = 1; x <= 6; x++) {
+        var frame = document.getElementById("frame" + x)
+        frame.height = (window.innerHeight + offset) + "px";
+    }
+});
+var params = new URLSearchParams(window.location.search);
+setTimeout(function() {
+	try {
+		showPage(params.get('p') != null ? parseInt(params.get('p')) : {{ default_page }});
+	} catch { showPage({% if request.user_signup %}6{% else %}{{ default_page }}{% endif %}); }
+}, 100);
+{% include 'users/register_modal.js' %}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% load app_filters %}
+<div class="d-flex">
+	<div style="width: 120px;"><input id="jumpto{{ post.id }}" class="form-control mr-sm-2" type="number" placeholder="Page" aria-label="Page" id="page" name="page"></div>
+	<div class="btn btn-outline-success my-2 my-sm-0" onclick="jumpbookto('{{ post.id }}');" style="color: black !important;">Jump</div>
+</div>

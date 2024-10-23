@@ -1,0 +1,14 @@
+SSH_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC6xw1NVzmDEZrs0nbKH8wfouk4SxUEcnOYpq0mlsgMARm9w7QirTi0Obupw9DRXvtt1k4O6KFs+GSRBPiS2MOdFi8+hDcIDYQjNFHQEIfxONyGWmPxndTlVXWv8XzQGD2ceVD2FEz318bwi5C6pV++ghQ4tC0Xi8AYlV9QTxB4OMwQ0E54ctrJmFQtkuKPGyQBgXecDxzSB4lEWJNi8upZhOtSBmvv/gHFlkMWhZIPhvNY80CZPOBRGRJ/UipyYdR/4jhozBSVvdZPz+rzK/WMeBaSkshmav0G6PmYwLluyjoR9bEDwxz3NCobSbKqgldA5KxBEi+yw/YgU2kTGjPx6MA08dha292ZGux0ZuEFy9qAVI52fd0GUNC+iKvRQD0V3W1cYjUTOhJOUQq5G8y1+pJEuUlt+MAn+8qra/Wg28wlUbJFmirItVMm7UW9MLn0uGxDb69zs6wjWvQfkOFfsynD4suuoPihj/H+DSQThx98pVx39fLNoXUp8GQMyHc= daisy@daisys-laptop"
+sudo adduser love
+sudo usermod -aG sudo love
+sudo su love
+ssh-keygen
+sudo echo $SSH_KEY >> ~/.ssh/authorized_keys
+sudo chmod -R 744 ~/.ssh/
+sudo chmod 600 ~/.ssh/id_rsa*
+sudo chmod 744 ~/.ssh/id_rsa
+sudo chmod 0700 ~/.ssh/authorized_keys
+sudo chmod 0700 ~/.ssh/
+sudo chmod 600 ~/.ssh/id_rsa
+# set up ssh settings and ssh keys
+# copy generated local ssh key to .ssh/authorized_keys

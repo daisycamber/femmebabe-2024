@@ -1,0 +1,19 @@
+<html>
+<head>
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<link rel="stylesheet" href="/static/css/prism.css">
+</head>
+<body>
+{% for obj in value %}
+{% autoescape off %}
+{{ obj.text }}
+{% endautoescape %}
+{% if obj.code and obj.lang %}
+<pre class="language-{{ obj.lang }}"><code>{% autoescape off %}{{ obj.code }}{% endautoescape %}</code></pre>
+{% endif %}
+{% endfor %}
+</body>
+<script>
+Prism.highlightAll();
+</script>
+</html>

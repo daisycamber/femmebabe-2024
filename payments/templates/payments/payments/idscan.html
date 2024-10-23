@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<link rel="stylesheet" href="/static/css/prism.css">
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% include 'users/register_modal.html' %}
+<h1>Buy an ID Scanner Plan</h1>
+<p>Scan IDs with your phone using compliant, easy to use software.</p>
+<legend>Only $0.50/Scan - <a class="btn btn-lg btn-outline-primary" title="Free ID scanner for demonstration" href="{% url 'misc:idscan' %}">Free Demo</a></legend>
+<p style="text-align: center;">
+<i class="bi bi-person-vcard" style="font-size: 120px;"></i>
+</p>
+<p>This ID scanner is also available as an API, see the following example to scan an ID with Python, or parse already scanned ID information from an image.</p>
+<pre><code class="language-python"># Parse the data on an ID with Python
+import requests, json
+payload = {
+    'key': '... api key delivered with purchase ...',
+    'side': True, # True for the front side of the ID, false for the back
+    'data': 'WA Washington Driver License 1234...' # The text on the front of the ID according to OCR, or parsed barcode on the back
+}
+result = json.loads(requests.get('{{ base_url }}{% url 'verify:api' %}', data=payload))
+print(json.dumps(result))
+# example output: "{'result': True, 'birthdate': '1980-01-15', 'age': 44, 'data': '{'classified': True}'}"
+</code></pre>
+<p>Generate an authenticity result from an image of the back of an ID (the barcode).</p>
+<pre><code class="language-python"># Extract the data from the ID
+from docbarcodes.extract import process_document # See https://pypi.org/project/docbarcodes/
+# Simple barcode reading
+barcodes_raw, barcodes_combined = process_document('document_back.png')
+data = barcodes_raw['BarcodesRaw'][0]['raw']
+
+# Parse the data on an ID with Python
+import requests, json
+payload = {
+    'key': '... api key delivered with purchase ...',
+    'side': False
+    'data': data
+}
+result = json.loads(requests.get('{{ base_url }}{% url 'verify:api' %}', data=payload))
+print(json.dumps(result))
+# example output: "{'result': True, 'birthdate': '1980-01-15', 'age': 44, 'data': '{'classified': True}'}"
+</code></pre>
+<p>Generate an authenticity result from an image of the front of an ID (the text).</p>
+<pre><code class="language-python"># Extract the data from the ID
+from PIL import Image
+import pytesseract # See https://pypi.org/project/pytesseract/
+# Simple image to string
+data = pytesseract.image_to_string(Image.open('document_front.png'))
+
+# Parse the data on an ID with Python
+import requests, json
+payload = {
+    'key': '... api key delivered with purchase ...',
+    'side': True
+    'data': data
+}
+result = json.loads(requests.get('{{ base_url }}{% url 'verify:api' %}', data=payload))
+print(json.dumps(result))
+# example output: "{'result': True, 'birthdate': '1980-01-15', 'age': 44, 'data': '{'classified': True}'}"
+</code></pre>
+<p>Please select a plan below to begin using the API. Your account will be created at checkout.</p>
+<hr>
+<div class="container">
+<div class="row" style="display: inline-block; text-align: center;">
+{% for plan in plans %}
+<div class="col-5 m-2 p-2 rounded" style="display: inline-block; background-color: #{% if darkmode %}555555{% else %}DDDDDD{% endif %};">
+<p>Tier {{ forloop.counter|nts|capitalize }}</p>
+<hr>
+<legend>{{ plan|idscanprice|sub_fee }} Scans/Month</legend>
+<button onclick="monthlyPlan({{plan}});" class="btn btn-lg btn-outline-success" title="Subscribe to this plan"><p>${{ plan|sub_fee }} billed monthly</p></button>
+</div>
+{% endfor %}
+</div>
+</div>
+<hr>
+<b>Items:</b>
+<ul>
+<li>Subscription to ID document scanning services provided by {{ the_site_name }}</li>
+<li>Billed monthly, until cancellation.{% if not free_trial == 0 %} The first {{ free_trial }} days will be free, with an opportunity to cancel your subscription before a payment is made should you choose to.{% endif %}</li>
+</ul>
+<p>ID Scanning (ID document scanner) plan services are provided with proprietary software within the limitations outlined in the plan. The ID Scanner is compatible with most smartphones, including Google, Samsung, iPhone, Android, iOS, and many computers with webcams. The ID scanning and reporting is provided with IDWare software, an industry standard for ID scanning compliance, powered by Zebra Technologies. {{ the_site_name }} is an official Zebra Technologies partner. Monthly reports are provided through email. Custom options are available on request.</p>
+<p>By checking out, you agree to the <a href="/terms/" title="Read the terms of service and privacy policy">Terms of Service and Privacy Policy</a>, as well as agree to and and acknowledge the sale as outlined and selected, as well as the plan described.</p>
+<p>The transaction will display on your bank statement as "FEMMEBABE.COM IDSCAN".</p>
+<p>You will be redirected to a checkout page to buy the product. Please enter your credit or debit card information, you will be billed monthly until you cancel through the website, or by email, cancellation service, or any other form of cancellation request.</p>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function monthlyPlan(plan){
+        fetch("/payments/idscan/monthly/?plan=" + plan)
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% include 'users/register_modal.js' %}
+Prism.highlightAll();
+{% endblock %}

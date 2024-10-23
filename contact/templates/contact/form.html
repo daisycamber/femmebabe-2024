@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% load feed_filters %}
+<div class="container container-table m-4 col-md-8 mx-auto">
+<div class="container container-table m-4 col-md-8 mx-auto">
+<form id="contact-form" action="javascript:void(0);">
+<legend><i class="bi bi-bell"></i> {{ 'Contact Us'|trans }}</legend>
+{{ contact_form|crispy }}
+<button id="contact-submit" type="submit" class="btn btn-primary" title="{{ 'Send message'|trans }}">{{ 'Send'|trans }}</button>
+</form>
+</div>
+<div class="row">
+<legend id="contact-message" style="text-color: green; font-color: green; color: green; text-align: center;" class="hide fade-in-fast">{{ 'Message sent.'|trans }}</div>
+<p>We typically respond within {{ typical_response_time|nts }} hours. Last active {{ my_profile.last_seen }}</p>
+<div class="d-flex">{% with my_profile as content %}{% include 'clock.html' %}{% endwith %}</div>
+</div>
+</div>

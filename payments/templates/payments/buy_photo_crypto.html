@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %} 
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %} 
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-credit-card-fill"></i> Buy this {% if not post.file %}photo of{% else %}product from{% endif %} @{{ username }} with Crypto</h1>
+<div style="display: flex; justify-content: space-around;">
+{% if post.image %}<img class="mr-2 rounded" style="float: left; filter: blur(8px); width: 40vw; height: 40vw; max-height: 400px; max-width: 400px; margin-right: 13px;" src="{{ post.get_blur_thumb_url }}" alt="Buy this photo for ${{ fee|sub_fee }} USD" id="post-image">{% endif %}
+<div style="display: inline-block;">
+<a href="{{ request.path }}?crypto={{ request.GET.crypto }}" title="See another photo" class="btn btn-outline-dark pink-borders">See Another Photo</a>
+{% if not request.COOKIES.age_verified %}<a href="{% url 'verify:age' %}?next={{ request.path }}?crypto={{ request.GET.crypto }}" title="See private photos" class="btn btn-outline-dark pink-borders">See Private Photos</a>{% endif %}
+<hr>
+<p>This purchase is subject to <a href="{% url 'misc:terms' %}" title="View the terms and coniditons">the terms and conditions and privacy policy</a> of {{ the_site_name }}.</p>
+<div class="dropdown" style="display: inline-block;">
+    <a class="btn btn-outline-dark pink-borders dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    	<i class="bi bi-currency-bitcoin"></i> Change Currency
+    </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div style="max-height: 50vh; overflow: scroll;">
+	{% for currency in currencies %}
+		<li><a class="dropdown-item" href="{{ request.path }}?crypto={{ currency }}&id={{ post.uuid }}">{{ currency }}</a></li>
+	{% endfor %}
+    </div>
+  </ul>
+</div>
+</div>
+</div>
+<b>Items:</b>
+<ul>
+<li>One private {% if not post.file %}photo{% else %}download, video or audio{% endif %} featuring {{ username }} (${{ usd_fee|sub_fee }})</li>
+<li>Billed once only.</li>
+</ul>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<fieldset class="form-group">
+<legend class="border-bottom mb-4">Step 1: Send Crypto</legend>
+<p>Send {{ crypto_fee }} {{ request.GET.crypto }} <button class="btn btn-sm btn-info" onclick="copyAmount();"><i class="bi bi-clipboard-check-fill"></i> Copy</button> (${{ usd_fee|sub_fee }}) to the following wallet address:</p>
+<b><i>{{ crypto_address }}</i></b>
+<button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> Copy</button>
+<hr style="background-color: green;">
+<p>{% if not request.user.is_authenticated %}Enter your email and press{% else %}Press{% endif %} the "Send" button to confirm your payment once you have initiated the transfer.</p>
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success">Send</button>
+</form>
+<p>Buy crypto to send here: <a href="{{ crypto_provider }}" title="Buy crypto to send">{{ crypto_provider }}</a>, or with your crypto bank.</p>
+</div>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+/*var im = document.getElementById("post-image");
+im.style.height = im.offsetWidth;
+$(document).ready(function() {
+    im.style.height = im.offsetWidth;
+});*/
+function copyAddress() {
+	navigator.clipboard.writeText("{{ crypto_address }}");
+}
+function copyAmount() {
+	navigator.clipboard.writeText("{{ crypto_fee }}");
+}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% block content %}
+<h1>All Registered Visitors</h1>
+<p>{{ new_today|nts|capitalize }} new today, {{ new_this_month|nts }} new this month, {{ subscribers|nts }} subscribers, {{ users.count|nts }} total.</p>
+<hr style="color: red;">
+{% for user in users %}
+{% include 'users/_user.html' %}
+{% include 'survey/_user.html' %}
+<hr style="color: blue;">
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load feed_filters %}
+{% block content %}
+<legend>Invite a Friend</legend>
+<p><i>{{ game.post.id|shorttitle }}</i></p>
+<legend>Invite Code: <b id="#gamecode">{{ code }}</b> <button class="btn btn-outline-info btn-sm" onclick="copyToClipboard('#gamecode');">Copy</button></legend>
+<legend>Invite URL: <b id="#gameurl">{{ base_url }}/games/{{ game.post.id }}/{{ code }}/</b> <button class="btn btn-outline-info btn-sm" onclick="copyToClipboard('#gameurl');">Copy</button></legend>
+<p>Give the other player this code, and have them enter it.</p>
+<p><button onclick="join();" title="Join the game" class="btn btn-outline-success" id="joinButton">Join Game</button></p>
+<hr>
+<p><a title="Accept an invite (send this link to your friend)"  href="{% url 'games:join' %}">Accept invite</a></p>
+{% endblock %}
+{% block javascript %}
+function openSocket() {
+	socket = new WebSocket("wss://" + window.location.hostname + '/ws/games/{{ game.post.id }}/{{ game.code }}/');
+	socket.addEventListener("open", (event) => {
+		console.log('Socket open.');
+		setInterval(function() {
+			socket.send('x');
+		}, 1000);
+	});
+	socket.addEventListener("message", (event) => {
+		if(event.data != '') {
+			document.getElementById('joinButton').disabled = false;
+		}
+	});
+	socket.addEventListener("closed", (event) => {
+		console.log('Socket closed.');
+		setTimeout(function() {
+			openSocket();
+		}, {{ reload_time }});
+	});
+}
+/*openSocket();*/
+function join() {
+	window.location.href = '{% url 'games:play' game.post.id game.uid %}';
+}
+{% endblock %}

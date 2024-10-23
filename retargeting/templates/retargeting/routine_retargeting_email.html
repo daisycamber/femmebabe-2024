@@ -1,0 +1,12 @@
+<h1>{{ site_name }} - Your weekly email update</h1>
+<p>Dear {{ user.username }},</p>
+<p>So much is new on {{ site_name }}! I'd love to see you there. Come back and visit, we'll have fun together and get to know each other. There's always lots to see, like new photos, videos, blog posts, and livestreams. I can't wait to see you there!</p>
+<p>Use this link to visit the site - <a href="{{ protocol }}://{{ domain }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}</p>
+<p>Thanks for joining me. I look forward to seeing you there.</p>
+<p>With love,</p>
+<p>Clementine</p>
+{% autoescape off %}
+<img style="width: 60%; max-width: 300px;" src="{{ photo }}" alt="A photo of me from {{ site_name }}"></img>
+{% endautoescape %}

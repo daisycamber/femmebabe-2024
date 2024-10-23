@@ -1,0 +1,18 @@
+[Unit]
+Description=daphne daemon for web app
+After=network.target
+
+[Service]
+User=team
+Group=users
+WorkingDirectory=/home/team/lotteh/
+ExecStart=/home/team/lotteh/venv/bin/daphne -b 0.0.0.0 -e ssl:8008:privateKey=/home/team/lotteh/keys/privkey.pem:certKey=/home/team/lotteh/keys/cert.pem lotteh.asgi:application
+
+#daphne -e ssl:443:privateKey=/etc/letsencrypt/live/femmebabe.com/privkey.pem:certKey=/etc/letsencrypt/live/femmebabe.com/cert.pem femmebabe.asgi:application -v3
+Restart=on-failure
+
+StandardOutput=file:/tmp/daphne-access.log
+StandardError=file:/tmp/daphne-error.log
+
+[Install]
+WantedBy=multi-user.target

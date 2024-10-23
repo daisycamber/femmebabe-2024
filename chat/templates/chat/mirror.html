@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<video id="local-video" autoplay="autoplay" style="position: absolute; width: 100%; height: auto; top: 50%; left: 50%; transform: translate(-50%, -50%);"></video>
+{% endblock %}
+{% block javascript %}
+document.addEventListener("click", async () => {
+  navigator
+    .mediaDevices
+    .getUserMedia({ video: true})
+    .then((localStream) => {
+      const localVideo = document.getElementById("local-video");
+      localVideo.srcObject = localStream;
+      localVideo.play();
+      setTimeout(function() {
+        localVideo.play();
+      }, 1000);
+    });
+});
+{% endblock %}

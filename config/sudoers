@@ -1,0 +1,50 @@
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+ALL ALL=NOPASSWD: /bin/backup
+ALL ALL=NOPASSWD: /bin/reload
+ALL ALL=NOPASSWD: /bin/systemctl reload apache2
+ALL ALL=NOPASSWD: /bin/systemctl status apache2
+ALL ALL=NOPASSWD: /bin/systemctl start apache2
+ALL ALL=NOPASSWD: /bin/systemctl stop daphne
+ALL ALL=NOPASSWD: /bin/systemctl start daphne
+ALL ALL=NOPASSWD: /bin/systemctl restart daphne
+ALL ALL=NOPASSWD: /bin/systemctl start celery
+ALL ALL=NOPASSWD: /bin/tail *
+ALL ALL=NOPASSWD: /bin/chmod -R a+rX /var/log/apache2/
+ALL ALL=NOPASSWD: /bin/chmod a+rwX /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chmod 777 /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chmod a+rwx /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown love\:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown love\:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown \:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown \:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R love\:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R \:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R \:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chmod -R 777 /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chmod -R a+rwx /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R love\:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R love\:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R \:love /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown -R \:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /home/team/femmebabe/venv/bin/python *
+ALL ALL=NOPASSWD: /bin/cp /home/team/femmebabe/config/etc_dovecot_passwd /etc/dovecot/passwd
+ALL ALL=NOPASSWD: /bin/chown team\:users /home/team/femmebabe/*
+ALL ALL=NOPASSWD: /bin/chown root\:root /etc/dovecot/passwd
+ALL ALL=NOPASSWD: /bin/cat *
+ALL ALL=NOPASSWD: /bin/chmod * *
+ALL ALL=NOPASSWD: /bin/chown * *
+ALL ALL=NOPASSWD: /bin/chmod
+ALL ALL=NOPASSWD: /bin/chown
+ALL ALL=NOPASSWD: /bin/tail -100 /var/log/auth.log
+ALL ALL=NOPASSWD: /bin/disgpu
+ALL ALL=NOPASSWD: /bin/enagpu
+ALL ALL=NOPASSWD: /home/team/femmebabe/venv/bin/python /home/team/femmebabe/setup_mail.py/home/team/femmebabe/venv/bin/python /home/team/femmebabe/setup_mail.py
+ALL ALL=NOPASSWD: /bin/Xvfb *

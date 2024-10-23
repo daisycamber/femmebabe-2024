@@ -1,0 +1,12 @@
+<h1>{{ site_name }} - Come back and visit me</h1>
+<p>Dear {{ user.username }},</p>
+<p>I noticed you created an account, and wanted to welcome you back for another visit. If you haven't already, you need to create an account to follow me, buy photos, tip and access more features on the site like live video and private shows.</p>
+<p>Use this link to visit the site - <a href="{{ protocol }}://{{ domain }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}</p>
+<p>Thanks for being a part of something awesome. I look forward to seeing you online.</p>
+<p>Seeing you there with love,</p>
+<p>Clementine</p>
+{% autoescape off %}
+<img style="width: 60%; max-width: 300px;" src="{{ photo }}" alt="A photo of me from {{ site_name }}"></img>
+{% endautoescape %}

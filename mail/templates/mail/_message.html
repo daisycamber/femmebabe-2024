@@ -1,0 +1,5 @@
+<p><i>{{ message.id }}</i> <b>{{ message.sender }}</b> {{ message.time }}</p>
+<p><i>{{ message.subject }}</i></p>
+<p>{{ message.excerpt }}</p>
+<a class="btn btn-outline-primary" title="View message from {{ message.sender }}" href="{% url 'mail:message' message.id %}">View</a>
+<hr>

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<h1>Go live</h1>
+<div id="container">
+<video autoplay="true" muted="true" id="video" width="100%"></video>
+</div>
+{% endblock %}
+{% block javascript %}
+{% include 'live/compressor.js' %}
+var scale = 0.2;
+var width = 1920 * scale;
+var height = 1070 * scale
+var video = document.getElementById('video');
+var data;
+var mediaRecorder;
+var mediaChunks = [];
+function capture(){
+mediaRecorder.stop();
+}
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: {width: {ideal: width}, height: {ideal: height}}, audio: true})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.addEventListener("dataavailable", event => {
+      mediaChunks.push(event.data);
+	console.log("Got data")
+    data = "";
+    var formData = new FormData();
+      var message = "";
+      var blob = new Blob(mediaChunks, {'type': 'video/webm'});
+	mediaChunks = []
+	mediaRecorder.start();
+      const reader = new FileReader();
+      // This fires after the blob has been read/load
+      reader.addEventListener('loadend', (e) => {
+              const text = e.target.result;
+	      message = text;
+	      message.replace('\n', '');
+	      message.replace(' ', '+');
+		console.log("Message);
+	      let xhr = new XMLHttpRequest();
+	      xhr.open("POST", window.location.pathname, true);
+	      xhr.timeout = {{ request_timeout }};
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+          {% if should_compress_live %}
+            en(message, function(e){
+	      xhr.send(e.target.result);
+          });
+        {% else %}
+	      xhr.send(message);
+      {% endif %}
+    });
+    reader.readAsDataURL(blob);
+
+    });
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+  });
+}
+startup();
+setTimeout(function(){
+	setInterval(capture, 5000);
+}, 5000);
+{% endblock %}

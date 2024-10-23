@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load feed_filters %}
+{% block javascripts %}
+{% autoescape off %}
+{{ form.media|removejsig }}
+{% endautoescape %}
+{% endblock %}
+{% block content %}
+        <legend class="border-bottom mb-4">Vendor Settings</legend>
+	<a class="btn btn-outline-danger" title="Connect your bank account or debit card to get paid" href="{% url 'payments:create-link' %}">Payouts</a>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+	    <p>Please be sure all details are correct before proceeding.</p>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+{% endblock content %}

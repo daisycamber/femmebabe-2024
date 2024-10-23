@@ -1,0 +1,19 @@
+<h1>{{ site_name }} - Your Photo as Promised</h1>
+<p>Dear {{ user.username }},</p>
+<p>Thank you for your support! You bought an item from {{ site_name }} and it's attached to this email below.</p>
+{% autoescape off %}
+{% if photo %}
+<img style="width: 60%; max-width: 300px;" src="{{ photo }}" alt="A photo of me from {{ site_name }}"></img>
+{% elif photos %}
+{% for photo in photos %}
+<img style="width: 60%; max-width: 300px;" src="{{ photo }}" alt="A photo of me from {{ site_name }}"></img>
+<hr>
+{% endfor %}
+{% endif %}
+{% endautoescape %}
+<p>Use this link to visit the site and see more photos - <a href="{{ protocol }}://{{ domain }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}</p>
+<p>Thanks for being a part of something awesome. I look forward to seeing you online.</p>
+<p>Seeing you there with love,</p>
+<p>Daisy</p>

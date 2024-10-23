@@ -1,0 +1,12 @@
+{% load feed_filters %}
+<div id="register-modal" class="border border-primary rounded hide" style="background-color: #{% if not darkmode %}DDDDDD{% else %}666666{% endif %}; position: absolute; top: 17vh; right: 0; width: 100vw; max-width: 500px; z-index: 500;">
+<div style="position: relative;" style="margin: 5px; padding: 5px;" class="m-1 p-1">
+<legend class="center" style="text-align: center"><i class="bi bi-envelope-paper-heart"></i> {{ 'Enter your email for exclusive updates and access to extra features'|trans }}</legend>
+<p><small>{{ 'Begin below by entering your email to create an account with'|trans }} {{ the_site_name }}.</small></p>
+{% if use_allauth %}{% load socialaccount %}<a class="btn btn-light border border-dark" href="{% provider_login_url 'google' %}" title="{{ 'Log in with Google'|trans }}" target="_blank"><i class="bi bi-google" style="text-color: black !important; color: black !important;"></i> Log in with Google</a>{% endif %}
+<hr>
+{% include 'users/email.html' %}
+<p>{{ 'We won\'t send you any spam, or any marketing related to anyone else\'s projects. Unsubscribe at any time through your email or profile.'|trans }}</p>
+<button style="float: right;" id="register-modal-close" class="btn btn-danger" title="{{ 'Close this popup'|trans }}"><i class="bi bi-x-circle"></i> {{ 'No thanks, Close'|trans }}</button>
+</div>
+</div>

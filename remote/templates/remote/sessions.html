@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Sessions</legend>
+{% for session in sessions %}
+<b>{{ session.time }}</b>
+<p class="article-content">{{ session.path }} {% if session.user %}@{{ session.user.username }} {% endif %}({{ session.uuid_key }}) - {{ session.injection_key }} - {{ session.ip_address }}</p>
+<small class="article-content">{% if session.user %}@{{ session.user.username }}{% else %}Guest{% endif %} - Referred by: {{ session.http_referrer }}</small>
+<a class="btn btn-sm btn-outline-primary" href="{% url 'remote:injection' %}?key={{ session.injection_key }}">Inject</a>
+<hr>
+{% endfor %}
+{% include 'pagelinks.html' %}
+</form>
+{% endblock %}

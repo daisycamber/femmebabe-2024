@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block styles %}
+.fullscreen-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+#toggle-fullscreen {
+  position: fixed;
+  bottom: 0;
+}
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the experience.</legend>
+{% if not hidenavbar %}
+<h1>Interactive</h1>
+<iframe src="{{ request.path }}forms/?hidenavbar=t" width="100%" height="150px"></iframe>
+{% endif %}
+<div id="videoDiv" class="nopadding" style="overflow: hidden; width: 100%; background-position: center; background-size: cover;">
+<video id="video" preload="auto" width="100%"></video>
+<video id="videoLength" class="hide" preload="metadata" width="100%"></video>
+</div>
+<link rel="preload" as="video" id="link-preload">
+<canvas id="canvas" width="100" height="100" style="position: absolute; display: none; visibility: hidden;">
+<div id="toggle-fullscreen">
+<button class="btn btn-outline-info" on click="toggleFullscreen();" title="Toggle Fullscreen">Fullscreen</button>
+</div>
+{% endblock %}
+{% block javascript %}
+var isReset = false;
+var firstResize = true;
+var idle = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		load();
+	}
+}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+
+var videoElement = document.getElementById('video');
+var videodiv = document.getElementById('videoDiv');
+var videolength = document.getElementById('videoDiv');
+var canvas = document.getElementById('canvas');
+canvas.width = 539;
+canvas.height = 404;
+var ctx = canvas.getContext('2d');
+window.addEventListener('message', function (e) {
+    // Get the sent data
+    const data = e.data;
+    index = 0;
+    idle = false;
+    load();
+});
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+  }
+  $('.video').toggleClass('fullscreen-video');
+}
+{% if request.GET.fullscreen %}
+toggleFullscreen();
+{% endif %}
+(async () => {
+const mediaSource = new MediaSource();
+videoElement.src = URL.createObjectURL(mediaSource);
+const sourceBuffer = await new Promise((resolve, reject) => {
+	const getSourceBuffer = () => {
+		try {
+			const sourceBuffer = mediaSource.addSourceBuffer("video/webm; codecs=vp8,opus");
+			resolve(sourceBuffer);
+		} catch (e) {
+			reject(e);
+		}
+	};
+	if (mediaSource.readyState === 'open') {
+		getSourceBuffer();
+	} else {
+		mediaSource.addEventListener('sourceopen', getSourceBuffer);
+	}
+});
+async function loadVideo(url) {
+	// Fetch remote URL, getting contents as binary blob
+	const vidBlob = await (await fetch(url)).blob();
+	videolength.src = vidBlob;
+	{% if should_compress_live %}
+		var zip = new JSZip();
+		zip.loadAsync(vidBlob).then(function(zip) { 
+			object.keys(zip.files).forEach(function(filename){
+			        var content = zip.files[filename];
+				content.async('ArrayBuffer').then(function(vidBuff) {
+			        	sourceBuffer.appendBuffer(vidBuff);
+        				sourceBuffer.onupdateend = () => {
+        		        		videoElement.play();
+				        	
+					};
+				});
+			});
+		});
+	{% else %}
+	// We need array buffers to work with media source
+	const vidBuff = await vidBlob.arrayBuffer();
+	sourceBuffer.appendBuffer(vidBuff);
+	sourceBuffer.onupdateend = () => {
+		videoElement.play();
+		
+	};
+	{% endif %}
+	setTimeout(load, videolength.duration * 1000);
+}
+function load(){
+	var url = "/interactive/{{ profile.name }}/frame/";
+	$.get(url, function(data){
+		loadVideo(data);
+	});
+}
+var isReset = false;
+function reset(){
+	var pi = document.getElementById("pleaseinteract");
+	pi.style.height = "0px";
+	pi.style.visibility = "hidden";
+	if(!isReset) {
+		isReset = true;
+		setInterval(load, {{ video_interval }});
+	}
+}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset); 
+})();
+{% endblock %}

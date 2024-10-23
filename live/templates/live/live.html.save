@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>@{{ profile.user.username }}'s Live Feed</h1>
+<div id="container">
+<canvas id="videoCanvas" width="512" height="364">
+</canvas>
+{% endblock %}
+{% block javascript %}
+var canvas = document.getElementById("videoCanvas");
+canvas.width = "100%";
+canvas.height = 
+let xhr = new XMLHttpRequest();
+
+function loadListener(){
+        if (xhr.readyState === xhr.DONE) {
+            var data = xhr.responseText.substring(0, xhr.responseText.length)
+	    data = data.replace(' ', '+');
+	    data = data.replace(' ', '+');
+	    data = data.replace('\n','');
+	console.log(data);
+            canvas.renderImage(data);
+        }
+}
+function render() {
+        xhr.addEventListener("load", loadListener);
+//        xhr.addEventListener("error", errorListener)
+        xhr.open("POST", window.location.href + "frame/", true);
+        xhr.send(null);
+}
+setInterval(render, 5000);
+HTMLCanvasElement.prototype.renderImage = function(blob){
+  var ctx = this.getContext('2d');
+  var img = new Image();
+  img.onload = function(){
+    ctx.drawImage(img, 0, 0);
+    ctx.save();
+  };
+  img.src = blob;
+};
+render();
+{% endblock %}

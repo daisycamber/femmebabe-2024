@@ -1,0 +1,4 @@
+<form style="display: inline-block;" action="{% url 'payments:delete' card.id %}" method="POST" id="publishForm">
+{% csrf_token %}
+<button class="btn btn-outline-danger" type="submit"><i class="bi bi-x-circle-fill"></i></button>
+</form>

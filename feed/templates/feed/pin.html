@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'feed:pin' post.id %}" method="POST" id="publishForm">
+<button class="btn btn-outline-dark pink-borders" type="submit">{% if post.pinned %}<i class="bi bi-pin-angle-fill"></i>{% else %}<i class="bi bi-pin-fill"></i>{% endif %}</button>
+</form>

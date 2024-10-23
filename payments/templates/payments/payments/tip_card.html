@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<legend><i class="bi bi-credit-card-fill"></i> Send a tip to @{{ username }} with Card</legend>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+<b>Items:</b>
+<ul>
+<li>Tip for {{ username }} (${{ fee|sub_fee }})</li>
+<li>Billed once only.</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "MAMASHEEN".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<form id="payment-form" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<p>You will pay ${{ fee|sub_fee }} USD. Please enter your credit or debit card information.</p>
+{{ card_number_form|crispy }}
+<div id="card-info-parent" style="display: flex; justify-content: space-around;">
+{{ card_info_form|crispy }}
+</div>
+<hr style="background-color: blue;">
+<button id="submit-button" type="submit" class="btn btn-outline-success">Pay ${{ fee|sub_fee }}</button>
+</form>
+</div>
+{% endblock %}
+{% block javascript %}
+$('#payment-form').on('submit', function(){
+	document.getElementById('submit-button').disabled = true;
+});
+{% endblock %}
+{% block javascripts %}
+{% autoescape off %}
+{{ card_number_form.media|removejsig }}
+{% endautoescape %}
+{% endblock %}

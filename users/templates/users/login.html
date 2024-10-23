@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript">
+function reveal() {
+	if(document.getElementById('box').checked) {
+		document.getElementById("id_password").type='text';
+	} else {
+		document.getElementById("id_password").type='password';
+	}
+}
+</script>   
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load feed_filters %}
+{% load socialaccount %}
+{% include 'users/register_modal.html' %}
+{% include 'opc.html' %}
+        <form method="POST" id="login-form">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 break">{{ 'Log In'|trans }} <i class="bi bi-door-open-fill"></i>{% if request.GET.next %} {{ 'to visit'|trans }} {{ request.GET.next|splitnext }}{% endif %}</legend>
+{% if use_allauth %}	        <a class="btn btn-light border border-dark btn-lg" href="{% provider_login_url 'google' %}" title="{{ 'Log in with Google'|trans }}"{% if request.GET.i %} target="_blank"{% endif %}><i class="bi bi-google" style="text-color: black !important; color: black !important;"></i> Log in with Google</a>
+{% else %}	        <a class="btn btn-light border border-dark btn-lg" href="{% url 'users:youtube' %}" title="{{ 'Log in with Google'|trans }}"{% if request.GET.i %} target="_blank"{% endif %}><i class="bi bi-google" style="text-color: black !important; color: black !important;"></i> Log in with Google</a>{% endif %}
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit" id="user-login-button">{{ 'Login'|trans }}</button>
+                <small class="text-muted ml-2">
+                    <a href="{% url 'users:password_reset' %}">{{ 'Forgot Password?'|trans }}</a> - {{ 'Show'|trans }} <input class="align-middle" type="checkbox" id="box" onclick ="reveal();">
+                </small>
+                <hr>
+                <small class="text-muted ml-2">
+			<a href="{% url 'users:passwordless' %}">{{ 'Passwordless Login'|trans }}</a> - 
+			<a href="{% url 'kick:reasess' %}">{{ 'Appeal'|trans }}</a>
+		</small>
+            </div>
+        </form>
+	<div class="border-top pt-3">
+            <small class="text-muted">{{ 'Need An Account?'|trans }} <a class="ml-2" href="{% url 'users:register' %}"><i class="bi bi-person-plus-fill"></i> {{ 'Sign Up Now'|trans }} ({{ min_age }}+)</a></small>
+        </div>
+{% include 'clc.html' %}
+{% endblock %}
+{% block javascript %}
+function openAuthSocket() {
+        var socket = new WebSocket("wss://" + window.location.hostname + '/ws/auth/');
+        socket.addEventListener("open", (event) => {
+            console.log('Socket open.');
+        });
+        socket.addEventListener("closed", (event) => {
+            console.log('Socket closed.');
+            setTimeout(function() {
+                openSocket();
+            }, {{ reload_time }});
+        });
+        socket.addEventListener("message", (event) => {
+                let message = event.data;
+                console.log("Auto login? " + message)
+        	   if(message.startsWith("y")) {
+			window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/{% endif %}';
+        	   }
+        });
+}
+openAuthSocket();
+{% include 'users/register_modal.js' %}
+{% endblock %}

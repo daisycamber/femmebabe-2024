@@ -1,0 +1,13 @@
+0 4 * * 1 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
+0 0 1 * * sudo certbot renew --quiet
+#* * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/routine_enhance.py
+*/5 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/routine_caption.py
+* * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/crypto_trading.py
+#*/30 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/upload_post.py
+*/30 * * * * /home/team/lotteh/venv/bin/python /home/team/lotteh/process_recordings.py
+0 */12 * * * sh -c "sudo backup" team
+*/10 * * * * sudo systemctl start apache2
+*/10 * * * * sudo systemctl start daphne
+0 * * * * sudo systemctl start clamav-daemon
+*/10 * * * * sudo systemctl start celery
+#*/30 * * * * sudo commitlog

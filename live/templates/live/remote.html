@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if not hidenavbar %}
+<legend>Live remote</legend>
+{% endif %}
+<div style="display: flex; justify-content: space-around;">
+{% include 'live/_remote.html' %}
+{% include 'live/_record_remote.html' %}
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

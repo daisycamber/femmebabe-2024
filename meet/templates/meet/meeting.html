@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="videos" style="display: inline-block; overflow-x: scroll;">
+{% for attendee in meeting.attendees.all %}
+<iframe id="frame{{ forloop.counter0 }}" class="mx-auto meet meet-lg" href="{{ attendee.video_url }}"></frame>
+{% endfor %}
+</div>
+<div style="display: inline-block;">
+<button onclick="scrollLeft();" title="Scroll left"><i class="bi bi-chevron-left"></i></button>
+<button onclick="scrollRight();" title="Scroll right"><i class="bi bi-chevron-right"></i></button>
+<button onclick="smallerVideos();" title="Smaller videos"><i class="bi bi-minus"></i></button>
+<button onclick="largerVideos();" title="Larger videos"><i class="bi bi-plus"></i></button>
+</div>
+<div style="z-index: 1; position: absolute;">
+<iframe src="{{ participant.upload_url }}" width="20%;"></iframe></div>
+{% endblock %}
+{% block javascript %}
+var vidSize = 3;
+function scrollNext() {
+	var ex = 0;
+	if(vidSize > 2) ex = 20;
+	$('#videos').width(ex + 20 * vidSize);
+}
+function scrollLeft(){
+	var ex = 0;
+        if(vidSize > 2) ex = 20;
+	var scrolldist = window.innerWidth * 1/100.0 * (ex + 20 * vidSize);
+	$(".innerWrapper").animate({scrollLeft: -1 * scrolldist}, 800);
+}
+function scrollRight(){
+	var scrolldist = window.innerWidth * 1/100.0 * (20 * vidSize);
+	$(".innerWrapper").animate({scrollLeft: scrolldist}, 800);
+}
+function largerVideos() {	
+	if(vidSize < 3) {
+		vidSize++;
+		var ex = 0;
+		if(vidSize > 2) ex = 20;
+		$('.meet').width(ex + 20 * vidSize);
+	}
+}
+function smallerVideos() {
+	if(vidSize > 1) {
+		vidSize--;
+		$('.meet').width(20 * vidSize);
+	}	
+}
+var socket;
+var videoUrls = [];
+var lastLength = 0;
+var videos = document.getElementById("videos");
+function updateVideos() {
+	count = 0;
+	var vids = videos.querySelector('.meet');
+	for(vid of vids) {
+		if(vid.src != videoUrls[count] || new String(vid.src).includes('idle=t')) {
+			$(vid).toggleClass('hide');
+		}
+		count++;
+	}
+}
+function openSocket() {
+        socket = new WebSocket("wss://" + window.location.hostname + "/ws/meet/?key={{ meeting.code }}");
+        socket.addEventListener("open", (event) => {
+            console.log('Socket open.');
+            setInterval(function() {
+                socket.send('i');
+            }, 5000);
+        });
+        socket.addEventListener("closed", (event) => {
+            console.log('Socket closed.');
+            setTimeout(function() {
+                openSocket();
+            }, {{ reload_time }});
+        });
+        socket.addEventListener("message", (event) => {
+        	videoUrls = event.data.split(',');
+		if(videoUrls.length != lastLength) {
+			updateVideos();
+		}
+        });
+}
+openSocket();
+{% endblock %}

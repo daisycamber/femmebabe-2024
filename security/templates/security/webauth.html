@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/webauthn.min.js"></script>
+{% endblock %}
+{% block content %}
+<legend>Biometric Authentication</legend>
+<p>Use your fingerprint, screen lock or a security key to complete login.</p>
+<p style="text-align: center;"><i style="font-size: 40px;" class="bi bi-fingerprint"></i></p>
+<p id="status"></p>
+<p id="errors">Click the button below to begin authentication.</p>
+<div class="mx-auto">
+<button id="begin" class="btn btn-lg btn-outline-primary mx-auto" title="Begin authentication">Begin</button>
+</div>
+{% if request.GET.register %}
+{% for credential in user.credentials.all %}
+<p>{{ credential.name }} <a class="btn btn-sm btn-outline-danger" title="Delete {{ credential.name }}">Delete</a></p>
+<hr>
+{% endfor %}
+{% endif %}
+{% endblock %}
+{% block javascript %}
+var status = document.getElementById("status");
+{% if request.GET.register %}
+var registerUrl = "{% url 'security:biometric' %}?register=t";
+var authUrl = "{% url 'security:biometric' %}?verify=t";
+{% else %}
+var registerUrl = "{% url 'security:biometric' %}";
+var authUrl = "{% url 'security:biometric' %}?auth=t";
+{% endif %}
+async function runAuth() {
+	console.log('Beginning authentication.')
+	const { startRegistration, startAuthentication } = SimpleWebAuthnBrowser;
+	const resp = await fetch(registerUrl, {method: "POST"});
+	const opts = await resp.json();
+	console.log(JSON.stringify(opts));
+	var regResp;
+	try {
+	  regResp = await startRegistration(opts);
+	} catch (err) {
+	  throw new Error(err);
+	}
+	const verificationResp = await fetch(
+	  authUrl,
+	  {
+	    method: "POST",
+	    headers: {
+	      "Content-Type": "application/json",
+	    },
+	    body: JSON.stringify(regResp),
+	}).then(response => response.text()).then((response) => {
+		if(response == "v") {
+                  window.navigator.vibrate({{ default_vibration }});
+		  window.location.href = "{% if request.GET.next %}{{ request.GET.next }}{% else %}/{% endif %}";
+		} else {
+		  alert(response);
+		}
+	});
+}
+var reading = false;
+function initialize() {
+    if(!reading) {
+        window.navigator.vibrate({{ default_vibration }});
+        reading = true;
+	runAuth().then(() => {
+		status.innerHTML = "Completed.";
+	});
+    }
+}
+document.getElementById('begin').onclick = initialize();
+{% endblock %}

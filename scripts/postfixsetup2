@@ -1,0 +1,56 @@
+#!/bin/bash
+SECONDS=0
+echo "lotteh postfix setup initialized."
+# sudo chmod a+x scripts/usersetup
+# ./scripts/usersetup
+# ssh-keygen
+# Project directory
+DIR="/home/team/lotteh"
+USER="team"
+cd $DIR
+# Installing postfix
+echo "Update and install packages"
+sudo apt update && sudo NEEDRESTART_MODE=a apt upgrade -y
+echo "postfix postfix/mailname string lotteh.com" | sudo debconf-set-selections
+echo "postfix postfix/main_mailer_type string 'Internet Site'" | sudo debconf-set-selections
+sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y postfix
+sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y opendkim-tools dovecot-core dovecot-pop3d dovecot-imapd
+echo "Mail services configuration"
+sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.backup
+sudo cp config/etc_postfix_main.cf /etc/postfix/main.cf
+sudo cp config/etc_postfix_master.cf /etc/postfix/master.cf
+sudo cp config/etc_default_opendkim /etc/default/opendkim
+sudo cp config/etc_dovecot_conf.d_10-auth.conf /etc/dovecot/conf.d/10-auth.conf
+sudo cp config/etc_dovecot_conf.d_10-master.conf /etc/dovecot/conf.d/10-master.conf
+sudo cp config/etc_dovecot_dovecot.conf /etc/dovecot/dovecot.conf
+sudo cp config/etc_dovecot_passwd /etc/dovecot/passwd
+sudo cp config/etc_opendkim.conf /etc/opendkim.conf
+sudo cp config/etc_default_opendkim /etc/default/opendkim
+sudo adduser postfix opendkim
+sudo mkdir /etc/opendkim
+sudo mkdir /etc/opendkim/keys
+sudo mkdir /etc/opendkim/keys/lotteh.com
+sudo mkdir /var/spool/postfix/opendkim
+sudo echo "*@lotteh.com     sendonly._domainkey.lotteh.com" | sudo tee -a /etc/opendkim/signing.table
+sudo echo "sendonly._domainkey.lotteh.com    lotteh.com:sendonly:/etc/opendkim/keys/lotteh.com/sendonly.private" | sudo tee -a /etc/opendkim/key.table
+sudo echo "127.0.0.1" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "localhost" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "*.lotteh.com" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo chown -R opendkim:opendkim /etc/opendkim
+#sudo opendkim-genkey -b 2048 -d lotteh.com -D /etc/opendkim/keys/lotteh.com -s sendonly -v
+#sudo chmod go-rw /etc/opendkim/keys
+#sudo chown opendkim:opendkim /etc/opendkim/keys/lotteh.com/sendonly.private
+#sudo chown opendkim:postfix /var/spool/postfix/opendkim
+cd $DIR
+sudo chown :users /var/mail/*
+sudo chmod -R a+rwx /var/mail/*
+sudo systemctl restart opendkim postfix dovecot
+echo "COPY the below information to domain configuration."
+hostname -I
+ip a | grep inet
+ip -6 addr | grep "scope link"
+sudo cat /etc/opendkim/keys/lotteh.com/sendonly.txt | tr -d '\n' | sed 's/\s//g' | awk -F'[)(]' '{print $2}' | sed '0,/""/{s/""//}'
+# Setup completed
+duration=$SECONDS
+echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."

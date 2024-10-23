@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block head %}
+{% if use_prism %}
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<link rel="stylesheet" href="/static/css/prism.css">
+{% endif %}
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+<h1>Search</h1>
+{% if request.GET.q %}
+<p>Your search, "{{ request.GET.q }}", returned {{ count|nts }} results.</p>
+<a class="btn btn-sm btn-outline-info" title="Grid view" href="{{ request.path }}?grid=true&{% get_qs %}">Grid</a>
+<hr style="background-color: red;">
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% include 'search.html' %}
+{% include 'banner_ad.html' %}
+{% else %}
+<p>Please enter a query in the navbar to begin your search.</p>
+{% include 'search.html' %}
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{% if use_prism %}Prism.highlightAll();{% endif %}
+{% include 'reader.js' %}
+{% endblock %}

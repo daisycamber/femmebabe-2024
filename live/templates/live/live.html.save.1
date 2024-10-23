@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>@{{ profile.user.username }}'s Live Feed</h1>
+<div id="container">
+<canvas id="videoCanvas" width="512" height="364">
+</canvas>
+{% endblock %}
+{% block javascript %}
+var canvas = document.getElementById("videoCanvas");
+if(window.innerWidth > window.innerHeight) {
+	canvas.width = parseInt(window.innerWidth * 0.85);
+	canvas.height = parseInt(canvas.width * 364/512);
+} else {
+	canvas.width = parseInt(window.innerWidth * 0.60);
+	canvas.height = parseInt(canvas.width * 364/512);
+}
+let xhr = new XMLHttpRequest();
+let xhr2 = new XMLHttpRequest();
+
+function loadListener(){
+        if (xhr.readyState === xhr.DONE) {
+                          var data = xhr.responseText.substring(0, xh>            data = data.replace(' ', '+');
+            canvas.renderImage(data);
+        }
+}
+
+function loadListener(){
+        if (xhr.readyState === xhr.DONE) {
+            var data = xhr.responseText.substring(0, xhr.responseText.length)
+	    data = data.replace(' ', '+');
+	    data = data.replace(' ', '+');
+	    data = data.replace('\n','');
+	console.log(data);
+            canvas.renderImage(data);
+        }
+}
+function render() {
+        xhr.addEventListener("load", loadListener);
+//        xhr.addEventListener("error", errorListener)
+        xhr.open("POST", window.location.href + "frame/", true);
+        xhr.send(null);
+}
+setInterval(render, 3000);
+HTMLCanvasElement.prototype.renderImage = function(blob){
+  var ctx = this.getContext('2d');
+  var img = new Image();
+  img.onload = function(){
+    ctx.drawImage(img, 0, 0, canvas.getBoundingClientRect().width, canvas.getBoundingClientRect().height);
+    ctx.save();
+  };
+  img.src = blob;
+};
+render();
+{% endblock %}

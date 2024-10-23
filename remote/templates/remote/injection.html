@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<legend>Inject into session</legend>
+<p class="article-content"><b>{{ session.time }}</b> <i>{{ session.path }}</i></p>
+<p class="article-content">{{ session.uuid_key }} - {{ session.ip_address }}</p>
+<form method="POST">
+{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-outline-danger" type="submit">Inject</button>
+</form>
+{% for injection in past_injections %}
+<p><b>{{ injection.time }}</b></p>
+<b>Last</b>
+<p id="injection{{ injection.id }}" style="white-space: pre-wrap;">{{ injection.injection }}</p>
+<button onclick="copyToArea('injection{{ injection.id }}')" title="Copy injection">Copy</button>
+<b>All</b>
+<p id="p-injection{{ injection.id }}" style="white-space: pre-wrap;">{{ injection.past_injections }}</p>
+<button onclick="copyToArea('p-injection{{ injection.id }}')" title="Copy injection">Copy</button>
+<hr>
+{% endfor %}
+{% endblock %}
+{% block javascript %}
+var input = document.getElementById('id_injection');
+function copyToArea(element) {
+	var el = document.getElementById(element);
+	input.value = el.innerHTML;
+}
+{% endblock %}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    {% for url in urls %}
+    <loc>{{ base_url }}{{ url }}</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}" />
+    {% endfor %}
+    <lastmod>2022-06-04</lastmod>
+    {% endfor %}
+    {% for vendor in vendors %}
+    {% for url in vendor_urls %}
+    <loc>{{ base_url }}{{ url }}{{ vendor.profile.name }}/</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}{{ vendor.profile.name }}/" />
+    {% endfor %}
+    <lastmod>{{ date }}</lastmod>
+    {% endfor %}
+    {% endfor %}
+  </url>
+</urlset>

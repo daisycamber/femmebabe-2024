@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/clock/clock.css">
+{% endblock %}
+{% block content %}
+<h1 class="mb-3">Recordings{% if request.user == theuser and not request.GET.page or request.GET.page == '1' %} <a class="btn btn-danger" href="{% url 'audio:record' 'record' %}" style="float: right;"><i class="bi bi-record-btn-fill"></i> New</a>{% endif %}</h1>
+{% if request.user == theuser and not request.GET.page or request.GET.page == '1' %}
+<div style="display: flex; justify-content: space-around;" class="mb-2">
+<a class="btn btn-primary btn-sm" href="{% url 'audio:record' 'record' %}?live=true"><i class="bi bi-soundwave"></i> Live</a>
+<a class="btn btn-secondary btn-sm" href="{% url 'audio:record' 'record' %}?transcript=true"><i class="bi bi-file-word-fill"></i> Transcript</a>
+<a class="btn btn-info btn-sm" href="{% url 'audio:record' 'record' %}?speech=true"><i class="bi bi-badge-vo"></i> Speech</a>
+<a class="btn btn-light btn-sm" href="{% url 'audio:record' 'record' %}?speech=true&transcript=true"><i class="bi bi-badge-vo-fill"></i> Hybrid</a>
+</div>
+<div style="display: flex; justify-content: space-around;">
+<a class="btn btn-light btn-sm" href="{% url 'audio:record' 'record' %}?live=true&speech=true&transcript=true"><i class="bi bi-badge-vo-fill"></i> Live Hybrid</a>
+<a class="btn btn-secondary btn-sm" href="{% url 'audio:record' 'record' %}?live=true&transcript=true"><i class="bi bi-file-word-fill"></i>Live Transcript</a>
+</div>
+{% endif %}
+<hr style="background-color: red;">
+{% for recording in recordings %}
+<legend>{% with recording as content %}{% include 'clock.html' %}{% endwith %} {{ recording.uploaded_file }}</legend>
+<div><a href="{% url 'audio:record' recording.id %}?speech=true&transcript=true" title="Recordings" style="float: right;" class="btn btn-primary btn-sm"><i class="bi bi-vinyl-fill"></i> Listen</a></div>
+{% if recording.notes %}<p><i class="bi bi-body-text"></i>: {{ recording.notes }}</p>{% else %}<p>no notes <i class="bi bi-slash-square-fill"></i></p>{% endif %}
+<hr style="background-color: blue;">
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}

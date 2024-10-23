@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% load feed_filters %}
+<h1>{{ 'Subscribe to'|trans }} {{ p_user.profile.name }}</h1>
+<img align="left" src="{{ p_user.profile.get_face_blur_url }}" style="width:33%; margin-right: 10px;" class="rounded"></img>
+{% include 'payments/_subscription_perks.html' %}
+<p> - {{ p_user.profile.name }}</p>
+<hr style="color: red;">
+<div style="display: flex; justify-content: space-around;">
+<a href="{% url 'payments:subscribe-card' p_user.profile.name %}" class="btn btn-lg btn-outline-success">{{ 'Pay with Credit/Debit Card'|trans }}</a>
+<a href="{% url 'payments:subscribe-bitcoin' p_user.profile.name %}" class="btn btn-lg btn-outline-success">{{ 'Pay with Cryptocurrency'|trans }}</a>
+</div>
+{% include 'contact/form.html' %}
+<hr>
+{% include 'social.html' %}
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block content %}
+{% load app_filters %}
+<legend class="border-bottom mb-4">Go</legend>
+<div style="display: flex; justify-content: space-around;">
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-danger dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-life-preserver"></i> Feed
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'feed:profile' request.user.profile.name %}">Profile</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile-grid' request.user.profile.name %}">Blur Grid</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile-grid' request.user.profile.name  %}?show=true">Full Grid</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:private' request.user.profile.name  %}?show=true">Private</a></li>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-dark dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-soundwave"></i> Audio
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'audio:recordings' %}">Audio</a></li>
+    <li><a class="dropdown-item" href="{% url 'audio:record' 'new' %}?live=true">Live Audio</a></li>
+    <li><a class="dropdown-item" href="{% url 'audio:record' 'new' %}?live=true&transcript=true">Live Transcript</a></li>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-info dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-book-half"></i> Other
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'interactive:interactive' request.user.profile.name %}">Interactive</a></li>
+    <li><a class="dropdown-item" href="{% url 'landing:landing' %}?k={% get_key %}&welcome=true">Landing</a></li>
+    <li><a class="dropdown-item" href="{% url 'hypnosis:hypnosis' %}">Hypnosis</a></li>
+    <li><a class="dropdown-item" href="{% url 'logs' %}">Logs</a></li>
+    <li><a class="dropdown-item" href="{% url 'shell:shell' %}">Shell</a></li>
+  </ul>
+</div>
+</div>
+<hr style="background-color: black;">
+<div style="display: flex; justify-content: space-around;">
+<a class= "btn btn-outline-info" href="{% url 'photobooth:photobooth' %}"><i class="bi bi-person-workspace"></i> Photo</a>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-dark dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-camera-fill"></i> Send
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<div style="max-height: 50vh; overflow: scroll;">
+    {% for subscriber in request.user.subscriptions.all %}
+        <li><a class="dropdown-item" href="{% url 'photobooth:photobooth' %}?recipient={{ subscriber.name }}">Take a photo for {{ subscriber.name }}</a></li>
+    {% endfor %}
+	</div>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-dark dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-camera-fill"></i> Status
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<div style="max-height: 50vh; overflow: scroll;">
+    {% for message in status_messages %}
+        <li><a class="dropdown-item" href="{% url 'photobooth:photobooth' %}?content={{ message }}">{{ message }}</a></li>
+    {% endfor %}
+        <li><a class="dropdown-item" href="{% url 'feed:post-update' smp_id %}"> +- Edit These</a></li>
+	</div>
+  </ul>
+</div>
+</div>
+<hr style="background-color: black;">
+<div style="display: flex; justify-content: space-around;">
+    <a class="btn btn-outline-dark pink-borders" href="{% url 'live:shows' %}"><i class="bi bi-calendar-fill"></i> Schedule</a>
+    <a class="btn btn-outline-dark" href="{% url 'shell:shell' %}"><i class="bi bi-terminal-fill"></i> Shell</a>
+    <a class="btn btn-outline-danger" href="{% url 'logs' %}"><i class="bi bi-file-earmark-text-fill"></i> Logs</a>
+</div>
+<hr style="background-color: purple;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'live:choose-live-camera' %}" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Live Camera</a>
+	<a href="{% url 'live:choose-camera' %}" class="btn btn-outline-secondary" title="Live remote control"><i class="bi bi-toggle-on"></i> Camera Settings</a>
+	<a href="{% url 'live:name-camera' 'New camera' %}" class="btn btn-outline-secondary" title="New live camera"><i class="bi bi-toggle-"></i> New Camera</a>
+</div>
+<hr style="background-color: red;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'live:golivevideo' %}" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Go live</a>
+	<a href="{% url 'live:remote' %}" class="btn btn-outline-secondary" title="Live remote control"><i class="bi bi-toggle-on"></i> Live Remote</a>
+        <a class= "btn btn-outline-danger" href="{% url 'recordings:recordings' request.user.profile.name %}"><i class="bi bi-person-video2"></i> Video</a>
+</div>
+<hr style="background-color: green;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'vendors:send-bitcoin' %}" class="btn btn-outline-success" title="Cash out bitcoin"><i class="bi bi-currency-bitcoin"></i> Bitcoin</a>
+        <a class="btn btn-outline-secondary" href="{% url 'vendors:preferences' %}"><i class="bi bi-gear-fill"></i> Vendor Settings</a>
+        <a class="btn btn-outline-primary" href="{{ request.user.vendor_profile.identification.url }}" title="View your digital ID"><i class="bi bi-wallet2"></i> Digital ID</a>
+	<a href="{% url 'barcode:scan' %}?foreign=true&next=/go/" class="btn btn-outline-primary" title="Scan an ID"><i class="bi bi-person-lines-fill"></i> ID Scan</a>
+</div>
+<hr style="background-color: blue;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'voice:recordings' %}" class="btn btn-outline-danger" title="See and record audio"><i class="bi bi-mic-fill"></i> Voice Recording(s)</a>
+	<a href="{% url 'voice:call-recordings' %}" class="btn btn-outline-warning" title="Hear voice messages"><i class="bi bi-mic-fill"></i> Audio Messages</a>
+        <a class="btn btn-outline-secondary" href="{% url 'chat:chat' request.user.profile.name %}" title="Chat live"><i class="bi bi-chat-fill"></i> Chat</a>
+</div>
+<hr style="background-color: purple;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'feed:profile' request.user.profile.name %}" class="btn btn-outline-success" title="See all login photos"><i class="bi bi-person-workspace"></i> Your Profile</a>
+	<a href="{% url 'face:faces' %}" class="btn btn-outline-dark" title="See all login photos"><i class="bi bi-person-workspace"></i> Login photos</a>
+	<a href="{% url 'audio:recordings' %}" class="btn btn-outline-danger" title="See and record audio"><i class="bi bi-mic-fill"></i> Recording(s)</a>
+</div>
+<hr style="background-color: red;">
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'birthcontrol:take' %}" class="btn btn-outline-danger" title="Take your birth control"><i class="bi bi-calendar-check-fill"></i> Take birth control</a>
+{% if request.user.birthcontrol_profile.birth_control %}<a href="{% url 'birthcontrol:profile' %}" class="btn btn-outline-dark" title="See your birth control"><i class="bi bi-calendar2-week-fill"></i> Birth control profile</a>{% endif %}
+        <a class="btn btn-outline-secondary" href="{% url 'vibe:vibe' %}" title="Use a massager"  style="text-color: black;"><i class="bi bi-heart-pulse-fill"></i> Vibe</a>
+</div>
+{% if request.user.birthcontrol_profile.taking_birth_control %}<small class="text-muted"><i>Last taken </i>{{ request.user.birthcontrol_profile.birth_control_taken|date:"F d, Y" }} {{ request.user.birthcontrol_profile.birth_control_taken|time:"H:i" }},</small>{% endif %}
+{% if request.user.birthcontrol_profile.birth_control %}<small class="text-muted"><i>uploaded </i>{{ request.user.birthcontrol_profile.birth_control_uploaded|date:"F d, Y" }} {{ request.user.birthcontrol_profile.birth_control_uploaded|time:"H:i" }}</small>{% endif %}
+{% if request.user.is_superuser or request.user.profile.vendor %}
+<hr style="background-color: red;">
+<div style="display: flex; justify-content: space-around;">
+{% if is_admin %}
+	<a href="{% url 'security:logout-everyone' %}" class="btn btn-outline-danger" title="Log everyone out"><i class="bi bi-person-dash-fill"></i> Logout everyone</a>
+	<a href="{% url 'security:logout-everyone-but-user' %}" class="btn btn-outline-danger" title="Log everyone out except for me"><i class="bi bi-person-dash-fill"></i> Logout everyone but me</a>
+{% endif %}
+	<div style="padding-left: 10px;"><p>{{ session_count|sessioncount }} active, {{ lockout_count|sessioncount }} locked</p></div>
+</div>
+{% endif %}
+{% endblock content %}

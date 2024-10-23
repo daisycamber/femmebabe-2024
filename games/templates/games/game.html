@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="/static/js/createjs.min.js"></script>
+<style>
+body {
+	overflow: hidden;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<canvas id="game" style="width: 100%; height: 80%;"></canvas>
+{% if show_ads %}
+<div class="mx-auto m-1 p-1" style="display: flex; justify-content: space-around;">
+{% include 'game_ad.html' %}
+</div>
+{% endif %}
+<p class="hide" id="player">{% if player %}y{% else %}n{% endif %}</p>
+<p class="hide" id="game_id">{{ game.id }}</p>
+<p class="hide" id="post_id">{{ game.post.id }}</p>
+<p class="hide" id="game_code">{{ game.code }}</p>
+{% autoescape off %}
+<p class="hide">{{ game.post.content }}</p>
+{% endautoescape %}
+{% endblock %}

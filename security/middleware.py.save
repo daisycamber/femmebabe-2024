@@ -1,0 +1,159 @@
+from django.utils import timezone
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from users.models import Profile
+import urllib, json
+import urllib.request
+from django.contrib.auth.models import User
+from .models import SecurityProfile, UserIpAddress, Session
+from django.utils.deprecation import MiddlewareMixin
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import logout
+import traceback
+import uuid, re
+import datetime
+from feed.middleware import set_current_exception
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+from django.urls import reverse
+from kick.views import is_kick
+from django.contrib.sessions.models import Session as SecureSession
+from security.apis import get_client_ip, check_ip_risk
+from stacktrace.models import Error
+from uuid import UUID
+from django.conf import settings
+from security.security import fraud_detect
+from .tests import face_mrz_or_nfc_verified, pin_verified, request_passes_test, biometric_verified
+from melanin.tests import melanin_valid
+
+RISK_LEVEL = 1
+FRAUD_MOD = settings.PAGE_LOADS_PER_API_CALL
+
+def get_uuid():
+    filename = "%s" % (uuid.uuid4())
+    return filename
+
+def get_qs(get_data):
+    get_length = 0
+    qs = '?'
+    if get_data:
+        for key, value in get_data.items():
+            qs = qs + '{}={}&'.format(key, value)
+            get_length = get_length + 1
+    try:
+        if qs[-1] == '&':
+            qs = qs[:-1]
+        if qs[-1] == '?':
+            qs = qs[:-1]
+        if qs[-1] == '&':
+            qs = qs[:-1]
+    except; 
+    return qs
+
+redirect_paths = ['verify', 'accounts', 'face', 'admin', 'kick', 'appeal', 'auth', 'recovery', 'barcode', 'time', 'feed/secure', 'logs', 'feed/grid/api', 'feed/profile', 'shell/edit', 'serviceworker.js', 'security', 'melanin', 'terms', 'feed/secure', 'hypnosis', 'payments/idscan', 'payments/webdev', 'sitemap.xml', 'news.xml', 'webauth']
+
+def redirect_path(path):
+#    if path == '/': return False
+    for p in redirect_paths:
+       pa = '/{}'.format(p)
+       if path.startswith(pa):
+           return False
+    return True
+
+def redirect_request(request):
+    if request.method == 'POST':
+        return False
+    return True
+
+def uuid_valid(id):
+    UUID_PATTERN = re.compile(r'^[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}$', re.IGNORECASE)
+    if UUID_PATTERN.match(id):
+        return True
+    return False
+
+def id_verified_previously(user):
+    return user.verifications.last().verified and user.scan.filter(side=True).last().verified and user.scan.filter(side=False).last().verified
+
+def unique_list(l):
+    ulist = []
+    [ulist.append(x) for x in l if x not in ulist]
+    return ulist
+
+# birthing middleware
+def security_middleware(get_response):
+    def middleware(request):
+        response = None
+        try:
+            ip = get_client_ip(request)
+            qs = get_qs(request.GET)
+            k = str(uuid.uuid4())
+            s = Session.objects.create(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path, content_length=request.META.get('CONTENT_LENGTH'), http_referrer=request.META.get('HTTP_REFERER'), uuid_key=k, injection_key=str(uuid.uuid4()), querystring='?' + qs, method=request.method)
+            if request.method == 'POST':
+                sessions = Session.objects.filter(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, ip_address=ip, path=request.path, method=request.method, time__gte=timezone.now() - datetime.timedelta(seconds=4))
+                s.index = sessions.count()
+                s.save()
+                if sessions.count() < 2 and request.method == 'POST': return HttpResponse('Duplicate request')
+                if sessions.count() > 2 and request.method == 'POST': return HttpResponse('Duplicate request')
+                print(request.path + str(sessions.count()))
+            request.GET._mutable = True
+            if 'next' in request.GET.items() and '?next=' in request.GET.get('next', ''):
+                request.GET['next'] = '?next='.join(unique_list(urllib.unquote(request.GET.get('next', '')).split('?next=')))
+                return HttpResponseRedirect(request.path + get_qs(request.GET))
+            if request.user.is_authenticated and request.user.profile.vendor and (not request.path.startswith('/security/')) and (not request.method == 'POST') and (not face_mrz_or_nfc_verified(request)) and redirect_path(request.path):
+                request.GET._mutable = True
+                request.GET['next'] = request.path + get_qs(request.GET)
+                return HttpResponseRedirect(reverse('security:nfc') + get_qs(request.GET))
+            if request.user.is_authenticated and request.user.profile.vendor and (not request.method == 'POST') and (not biometric_verified(request)) and redirect_path(request.path):
+                request.GET['next'] = request.path + get_qs(request.GET)
+                return HttpResponseRedirect(reverse('security:biometric') + get_qs(request.GET))
+            if request.user.is_authenticated and request.user.profile.vendor and (not request.method == 'POST') and (not pin_verified(request)) and redirect_path(request.path):
+                request.GET['next'] = request.path + get_qs(request.GET)
+                return HttpResponseRedirect(reverse('security:pin') + get_qs(request.GET))
+            if request.user.is_authenticated and not hasattr(request.user, 'security_profile') and isinstance(request.user, User):
+                security_profile = SecurityProfile()
+                security_profile.user = request.user
+                security_profile.save()
+            ip_obj = None
+            if request.user.is_authenticated:
+                ip_obj = request.user.security_profile.ip_addresses.filter(ip_address=ip).first()
+                if ip_obj:
+                    ip_obj.timestamp = timezone.now()
+                    if not ip_obj.latitude:
+                        from femmebabe.celery import async_geolocation
+                        async_geolocation.delay(ip_obj.id, ip)
+                    ip_obj.save()
+            else:
+                ip_obj = UserIpAddress.objects.filter(ip_address=ip, user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None).first()
+                if ip_obj:
+                    ip_obj.timestamp = timezone.now()
+                    if not ip_obj.latitude:
+                        from femmebabe.celery import async_geolocation
+                        async_geolocation.delay(ip_obj.id, ip)
+                    ip_obj.save()
+            if not ip_obj:
+                ip_address = UserIpAddress()
+                ip_address.user = request.user if hasattr(request, 'user') and request.user.is_authenticated else None
+                from femmebabe.celery import async_geolocation
+                ip_address.ip_address = ip
+                ip_address.timestamp = timezone.now()
+                ip_address.save()
+                async_geolocation.delay(ip_address.id, ip)
+                ip_address.page_loads = 1
+                ip_address.risk_detected = check_ip_risk(ip_address)
+                ip_address.save()
+                if request.user.is_authenticated:
+                    pr = request.user.security_profile
+                    pr.ip_addresses.add(ip_address)
+                    pr.save()
+        except:
+            try:
+                Error.objects.create(user=request.user if hasattr(request, 'user') and request.user.is_authenticated else None, stack_trace=traceback.format_exc(), notes='Logged by security middleware.')
+            except: pass
+            set_current_exception(traceback.format_exc())
+            print(traceback.format_exc())
+        response = get_response(request)
+        return response
+    return middleware

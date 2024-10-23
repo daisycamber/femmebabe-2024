@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load feed_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+<legend>Join a Game</legend>
+<form method="POST">
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success" title="Accept invite">Join</button>
+</form>
+<p>Enter the code the other player gave you in order to join the game.</p>
+<hr>
+{% endblock %}

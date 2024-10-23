@@ -1,0 +1,12 @@
+{% load feed_filters %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% for url in urls %}
+  <url>
+    <loc>{{ base_url }}{{ url }}</loc>
+    {% for lang in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ lang }}" href="{{ base_url }}{{ url }}" />
+    {% endfor %}
+    <lastmod>{{ date }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>

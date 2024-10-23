@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<link rel="stylesheet" href="/static/clock/clock.css">
+<script src="/static/face/ccv.js" type="text/javascript"></script>
+<script src="/static/face/face.js" type="text/javascript"></script>
+<style>
+.spin-loader {
+  border: 18px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container w-100">
+<div style="display: flex; justify-content: space-around;">
+{% if request.path == '/photobooth/'  %}
+{% if request.GET.back %}
+<a href="{{ request.path }}?{% if request.GET.body %}body=t{% endif %}{% if request.GET.download %}&download=t{% endif %}" class="btn btn-sm btn-outline-dark">Back</a>
+{% else %}
+<a href="{{ request.path }}?back=t{% if request.GET.download %}&download=t{% endif %}{% if request.GET.body %}&body=t{% endif %}" class="btn btn-sm btn-outline-info">Front</a>
+{% endif %}
+{% if request.GET.body %}
+<a href="{{ request.path }}?{% if request.GET.back %}back=t{% endif %}{% if request.GET.download %}&download=t{% endif %}" class="btn btn-sm btn-outline-danger">Body</a>
+{% else %}
+<a href="{{ request.path }}?body=t{% if request.GET.download %}&download=t{% endif %}{% if request.GET.back %}&back=t{% endif %}" class="btn btn-sm btn-outline-success">Face</a>
+{% endif %}
+{% if not request.GET.download %}
+<a href="{{ request.path }}?download=t{% if request.GET.back %}&back=t{% endif %}" class="btn btn-sm btn-outline-danger">Body</a>
+{% else %}
+<a href="{{ request.path }}?{% if request.GET.body %}body=t{% endif %}{% if request.GET.back %}&back=t{% endif %}" class="btn btn-sm btn-outline-success">Face</a>
+{% endif %}
+{% endif  %}
+{% if not request.GET.back %}
+<button onclick="toggleFlash();" id="flash-switch" class="btn btn-sm btn-outline-primary"><i class="bi bi-toggle-on"></i> Flash on</button>
+{% endif %}
+</div>
+{% if request.path == '/photobooth/'  %}
+{% include 'set_content.html' %}
+{% endif  %}
+<form method="POST" enctype="multipart/form-data" id="face-login-form" style="position: absolute; display: none; visibility: hidden;">
+{% csrf_token %}
+{{ form|crispy }}
+</form>
+<p id="errormessage" class="hide" style="text-color: red;">Please enable your camera in your web browser and device settings to continue.</p>
+<video autoplay="true" id="video" width="100%"{% if not request.GET.back %} style="transform: rotateY(180deg);"{% endif %}></video>
+<img id="passkey" class="hide" width="100%"></img>
+<hr>
+<div>
+{% with profile as content %}
+<div style="display: flex; justify-content: space-around;">
+<p style="display: inline-block;">Center your face on the screen and tap or click the video. Last seen {{ profile.last_seen }}</p>
+<div style="text-align: right;">{% include 'clock.html' %}</div>
+</div>
+{% endwith %}
+</div>
+<canvas id="canvas" style="position: absolute; display: none; visibility: hidden;"></canvas>
+</div>
+<div style="position: fixed; left: 0; top: 0; background-color: transparent; height: 0px; width: 100%" id="loader-container">
+<div id="spin-loader" style="position: relative; margin: auto; top: 50%; text-align: center;"></div>
+</div>
+<div class="container">
+<div class="hide" style="display: table; position: fixed; left: 0; top: 0; background-color: #FFFFFF; height: 120%; width: 100%" id="flash">
+<div style="display: table-cell; vertical-align: middle; text-align: center;">
+<i class="bi bi-lightbulb" style="font-color: black; font-size: 200px"></i>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+var download_inc = 1;
+const download = function (canvas) {
+    const link = document.createElement('a');
+    link.download = '{{ the_site_name }} - Photo ' + download_inc + '.png';
+    download_inc++;
+    link.href = canvas.toDataURL()
+    link.click();
+}
+var flashOn = true;
+function toggleFlash() {
+	var flashSwitch = document.getElementById('flash-switch');
+	flashOn = !flashOn;
+	if(flashOn) {
+		flashSwitch.innerHTML = '<i class="bi bi-toggle-on"></i> Flash on';
+	} else {
+		flashSwitch.innerHTML = '<i class="bi bi-toggle-off"></i> Flash off';
+	}
+}
+var soundUrl = '/media/sounds/camera.mp3';
+var supported = false;
+var REQ_FACE_HEIGHT = 30;
+var image;
+var imageCapture;
+var form = document.getElementById('face-login-form');
+var flash = document.getElementById('flash');
+var mediaRecorder;
+var mediaChunks = [];
+var video = document.getElementById('video');
+var passkey = document.getElementById('passkey');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var scale = 1;
+var faces;
+video.addEventListener("volumechange", (event) => {
+	captureImage();
+	event.preventDefault();
+});
+video.addEventListener("click", function(event) {
+	captureImage();
+});
+function captureImage() {
+	$(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
+	{% if not request.GET.back %}
+	if(flashOn) {
+		window.scrollBy(0,200);
+        	$(flash).toggleClass('hide');
+	}
+	{% endif %}
+	setTimeout(function() {
+		onTakePhotoButtonClick();
+	}, {{ photo_timeout }});
+}
+function onTakePhotoButtonClick() {
+  if(supported){ /* supported */
+    imageCapture.takePhoto()
+    .then((blob) => createImageBitmap(blob))
+    .then((imageBitmap) => {
+          image = imageBitmap;
+          uploadImage(image);
+    })
+    .catch((error) => console.error(error));
+  } else {
+    uploadImage(video);
+  }
+}
+var degmod = 90;
+function drawRotated(degrees, image, fallback){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var mode = ((degrees/90)%2)%4 == 0;
+    console.log(mode);
+    if(!fallback){
+        if(!mode) {
+            canvas.width = image.height * scale;
+            canvas.height = image.width * scale;
+        } else {
+            canvas.width = image.width * scale;
+            canvas.height = image.height * scale;
+        }
+    } else {
+        if(!mode) {
+            canvas.width = image.videoHeight * scale;
+            canvas.height = image.videoWidth * scale;
+        } else {
+            canvas.width = image.videoWidth * scale;
+            canvas.height = image.videoHeight * scale;
+        }
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (degrees >= 0) {
+        context.translate(canvas.width / 2, canvas.height / 2); // to center
+        context.rotate(degrees%360 * Math.PI / 180 * 90);
+    }
+    if(!mode) {
+        context.drawImage(image, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width); // and back
+        context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+    } else {
+        context.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height); // and back
+        context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+    }
+    context.restore();
+    context.save();
+}
+function uploadImage(image){
+	window.navigator.vibrate({{ default_vibration }});
+        var aud = new Audio('/media/sounds/camera.mp3');
+	aud.play();
+	{% if request.path != '/photobooth/' %}
+		setTimeout(function() {
+			$('body').toggleClass('loaded');
+		}, 12000);
+	{% endif %}
+        video.pause();
+	document.getElementById("spin-loader").classList.add("spin-loader");
+	document.getElementById("loader-container").style.height = "100vh";
+	var rotation_attempts = [0]; /*, 270, 90, 180, 0];*/ //, 270, 180, 90];
+	var face = false;
+	var only_face = true;
+	{% if request.GET.body and request.path == '/photobooth/' %}only_face = false;{% endif %}
+	if(only_face) {
+		for(rot in rotation_attempts) {
+			drawRotated(rot, image, !supported);
+			var faces = ccv.detect_objects({
+			  "canvas" : ccv.pre(canvas),
+			  "cascade": cascade,
+			  "interval": 2,
+			  "min_neighbors": 1
+			});
+			if(!(faces.length < 1)) {
+				var height = faces[0].height;
+				console.log(height);
+				if(height > REQ_FACE_HEIGHT){
+					face = true;
+					break;
+				}
+			}
+		}
+	} else {
+		drawRotated(0, image, !supported);
+	}	
+    console.log('Is face?');
+    console.log(face);
+	if(!face && only_face) {
+		window.location.reload();
+        }
+	passkey.src = canvas.toDataURL();
+        {% if request.GET.download %}
+        download(canvas);
+        {% endif %}
+	if(!$(flash).hasClass('hide')) {
+		$(flash).toggleClass('hide');
+	}
+	$(passkey).toggleClass('hide');
+	$(video).toggleClass('hide');
+	var blobBin = atob(canvas.toDataURL().split(',')[1]);
+        flash.style.height = '0px';
+        var array = [];
+        for(var i = 0; i < blobBin.length; i++) {
+		array.push(blobBin.charCodeAt(i));
+        }
+        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var formdata = new FormData(form);
+        formdata.append('image', new File([file], 'image.png'));
+        $.ajax({
+		url: window.location.href + '?token={{ auth_token }}',
+		type: "POST",
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: function(data) {
+			console.log(data)
+			{% if not request.path == '/photobooth/' %}
+	                if(data.startsWith("/accounts/") || data.startsWith("/recovery/")){
+			  window.navigator.vibrate({{ default_vibration }});
+	                  window.location.href = data;
+	                } else {
+	                  //window.location.reload();
+	                }
+			{% endif %}
+		},
+		timeout: 1000 * 60 * 30,
+        });
+	{% if not request.path == '/photobooth/' %}
+        var interval_count = 0;
+	setTimeout(function() {
+		setInterval(function() {
+			$.ajax({
+				url: "/face/auth/{{ user_uuid }}/{{ auth_token }}/",
+				type: "POST",
+				success: function(data, textStatus) {
+					if(data != 'none' && data != '' && data != 'failed') {
+						window.navigator.vibrate({{ default_vibration }});
+						window.location.href = data;
+					} else if(data == 'failed') {
+						window.location.href = '{% url 'users:login' %}';
+					}
+				},
+				timeout: 1000 * 60,
+			});
+                        if(interval_count > 120) {window.location.reload();}
+                        interval_count++;
+		}, 10000);
+	}, 1000 * 30);
+	{% endif %}
+	{% if request.path == '/photobooth/' %}
+		form.reset();
+		document.getElementById("spin-loader").classList.remove("spin-loader");
+		document.getElementById("loader-container").style.height = "0px";
+		$(passkey).toggleClass('hide');
+		$(video).toggleClass('hide');
+		video.play();
+		$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+	{% endif %}
+}
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
+function startup() {
+  navigator.mediaDevices.getUserMedia({video: {% if not request.GET.back %}true{% else %}{facingMode: 'environment'}{% endif %}, audio: false})
+  .then(function(stream) {
+    video.srcObject = stream;
+    video.play();
+    const track = stream.getVideoTracks()[0];
+    imageCapture = new ImageCapture(track);
+    return imageCapture.getPhotoCapabilities();
+  }).then((photoCapabilities) => {
+    const settings = imageCapture.track.getSettings();
+    var min = photoCapabilities.imageWidth.min;
+    var max = photoCapabilities.imageWidth.max;
+    var step = photoCapabilities.imageWidth.step;
+    if(max > 0){
+        supported = true;
+    }
+  }).catch(function(err) {
+    console.log("An error occurred: " + err);
+    $('#errormessage').removeClass('hide');
+    supported = false;
+  });
+}
+startup();
+{% endblock %}

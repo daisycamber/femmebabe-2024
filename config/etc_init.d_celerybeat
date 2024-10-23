@@ -1,0 +1,25 @@
+### BEGIN INIT INFO
+# Provides:          celerybeat
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: your description here
+### END INIT INFO
+
+
+# Absolute or relative path to the 'celery' command:
+CELERY_BIN="/home/team/femmebabe/venv/bin/celery"
+#CELERY_BIN="/virtualenvs/def/bin/celery"
+
+# App instance to use
+# comment out this line if you don't use an app
+CELERY_APP="femmebabe"
+# or fully qualified:
+#CELERY_APP="proj.tasks:app"
+
+# Where to chdir at start.
+CELERYBEAT_CHDIR="/home/team/femmebabe"
+
+# Extra arguments to celerybeat
+CELERYBEAT_OPTS="--schedule=/home/team/femmebabe/celerybeat-schedule"

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Recordings <a class="btn btn-primary" href="{% url 'voice:recording' 'new' %}" style="float: right;"><i class="bi bi-mic"></i> New</a></h1>
+{% for recording in recordings %}
+<p>Recording on {{ recording.uploaded_file }} - <a href="{% url 'voice:recording' recording.id %}" title="Recordings">Listen</a></p>
+<hr style="background-color: blue;">
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}

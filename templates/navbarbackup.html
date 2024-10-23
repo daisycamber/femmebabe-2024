@@ -1,0 +1,105 @@
+{% load app_filters %}
+{% load feed_filters %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" id="clemn-navbar">
+  <div class="container-fluid clemn-navbar">
+    {% if request.user.is_authenticated and not request.user.profile.hide_logo or not request.user.is_authenticated and not hide_logo %}
+    <a style="position: relative; z-index: 1;" class="navbar-brand" href="{% url 'app:app' %}?k={% get_key %}" title="{{ 'The Homepage'|trans }}" rel="nofollow">
+	<img src="{{ icon_url }}" alt="{{ the_site_name }}" width="30" height="30" style="border-radius: 50%;">
+	{{ the_site_name }}
+	<small style="color: red !important; position: relative; top: 10; left: 20; z-index: 2;">ファムベイビー</small>
+    </a>
+    {% endif %}
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" data-bs-auto-close="true" data-bs-toggle="dropdown" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100%;">
+        <ul class="navbar-nav mr-auto" style="height: 100%;">
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item {% if request.path == '/accounts/register/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'users:register' %}" title="{{ 'Join today'|trans }}">{{ 'Sign Up'|trans }}</a>
+          </li>
+          {% endif %}
+          <li class="nav-item {% if request.path == '/payments/webdev/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'payments:webdev' %}" title="{{ 'Learn about our services'|trans }}">{{ 'Services'|trans }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/models/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'feed:profiles' %}" title="{{ 'See profiles from active models'|trans }}">{{ 'Models'|trans|capitalize }}</a>
+          </li>
+          {% if not request.user.is_authenticated %}
+          {% if not request.user.profile.admin %}
+	  {% if my_profile.user.vendor_profile.activate_surrogacy %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'payments:surrogacy' my_profile.name %}" title="{{ 'Surrogacy plans'|trans }}">{{ 'Surrogacy'|trans }}</a>
+          </li>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+	  {% if request.user.profile.subscriptions.count > 0 %}
+	  <li class="nav-item {% if request.path == '/feed/subscriptions/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'feed:subscriptions' %}" title="{{ 'Your Subscriptions'|trans }}">{{ 'Subscriptions'|trans }}</a>
+          </li>
+	  {% endif %}
+          <li class="nav-item{% if request.path|startswith:'/payments/crypto/' %} active{% endif %}">
+            <a class="nav-link" href="{% url 'payments:tip-crypto-simple' profileusername %}" title="{{ 'Tip me in Cryptocurrency'|trans }}">{{ 'Tip Crypto'|trans }}</a>
+          </li>
+        </ul>
+      </ul>
+        <ul class="navbar-nav align">
+	  {% if user.is_authenticated %}
+          <li class="nav-item {% if request.path == '/accounts/profile/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'users:profile' %}" title="{{ 'Your Profile'|trans }}">{{ 'Profile'|trans }}</a>
+          </li>
+	  {% endif %}
+          {% if user.is_authenticated and user.profile.identity_verified and user.profile.vendor %}
+          <li class="nav-item {% if request.path == '/feed/post/new/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'feed:new_post' %}" title="{{ 'New Post'|trans }}">{{ 'New'|trans }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/go/' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'go:go' %}" title="{{ 'Go somewhere useful'|trans }}">{{ 'Go'|trans }}</a>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="d-flex" action="{% url 'misc:search' %}">
+          <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search'|trans }}" aria-label="{{ 'Search'|trans }}" required id="q" name="q"{% if query %} value="{{ query }}"{% endif %} {% if request.path == '/search/' %}autofocus{% endif %}>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'Search'|trans }}</button>
+        </form>
+        <ul class="navbar-nav">
+          {% if user.is_superuser or user.profile.vendor %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'barcode:scan' %}?foreign=true&back=true" title="{{ 'Verify an ID with a barcode'|trans }}">{{ 'Scan ID'|trans }}</a>
+          </li>
+          <li class="nav-item align-middle">
+            <a class="nav-link align-middle" href="/admin/" title="{{ 'Admin panel'|trans }}">{{ 'Admin'|trans }}</a>
+          </li>
+	  {% elif request.user.profile.idscan_active %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'barcode:scan' %}?foreign=true&back=true" title="{{ 'Verify an ID with a barcode'|trans }}">{{ 'Scan ID'|trans }}</a>
+          </li>
+	  {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payments:idscan' %}" title="{{ 'Sign up to scan IDs with a barcode'|trans }}">{{ 'Scan ID'|trans }}</a>
+          </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item {% if request.path == '/accounts/logout/' %}active {% endif %}align-middle">
+            <a class="nav-link" href="{% url 'users:logout' %}" title="{{ 'Log out'|trans }}">{{ 'Logout'|trans }}</a>
+          </li>
+          {% else %}
+          <li class="nav-item {% if request.path == '/accounts/login/' %}active {% endif %}align-middle">
+            <a class="nav-link" href="{% url 'users:login' %}" title="{{ 'Log in to'|trans }} {{ the_site_name }}">{{ 'Login'|trans }}</a>
+          </li>
+          {% endif %}
+          <li class="nav-item align-middle">
+	    {% include 'dynamic_time.html' %}
+          </li>
+          <li class="nav-item align-middle">
+	    {% include 'dynamic_text_time.html' %}
+          </li>
+          <li class="nav-item">
+	    {% include 'sclock.html' %}
+          </li>
+        </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,11 @@
+	{% extends 'base.html' %}
+	{% block content %}
+		{% load app_filters %}
+		{% for post in posts %}
+			{% include 'feed/_post.html' %}
+		{% endfor %}
+		{% if show_ads %}
+		{% include 'banner_ad.html' %}
+		<hr>
+		{% endif %}
+	{% endblock %}

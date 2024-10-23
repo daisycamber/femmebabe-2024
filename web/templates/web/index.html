@@ -1,0 +1,157 @@
+{% extends 'web/base.html' %}
+{% block head %}
+<meta property="og:image" content="{{ model.profile.get_image_url }}">
+<meta name="pinterest:image" content="{{ model.profile.get_image_url }}"/>
+{% endblock %}{% block content %}
+{% load feed_filters %}
+<div id="pg0">
+<div class="mx-auto" style="width: 100%; max-width: 800px;"><img src="{{ model.profile.get_cover_image }}" width="100%" class="rounded"></img></div>
+<h1>My Photos</h1>
+<legend>{{ model_name }}</legend>
+<p>{{ model.profile.bio }}</p>
+<p style="text-align: center;"><small>{{ model.profile.last_seen }}</small></p>
+<p>Visit my GitHub to see my <a href="{{ github_url }}" title="My projects on GitHub">projects</a>.</p>
+{% include 'banner_ad.html' %}
+<hr>
+<div id="photo-page">
+{% autoescape off %}
+{{ init_images }}
+{% endautoescape %}
+</div>
+</div>
+<div style="margin:auto;" class="center col-md-6 p-3 rounded mb-3 {% if darkmode %}bg-dark{% else %}bg-white{% endif %}">
+<div class="mb-2" style="display: flex; justify-content: space-around;">
+<a title="{{ 'Share on Facebook'|trans }}" target="_blank" class="btn btn-light btn-xlarge" href="https://www.facebook.com/dialog/feed?&app_id=845349032833671&link=https%3A%2F%2Fglamgirlx.com{{ path|urltouri }}%3F{% for key, value in request.GET.items %}{{key}}%3D{{value|urltouri}}%26{% endfor %}&quote={% if post %}{{ post.id|shorttitle|urlready }}{% else %}Visit%20this%20link%20on%20{{ the_site_name|urlready }}{% endif %}&display=popup&hashtag=#lotteh&redirect_uri={{ base_url|urltouri }}{{ request.path|urltouri }}" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"  style="text-color: #4267B2 !important; color: #4267B2 !important;">
+  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
+<a title="{{ 'Share on Twitter'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="https://twitter.com/intent/tweet/?text={% if post %}{% if post|objecttype == 'post' %}{{ post.id|shorttitle|urlready }}{% endif %}%20-{% else %}Visit%20this%20link%20on%20{{ the_site_name|urlready }}%20-{% endif %}&url={{ base_url }}{{ path }}{{ '?'|urlready }}{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}" title="Share on Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16" style="text-color: #1DA1F2 !important; color: #1DA1F2 !important;">
+  <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"/>
+</svg></a>
+<a title="{{ 'Share on Pinterest'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="https://www.pinterest.com/pin/create/button/?url={{ base_url }}{{ path }}?{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}" title="Share on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16" style="filter: invert(21%) sepia(58%) saturate(4534%) hue-rotate(338deg) brightness(81%) contrast(128%);">
+  <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0"/>
+</svg></a>
+<a title="{{ 'Share on Linkedin'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="https://www.linkedin.com/shareArticle?mini=true&url={{ base_url }}{{ path }}?{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16"  style="color: #2867B2">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg></a>
+</div>
+<div class="mb-2" style="display: flex; justify-content: space-around;">
+<a title="{{ 'Share on Tumblr'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="http://tumblr.com/widgets/share/tool?canonicalUrl={{ base_url }}{{ path }}?{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}"><img src="/media/icons/tumblr-logo.svg" width="30" height="30" alt="Tumblr" style="filter: invert(28%) sepia(8%) saturate(3348%) hue-rotate(169deg) brightness(92%) contrast(82%);"></img></a>
+<a title="{{ 'Share on Reddit'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="http://www.reddit.com/submit?url={{ base_url }}{{ path }}{% if request.GET %}?{% endif %}{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}&title={% if post %}{% if post|objecttype == 'post' %}{{ post.id|shorttitle|urlready }}{% endif %}{% else %}Visit%20this%20link%20on%20{{ the_site_name|urlready }}{% endif %}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-reddit" viewBox="0 0 16 16" style="text-color: #FF4500 !important; color: #FF4500 !important;">
+  <path d="M6.167 8a.83.83 0 0 0-.83.83c0 .459.372.84.83.831a.831.831 0 0 0 0-1.661m1.843 3.647c.315 0 1.403-.038 1.976-.611a.23.23 0 0 0 0-.306.213.213 0 0 0-.306 0c-.353.363-1.126.487-1.67.487-.545 0-1.308-.124-1.671-.487a.213.213 0 0 0-.306 0 .213.213 0 0 0 0 .306c.564.563 1.652.61 1.977.61zm.992-2.807c0 .458.373.83.831.83s.83-.381.83-.83a.831.831 0 0 0-1.66 0z"/>
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.501 1.738.372a.83.83 0 1 0 .83-.869.83.83 0 0 0-.744.468l-1.938-.41a.2.2 0 0 0-.153.028.2.2 0 0 0-.086.134l-.592 2.788c-1.24.038-2.358.41-3.17.992-.21-.2-.496-.324-.81-.324a1.163 1.163 0 0 0-.478 2.224q-.03.17-.029.353c0 1.795 2.091 3.256 4.669 3.256s4.668-1.451 4.668-3.256c0-.114-.01-.238-.029-.353.401-.181.688-.592.688-1.069 0-.65-.525-1.165-1.165-1.165"/>
+</svg></a>
+<a title="{{ 'Share in VK'|trans }}" target="_blank" class="btn btn-xlarge btn-light" href="http://vk.com/share.php?url={{ base_url }}{{ path }}?{% for key, value in request.GET.items %}{{key}}={{value}}&{% endfor %}"><img src="/media/icons/VK_logo.svg.png" width="30" height="30" alt="VK" style="filter: invert(50%) sepia(69%) saturate(366%) hue-rotate(171deg) brightness(84%) contrast(86%);"></img></a>
+</div>
+</div>
+<div style="mx-auto">
+<p id="url" hidden>{{ static_url }}</p>
+<hr>
+<div class="pb-1 container rounded"><p class="pt-3">{{ static_url }} - <button class="btn btn-info btn-sm" onclick="copyToClipboard('url');" title="Share this page by copying the link"><i class="bi bi-clipboard-plus"></i> Copy link</button></p></div>
+<hr>
+<div style="display: flex; justify-content: space-around;"><div id="shareqrcode" style="border-style: solid; border-width: 15px; border-radius: 5px; border-color: #EEEEEE;"></div></div>
+<div style="text-align: center;"><small>(Click or tap to download image)</small></div>
+<div>{{ base_description }}</div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block javascript %}
+
+{% autoescape off %}
+function setGetParam(key,value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(key, value);
+    var newUrl = window.location.origin
+          + window.location.pathname
+          + '?' + params.toString();
+    window.history.pushState({path:newUrl},'',newUrl);
+  }
+}
+$(".pagebutton").on("click", function() {
+    var page = parseInt(this.id.charAt(this.id.length - 1));
+    for(var x = 0; x < 4; x++) {
+        if(x != page) {
+            $("#pg" + x).addClass("hide");
+        }
+    }
+    setGetParam("p", page + 1);
+    $("#pg" + page).removeClass("hide");
+    return false;
+});
+var params = new URLSearchParams(window.location.search);
+var images = `{{ images }}`.split('\n');
+{% endautoescape %}
+window.google_ad_client = "ca-pub-6209985848112194";
+window.google_ad_slot = "2468505458";
+window.google_ad_width = 300;
+window.google_ad_height = 250;
+	    
+var container = document.getElementById('photo-page');
+var w = document.write;
+document.write = function (content) {
+  container.insertAdjacentHTML("beforeend", content);
+  document.write = w;
+};
+var lcount = 12;
+var ncount = 12;
+var load_next = false;
+var load_last = false;
+var photoPage = document.getElementById('photo-page');
+var scroll_factor = 6;
+var disposal_limit = 40;
+function garbageDisposal(count) {
+    var d = document.getElementById('div' + new String(count - disposal_limit));
+    if(d) { d.remove();}
+    d = document.getElementById('div' + new String(count + disposal_limit));
+    if(d) { d.remove();}
+}
+const adsenseAd = `<div class="mx-auto p-1 m-1" style="display: flex; justify-content: space-around;">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
+crossorigin="anonymous"><\/script>
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-6209985848112194"
+data-ad-slot="2468505458"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+<\/script>
+</div>
+<hr>`;
+setInterval(function() {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - $(document).height()/scroll_factor) {
+      load_next = true;
+    } else {
+      load_next = false;
+    }
+    if($(window).scrollTop() + $(window).height() < $(document).height() - ($(document).height() - $(document).height()/scroll_factor)) {
+      load_last = true;
+    } else {
+      load_last = false;
+    }
+    if(ncount < images.length && load_next) {
+        for(var x = 0; x < 10; x++) {
+           if(!document.getElementById('div' + new String(ncount)) && images[ncount]) {
+               photoPage.insertAdjacentHTML("beforeend", images[ncount] + '<hr>');
+               garbageDisposal(ncount);
+               ncount = ncount + 1;
+            } else {
+                ncount = ncount + 1;
+            }
+        }
+	photoPage.insertAdjacentHTML("beforeend", adsenseAd);
+    }
+    if(lcount > 0 && load_last) {
+        for(var x = 0; x < 10; x++) {
+           if(!document.getElementById('div' + new String(lcount)) && images[lcount]) {
+               photoPage.insertAdjacentHTML("afterbegin", images[lcount] + '<hr>');
+               garbageDisposal(lcount);
+               lcount = lcount - 1;
+            } else {
+                lcount = lcount - 1;
+            }
+        }
+    }
+}, 3000);
+{% endblock %}

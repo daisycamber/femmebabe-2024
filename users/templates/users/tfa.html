@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_filters %}
+{% load crispy_forms_tags %}
+        <form action="{{ request.path }}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" method="POST" id="tfa-form">
+            {% csrf_token %}
+            <legend class="border-bottom mb-4">Enter Verification Code</legend>
+            <p>Step 1: Send the code</p>
+	    <i>Never share your code with anyone, as it can be used to access your account temporarily.</i>
+	    <div class="form-group">
+                {{ form.send_email|as_crispy_field }}
+                <button class="btn btn-outline-primary" type="submit">Send code</button>
+            </div>
+	    <hr>
+	    <p>Step 2: Enter the code</p>
+            <fieldset class="form-group">
+                {{ form.code|as_crispy_field }}
+		<p>Press the enter button to send yourself the code. Then, enter the code and press enter.</p>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-secondary" type="submit">Enter code</button>
+            </div>
+        </form>
+{% endblock %}
+{% block javascript %}
+{% if autofocus %}
+var codeInput = document.getElementById("id_code");
+codeInput.focus();
+{% endif %}
+var sendTextCheckbox = document.getElementById("id_send_email");
+var form = document.getElementById("tfa-form");
+function updateURLParams(check) {
+	const urlParams = new URLSearchParams(window.location.search);
+        const text = urlParams.get('text');
+	if(!text) {
+		if(check) sendTextCheckbox.checked = true;
+	} else {
+		if(check) sendTextCheckbox.checked = false;
+	}
+        if(sendTextCheckbox.checked) {
+		form.action = "{{ request.path }}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}"
+		$(".form-check-label").html(" Send email");
+        } else {
+		form.action = "{{ request.path }}?text=t{% if request.GET.next %}&next={{ request.GET.next }}{% endif %}"
+		$(".form-check-label").html(" Send text message");
+	}
+}
+sendTextCheckbox.addEventListener('change', e => {
+        updateURLParams(false);
+});
+updateURLParams(true);
+{% endblock %}

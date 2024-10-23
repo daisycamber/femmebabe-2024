@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<legend>Send Email</legend>
+<p>Send an email to {% if request.GET.u %}{{ request.GET.u }}{% else %}all users{% endif %}. <a class="btn btn-outline-primary" title="See outgoing email" href="{% url 'retargeting:emails' %}">Outgoing</a></p>
+<div style="width: 100%; max-width: 100%;">
+<form method="POST" id="mail-form">
+{% csrf_token %}
+{% load feed_filters %}
+{{ form.media }}
+{{ form|crispy|safe }}
+<button id="mail-submit" type="submit" class="btn btn-outline-danger">Send</button>
+</div>
+</form>
+{% endblock %}
+{% block javascript %}
+$(document).ready(function() {
+	document.getElementById('mail-form').addEventListener('submit', function(event) {
+		document.getElementById('mail-submit').disabled = true;
+	});
+	$('#id_content_iframe').summernote({theme: 'bs5-dark'});
+	#('#id_content_iframe').attr('style', 'background-color: #55555 !important;');
+});
+{% endblock %}

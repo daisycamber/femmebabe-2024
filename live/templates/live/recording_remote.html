@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'live:record-remote' %}?camera={% if request.GET.camera %}{{ request.GET.camera }}{% else %}private{% endif %}" method="POST" id="liveRemote">
+<button id="recordbutton" class="btn btn-outline-dark pink-borders" type="submit">{% if camera.recording %}<i class="bi bi-toggle-on"></i>{% else %}<i class="bi bi-toggle-off"></i>{% endif %}</button>
+</form>

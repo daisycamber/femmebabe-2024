@@ -1,0 +1,8 @@
+#!/bin/bash
+DOW=$(date +%u)
+HOD=$(date +%H)
+if [ "$DOW" -eq 1 ]; then
+        if [ "$HOD" -eq 0 ]; then
+		echo "test"
+        fi
+fi

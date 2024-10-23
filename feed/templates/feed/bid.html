@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load feed_filters %}
+{% load app_filters %}
+{% load crispy_forms_tags %}
+<legend>Bid in this auction</legend>
+<i>Current bid is ${{ current_bid|sub_fee }}</i>
+<p>Auction ends on {{ post.date_auction|date:"F d, Y" }} at midnight.</p>
+<form method="POST">
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success" title="Submit">Submit bid</button>
+</form>
+<small>All bids are final. The winner will be notified and delivered a link to pay.</small>
+<img src="{% if post.public %}{{ post.get_image_url }}{% else %}{{ post.get_blur_url }}{% endif %}" width="100%" height="auto" alt="A picture from @{{ post.author.username }}">
+{% endblock %}

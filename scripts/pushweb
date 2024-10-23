@@ -1,0 +1,15 @@
+#!/bin/bash
+U="team"
+DIR="lotteh"
+cd $"/home/$U/$DIR/"
+source venv/bin/activate
+python generate_site.py
+cp -r static/games/ web/site/static/
+# Sub website backup
+cd $"/home/$U/$DIR/web/site/"
+#sudo rm -r .git
+git init --initial-branch=main
+git add --all
+git commit -m "website updates"
+git remote add origin git@github.com:daisycamber/glamgirlx.git
+git push -u -f origin main

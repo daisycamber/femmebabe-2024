@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<legend>Approve Shell Logins</legend>
+{% if logins|length == 0 %}
+<p>No pending shell logins to display.</p>
+{% endif %}
+<ul>
+{% for login in logins %}
+<li id="{{ login.id }}" class="login">Login at {{ login.time }} and {{ login.time|time:"s u" }} secs. from ip {{ login.ip_address }}. Approve? {% include 'shell/approve.html' %} {% include 'shell/invalidate.html' %}<hr></li>
+{% endfor %}
+</ul>
+<hr>
+{% endblock %}
+{% block javascript %}
+var elements = document.querySelectorAll('.login');
+for(var x = 0; x < elements.length; x++) {
+	var element = elements[x];
+	$(element).on('click', function(event) {
+		$(event.target).toggleClass('fade-hidden-fast');
+		setTimeout(function() {
+			$(event.target).toggleClass('hide');
+		}, 1000);
+	});
+}
+var elements = document.querySelectorAll('.login-button');
+for(var x = 0; x < elements.length; x++) {
+	var element = document.getElementById(parseInt(elements[x].dataset.id));
+	$(elements[x]).on('click', function(event) {
+		setTimeout(function() {
+			$(event.target.parentElement.parentElement).toggleClass('fade-hidden-fast');
+			setTimeout(function() {
+				$(event.target.parentElement.parentElement).toggleClass('hide');
+			}, 1000);
+		}, 5000);
+	});
+}
+{% endblock %}

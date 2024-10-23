@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %}
+<legend>Generate a QR Code</legend>
+<p>Supply a link in the form below to generate.</p>
+<input class="form-control mr-sm-2" type="text" placeholder="{{ base_url }}" aria-label="{{ base_url }}" id="text-input" autofocus>
+<button onclick="download();" class="btn btn-primary" title="Download code">Download</button>
+<hr>
+<div style="display: flex; justify-content: space-around;"><div id="qrcode" style="border: 15px solid white; border-radius: 5px;"></div></div>
+{% endblock %}
+{% block javascript %}
+var qrdiv = document.getElementById("qrcode");
+var qr = new QRCode(qrdiv, "{{ base_url }}");
+var image = qrdiv.querySelector('img');
+image.style.width = "100%";
+image.style.maxWidth = "400px";
+const input = document.querySelector('#text-input');
+var textValue = "{{ base_url }}";
+var textUpdated = false;
+input.addEventListener('input', (event) => {
+	textValue = event.target.value;
+	textUpdated = true;
+});
+setInterval(function() {
+	if(textUpdated) {
+		qr.makeCode(textValue);
+		textUpdated = false;
+	}
+}, 1000);
+function downloadImage(url, filename) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = '{{ the_site_name }} - ' + filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+function download(){
+	downloadImage(image.src, 'QR Code');
+}
+qrdiv.onclick = download;
+{% endblock %}

@@ -1,0 +1,3 @@
+<form style="display: inline-block;" action="{% url 'audio:publish' recording.id %}" method="POST" id="publishForm">
+<button class="btn btn-sm btn-outline-warning" type="submit">{% if recording.private %}Public{% else %}Private{% endif %}</button>
+</form>

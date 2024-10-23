@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block styles %}
+input {
+    text-security: circle; /* IE/Safari */
+    -moz-text-security: circle; /* FireFox */
+    -webkit-text-security: circle; /* Chrome/Safari  */
+}
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<legend>Enter Pin</legend>
+<form id="pin-form" method="POST">
+{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-outline-info" type="submit">Enter</button>
+{% endblock %}
+{% block javascript %}
+$("#pin-form").on("submit", function(event) {
+	window.navigator.vibrate({{ default_vibration }});
+});
+document.body.onclick = function(evt) {
+    if(evt.target.getAttribute('type') != 'submit') {
+        document.getElementById('id_pin').focus();
+    }
+};
+{% endblock %}

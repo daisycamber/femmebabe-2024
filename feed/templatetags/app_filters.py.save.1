@@ -1,0 +1,429 @@
+from django.template.defaultfilters import stringfilter
+from django import template
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+from feed.models import Post
+import re
+import math
+from django.utils.html import strip_tags, escape
+import six
+#from django import template
+from django.template.base import Node
+from django.utils.functional import keep_lazy
+import urllib.parse
+from langdetect import detect
+from django.contrib import messages
+import traceback
+from django.core.validators import URLValidator, ValidationError
+from urlextract import URLExtract
+import requests
+import http.client
+from django.utils.html import escape
+from users.middleware import get_current_user
+from feed.middleware import get_current_request
+from django.conf import settings
+import pytz
+
+extractor = URLExtract()
+
+validate = URLValidator()
+
+register = template.Library()
+
+escaped_domains = ['manage.py','apps.py','facebook.com', 'models.py', '|detectlanguage', 'test.com']
+
+from .nts import number_to_string
+from tts.models import Word
+from django.utils.dateparse import parse_datetime
+
+@register.filter('sessioncount')
+def sessioncount(sessions):
+    s = int(sessions)
+    se = 'session'
+    if s > 1: se = se + 's'
+    return number_to_string(int(sessions)) + ' ' + se
+
+@register.filter('securephone')
+def securephone(phone):
+    return '+* (***) ***-' + phone[-4:]
+
+@register.filter('phone')
+def phone(phone):
+    return '+* (' + phone[2:5] + ') + ' + phone[5:] + '-' + phone[-4:]
+
+def buildlink(c):
+    c = c.replace('\'','\\\'')
+    return '<a href=\"javascript:say(\'{}\')\">{}</a> '.format(c.lower(), c)
+
+@register.filter('linkspeech')
+def linkspeech(text):
+    split = text.split(' ')
+    t = ''
+    for x in range(len(split)-2):
+        l = list()
+        c = ''
+        for index in range(3):
+            if index == 0:
+                c = '{} {} {}'.format(split[x], split[x+1], split[x+2])
+            if index == 1:
+                c = '{} {}'.format(split[x], split[x+1])
+            if index == 2:
+                c = '{}'.format(split[x])
+            words = Word.objects.filter(word=c)
+            if words.count() > 0 and not c.startswith('<') or c.endswith('>'):
+                l.append(c)
+        glen = 0
+        gwords = None
+        for y, words in enumerate(l):
+            if len(words) > glen:
+                glen = len(words)
+                gwords = words
+        if gwords:
+            t = t + buildlink(gwords) + ' '
+            x = x + len(gwords.split(" "))-1
+        else:
+            t = t + c + ' '
+    return t.strip()
+
+pn = {'He': 'He/Him/His', 'Her': 'She/Her/Hers', 'They': 'They/Them/Theirs'}
+
+@register.filter('pronouns')
+def pronouns(pronoun):
+    return pn[pronoun]
+
+@register.filter('nts')
+def nts(number):
+    return number_to_string(int(number))
+
+@register.filter('tostring')
+def tostring(input):
+    return str(input)
+
+@register.filter('stime')
+def stime(thetime):
+    time = parse_datetime(str(thetime))
+    print(time)
+    if time == None:
+        return '---'
+    times = time.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%H:%M:%S').split(':')
+    o = ' '
+    if int(times[1]) < 10:
+        o = ' o\' '
+    oclock = ' '
+    if int(times[1]) == 0:
+        oclock = ' o\'clock '
+    return (number_to_string(int(times[0])%12) if int(times[0])%12 > 0 else 'twelve') + oclock + ((o + number_to_string(int(times[1]))) if int(times[1]) > 0 else '')
+
+@register.filter('ampm')
+def ampm(thetime):
+    time = parse_datetime(str(thetime))
+    if time == None:
+        return '---'
+    times = time.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%H:%M:%S').split(':')
+    ampm = 'pm'
+    if int(times[0])-12 < 0:
+        ampm = 'am'
+    return ampm
+
+@register.filter('splitnext')
+def splitnext(next):
+    try:
+        return next.split('?')[0]
+    except:
+        return next
+
+@register.filter('boolread')
+def boolread(bool):
+    return 'Y' if bool else 'N'
+
+@register.filter('capitalize')
+def capitalize(input):
+    return input.capitalize()
+
+
+@register.filter('urlparams')
+def urlparams(page):
+    query = get_current_request().GET.copy()
+    query['page'] = str(page)
+    return query.urlencode()
+
+@register.filter('highlightsearchquery')
+def highlightsearchquery(text):
+    otext = text
+    q = get_current_request().GET['q'].split(' ')
+    for query in q:
+        t = re.split(query, text, flags=re.IGNORECASE)
+        try:
+            text = t[0] + '<mark>' + query + '</mark>' + t[1]
+        except:
+            try:
+                query = query.lower()
+                text = otext.split(query)
+                text = text[0] + '<mark>' + query + '</mark>' + text[1]
+            except:
+                text = otext
+    return text
+
+def get_lang():
+    request = get_current_request()
+    lang = request.LANGUAGE_CODE
+    if(request.GET.get('lang', '') != ''):
+        lang = request.GET.get('lang', '')
+    if lang == None:
+        lang = 'en'
+    return lang
+
+
+
+@register.filter('startswith')
+def startswith(text, starts):
+    if isinstance(text, str) and text.startswith(starts):
+        return True
+    return False
+
+@register.filter(name='detectlanguage')
+def detectlanguage(value):
+    lang = ''
+    try:
+        lang = detect(value)
+    except:
+        lang = 'en'
+    return lang
+
+@register.filter(name='removelinks')
+def removelinks(value):
+    urls = re.findall("(?P<url>https?://[^\s]+)", value)
+    dic = {}
+    for url in urls:
+        dic[url] = '(link hidden)'
+    for i, j in dic.items():
+        value = value.replace(i, j)
+    return value
+
+@register.filter(name='urltouri')
+def urltouri(value):
+    return urllib.parse.quote(value, safe='')
+
+@register.filter(name='urlready')
+def urlready(value):
+    return value.replace(" ", "%20")
+
+@register.tag
+def linebreakless(parser, token):
+    nodelist = parser.parse(('endlinebreakless',))
+    parser.delete_first_token()
+    return LinebreaklessNode(nodelist)
+
+class LinebreaklessNode(Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        strip_line_breaks = keep_lazy(six.text_type)(lambda x: x.replace('\n', ''))
+        return strip_line_breaks(self.nodelist.render(context).strip())
+
+@register.filter(name='comments')
+def comments(value):
+    post = Post.objects.get(id=int(value))
+    comments = Comment.objects.filter(post=post, public=True).order_by('-date_posted')
+    return comments[:3]
+
+@register.filter(name='addhttpstodomains')
+def addhttpstodomains(value):
+    domains = re.findall(r'(?i)\b(https?:\/\/)?(((?:\|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:\'\".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b\/?(?!@)))', value) # '\s(?:www.)?(\w+.(com|org|net|markets))', value)
+    dic = {}
+    output = ""
+    for domain in domains:
+        if not domain[1].lower() in escaped_domains:
+            url = 'https://' + domain[1]
+            if not url.lower().startswith('https://clemn.com'):
+                try:
+                    response = requests.head('https://' + domain[1], timeout=10)
+                    if response.status_code == 200:
+                        dic[domain[1]] = 'https://' + domain[1]
+                except:
+                    print("URL does not exist")
+            else:
+                dic[domain[1]] = 'https://' + domain[1]
+    replaced_items = []
+    for i, j in dic.items():
+        if not i in replaced_items:
+            value = value.replace(i, j)
+        replaced_items.append(i);
+    value = str(value)
+    while value.find('https://https://') > -1:
+        value = value.replace('https://https://','https://')
+    return value
+
+@register.filter(name='removehttps')
+def removehttps(value):
+    domains = re.findall(r'((https?):\/\/)', value) # '\s(?:www.)?(\w+.(com|org|net|markets))', value)
+    dic = {}
+    for domain in domains:
+        dic[domain[0]] = '' # 'https://' + domain[0]
+    for i, j in dic.items():
+        value = value.replace(i, j)
+    return value
+
+@register.filter(name='embedlinks')
+def embedlinks(value):
+    lang = ''
+    try:
+        lang = get_lang()
+    except:
+        lang = 'en'
+    output = ""
+    chunks = value.split("https://")
+    for x, chunk in enumerate(chunks):
+        if x != 0:
+            chunk = "https://" + chunk
+        urls = extractor.find_urls(chunk);
+        dic = {}
+        for url in urls:
+            plus = ' (it\'s on Clemn)'
+            ex = ''
+            if not url[8:17].lower() == 'clemn.com':
+                plus = ' (it will take you outside of Clemn)'
+                ex = ' id=\"external-link\"'
+            if url.endswith('.') or url.endswith(',') or url.endswith('!'):
+                url = url[:-1]
+#            print(chunk[chunk.index(url)-1-len(url)])
+            print(chunk.index(url))
+            if chunk[chunk.index(url)-1] == '\"': # or (chunk.index(url) > len(url)-1 and chunk[chunk.index(url)-1-len(url)] == '\"'):
+                pass
+            elif not url.lower().startswith('https://clemn.com') and url.lower().startswith('https://'):
+                try:
+                    response = requests.head(url, timeout=10)
+                    if response.status_code == 200:
+                        dic[url] = '<a href=\"' + url + '\" title=\"' + 'Visit this link' + plus + '\"' + ex + '>' + url[8:] + '</a>'
+                except:
+                    print("URL does not exist")
+            elif url.startswith('https://'):
+                dic[url] = '<a href=\"' + url + '\" title=\"' + 'Visit this link' + plus + '\">' + url[8:] + '</a>'
+        for i, j in dic.items():
+            chunk = chunk.replace(i, j)
+        output = output + chunk
+    return output
+
+@register.filter(name='tagusers')
+def tagusers(value):
+    lang = ''
+    try:
+        lang = get_lang()
+    except:
+        lang = 'en'
+    User = get_user_model()
+    usernames = re.findall(r"@\s?\w+", value)
+    for username in usernames:
+        user = username[1:]
+        extra = ""
+        if user[0:1] == " ":
+            extra = " "
+            user = user[1:]
+        u = None
+        start = 0
+        if len(user) > 20:
+            start = len(user) - 20
+        for x in range(start,len(user)-2):
+            n = user[0:len(user)-x]
+            try:
+                u = User.objects.filter(username__icontains=n, username__length__gt=len(n)-1, username__length__lt=len(n)+4).order_by('date_joined').first()
+            except:
+                u = None
+            if u:
+                break
+        if u:
+            value = value.replace('@' + extra + u.username, '<a href=\"https://uglek.com/user/' + u.username + '/\" title=\"' + translateval('See', lang)  + ' @' + u.username + '\'s ' + translateval('profile', lang) + '\">'+'@'+u.username+'</a>')
+    return value
+
+@register.filter(name='filetype')
+def filetype(value):
+    return value[-3:].lower()
+
+@register.filter(name='userlikes')
+def userlikes(value):
+    user = get_current_user()
+    pk = int(value)
+    post = Post.objects.get(pk=pk)
+    if user in post.likes.all():
+        return True
+    return False
+
+@register.filter(name='postviews')
+def postviews(value):
+    post = Post.objects.get(pk=int(value))
+    return post.views.count()
+
+@register.filter(name='viewername')
+def viewername(value):
+    User = get_user_model()
+    pk = int(value)
+    user = User.objects.get(pk=pk)
+    return '@' + str(user.username)
+
+@register.filter(name='postcount')
+def postcount(value):
+    return str(Post.objects.filter(topic=value).count())
+
+@register.filter(name='commentcount')
+def commentcount(value):
+    post = Post.objects.get(id=int(value))
+    return int(Comment.objects.filter(post=post, public=True).count())
+
+@register.filter(name='shorttitle')
+def shorttitle(value):
+    post = Post.objects.get(id=int(value))
+    pagetitle = ''
+    if len(post.content.splitlines()) > 0:
+        pagetitle = post.content.splitlines()[0][0:70]
+        if len(post.content.splitlines()[0]) > 70:
+            pagetitle = post.content.splitlines()[0][0:67].rsplit(' ', 1)[0] + '...'
+    return pagetitle
+
+@register.filter(name='shortdescription')
+def shortdescription(value):
+    post = Post.objects.get(id=int(value))
+    pagetitle = ''
+    description = ''
+    if len(post.content.splitlines()) > 0:
+        pagetitle = post.content.splitlines()[0][0:70]
+        if len(post.content.splitlines()[0]) > 70:
+            pagetitle = post.content.splitlines()[0][0:67].rsplit(' ', 1)[0] + '...'
+        title = post.content.splitlines()[0][0:30]
+        if len(post.content.splitlines()[0]) > 30:
+            title = post.content.splitlines()[0][0:30].rsplit(' ', 1)[0] + '...'
+        title = 'View Post - \"' + title + '\"'
+    if len(post.content.splitlines()) > 1:
+        description = post.content.splitlines()[1][0:155]
+        if len(description) == 0 and len(post.content.splitlines()) > 2:
+            description = post.content.splitlines()[2][0:155]
+        if len(description) > 152:
+            description = description.rsplit(' ', 1)[0] + '...'
+    if description == 'x':
+        description = pagetitle
+    if description == '':
+        description = 'No description for this post.'
+    return strip_tags(description)
+
+
+@register.filter(name='geturl')
+def geturl(value):
+    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', value)
+    if not len(urls) > 0:
+        return ""
+    return urls[0]
+
+@register.filter(name='div2')
+def div2(value):
+    return int(math.floor(value/2.0))
+
+@register.filter(name='striptags')
+def striptags(value):
+    return strip_tags(value)
+
+@register.filter(name='trimbio')
+def trimbio(value):
+    value = strip_tags(value)
+    if len(value) > 120:
+        return value[0:120].rsplit(' ', 1)[0] + '...'
+    return value

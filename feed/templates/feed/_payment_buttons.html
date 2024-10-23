@@ -1,0 +1,31 @@
+{% load app_filters %}
+{% if user.is_authenticated %}
+<div style="display: flex; justify-content: space-around;">
+{% if not profile.user in request.user.profile.subscriptions.all %}
+<form action="{% url 'feed:follow' profile.name %}" method="GET">
+{% csrf_token %}
+<button type="submit" class="btn btn-outline-primary" style="white-space: pre-wrap;">Follow Me
+(${{ profile.user.vendor_profile.subscription_fee|sub_fee }})
+Live, +more
+</button>
+</form>
+{% endif %}
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="white-space: pre-wrap;">Tip Me
+($25-$100,000)
+Thank you!</a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+   <div style="max-height: 50vh; overflow: scroll;">
+    <b>Credit/Debit Card</b>
+    {% for tip in tip_options %}
+    <li><a class="dropdown-item" href="{% url 'payments:tip-card' profile.name tip %}">${{ tip|sub_fee }}</a></li>
+    {% endfor %}
+    <b>Crypto</b>
+    {% for tip in tip_options %}
+    <li><a class="dropdown-item" href="{% url 'payments:tip-bitcoin' profile.name tip %}">${{ tip|sub_fee }}</a></li>
+    {% endfor %}
+   </div>
+  </ul>
+</div> 
+</div> 
+{% endif %}

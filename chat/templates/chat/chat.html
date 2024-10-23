@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load feed_filters %}
+<form method="POST" enctype="multipart/form-data" id="message-form">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group float-right" style="position: relative; bottom: 20px;">
+                <button class="btn btn-outline-info bg-white text-right" type="submit">{{ 'Send'|trans }}</button>
+            </div>
+        </form>
+<div id="user-messages">
+    {% for message in msgs %}
+      {% include 'chat/_message.html' %}
+    {% endfor %}
+</div>
+<div style="visibility: hidden;" id="user-username">{{ profile.name }}</div>
+{% include 'pagelinks.html' %}
+{% endblock %}
+{% block javascript %}
+function notify(){
+	var audio = new Audio('/media/chat/sounds/message.mp3');
+	audio.play();
+}
+var messageForm = document.getElementById("message-form");
+messageForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var form = $('#message-form')[0];
+    var formData = new FormData(form);
+    $.ajax({
+        url: window.location.href,
+        data: formData,
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        success: function(result) {
+            
+        }
+    });
+    document.getElementById("message-form").reset();
+    document.getElementById("id_content").value = "";
+});
+{% if request.GET.page == None or request.GET.page == '1' %}
+var msgs = document.getElementById("user-messages");
+function openSocket() {
+        var socket = new WebSocket("wss://" + window.location.hostname + '/ws/chat/text/{{ profile.name }}/');
+        socket.addEventListener("open", (event) => {
+            console.log('Socket open.');
+        });
+        socket.addEventListener("closed", (event) => {
+            console.log('Socket closed.');
+            setTimeout(function() {
+                openSocket();
+            }, {{ reload_time }});
+        });
+        socket.addEventListener("message", (event) => {
+    	    if(msgs.innerHTML != event.data) {
+                notify();
+	            msgs.innerHTML = event.data;
+            }
+        });
+}
+openSocket();
+{% endif %}
+{% endblock %}

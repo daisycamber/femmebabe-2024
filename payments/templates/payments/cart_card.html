@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block head %}
+{% if payment_processor == 'helcim' %}
+<script type="text/javascript" src="https://secure.helcim.app/helcim-pay/services/start.js"></script>
+{% elif payment_processor == 'stripe' %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endif %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<!--<script src="https://js.stripe.com/v3/"></script>-->
+{% endblock %}
+{% block styles %}
+#card-info-parent * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-credit-card-fill"></i> Checkout</h1>
+<p>Want to pay in crypto? <a href="{% url 'payments:cart-crypto' %}?crypto={{ default_crypto }}" title="{{ 'Shopping Cart'|trans }}" class="btn btn-lg btn-outline-primary"><i class="bi bi-bitcoin"></i> Pay in Crypto</a></p>
+<div style="text-align: center;">
+	<img alt="Accepting Visa and Mastercard" style="height: auto; width: 80%; max-width: 90px;" height="auto" src="/media/static/visa-mastercard.png"></img>
+</div>
+<b>Items:</b>
+{% autoescape off %}
+{% if cart_contents %}
+<p style="white-space: pre-wrap;">{{ cart_contents }}</p>
+{% else %}
+<p>Your cart is currently empty.</p>
+{% endif %}
+{% endautoescape %}
+<ul>
+<li>Total: (${{ fee|sub_fee }})</li>
+<li>Billed once only.</li>
+</ul>
+<b>Info:</b>
+<p>The transaction will display on your bank statement as "{{ statement_descriptor }} SHOP".</p>
+<p>For questions or concerns, please contact {{ the_site_name }} at {{ agent_phone }} or mail to {{ agent_name }} {{ agent_address }}.</p>
+<p>You will pay ${{ fee|sub_fee }} USD. Please enter your credit or debit card information.</p>
+{% if request.GET.coupon %}
+<p><legend>You have received a coupon!</legend> - Use coupon code <b id="coupon-code">{{ request.GET.coupon }}</b> <button class="btn btn-primary btn-sm" onclick="copyToClipboard('coupon-code');">Copy</button> at checkout to get a discount on your purchase.</p>
+{% endif %}
+<hr style="background-color: blue;">
+<form id="pay-form" onsubmit="event.preventDefault(); payFee();">
+{{ form|crispy }}
+<button type="submit" class="btn btn-lg btn-outline-success" title="Submit">Submit</button>
+</form>
+</div>
+<hr>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+var product = 'cart';
+var pid = '0';
+var price = {{ fee }};
+var vendor = {{ vendor.id }};
+var payForm = document.getElementById('pay-form');
+var checkoutToken;
+{% if payment_processor == 'paypal' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:paypal-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'square' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:square-checkout' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            if(data.startsWith('https://')) {
+                window.location.href = data;
+            } else { console.log('Invalid response from server.'); }
+        },
+    });
+}
+{% elif payment_processor == 'helcim' %}
+function payFee() {
+    var email = document.getElementById('id_email').value;
+    $.ajax({
+        url: '{{ base_url }}{% url 'payments:invoice' %}?vendor=' + vendor + '&email=' + email + '&price=' + price + '&product=' + product + '&pid=' + pid,
+        method:'POST',
+        success: function(data) {
+            var j = JSON.parse(data);
+            checkoutToken = j.checkoutToken;
+            $(document.getElementById("clemn-navbar")).autoHidingNavbar().hide();
+            appendHelcimPayIframe(j.checkoutToken);
+        },
+    });
+}
+window.addEventListener('message', (event) => {
+
+  const helcimPayJsIdentifierKey = 'helcim-pay-js-' + checkoutToken;
+
+  if(event.data.eventName === helcimPayJsIdentifierKey){
+
+    if(event.data.eventStatus === 'ABORTED'){
+      console.error('Transaction failed!', event.data.eventMessage);
+    }
+
+    if(event.data.eventStatus === 'SUCCESS'){
+      validateResponse(event.data.eventMessage)
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    }
+  }
+});
+function validateResponse(eventMessage) {
+  const payload = {
+    'rawDataResponse': eventMessage.data,
+  };
+  return fetch('{{ base_url }}/payments/helcim/', {body: payload, method: "POST"});
+}
+{% elif payment_processor == 'stripe' %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function payFee(){
+        fetch("/payments/cart/checkout/")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endif %}
+{% endblock %}

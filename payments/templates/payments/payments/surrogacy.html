@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block head %}
+{% if request.user.is_authenticated and request.user.profile.identity_verified %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endif %}
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% load feed_filters %}
+<h1>Buy a Surrogacy Plan</h1>
+<p>Conceive a child carried by {{ vendor.profile.name }}, according to the agreement below.</p>
+<div style="display: flex; justify-content: space-around;">
+<img class="rounded" style="float: left; width: 50%; max-width: 400px;" src="{% if request.user.is_authenticated %}{{ post.get_image_url }}{% else %}{{ post.get_face_blur_thumb_url }}{% endif %}" alt="Send crypto to {{ username }}"></img>
+</div>
+<div style="white-space: pre-wrap;">
+{{ agreement }}
+</div>
+<hr>
+<p>The surrogacy services are provided according to the agreement above. If you do not agree to the agreement, please do not continue.</p>
+<p>By checking out, you agree to the <a href="/terms/" title="Read the terms of service and privacy policy">Terms of Service and Privacy Policy</a>, as well as agree to and and acknowledge the terms of service as outlined in the above text.</p>
+<p>The transaction will display on your bank statement as "FEMMEBABE.C SURROGACY".</p>
+<p>You will be redirected to a checkout page to pay for this service. Please enter your credit, debit card or bank account information, you will be billed upon completion of checkout. This service is non refundable.</p>
+<hr>
+<div class="mx-auto">
+<div class="row mx-auto" style="display: flex; justify-content: space-around; text-align: center;">
+<div class="col-5 m-2 p-2 rounded mx-auto" style="display: inline-block; background-color: #{% if darkmode %}555555{% else %}DDDDDD{% endif %};">
+<p>Finalize</p>
+<legend>Cost: ${{ surrogacy_fee|sub_fee }} billed once</legend>
+<button onclick="{% if True or request.user.is_authenticated and request.user.profile.identity_verified %}surrogacyPlan(){% else %}window.location.href='{% if request.user_signup %}/verify/?next=/surrogacy/checkout/{% else %}/accounts/register/{% endif %}'{% endif %};" class="btn btn-lg btn-outline-success" title="Subscribe to this plan"><p>Checkout</p></button>
+</div>
+</div>
+</div>
+<hr>
+{% endblock %}
+{% block javascript %}
+{% if request.user.is_authenticated and request.user.profile.identity_verified %}
+var stripe = Stripe('{{ stripe_pubkey }}');
+function surrogacyPlan(){
+        fetch("/payments/surrogacy/checkout/finalize/?vendor={{ vendor.id }}")
+          .then((result) => {
+            return result.json();
+          })
+          .then((data) => {
+            return stripe.redirectToCheckout({ sessionId: data.sessionId });
+          });
+}
+{% endif %}
+{% endblock %}

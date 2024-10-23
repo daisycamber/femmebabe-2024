@@ -1,0 +1,17 @@
+export DJANGO_SETTINGS_MODULE="settings"
+
+# Absolute or relative path to the 'celery' command:
+CELERY_BIN="/home/team/lotteh/venv"
+#CELERY_BIN="/virtualenvs/def/bin/celery"
+
+# App instance to use
+# comment out this line if you don't use an app
+CELERY_APP="lotteh"
+# or fully qualified:
+#CELERY_APP="proj.tasks:app"
+
+# Where to chdir at start.
+CELERYBEAT_CHDIR="/home/team/lotteh/"
+
+# Extra arguments to celerybeat
+CELERYBEAT_OPTS="--schedule=/var/run/celery/celerybeat-schedule"

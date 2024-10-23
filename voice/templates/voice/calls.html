@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% block content %}
+<h1>Phone Call Recordings</h1>
+{% for url in urls %}
+<p>From {{ url.0 }} at {{ url.1 }}</p>
+<div>
+    <audio controls src="{{ url.2 }}" style="width: 100%;">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</div> 
+<hr>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,1 @@
+echo "sample test message" | mail -s "sample test mail subject" jasper.camber.holton@gmail.com

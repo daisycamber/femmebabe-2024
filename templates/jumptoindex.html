@@ -1,0 +1,7 @@
+{% load app_filters %}
+<form class="d-flex">
+{% if request.GET.q %}<input class="form-control mr-sm-2" type="text" required id="q" name="q" value="{{ request.GET.q }}" hidden>{% endif %}
+{% if request.GET.grid %}<input class="form-control mr-sm-2" type="text" id="grid" name="grid" value="true" hidden>{% endif %}
+	<input class="form-control mr-sm-2" type="text" placeholder="Index" aria-label="Index" required id="index" name="index">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Jump</button>
+</form>

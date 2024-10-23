@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<legend>Inbox</legend>
+<form class="d-flex" action="{% url 'retargeting:email' %}" method="GET">
+        <input class="form-control mr-sm-2" type="email" placeholder="person@email.com" aria-label="email" required id="u" name="u">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Send</button>
+</form>
+<hr>
+<div>
+    {% for message in mails %}
+      {% include 'mail/_message.html' %}
+    {% endfor %}
+</div>
+{% include 'pagelinks.html' %}
+{% endblock %}

@@ -1,0 +1,23 @@
+
+{
+    "name": "Glam Girl X",
+    "short_name": "Glam",
+    "description": "A glamour blog by Lotte Harper.",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/media/lips.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/media/lips.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#e51ae8",
+    "background_color": "#f17ef2",
+    "display": "standalone"
+}

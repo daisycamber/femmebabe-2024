@@ -1,0 +1,863 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% load feed_filters %}
+{% block head %}
+<script type="text/javascript" src="/static/audio/chart.js"></script>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+-->
+{% endblock %}
+{% block content %}
+<h1>Audio Recording</h1>
+{% if user.is_authenticated %}
+<div style="display: flex; justify-content: space-around;">
+<a href="{% url 'audio:recordings' %}" class="btn btn-outline-primary btn-sm">Back to recordings</a>
+<a href="{% url 'audio:record' 'record' %}?live=true" class="btn btn-outline-danger btn-sm">Live</a>
+{% if recording.content %}
+<a href="{% url 'audio:record' 'record' %}?speech=true&transcript=true" class="btn btn-outline-danger btn-sm">New</a>
+{% include 'audio/_add_post.html' %}
+{% endif %}
+</div>
+{% endif %}
+{% if not recording.content and request.user == theuser %}
+<small><i>Current time is</i> <small id="currentTime">{{ current_time_js }}</small></small>
+<form action="{{ request.path }}?{% for key, value in request.GET.items %}{{ key }}={{ value }}&{% endfor %}" method="POST" enctype="multipart/form-data" id="audio-form">
+{{ form|crispy }}
+<button type="submit" class="btn btn-outline-success">Submit</button>
+</form>
+<hr style="background-color: green;">
+<div style="display: flex; justify-content: space-around;">
+<button onclick="startRecording();" class="btn btn-outline-danger"><i class="bi bi-mic-fill"></i> Record</button>
+<button onclick="stopRecording();" class="btn btn-outline-danger"><i class="bi bi-mic"></i> Stop</button>
+</div>
+<hr style="background-color: red;">
+<p class="text-center"><i id="recordingid" class="bi bi-record-circle-fill"></i> <i class="text-center" id="elapsed-seconds"></i></p>
+<i class="hide" id="posted" style="float: right; text-color: green;">Saved.</i>
+<hr>
+{% if user == theuser and recording %}
+<a href="{% url 'synthesizer:edit-audio' recording.id %}" title="Edit this audio" class="btn btn-outline-success">Edit</a>
+<div style="float: right;">{% include 'audio/publish.html' %}</div>
+{% with recording as content %}{% include 'clock.html' %}{% endwith %}
+<small><i>Uploaded file</i> {{ recording.uploaded_file|date:"D d M Y" }} at {{ recording.uploaded_file|time:"g:i:s a" }}</small>
+{% autoescape off %}
+<p>{{ recording.notes }}</p>
+{% if recording.transcript != 'transcription disabled for this audio.' %}
+<p>* transcript * {{ recording.transcript|linkspeech }}</p>
+{% else %}
+<p>{{ recording.transcript }}</p>
+{% endif %}
+{% endautoescape %}
+<div>
+    <audio controls src="{{ recording.get_secure_url }}" style="width: 100%;">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</div>
+<canvas id="pitch-chart" height="400px" width="100%"></canvas>
+{% endif %}
+{% endif %}
+<div id="pitch-container" style="width: 100%; overflow-x: scroll;">
+<div style="width: 3000px; height: 400px;{% if darkmode %} background-color: #DDDDDD;{% endif %}">
+<canvas id="pitch-chart-live" height="400px" width="3000px" class="hide"></canvas>
+<canvas id="pitch-chart-live2" height="400px" width="3000px" class="hide"></canvas>
+</div>
+</div>
+<div style="display: flex; justify-content: space-around;">
+<div><legend id="note-verbose" style="color: green; !important;">(Tap)</legend></div>
+<div><legend id="pitch-verbose" style="color: green; !important;"></legend></div>
+</div>
+<hr>
+<div style="display: flex; justify-content: space-around;">
+<div><i>Target:</i></div>
+<div><legend id="target-note-verbose" style="color: green; !important;"></legend></div>
+<div><legend id="target-pitch-verbose" style="color: green; !important;"></legend></div>
+</div>
+{% endblock %}
+{% block javascript %}
+const maxDecibels = 2000;
+var targetColor = '#ff4fd6';
+var belowColor = '#4f66ff';
+const theGain = 60;
+var scrollContainer = true;
+var container = document.getElementById('pitch-container');
+container.addEventListener('scroll', function(e) {
+    if(this.scrollLeft > (3000 - window.innerWidth) * 0.95) {
+        scrollContainer = true;
+    } else {
+        scrollContainer = false;
+    }
+});
+const SECONDS_TO_GRAPH = 30;
+{% if recording.content %}
+const ctx = document.getElementById('pitch-chart');
+var pitchData = {{ recording.get_pitch_code }};
+for(var x = 0; x < pitchData.length; x++) {
+    if(pitchData[x] < 0) pitchData[x] = null;
+}
+new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ recording.get_note_code|safe|marksafe }},
+      datasets: [{
+        label: 'Pitch',
+        data: pitchData,
+	fill: false,
+	borderColor: 'rgb(255, 0, 0)',
+	tension: 1
+      }]
+    },
+  options: {
+    responsive: false,
+    spanGaps: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Pitch (Hz)'
+      },
+    },
+    tooltips: {
+        mode: 'index'
+    },
+    scales: {
+      y: {
+        min: 100,
+        max: {{ max_pitch }},
+        title: {
+            display: true,
+            text: 'Pitch (Hz)'
+        },
+      },
+    },
+    elements: {
+      point: {
+        radius: 4,
+        hoverRadius: 8, // ex.: to make it bigger when user hovers put larger number than radius.
+      }
+    }
+
+  },
+});
+{% endif %}
+var lpitches = [];
+var lnotes = [];
+var lcolors = [];
+var liveChart;
+var liveChart2;
+var lc = false;
+var firstScroll = true;
+var updatedChart = false;
+function updateLive() {
+    var ctxLive;
+    var c;
+    lc = !lc;
+    if(lc) ctxLive = document.getElementById('pitch-chart-live');
+    else ctxLive = document.getElementById('pitch-chart-live2');
+    if(lc) octxLive = document.getElementById('pitch-chart-live2');
+    else octxLive = document.getElementById('pitch-chart-live');
+    if(lc) c = liveChart;
+    else c = liveChart2;
+    var c2;
+    if(lc) c2 = liveChart2;
+    else c2 = liveChart;
+    if(c) c.destroy();
+    var datasets = [];
+    var d = [];
+    var lastColor = lcolors[0];
+    var index = 0;
+    for(var x = 0; x < lcolors.length; x++) {
+        if(lcolors[x] == lastColor) {
+            d.push([lpitches[x], lnotes[x], lcolors[x], x]);
+        } else {
+            if(d.length > 0) datasets.push(d);
+            d = [];
+            d.push([lpitches[x], lnotes[x], lcolors[x], x]);
+        }
+        lastColor = lcolors[x];
+    }
+    datasets.push(d);
+    var data = [];
+    var count = 0;
+    var total = 0;
+    var lastLen = 0;
+    for(d in datasets) {
+        total = total + d.length;
+    }
+    var count = total;
+    var totalLen = 0;
+    var nnotes = [];
+    for(var j = 0; j < lnotes.length; j++) {
+        nnotes.push('');
+    }
+    for(var i = datasets.length - 1; i > 0; i--) {
+        var ds = datasets[i];
+        var label = 'Below';
+        if(ds[0][2] == targetColor) {
+            label = 'Target';
+        }
+        var pt = [];
+        for(var j = 0; j < lnotes.length; j++) {
+            pt.push('NaN');
+        }
+        for(var j = 0; j < ds.length; j++) {
+            /*pt.shift();*/
+            pt[(lnotes.length - lastLen - ds.length) + j] = parseInt(ds[j][0]);
+            nnotes[(lnotes.length - lastLen - ds.length) + j] = ds[j][1];
+        }
+        data.push({
+            label: label,
+            data: pt,
+            fill: true,
+            lineTension: true,
+            borderColor: ds[0][2],
+            backgroundColor: ds[0][2]
+        });
+        lastLen+=ds.length;
+        totalLen+=ds.length;
+    }
+    c = new Chart(ctxLive, {
+        type: 'line',
+        data: {
+          labels: nnotes,
+          datasets: data
+        },
+        options: {
+            animations: false,
+            responsive: true,
+            spanGaps: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Pitch'
+              },
+            },
+            tooltips: {
+                mode: 'index'
+            },
+            scales: {
+                x: {
+                    display: true,
+                    scaleLabel: {
+                        display: true
+                    },
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Note (C0-C6), 1/4s avg. autocorrelated'
+                    }
+                },
+                y: {
+                    suggestedMin: 100,
+                    suggestedMax: {{ max_pitch }},
+                    position: "left",
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Pitch (Hz)'
+                    }
+                },
+                y1: {
+                    position: "right",
+                    afterBuildTicks: (axis) => {
+                      axis.ticks = [...axis.chart.scales.y.ticks];
+                      axis.min = axis.chart.scales.y.min;
+                      axis.max = axis.chart.scales.y.max;
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pitch (Hz)'
+                    }
+                },
+             }
+          },
+          elements: {
+            point: {
+              radius: 4,
+              hoverRadius: 8, // ex.: to make it bigger when user hovers put larger number than radius.
+            }
+          },
+    });
+    ctxLive.classList.remove('hide');
+    octxLive.classList.add('hide');
+    updatedChart = false;
+    if(lc) liveChart = c;
+    else liveChart2 = c;
+    if(scrollContainer) {
+        container.scrollBy(200, 0);
+    } else if(firstScroll) {
+        container.scrollBy(3000, 0);
+        firstScroll = false;
+    }
+}
+const PITCH_DIGITS = 0;
+var pitchMediaRecorder;
+var pitches = [];
+var volumes = [];
+var notes = [];
+var pitchInterval;
+var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+var pNoteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+const A4 = 440;
+function pitchToNote(frequency) {
+	var noteNum = 12 * (Math.log( frequency / A4 )/Math.log(2) );
+	return Math.round( noteNum ) + 69;
+}
+function noteToPitch(note) {
+	var octave = note.substring(note.length - 1, note.length);
+	var semitones = 12 * (octave) + pNoteStrings.indexOf(note.substring(0, note.length - 1));
+	const frequency = A4 * Math.pow(2, (semitones-12*5)/12);
+	return frequency;
+}
+const targetPitch = noteToPitch('{{ target_pitch }}').toFixed(PITCH_DIGITS);
+const minimumPitch = noteToPitch('E0').toFixed(PITCH_DIGITS);
+const maximumPitch = noteToPitch('C6').toFixed(PITCH_DIGITS);
+document.getElementById('target-note-verbose').innerHTML = "{{ target_pitch }}";
+document.getElementById('target-pitch-verbose').innerHTML = String(targetPitch) + " Hz";
+var analyser;
+var source;
+var reading = false;
+var audioContext;
+function initialize() {
+    if(!reading) {
+        reading = true;
+    	try { window.navigator.vibrate({{ default_vibration }}); } catch {}
+    	audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          console.log("getUserMedia supported.");
+          navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+            const gain = audioContext.createGain();
+            gain.gain.value = theGain;
+        	analyser = audioContext.createAnalyser();
+        	analyser.minDecibels = -300; // -100
+        	analyser.maxDecibels = maxDecibels;
+        	analyser.smoothingTimeConstant = 0.85;
+            gain.connect(analyser);
+        	source = audioContext.createMediaStreamSource(stream);
+        	source.connect(analyser);
+            var pitchInterval = 
+                setInterval(function() {
+                	var bufferLength = analyser.fftSize;
+                	var buffer = new Float32Array(bufferLength);
+                	analyser.getFloatTimeDomainData(buffer);
+                	var autoCorrelateValue = autoCorrelate(buffer, audioContext.sampleRate)
+                	var pitch = autoCorrelateValue;	
+                	bufferLength = analyser.frequencyBinCount;
+                	const dataArray = new Uint8Array(bufferLength);
+                	analyser.getByteFrequencyData(dataArray);
+                	let sum = 0;
+                	for (const amplitude of dataArray) {
+                		sum += amplitude * amplitude;
+                	}
+                	const volume = Math.sqrt(sum / dataArray.length)
+                	if(pitch > -1) {
+                		pitchC += 1;
+                		pitchAvg += pitch;
+                	}
+                	if(pitchCount % 25 == 0) {
+                		if(pitchC > 0) {
+                			pitch = parseInt(pitchAvg/pitchC);
+                		} else {
+                			pitch = -1;
+                		}
+                		pitchAvg = 0;
+                		pitchC = 0;
+                		pitchCount = 0;
+                		note = noteStrings[pitchToNote(pitch) % 12] + Math.floor(pitchToNote(pitch)/12 - 1);
+                		pitches.push(pitch.toFixed(PITCH_DIGITS));
+                		notes.push(note);
+                		volumes.push(volume);
+                        var thecolor;
+                		if(pitch >= targetPitch) {
+                            thecolor = targetColor;//'rgb(0,255,0)';
+                			noteVerbose.style = 'color: green; !important';
+                			pitchVerbose.style = 'color: green; !important';
+                		} else if(pitch > minimumPitch) {
+                            thecolor = belowColor;//'rgb(255,0,0)';
+                            noteVerbose.style = 'color: red; !important';
+                			{% if darkmode %}
+                			pitchVerbose.style = 'color: lightblue; !important';
+                			{% else %}
+                			pitchVerbose.style = 'color: blue; !important';
+                			{% endif %}
+                		}
+                		if(pitch > minimumPitch && pitch < maximumPitch) {
+                    		lpitches.shift();
+                            lnotes.shift();
+                            lcolors.shift()
+                            lpitches.push(pitch.toFixed(PITCH_DIGITS));
+                    		lnotes.push(note);
+                            lcolors.push(thecolor)
+                			noteVerbose.innerHTML = note;
+                			pitchVerbose.innerHTML = pitch.toFixed(PITCH_DIGITS) + " Hz";
+                            updatedChart = true;
+                		} else {
+/*                    		lpitches.shift();
+                            lnotes.shift();
+                            lcolors.shift()
+                            lpitches.push(null);
+                    		lnotes.push('NaN');
+                            lcolors.push(thecolor);*/
+                        }
+                        {% if not recording.content %}if(updatedChart) updateLive();{% endif %}
+                	}
+                	pitchCount = pitchCount + 1;
+                    }, 10);
+            }).catch(function (err) {
+              console.log("The following getUserMedia error occurred: " + err);
+            });
+        } else {
+          console.log("getUserMedia not supported on your browser!");
+        }
+        var noteVerbose  = document.getElementById("note-verbose");
+        var pitchVerbose = document.getElementById("pitch-verbose");
+        var pitchC = 0;
+        var pitchAvg = 0;
+        var pitchCount = 0;
+        for(var x = 0; x < {{ pitches_per_second }}/2 * SECONDS_TO_GRAPH; x++) {
+            lnotes.push(null);
+            lpitches.push('NaN');
+            lcolors.push(belowColor);
+        }
+    }
+}
+document.body.addEventListener('click', function(event) {
+    initialize();
+});
+document.body.addEventListener('touchmove', function(event) {
+    initialize();
+});
+{% if not recording.content and request.user == theuser and request.user.is_authenticated %}
+var form = document.getElementById("audio-form");
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+const sessionBegan = makeid(16);
+var posted = document.getElementById('posted');
+var boxes = ['id_live', 'id_generate_transcript', 'id_generate_speech'];
+var labels = ['live', 'transcript', 'speech'];
+function updateURLParameters() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const k = urlParams.get('k');
+	var qs = 'k=' + k + "&";
+	for (var i = 0; i < boxes.length; i++) {
+		if(document.getElementById(boxes[i]).checked) {
+			qs = qs + labels[i] + "=true&";
+        }
+	}
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + qs;
+	window.history.pushState({path:newurl}, '', newurl);
+}
+for (var i = 0; i < boxes.length; i++) {
+	document.getElementById(boxes[i]).addEventListener('change', e => {
+		updateURLParameters();
+	});
+}
+var red = document.getElementById("recordingid");
+setInterval(function() {
+	var d = new Date();
+        d.toLocaleString();
+        document.getElementById('currentTime').innerHTML = d;
+}, 1000);
+function formatTime(seconds) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.round(seconds % 60);
+  return [
+    h,
+    m > 9 ? m : (h ? '0' + m : m || '0'),
+    s > 9 ? s : '0' + s
+  ].filter(Boolean).join(':');
+}
+var recording = false;
+var recordingInterval;
+var liveBox = document.getElementById("id_live");
+var live = false;
+var liveInterval;
+liveBox.addEventListener('change', e => {
+	toggleLive();
+});
+function toggleLive() {
+	live = !live;
+	console.log(live);
+	if(!recording) {
+		recording = true;
+	} else if(recording && !live) {
+		stop();
+		recording = false;
+	}
+	if(!live) {
+		clearInterval(recordInterval);
+		clearInterval(liveInterval);
+		stop();
+	} else {
+		record();
+		start();
+		recordInterval = setInterval(function() {
+			stop();
+			record();
+		}, {{ audio_interval }});
+	}
+}
+var elapsed = document.getElementById("elapsed-seconds");
+var startTime, endTime;
+function start() {
+  startTime = new Date();
+  end();
+  recording = true;
+  recordingInterval = setInterval(function() {
+	if(recording) {
+		 end();
+		 red.classList.toggle("color-red");
+	}
+  }, 1000);
+};
+function end() {
+	endTime = new Date();
+	var timeDiff = endTime - startTime; //in ms
+	// strip the ms
+	timeDiff /= 1000;
+	seconds = Math.floor(timeDiff);
+	elapsed.innerHTML = formatTime(seconds) + " elapsed";
+}
+var mediaRecorder;
+function record() {
+	mediaRecorder.start();
+}
+function stop() {
+	if(mediaRecorder.state == "recording") {
+		clearInterval(recordingInterval);
+		mediaRecorder.stop();
+	}
+}
+function startRecording() {
+	if(!recording) {
+		record();
+		start();
+        pitches = [];
+	    volumes = [];
+        notes = [];
+	}
+}
+function stopRecording() {
+	if(!live) {
+		recording = false;
+		stop();
+	} else {
+		liveBox.checked = false;
+		toggleLive();
+	}
+}
+var chunks = [];
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  console.log("getUserMedia supported.");
+  navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+        mediaRecorder = new MediaRecorder(stream);
+	mediaRecorder.ondataavailable = function (e) {
+	  chunks.push(e.data);
+	  uploadData();
+	};
+    }).catch(function (err) {
+      console.log("The following getUserMedia error occurred: " + err);
+    });
+} else {
+  console.log("getUserMedia not supported on your browser!");
+}
+function uploadData() {
+      let blob = new Blob(chunks, {"type": "audio/webm; codecs=opus" });
+	  var formData = new FormData(form);
+	  formData.append("content", blob, "audio.webm");
+          formData.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+          formData.set("session", sessionBegan);
+          var p = "";
+          var v = "";
+          var n = "";
+	  for(pitch of pitches) {
+		p = p + String(pitch) + ",";
+	  }
+	  for(volume of volumes) {
+		v = v + String(volume) + ",";
+	  }
+	  for(note of notes) {
+		n = n + String(note) + ",";
+	  }	  
+	  formData.set("pitches", p.slice(0, -1));
+          formData.set("volumes", v.slice(0, -1));
+          formData.set("pitch_notes", n.slice(0, -1));
+	  pitches = [];
+	  volumes = [];
+	  notes = [];
+	  var id = formData.get("confirmation_id");
+      $.ajax({
+	    type: "POST",
+	    url: window.location.href,
+	    data: formData,
+	    processData: false,
+	    contentType: false,
+	    timeout: 1000 * 60 * 10,
+            tryCount: 0,
+            retryLimit: 5,
+            error: (xhr, textStatus, errorThrown) => {
+			$(posted).addClass("fade-hidden");
+			setTimeout(function() {
+				$(posted).addClass("hide");
+			}, 2000);
+                    this.tryCount++;
+                    if(this.tryCount >= this.retryLimit) return;
+                    $.ajax(this);
+            },
+	    success: function(data) {
+		$(posted).innerHTML(data);
+		$(posted).toggleClass("hide");
+		setTimeout(function() {
+                        $(posted).toggleClass("fade-hidden");
+                        setTimeout(function() {
+                                $(posted).toggleClass("hide");
+                                $(posted).toggleClass("fade-hidden");
+                        }, 2000);
+                }, 2000);
+                $.ajax({
+                        url: "/audio/confirm/" + id + "/",
+                        type: "POST",
+                        success: function(data) {
+                                if(data != "y") {
+                                        $.ajax(this);
+                                }
+                        },
+                });
+	     },
+	  });
+}
+if(liveBox.checked) {
+	setTimeout(function() {
+		toggleLive();
+	}, 1000);
+}
+function splitAudioArrayBuffer(audioBuffer, numberOfSegments, sampleRate) {
+  const buffer = audioBuffer.getChannelData(0);
+  const segmentLength = parseInt(buffer.length/numberOfSegments);
+  const bufferLength = parseInt((audioBuffer.duration/numberOfSegments) * sampleRate);
+  const segments = [];
+  for (let i = 0; i < numberOfSegments; i++) {
+    const start = i * segmentLength;
+    const end = (i + 1) * segmentLength;
+    const segment = buffer.subarray(start, end);
+    var s = audioContext.createBuffer(1, bufferLength, sampleRate);
+    s.copyToChannel(segment, 0);
+    segments.push(s);
+  }
+  return segments;
+}
+form.addEventListener("submit", function(e) {
+	e.preventDefault();
+	var input = document.getElementById("id_content");
+	if (FileReader.prototype.readAsArrayBuffer && FileReader.prototype.readAsBinaryString) {
+	    FileReader.prototype.readAsArrayBuffer = function readAsArrayBuffer () {
+	        this.readAsBinaryString.apply(this, arguments);
+	        this.__defineGetter__('resultString', this.__lookupGetter__('result'));
+	        this.__defineGetter__('result', function () {
+	            var string = this.resultString;
+	            var result = new Uint8Array(string.length);
+	            for (var i = 0; i < string.length; i++) {
+	                result[i] = string.charCodeAt(i);
+	            }
+	            return result.buffer;
+	        });
+	    };
+	}
+	var reader = new FileReader();
+	audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    reader.onloadend = function(e) {
+            var arrayBuffer = e.target.result; /*reader.result;*/
+            console.log(e);
+            console.log(arrayBuffer);
+            audioContext.decodeAudioData(arrayBuffer).then(function(audioBuffer) {
+            console.log(audioBuffer.length);
+            console.log(audioBuffer.duration);
+            var segments = splitAudioArrayBuffer(audioBuffer, parseInt(audioBuffer.duration * 100.0), audioBuffer.sampleRate);
+            var upitches = [];
+            var uvolumes = [];
+            var unotes = [];
+            var pitchC = 0;
+            var pitchAvg = 0;
+            var pitchCount = 0;
+            for(segment of segments) {
+                const gain = audioContext.createGain();
+                gain.gain.value = theGain;
+            	analyser = audioContext.createAnalyser();
+            	analyser.minDecibels = -300; // -100
+            	analyser.maxDecibels = maxDecibels;
+            	analyser.smoothingTimeConstant = 0.85;
+                var source = audioContext.createBufferSource();
+                source.buffer = segment;
+                gain.connect(analyser);
+                source.connect(analyser);
+                var bufferLength = analyser.fftSize;
+                var buffer = new Float32Array(bufferLength);
+                analyser.getFloatTimeDomainData(buffer);
+                var autoCorrelateValue = autoCorrelate(buffer, buffer.sampleRate)
+                var pitch = autoCorrelateValue;	
+                bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                analyser.getByteFrequencyData(dataArray);
+                let sum = 0;
+                for (const amplitude of dataArray) {
+                	sum += amplitude * amplitude;
+                }
+                const volume = Math.sqrt(sum / dataArray.length)
+                if(pitch > -1) {
+                	pitchC += 1;
+                	pitchAvg += pitch;
+                }
+                if(pitchCount % parseInt((25.0 * {{ pitches_per_second }}) / 4.0) == 0) {
+                	if(pitchC > 0) {
+                		pitch = parseInt(pitchAvg/pitchC);
+                	} else {
+                		pitch = -1;
+                	}
+                	pitchAvg = 0;
+                	pitchC = 0;
+                	pitchCount = 0;
+                	pitches.push(pitch.toFixed(PITCH_DIGITS));
+                	notes.push(note);
+                	volumes.push(volume);
+                	note = noteStrings[pitchToNote(pitch) % 12] + Math.floor(pitchToNote(pitch)/12 - 1);
+                	upitches.push(pitch.toFixed(PITCH_DIGITS));
+                	unotes.push(note);
+                	uvolumes.push(volume);
+                }
+                pitchCount = pitchCount + 1;
+                }
+            console.log(unotes);
+            var formData = new FormData(form);
+              input = document.getElementById("id_content");
+            var file = input.files[0];
+            formData.set("content", file);
+            formData.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+              formData.set("session", sessionBegan);
+              var p = "";
+              var v = "";
+              var n = "";
+            for(pitch of upitches) {
+            p = p + String(pitch) + ",";
+            }
+            for(volume of uvolumes) {
+            v = v + String(volume) + ",";
+            }
+            for(note of unotes) {
+            n = n + String(note) + ",";
+            }	  
+            formData.set("pitches", p.slice(0, -1));
+              formData.set("volumes", v.slice(0, -1));
+              formData.set("pitch_notes", n.slice(0, -1));
+            var id = formData.get("confirmation_id");
+              $.ajax({
+            type: "POST",
+            url: window.location.href,
+            data: formData,
+            processData: false,
+            contentType: false,
+            timeout: 1000 * 60 * 10,
+                tryCount: 0,
+                retryLimit: 5,
+                error: (xhr, textStatus, errorThrown) => {
+            	$(posted).addClass("fade-hidden");
+            	setTimeout(function() {
+            		$(posted).addClass("hide");
+            	}, 2000);
+                        this.tryCount++;
+                        if(this.tryCount >= this.retryLimit) return;
+                        $.ajax(this);
+                },
+            success: function(data) {
+            $(posted).innerHTML(data);
+            $(posted).toggleClass("hide");
+            setTimeout(function() {
+                            $(posted).toggleClass("fade-hidden");
+                            setTimeout(function() {
+                                    $(posted).toggleClass("hide");
+                                    $(posted).toggleClass("fade-hidden");
+                            }, 2000);
+                    }, 2000);
+                    $.ajax({
+                            url: "/audio/confirm/" + id + "/",
+                            type: "POST",
+                            success: function(data) {
+                                    if(data != "y") {
+                                            $.ajax(this);
+                                    }
+                            },
+                    });
+             },
+            });
+            form.reset();
+        });
+	};
+	reader.readAsArrayBuffer(input.files[0]);
+});
+{% endif %}
+function autoCorrelate(buffer, sampleRate) {
+  var SIZE = buffer.length;
+  var sumOfSquares = 0;
+  for (var i = 0; i < SIZE; i++) {
+    var val = buffer[i];
+    sumOfSquares += val * val;
+  }
+  var rootMeanSquare = Math.sqrt(sumOfSquares / SIZE)
+  if (rootMeanSquare < 0.01) {
+    return -1;
+  }
+  var r1 = 0;
+  var r2 = SIZE - 1;
+  var threshold = 0.2;
+  for (var i = 0; i < SIZE / 2; i++) {
+    if (Math.abs(buffer[i]) < threshold) {
+      r1 = i;
+      break;
+    }
+  }
+  for (var i = 1; i < SIZE / 2; i++) {
+    if (Math.abs(buffer[SIZE - i]) < threshold) {
+      r2 = SIZE - i;
+      break;
+    }
+  }
+  buffer = buffer.slice(r1, r2);
+  SIZE = buffer.length
+  var c = new Array(SIZE).fill(0);
+  for (let i = 0; i < SIZE; i++) {
+    for (let j = 0; j < SIZE - i; j++) {
+      c[i] = c[i] + buffer[j] * buffer[j+i]
+    }
+  }
+  var d = 0;
+  while (c[d] > c[d+1]) {
+    d++;
+  }
+  var maxValue = -1;
+  var maxIndex = -1;
+  for (var i = d; i < SIZE; i++) {
+    if (c[i] > maxValue) {
+      maxValue = c[i];
+      maxIndex = i;
+    }
+  }
+  var T0 = maxIndex;
+  var x1 = c[T0 - 1];
+  var x2 = c[T0];
+  var x3 = c[T0 + 1]
+  var a = (x1 + x3 - 2 * x2) / 2;
+  var b = (x3 - x1) / 2
+  if (a) {
+    T0 = T0 - b / (2 * a);
+  }
+  return sampleRate/T0;
+}
+{% endblock %}

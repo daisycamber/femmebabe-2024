@@ -1,0 +1,14 @@
+chmod -R go+rX
+redis-cli KEYS "celery*" | xargs redis-cli DEL
+/home/team/clemn/venv/lib/python3.10/site-packages/django/apps/registry.py
+
+
+In Django, the loaddata command loads data from a fixture into the database. By default, it doesn't overwrite existing data. However, you can achieve the effect of overwriting by:
+1. Truncating the tables:
+Before loading:
+Use the manage.py sqlflush command or manually truncate the relevant tables in your database. This will delete all existing data in those tables.
+Then load:
+Run manage.py loaddata <fixturename> to load your fixture data into the now-empty tables.
+
+manage.py sqlflush <app_name>
+manage.py loaddata <app_name>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1><i class="bi bi-currency-bitcoin"></i> Subscribe to @{{ username }} with Crypto</h1>
+<img align="left" src="{{ profile.get_face_blur_url }}" style="width:33%; margin-right: 10px;" class="rounded"></img>
+<form id="payment-form" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<fieldset class="form-group">
+<legend class="border-bottom mb-4">Step 1: Send Bitcoin</legend>
+<p>Send {{ bitcoin_fee }} BTC <button class="btn btn-sm btn-info" onclick="copyAmount();"><i class="bi bi-clipboard-check-fill"></i> Copy</button> (${{ usd_fee|sub_fee }}) to the following wallet address:</p>
+<b><i style="overflow-wrap: break-word;">{{ vendor_profile.get_bitcoin_address }}</i></b>
+<button class="btn btn-sm btn-info" onclick="copyAddress();"><i class="bi bi-clipboard-check-fill"></i> Copy</button>
+<hr style="background-color: green;">
+<legend class="border-bottom mb-4">Step 2: Enter Transaction ID</legend>
+<p>Return here and enter your transaction ID. After a few minutes, reload this page.</p>
+{{ form|crispy }}
+</fieldset>
+<hr style="background-color: blue;">
+<button id="submit-button" type="submit" class="btn btn-outline-success">Verify</button>
+</form>
+</div>
+{% endblock %}
+{% block javascript %}
+function copyAddress() {
+	navigator.clipboard.writeText("{{ vendor_profile.get_bitcoin_address }}");
+}
+function copyAmount() {
+	navigator.clipboard.writeText("{{ bitcoin_fee }}");
+}
+$('#payment-form').on('submit', function(){
+        document.getElementById('submit-button').disabled = true;
+});
+{% endblock %}

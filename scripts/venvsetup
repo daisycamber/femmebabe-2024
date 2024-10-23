@@ -1,0 +1,101 @@
+#!/bin/bash
+SECONDS=0
+echo "lotteh installer initialized."
+# sudo chmod a+x scripts/usersetup
+# ./scripts/usersetup
+# ssh-keygen
+# Project directory
+DIR="/home/team/lotteh"
+USER="team"
+# Setup virtualenv
+cd $DIR
+sudo cp -Lrv /etc/letsencrypt/live/lotteh.com/ keys
+sudo chown -R team:users keys
+# Patch venv
+PYTHON_VERSION="3.12"
+echo "Creating virtual environment"
+#sudo rm -r venv
+python -m venv venv
+source venv/bin/activate
+./scripts/fixreq.sh
+echo "Getting and building dependencies, this may take a whike"
+cd $DIR
+git clone https://github.com/sukhitashvili/violence-detection.git
+cp config/vd-requirements.txt violence-detection/requirements.txt
+cp config/vd-model.py violence-detection/model.py
+cd violence-detection
+pip3 install -r requirements.txt
+cd $DIR
+git clone https://github.com/davisking/dlib.git
+cd dlib
+mkdir build; cd build; cmake ..; cmake --build .
+cd ..
+python setup.py install
+cd $DIR
+source venv/bin/activate
+cd $DIR/GFPGAN/
+echo "Installing python dependencies"
+pip install basicsr
+pip install facexlib
+pip install -r requirements.txt
+python setup.py develop
+pip install realesrgan
+python -m venv venv
+source venv/bin/activate
+# Get and build dependencies
+pip3 install -U "celery[redis]"
+pip3 install -r requirements.txt --use-deprecated=legacy-resolver --use-pep517
+pip3 install --upgrade opencv-python #==4.5.4.60
+pip3 install --upgrade opencv-contrib-python #==4.5.4.60
+#pip install opencv-python==4.5.5.64
+#pip install opencv-contrib-python==4.5.5.64
+pip3 install --upgrade opencv-python-headless
+pip3 uninstall -y channels
+pip3 uninstall -y daphne
+pip3 install channels["daphne"]
+pip3 install Pillow==9.5.0
+pip3 install librosa
+pip3 install -U 'Twisted[tls,http2]'
+pip3 install --upgrade certifi requests urllib3 numpy oauthlib twisted pyjwt sqlparse cryptography astral webauthn docbarcodes pdf417 deepface --no-cache-dir
+pip3 install tensorflow[and-cuda]
+pip3 install tensorrt==10.0.1
+pip3 install setuptools==69.5.1
+pip3 install nudepy==0.4
+pip3 install torch==2.2.0
+pip3 install torchvision==0.17.0
+pip3 install tensorflow[and-cuda]
+pip3 install googletrans==4.0.0-rc1
+pip3 install --pre torch-tensorrt --index-url https://download.pytorch.org/whl/nightly/cu124
+pip3 install --upgrade transformers torch torchvision torchaudio
+cp scripts/content.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py
+cp scripts/pwa_webpush_forms.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py
+cp scripts/webauth_views.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py
+cp scripts/json.py venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py
+cp scripts/nude.py venv/lib/python$PYTHON_VERSION/site-packages/nude.py
+mkdir media/audio
+mkdir media/audio/fingerprints
+mkdir media/security
+mkdir media/secure
+mkdir media/secure/media
+mkdir media/secure/video
+mkdir media/secure/profile
+mkdir media/secure/face
+mkdir media/images
+mkdir media/live
+mkdir media/live/files
+mkdir media/live/stills
+mkdir media/files
+mkdir media/books
+mkdir media/surrogacy
+mkdir media/agreements
+mkdir temp
+mkdir temp/data
+mkdir temp/gfpgan
+mkdir mail/inbox
+mkdir mailbox
+echo "Setup completed in"
+wc -l scripts/venvsetup
+echo "lines of code."
+echo "Total time:"
+duration=$SECONDS
+echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."

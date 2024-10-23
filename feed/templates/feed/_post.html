@@ -1,0 +1,131 @@
+{% load feed_filters %}
+<div>
+    <img src="{% if profile_url %}{{ profile_url }}{% else %}{% if post.author in request.user.profile.subscriptions.all %}{{ post.author.profile.get_image_url }}{% else %}{{ post.author.profile.get_face_blur_url }}{% endif %}{% endif %}" alt="@{{ post.author.profile.name }}'s profile photo" width="120" height="120" align="left" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'feed:profile' username=post.author.profile.name %}" title="{{ 'See'|trans }} @{{ post.author.profile.name }}'s {{ 'profile'|trans }}">@{{ post.author.profile.name }}</a>
+      {% with post as content %}
+        {% include 'clock.html' %}
+      {% endwith %}
+      <small class="text-muted">{% blocktrans %}{{ post.date_posted|date:"F d, Y" }}{% endblocktrans %} {{ post.date_posted|time:"H:i" }}</small>
+      <small class="text-muted">#{{ post.id }} <i class="bi bi-translate"></i> {{ post.content|detectlanguage }}</small>
+      <small>{% if post.pinned %}<i class="bi bi-pin-angle-fill"></i>{% else %}<i class="bi bi-pin-fill"></i>{% endif %}</small>
+      {% if post.likes.count > 0 %}<small><i class="bi bi-heart-fill"></i> {{ post.likes.count|nts|trans }}</small>{% endif %}
+      {% if post.recipient == request.user %}<small><i>{{ 'Private'|trans }}</i></small>{% endif %}
+      <div style="float: right; display: inline-block;"><button onclick="reportContent('{{ post.uuid }}');" class="btn btn-sm btn-outline-danger" title="{{ 'Report this content'|trans }}">{{ 'Report'|trans }}</button></div>
+    </div>
+    {% autoescape off %}    
+    {% if request.path == '/search/' %}
+    <p class="article-content">{{ post.content|trimlength|highlightsearchquery|trans }}</p>
+    {% elif '***' in post.content  %}
+    <p class="article-content">{{ post.content|trimlength|tagusers|trans }}</p>
+    {% else %}
+    <p class="article-content">{{ post.content|trimlength|addhttpstodomains|embedlinks|tagusers|trans }}</p>
+    {% endif %}
+    {% if post.content|charcountreader %}
+    {% include 'reader.html' %}
+    {% endif %}
+    {% endautoescape %} 
+    {% if post.image %} 
+        {% if not post.public and not request.GET.show %}
+        {% with post.get_blur_thumb_url as imurl %}
+       <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% elif post.public or post.author == request.user or post.recipient == request.user %}
+        {% with post.get_image_url as imurl %}
+       <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% elif post.author in request.user.profile.subscriptions.all %}
+        {% with post.get_image_url as imurl %}
+       <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% elif not post.public %}
+        {% with post.get_blur_thumb_url as imurl %}
+       <a href="{% if not post.content|geturl == "" %}{{ post.content|geturl }}{% else %}{{ imurl }}{% endif %}" title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%; filter: blur(8px);" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% elif post.public %}
+        {% with post.get_face_blur_thumb_url as imurl %}
+       <a title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% elif request.user == post.author %}
+        {% with post.get_blur_url as imurl %}
+       <a href="{% if not post.content|geturl == "" %}{{ post.content|geturl }}{% else %}{{ imurl }}{% endif %}" title="A post by @{{ post.author.profile.name }}"><img src="{{ imurl }}" class="img-fluid post-image" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.profile.name }}"></a>
+        {% endwith %}
+        {% endif %} 
+    {% endif %}
+    {% if post.file_bucket %}
+    {% if post.paid_file and not request.user in post.paid_users.all and post.file_bucket.name|filetype == 'docx' or post.file_bucket.name|filetype == 'pdf' %}
+    <p>This post contains a paid file in .{{ post.file_bucket.name|filetype }} format. Please buy the post in order to download the file.</p>
+    {% elif post.paid_file and not request.user in post.paid_users.all %}
+    <p>Please buy this post to hear the full version of the audio.</p>
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.get_file_sample }}" type="audio/mpeg">
+	Your browser does not support the audio element.
+    </audio>
+    {% elif not post.paid_file or request.user in post.paid_users.all %}
+    <p>This post contains a downloadable file in .{{ post.file_bucket.name|filetype }} format. <a title="Download this file" href="{{ post.get_file_url}}" class="btn btn-outline-danger btn-sm">Download</a></p>
+    {% elif post.file_bucket.name|filetype == 'mp3' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.get_file_url }}" type="audio/mpeg">
+	Your browser does not support the audio element.
+    </audio>
+    {% elif post.file_bucket.name|filetype == 'wav' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.get_file_url }}" type="audio/wav">
+	Your browser does not support the audio element.
+    </audio>
+    {% elif post.file_bucket.name|filetype == 'aac' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}">
+	<source src="{{ post.get_file_url }}" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+    {% elif post.file_bucket.name|filetype == 'webm' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}">
+	<source src="{{ post.get_file_url }}" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+    {% elif post.file_bucket.name|filetype == 'mp4' or post.file_bucket.name|filetype == 'mov' %}
+    <video width="100%" controls preload="metadata">
+        <source src="{{ post.get_file_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% endif %}
+    {% endif %}
+    {% if post.image_sightengine %}<p>SightEngine Image Output - {{ post.image_sightengine }}</p>{% endif %}
+    {% if post.file_sightengine %}<p>SightEngine File Output - {{ post.file_sightengine }}</p>{% endif %}
+    <hr>
+    <div style="display: inline-block;">
+        {% if not request.path|startswith:'/feed/post/' %}
+        <a href="{{ post.get_absolute_url }}" title="{% blocktrans %}View post{% if user.is_authenticated and post.author == user %}, or rotate photo{% endif %}{% endblocktrans %}"><button type="button" class="btn btn-primary"><i class="bi bi-binoculars-fill"></i> {{ 'View'|trans }}</button></a>
+        {% endif %}
+        {% if not request.user == post.recipient %}
+        {% if post.has_auction %}
+        <a href="{% url 'feed:auction' post.friendly_name %}" title="{{ 'Bid on this post'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Bid'|trans }}</button></a>
+        {% else %}
+        <button class="btn btn-outline-primary" title="Add this to your cart" onclick="addToCart('{{ post.uuid }}');">Add to Cart</button>
+{% if not post.private %}        <a href="{% url 'payments:buy-photo-card' post.author.profile.name %}?id={{ post.uuid }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-dollar"></i> {{ 'Buy'|trans }}</button></a>{% endif %}
+        <a href="{% url 'payments:buy-photo-crypto' post.author.profile.name %}?id={{ post.uuid }}&crypto={{ default_crypto }}" title="{{ 'Buy this photo'|trans }}"><button type="button" class="btn btn-primary"><i class="bi bi-currency-bitcoin"></i> {{ 'Buy'|trans }}</button></a>
+        {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% if user.is_authenticated and post.author == user %}
+        {% include 'feed/pin.html' %}
+        {% include 'feed/publish.html' %}
+        {% endif %}
+        {% include 'feed/like.html' %}
+        {% if not request.path|startswith:'/feed/post/' %}
+        {% if user.is_authenticated and post.author == user and post.private %}
+        <button class="btn btn-info frame" data-name="{{ post.content }}"><i class="bi bi-person-lines-fill"></i> Text</button>
+        {% endif %}
+        {% else %}
+        {% if user.is_authenticated and post.author == user %}
+        <a href="{% url 'feed:post-update' pk=post.id %}" title="Edit this post"><button type="button" class="btn btn-secondary"><i class="bi bi-pencil-fill"></i> Edit</button></a>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+    </div>
+    {% if user.is_authenticated and post.author == user %}
+    <button class="edit-form btn btn-outline-info" id="edit{{ post.id }}"><i class="bi bi-pencil"></i></button>
+    <iframe class="hide" id="iframeedit{{ post.id }}" data-src="{% url 'feed:post-update' pk=post.id %}?hidenavbar=t" title="Edit this post" width="100%" height="400px"></iframe>
+    {% endif %}
+</div>
+<hr>

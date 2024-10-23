@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<legend>See your booked shows</legend>
+<a class="btn btn-outline-success" href="{% url 'live:golivevideo' %}" title="Begin your show">Go Live</a>
+<hr>
+{% for show in shows %}
+<p>With @{{ show.user.profile.name }} ({{ show.user.verifications.last.full_name }})</p>
+<small>From {{ show.start }} to {{ show.end }}</small>
+<hr>
+{% endfor %}
+{% if count == 0 %}
+<p>You currently don't have any shows booked. Encourage your fans to book a show with you.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load feed_filters %}
+{% load app_filters %}
+<div class="dropdown">
+  <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-globe"></i> {{ 'Language'|trans }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=en">English</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=es">Española</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=fr">Français</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=de">Deutsch</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=nl">Nederlands</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=ara">عربي</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=por">Português</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=ind">Bahasa</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=hin">हिंदी</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=rus">Русский</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=zh">中国人</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=ja">日本語</a>
+    <a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'lang' %}{{ key }}={{ value }}&{% endif %}{% endfor %}lang=th">แบบไทย</a>
+  </div>
+</div>

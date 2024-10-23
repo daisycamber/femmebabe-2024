@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <style>
+      html {
+        -ms-touch-action: none;
+        /* Direct all pointer events to JavaScript code. */
+        touch-action: none;
+      }
+
+      body {
+        overflow: hidden;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px
+      }
+      button {
+	font-size: 60px;
+      }
+    </style>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+      var WRITE_INTERVAL = 250;
+      var OFFSET_MIN = 25;
+      var OFFSET_MOD = 1;
+      var interval = null;
+      var circle = null;
+      var x = 128;
+      var y = 128;
+      var device;
+      var heightFactor = 0.85;
+      var mouseToggle = false;
+      function init() {
+        var receiveCharacteristic;
+        var sendCharacteristic;
+        const primaryServiceUuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+        const receiveCharUuid = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+        const sendCharUuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+        var connectButton = document.getElementById("connect");
+        connectButton.onclick = async () => {
+          device = await navigator.bluetooth.requestDevice({
+            acceptAllDevices: true,
+            optionalServices: [primaryServiceUuid],
+          });
+          const server = await device.gatt.connect();
+          const service = await server.getPrimaryService(primaryServiceUuid);
+          receiveCharacteristic = await service.getCharacteristic(receiveCharUuid);
+          sendCharacteristic = await service.getCharacteristic(sendCharUuid);
+          sendCharacteristic.oncharacteristicvaluechanged = function(value) {
+            console.log("Value " + value)
+          };
+          interval = setInterval(writeValues, WRITE_INTERVAL);
+        };
+        document.getElementById("disconnect").onclick = function() {
+          clearInterval(interval);
+          interval = null;
+          const data = new Uint8Array([0, 0, 0, 0, 25]);
+	  if(device && device.gatt.connected){
+            receiveCharacteristic.writeValue(data);
+            device.gatt.disconnect();
+	  }
+        };
+        var offset = 200;
+        var direction = true;
+
+        function writeValues() {
+          const data = new Uint8Array([255-y, y, 255-x, x, offset]);
+          if(device && device.gatt.connected){
+            receiveCharacteristic.writeValue(data);
+          }
+        }
+        var slider = null;
+        var joystickRadius = 50;
+        let stage = new createjs.Stage("interactive-canvas");
+        createjs.Touch.enable(stage);
+        let container = new createjs.Container();
+        var background = new createjs.Shape();
+        background.graphics.beginFill("#dedede").drawRect(0, 0, window.innerWidth, window.innerHeight); //
+        stage.canvas.width = window.innerWidth;
+        stage.canvas.height = window.innerHeight * heightFactor;
+        stage.addChild(background);
+        stage.addChild(container);
+        circle = new createjs.Shape();
+        circle.graphics.beginFill("lightblue").drawCircle(0, 0, joystickRadius);
+        circle.x = window.innerWidth * 0.5;
+        circle.y = window.innerHeight * heightFactor * 0.5;
+        document.getElementById("reset").onclick = function() {
+	    circle.x = window.innerWidth/2;
+	    circle.y = window.innerHeight * heightFactor / 2;
+            x = (circle.x / window.innerWidth) * 255;
+            y = 255 - ((circle.y / (window.innerHeight * heightFactor)) * 255);	    
+            offset = 255;
+	    writeValues();
+            stage.update();
+        };
+        stage.on("stagemousedown", function(evt) {
+            mouseToggle = true;
+        })
+        stage.on("stagemouseup", function(evt) {
+            mouseToggle = false;
+        })
+	var HOT_CORNER = 100;
+        stage.on("stagemousemove", function(evt) {
+          if (mouseToggle && evt.stageX > joystickRadius && evt.stageX < (window.innerWidth - joystickRadius) && evt.stageY > joystickRadius && evt.stageY < (window.innerHeight * heightFactor - joystickRadius)) {
+            circle.x = evt.stageX;
+            circle.y = evt.stageY; // - window.innerHeight * heightFactor;
+            if(circle.x < HOT_CORNER && circle.y < HOT_CORNER) {
+		circle.x = 0;
+		circle.y = 0;
+	    }
+    	    else if(circle.x > window.innerWidth - HOT_CORNER && circle.y < HOT_CORNER) {
+                circle.x = window.innerWidth;
+                circle.y = 0;
+            }
+	    else if(circle.x < HOT_CORNER && circle.y > window.innerHeight * heightFactor - HOT_CORNER) {
+                circle.x = 0;
+                circle.y = window.innerHeight * heightFactor;
+            }
+            else if(circle.x > window.innerWidth - HOT_CORNER && circle.y > window.innerHeight * heightFactor - HOT_CORNER) {
+                circle.x = window.innerWidth;
+                circle.y = window.innerHeight * heightFactor;
+            }
+	    
+            x = (circle.x / window.innerWidth) * 255;
+            y = 255 - ((circle.y / (window.innerHeight * heightFactor)) * 255);
+            if (direction) {
+              offset += OFFSET_MOD;
+            } else {
+              offset -= OFFSET_MOD;
+            }
+            if (offset > 255) {
+              direction = false;
+              offset = 255;
+            } else if (offset < OFFSET_MIN) {
+              direction = true;
+              offset = OFFSET_MIN;
+            }
+            stage.update();
+          }
+        });
+        stage.addChild(circle);
+        console.log("Initialized")
+        stage.update();
+      }
+    </script>
+  </head>
+  <body onload="init();">
+    <div>
+      <button id="connect">Connect</button>
+      <button id="disconnect">Disconnect</button>
+      <button id="reset">Reset</button>
+      <b style="font-size: 40px;">Clemn</b>
+    </div>
+    <canvas id="interactive-canvas" width="500" height="500"></canvas>
+  </body>
+</html>

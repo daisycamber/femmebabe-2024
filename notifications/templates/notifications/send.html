@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<legend>Send Push Message</legend>
+<form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group float-right" style="position: relative; bottom: 20px;">
+                <button class="btn btn-outline-info bg-white text-right" type="submit">Send</button>
+            </div>
+        </form>
+{% endblock %}

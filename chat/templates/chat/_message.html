@@ -1,0 +1,14 @@
+{% load feed_filters %}
+    <div class="article-metadata">
+      <p{% if message.sender == request.user %} style="float: right; text-align: right;" class="pl-2"{% endif %}><small class="text-muted"> {{ message.sent_at|date:"F d, Y" }}  {{ message.sent_at|time:"H:i" }} </small> @{{ message.sender.profile.name }}</p>
+{% if message.sender != request.user %}
+      <small style="float: right; text-align: right;"><a href="{% url 'chat:chat' user.profile.name %}">{{ 'Direct'|trans }}</a></small>
+{% endif %}
+    </div>
+    <div>
+    <p class="article-content"{% if message.sender == request.user %} style="float: right; text-align: right;"{% endif %}>{{ message.content|trans }}</p>
+    </div>
+    {% if request.user.profile.vendor or message.recipient == request.user or message.sender == request.user %}
+    <small><a href="{% url 'chat:delete' message.id %}">{{ 'Delete'|trans }}</a></small>
+    {% endif %}
+    <hr style="background-color: red;">

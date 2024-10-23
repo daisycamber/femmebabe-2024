@@ -1,0 +1,30 @@
+{% if count > 10 %}
+{% load app_filters %}
+{% autoescape off %}
+<article class="shadow p-3 mb-3 rounded bg-{% if not darkmode %}light{% else %}dark{% endif %}">
+  <div style="display: inline-block;">
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?{{ '1'|urlparams }}" title="First page">First</a>
+        <a class="btn btn-outline-info mb-4" href="?{{ page_obj.previous_page_number|urlparams }}" title="Previous page">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if recordings.number == num or posts.number == num or users.number == num or messages.number == num or msgs.number == num or pills.number == num %}
+          <a class="btn btn-info mb-4" href="?{{ num|urlparams }}" title="Page {{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-6' and num < page_obj.number|add:'6' %}
+          <a class="btn btn-outline-info mb-4" href="?{{ num|urlparams }}" title="Page {{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?{{ page_obj.next_page_number|urlparams }}" title="Next page">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?{{ page_obj.paginator.num_pages|urlparams }}" title="Last page">Last</a>
+      {% endif %}
+	<hr>
+	<div style="width: 150px;">
+		{% include 'jumptopage.html' %}
+	</div>
+    </div>
+</article>
+{% endautoescape %}
+{% endif %}

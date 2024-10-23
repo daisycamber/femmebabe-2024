@@ -1,0 +1,2 @@
+class PaymentLessThanMinimalException(Exception):
+    pass

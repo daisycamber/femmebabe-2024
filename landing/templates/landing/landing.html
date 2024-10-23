@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% endblock %}
+{% block content %}
+{% load app_filters %}
+{% load feed_filters %}
+{% if request.user.is_authenticated and not request.user.profile.hide_logo and request.user.profile.identity_verified %}
+<img src="{{ icon_url }}" alt="{{ the_site_name }}" width="25%" class="center"></img>
+<h1>{{ the_site_name }}</h1>
+{% elif request.user.is_authenticated and not request.user.profile.hide_logo %}
+<img src="{{ icon_url }}" alt="{{ the_site_name }}" width="25%" class="center" style="border-radius: 50px;"></img>
+<h1>{{ the_site_name }}</h1>
+{% endif %}
+<img src="{{ my_photo }}" id="me" class="rounded" align="left" width="33%" alt="{{ 'The developer,'|trans }} {{ my_name }}" style="margin-right: 10px;"></img>
+<p>{% blocktrans %}Hi, my name is {{ my_name }}. Welcome.{% endblocktrans %}</p>
+<p>{% blocktrans %}Please read the terms to make sure you are familliar with how the site operates. There are {{ post_count|nts }} posts with {{ photo_count|nts }} photos, as well as {{ recording_count|nts }} video recordings with {{ interactive_count|nts }} interactive recordings and {{ audio_count|nts }} audio recordings online.{% endblocktrans %}</p>
+<p>{{ 'I\'m looking forward to having you here. Please enjoy yourself.'|trans }}</p>
+<p>{% blocktrans %}There are {{ users|nts }} people with{% endblocktrans %} {{ the_site_name }}.</p>
+<p>{% blocktrans %}Please be sure you are at least {{ min_age }} years of age, as no one under {{ min_age|nts }} ({{ min_age }}) years of age is allowed to use this website.{% endblocktrans %}</p>
+<p>{{ 'This is a beauty, fashion and tech blog with photos, videos, audio, and livestreaming. Facial recognition is reccomended for secure logins and I reccomend adding a phone number to your account in order to secure your account further. You can also call me and listen to recordings on the phone. If you just want to call me and you have an account, here\'s my number:'|trans }}</p>
+<legend style="text-align: center;"><a href="tel:{{ main_phone }}" title="{{ 'Call my phone,'|trans }} {{ main_phone|phone_number }}"><i class="bi bi-telephone-outbound-fill"></i> {{ main_phone|phone_number }}</a></legend>
+<p>{% blocktrans %}I am available to provide custom web development services and deploy web apps like this one and complete custom requests. If you are interested in deploying a website like this one, please contact me via email at <a href="mailto:{{ admin_email }}" title="Email me">{{ email_address }}</a> or by phone or secure message. Security features include ID scanning and verification, fraud prevention, facial recognition, multi factor authentication, and more. The app also features image, video and audio processing, secure upload/download and sessions, crypto and credit or debit card payment processing, a full text search engine, surveys, remote control, secure web shell, crypto trading, voice donation, reminder texts, and embedded electronic device control, in this case study, a vibrator remote. Retargeting features are also available, including SMS, programmable voice, email, and push notifications. More features and custom solutions are available on request.{% endblocktrans %}</p>
+<p>{{ 'I am a surrogate mother, and if you are a prospective parent, please contact me with your request at my email address,'|trans }} <a href="mailto:{{ admin_email }}" title="{{ 'Email me'|trans }}">{{ email_address }}</a>{{ ', and I will respond to you with details.'|trans }}</p>
+<p>{{ 'This site provides ID scanning services if you are interested in scanning IDs personally using hosted software.'|trans }} <a href="{% url 'payments:idscan' %}" title="{{ 'Scan IDs with a monthly plan'|trans }}">{{ 'Visit this link and checkout'|trans }}</a> {{ 'if you would like an ID scanning plan.'|trans }}</p>
+<p>{{ 'If you are ready to get started, click the "Sign Up" button below.'|trans }}</p>
+{% if not user.is_authenticated %}
+{% include 'feed/login_register_buttons.html' %}
+{% endif %}
+<p>It's lovely to see you here.</p>
+<p>With love, {{ my_name }}</p>
+<hr>
+<div style="display: flex; justify-content: space-around;">
+<i>Hire Me</i>
+<i>Books</i>
+<i>Merch</i>
+</div>
+<div style="display: flex; justify-content: space-around;">
+<a href="https://partnernetwork.ionos.com/partner/daisy.holton?origin=PartnerBadge" rel="nofollow"> <img src="https://images-2.partnerportal.ionos.com/items/573de416-abec-49fa-9d16-cf8a7449af4b/profiles/890b49bc-057e-4119-925a-e6edfc00f3ec/badges/normal_blue_eco" alt="IONOS - Official Partner"> </a>
+<a href="https://amazon.com/stores/Daisy-Holton/author/B0CBWVPZ5C" title="See my books on Amazon"><i class="bi bi-journals" style="font-size: 60px;"></i></a>
+<a href="{{ profile.shop_url }}" title="Exclusive merch"><i class="bi bi-tags" style="font-size: 60px;"></i></a>
+</div>
+<hr>
+{% include 'activism.html' %}
+{% include 'social.html' %}
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user %}
+{% include 'banner_ad.html' %}
+{% endif %}
+{% endblock content %}
+{% block javascript %}
+$('#clemn-navbar').addClass('hide');
+{% endblock %}

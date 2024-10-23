@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load feed_filters %}
+<h1>{{ 'Your Feed'|trans }}</h1>
+<hr style="background-color: red;">
+{% if count == 0 %}
+<p>{{ 'There is no one in your feed yet. To see stuff here, follow some'|trans }} <a href="{% url 'feed:profiles' %}" title="{{ 'See active models'|trans }}">{{ 'active models'|trans }}</a>.</p>
+{% endif %}
+{% for post in posts %}
+{% include 'feed/_post.html' %}
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock %}

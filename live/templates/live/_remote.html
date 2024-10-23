@@ -1,0 +1,5 @@
+<form action="{% url 'live:remote' %}?camera={{ request.GET.camera }}{% if request.GET.hidenavbar %}&hidenavbar=true{% endif %}" method="POST">
+	{% csrf_token %}
+{% if request.GET.hidenavbar %}	<input type="text" hidden id="hidenavbar" name="hidenavbar" value="true">{% endif %}
+	<button id="recordbutton" type="submit" class="btn btn-secondary">{% if camera.live %}<i class="bi bi-toggle-on"></i> End live{% else %}<i class="bi bi-toggle-off"></i> Go Live{% endif %}</button>
+</form>

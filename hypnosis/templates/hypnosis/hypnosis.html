@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+{% block head %}
+    <style>
+      body {
+        overflow: hidden;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px
+      }
+    </style>
+{% endblock %}
+{% block content %}
+<canvas id="hypno-canvas" style="z-index: 1000; position: absolute; top:0; left:0;"></canvas>
+<img hidden src="/media/static/hypnosis.png" id="hypno-image" class="width: 100%;"></img>
+{% endblock %}
+{% block javascript %}
+var inc = 0.04;
+var inc2 = 10;
+var inc3 = 5;
+var scale = 0.2;
+function init() {
+	var angleInRadians = 0;
+	var image = document.getElementById("hypno-image");
+	var canvas = document.getElementById("hypno-canvas");
+	var interval = null;
+	function setup() {
+		if(interval) clearInterval(interval);
+		interval = setInterval(function(){
+			var width = image.width;
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight + 150;
+			var x = window.innerWidth / 2;
+			var y = window.innerHeight / 2;
+			var width = width;
+			var height = width;
+			context = canvas.getContext("2d");
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.translate(x, y);
+			context.rotate(angleInRadians);
+			context.drawImage(image, (-width*scale) / 2, (-height*scale) / 2, width*scale, width*scale);
+			context.rotate(-angleInRadians);
+			context.translate(-x, -y);
+			angleInRadians = angleInRadians + inc;
+		}, inc2);
+	}
+	canvas.onclick = function(){
+		inc = inc * -1;
+		inc2 = inc2 + inc3;
+		if(inc2 < 5 || inc2 > 25) inc3 = inc3 * -1;
+		setup();
+	}
+	setup();
+}
+init();
+{% endblock %}

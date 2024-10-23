@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load app_filters %}
+{% if request.GET.page == None or request.GET.page == '1' %}
+       <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Birth Control</legend>
+		<small id="currentTime"></small>
+		{% if request.user.vendor_profile.taking_birth_control %}<small class="text-muted"><i>Last taken </i>{{ request.user.vendor_profile.birth_control_taken|date:"F d, Y" }} {{ request.user.vendor_profile.birth_control_taken|time:"H:i" }}</small>{% endif %}
+		<hr style="background-color: blue;">
+                {{ form|crispy }}
+            </fieldset>
+            <button class="btn btn-outline-info" style="float: right;" type="submit">Take pill</button>
+        </form>
+<div style="height: 1000px;"></div>
+{% endif %}
+<legend class="border-bottom mb-4">Birth Control Notes</legend>
+<p></p>
+{% for pill in pills %}
+<hr style="background-color: blue;">
+<small>{{ pill.time_taken|date:"F d, Y" }} {{ pill.time_taken|time:"H:i" }}</small>
+<i>with food: {{ pill.taken_with_food|boolread }}, flow: {{ pill.flow|boolread }}, intercourse: {{ pill.intercourse|boolread }}</i>
+<p>{{ pill.notes }}</p>
+{% endfor %}
+{% include 'pagelinks.html' %}
+{% endblock content %}
+{% block javascript %}
+setInterval(function() {
+	var d = new Date();
+	d.toLocaleString();
+	document.getElementById('currentTime').innerHTML = d;
+}, 1000);
+
+{% if request.GET.page == None or request.GET.page == '1' %}
+function updatePost() {
+            let xhr = new XMLHttpRequest();
+//          xhr.addEventListener("load", loadListener);
+//          xhr.addEventListener("error", errorListener)
+            xhr.open("POST", "/birthcontrol/notes/", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+            xhr.send(document.getElementById("id_notes").value);
+        setTimeout(function() {
+            updatePost();
+        }, 10000);
+}
+updatePost();
+{% endif %}
+{% endblock %}

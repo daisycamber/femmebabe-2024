@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/team/lotteh
+source venv/bin/activate
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude account --database default > dbfix.json

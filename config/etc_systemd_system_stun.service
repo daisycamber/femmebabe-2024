@@ -1,0 +1,15 @@
+[Unit]
+Description=Stun server daemon
+After=network.target
+
+[Service]
+User=team
+Group=users
+WorkingDirectory=/home/team/lotteh/stunserver
+ExecStart=/home/team/lotteh/stunserver/stunserver
+
+# Not sure if should use 'on-failure' or 'always'. 
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,409 @@
+#!/bin/bash
+SECONDS=0
+echo "lotteh installer initialized."
+# sudo chmod a+x scripts/usersetup
+# ./scripts/usersetup
+# ssh-keygen
+# Project directory
+DIR="/home/team/lotteh"
+USER="team"
+# Log commands
+echo "Logging commands"
+sudo cp log/commands.log /var/log/commands.log
+sudo chmod -R a+w /var/log
+sudo chown -R :syslog /var/log
+echo $'alias venv="source /home/team/lotteh/venv/bin/activate"' | sudo tee -a /home/team/.profile
+echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a /etc/bashrc
+echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a "/home/team/.bashrc"
+echo $'PROMPT_COMMAND=\'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"\'' | sudo tee -a /root/.bashrc
+echo "source /etc/bashrc" | sudo tee -a /home/team/.profile
+echo "/var/log/commands.log {}" | sudo tee -a /etc/logrotate.d/syslog
+echo "local6.*    /var/log/commands.log" | sudo tee -a "/etc/rsyslog.d/bash.conf"
+sudo service rsyslog restart
+sudo cp /home/$USER/$DIR/config/ascripts /etc/ascripts
+# Script setup
+while read p; do
+  cp /home/$U/$DIR/scripts/$p /usr/bin/$p
+  sudo chmod a+x /usr/bin/$p
+done < /etc/ascripts
+# Nano config
+echo "set tabsize 4" >> /home/$USER/.nanorc
+echo "set tabstospaces" >> /home/$USER/.nanorc
+# Git config
+echo "Git configuration"
+sudo git config --global user.email "jasper.camber.holton@gmail.com" && sudo git config --global user.name "Jasper Holton"
+git config --global user.email "jasper.camber.holton@gmail.com"
+git config --global user.name "Jasper Holton"
+git config --global --add safe.directory $"$DIR"
+sudo ssh-keyscan -t rsa gitlab.com | sudo tee -a /root/.ssh/known_hosts
+sudo ssh-keyscan -t rsa github.com | sudo tee -a /root/.ssh/known_hosts
+echo "Mounting setup"
+sudo mount -o remount,size=16G,exec /tmp
+# Update and install
+echo "Update and install packages"
+sudo apt update && sudo NEEDRESTART_MODE=a apt upgrade -y
+sudo apt purge postgresql-client-14 postgresql-client-common postgresql-common postgresql-contrib postgresql -y
+echo "postfix postfix/mailname string lotteh.com" | sudo debconf-set-selections
+echo "postfix postfix/main_mailer_type string 'Internet Site'" | sudo debconf-set-selections
+sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y postfix
+sudo NEEDRESTART_MODE=a apt install -y rkhunter clamav-daemon libx264-dev ffmpeg libapache2-mod-wsgi-py3 apache2 cmake python-is-python3 python3-venv python3-pip python3-django expect tesseract-ocr openjdk-8-jdk redis-server libopencv-dev python3-opencv python3-dev libsasl2-dev opendkim opendkim-tools dovecot-core dovecot-pop3d dovecot-imapd auditd procmail libpq-dev postgresql postgresql-contrib libheif-dev snapd git software-properties-common certbot python3-certbot-apache libboost-all-dev
+echo "-a exit,always -F arch=b64 -F euid=0 -S execve" | sudo tee -a /etc/audit/audit.rules
+echo "-a exit,always -F arch=b32 -F euid=0 -S execve" | sudo tee -a /etc/audit/audit.rules
+# Enable ClamAV antivirus
+echo "Starting antivirus"
+sudo systemctl enable clamav-daemon
+sudo systemctl start clamav-daemon
+# Set hostname
+echo "127.0.0.1 lotteh" | sudo tee -a /etc/hosts
+sudo hostnamectl set-hostname localhost
+# Setup postgres
+echo "Postgres setup"
+sudo -u postgres psql -U postgres -c "DROP DATABASE database;"
+sudo -u postgres psql -U postgres -c "CREATE DATABASE database;"
+sudo -u postgres psql -U postgres -c "CREATE USER django WITH PASSWORD 'password';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET client_encoding TO 'utf8';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET default_transaction_isolation TO 'read committed';"
+sudo -u postgres psql -U postgres -c "ALTER ROLE django SET timezone TO 'UTC';"
+sudo -u postgres psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE database TO django;"
+# Setup database backup
+echo "Building database from backup, this may take a while."
+cat db.json.?? > db.json
+echo "Configuring firewall"
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow 22
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow 'Postfix'
+sudo ufw allow 'Postfix SMTPS'
+sudo ufw allow 'Postfix Submission'
+sudo ufw allow 'Dovecot POP3'
+sudo ufw allow 'Dovecot Secure POP3'
+sudo ufw allow 110/tcp
+sudo ufw allow 25/tcp
+echo "y" | sudo ufw enable
+# Disable iptables
+echo "Configuring firewall"
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -F
+sudo iptables-save
+# Install BitDefender
+cd $DIR
+echo "Runnning BitDefender antivirus installer"
+wget https://cloud.gravityzone.bitdefender.com/Packages/NIX/0/7aTSsy/setup_downloader.tar
+mkdir bitdefender
+tar -xf setup_downloader.tar -C bitdefender
+sudo rm setup_downloader.tar
+sed -i -e 's/{LOGINPASSWD/z&A*3BPd_qBGUMs/g' bitdefender/installer
+sudo chmod a+x bitdefender/installer
+sudo ./bitdefender/installer
+# Setup postfix
+cd $DIR
+echo "Mail services configuration"
+sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.backup
+sudo cp config/etc_postfix_main.cf /etc/postfix/main.cf
+sudo cp config/etc_postfix_master.cf /etc/postfix/master.cf
+sudo cp config/etc_default_opendkim /etc/default/opendkim
+sudo cp config/etc_dovecot_conf.d_10-auth.conf /etc/dovecot/conf.d/10-auth.conf
+sudo cp config/etc_dovecot_conf.d_10-master.conf /etc/dovecot/conf.d/10-master.conf
+sudo cp config/etc_dovecot_dovecot.conf /etc/dovecot/dovecot.conf
+sudo cp config/etc_dovecot_passwd /etc/dovecot/passwd
+sudo cp config/etc_opendkim.conf /etc/opendkim.conf
+sudo cp config/etc_default_opendkim /etc/default/opendkim
+sudo adduser postfix opendkim
+sudo mkdir /etc/opendkim
+sudo mkdir /etc/opendkim/keys
+sudo mkdir /etc/opendkim/keys/lotteh.com
+sudo mkdir /var/spool/postfix/opendkim
+sudo echo "*@lotteh.com     sendonly._domainkey.lotteh.com" | sudo tee -a /etc/opendkim/signing.table
+sudo echo "sendonly._domainkey.lotteh.com    lotteh.com:sendonly:/etc/opendkim/keys/lotteh.com/sendonly.private" | sudo tee -a /etc/opendkim/key.table
+sudo echo "127.0.0.1" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "localhost" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo echo "*.lotteh.com" | sudo tee -a /etc/opendkim/trusted.hosts
+sudo chown -R opendkim:opendkim /etc/opendkim
+sudo opendkim-genkey -b 2048 -d lotteh.com -D /etc/opendkim/keys/lotteh.com -s sendonly -v
+sudo chmod go-rw /etc/opendkim/keys
+sudo chown opendkim:opendkim /etc/opendkim/keys/lotteh.com/sendonly.private
+sudo chown opendkim:postfix /var/spool/postfix/opendkim
+cd $DIR
+sudo cp mailbox/* /var/mail/
+sudo chown :users /var/mail/*
+sudo chmod -R a+rwx /var/mail/*
+sudo systemctl restart opendkim postfix dovecot
+# Create dirs
+cd $DIR
+mkdir media/audio
+mkdir media/audio/fingerprints
+mkdir media/security
+mkdir media/secure
+mkdir media/secure/media
+mkdir media/secure/video
+mkdir media/secure/profile
+mkdir media/secure/face
+mkdir media/images
+mkdir media/live
+mkdir media/live/files
+mkdir media/live/stills
+mkdir media/files
+mkdir media/books
+mkdir media/surrogacy
+mkdir media/agreements
+mkdir temp
+mkdir temp/data
+mkdir temp/gfpgan
+mkdir mail/inbox
+mkdir mailbox
+# Setup virtualenv
+cd $DIR
+echo "Creating virtual environment"
+python -m venv venv
+source venv/bin/activate
+# Get and build dependencies
+echo "Getting and building dependencies, this may take a whike"
+cd $DIR
+git clone https://github.com/sukhitashvili/violence-detection.git
+cp config/vd-requirements.txt violence-detection/requirements.txt
+cp config/vd-model.py violence-detection/model.py
+cd violence-detection
+pip3 install -r requirements.txt
+cd $DIR
+wget https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth -P experiments/pretrained_models
+git clone https://github.com/TencentARC/GFPGAN.git
+git clone https://github.com/davisking/dlib.git
+sudo apt update && sudo apt install -y curl gnupg
+curl https://repo.sshlog.com/sshlog-ubuntu/public.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/repo-sshlog-ubuntu.gpg
+echo "deb [arch=any signed-by=/usr/share/keyrings/repo-sshlog-ubuntu.gpg] https://repo.sshlog.com/sshlog-ubuntu/ stable main" | sudo tee -a /etc/apt/sources.list.d/repo-sshlog-ubuntu.list
+sudo apt update && sudo apt install -y sshlog
+cd $DIR
+cd dlib
+mkdir build; cd build; cmake ..; cmake --build .
+cd ..
+source venv/bin/activate
+python setup.py install
+cd $DIR
+source venv/bin/activate
+cd $DIR/GFPGAN/
+echo "Installing python dependencies"
+pip install basicsr
+pip install facexlib
+pip install -r requirements.txt
+python setup.py develop
+pip install realesrgan
+cd $DIR
+sudo chown -R team:users gfpgan
+echo "Installing ta-lib"
+wget https://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+tar xvzf ta-lib-0.4.0-src.tar.gz
+sudo rm ta-lib-*
+cd ta-lib
+sudo ./configure
+sudo make
+sudo make install
+# Set firewall rules
+cd $DIR
+# Install pypi dependencies
+echo "Installing remaining python dependencies (this may take a while)"
+sudo systemctl mask tmp.mount
+cd $DIR
+source venv/bin/activate
+pip3 install -U "celery[redis]"
+pip3 install -r requirements.txt --use-deprecated=legacy-resolver --use-pep517
+pip3 install --upgrade opencv-python #==4.5.4.60
+pip3 install --upgrade opencv-contrib-python #==4.5.4.60
+#pip install opencv-python==4.5.5.64
+#pip install opencv-contrib-python==4.5.5.64
+pip3 install --upgrade opencv-python-headless
+pip3 uninstall channels
+pip3 uninstall daphne
+pip3 install channels["daphne"]
+pip3 install Pillow==9.5.0
+pip3 install librosa
+pip3 install -U 'Twisted[tls,http2]'
+pip3 install --upgrade certifi requests urllib3 numpy oauthlib twisted pyjwt sqlparse cryptography astral webauthn docbarcodes pdf417 deepface --no-cache-dir
+pip3 install tensorflow[and-cuda]
+pip3 install tensorrt==10.0.1
+pip3 install setuptools==69.5.1
+pip3 install nudepy==0.4
+pip3 install torch==2.2.0
+pip3 install torchvision==0.17.0
+pip3 install tensorflow[and-cuda]
+pip3 install --pre torch-tensorrt --index-url https://download.pytorch.org/whl/nightly/cu124
+# Install certbot
+echo "Installing certificates"
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo snap install redis
+sudo systemctl enable apache2
+sudo systemctl start apache2
+# Run certbot
+sudo certbot --apache --non-interactive --agree-tos --domains lotteh.com --email jasper.camber.holton@gmail.com
+# Reload mail server
+sudo systemctl restart opendkim postfix dovecot
+# Copy certs
+#sudo cp /etc/letsencrypt/live/lotteh.com/privkey.pem privkey.pem
+#sudo cp /etc/letsencrypt/live/lotteh.com/cert.pem cert.pem
+sudo cp -Lrv /etc/letsencrypt/live/lotteh.com/ keys
+sudo chown -R team:users keys
+# Patch venv
+PYTHON_VERSION="3.12"
+cp scripts/content.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pyxb/binding/content.py
+cp scripts/pwa_webpush_forms.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/pwa_webpush/forms.py
+cp scripts/webauth_views.py /home/team/lotteh/venv/lib/python$PYTHON_VERSION/site-packages/webauth/views.py
+cp scripts/json.py venv/lib/python$PYTHON_VERSION/site-packages/django/core/serializers/json.py
+# Set user settings
+sudo gpasswd -a www-data users
+# Set permissions
+echo "Setting permissions"
+sudo chown -R team:users cache/
+sudo chmod a+rwx -R cache/
+#sudo chown -R team:users /var/run/
+#sudo chown root:root /run/sudo/ts -R
+sudo chown -R redis:redis /var/lib/redis
+sudo chown -R redis:redis /var/log/redis
+sudo chmod -R u+rwX,g+rwX,u+rx /var/log/redis
+sudo chmod +r /etc/redis/redis.conf
+sudo chown -R team:users /var/log/
+sudo chown -R :users .././
+sudo chmod -R g+rwX ./
+sudo chmod -R g+rX .././
+sudo chmod -R g-rwX ../.ssh
+sudo chmod 774 ./
+#sudo chmod 664 db.sqlite3
+#sudo chown www-data:users db.sqlite3
+sudo chown -R www-data:www-data media/
+sudo chown www-data:users ./
+sudo chown -R team:users media/
+sudo chown -R team:users ./
+sudo chown -R team:users ./gfpgan/
+sudo chown -R team:users ./temp/
+sudo chmod a+r team /var/mail/$USER
+# Copy config and set permissions
+echo "Configuring remaining services"
+sudo cp config/apis.json /etc/apis.json
+sudo cp config/config.json /etc/config.json
+sudo cp config/lotteh-le-ssl.conf /etc/apache2/sites-available/lotteh-le-ssl.conf
+sudo cp config/etc_dovecot_passwd /etc/dovecot/passwd
+sudo cp config/etc_init.d_celery /etc/init.d/celery
+sudo cp config/etc_init.d_celerybeat /etc/init.d/celerybeat
+sudo cp config/etc_default_celerybeat /etc/default/celerybeat
+sudo cp config/etc_default_celery /etc/default/celery
+sudo cp config/etc_systemd_system_daphne.service /etc/systemd/system/daphne.service
+sudo cp config/etc_systemd_system_celery.service /etc/systemd/system/celery.service
+sudo cp config/etc_systemd_system_celerybeat.service /etc/systemd/system/celerybeat.service
+sudo chmod a+x /etc/init.d/celery
+sudo chmod a+x /etc/init.d/celerybeat
+# Setup database
+echo "Running migrations, this should be quick"
+python manage.py makemigrations
+python manage.py migrate --run-syncdb
+echo "Loading data, this may take a while"
+python manage.py loaddata db.json
+echo "Setup crontab/sudoers configuration"
+sudo crontab -l -u root | cat - config/crontab | sudo crontab -u root -
+sudo sh -c "cat config/sudoers >> /etc/sudoers"
+# Inject pam config and remove faulty ssh config
+#sudo sed -i '' -e '$ d' /etc/pam.d/sshd
+#sudo sed -i '' -e '$ d' /etc/profile
+echo "session required pam_exec.so seteuid /home/team/lotteh/pam.sh" | sudo tee -a /etc/pam.d/sshd
+echo "session required pam_exec.so seteuid /home/team/lotteh/logout.sh" | sudo tee -a /etc/pam.d/sshd
+sudo chmod a+x pam.sh
+sudo rm /etc/ssh/sshd_config.d/50-cloud-init.conf
+# Copy bin scripts and set permissions
+echo "Copying scripts"
+sudo cp /etc/ascripts /home/$U/$DIR/config/ascripts
+
+sudo cp config/banner /etc/banner
+cd /usr/bin/
+sudo chmod a+x activate
+sudo chmod a+x backup
+sudo chmod a+x ascript
+# Reload and enable services
+echo "Enabling services"
+sudo systemctl daemon-reload
+sudo systemctl enable daphne.service
+sudo systemctl enable celery.service
+sudo systemctl enable celerybeat.service
+sudo systemctl enable clamav-daemon
+sudo systemctl start daphne.service
+sudo systemctl start celery.service
+sudo systemctl start celerybeat.service
+sudo systemctl start clamav-daemon
+# Enable apache modules
+echo "Enabling apache2"
+sudo a2enmod rewrite
+sudo a2enmod wsgi
+sudo a2enmod headers
+sudo a2enmod ssl
+sudo a2enmod proxy
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy_http
+sudo a2enmod proxy_wstunnel
+#sudo a2dismod mpm_event
+#sudo a2dismod mpm_worker
+#sudo a2enmod mpm_prefork
+# Disable default site
+sudo a2dissite 000-default
+sudo a2dissite 000-default-le-ssl
+# Enable our site
+sudo a2ensite lotteh-le-ssl
+# Reload daemon and restart apache, postfix and opendkim
+sudo systemctl daemon-reload
+sudo systemctl restart apache2
+sudo systemctl restart opendkim postfix
+sudo systemctl start daphne
+# Set permissions
+sudo chown -R :www-data /var/www/
+sudo chown -R :www-data /var/www/.deepface
+# Swap configuration
+echo "Allocating swap, this may take a while"
+sudo swapoff /swapfile
+sudo rm /swapfile
+sudo fallocate -l 8G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=8388608
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo "/swapfile swap swap defaults 0 0" | sudo tee -a /etc/fstab
+sudo swapon --show
+# Init caption engine
+echo "Initializing routine caption"
+/home/team/lotteh/venv/bin/python /home/team/lotteh/routine_caption.py
+/home/team/lotteh/venv/bin/python /home/team/lotteh/setup_mail.py
+# Setup git
+echo "Setting up git"
+cd $DIR
+sudo rm -r .git
+git init --initial-branch=main
+#echo "Setting user password"
+#sudo usermod --password $(echo team | openssl passwd -1 -stdin) team
+# Show ipv6 and opendkim for domain configuration
+echo "COPY the below information to domain configuration."
+hostname -I
+ip a | grep inet
+ip -6 addr | grep "scope link"
+sudo cat /etc/opendkim/keys/lotteh.com/sendonly.txt | tr -d '\n' | sed 's/\s//g' | awk -F'[)(]' '{print $2}' | sed '0,/""/{s/""//}'
+# Setup completed
+echo "Setup completed in"
+wc -l scripts/setup
+echo "lines of code."
+echo "Total time:"
+duration=$SECONDS
+echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+echo "TODO:"
+echo "- COPY above IPv6 address to domain DNS configuration"
+echo "- COPY domain key to domain DNS configuration"
+echo "- ADD new git repository with git remote add originlab <repo>."
+echo "- OPEN port 25"
+echo "- INSTALL antivirus as per reccomendations"
+echo "- TEST"
+echo "If neccesary,"
+echo "- DEBUG"
+echo "- FIX setup and backup scripts"
+echo "- Fix server"
+echo ""
+echo "Thank you for using the lotteh installer. Have a great day!"
+echo "Goodbye."

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load feed_filters %}
+<a href="{% url 'mail:inbox' %}" class="btn btn-outline-primary" title="Back to inbox">Inbox</a>
+<a href="{% url 'retargeting:email' %}?u={{ from|stripsender }}" class="btn btn-outline-info" title="Reply">Reply</a>
+<hr>
+<p>From <b>{{ from }}</b> To <i>{{ to }}</i> on {{ time }}</p>
+<p><i>{{ subject }}</i></p>
+<iframe width="100%" height="500px" id="message" style="background-color: white;"></iframe>
+{% endblock %}
+{% block javascript %}
+var iframe = document.getElementById("message");
+{% autoescape off %}
+iframe.srcdoc = `{{ content }}`;
+{% endautoescape %}
+{% endblock %}

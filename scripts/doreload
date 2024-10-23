@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo sh -c "sudo systemctl reload apache2 && sudo systemctl restart apache2&" team

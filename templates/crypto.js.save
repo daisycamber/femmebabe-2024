@@ -1,0 +1,27 @@
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+function decrypt(encrypted, key) {
+    encrypted = unescape(encrypted);
+    var iv = encrypted.substring(0, key.length);
+    console.log(iv);
+    key = CryptoJS.enc.Utf8.parse(key);
+    var decrypted = CryptoJS.AES.decrypt(encrypted.substring(iv.length, encrypted.length), key, {iv: CryptoJS.enc.Utf8.parse(iv), mode: CryptoJS.mode.CBC});
+    return decrypted.toString(CryptoJS.enc.Utf8);
+}
+function encrypt(message, key) {
+    key = CryptoJS.enc.Utf8.parse(key);
+    var iv = makeid(key.length);
+    console.log(iv);
+    var encrypted = CryptoJS.AES.encrypt(message, key, {iv: CryptoJS.enc.Utf8.parse(iv), mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+    encrypted = encrypted.toString();
+    return escape(iv + encrypted);
+}

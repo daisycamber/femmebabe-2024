@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block style %}
+    .img-container {
+        position: relative;
+    }
+    .img-clear {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+{% endblock %}
+{% block content %}
+       <form id="post-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Post
+			<p style="text-align: right;">
+				<a class="btn btn-outline-primary" href="{% url 'photobooth:photobooth' %}">Booth</a>
+				{% if not request.GET.schedule %}<a class="btn btn-outline-success" href="?schedule=t{% if request.GET.camera %}&camera=t{% endif %}{% if request.GET.audio %}&audio=t{% endif %}"><i class="bi bi-calendar-fill"></i></a>{% endif %}
+				{% if not request.GET.camera %}<a class="btn btn-outline-primary" href="?camera=t{% if request.GET.schedule %}&schedule=t{% endif %}{% if request.GET.audio %}&audio=t{% endif %}"><i class="bi bi-camera-fill"></i></a>{% endif %}
+				{% if not request.GET.audio %}<a class="btn btn-outline-danger" href="?audio=t{% if request.GET.camera %}&camera=t{% endif %}{% if request.GET.schedule %}&schedule=t{% endif %}"><i class="bi bi-mic-fill"></i></a>{% endif %}
+			</p>
+		</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+        <div id="uploaded_image" style="display: inline-block;"></div>
+        <hr>
+        <p id="contentLength"></p>
+	<p style="text-color: green;" class="hide" id="posted">Your post has been submitted.</p>
+	<div id="progressBars"></div>
+{% endblock content %}
+{% block javascript %}
+var form = document.getElementById("post-form");
+var posted = document.getElementById("posted");
+var chooseFile = document.getElementById("id_image");
+var chooseVideoFile = document.getElementById("id_file");
+var imgPreview = document.getElementById("uploaded_image");
+var chooseFileFiles;
+var counter = 0;
+$("#post-form:input").change(function() {
+   $("#post-form").data("changed",true);
+});
+$(form).submit(function(e){
+    e.preventDefault();
+    form = document.getElementById("post-form");
+    imgPreview.innerHTML = "";
+    for(image of chooseFileFiles) {
+      if(image) {
+        var fd = new FormData(form);
+        fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+        fd.set("image", image);
+        fd.delete("file");
+        uploadFile(fd);
+      }
+    }
+    for(file of chooseVideoFile.files) {
+      var fd = new FormData(form);
+      fd.set("confirmation_id", String(Math.floor(Math.random() * 100000000)));
+      fd.set("file", file);
+      fd.delete("image");
+      uploadFile(fd);
+    }
+    form.reset();
+});
+function uploadFile(data) { 
+    $("#progressBars").append('<progress id="progress' + counter + '" value="0" max="100" style="width: 100%">0%</progress>');
+    var progress = document.getElementById("progress" + counter);
+    var id = data.get("confirmation_id");
+    $.ajax({
+	xhr: () => {
+		var xhr = new window.XMLHttpRequest();
+		xhr.upload.addEventListener("progress", (evt) => {
+      		        if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+				percentComplete = parseInt(percentComplete * 100);
+				progress.innerHTML = percentComplete + '%';
+				progress.value = percentComplete;
+			}
+                }, false);
+		return xhr;
+	},
+        url: window.location.pathname,
+        type: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 1000 * 60 * 30,
+        tryCount: 0,
+        retryLimit: 5,
+        error: (xhr, textStatus, errorThrown) => {
+			$(progress).addClass("fade-hidden");
+			setTimeout(function() {
+				$(progress).addClass("hide");
+			}, 2000);
+                if(textStatus == 'timeout') {
+                    this.tryCount++;
+                    if(this.tryCount >= this.retryLimit) return;
+                    $.ajax(this);
+                }
+        },
+	success: (data) => {
+		$(posted).removeClass("hide");
+		setTimeout(function() {
+			$(posted).addClass("fade-hidden");
+			$(progress).addClass("fade-hidden");
+			setTimeout(function() {
+				$(posted).addClass("hide");
+				$(posted).removeClass("fade-hidden");
+				$(progress).addClass("hide");
+			}, 2000);
+			$.ajax({
+				url: "/feed/post/new/confirm/" + id + "/",
+				type: "GET",
+				success: function(data) {
+					if(data != "y") {
+						$(progress).removeClass("fade-hidden");
+						$(progress).removeClass("hide");
+						$.ajax(this);
+					}
+				},
+			});
+		}, 2000);
+	},
+    });
+    counter++;
+}
+chooseFile.addEventListener("change", function () {
+  getImgData();
+});
+function removeImage(imageId) {
+  var image = document.getElementById(imageId);
+  var index = parseInt(imageId.substring(5))-2;
+  chooseFileFiles[index] = null;
+  image.remove();
+}
+function getImgData() {
+  imgPreview.innerHTML = "";
+  chooseFileFiles = Array.from(chooseFile.files);
+  const files = chooseFile.files[0];
+  if (files) {
+    for(var x = 0; x < chooseFile.files.length; x++) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(chooseFile.files[x]);
+      fileReader.addEventListener("load", function () {
+        imgPreview.insertAdjacentHTML("beforeend", '<div class="img-container" style="position: relative; left: 2%; margin-left: 1%; margin-right: 1%; margin-top: 2%; width: 31%;" id="image' + x + '"><img width="100%" src="' + this.result + '"/><div class="img-clear" onclick="removeImage(\'image' + x + '\');"><i class="bi bi-x-circle-fill" style="font-size: 35px"></i></div></div>');
+      });
+    }
+  }
+}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% block content %}
+<legend>{% blocktrans %}Are you over {{ min_age_adult|nts }} ({{ min_age_adult }}) years of age?{% endblocktrans %}</legend>
+<div class="center container">
+<div class="row">
+<div class="m-1 col">
+<form method="POST">
+{% csrf_token %}
+<div class="d-flex justify-content-between">
+<a href="{% url 'verify:handoff' %}" title="{% blocktrans %}No, I'm not of age{% endblocktrans %}" class="btn btn-outline-success">{{ 'No'|trans }}</a>
+<button type="submit" class="btn btn-outline-danger" title="Yes, I am">{% blocktrans %}Yes, I am over {{ min_age_adult }} years of age{% endblocktrans %}</button>
+</div>
+</form>
+<hr>
+<p>{% blocktrans %}By continuing, you are agreeing to the{% endblocktrans %} <a href="{% url 'misc:terms' %}" title="{% blocktrans %}See the Terms of Service and Privacy Policy{% endblocktrans %}">{% blocktrans %}Terms of Service and Privacy Policy{% endblocktrans %}</a>.</p>
+</div>
+<div class="m-1 col-8">
+<img id="splash" class="img-fluid rounded" style="width: 100%" src="{% if request.user.is_authenticated %}{{ post.get_image_thumb_url }}{% else %}{{ post.get_face_blur_thumb_url }}{% endif %}" alt="Photos, videos, live shows, chat, and more."></img>
+<p>{% blocktrans %}Photos, videos, live shows, chat, and more. Subscribe and tip with card or crypto.{% endblocktrans %}</p>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+{% if not unax %}
+var message = '';
+message = message + '{% blocktrans %}THIS U.S. GOVERNMENT COMPUTER SYSTEM IS FOR AUTHORIZED USE ONLY!\n{% endblocktrans %}';
+message = message + '{% blocktrans %}Use of this system constitutes consent to monitoring, interception, recording, reading, copying, {% endblocktrans %}';
+message = message + '{% blocktrans %}or capturing by authorized personnel of all activities. There is no right to privacy in this system. {% endblocktrans %}';
+message = message + '{% blocktrans %}Unauthorized use of this system is prohibited and subject to criminal and civil penalties, including all {% endblocktrans %}';
+message = message + '{% blocktrans %}penalties applicable to willful unauthorized access (UNAX) (under 18 U.S.C. 1030).{% endblocktrans %}';
+function autocompleteform() {
+    {% if request.user.is_authenticated %}
+    $.ajax({
+        url: '{% url 'verify:age-auto' %}',
+        type: 'POST',
+        success: function(data) {
+            if(data == 'y') {
+                window.location.href = '{% if request.GET.next %}{{ request.GET.next }}{% else %}/{% endif %}';
+            }
+        }
+    })
+    {% endif %}
+}
+$(document).ready(function() {
+	setTimeout(function() {
+		alert(message);
+	}, 2500);
+        setInterval(function() {
+            autocompleteform();
+        }, 15000);
+});
+var splash = document.getElementById('splash');
+splash.height = splash.getBoundingClientRect().width + 'px';
+{% endif %}
+{% endblock %}

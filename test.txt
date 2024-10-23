@@ -1,0 +1,26 @@
+this is a test
+of my shell editor template
+to make sure i can use it easily.
+
+testing
+testing
+testing
+
+testing
+
+
+testing
+
+It works!
+It works!
+
+testing
+
+It works!
+It works!
+
+testing
+
+It works!
+It works!
+

@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load feed_filters %}
+{% load app_filters %}
+{% block style %}
+.umodal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: {% if darkmode %}#667788{% else %}#ccddff{% endif %};
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+}
+{% endblock %}
+{% block javascripts %}
+<script type="text/javscript" src="/static/synthesizer/Tone.min.js"></script>
+{% endblock %}
+{% block content %}
+<legend>{{ project.name }}</legend>
+<audio class="hide" id="result-audio"></audio>
+<!-- Instruments -->
+<div id="modal1" class="umodal hide">
+<div style="position: relative;">
+<p>
+<i style="text-align: center;">Projects</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<div class="slidecontainer">
+	<i>BPM:</i>
+	<input type="number" value="{{ project.bpm }}" id="projectBpmNumber">
+	<input type="range" min="60" max="240" value="{{ project.bpm }}" class="slider" id="projectBpm"> 
+	<button id="automateBpm" class="btn btn-outline-danger">Automate</button> 
+</div> 
+<div class="slidecontainer">
+	<i>Volume:</i>
+	<input type="range" min="0" max="150" value="{{ project.volume }}" class="slider" id="projectVolume"> 
+	<button id="automateVolume" class="btn btn-outline-danger">Automate</button> 
+</div> 
+<b>Instruments</b>
+{% for instrument in project.synths.all %}
+<p>{{ instrument.name }}</p>
+<div class="slidecontainer">
+	<i>Volume:</i>
+	<input type="range" min="1" max="100" value="{{ instrument.volume }}" class="slider" id="instrumentVolume{{ forloop.counter0 }}">
+	<button id="automateInstrument{{ forloop.counter0 }}" class="btn btn-outline-danger">Automate</button>
+	<button id="toggleInstrument{{ forloop.counter0 }}" class="btn btn-outline-secondary" {% if instrument.enabled %}data-on="true">On{% else %}data-on="false">Off{% endif %}</button>
+	<button onclick="showInstumentModal({{ forloop.counter0 }});">Edit</button>
+</div>
+{% endfor %}
+</div> 
+</div>
+<!-- Synth -->
+<div id="modal2" class="umodal hide">
+<div style="position: relative;">
+<p>
+<button onclick="lastPanel();" class="btn btn-outline-info"><</button>
+<i style="text-align: center;">Synth</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<p id="synthName"></p>
+<div class="slidecontainer">
+	<i>Volume:</i>
+	<input type="range" min="1" max="100" value="80" class="synth-slider" id="synth1">
+	<i>Gain:</i>
+	<input type="range" min="0" max="50" value="00" class="synth-slider" id="synth2">
+	<i>Length:</i>
+	<input type="range" min="1" max="50" value="00" class="synth-slider" id="synth2">
+	<i>Distortion:</i>
+	<input type="range" min="0" max="100" value="0" class="synth-slider" id="synth3">
+	<i>Highpass Filter:</i>
+	<input type="range" min="100" max="1000" value="900" class="synth-slider" id="synth4">
+	<i>Lowpass Filter:</i>
+	<input type="range" min="100" max="1000" value="500" class="synth-slider" id="synth5">
+	<i>Compressor:</i>
+	<input type="range" min="-100" max="100" value="-50" class="synth-slider" id="synth6">
+	<i>Delay:</i>
+	<input type="range" min="0" max="1000" value="0" class="synth-slider" id="synth7">
+	<i>Reverb:</i>
+	<input type="range" min="0" max="100" value="80" class="synth-slider" id="synth8">
+	<i>Pitch Adjust:</i>
+	<input type="range" min="-12" max="12" value="0" class="synth-slider" id="synth9">
+	<i>Fade:</i>
+	<input type="range" min="0" max="8000" value="0" class="synth-slider" id="synth10">
+	<i>Mode - Sine/Sawtooth/Multicycle/Guassian:</i>
+	<input type="range" min="0" max="3" value="0" class="synth-slider" id="synth11">
+	<i>Continuous Pitch To:</i>
+	<input type="range" min="0" max="120" value="0" class="synth-slider" id="synth12">
+</div>
+</div>
+</div>
+<!-- Midi -->
+<div id="modal3" class="umodal hide">
+<div style="position: relative;">
+<p>
+<button onclick="lastPanel();" class="btn btn-outline-info"><</button>
+<i style="text-align: center;">Midi</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<div class="dropdown">
+  <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    {{ 'Clip Length'|trans }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <button class="dropdown-item" onclick="setClipLength(16);">16</button>
+    <button class="dropdown-item" onclick="setClipLength(8);">8</button>
+    <button class="dropdown-item" onclick="setClipLength(4);">4</button>
+    <button class="dropdown-item" onclick="setClipLength(2);">2</button>
+    <button class="dropdown-item" onclick="setClipLength(1);">1</button>
+  </div>
+</div>
+<div class="dropdown">
+  <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    {{ 'Note Length'|trans }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <button class="dropdown-item" onclick="setNoteLength(128);">4</button>
+    <button class="dropdown-item" onclick="setNoteLength(64);">2</button>
+    <button class="dropdown-item" onclick="setNoteLength(32);">4</button>
+    <button class="dropdown-item" onclick="setNoteLength(16);">1/2</button>
+    <button class="dropdown-item" onclick="setNoteLength(8);">1/4</button>
+    <button class="dropdown-item" onclick="setNoteLength(4);">1/8</button>
+    <button class="dropdown-item" onclick="setNoteLength(2);">1/16</button>
+    <button class="dropdown-item" onclick="setNoteLength(1);">1/32</button>
+  </div>
+</div>
+
+<canvas width="100%" height="100%" id="midi-canvas"></canvas>
+</div>
+</div>
+<!-- Layout -->
+<div id="modal4" class="umodal hide">
+<div style="position: relative;">
+<p>
+<button onclick="lastPanel();" class="btn btn-outline-info"><</button>
+<i style="text-align: center;">Layout</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<canvas width="100%" height="100%" id="layout-canvas"></canvas>
+</div>
+</div>
+<!-- Audio -->
+<div id="modal5" class="umodal hide">
+<div style="position: relative;">
+<p>
+<button onclick="lastPanel();" class="btn btn-outline-info"><</button>
+<i style="text-align: center;">Audio</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<iframe src="/audio/?addto={{ project.identifier }}" id="addaudio" width="100%" height="100%"></iframe>
+</div>
+</div>
+<!-- Render -->
+<div id="modal6" class="umodal hide">
+<div style="position: relative;">
+<p>
+<button onclick="lastPanel();" class="btn btn-outline-info"><</button>
+<i style="text-align: center;">Render</i>
+<button onclick="nextPanel();" style="float: right;" class="btn btn-outline-info">></button>
+</p>
+<p>Work in Progress</p>
+<button class="btn btn-lg btn-outline-danger" id="renderButton">Render</button>
+</div>
+</div>
+{% endblock %} 
+{% block javascript %}
+var currentPanel = 1;
+var modals = document.getElementsByClassName("umodal");
+function lastPanel() {
+	if(currentPanel > 1) {
+		$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+		currentPanel--;
+		$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+	}
+}
+function nextPanel() {
+	if(currentPanel < 6) {
+		$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+		currentPanel++;
+		$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+	}
+}
+var synthSliders = document.getElementsByClassName('synth-slider');
+var synthValues = [];
+var enabledInstruments = [{% for instrument in project.synths.all %}{% if instrument.enabed %}true{% else %}false{% endif %},{% endfor%}];
+var synthUpdated = false;
+var selectedInstrument = {{ project.instrument }};
+synthSliders[0].value = {{ init_instrument.gain }};
+synthSliders[1].value = {{ init_instrument.length }};
+synthSliders[2].value = {{ init_instrument.distortion }};
+synthSliders[3].value = {{ init_instrument.highpass_filter }};
+synthSliders[4].value = {{ init_instrument.lowpass_filter }};
+synthSliders[5].value = {{ init_instrument.compressor }};
+synthSliders[6].value = {{ init_instrument.delay }};
+synthSliders[7].value = {{ init_instrument.reverb }};
+synthSliders[8].value = {{ init_instrument.pitch_adjust }};
+synthSliders[9].value = {{ init_instrument.fade }};
+synthSliders[10].value = {{ init_instrument.mode }};
+synthSliders[11].value = {{ init_instrument.continuous_pitch }};
+for(var i = 0; i < synthSliders.length; i++) {
+	$(synthSliders[i])).on("input change", function() {
+		synthValues[i] = this.value;
+		synthUpdated = true;
+	});
+}
+function toggleInstrument(x) {
+	enabledInstruments[x] = !enabledInstruments[x];
+}
+function showInstrumentModal(x) {
+	selectedInstrument = x;
+	$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+	currentPanel = 2;
+	$(document.getElementById("modal" + currentPanel)).toggleClass("hide");
+}
+function openSocket() {
+        var socket = new WebSocket("wss://" + window.location.hostname + '/ws/synthesizer/{{ project.identifier }}/');
+        socket.addEventListener("open", (event) => {
+            console.log('Socket open.');
+            setInterval(function() {
+		if(synthUpdated) {
+			var values = selectedInstrument + ",";
+			for(value of synthValues) {
+				values = values + value + ","
+			}
+			values = values + enabledInstruments[selectedInstrument];
+			socket.send("i," + values);
+			synthUpdated = false;
+		}
+            }, 3000);
+        });
+        socket.addEventListener("closed", (event) => {
+            console.log('Socket closed.');
+            setTimeout(function() {
+                openSocket();
+            }, {{ reload_time }});
+        });
+        socket.addEventListener("message", (event) => {
+		var instructions = event.data.split(',');
+        });
+}
+openSocket();
+{% endblock %}

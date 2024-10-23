@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+<script src="/static/face/ccv.js" type="text/javascript"></script>
+<script src="/static/face/face.js" type="text/javascript"></script>
+<style type="text/css">
+        * {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          font-size: 14px;
+        }
+
+
+        .centered {
+          display: block;
+          margin: 0 auto;
+        }
+
+        .call-button {
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          color: white;
+          background-color: black;
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #video-container {
+          width: 100%;
+          min-width: 300px;
+        }
+
+        #videos {
+          position: relative;
+        }
+
+        video {
+          background-color: black;
+          border-radius: 3px;
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #remote-video {
+          width: 100%;
+        }
+        #mirror-video {
+          position: absolute;
+          width: 25vw;
+          height: 25vw;
+          bottom: -30px;
+          right: 0px;
+        }
+        #please-interact {
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          color: white;
+          background-color: black;
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+	    .update-button {
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+      </style>
+{% endblock %}
+{% block content %}
+<legend>Video Chat</legend>
+    <p id="error-message" class="hide" style="text-color: red;">Please enable your camera and microphone in your web browser and device settings to continue. Reload to continue. <button onclick="window.location.reload();" title="Reload page" class="call-button">Reload</button></p>
+    <div id="all-div" class="hide">
+    	<div id="accept-div" class="hide"><div id="accept-text"></div><button onclick="denyCall();" style="color: red;" class="btn">Deny</button><button onclick="acceptCall();" style="color: green;" class="btn">Accept</button><hr></div>
+        <p class="hide" id="the-link">{{ base_url }}{% url 'chat:video' %}?key={{ thename }}</p>
+    	<small id="members"></small>
+    	<hr>
+    <p id="call-div">Your username is <b id="thename">{{ thename }}</b> <button id="update-username" class="update-button">Update</button> <button class="call-button" onclick="copyToClipboard('thename');" class="btn btn-outline-primary">Copy code</button> <button class="call-button" onclick="copyToClipboard('the-link');" class="btn btn-outline-primary">Copy link</button></p>
+    <button id="call-button" class="call-button">Call someone</button>
+    <div>
+        <div id="video-container" class="centered hide">
+          <div id="videos">
+            <video id="remote-video" autoplay="autoplay"></video>
+            <iframe id="mirror-video" src="{{ base_url }}/chat/video/mirror/"></iframe>
+          </div>
+        </div>
+    </div>
+    <video id="local-video" autoplay="autoplay" class="hide" muted></video>
+    <canvas id="canvas" class="hide"></canvas>
+</div>
+<div style="display: inline-block;"><button id="end-button" class="call-button hide">End call</button><button id="mute" class="btn btn-light hide">Mute</button></div>
+<button class="btn btn-lg btn-outline-primary" id="please-interact">Join a meeting</button>
+<hr>
+	  <audio id="ringtone" class="hide">
+		  <source src="/media/static/ringtone.mp3" type="audio/mpeg">
+		  Your browser does not support the audio tag.
+		</audio>
+{% include 'social.html' %}
+{% endblock %}
+{% block javascript %}
+{% include 'chat/rtc.js' %}
+{% endblock %}

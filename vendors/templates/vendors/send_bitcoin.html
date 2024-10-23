@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_filters %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1>Crypto</h1>
+<legend>Balances</legend>
+<p style="white-space: pre-wrap;">{{ info|jsonprint }}</p>
+</div>
+{% endblock %}

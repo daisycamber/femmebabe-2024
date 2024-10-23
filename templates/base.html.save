@@ -1,0 +1,195 @@
+% load static %}{% load feed_filters %}{% load filters %}{% linebreakless %}{% load pwa_webpush %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+{% if not hidega %}
+{% if show_ads %}
+{% include 'google_adsense_head_code.html' %}
+{% endif %}
+{% include 'gtmhead.html' %}
+{% endif %}
+{% if not request.path == '/verify/age/' %}
+{% progressive_web_app_meta %}
+{% webpush_header %}
+{% endif %}
+<meta name="f0f15e690a68424771b0e8f902af3e12e24c2368" content="f0f15e690a68424771b0e8f902af3e12e24c2368"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="/media/static/favicon.ico">
+  {% if title %}
+  <title>{{ title|trans|capitalize }} - {{ the_site_name }}</title>
+  {% else %}
+  <title>{{ the_site_name }}</title>
+  {% endif %}
+  <meta name="description" content="{% if description != None %}{{ description|trans }}{% else %}({{ min_age }}+) {{ myusername }} - {{ base_description|trans }}{% endif %}">
+  <meta name="author" content="{{ author_name }}">
+<link rel="canonical" href="{{ base_url }}{{ request.path }}"/>
+<link rel="stylesheet" href="/static/main.css">
+<style>
+#loader-wrapper .loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 120vh;
+    background: {% if darkmode %}#bb7777{% else %}#ffaaaa{% endif %};
+    z-index: 2000;
+}
+{% if not hidenavbar %}
+#main-container {
+	padding-top: 5rem;
+}
+@media screen and (min-width: 1024px) and (max-width: 1536px) {
+	#main-container {
+		padding-top: 10rem;
+	}
+}
+{% endif %}
+{% block styles %}
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% if darkmode %}
+body {
+        background-color: {{ background_color_dark }} !important;
+}
+{% endif %}
+</style>
+<link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
+{% if darkmode %}
+<link rel="stylesheet" href="/static/css/darkmode.css">
+{% endif %}
+{% block extra_head %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+<script src="/static/head.js"></script>
+{% if show_ads %}
+{% include 'google_adsense_head_code.html' %}
+{% endif %}
+</head>
+<body class="px-0 py-0 my-0 ml-0 mr-0{% if not preload %} loaded{% endif %}" style="background-color: {{ background_color }};">
+{% if show_ads and not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user and not user.profile.vendor and not user.is_superuser %}
+<!--Body ad tags-->
+{% else %}
+<p class="hide" id="dontshowad">y</p>
+{% endif %}
+{% if not hidega %}
+{% include 'gtmbody.html' %}
+{% endif %}
+{% if not load_timeout == 0 %}
+{% include 'preload.html' %}
+{% endif %}
+{% if not hidenavbar %}
+{% include 'navbar.html' %}
+{% endif %}
+{% if request.path != '/' %}
+<div style="height: 10px;"></div>
+{% endif %}
+<main id="main-container" class="container-fluid{% if nopadding %} ml-0 mr-0 px-0 my-0 py-0{% endif %} clemn" style="width: {% if full or request.path|startswith:'/admin/' %}100{% else %}90{% endif %}%;">
+{% if not request.path|startswith:'/admin/' %}
+	<div class="col-md-8 py-0 my-0 mx-auto align-self-center" id="django-messages-container">
+        	{% autoescape off %}
+        	{% if messages %}
+        	{% for message in messages %}
+        		<div class="alert alert-{{ message.tags }}" style="text-color: black !important; color: black !important;">
+				{{ message.message|trans }}
+        		</div>
+        	{% endfor %}
+        	{% endif %}
+        	{% endautoescape %}
+	</div>
+{% endif %}
+{% include 'header.html' %}
+<div id="main" class="py-0 my-0 {% if xsmall %}col-sm-3{% elif small %}col-sm-6{% elif medium %}col-md-6{% else %}w-100{% endif %} align-self-center mx-auto{% if nopadding %} px-0 ml-0 mr-0 my-0 py-0{% endif %}">
+{% if request.path != '/accounts/profile/' %}
+<div id="webpush-container" class="hide py-0 my-0">{% webpush_button %}</div>
+{% endif %}
+{% endlinebreakless %}
+{% block content %}{% endblock %}
+{% linebreakless %}
+{% if splash %}
+	{% include 'feed/modal.html' %}
+{% endif %}
+{% if not request.path == '/' %}
+	{% include 'securitymodal.html' %}
+{% endif %}
+</div>
+{% if not dontshowsidebar %}
+	{% include 'sidebar.html' %}
+{% endif %}
+{% if not hidenavbar or showfooter %}
+	{% include 'footer.html' %}
+{% endif %}
+<p style="color: red;" id="base-error-message" class="hide"></p>
+</main>
+<audio id="base-audio" hidden></audio>
+<div style="height: 40px;"></div>
+<script src="/static/main.js"></script>
+{% endlinebreakless %}
+{% block javascripts %}{% endblock %}
+<script>
+try {
+	{% block javascript %}{% endblock %}
+{% linebreakless %}
+} catch(error){
+	document.getElementById('base-error-message').innerHTML = error.stack;
+	$("#base-error-message").removeClass("hide");
+}
+{% include 'security/session_injection.js' %}
+{% include 'securitymodal.js' %}
+$(document).ready(function() {
+	{% if not hidenavbar %}
+	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
+	{% endif %}
+	{% if splash %}
+		{% include 'feed/modal.js' %}
+	{% endif %}
+	{% include 'accl_logout.js' %}
+	{% include 'clock.js' %}
+	{% if not webpush_override and not request.path == '/verify/age/' and not request.has_push_cookie %}
+		{% include 'webpush.js' %}
+	{% elif webpush_override %}
+		{% include 'webpush.js' %}
+	{% endif %}
+	setTimeout(function() {
+        	$("#django-messages-container").addClass("fade-hidden");
+        	setTimeout(function() {
+        		$("#django-messages-container").addClass("shrink-fast");
+        		setTimeout(function() {
+        			$("#django-messages-container").addClass("hide");
+			}, 1000);
+		}, 2000);
+	}, 20000);
+	setTimeout(function(){
+		$('body').addClass('loaded');
+		$('#loader-wrapper-init').addClass('hide');
+	}, {% if load_timeout %}{{ load_timeout }}{% else %}3000{% endif %});
+	setTimeout(function() {
+		$('#loader-wrapper-init').addClass('fade-hidden-fast');
+	}, 100);
+        var qrdiv = document.getElementById("shareqrcode");
+	if(!qrdiv) return;
+	var qr = new QRCode(qrdiv, "{{ base_url }}{{ request.path }}{% if request.GET %}?{% for key, value in request.GET.items %}{{key}}={{value}}{% if forloop.counter < request.GET|length %}&{% endif %}{% endfor %}{% endif %}");
+	var image = qrdiv.querySelector('img');
+        image.style.width = "100%";
+        image.style.height = "100%";
+        image.style.maxWidth = "160px";
+	image.alt = "Share this page by scanning a QR code.";
+        function downloadQrImage(url, filename) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = '{{ the_site_name }} - ' + filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+        function downloadQr(){
+                downloadQrImage(image.src, 'QR Code');
+        }
+        qrdiv.onclick = downloadQr;
+});
+</script>
+{% include 'rrm.html' %}
+</body>
+</html>
+{% endlinebreakless %}

@@ -1,0 +1,469 @@
+{% extends "base.html" %}
+{% block head %}
+<script type="text/javascript" src="/static/qrcode.min.js"></script>
+{% if use_prism %}
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<link rel="stylesheet" href="/static/css/prism.css">
+{% endif %}
+{% endblock %}
+{% load app_filters %}
+{% load feed_filters %}
+{% block content %}
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all and not profile.user == user %}
+{% include 'banner_ad.html' %}
+{% endif %}
+<div id="profile" class="hide fade-in">
+{% if not request.GET.blog %}
+{% include 'feed/_full_profile.html' %}
+{% endif %}
+{% include 'feed/login_register_buttons.html' %}
+{% include 'social.html' %}
+</div>
+<div id="minified">
+<div style="display: flex; justify-content: space-around;">
+<img class="p-1 m-1" style="width: 20vw; height: 20vw; max-width: 300px; max-height: 300px; border-radius: 50%;" src="{% if profile.user in request.user.profile.subscriptions.all %}{{ profile.get_image_url }}{% else %}{{ profile.get_face_blur_url }}{% endif %}">
+<h1 class="m-1 p-1"> @{{ profile.name }}</h1>
+{% if not user.is_authenticated or not profile.user in request.user.profile.subscriptions.all %}
+<form class="m-1 p-1" action="{% url 'payments:subscribe-card' profile.name %}" method="GET">
+<button type="submit" class="btn btn-lg btn-outline-primary">{{ 'Subscribe'|trans }}
+(${{ profile.user.vendor_profile.subscription_fee|sub_fee }})
+{{ 'Live, +more'|trans }}
+</button>
+</form>
+{% endif %}
+</div>
+<p>{{ profile.bio|trans }}</p>
+<p style="text-align:center;"><small class="text-muted">{{ 'Last Seen'|trans }}: {{ profile.last_seen|date:"F d, Y" }} {{ profile.last_seen|time:"H:i" }}</small> - <small class="text-muted"> Joined: {{ profile.date_joined|date:"F d, Y" }} {{ profile.date_joined|time:"H:i" }}</small></p>
+<i>(Expand)</i>
+</div>
+
+<div id="hide-at-begin"{% if request.GET.page == '1' or request.GET.page == None or request.GET.page == '' %} style="visibility: hidden; height: 0px"{% endif %}>
+{% include 'opc.html' %}
+<h4 id="loading-posts">{{ 'Loading more posts...'|trans }}</h4>
+{% include 'clc.html' %}
+</div>
+<p><a href="{{ request.path }}" class="btn btn-outline-primary" title="{{ 'Back to the first page'|trans }}">{{ 'Back'|trans }}</a></p>
+<div id="scroll-container">
+<div id="first-page">
+<div id="page{{ page }}">
+{% with profile.get_image_url as profile_url %}
+{% for post in posts  %}
+	{% include 'feed/_post.html' %}
+{% endfor %}
+{% endwith %}
+{% include 'banner_ad.html' %}
+<hr>
+</div>
+</div>
+</div>
+<div id="hide-at-end"{% if request.GET.page == num_pages or count <= 10 %} style="visibility: hidden; height: 0px"{% endif %}>
+{% include 'opc.html' %}
+<h4 id="loading-posts">{{ 'Loading more posts...'|trans }}</h4>
+{% include 'clc.html' %}
+</div>
+{% endblock content %}
+{% block javascript %}
+{% if use_prism %}Prism.highlightAll();{% endif %}
+$('#minified').on('click', function(e) {
+	$('#profile').removeClass('hide');
+	$('#minified').addClass('fade-hidden-fast');
+	setTimeout(function() {
+        $('#profile').removeClass('fade-in');
+		$('#minified').addClass('hide');
+	});
+});
+var showTipMenu = false;
+var tipMenu = document.getElementById('tip-menu');
+if(tipMenu) {
+	var tipMenuDropdown = document.getElementById('tip-menu-dropdown');
+	tipMenu.addEventListener('click', function() {
+		showTipMenu = !showTipMenu;
+		if(showTipMenu) {
+			$(tipMenu).removeClass('collapsed');
+			$(tipMenuDropdown).addClass('show');
+		} else {
+			$(tipMenu).addClass('collapsed');
+			$(tipMenuDropdown).removeClass('show');
+		}
+	});
+}
+function resizeImages() {
+    var imgs = document.getElementsByTagName("img");
+    for (var i = 0; i < imgs.length; i++) {
+        if($(imgs[i]).hasClass("post-image")) imgs[i].height = imgs[i].clientWidth;
+    }
+}
+function reportWindowSize() {
+	resizeImages();
+}
+window.onresize = reportWindowSize;
+var si;
+function scrollSlowly(){
+        si = setInterval(function(){
+                window.scrollBy(0,2);
+        }, 10);
+}
+function clearScroll(){
+        clearInterval(si);
+}
+var dots = ["",".","..","..."];
+var current_dot = 0;
+function moveDots(){
+        var els = document.querySelectorAll('[id^="loading-posts"]');
+        els.forEach(el => {
+                el.innerHTML = "{{ 'Loading more posts'|trans }}" + dots[current_dot];
+        });
+        current_dot++;
+        if(current_dot > 3){
+                current_dot = 0;
+        }
+}
+setInterval(moveDots, 1000);
+var page = {{ page }};
+var npage = {{ page }};
+var lpage = {{ page }};
+var total_pages = {{ num_pages }};
+var firstLoad = false;
+var urlParams = new URLSearchParams(document.location.search);
+function updateURLParameter2(param, paramVal) {
+	urlParams = new URLSearchParams(document.location.search);
+	{% if request.GET.embed %}return;{% endif %}
+        if (history.pushState) {
+		var extra = "";
+		var likes = urlParams.get('likes');
+		if(likes) {
+			extra = "&likes=t";
+		}
+		var show = urlParams.get('show');
+		if(show) {
+			extra = extra + "&show=t";
+		}
+		var feed = urlParams.get('feed');
+		if(feed) {
+			extra = extra + "&feed=" + feed;
+		}
+		var lang = urlParams.get('lang');
+		if(lang) {
+			extra = extra + "&lang=" + lang;
+		}
+                const url = "?" + param + "=" + paramVal + extra;
+                var newurl = document.location.pathname + url;
+                window.history.pushState({},'',newurl);
+        }
+}
+function clearUrlParameter() {
+        urlParams = new URLSearchParams(document.location.search);
+	{% if request.GET.embed %}return;{% endif %}
+	if (history.pushState) {
+		var extra = "";
+		var likes = urlParams.get('likes');
+		if(likes) {
+			extra = "&likes=t";
+		}
+		var show = urlParams.get('show');
+		if(show) {
+			extra = extra + "&show=t";
+		}
+		var feed = urlParams.get('feed');
+		if(feed) {
+			extra = extra + "&feed=" + feed;
+		}
+		var lang = urlParams.get('lang');
+		if(lang) {
+			extra = extra + "&lang=" + lang;
+		}
+                const url = "?" + extra;
+                var newurl = document.location.pathname + url;
+                window.history.pushState({},'',newurl);
+        }
+}
+function isElementVisible(element) {
+        var position = element.getBoundingClientRect();
+        if(position.top < window.innerHeight && position.bottom >= 0) {
+		return true;
+        }
+        return false;
+}
+const scroll_factor = 6;
+var lastScroll = 0;
+var load_next = false;
+var load_last = false;
+setInterval(function() {
+	if(load_next){
+        	loadNext(true);
+	}
+	if(load_last){
+		loadNext(false);
+	}
+}, 10000);
+$(window).scroll(function() {
+   if(Math.abs(lastScroll - $(window).scrollTop()) > 25){
+           clearScroll();
+   }
+   lastScroll = $(window).scrollTop();
+   if($(window).scrollTop() + $(window).height() > $(document).height() - $(document).height()/scroll_factor) {
+	load_next = true;
+   } else {
+	load_next = false;
+   }
+   if($(window).scrollTop() < $(document).height()/scroll_factor) {
+	load_last = true;
+   } else {
+	load_last = false;
+   }
+});
+var firstLoad = false;
+var loading = false;
+var lloading = false;
+loadNext(true);
+if(urlParams.get('page') != null) {
+	loadNext(false);
+}
+var garbage_disposal_limit = 6;
+function garbage_disposal(npage){
+        // Descending pages
+        var count = 0;
+        for(var x = 0; x < npage - garbage_disposal_limit; x++){
+                if(document.getElementById("page" + x)){
+                        document.getElementById("page" + x).remove();
+                        count++;
+                }
+        }
+        lpage+=count;
+        count = 0;
+        // Ascending pages
+        for(var x = {{ num_pages }}; x > npage + garbage_disposal_limit; x--){
+                if(document.getElementById("page" + x)){
+                        document.getElementById("page" + x).remove();
+                        count++;
+                }
+        }
+        page-=count;
+}
+
+function likeForm() {
+    let btns = document.querySelectorAll('#likeForm');
+    for (i of btns) {
+        if(!i.classList.contains("ready")){
+                i.classList.add("ready");
+	$(i).attr('last-action', new String(new Date().getTime()));
+        $(i).on('submit', function(e) {
+            e.preventDefault();
+	    if(parseInt($(i).prop('last-action')) - new Date().getTime() > -1000) { e.preventDefault(); return; };
+	    $(i).attr('last-action', new String(new Date().getTime()));
+            var button = $(this).find(':submit');
+            button.toggleClass('btn-success');
+            button.toggleClass('btn-warning');
+            html = button.html();
+            likes = parseInt(html.match(/\d+/)[0]);
+            if (button.hasClass('btn-warning')) {
+                button.html('<i class="bi bi-heart-fill"></i> Unlike (' + (likes + 1).toString() + ')');
+            } else {
+                button.html('<i class="bi bi-heart"></i> Like (' + (likes - 1).toString() + ')');
+            }
+            $.ajax({
+                url: $(this).attr('action') || window.location.pathname,
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data) {},
+                error: function(xhr, response, error) {
+                    alert("{% blocktrans %}Please connect to the internet to interact with {{ the_site_name }}.{% endblocktrans %}");
+                }
+            });
+        });
+        }
+    }
+}
+function publishForm() {
+    let btns = document.querySelectorAll('#publishForm');
+    for (i of btns) {
+	  if(!$(i).hasClass('init')) {
+            $(i).addClass('init');
+	    $(i).attr('last-action', new String(new Date().getTime()));
+        $(i).on('submit', function(e) {
+	    if(parseInt($(i).prop('last-action')) - new Date().getTime() > -1000) { e.preventDefault(); return; };
+	    $(i).attr('last-action', new String(new Date().getTime()));
+	    e.preventDefault();
+            $(this).find(':submit').html('<i class="bi bi-cloud-snow-fill"></i>');
+            $.ajax({
+                url: $(this).attr('action') || window.location.pathname,
+                type: "POST",
+                button: $(this).find(':submit'),
+                data: $(this).serialize(),
+                success: function(data) {
+                    this.button.html(data);
+                },
+                error: function(xhr, response, error) {
+                    alert("{% blocktrans %}Please connect to the internet to interact.{% endblocktrans %}");
+                }
+            });
+        });
+	  }
+    }
+}
+function editForm() {
+	var elements = document.querySelectorAll(".edit-form");
+	for(var x = 0; x < elements.length; x++) {
+	    if(!$(elements[x]).hasClass('init')) {
+            	$(elements[x]).addClass('init');
+		$(elements[x]).attr('last-action', new String(new Date().getTime()));
+                $(elements[x]).on('click', function(event) {
+			if(parseInt($(elements[x]).prop('last-action')) - new Date().getTime() > -1000) return;
+			$(elements[x]).attr('last-action', new String(new Date().getTime()));
+                        console.log('edit');
+			var edit_iframe = document.querySelector("#iframe" + event.target.id);
+			if(edit_iframe) {
+				if($(edit_iframe).hasClass('hide')) {
+                                    edit_iframe.src = edit_iframe.dataset.src;
+				} else {
+                                     edit_iframe.src = '';
+				}
+				$(edit_iframe).toggleClass('hide');
+			}
+		});     
+            }
+	}
+}
+function staticClocksDyn() {
+    var clockScripts = document.getElementsByClassName('clock-script');
+    for(script of clockScripts) {
+        if(!$(script).hasClass('complete')) {
+            eval(new String(script.innerHTML).replace("&gt;", '>').replace("&lt;", '<'));
+            $(script).toggleClass('complete');
+        }
+    }
+}
+var time = String(new Date().getTime());
+function loadNext(next){
+        if(((!lloading && !next && lpage > 1) || (!loading && next && page < {{ num_pages }}))) {
+                if(!next) {
+                        lloading = true;
+                        lpage = lpage - 1;
+                } else {
+                        loading = true;
+                        page = page + 1;
+                }
+                var scrollContainer = document.getElementById("scroll-container");
+                npage = null;
+                if(!next) {
+                        npage = lpage;
+                } else {
+                        npage = page;
+                }
+		console.log(npage);
+                if(npage < 1 || npage > total_pages){
+                        return;
+                }
+		var extra = "";
+		var likes = urlParams.get('likes');
+		if(likes) {
+			extra = "&likes=t";
+		}
+		var show = urlParams.get('show');
+		if(show) {
+			extra = extra + "&show=t";
+		}
+		var feed = urlParams.get('feed');
+		if(feed) {
+			extra = extra + "&feed=" + feed;
+		}
+		var lang = urlParams.get('lang');
+		if(lang) {
+			extra = extra + "&lang=" + lang;
+		}
+                const url = "?page=" + npage + "&scroll_page=t" + extra + "&time=" + time;
+		$.ajax({
+			url: url,
+			method: 'POST',
+			timeout: 1000 * 60 * 30,
+        		tryCount: 0,
+        		retryLimit: 5,
+        		error: (xhr, textStatus, errorThrown) => {
+        	       		$(progress).addClass("fade-hidden");
+        	        	setTimeout(function() {
+        	        	        $(progress).addClass("hide");
+                	        	$.ajax(this);
+        	        	}, 2000);
+        	        	this.tryCount++;
+        	        	if(this.tryCount >= this.retryLimit) return;
+            		},
+            			success: (data) => {		
+                                if(!data.startsWith("<div ")){
+                    					setTimeout(function() {$.ajax(this);}, 10000);
+                                        return;
+                                }
+                        function finishPage(){
+                                if(npage == 1) {
+                                        document.getElementById("hide-at-begin").style.visibility = "hidden";
+                                        document.getElementById("hide-at-begin").style.height = "0px";
+                                } else if(npage > 3 && !next) {
+                                        document.getElementById("hide-at-begin").style.visibility = "visible";
+                                        document.getElementById("hide-at-begin").style.height = "auto";
+                                }
+                                if(npage == {{ num_pages }}){
+                                        document.getElementById("hide-at-end").style.visibility = "hidden";
+                                        document.getElementById("hide-at-end").style.height = "0px";
+                                } else if(npage < {{ num_pages }} - 3 && next) {
+                                        document.getElementById("hide-at-end").style.visibility = "visible";
+                                        document.getElementById("hide-at-end").style.height = "auto";
+                                }
+                                var initHeight = null;
+                                if(next){
+                                        scrollContainer.insertAdjacentHTML("beforeend", data);
+                                        function scrollWindow(npage) {
+                                                document.getElementById("page" + npage).style.visibility = "visible";
+                                                document.getElementById("page" + npage).style.height = "auto";
+                                                window.scrollBy(0,-document.getElementById("page" + npage).offsetHeight + 3365);
+                                                loading = false;
+                                        }
+                    					resizeImages();
+                                        scrollWindow(npage);
+                                } else {
+                                        scrollContainer.insertAdjacentHTML("afterbegin", data);
+                                        function fix2(npage) {
+                                                document.getElementById("page" + npage).style.height = "auto";
+                                                document.getElementById("page" + npage).style.visibility = "visible";
+                                                window.scrollBy(0, document.getElementById("page" + npage).offsetHeight);
+                                                lloading = false;
+                                        }
+                                        fix2(npage);
+                                }
+                    staticClocksDyn();
+    				likeForm();
+    				publishForm();
+    				editForm();
+    				{% if use_prism %}Prism.highlightAll();{% endif %}
+                            }
+                            finishPage();
+                        },
+                    });
+                $(function() {
+                        $(window).scroll(function() {
+                                if(document.getElementById("page" + npage) && isElementVisible(document.getElementById("page" + npage))){
+                                        if(npage == total_pages || npage == 1 || !npage){
+                                                clearUrlParameter();
+                                        } else {
+			                    			updateURLParameter2("page", npage);
+                                    	}
+			                  	}
+                        });
+                });
+                garbage_disposal(npage);
+        }
+}
+$(function() {
+        var p = "page{{ page }}";
+        $(window).scroll(function() {
+                if(document.getElementById(p) && isElementVisible(document.getElementById(p))) {
+                        if({% if not page %}true || {% endif %}{{ page }} == total_pages || {{ page }} == 1) {
+                                clearUrlParameter();
+                        } else {
+				{% if page %}updateURLParameter2("page", {{ page }});{% endif %}
+                	}
+		}
+        });
+});
+{% include 'navbarfix.js' %}
+{% include 'reader.js' %}
+staticClocksDyn();
+{% endblock %}

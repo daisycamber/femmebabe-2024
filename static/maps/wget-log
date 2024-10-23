@@ -1,0 +1,11 @@
+--2022-10-04 02:06:05--  https://maps.googleapis.com/maps/api/js?libraries=places
+Resolving maps.googleapis.com (maps.googleapis.com)... 142.250.190.42, 172.217.4.202, 142.251.32.10, ...
+Connecting to maps.googleapis.com (maps.googleapis.com)|142.250.190.42|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/javascript]
+Saving to: ‘js?libraries=places’
+
+js?libraries=places                       [<=>                                                                    ]       0  --.-KB/s               js?libraries=places                       [ <=>                                                                   ] 168.40K   904KB/s    in 0.2s    
+
+2022-10-04 02:06:05 (904 KB/s) - ‘js?libraries=places’ saved [172438]
+

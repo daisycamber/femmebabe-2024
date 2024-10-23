@@ -1,0 +1,12 @@
+<h1>{{ site_name }} - Spend some time with me online!</h1>
+<p>Dear {{ user.username }},</p>
+<p>I noticed you created an account a little while ago, and I would like to invite you back to spend some time with me. I'm always adding new features, content, and more to the site, so I'd love your feedback and to get to know you some more. Consider subscribing, buying a photo, or leaving a tip. Or just send me a message! If you haven't already, make sure to log in and verify your identity. It's really easy!</p>
+<p>Use this link to visit the site - <a href="{{ protocol }}://{{ domain }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ protocol }}://{{ domain }}</p>
+<p>It's been a moment. Come back and see what's new, will you?</p>
+<p>Let's get along,</p>
+<p>Clementine</p>
+{% autoescape off %}
+<img style="width: 60%; max-width: 300px;" src="{{ photo }}" alt="A photo of me from {{ site_name }}"></img>
+{% endautoescape %}

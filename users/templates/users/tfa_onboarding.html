@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Set Up Two Factor Authentication</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-secondary" type="submit">Add phone number</button>
+            </div>
+        </form>
+{% endblock %}

@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% load feed_filters %}
+{% load crispy_forms_tags %}
+{% block head %}
+<script type="text/javascript" src="/static/opencv.min.js"></script>
+<script type="text/javascript" src="/static/zxing-browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+{% endblock %}
+{% block content %}
+<div id="container rounded bg-white shadow col-md-6 mx-auto">
+<h1>{{ 'Verify Your Identity'|trans }}</h1>
+<p>{{ the_site_name }} {{ 'requires you to verify your identity before you can begin using the app. This step verifies your age with a few photos, and keeps the site safer.'|trans }} <i>{% blocktrans %}You must be at least 21 years old to use this part of the site.{% endblocktrans %}</i></p>
+<p>{{ 'Please use an ID with a barcode including your name, birthday, and ID number.'|trans }}</p>
+<p>{{ 'Please take a photo of the front and back of your ID for this upload. You can do this using a professional camera or your smartphone. I recommend saving the scans, you can go directly to your and'|trans }} <a href="{% url 'barcode:scan' %}?download=true" title="{{ 'Scan your ID'|trans }}">{{ 'save scans of your ID'|trans }}</a> {{ 'or'|trans }} <a href="?camera=true" title="{{ 'Scan your ID from your camera'|trans }}">{{ 'scan your ID from your camera'|trans }}</a>.</p>
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<fieldset class="form-group">
+	<legend class="border-bottom mb-4">{{ 'Upload Your ID'|trans }}</legend>
+		{{ form|crispy }}
+	</fieldset>
+	<small>{% blocktrans %}By completing this form and signing above, as well as pressing the button below, you confirm that you are at least {{ min_age }} years of age today, born on or before {{ past_date }}, and you swear you are not using the site in a public place, not in a manner that humiliates or defames any of our models or violates the law, and you agree to the Terms of Use and Privacy Policy listed below, in the footer of this website.{% endblocktrans %} <i>{{ 'If you do not meet these conditions, you will be dismissed from the site.'|trans }}</i> {{ 'Thank you for your cooperation.'|trans }}</small>
+	<hr style="background-color: blue;">
+	<button type="submit" id="verify-button" class="btn btn-outline-danger">{{ 'Verify'|trans }}</button>
+</form>
+</script>
+</div>
+<canvas id="canvas" style="width: 100%;" class="hide"></canvas>
+{% if enable_agechecker %}
+<noscript><meta http-equiv="refresh" content="0;url=https://agechecker.net/noscript"></noscript>
+<script>
+(function(w,d) {
+  var config = {
+    element: "#verify-button",
+    key: "CGvPhX8HFU0oSGbeTocAKgG5tUabWRyd",
+  };
+  w.AgeCheckerConfig=config;if(config.path&&(w.location.pathname+w.location.search).indexOf(config.path)) return;
+  var h=d.getElementsByTagName("head")[0];var a=d.createElement("script");a.src="https://cdn.agechecker.net/static/popup/v1/popup.js";a.crossOrigin="anonymous";
+  a.onerror=function(a){w.location.href="https://agechecker.net/loaderror";};h.insertBefore(a,h.firstChild);
+})(window, document);
+</script>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+const MIN_SCALE = 0.4;
+const MAX_SCALE = 0.9;
+var tryCountFront = 0;
+var tryCountBack = 0;
+var image;
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var scale = 1;
+var degmod = 90;
+var d1 = false;
+var d2 = false;
+function drawRotated(degrees, image, vid){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if(vid) {
+        if(Math.floor(degrees/90) % 2 == 0) {
+            canvas.width = image.videoWidth * scale;
+            canvas.height = image.videoHeight * scale;
+        } else {
+            canvas.width = image.videoHeight * scale;
+            canvas.height = image.videoWidth * scale;
+        }
+    } else {
+        if(Math.floor(degrees/90) % 2 == 0) {
+            canvas.width = image.width * scale;
+            canvas.height = image.height * scale;
+        } else {
+            canvas.width = image.height * scale;
+            canvas.height = image.width * scale;
+        }
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.translate(canvas.width / 2, canvas.height / 2);   // to center
+    context.rotate(degrees * Math.PI / 180);                   // rotate
+    if(Math.floor(degrees/90) % 2 == 0) {
+        context.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+    } else {
+        context.drawImage(image, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width);
+    }
+    context.translate(-canvas.width / 2, -canvas.height / 2); // and back
+    context.restore();
+    context.save();
+}
+function calculateAge(birthday) { // birthday is a date
+	var ageDifMs = Date.now() - birthday;
+	var ageDate = new Date(ageDifMs); // miliseconds from epoch
+	return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+var min_age = 21;
+function validateIdFront(text) {
+	var results = text.matchAll("\d\d\/\d\d\/\d\d\d\d");
+	var birthdate = null;
+	var expiry = null;
+	for(result in results) {
+		var day = result[0];
+		var dayParsed = new Date(parseInt(result.substring(6)), parseInt(result.substring(0,2)), parseInt(result.substring(3,5)));
+		if(calculateAge(dayParsed) >= min_age) {
+			birthdate = dayParsed;
+		}
+		if(dayParsed.getTime() > new Date().getTime()) {
+			expiry = dayParsed;
+		}
+	}
+	if(birthdate && (expiry || tryCountFront > 1)) {
+		showResult(true, false);
+		return;
+	}
+    tryCountFront++;
+	showResult(false, false);
+}
+function validateIdBack(text) {
+	var results = text.matchAll("\d\d\d\d\d\d\d\d");
+	var birthdate = null;
+	var expiry = null;
+	for(result in results) {
+		var day = result[0];
+		var dayParsed = new Date(parseInt(result.substring(4)), parseInt(result.substring(0,2)), parseInt(result.substring(2,4)));
+		if(calculateAge(dayParsed) >= min_age) {
+			birthdate = dayParsed;
+		}
+		if(dayParsed.getTime() > new Date().getTime()) {
+			expiry = dayParsed;
+		}
+	}
+	if(birthdate && (expiry || tryCountBack > 1)) {
+		showResult(true, true);
+		return;
+	}
+    tryCountBack++;
+	showResult(false, true);
+}
+function setGetParam(key,value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(key, value);
+    var newUrl = window.location.origin
+          + window.location.pathname
+          + '?' + params.toString();
+    window.history.pushState({path:newUrl},'',newUrl);
+  }
+}
+var params = new URLSearchParams(window.location.search);
+function showResult(result, back) {
+    if(!result) {
+        if(back) {
+            document.getElementById("id_document_back").value = null;
+        } else {
+            document.getElementById("id_document").value = null;
+        }
+        return;
+    }
+    if(back) {
+        d2 = true;   
+    } else {
+        d1 = true;
+    }
+    finishPhotoCheck();
+}
+function recognizeText(image) {
+	Tesseract.recognize(
+	  image,
+	  'eng',
+	  { logger: m => console.log(m) }
+	).then(({ data: { text } }) => {
+        console.log(text);
+		validateIdFront(text);
+	})
+}
+var src;
+var dst;
+var thresh;
+var contours;
+var hierarchy;
+var lastWidth;
+var largest;
+var target;
+var cnt;
+var rect;
+var cnts;
+var point1;
+var point2;
+var color = new cv.Scalar(250,250,250);
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
+function scheduleScan(back) {
+    try {
+        drawRotated(0, image, false);
+        src = cv.imread('canvas');
+        dst = new cv.Mat();
+        cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+        thresh = new cv.Mat();
+        cv.threshold(dst, thresh, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+        contours = new cv.MatVector();
+        hierarchy = new cv.Mat();
+        cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+        lastWidth = 0;
+        largest = 0;
+        rectangles = [];
+        cnts = null;
+        for (let i = 0; i < contours.size(); ++i) {
+          cnt = contours.get(i);
+          rect = cv.boundingRect(cnt);
+          if(rect.width > lastWidth) {
+              largest = i;
+              cnts = cnt;
+              lastWidth = rect.width;
+          }
+          rectangles.push(rect);
+        }
+        target = rectangles[largest];
+        if(target) {
+            var rect = target;
+            point1 = new cv.Point(rect.x, rect.y);
+            point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height);
+            /*cv.rectangle(src, point1, point2, color, 4, cv.LINE_AA, 0);*/
+            cv.imshow(canvas, src);
+            src.delete(); dst.delete(); thresh.delete(); contours.delete(); hierarchy.delete();
+        }
+        if(rectangles.length > 0 && target.width > (canvas.width * MIN_SCALE && target.height > canvas.height * MIN_SCALE) && (target.width < canvas.width * MAX_SCALE && target.height < canvas.height * MAX_SCALE)) {
+            decodeBarcode(canvas, back);
+            console.log('Decoding barcode');
+        } else {
+            showResult(false, back);
+        }
+        color = new cv.Scalar(Math.random() * 155 + 100, Math.random() * 155 + 100, Math.random() * 155 + 100);
+    } catch(e) {
+        console.log('Error ' + new String(e));
+    }
+}
+function decodeBarcode(canvas, back) {
+    if(back) {
+    	try {
+            const codeReader = new ZXingBrowser.BrowserPDF417Reader();
+    		const data = codeReader.decodeFromCanvas(canvas).then((data) => {
+    			if(!data) {
+                    showResult(false, true);
+    			}
+                console.log(data);
+			    validateIdBack(data);
+    		}).catch((e) => {
+    		});
+    	} catch(e) {
+    	}
+    } else {
+	    recognizeText(image);
+    }
+}
+function checkPhoto(img, front) {
+    console.log('Checking photo');
+    scheduleScan(!front);
+}
+function finishPhotoCheck() {
+	if(d1 && d2) {
+		document.getElementById("verify-button").disabled = false;
+    }
+}
+document.getElementById("id_document").onchange = function(e){
+    var fileReader = new FileReader();
+    fileReader.addEventListener("load", function(evt) {
+        console.log('Added file');
+        var img = new Image;
+        img.onload = function() {
+            image = img;
+            console.log('Image1 ' + String(img));
+            console.log('Image2 ' + String(this));
+            checkPhoto(true);
+        }
+        img.src = this.result;
+    });
+    fileReader.readAsDataURL(e.target.files[0]);
+};
+document.getElementById("id_document_back").onchange = function(e) {
+    var fileReader = new FileReader();
+    fileReader.addEventListener("load", function(evt) {
+        console.log('Added file');
+        var img = new Image;
+        img.onload = function() {
+            image = img;
+            console.log('Image1 ' + String(img));
+            console.log('Image2 ' + String(this));
+            checkPhoto(false);
+        }
+        img.src = this.result;
+    });
+    fileReader.readAsDataURL(e.target.files[0]);
+};
+{% endblock %}
+{% block javascripts %}
+<script src="/static/js/jSignature.js"></script>
+<script src="/static/js/django_jsignature.js"></script>
+{% autoescape off %}
+{{ form.media|removejsig }}
+{% endautoescape %}
+{% endblock %}

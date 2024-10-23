@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ ! -f /usr/bin/$1 ]; then
+    sudo touch /usr/bin/$1
+    echo "#!/bin/bash" >> /usr/bin/$1
+    sudo chmod a+x /usr/bin/$1
+    sudo nano /usr/bin/$1
+    echo $1 | sudo tee -a /etc/ascripts
+else
+    sudo chmod a+x /usr/bin/$1
+    sudo nano /usr/bin/$1
+fi

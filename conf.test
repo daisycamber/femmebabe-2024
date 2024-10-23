@@ -1,0 +1,8 @@
+<VirtualHost *:7777>
+        Header set Access-Control-Allow-Origin *
+        ProxyPass /proxy http://localhost:7779
+        ProxyPassReverse /proxy http://localhost:7779
+        RewriteEngine on
+        RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC,OR]
+        RewriteCond %{HTTP:CONNECTION} ^Upgrade$ [NC]
+</VirtualHost>

@@ -1,0 +1,55 @@
+{% load feed_filters %}
+<div>
+<img src="{{ post.author.profile.image.url }}?{{ post.author.profile.rotation }}" alt="@{{ post.author.username }}'s profile photo" width="120" height="120" align="left" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'feed:profile' username=post.author.username %}" title="See @{{ post.author.username }}'s profile">@{{ post.author }}</a>
+      <small class="text-muted">{{ post.date_posted|date:"F d, Y" }} {{ post.date_posted|time:"H:i" }}</small>
+      <small class="text-muted"><i class="bi bi-translate"></i> {{ post.content|detectlanguage }}</small>
+    </div>
+    {% autoescape off %}    
+    {% if request.path == '/search/' %}
+    <p class="article-content">{{ post.content|highlightsearchquery|addhttpstodomains|embedlinks|tagusers }}</p>
+    {% else %}
+    <p class="article-content">{{ post.content|addhttpstodomains|embedlinks|tagusers }}</p>
+    {% endif %}
+    {% endautoescape %}
+
+    {% if post.image %}
+    <a href="{% if not post.content|geturl == "" %}{{ post.content|geturl }}{% else %}{{ post.image.url }}{% endif %}" title="A post by @{{ post.author.username }}"><img src="{{ post.image.url }}?{{ post.rotation }}" class="img-fluid" style="width:100%;" alt="{% if post.content|geturl == "" %}View the photo from a post by {% else %}Vist the link posted by {% endif %}@{{ post.author.username }}"></a>
+    {% endif %}
+
+    {% if post.file %}
+    {% if post.file.name|filetype == 'mp3' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.file.url }}" type="audio/mpeg">
+	Your browser does not support the audio element.
+    </audio>
+    {% elif post.file.name|filetype == 'wav' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}" apid="{{ post.id }}" page="{% if request.GET.page %}{{ request.GET.page }}{% else %}{{ num_pages }}{% endif %}">
+  	<source src="{{ post.file.url }}" type="audio/wav">
+	Your browser does not support the audio element.
+    </audio>
+    {% elif post.file.name|filetype == 'aac' %}
+    <audio controls style="width: 100%;" preload="metadata" id="audio{{ post.id }}">
+	<source src="{{ post.file.url }}" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+    {% elif post.file.name|filetype == 'mp4' or post.file.name|filetype == 'mov' %}
+    <video width="100%" controls preload="metadata">
+        <source src="{{ post.file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% else %}
+    <p>This post contains an unsupported file which is not being displayed.</p>
+    {% endif %}
+    {% endif %}
+<hr>
+<a href="{% url 'feed:post-detail' pk=post.id %}" title="View post{% if user.is_authenticated and post.author == user %}, or rotate photo{% endif %}"><button type="button" class="btn btn-primary"><i class="bi bi-binoculars-fill"></i> View</button></a>
+{% if user.is_authenticated and post.author == user %}
+<a href="{% url 'feed:post-update' pk=post.id %}" title="Edit this post"><button type="button" class="btn btn-secondary"><i class="bi bi-pencil-fill"></i> Edit</button></a>
+{% endif %}
+{% if user.is_authenticated and post.author == user or user.is_superuser %}
+<a href="{% url 'feed:post-delete' pk=post.id %}" title="Delete this post"><button type="button" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Delete</button></a>
+{% endif %}
+</div>
+<hr>

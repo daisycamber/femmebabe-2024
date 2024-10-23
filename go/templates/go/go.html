@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block content %}
+{% load app_filters %}
+<legend class="border-bottom mb-4">Go</legend>
+<b>Feed</b>
+<div style="display: flex; justify-content: space-around;">
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-danger dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-life-preserver"></i> Feed
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'app:app' %}?k={% get_key %}">App</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile' request.user.profile.name %}">Public Profile</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile' request.user.profile.name %}?show=true">Private Profile</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile-grid' request.user.profile.name %}">Public Grid</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:profile-grid' request.user.profile.name %}?show=true">Private Grid</a></li>
+    <li><a class="dropdown-item" href="{% url 'feed:private' request.user.profile.name  %}?show=true">Private Posts</a></li>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-dark dropdown-toggle" href="{% url 'audio:recordings' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-soundwave"></i> Audio
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'synthesizer:projects' %}">Audio Workstation</a></li>
+    <li><a class="dropdown-item" href="{% url 'synthesizer:project' 'new' %}">New Workstation Project</a></li>
+    <li><a class="dropdown-item" href="{% url 'audio:recordings' %}">Audio</a></li>
+    <li><a class="dropdown-item" href="{% url 'audio:record' 'new' %}?live=true">Live Audio</a></li>
+    <li><a class="dropdown-item" href="{% url 'audio:record' 'new' %}?live=true&transcript=true">Live Transcript</a></li>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-info dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-kanban-fill"></i> Misc
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'landing:landing' %}?k={% get_key %}&welcome=true">Landing</a></li>
+    <li><a class="dropdown-item" href="{% url 'interactive:interactive' request.user.profile.name %}">Interactive</a></li>
+    <li><a class="dropdown-item" href="{% url 'hypnosis:hypnosis' %}">Hypnosis</a></li>
+    <li><a class="dropdown-item" href="{% url 'retargeting:qrcode' %}">QR Code Generator</a></li>
+  </ul>
+</div>
+</div>
+<hr style="background-color: orange;">
+<b>Live Video</b>
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'live:golivevideo' %}?camera=private" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Go live</a>
+	<a href="{% url 'live:name-camera' %}?camera=private" class="btn btn-outline-secondary" title="Live remote control"><i class="bi bi-toggle-on"></i> Live Remote</a>
+        <a class= "btn btn-outline-danger" href="{% url 'recordings:recordings' request.user.profile.name %}?all=true"><i class="bi bi-person-video2"></i> Video</a>
+</div>
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'live:choose-live-camera' %}" class="btn btn-outline-success" title="Go live"><i class="bi bi-camera-video-fill"></i> Live Camera</a>
+	<a href="{% url 'live:choose-camera' %}" class="btn btn-outline-secondary" title="Live remote control"><i class="bi bi-toggle-on"></i> Camera Settings</a>
+	<a href="{% url 'live:name-camera' %}?camera=new" class="btn btn-outline-info" title="New live camera"><i class="bi bi-node-plus-fill"></i> New Camera</a>
+        <a class="btn btn-outline-info" href="{% url 'users:youtube' %}"><i class="bi bi-youtube"></i> Youtube Auth</a>
+</div>
+<div>
+<a class="btn btn-outline-dark pink-borders" href="{% url 'live:shows' %}"><i class="bi bi-calendar-fill"></i> Schedule</a>
+</div>
+<hr style="background-color: blue;">
+{% if request.user.profile.admin %}
+<b>Users & Surveys</b>
+<div style="display: flex; justify-content: space-around;">
+    <a class="btn btn-outline-info" href="{% url 'users:all' %}"><i class="bi bi-person-lines-fill"></i> Users</a>
+    <a class="btn btn-outline-dark" href="{% url 'survey:surveys' %}"><i class="bi bi-ui-radios"></i> Surveys</a>
+    <a class="btn btn-outline-danger" href="{% url 'survey:update' 'new' %}"><i class="bi bi-info-circle-fill"></i> New Survey</a>
+</div>
+<hr style="background-color: red;">
+{% endif %}
+<b>Send Updates and Status</b>
+<div style="display: flex; justify-content: space-around;">
+<a class= "btn btn-outline-info" href="{% url 'photobooth:photobooth' %}"><i class="bi bi-person-workspace"></i> Photo</a>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-camera-fill"></i> Send
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<div style="max-height: 50vh; overflow: scroll;">
+    {% for subscriber in request.user.subscriptions.all %}
+        <li><a class="dropdown-item" href="{% url 'photobooth:photobooth' %}?recipient={{ subscriber.name }}">{{ subscriber.name }}</a></li>
+    {% endfor %}
+	</div>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-dark pink-borders dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-camera-fill"></i> Status
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<div style="max-height: 50vh; overflow: scroll;">
+    {% for message in status_messages %}
+        <li><a class="dropdown-item" href="{% url 'photobooth:photobooth' %}?content={{ message }}">{{ message }}</a></li>
+    {% endfor %}
+	</div>
+  </ul>
+</div>
+{% if request.user.profile.admin %}
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-info dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-inbox-fill"></i> I/O
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'contact:contacts' %}">Contacts</a></li>
+    <li><a class="dropdown-item" href="{% url 'notifications:send' %}">Send Notification</a></li>
+    <li><a class="dropdown-item" href="{% url 'retargeting:email' %}">Send Email</a></li>
+    <li><a class="dropdown-item" href="{% url 'retargeting:emails' %}?sent=t">Sent Emails</a></li>
+    <li><a class="dropdown-item" href="{% url 'retargeting:emails' %}">Scheduled Emails</a></li>
+    <li><a class="dropdown-item" href="{% url 'mail:inbox' %}">Inbox</a></li>
+  </ul>
+</div>
+{% endif %}
+</div>
+<hr style="background-color: black;">
+<b>Remote, Security and Edits</b>
+<div style="display: flex; justify-content: space-around;">
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-dpad-fill"></i> Remote
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+{% if request.user.profile.admin %}    <li><a class="dropdown-item" href="{% url 'remote:sessions' %}">Inject into session</a></li>{% endif %}
+    <li><a class="dropdown-item" href="{% url 'photobooth:remote' %}">Photobooth Remote</a></li>
+  </ul>
+</div>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-primary dropdown-toggle" href="{% url 'landing:landing' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-lock-fill"></i> Security
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'security:logins' %}">Bypass Logins</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:nfc' %}?generate=t">Generate NFC</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:mrz' %}?generate=t">Generate MRZ</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:nfc' %}">NFC</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:mrz' %}">MRZ</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:set-pin' %}">Set Pin</a></li>
+    <li><a class="dropdown-item" href="/webauth/devices/">Security Keys</a></li>
+    <li><a class="dropdown-item" href="{% url 'security:biometric' %}">Activate Biometric Security</a></li>
+  </ul>
+</div>
+{% if request.user.profile.admin %}
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-pen-fill"></i> Edit
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<div style="max-height: 50vh; overflow: scroll;">
+	        <li><a class="dropdown-item" href="{% url 'feed:post-update' splash_id %}"> +- Edit Splash</a></li>
+	        <li><a class="dropdown-item" href="{% url 'feed:post-update' smp_id %}"> +- Edit Status</a></li>
+{% if ad_post %}	        <li><a class="dropdown-item" href="{% url 'feed:post-update' ad_post %}"> +- Edit Ads</a></li>{% endif %}
+	</div>
+  </ul>
+</div>
+{% endif %}
+</div>
+<hr style="background-color: red;">
+{% if request.user.profile.admin %}
+<b>Shell</b>
+<div style="display: flex; justify-content: space-around;">
+    <a class="btn btn-outline-dark" href="{% url 'shell:shell' %}"><i class="bi bi-terminal-fill"></i> Web Shell</a>
+<div class="dropdown" style="display: inline-block;">
+  <a class="btn btn-outline-secondary dropdown-toggle" href="{% url 'audio:recordings' %}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-terminal-fill"></i> Shell
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="{% url 'shell:terminal' %}">Terminal</a></li>
+    <li><a class="dropdown-item" href="{% url 'shell:shell' %}">Shell</a></li>
+    <li><a class="dropdown-item" href="{% url 'shell:logins' %}">Shell Logins</a></li>
+  </ul>
+</div>
+    <a class="btn btn-outline-danger" href="{% url 'logs' %}"><i class="bi bi-file-earmark-text-fill"></i> Logs</a>
+</div>
+<hr style="background-color: orange;">
+<b>Vendor Options</b>
+<div style="display: flex; justify-content: space-around;">
+    <a class="btn btn-outline-danger" href="{% url 'crypto:bots' %}"><i class="bi bi-robot"></i> Crypto Bots</a>
+    <a class="btn btn-outline-warning" href="{% url 'crypto:profile' %}"><i class="bi bi-person-lines-fill"></i> Crypto Profile</a>
+    <a class="btn btn-outline-success" href="{% url 'shell:logins' %}"><i class="bi bi-info-circle-fill"></i> Shell Logins</a>
+</div>
+{% endif %}
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'vendors:send-bitcoin' %}" class="btn btn-outline-success" title="Cash out bitcoin"><i class="bi bi-currency-bitcoin"></i> Crypto</a>
+        <a class="btn btn-outline-secondary" href="{% url 'vendors:preferences' %}"><i class="bi bi-gear-fill"></i> Vendor Settings</a>
+        <a class="btn btn-outline-primary" href="{{ digital_id }}" title="View your digital ID"><i class="bi bi-wallet2"></i> Digital ID</a>
+	<a href="{% url 'barcode:scan' %}?foreign=true&next=/go/" class="btn btn-outline-dark" title="Scan an ID"><i class="bi bi-person-lines-fill"></i> ID Scan</a>
+</div>
+<hr style="background-color: green;">
+<b>Messages</b>
+<div style="display: flex; justify-content: space-around;">
+{% if request.user.profile.admin %}	<a href="{% url 'voice:recordings' %}" class="btn btn-outline-danger" title="See and record audio"><i class="bi bi-mic-fill"></i> Voice Recording(s)</a>{% endif %}
+	<a href="{% url 'voice:call-recordings' %}" class="btn btn-outline-warning" title="Hear voice messages"><i class="bi bi-mic-fill"></i> Audio Messages</a>
+        <a class="btn btn-outline-secondary" href="{% url 'chat:chat' request.user.profile.name %}" title="Chat live"><i class="bi bi-chat-fill"></i> Chat</a>
+</div>
+<hr style="background-color: lightblue;">
+<b>Profile</b>
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'feed:profile' request.user.profile.name %}" class="btn btn-outline-success" title="See all login photos"><i class="bi bi-person-workspace"></i> Your Profile</a>
+	<a href="{% url 'face:faces' %}" class="btn btn-outline-dark" title="See all login photos"><i class="bi bi-person-workspace"></i> Login photos</a>
+	<a href="{% url 'audio:recordings' %}" class="btn btn-outline-danger" title="See and record audio"><i class="bi bi-mic-fill"></i> Recording(s)</a>
+</div>
+<hr style="background-color: darkblue;">
+<b>Birth Control</b>
+<div style="display: flex; justify-content: space-around;">
+	<a href="{% url 'birthcontrol:take' %}" class="btn btn-outline-danger" title="Take your birth control"><i class="bi bi-calendar-check-fill"></i> Take birth control</a>
+	{% if request.user.birthcontrol_profile.birth_control %}<a href="{% url 'birthcontrol:profile' %}" class="btn btn-outline-dark" title="See your birth control"><i class="bi bi-calendar2-week-fill"></i> Birth control profile</a>{% endif %}
+</div>
+{% if request.user.birthcontrol_profile.taking_birth_control %}<small class="text-muted"><i>Last taken </i>{{ request.user.birthcontrol_profile.birth_control_taken|date:"F d, Y" }} {{ request.user.birthcontrol_profile.birth_control_taken|time:"H:i" }},</small>{% endif %}
+{% if request.user.birthcontrol_profile.birth_control %}<small class="text-muted"><i>uploaded </i>{{ request.user.birthcontrol_profile.birth_control_uploaded|date:"F d, Y" }} {{ request.user.birthcontrol_profile.birth_control_uploaded|time:"H:i" }}</small>{% endif %}
+{% if request.user.is_superuser or request.user.profile.admin %}
+<hr style="background-color: purple;">
+<i>Logout</i>
+<div style="display: flex; justify-content: space-around;">
+{% if is_admin %}
+	<a href="{% url 'security:logout-everyone' %}" class="btn btn-outline-danger" title="Log everyone out"><i class="bi bi-person-dash-fill"></i> Logout everyone</a>
+	<a href="{% url 'security:logout-everyone-but-user' %}" class="btn btn-outline-danger" title="Log everyone out except for me"><i class="bi bi-person-dash-fill"></i> Logout everyone but me</a>
+{% endif %}
+	<div style="padding-left: 10px;"><p>{{ session_count|sessioncount|capitalize }} active</p></div>
+</div>
+{% endif %}
+{% endblock content %}

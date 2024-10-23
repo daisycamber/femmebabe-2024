@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block style %}
+      html {
+        -ms-touch-action: none;
+        touch-action: none;
+      }
+      body {
+        overflow: hidden;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px
+      }
+      button, b {
+        font-size: 60px;
+      }
+{% endblock %}
+{% block head %}
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+{% endblock %}
+{% block content %}
+<button id="connect" class="btn btn-outline-success">Connect</button>
+<button id="disconnect" class="btn btn-outline-danger">Disconnect</button>
+<button id="reset" class="btn btn-outline-dark">Reset</button>
+<canvas id="interactive-canvas" width="94vw" height="85vh"></canvas>
+{% endblock %}
+{% block javascript %}
+      var WRITE_INTERVAL = 250;
+      var CIRCLE_RADIUS = window.innerWidth * 0.50;
+      var OFF_RADIUS = CIRCLE_RADIUS * 0.3;
+      var ON_THRESHOLD = 60;
+      var DEAD_ZONE = 3;
+      var OFFSET_MIN = 25;
+      var OFFSET_MOD = 1;
+      var interval = null;
+      var circle = null;
+      var x = 128;
+      var y = 128;
+      var device;
+      var heightFactor = 0.85;
+      var mouseToggle = false;
+	const scale = (fromRange, toRange) => {
+        	const d = (toRange[1] - toRange[0]) / (fromRange[1] - fromRange[0]);
+	        return from =>  (from - fromRange[0]) * d + toRange[0];
+	};
+      function init() {
+        var receiveCharacteristic;
+        var sendCharacteristic;
+        const primaryServiceUuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+        const receiveCharUuid = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+        const sendCharUuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+        var connectButton = document.getElementById("connect");
+        connectButton.onclick = async () => {
+          device = await navigator.bluetooth.requestDevice({
+            acceptAllDevices: true,
+            optionalServices: [primaryServiceUuid],
+          });
+          const server = await device.gatt.connect();
+          const service = await server.getPrimaryService(primaryServiceUuid);
+          receiveCharacteristic = await service.getCharacteristic(receiveCharUuid);
+          sendCharacteristic = await service.getCharacteristic(sendCharUuid);
+          sendCharacteristic.oncharacteristicvaluechanged = function(value) {
+            console.log("Value " + value)
+          };
+          interval = setInterval(writeValues, WRITE_INTERVAL);
+        };
+        document.getElementById("disconnect").onclick = function() {
+          clearInterval(interval);
+          interval = null;
+          const data = new Uint8Array([0, 0, 0, 0, 25]);
+	  if(device && device.gatt.connected){
+            receiveCharacteristic.writeValue(data);
+            device.gatt.disconnect();
+	  }
+        };
+        var offset = 200;
+        var direction = true;
+        function writeValues() {
+          var data = null;
+	  if(Math.abs(128 - y) < DEAD_ZONE && Math.abs(128 - x) < DEAD_ZONE){
+	    // Stop it
+            data = new Uint8Array([128, 128, 128, 128, offset]);
+	  } else {
+            // Make it smooth - Map values larger
+	    var tox = x; 
+	    if(tox > 128){ // 0-75
+                tox = scale([128 + 15, 255], [128 + ON_THRESHOLD, 255])(x);
+	    } else if(tox < 128) {
+                tox = scale([128 - 15, 0], [128 - ON_THRESHOLD, 0])(x);
+	    }
+	    var toy = y;
+	    if(toy > 128){ // 0-75
+                toy = scale([128 + 15, 255], [128 + ON_THRESHOLD, 255])(y);
+            } else if(toy < 128) {
+                toy = scale([128 - 15, 0], [128 - ON_THRESHOLD, 0])(y);
+            }
+            data = new Uint8Array([255-parseInt(toy), parseInt(toy), 255-parseInt(tox), parseInt(tox), offset]);
+            //console.log("Writing data " + parseInt(tox) + "," + parseInt(toy));
+	  }
+          if(device && device.gatt.connected && data){
+            receiveCharacteristic.writeValue(data);
+          } 
+       }
+        var slider = null;
+        var joystickRadius = 25;
+        let stage = new createjs.Stage("interactive-canvas");
+        createjs.Touch.enable(stage);
+        let container = new createjs.Container();
+        var background = new createjs.Shape();
+        background.graphics.beginFill("#dedede").drawRect(0, 0, window.innerWidth, window.innerHeight); //
+        stage.canvas.width = window.innerWidth * 0.97;
+        stage.canvas.height = window.innerHeight * heightFactor * 0.9;
+        stage.addChild(background);
+        stage.addChild(container);
+        circle = new createjs.Shape();
+        circle.graphics.beginFill("lightblue").drawCircle(0, 0, joystickRadius);
+        circle.x = stage.canvas.width * 0.5;
+        circle.y = stage.canvas.height * heightFactor * 0.5;
+	var circle2 = new createjs.Shape();
+        circle2.graphics.beginFill("#ffcccb").drawCircle(0, 0, CIRCLE_RADIUS);
+        circle2.x = stage.canvas.width * 0.5;
+        circle2.y = stage.canvas.height * heightFactor * 0.5;
+        stage.addChild(circle2);
+	var circle3 = new createjs.Shape();
+        circle3.graphics.beginFill("#eeaaa9").drawCircle(0, 0, OFF_RADIUS);
+        circle3.x = stage.canvas.width * 0.5;
+        circle3.y = stage.canvas.height * heightFactor * 0.5;
+        stage.addChild(circle3);
+        document.getElementById("reset").onclick = function() {
+	    circle.x = stage.canvas.width/2;
+	    circle.y = stage.canvas.height * heightFactor / 2;
+            x = (circle.x / stage.canvas.width) * 255;
+            y = 255 - ((circle.y / (stage.canvas.height * heightFactor)) * 255);	    
+            offset = 255;
+	    writeValues();
+            stage.update();
+        };
+        stage.on("stagemousedown", function(evt) {
+            mouseToggle = true;
+        })
+        stage.on("stagemouseup", function(evt) {
+            mouseToggle = false;
+        })
+	var HOT_CORNER = 100;
+        stage.on("stagemousemove", function(evt) {
+          if (mouseToggle && evt.stageX > joystickRadius && evt.stageX < (stage.canvas.width - joystickRadius) && evt.stageY > joystickRadius && evt.stageY < (stage.canvas.height * heightFactor - joystickRadius)) {
+            circle.x = evt.stageX;
+            circle.y = evt.stageY; // - window.innerHeight * heightFactor;
+            if(circle.x < HOT_CORNER && circle.y < HOT_CORNER) {
+		circle.x = 0;
+		circle.y = 0;
+	    }
+    	    else if(circle.x > stage.canvas.width - HOT_CORNER && circle.y < HOT_CORNER) {
+                circle.x = window.innerWidth;
+                circle.y = 0;
+            }
+	    else if(circle.x < HOT_CORNER && circle.y > stage.canvas.height * heightFactor - HOT_CORNER) {
+                circle.x = 0;
+                circle.y = stage.canvas.height * heightFactor;
+            }
+            else if(circle.x > stage.canvas.width - HOT_CORNER && circle.y > stage.canvas.height * heightFactor - HOT_CORNER) {
+                circle.x = stage.canvas.width;
+                circle.y = stage.canvas.height * heightFactor;
+            }
+            x = (circle.x / stage.canvas.width) * 255;
+            y = 255 - ((circle.y / (stage.canvas.height * heightFactor)) * 255);
+            if (direction) {
+              offset += OFFSET_MOD;
+            } else {
+              offset -= OFFSET_MOD;
+            }
+            if (offset > 255) {
+              direction = false;
+              offset = 255;
+            } else if (offset < OFFSET_MIN) {
+              direction = true;
+              offset = OFFSET_MIN;
+            }
+            stage.update();
+          }
+        });
+        stage.addChild(circle);
+        console.log("Initialized")
+        stage.update();
+      }
+init();
+{% endblock %}

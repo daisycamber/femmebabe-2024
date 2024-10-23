@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="/static/live/jszip.js"></script>
+{% endblock %}
+{% block content %}
+<legend id="pleaseinteract">Please interact with the document to begin the live feed.</legend>
+<h1>@{{ profile.user.username }}'s Live Feed</h1>
+<div id="lastFrame"></div>
+<div id="container">
+<canvas id="videoCanvas" width="512" height="364">
+</canvas>
+<iframe src="/chat/{{ profile.user.username }}/?hidenavbar=t" width="100%" height="500px">
+</iframe>
+{% endblock %}
+{% block javascript %}
+{% include 'live/compressor.js' %}
+function reset(){
+        var pi = document.getElementById("pleaseinteract");
+        pi.style.height = "0px";
+        pi.style.visibility = "hidden";
+}
+document.querySelector('body').addEventListener('mousedown', reset);
+document.querySelector('body').addEventListener('touchstart', reset);
+document.querySelector('body').addEventListener('keydown', reset);
+window.addEventListener('scroll', reset);
+
+var canvas = document.getElementById("videoCanvas");
+var lastFrame = document.getElementById("lastFrame");
+if(window.innerWidth > window.innerHeight) {
+	canvas.width = parseInt(window.innerWidth * 0.90);
+	canvas.height = parseInt(canvas.width * 364/512);
+} else {
+	canvas.width = parseInt(window.innerWidth * 0.60);
+	canvas.height = parseInt(canvas.width * 364/512);
+}
+let xhr = new XMLHttpRequest();
+let xhr2 = new XMLHttpRequest();
+function loadListener2(){
+        if (xhr2.readyState === xhr2.DONE) {
+	    if(!xhr2.responseText.includes("Error 500")){
+	        lastFrame.innerHTML = xhr2.responseText;
+            }
+	}
+}
+function loadListener(){
+        if (xhr.readyState === xhr.DONE) {
+            var data = xhr.responseText.substring(0, xhr.responseText.length)
+	    data = data.replace(' ', '+');
+	    data = data.replace(' ', '+');
+	    data = data.replace('\n','');
+            if(!data.includes("Error 500")){
+		var rawData = data.split("*");
+                var images = rawData.slice(0,rawData.length/2);
+                var audios = rawData.slice(rawData.length/2, rawData.length);
+		var count = 0;
+		var interval = setInterval(function(){
+	                canvas.renderImage(images[count]); // Render image	
+			const audioBlob = new Blob([audios[count]], {'type': 'audio/mp3'});
+		        const audioUrl = URL.createObjectURL(audioBlob);
+			console.log(audios[count]);
+			try {
+				const audio = new Audio(audios[count]); // Play audio
+				audio.play();
+			} catch {
+				console.log("Error playing audio.");
+			}
+			count++;
+		}, {{ record_interval }});
+		setTimeout(function(){
+			clearInterval(interval);
+		}, 5000);
+	    }
+        }
+}
+function render() {
+        xhr.addEventListener("load", loadListener);
+        xhr.timeout = {{ request_timeout }};
+        xhr.open("POST", window.location.pathname + "still/frame/", true);
+        xhr.send(null);
+	xhr2.addEventListener("load", loadListener2);
+        xhr2.timeout = {{ request_timeout }};
+        xhr2.open("POST", window.location.pathname + "still/frame/last/", true)
+        xhr2.send(null);
+}
+setInterval(render, 5000);
+HTMLCanvasElement.prototype.renderImage = function(blob){
+  var ctx = this.getContext('2d');
+  var img = new Image();
+  img.onload = function(){
+    ctx.drawImage(img, 0, 0, canvas.getBoundingClientRect().width, canvas.getBoundingClientRect().height);
+    ctx.save();
+  };
+  img.src = blob;
+};
+render();
+{% endblock %}
