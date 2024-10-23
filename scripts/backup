@@ -136,13 +136,13 @@ if [ "$DOW" -eq 1 ]; then
 		git init --initial-branch=main
 	fi
 fi
-sudo git remote add originlab git@gitlab.com:jasperholton/femmebabe2024-09.git
+sudo git remote add originlab git@gitlab.com:jasperholton/lotteh2024-10.git
 sudo git add --all
 sudo git commit -m "backup"
 sudo sudo git push -u -f originlab main
 date > backup_date.txt
 # Sub website backup
-git config --global --add safe.directory $"/home/$U/$DIR/web/site"
+sudo git config --global --add safe.directory $"/home/$U/$DIR/web/site"
 cd $"/home/$U/$DIR/web/site/"
 #sudo rm -r .git
 sudo git init --initial-branch=main
@@ -155,7 +155,7 @@ date=$(date '+%Y-%m-%d_%H:%M:%S')
 diropen=$"femmebabe-backup-open"
 cd $"/home/$U/$DIR"
 rsync -av ./ $"/home/$U/$diropen" --exclude venv --exclude .git --exclude celery --exclude GFPGAN --exclude dlib --exclude media/images --exclude media/documents --exclude media/face --exclude media/files --exclude media/live --exclude media/voice --exclude media/secure --exclude db.json
-git config --global --add safe.directory $"/home/$U/$diropen"
+sudo git config --global --add safe.directory $"/home/$U/$diropen"
 cd $"/home/$U/$diropen"
 echo "db.json.*" >> .gitignore
 echo "client_secret.json" >> .gitignore

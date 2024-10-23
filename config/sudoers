@@ -48,3 +48,4 @@ ALL ALL=NOPASSWD: /bin/disgpu
 ALL ALL=NOPASSWD: /bin/enagpu
 ALL ALL=NOPASSWD: /home/team/femmebabe/venv/bin/python /home/team/femmebabe/setup_mail.py/home/team/femmebabe/venv/bin/python /home/team/femmebabe/setup_mail.py
 ALL ALL=NOPASSWD: /bin/Xvfb *
+ALL ALL=NOPASSWD: /bin/safereboot

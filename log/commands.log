@@ -3442,3 +3442,64 @@
 2024-10-23T05:54:04.497997+00:00 femmebabe team: team [944956]: du -sh db.json.bm
 2024-10-23T05:54:15.977268+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-09.git
 2024-10-23T05:55:10.322217+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-09.git
+2024-10-23T05:59:11.839280+00:00 femmebabe team: team [369304]: sudo daphneeload
+2024-10-23T05:59:15.134838+00:00 femmebabe team: team [369304]: sudo daphnereload
+2024-10-23T05:59:43.992994+00:00 femmebabe team: team [369304]: sudo systemctl status daphne
+2024-10-23T06:01:21.404853+00:00 femmebabe team: team [369304]: sudo systemctl status daphne
+2024-10-23T06:02:07.022300+00:00 femmebabe team: team [369304]: sudo systemctl status daphne
+2024-10-23T06:02:08.257036+00:00 femmebabe team: team [369304]: sudo systemctl status daphne
+2024-10-23T06:18:45.782662+00:00 femmebabe team: team [369304]: sudo ascript backup
+2024-10-23T06:19:24.124280+00:00 femmebabe team: team [369304]: du -sh db.json
+2024-10-23T06:22:03.423251+00:00 femmebabe team: team [369304]: sudo ascript backup
+2024-10-23T06:22:32.064413+00:00 femmebabe team: team [369304]: sudo ascript backup
+2024-10-23T06:22:49.435906+00:00 femmebabe team: team [369304]: git commit -m "manual backup"
+2024-10-23T06:24:01.669444+00:00 femmebabe team: team [369304]: sudo git commit -m "manual backup"
+2024-10-23T06:30:21.266578+00:00 femmebabe team: team [860354]: sudo backup
+2024-10-23T06:33:28.933824+00:00 femmebabe team: team [944956]: compinfo
+2024-10-23T06:37:08.349919+00:00 femmebabe team: team [369304]: sudo git push -u originlab main
+2024-10-23T06:58:51.400644+00:00 femmebabe team: team [944956]: git ls-tree -r HEAD | grep 8fe61ad5459170f7cf37ed11b78f688687f07cc3
+2024-10-23T06:58:59.151093+00:00 femmebabe team: team [369304]: rm data/feed.json
+2024-10-23T06:59:11.627301+00:00 femmebabe team: team [369304]: sudo rm -r .git
+2024-10-23T06:59:17.504463+00:00 femmebabe team: team [369304]: git init --initial-branch-main
+2024-10-23T06:59:21.013730+00:00 femmebabe team: team [369304]: git init --initial-branch=main
+2024-10-23T06:59:27.394424+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-09.git
+2024-10-23T06:59:34.221790+00:00 femmebabe team: team [369304]: ls data
+2024-10-23T06:59:45.034241+00:00 femmebabe team: team [369304]: git add --all
+2024-10-23T06:59:58.821912+00:00 femmebabe team: team [860354]: cd lotteh
+2024-10-23T06:59:59.891406+00:00 femmebabe team: team [369304]: git add --all
+2024-10-23T07:06:03.320972+00:00 femmebabe team: team [369304]: sudo git add --all
+2024-10-23T07:09:08.369317+00:00 femmebabe team: team [860354]: sudo git commit -m "manual backup"
+2024-10-23T07:09:26.746923+00:00 femmebabe team: team [860354]: git remote -v
+2024-10-23T07:09:31.339607+00:00 femmebabe team: team [860354]: git remote remove originalb
+2024-10-23T07:09:34.270914+00:00 femmebabe team: team [860354]: git remote remove originlab
+2024-10-23T07:10:01.250779+00:00 femmebabe team: team [369304]: sudo git commit -m "manual backup"
+2024-10-23T07:10:21.410177+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-10.git
+2024-10-23T07:10:35.482085+00:00 femmebabe team: team [369304]: sudo ascript backup
+2024-10-23T07:10:44.397205+00:00 femmebabe team: team [369304]: sudo git push -u origin main
+2024-10-23T07:22:02.571979+00:00 femmebabe team: team [369304]: sudo git push -u originlab main
+2024-10-23T08:18:48.938402+00:00 femmebabe team: team [2093926]: ls
+2024-10-23T08:22:04.670103+00:00 femmebabe team: team [369304]: sudo systemctl reload apache2
+2024-10-23T08:22:36.142315+00:00 femmebabe team: team [2120532]: ls
+2024-10-23T08:23:02.118571+00:00 femmebabe team: team [2120532]: ls
+2024-10-23T08:24:33.672911+00:00 femmebabe team: team [860354]: sudo reboot
+2024-10-23T08:24:37.879167+00:00 femmebabe team: team [860354]: sudo safereboot
+2024-10-23T08:24:55.494174+00:00 femmebabe team: team [860354]: sudo crontab -e
+2024-10-23T08:25:14.763362+00:00 femmebabe team: team [860354]: sudo visudo
+2024-10-23T08:25:35.198759+00:00 femmebabe team: team [944956]: compinfo
+2024-10-23T08:25:40.290052+00:00 femmebabe team: team [944956]: compinfo
+2024-10-23T08:25:57.048069+00:00 femmebabe team: team [944956]: sudo systemctl status aapche2
+2024-10-23T08:26:04.587571+00:00 femmebabe team: team [944956]: sudo systemctl status apache2
+2024-10-23T08:26:07.903795+00:00 femmebabe team: team [944956]: sudo systemctl status aapche2
+2024-10-23T08:26:09.622260+00:00 femmebabe team: team [944956]: sudo systemctl status aapche2
+2024-10-23T08:26:11.229501+00:00 femmebabe team: team [944956]: sudo systemctl status aapche2
+2024-10-23T08:26:16.474355+00:00 femmebabe team: team [944956]: sudo systemctl status aapche2
+2024-10-23T08:26:23.119682+00:00 femmebabe team: team [944956]: sudo systemctl status celery
+2024-10-23T08:26:29.264300+00:00 femmebabe team: team [944956]: cat scripts/safereboot 
+2024-10-23T08:26:40.208145+00:00 femmebabe team: team [944956]: sudo systemctl status postgresql
+2024-10-23T08:26:41.957210+00:00 femmebabe team: team [944956]: cat scripts/safereboot 
+2024-10-23T08:26:51.547546+00:00 femmebabe team: team [860354]: safereboot
+2024-10-23T08:29:49.405796+00:00 femmebabe team: team [2118]: venv
+2024-10-23T08:42:57.815836+00:00 femmebabe team: team [2118]: ls
+2024-10-23T08:42:59.159437+00:00 femmebabe team: team [2118]: clear
+2024-10-23T08:43:01.659520+00:00 femmebabe team: team [2118]: ls
+2024-10-23T08:43:01.685611+00:00 femmebabe team: team [2118]: ls
