@@ -3417,3 +3417,28 @@
 2024-10-23T05:30:17.766194+00:00 femmebabe team: team [369304]: nano test.txt
 2024-10-23T05:30:23.578349+00:00 femmebabe team: team [369304]: sudo chmod -R 774 ./*
 2024-10-23T05:30:46.828598+00:00 femmebabe team: team [860354]: sudo ascript backup
+2024-10-23T05:31:01.726411+00:00 femmebabe team: team [369304]: ls
+2024-10-23T05:31:05.520451+00:00 femmebabe team: team [369304]: rm test.txt
+2024-10-23T05:31:06.860577+00:00 femmebabe team: team [369304]: ls -la
+2024-10-23T05:31:11.515659+00:00 femmebabe team: team [369304]: ls
+2024-10-23T05:31:14.324539+00:00 femmebabe team: team [369304]: cat .gitignore 
+2024-10-23T05:31:18.496134+00:00 femmebabe team: team [369304]: cat .gitignore 
+2024-10-23T05:31:26.644187+00:00 femmebabe team: team [369304]: sudo rm -r ./*
+2024-10-23T05:31:29.261830+00:00 femmebabe team: team [369304]: ls
+2024-10-23T05:31:31.121152+00:00 femmebabe team: team [369304]: ls -l
+2024-10-23T05:31:32.964661+00:00 femmebabe team: team [369304]: ls -la
+2024-10-23T05:31:42.027579+00:00 femmebabe team: team [369304]: rm -r .gitignore
+2024-10-23T05:31:46.967674+00:00 femmebabe team: team [369304]: sudo rm -r .git
+2024-10-23T05:31:48.275411+00:00 femmebabe team: team [369304]: ls
+2024-10-23T05:31:51.202794+00:00 femmebabe team: team [369304]: ls .la
+2024-10-23T05:31:58.998686+00:00 femmebabe team: team [369304]: ls -la
+2024-10-23T05:32:00.747767+00:00 femmebabe team: team [369304]: cd
+2024-10-23T05:52:06.857088+00:00 femmebabe team: team [369304]: cd lotteh/
+2024-10-23T05:52:17.178312+00:00 femmebabe team: team [369304]: ls
+2024-10-23T05:52:19.631198+00:00 femmebabe team: team [369304]: git remote -v
+2024-10-23T05:52:33.770359+00:00 femmebabe team: team [369304]: sudo rm -r .git
+2024-10-23T05:52:45.087952+00:00 femmebabe team: team [369304]: git init --initial-branch=main
+2024-10-23T05:53:14.076536+00:00 femmebabe team: team [860354]: sudo backup
+2024-10-23T05:54:04.497997+00:00 femmebabe team: team [944956]: du -sh db.json.bm
+2024-10-23T05:54:15.977268+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-09.git
+2024-10-23T05:55:10.322217+00:00 femmebabe team: team [369304]: git remote add originlab git@gitlab.com:jasperholton/lotteh2024-09.git
