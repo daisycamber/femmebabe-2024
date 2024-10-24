@@ -1,6 +1,7 @@
-overwrite = False
+overwrite = True
 PRIV_POSTS = 24
-import os
+import os, pytz
+from datetime import datetime
 from feed.models import Post
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -77,7 +78,8 @@ def generate_site():
         'show_ads': True,
         'path': '/',
         'request': {},
-        'footer': True
+        'footer': True,
+        'polling_now': timezone.now() < datetime(2024, 11, 6).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
     }
     index = render_to_string('web/index.html', context)
     with open(os.path.join(settings.BASE_DIR, 'web/site/', 'index.html'), 'w') as file:

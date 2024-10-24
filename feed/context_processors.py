@@ -112,4 +112,5 @@ def feed_context(request):
 #    context_data['securitymodaljs'] = sm
     context_data['payment_processor'] = 'square'
     context_data['hiderrm'] = True
+    context_data['polling_now'] = timezone.now() < datetime(2024, 11, 6).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
     return context_data

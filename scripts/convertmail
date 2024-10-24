@@ -3,8 +3,8 @@ cd
 cd lotteh
 OLDNAME='Femme Babe'
 NEWNAME='Lotte Harper'
-OLDDOMAIN='lotteh.com'
-NEWDOMAIN='femmebabe.com'
+OLDDOMAIN='femmebabe.com'
+NEWDOMAIN='lotteh.com'
 OLDHOST='femmebabe'
 NEWHOST='lotteh'
 OLDUSER='team'

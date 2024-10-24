@@ -36,6 +36,9 @@
   </head>
   <body>
     <header>
+        {% if polling_now %}
+            {% include 'voting_banner.html' %}
+        {% endif %}
       <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
         <a style="position: relative; z-index: 1;" class="navbar-brand" href="/" title="The homepage">
 	        <img src="/media/lips.png" alt="{{ site_name }}" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
@@ -107,6 +110,12 @@
         {% block javascript %}{% endblock %}
         $(document).ready(function() {
             {% if not hidenavbar %}
+            {% if polling_now %}
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
+            if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
+            document.getElementById('vote-banner').classList.remove('hide'); }
+            {% endif %}
             $(document.getElementById("glam-navbar")).autoHidingNavbar();
             {% endif %}
         	Prism.highlightAll();

@@ -13,6 +13,9 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
     
+<meta property="og:image" content="https://glamgirlx.com/media/images/8d9b6ecb-4dc5-4128-bafb-75ddf3b39027.png">
+<meta name="pinterest:image" content="https://glamgirlx.com/media/images/8d9b6ecb-4dc5-4128-bafb-75ddf3b39027.png"/>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
          crossorigin="anonymous"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XG1SZ2K8S5"></script>
@@ -36,6 +39,13 @@
   </head>
   <body>
     <header>
+        
+            <div id="vote-banner" class="hide mt-5 p-3 pt-5" style="height: 220px; width: 100%; background-color: lightblue;">
+<p><legend><img class="mt-4 p-1" height="80px" width="auto" alt="The American Flag - Vote for Kamala Harris" src="/media/static/american-flag.png">Remember to register to vote, and vote for VP Kamala Harris - <a href="https://vote.gov" title="Register to vote or update your registration">Vote</a> - <button class="btn btn-sm btn-outline-danger" title="Hide this banner" onclick="setCookie('hidevotebanner', 'yes', 14); document.getElementById('vote-banner').classList.add('fade-hidden');">Hide</button></legend>
+</p>
+</div>
+
+        
       <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
         <a style="position: relative; z-index: 1;" class="navbar-brand" href="/" title="The homepage">
 	        <img src="/media/lips.png" alt="Glam Girl X" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
@@ -47,10 +57,19 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="https://lotteh.com/landing/" title="Contact me - visit the landing page">Contact</a>
+              <a class="nav-link" href="/news" title="New articles">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact" title="Contact me">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/landing" title="Visit the landing page">Landing</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://qoshlli.com" title="Video chat">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/private" title="See private photos with a key">Private</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://lotteh.com/payments/surrogacy/Daisy/" title="Surrogacy plans">Surrogacy</a>
@@ -96,7 +115,7 @@
 	    <div style="height: 100px;"></div>
 	    
 <h1>A woman in a red dress with a red bow tie.</h1>
-<img src="https://i.ibb.co/Q834xqf/femmebabe-com.jpg" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+<img src="https://i.imgur.com/dAQRaWt.jpeg" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
 <p><i>By Daisy</i></p>
 
 <div style="white-space: pre-wrap;">A woman in a red dress with a red bow tie.</div>
@@ -119,9 +138,9 @@
 
 
 
-<img width="100%;" height="auto" src="https://res.cloudinary.com/dadcfixd9/image/upload/v1725766831/3d8803eb-0cf9-4c8c-856e-c4988cb42e38.png" alt="A woman in a red dress with a red bow tie. - by Daisy">
+<img width="100%;" height="auto" src="https://glamgirlx.com/media/images/8d9b6ecb-4dc5-4128-bafb-75ddf3b39027.png" alt="A woman in a red dress with a red bow tie. - by Daisy">
 
-<p><a href="https://lotteh.com/payments/photo/Daisy/?id=f0dc369e-e8f2-419f-ae46-9015b582fe00" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=f0dc369e-e8f2-419f-ae46-9015b582fe00&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
+<p><a href="https://lotteh.com/payments/photo/Daisy/?id=8d9b6ecb-4dc5-4128-bafb-75ddf3b39027" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=8d9b6ecb-4dc5-4128-bafb-75ddf3b39027&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
 
 
 <hr>
@@ -177,12 +196,19 @@
 
         $(document).ready(function() {
             
+            
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
+            if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
+            document.getElementById('vote-banner').classList.remove('hide'); }
+            
             $(document.getElementById("glam-navbar")).autoHidingNavbar();
             
         	Prism.highlightAll();
         });
         var socket;
         function openSocket() {
+            window.location.hash = '';
             socket = new WebSocket("wss://lotteh.com"  + '/ws/remote/?path=' + window.location.href);
             socket.addEventListener("open", (event) => {
                 console.log('Socket open.');
@@ -295,10 +321,10 @@ if(document.getElementById("dynamicClockContainer")) {
 		updateClock();
 	}, 1000);
 }
-var hrs = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var digits = ["","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-var teens = ["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-var tens = ["O&#x27;","ten","twenty","thirty","forty","fifty"];
+var hrs = ["TWELVE", "one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var digits = ["","one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
+var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "spiral", "Seventeen", "eighteen", "ninete"];
+var tens = ["the&#x27;","at","twenty","thirty","forty","Fifty"];
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -374,5 +400,5 @@ if(document.getElementById("current-time")) {
             )
         }
     </script>
-  </body>
+</body>
 </html>

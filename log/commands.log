@@ -3503,3 +3503,132 @@
 2024-10-23T08:42:59.159437+00:00 femmebabe team: team [2118]: clear
 2024-10-23T08:43:01.659520+00:00 femmebabe team: team [2118]: ls
 2024-10-23T08:43:01.685611+00:00 femmebabe team: team [2118]: ls
+2024-10-24T01:16:51.678225+00:00 femmebabe team: team [762881]: ls
+2024-10-24T01:17:00.043872+00:00 femmebabe team: team [762978]: ls
+2024-10-24T01:43:27.092013+00:00 femmebabe team: team [762978]: ls
+2024-10-24T01:43:31.124665+00:00 femmebabe team: team [762978]: clear
+2024-10-24T01:53:14.583418+00:00 femmebabe team: team [769289]: clear
+2024-10-24T01:53:23.423616+00:00 femmebabe team: team [769413]: clear
+2024-10-24T03:42:57.226015+00:00 femmebabe team: team [793339]: clear
+2024-10-24T04:00:50.287113+00:00 femmebabe team: team [795793]: clear
+2024-10-24T04:25:36.377730+00:00 femmebabe team: team [846717]: clear
+2024-10-24T04:47:47.585569+00:00 femmebabe team: team [960431]: clear
+2024-10-24T04:47:51.432552+00:00 femmebabe team: team [960431]: cd lotteh
+2024-10-24T04:51:44.584187+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T04:52:19.116854+00:00 femmebabe team: team [960431]: cd media/
+2024-10-24T04:52:22.521595+00:00 femmebabe team: team [960431]: cd static
+2024-10-24T04:52:27.673896+00:00 femmebabe team: team [960431]: wget https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1600px-Flag_of_the_United_States.png?20110131151900
+2024-10-24T04:52:36.093767+00:00 femmebabe team: team [960431]: cp '1600px-Flag_of_the_United_States.png?20110131151900' american-flag.png
+2024-10-24T04:52:39.828477+00:00 femmebabe team: team [960431]: rm '1600px-Flag_of_the_United_States.png?20110131151900' 
+2024-10-24T04:52:52.006678+00:00 femmebabe team: team [960431]: cd ..
+2024-10-24T04:52:52.587599+00:00 femmebabe team: team [960431]: cd ..
+2024-10-24T04:53:52.973584+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T04:54:57.439197+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T04:57:36.886305+00:00 femmebabe team: team [960431]: nano feed/context_processors.py 
+2024-10-24T04:57:48.807080+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T04:57:51.968970+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T04:58:28.992368+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:00:15.782850+00:00 femmebabe team: team [960431]: nano feed/context_processors.py 
+2024-10-24T05:00:18.075402+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:00:25.605034+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:00:27.146495+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:01:36.926072+00:00 femmebabe team: team [960431]: watchlogs
+2024-10-24T05:02:05.020805+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:02:07.292674+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:02:08.910652+00:00 femmebabe team: team [960431]: purgecache
+2024-10-24T05:02:33.774493+00:00 femmebabe team: team [960431]: nano scripts/postfixsetup
+2024-10-24T05:02:37.402113+00:00 femmebabe team: team [960431]: cat scripts/convert
+2024-10-24T05:02:44.643979+00:00 femmebabe team: team [960431]: ls scripts/
+2024-10-24T05:02:49.888746+00:00 femmebabe team: team [960431]: cat scripts/convertmail 
+2024-10-24T05:03:52.908885+00:00 femmebabe team: team [960431]: nano scripts/convertmail 
+2024-10-24T05:05:23.245218+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:05:46.999396+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:06:53.820584+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:08:15.298813+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:08:17.285138+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:08:22.417855+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:08:42.221449+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:08:50.126280+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:09:08.082869+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:09:16.171525+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:12:26.606061+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:13:00.163866+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:15:28.293993+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:15:30.689464+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:15:33.104021+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:16:35.428557+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:16:37.100510+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:16:38.623347+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:16:56.347508+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:20:08.342798+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:20:10.721618+00:00 femmebabe team: team [960431]: sudo dorelaod
+2024-10-24T05:20:12.533111+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:20:14.354371+00:00 femmebabe team: team [960431]: purgecache
+2024-10-24T05:20:17.646866+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:20:24.803400+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:20:25.896134+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:22:39.699394+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:23:14.498122+00:00 femmebabe team: team [960431]: cp media/static/american-flag.png web/site/media/static/american-flag.png
+2024-10-24T05:23:24.563386+00:00 femmebabe team: team [960431]: mkdir web/site/media/static
+2024-10-24T05:23:26.681049+00:00 femmebabe team: team [960431]: cp media/static/american-flag.png web/site/media/static/american-flag.png
+2024-10-24T05:23:47.034367+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:24:16.822883+00:00 femmebabe team: team [960431]: nano feed/context_processors.py 
+2024-10-24T05:25:14.887762+00:00 femmebabe team: team [960431]: nano web/generate.py 
+2024-10-24T05:26:11.798983+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:26:43.138556+00:00 femmebabe team: message repeated 2 times: [ team [960431]: nano web/templates/web/base.html ]
+2024-10-24T05:26:46.409543+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:26:48.597322+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:26:51.216361+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:26:56.256563+00:00 femmebabe team: team [960431]: nano web/generate.py 
+2024-10-24T05:28:02.994539+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:28:03.184866+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:28:15.996582+00:00 femmebabe team: team [960431]: nano web/site/static/main.js 
+2024-10-24T05:28:25.663212+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:29:13.444118+00:00 femmebabe team: team [960431]: nano static/main.js 
+2024-10-24T05:29:20.791259+00:00 femmebabe team: team [960431]: nano web/site/static/main.js 
+2024-10-24T05:29:26.549256+00:00 femmebabe team: team [960431]: nano web/site/static/main.js 
+2024-10-24T05:29:40.983760+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:30:17.266381+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:30:30.041752+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:30:33.147294+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:30:36.331211+00:00 femmebabe team: team [960431]: sudo daphnereload
+2024-10-24T05:30:38.440725+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:32:56.268020+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:33:12.765482+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:33:50.845982+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html
+2024-10-24T05:35:13.105636+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:35:36.186624+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:35:40.124859+00:00 femmebabe team: team [960431]: sudo doreload
+2024-10-24T05:35:45.376633+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:35:53.305938+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:35:54.220427+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:40:23.013887+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:48:32.570055+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:48:33.680936+00:00 femmebabe team: team [960431]: ls
+2024-10-24T05:48:49.611846+00:00 femmebabe team: team [960431]: sudo rm db.json.*
+2024-10-24T05:49:07.752436+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:49:11.667937+00:00 femmebabe team: message repeated 2 times: [ team [960431]: nano templates/base.html]
+2024-10-24T05:50:44.759303+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:51:07.290765+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:51:07.488559+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:51:12.368263+00:00 femmebabe team: team [960431]: sudo daphnereload
+2024-10-24T05:51:14.663941+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:51:16.476610+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:51:23.115047+00:00 femmebabe team: team [960431]: nano web/generate.py 
+2024-10-24T05:52:36.720677+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:52:37.163068+00:00 femmebabe team: message repeated 8 times: [ team [960431]: sudo pushweb]
+2024-10-24T05:52:46.056808+00:00 femmebabe team: team [960431]: nano web/templates/web/base.html 
+2024-10-24T05:55:19.269046+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:56:54.467262+00:00 femmebabe team: team [960431]: sudo pushweb
+2024-10-24T05:58:27.278675+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:58:33.716193+00:00 femmebabe team: team [960431]: nano templates/voting_banner.html 
+2024-10-24T05:58:43.367920+00:00 femmebabe team: team [960431]: nano templates/base.html
+2024-10-24T05:58:47.113211+00:00 femmebabe team: team [960431]: sudo daphnereload
+2024-10-24T05:58:49.235855+00:00 femmebabe team: team [960431]: sudo purgecache
+2024-10-24T05:59:07.827863+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:59:12.956097+00:00 femmebabe team: team [960431]: watchlogs
+2024-10-24T05:59:13.820397+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:59:15.174391+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:59:16.137285+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:59:17.083931+00:00 femmebabe team: team [960431]: logs
+2024-10-24T05:59:18.027791+00:00 femmebabe team: team [960431]: logs

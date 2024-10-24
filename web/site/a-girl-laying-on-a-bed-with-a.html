@@ -13,8 +13,8 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
     
-<meta property="og:image" content="https://i.imgur.com/gv0xbLn.jpeg">
-<meta name="pinterest:image" content="https://i.imgur.com/gv0xbLn.jpeg"/>
+<meta property="og:image" content="https://glamgirlx.com/media/images/b0247dab-fdb9-4a88-84c1-1fc95692cfaa.png">
+<meta name="pinterest:image" content="https://glamgirlx.com/media/images/b0247dab-fdb9-4a88-84c1-1fc95692cfaa.png"/>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
          crossorigin="anonymous"></script>
@@ -39,6 +39,13 @@
   </head>
   <body>
     <header>
+        
+            <div id="vote-banner" class="hide mt-5 p-3 pt-5" style="height: 220px; width: 100%; background-color: lightblue;">
+<p><legend><img class="mt-4 p-1" height="80px" width="auto" alt="The American Flag - Vote for Kamala Harris" src="/media/static/american-flag.png">Remember to register to vote, and vote for VP Kamala Harris - <a href="https://vote.gov" title="Register to vote or update your registration">Vote</a> - <button class="btn btn-sm btn-outline-danger" title="Hide this banner" onclick="setCookie('hidevotebanner', 'yes', 14); document.getElementById('vote-banner').classList.add('fade-hidden');">Hide</button></legend>
+</p>
+</div>
+
+        
       <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
         <a style="position: relative; z-index: 1;" class="navbar-brand" href="/" title="The homepage">
 	        <img src="/media/lips.png" alt="Glam Girl X" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
@@ -131,9 +138,9 @@
 
 
 
-<img width="100%;" height="auto" src="https://i.imgur.com/gv0xbLn.jpeg" alt="A girl laying on a bed with a pink blanket. - by Daisy">
+<img width="100%;" height="auto" src="https://glamgirlx.com/media/images/b0247dab-fdb9-4a88-84c1-1fc95692cfaa.png" alt="A girl laying on a bed with a pink blanket. - by Daisy">
 
-<p><a href="https://lotteh.com/payments/photo/Daisy/?id=4e2355fb-39d5-42f0-a366-8e9606ad9ba7" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=4e2355fb-39d5-42f0-a366-8e9606ad9ba7&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
+<p><a href="https://lotteh.com/payments/photo/Daisy/?id=b0247dab-fdb9-4a88-84c1-1fc95692cfaa" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=b0247dab-fdb9-4a88-84c1-1fc95692cfaa&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
 
 
 <hr>
@@ -188,6 +195,12 @@
 
 
         $(document).ready(function() {
+            
+            
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
+            if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
+            document.getElementById('vote-banner').classList.remove('hide'); }
             
             $(document.getElementById("glam-navbar")).autoHidingNavbar();
             
@@ -310,7 +323,7 @@ if(document.getElementById("dynamicClockContainer")) {
 }
 var hrs = ["TWELVE", "one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
 var digits = ["","one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
-var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "Sixteen", "Seventeen", "eighteen", "ninete"];
+var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "spiral", "Seventeen", "eighteen", "ninete"];
 var tens = ["the&#x27;","at","twenty","thirty","forty","Fifty"];
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

@@ -111,6 +111,9 @@
         {% include 'preload.html' %}
         {% endif %}
         {% if not hidenavbar %}
+        {% if polling_now %}
+        {% include 'voting_banner.html' %}
+        {% endif %}
         {% include 'navbar.html' %}
         {% endif %}
         {% if request.path != '/' %}
@@ -176,6 +179,12 @@
         {% include 'securitymodal.js' %}
         $(document).ready(function() {
         	{% if not hidenavbar %}
+        	{% if polling_now %}
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
+            if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
+            document.getElementById('vote-banner').classList.remove('hide'); }
+            {% endif %}
             try {
             	$(document.getElementById("clemn-navbar")).autoHidingNavbar().show();
             } catch {}

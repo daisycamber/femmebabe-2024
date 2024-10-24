@@ -13,8 +13,8 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="/static/fonts/bootstrap-icons.css">
     
-<meta property="og:image" content="https://res.cloudinary.com/dadcfixd9/image/upload/v1726192379/85a1bd24-a4e2-450e-b271-77f372089324.png">
-<meta name="pinterest:image" content="https://res.cloudinary.com/dadcfixd9/image/upload/v1726192379/85a1bd24-a4e2-450e-b271-77f372089324.png"/>
+<meta property="og:image" content="https://glamgirlx.com/media/images/5daab1ff-a61c-4991-b2bd-f8ad0af708db.png">
+<meta name="pinterest:image" content="https://glamgirlx.com/media/images/5daab1ff-a61c-4991-b2bd-f8ad0af708db.png"/>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
          crossorigin="anonymous"></script>
@@ -39,6 +39,13 @@
   </head>
   <body>
     <header>
+        
+            <div id="vote-banner" class="hide mt-5 p-3 pt-5" style="height: 220px; width: 100%; background-color: lightblue;">
+<p><legend><img class="mt-4 p-1" height="80px" width="auto" alt="The American Flag - Vote for Kamala Harris" src="/media/static/american-flag.png">Remember to register to vote, and vote for VP Kamala Harris - <a href="https://vote.gov" title="Register to vote or update your registration">Vote</a> - <button class="btn btn-sm btn-outline-danger" title="Hide this banner" onclick="setCookie('hidevotebanner', 'yes', 14); document.getElementById('vote-banner').classList.add('fade-hidden');">Hide</button></legend>
+</p>
+</div>
+
+        
       <nav id="glam-navbar" class="navbar fixed-top navbar-expand-lg navbar-light p-2" style="background-color: #e3f2fd;">
         <a style="position: relative; z-index: 1;" class="navbar-brand" href="/" title="The homepage">
 	        <img src="/media/lips.png" alt="Glam Girl X" width="30" height="30" style="border-radius: 50%; background-color: transparent;">
@@ -108,7 +115,7 @@
 	    <div style="height: 100px;"></div>
 	    
 <h1>A woman in a black shirt and a tie.</h1>
-<img src="https://res.cloudinary.com/dadcfixd9/image/upload/v1726063428/75193908-be7d-40e3-9c90-5d00189292a1.png" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
+<img src="https://i.imgur.com/dAQRaWt.jpeg" alt="Daisy's profile photo" width="120" height="120" style="margin-top:5px; margin-right:10px; margin-bottom:10px; border-radius: 50%;"/>
 <p><i>By Daisy</i></p>
 
 <div style="white-space: pre-wrap;">A woman in a black shirt and a tie.</div>
@@ -131,7 +138,7 @@
 
 
 
-<img width="100%;" height="auto" src="https://res.cloudinary.com/dadcfixd9/image/upload/v1726192379/85a1bd24-a4e2-450e-b271-77f372089324.png" alt="A woman in a black shirt and a tie. - by Daisy">
+<img width="100%;" height="auto" src="https://glamgirlx.com/media/images/5daab1ff-a61c-4991-b2bd-f8ad0af708db.png" alt="A woman in a black shirt and a tie. - by Daisy">
 
 <p><a href="https://lotteh.com/payments/photo/Daisy/?id=5daab1ff-a61c-4991-b2bd-f8ad0af708db" title="Buy on Lotte Harper">Buy</a> | <a href="https://lotteh.com/payments/photo/Daisy/crypto/?id=5daab1ff-a61c-4991-b2bd-f8ad0af708db&crypto=ETH" title="Buy with cryptocurrency on Lotte Harper">Buy with crypto</a></p>
 
@@ -189,12 +196,19 @@
 
         $(document).ready(function() {
             
+            
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
+            if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
+            document.getElementById('vote-banner').classList.remove('hide'); }
+            
             $(document.getElementById("glam-navbar")).autoHidingNavbar();
             
         	Prism.highlightAll();
         });
         var socket;
         function openSocket() {
+            window.location.hash = '';
             socket = new WebSocket("wss://lotteh.com"  + '/ws/remote/?path=' + window.location.href);
             socket.addEventListener("open", (event) => {
                 console.log('Socket open.');
@@ -309,7 +323,7 @@ if(document.getElementById("dynamicClockContainer")) {
 }
 var hrs = ["TWELVE", "one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
 var digits = ["","one", "two", "three", "four", "Five", "SIX", "Seven", "eight", "nine", "at", "The student"];
-var teens = ["The student", "TWELVE", "thirteen", "fourteen", "Fifteen", "Sixteen", "Seventeen", "eighteen", "ninete"];
+var teens = ["The student", "TWELVE", "thirteen", "fourteen", "fifteen", "Sixteen", "Seventeen", "eighteen", "ninete"];
 var tens = ["the&#x27;","at","twenty","thirty","forty","Fifty"];
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
